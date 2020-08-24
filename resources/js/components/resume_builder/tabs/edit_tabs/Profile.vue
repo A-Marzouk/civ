@@ -20,6 +20,25 @@
                     <div class="error" v-if="profile_pic_error">{{profile_pic_error}}</div>
                 </div>
 
+                <div class="profile-input-field input-field--username input-field--group-1">
+                    <span class="v-label v-label--active theme--light" style="color: #888DB1; font-size:16px;">
+                        My URL
+                    </span>
+                    <v-text-field
+                            class="resume-builder__input top-input-margin url min-height"  style="margin-top: -21px;"
+                            v-model="usernameCurrentValue"
+                            @blur="updateUsername"
+                            :outlined="true"
+                            :class="{'resume-builder__input--disabled': false}"
+                            :error="!!errors.username"
+                            :error-messages="errors.username"
+                    >
+                        <template slot="prepend-inner">
+                            <span class="inner-text" style="margin-top:-4.8px;">www.civ.ie/</span>
+                        </template>
+                    </v-text-field>
+                </div>
+
                 <div class="profile-input-field input-field--firstname input-field--group-1">
                     <v-text-field
                             class="resume-builder__input civie-input"
@@ -28,7 +47,7 @@
                             v-model="personalInfo.first_name"
                             :error="!!errors.first_name"
                             :error-messages="errors.first_name"
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit()"
                             hide-details="auto"
                             outlined
                     ></v-text-field>
@@ -42,7 +61,7 @@
                             :class="{'resume-builder__input--disabled': false}"
                             :error="!!errors.last_name"
                             :error-messages="errors.last_name"
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit()"
                             hide-details="auto"
                             outlined
                     ></v-text-field>
@@ -58,7 +77,7 @@
                             :error-messages="errors.designation"
                             outlined
                             hide-details="auto"
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit()"
                     ></v-text-field>
                 </div>
 
@@ -80,9 +99,9 @@
                 errors: {},
                 tempPic: "",
                 profile_pic_error: "",
-                savingType: "manual",
                 menu: false,
                 showImageUpload: false,
+                updatedUsername: ''
             };
         },
         computed: {
@@ -91,6 +110,14 @@
             },
             user() {
                 return this.$store.state.user;
+            },
+            usernameCurrentValue:{
+                get(){
+                    return this.$store.state.user.username;
+                },
+                set(value){
+                   this.updatedUsername = value;
+                }
             }
         },
 
@@ -98,7 +125,7 @@
             // Image cropping
             cropSuccess(imgDataUrl) {
                 this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
-                this.applyEdit('auto');
+                this.applyEdit();
             },
 
             dataURLtoFile(dataURL, filename) {
@@ -113,9 +140,30 @@
             //
             updateVisibility(field_name){
                 this.personalInfo['is_' + field_name + '_active'] = !this.personalInfo['is_' + field_name + '_active'];
-                this.applyEdit("auto");
+                this.applyEdit();
             },
-            applyEdit(savingType) {
+            updateUsername(){
+                this.errors = {};
+                axios.post("/api/user/account/submit", {username: this.updatedUsername, id: this.user.id})
+                    .then(() => {
+                        this.user.username = this.updatedUsername ;
+                        this.$store.dispatch("flyingNotification");
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = ["Something went wrong. Please try again."];
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
+            applyEdit() {
+                this.errors = {};
+
                 let formData = new FormData();
                 formData.append("_method", "put");
                 formData.append("user_id", this.user.id);
@@ -161,7 +209,7 @@
                     this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
                     this.tempPic = URL.createObjectURL(this.$refs.profile_picture.files[0]);
                     this.profile_pic_error = "";
-                    this.applyEdit("auto");
+                    this.applyEdit();
                 } else {
                     this.profile_pic_error = "Incorrect file chosen!";
                 }
@@ -337,6 +385,13 @@
                                 grid-row-end: 4;
                             }
 
+                            &.input-field--username {
+                                grid-column-start: 2;
+                                grid-column-end: 3;
+                                grid-row-start: 1;
+                                grid-row-end: 2;
+                            }
+
                             &.input-field--lastname {
                                 grid-column-start: 2;
                                 grid-column-end: 3;
@@ -345,10 +400,10 @@
                             }
 
                             &.input-field--job-title {
-                                grid-column-start: 2;
-                                grid-column-end: 3;
-                                grid-row-start: 1;
-                                grid-row-end: 2;
+                                grid-column-start: 1;
+                                grid-column-end: 2;
+                                grid-row-start: 4;
+                                grid-row-end: 5;
                             }
                         }
 
@@ -396,6 +451,13 @@
                             &.input-field--firstname {
                                 grid-row-start: 1;
                                 grid-row-end: 2;
+                                grid-column-start: 3;
+                                grid-column-end: 4;
+                            }
+
+                            &.input-field--username{
+                                grid-row-start: 1;
+                                grid-row-end: 2;
                                 grid-column-start: 2;
                                 grid-column-end: 3;
                             }
@@ -403,37 +465,17 @@
                             &.input-field--lastname {
                                 grid-row-start: 1;
                                 grid-row-end: 2;
-                                grid-column-start: 3;
-                                grid-column-end: 4;
-                            }
-
-                            &.input-field--current-location {
-                                grid-row-start: 1;
-                                grid-row-end: 2;
                                 grid-column-start: 4;
                                 grid-column-end: 5;
-                            }
-
-                            &.input-field--date-of-birth {
-                                grid-row-start: 2;
-                                grid-row-end: 3;
-                                grid-column-start: 2;
-                                grid-column-end: 3;
                             }
 
                             &.input-field--job-title {
-                                grid-row-start: 1;
-                                grid-row-end: 2;
-                                grid-column-start: 4;
-                                grid-column-end: 5;
-                            }
-
-                            &.input-field--nationality {
+                                grid-column-start: 2;
+                                grid-column-end: 3;
                                 grid-row-start: 2;
                                 grid-row-end: 3;
-                                grid-column-start: 4;
-                                grid-column-end: 5;
                             }
+
                         }
 
                         &.input-field--group-2 {
@@ -636,5 +678,9 @@
 
     #resumeBuilder .v-chip--select .v-chip .v-chip--clickable .v-chip--no-color .theme--light .v-size--default {
         margin-left: -7px;
+    }
+
+    .resume-builder__input.url.min-height > .v-input__control > .v-input__slot {
+        min-height: 47px !important;
     }
 </style>

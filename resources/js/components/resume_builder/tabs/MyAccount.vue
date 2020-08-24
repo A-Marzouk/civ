@@ -1236,6 +1236,7 @@
     /* new input styles */
     .inner-text {
         padding-top: 4px;
+        white-space: nowrap;
         color: #aeaeae;
     }
 

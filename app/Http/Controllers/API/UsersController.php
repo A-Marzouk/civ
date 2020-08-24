@@ -145,8 +145,8 @@ class UsersController extends Controller
 
     public function editAccountData(Request $request){
         $request->validate([
-            'name' => 'required|max:191|min:3',
-            'email'     => 'required|max:191|email',
+            'name' => 'sometimes|max:191|min:3',
+            'email'     => 'sometimes|max:191|email',
             'password' => 'nullable|min:6|max:191|confirmed',
             'username' => 'required|alpha_dash|unique:users,username,'. $request['id'].',id',
         ]);
