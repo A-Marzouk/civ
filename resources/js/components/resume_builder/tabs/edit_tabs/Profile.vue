@@ -1,16 +1,21 @@
 <template>
     <div class="profile" v-if="personalInfo" data-app>
+
+        <my-upload @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></my-upload>
+
         <div class="profile-fields-wrapper">
             <div class="profile-fields">
                 <div class="profile-picture">
                     <div class="profile-label">
                         <div class="label" style="font-size: 15px">Photo</div>
 
-                        <div
-                                class="picture-preview"
-                                :style="`background-image: url(${personalInfo.profile_pic})`"
-                        >
+                        <div class="profile-pic">
+                            <img :src="personalInfo.profile_pic"/>
+                            <div class="photo-cover" @click="showImageUpload = true">
+                                <img src="/images/resume_builder/camera-icon.png" alt="camera icon">
+                            </div>
                         </div>
+
                     </div>
                     <div class="error" v-if="profile_pic_error">{{profile_pic_error}}</div>
                 </div>
@@ -63,8 +68,13 @@
 </template>
 
 <script>
+    import myUpload from 'vue-image-crop-upload';
+
     export default {
         name: "Personal",
+        components: {
+            'my-upload': myUpload
+        },
         data(vm) {
             return {
                 errors: {},
@@ -72,6 +82,7 @@
                 profile_pic_error: "",
                 savingType: "manual",
                 menu: false,
+                showImageUpload: false,
             };
         },
         computed: {
@@ -84,6 +95,22 @@
         },
 
         methods: {
+            // Image cropping
+            cropSuccess(imgDataUrl) {
+                this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
+                this.applyEdit('auto');
+            },
+
+            dataURLtoFile(dataURL, filename) {
+                var arr = dataURL.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new File([u8arr], filename, {type: mime});
+            },
+
+            //
             updateVisibility(field_name){
                 this.personalInfo['is_' + field_name + '_active'] = !this.personalInfo['is_' + field_name + '_active'];
                 this.applyEdit("auto");
@@ -98,8 +125,8 @@
                         if (field !== "email" && this.personalInfo[field].length) {
                             formData.append(field, this.personalInfo[field]);
                         }
-                        if (field === "profile_pic") {
-                            formData.append(field, this.personalInfo[field]);
+                        if (field === "profile_pic_file") {
+                            formData.append('profile_pic', this.personalInfo['profile_pic_file']);
                         }
                     }
                 });
@@ -110,11 +137,7 @@
                         headers: {"Content-Type": "multipart/form-data"}
                     })
                     .then(response => {
-                        if (savingType === "manual") {
-                            this.$store.dispatch("flyingNotification");
-                        } else {
-                            this.$store.dispatch("flyingNotification");
-                        }
+                        this.$store.dispatch("flyingNotification");
                         this.personalInfo.profile_pic = response.data.data.profile_pic;
                     })
                     .catch(error => {
@@ -207,46 +230,49 @@
                 box-shadow: 5px -5px 14px -5px rgba(0, 16, 131, 0.1),
                 -5px 5px 14px -5px rgba(0, 16, 131, 0.1);
 
+                .profile-pic {
+                    position: relative;
+                    overflow-y: hidden;
+                    border-radius: 50%;
+                    width: 110px;
+                    min-width: 110px;
+                    min-height: 110px;
+
+                    img {
+                        width: 110px;
+                        height: 110px;
+                        border-radius: 50%;
+                    }
+
+                    .photo-cover {
+                        &:hover {
+                            cursor: pointer;
+                        }
+
+                        width: 110px;
+                        height: 45px;
+                        background: #001CE2;
+                        opacity: 0.5;
+                        position: absolute;
+                        bottom: 0px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        img {
+                            width: 25px;
+                            height: 25px;
+                            opacity: 1;
+                            border-radius: 0;
+                        }
+                    }
+                }
+
                 .profile-picture {
                     padding-top: 13px;
                     padding-bottom: 15px;
 
                     .profile-label {
-                        .picture-preview {
-                            position: relative;
-                            overflow: hidden;
-                            height: 120px;
-                            width: 120px;
-                            background-color: #f2f3fd;
-                            background-size: cover;
-                            background-position: center;
-                            background-repeat: no-repeat;
-                            border-radius: 100px;
-
-                            .preview-cover {
-                                position: absolute;
-                                bottom: 0;
-                                left: 0;
-                                width: 100%;
-                                height: 50px;
-                                margin-bottom: 0;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                transition: background-color 0.3s;
-
-                                svg {
-                                    opacity: 0;
-                                    transition: opacity 0.3s;
-                                }
-                            }
-
-                            input[type="file"] {
-                                height: 0;
-                                width: 0;
-                            }
-                        }
-
                         .label {
                             color: #888db1;
                             font-size: 19px;
