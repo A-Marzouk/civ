@@ -139,11 +139,11 @@ class ProjectsController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['sometimes', 'string', 'max:255','min:3'],
-            'description' => ['sometimes', 'string', 'max:2500','min:3'],
-            'link' => ['sometimes', 'string','max:255','min:3'],
-            'skills' => ['sometimes', 'string','max:255','min:3'],
-            'software' => ['sometimes', 'string','max:255','min:3']
+            'name' => ['required', 'string', 'max:255','min:3'],
+            'description' => ['required', 'string', 'max:2500','min:3'],
+            'link' => ['required', 'string','max:255','min:3'],
+            'skills' => ['required', 'string','max:255','min:3'],
+            'software' => ['required', 'string','max:255','min:3']
         ]);
     }
 
