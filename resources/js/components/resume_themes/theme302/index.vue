@@ -13,49 +13,25 @@
                 >
                   <div class="imageCol">
                     <span />
-                    <v-img
-                      class="profile-img"
-                      :src="currentUser.personal_info.profile_pic"
-                    ></v-img>
+                    <v-img class="profile-img" :src="currentUser.personal_info.profile_pic"></v-img>
                   </div>
                   <div class="profileCol">
-                    <span class="head-name">{{
+                    <span class="head-name">
+                      {{
                       currentUser.personal_info.full_name
-                    }}</span>
-                    <span class="head-profile">
-                      {{ currentUser.personal_info.designation }}</span
-                    >
+                      }}
+                    </span>
+                    <span class="head-profile">{{ currentUser.personal_info.designation }}</span>
                   </div>
                   <div class="actionsSection">
-                    <a
-                      href=""
-                      @click.prevent="dialogMessage = true"
-                      class="send-message"
-                    >
-                      <img
-                        src="/images/resume_themes/theme302/icons/icon-message.svg"
-                        alt=""
-                      />
+                    <a href @click.prevent="dialogMessage = true" class="send-message">
+                      <img src="/images/resume_themes/theme302/icons/icon-message.svg" alt />
                     </a>
-                    <a
-                      href=""
-                      @click.prevent="dialogAudio = true"
-                      class="audio"
-                    >
-                      <img
-                        src="/images/resume_themes/theme302/icons/icon-audio.svg"
-                        alt=""
-                      />
+                    <a href @click.prevent="dialogAudio = true" class="audio">
+                      <img src="/images/resume_themes/theme302/icons/icon-audio.svg" alt />
                     </a>
-                    <a
-                      href=""
-                      @click.prevent="dialogVideo = true"
-                      class="video"
-                    >
-                      <img
-                        src="/images/resume_themes/theme302/icons/icon-video.svg"
-                        alt=""
-                      />
+                    <a href @click.prevent="dialogVideo = true" class="video">
+                      <img src="/images/resume_themes/theme302/icons/icon-video.svg" alt />
                     </a>
                   </div>
                 </v-col>
@@ -67,31 +43,22 @@
                   }"
                 >
                   <div class="rateSection">
-                    <span class="price">
-                      $ {{ currentUser.payment_info[0].salary }}
-                    </span>
-                    <span class="text_price">
-                      {{ currentUser.payment_info[0].salary_frequency }} rate
-                    </span>
+                    <span class="price">$ {{ currentUser.payment_info[0].salary }}</span>
+                    <span class="text_price">{{ currentUser.payment_info[0].salary_frequency }} rate</span>
                     <span class="hours">
                       {{ currentUser.availability_info[0].available_hours }}
                       hours
                     </span>
                     <span class="text_hours">
                       {{
-                        currentUser.availability_info[0]
-                          .available_hours_frequency
+                      currentUser.availability_info[0]
+                      .available_hours_frequency
                       }}
                       Availability
                     </span>
                   </div>
                   <div class="hireSection">
-                    <a
-                      href="#"
-                      class="btn-outline"
-                      @click.prevent="dialogHireme = true"
-                      >Hire Me</a
-                    >
+                    <a href="#" class="btn-outline" @click.prevent="dialogHireme = true">Hire Me</a>
                   </div>
                 </v-col>
               </v-row>
@@ -113,12 +80,10 @@
                 <v-col class="hold-hireme only-mob">
                   <div class="rateSection">
                     <div class="hold_rate_price">
-                      <span class="price">
-                        $ {{ currentUser.payment_info[0].salary }}
-                      </span>
-                      <span class="text_price">
-                        {{ currentUser.payment_info[0].salary_frequency }} rate
-                      </span>
+                      <span class="price">$ {{ currentUser.payment_info[0].salary }}</span>
+                      <span
+                        class="text_price"
+                      >{{ currentUser.payment_info[0].salary_frequency }} rate</span>
                     </div>
                     <div class="hold_rate_hours">
                       <span class="hours">
@@ -127,32 +92,22 @@
                       </span>
                       <span class="text_hours">
                         {{
-                          currentUser.availability_info[0]
-                            .available_hours_frequency
+                        currentUser.availability_info[0]
+                        .available_hours_frequency
                         }}
                         Availability
                       </span>
                     </div>
                   </div>
                   <div class="hireSection">
-                    <a
-                      href="#"
-                      class="btn-outline"
-                      @click.prevent="dialogHireme = true"
-                      >Hire Me</a
-                    >
+                    <a href="#" class="btn-outline" @click.prevent="dialogHireme = true">Hire Me</a>
                   </div>
                 </v-col>
               </v-row>
             </v-container>
           </div>
           <div class="hold-tabs">
-            <v-tabs
-              class="main-tabs_theme13"
-              height="85"
-              hide-slider
-              v-model="tabmodel"
-            >
+            <v-tabs class="main-tabs_theme13" height="85" hide-slider v-model="tabmodel">
               <v-tab
                 v-for="(tab, index) in resume_tabs"
                 :key="index"
@@ -160,9 +115,7 @@
                 @click="activeTab = tab.name"
                 :class="[{ 'active-indicator': currentTab === tab.name }]"
                 :ripple="false"
-              >
-                {{ tab.label }}
-              </v-tab>
+              >{{ tab.label }}</v-tab>
             </v-tabs>
           </div>
           <div class="hold-contents">
@@ -176,21 +129,17 @@
                       :key="project.id + '_project'"
                       v-show="project.is_public"
                     >
-                      <img :src="getProjectMainImage(project)" alt="" />
+                      <img :src="getProjectMainImage(project)" alt />
                     </div>
                   </slick>
                   <div class="nav-slider">
-                    <a href="#" @click.prevent="prevSlide"
-                      ><img
-                        src="/images/resume_themes/theme302/arrow-left.png"
-                        alt=""
-                    /></a>
+                    <a href="#" @click.prevent="prevSlide">
+                      <img src="/images/resume_themes/theme302/arrow-left.png" alt />
+                    </a>
                     <span class="navDots"></span>
-                    <a href="#" @click.prevent="nextSlide"
-                      ><img
-                        src="/images/resume_themes/theme302/arrow-right.png"
-                        alt=""
-                    /></a>
+                    <a href="#" @click.prevent="nextSlide">
+                      <img src="/images/resume_themes/theme302/arrow-right.png" alt />
+                    </a>
                   </div>
                 </div>
               </v-tab-item>
@@ -209,16 +158,16 @@
                         <span class="title-work">{{ work.job_title }}</span>
                         <span class="years-work">
                           {{ getFullYear(work.date_from) }}
-                          <span
-                            >&nbsp;-&nbsp; {{ getFullYear(work.date_to) }}
-                          </span>
+                          <span>&nbsp;-&nbsp; {{ getFullYear(work.date_to) }}</span>
                         </span>
                       </div>
                       <div class="hold-text">
-                        <span class="title-company">{{
+                        <span class="title-company">
+                          {{
                           work.company_name
-                        }}</span>
-                        <span class="list-tasks"> {{ work.description }}</span>
+                          }}
+                        </span>
+                        <span class="list-tasks">{{ work.description }}</span>
                       </div>
                     </v-col>
                   </v-row>
@@ -236,21 +185,27 @@
                       v-show="education.is_public"
                     >
                       <div class="hold-titles">
-                        <span class="title-work">{{
+                        <span class="title-work">
+                          {{
                           education.university_name
-                        }}</span>
+                          }}
+                        </span>
                         <span class="years-work">
                           {{ getFullYear(education.date_from) }}
                           <span>- {{ getFullYear(education.date_to) }}</span>
                         </span>
                       </div>
                       <div class="hold-text">
-                        <span class="title-company">{{
+                        <span class="title-company">
+                          {{
                           education.degree_title
-                        }}</span>
-                        <span class="list-tasks">{{
+                          }}
+                        </span>
+                        <span class="list-tasks">
+                          {{
                           education.description
-                        }}</span>
+                          }}
+                        </span>
                       </div>
                     </v-col>
                   </v-row>
@@ -265,6 +220,7 @@
                       hide-slider
                       :center-active="true"
                       :show-arrows="true"
+                      grow
                     >
                       <v-tab
                         v-for="(skill, index) in items"
@@ -275,14 +231,9 @@
                           )
                         "
                         :ripple="false"
-                      >
-                        {{ skill.name }}
-                      </v-tab>
+                      >{{ skill.name }}</v-tab>
                     </v-tabs>
-                    <v-tabs-items
-                      v-model="activeTabSkill"
-                      class="mc-subtabs_skills"
-                    >
+                    <v-tabs-items v-model="activeTabSkill" class="mc-subtabs_skills">
                       <v-tab-item
                         v-for="item in items"
                         :key="item.id"
@@ -306,16 +257,13 @@
                                 width="10"
                                 :value="s.percentage"
                                 color="#4C71F0"
-                              >
-                                {{ s.percentage }}%
-                              </v-progress-circular>
+                              >{{ s.percentage }}%</v-progress-circular>
                               <v-img
                                 src="/images/resume_themes/theme302/icons/icon-php.png"
-                                alt=""
+                                alt
                                 width="100"
                                 class="mt-5"
-                              >
-                              </v-img>
+                              ></v-img>
                             </v-col>
                           </v-row>
                         </v-container>
@@ -326,11 +274,81 @@
                   </v-col>
                 </v-row>
               </v-tab-item>
+              <!-- Hobbies -->
               <v-tab-item class="hobby-section" value="tab-4">
-                <v-container>
-                  <div>Hobbies</div>
+                <v-container style="width:100%;" class="pa-md-4 pa-sm-12 pa-8">
+                  <v-row align="center" justify>
+                    <v-col xl="2" lg="3" md="4" sm="6" cols="12" v-for="i in 10" :key="i">
+                      <v-card class="card-hobby pa-12" flat align="center">
+                        <v-card-text class="hobby-title">
+                          <v-row class="mt-n4">
+                            <v-col xl="2" sm="3" cols="3">
+                              <span></span>
+                            </v-col>
+                            <v-col xl="10" sm="9" cols="9">Gardening</v-col>
+                          </v-row>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
                 </v-container>
               </v-tab-item>
+              <!-- Hobbies -->
+              <!-- References -->
+              <v-tab-item class="reference-section" value="tab-5">
+                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-0">
+                  <v-row align="center">
+                    <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
+                      <v-card flat class="card-ref pa-sm-5 pa-2">
+                        <v-card-title class="ref-title">Sara William</v-card-title>
+                        <v-card-subtitle class="ref-subtitle">
+                          <v-row justify="space-between" dense>
+                            <v-col sm="6" cols="6" class="designation">CEO, IT Software Park</v-col>
+                            <v-col sm="6" cols="6" align="right" class="designation">david@gmail.com</v-col>
+                          </v-row>
+                          <v-row justify="space-between" class="mt-n5">
+                            <v-col sm="6" cols="6" class="designation">284/6B, Texas, USA</v-col>
+                            <v-col sm="6" cols="6" align="right" class="designation">+9606987564889</v-col>
+                          </v-row>
+                        </v-card-subtitle>
+
+                        <v-card-text
+                          class="ref-desc"
+                        >Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.</v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-tab-item>
+              <!-- References -->
+              <!--  Achivements -->
+              <v-tab-item class="achievement-section" value="tab-6">
+                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-3">
+                  <v-row align="center">
+                    <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
+                      <v-card class="card-achievement pa-5" flat>
+                        <div :class="windowWidth<=599?'d-flex flex-column': 'd-flex flex-row'">
+                          <img
+                            src="/images/resume_themes/theme302/certificate.svg"
+                            alt="certificate"
+                          />
+                          <div class="ml-5 mt-sm-0 mt-5">
+                            <div class="title">Herbrand Award, 2020 {{windowWidth}}</div>
+                            <div class="url">
+                              <span>URL:</span> https://linkedin.com/herbrand award
+                            </div>
+                            <div class="desc">
+                              <span>Description:</span>
+                              The Herbrand Award for Distinguished Contributions to Automated Reasoning is an award given by CADE Inc. (although it predates the formal incorporation of CADE) to honour persons or groups for important contributions to the field of automated deduction.
+                            </div>
+                          </div>
+                        </div>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-tab-item>
+              <!-- Achievements -->
             </v-tabs-items>
           </div>
         </v-col>
@@ -377,9 +395,7 @@
               </v-col>
             </v-row>
             <v-row class="form-actions">
-              <v-btn depressed small @click="submitForm" class="btn-send"
-                >Send Message</v-btn
-              >
+              <v-btn depressed small @click="submitForm" class="btn-send">Send Message</v-btn>
               <v-btn text small @click="cancelForm">Cancel</v-btn>
             </v-row>
           </v-container>
@@ -400,17 +416,10 @@
           <v-row no-gutters style="background: #104efb;" class="pa-4">
             <v-col cols="12">
               <div class="float-left">
-                <div class="audio-head">
-                  My Audio
-                </div>
+                <div class="audio-head">My Audio</div>
               </div>
               <div class="float-right">
-                <v-icon
-                  color="#fff"
-                  large
-                  @click="dialogAudio = false || pauseAudio()"
-                  >mdi-close</v-icon
-                >
+                <v-icon color="#fff" large @click="dialogAudio = false || pauseAudio()">mdi-close</v-icon>
               </div>
             </v-col>
           </v-row>
@@ -428,14 +437,10 @@
           <v-row no-gutters style="background: #104efb;" class="pa-4">
             <v-col cols="12">
               <div class="float-left">
-                <div class="audio-head">
-                  My Video
-                </div>
+                <div class="audio-head">My Video</div>
               </div>
               <div class="float-right">
-                <v-icon color="#fff" large @click="dialogVideo = false"
-                  >mdi-close</v-icon
-                >
+                <v-icon color="#fff" large @click="dialogVideo = false">mdi-close</v-icon>
               </div>
             </v-col>
           </v-row>
@@ -473,7 +478,7 @@
 
         <VideoCarousel class="video-player"></VideoCarousel>
       </v-card>
-    </v-dialog> -->
+    </v-dialog>-->
     <v-dialog
       v-model="dialogHireme"
       persistent
@@ -483,31 +488,21 @@
     >
       <v-card class="payment-wrap">
         <v-card-actions>
-          <v-icon class="close-icon" @click="dialogHireme = false"
-            >mdi-close</v-icon
-          >
+          <v-icon class="close-icon" @click="dialogHireme = false">mdi-close</v-icon>
         </v-card-actions>
         <v-container>
           <h3>Select Payment Method :</h3>
           <v-row class="hold-payment">
             <v-col cols="12" lg="12">
-              <v-radio-group
-                v-model="radioGroup"
-                :row="true"
-                class="pay-method"
-              >
+              <v-radio-group v-model="radioGroup" :row="true" class="pay-method">
                 <span class="item-pay">
                   <v-radio
                     value="1"
                     name="opt-paypal"
                     off-icon="mdi-checkbox-blank-circle"
                     :ripple="false"
-                  >
-                  </v-radio>
-                  <img
-                    src="/images/resume_themes/theme302/icons/icon-paypal.png"
-                    alt=""
-                  />
+                  ></v-radio>
+                  <img src="/images/resume_themes/theme302/icons/icon-paypal.png" alt />
                 </span>
                 <span class="item-pay">
                   <v-radio
@@ -516,12 +511,8 @@
                     name="opt-payonner"
                     off-icon="mdi-checkbox-blank-circle"
                     :ripple="false"
-                  >
-                  </v-radio>
-                  <img
-                    src="/images/resume_themes/theme302/icons/icon-payonner.png"
-                    alt=""
-                  />
+                  ></v-radio>
+                  <img src="/images/resume_themes/theme302/icons/icon-payonner.png" alt />
                 </span>
               </v-radio-group>
             </v-col>
@@ -557,7 +548,115 @@ $colorBlue: #104efb;
   margin: 0 auto !important;
   padding: 0;
   max-width: 100%;
+  // card hobbies
+  .card-hobby {
+    width: 310px;
+    height: 150px;
+    border: 1px solid rgba(16, 78, 251, 0.2) !important;
 
+    .hobby-title {
+      font-family: "Roboto-Medium" !important;
+      font-weight: 500;
+      font-size: 25px;
+      line-height: 29px;
+      color: #104efb;
+
+      span {
+        display: inline-block;
+        width: 20px;
+        border: 1px solid #104efb;
+        margin-bottom: 5px;
+        margin-right: 10px;
+      }
+    }
+  }
+  // card hobbies
+
+  //card ref
+  .card-ref {
+    width: 810px;
+    height: 320px;
+    border: 1px solid rgba(16, 78, 251, 0.2);
+    @media screen and (max-width: 1903px) {
+      width: auto;
+      height: auto;
+    }
+    .ref-title {
+      font-family: "Raleway" !important;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 33px;
+      color: #104efb !important;
+    }
+    .ref-subtitle {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 25px;
+      color: #104efb !important;
+
+      @media screen and (max-width: 599px) {
+        font-size: 14px;
+      }
+    }
+    .ref-desc {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 30px;
+      color: #104efb !important;
+      @media screen and (max-width: 599px) {
+        font-size: 14px;
+      }
+    }
+  }
+  //card ref
+
+  //card achievement
+  .card-achievement {
+    width: 810px;
+    height: 297px;
+    border: 1px solid rgba(16, 78, 251, 0.2);
+    @media screen and (max-width: 1903px) {
+      width: auto;
+      height: auto;
+    }
+    .title {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 28px;
+      color: #104efb !important;
+    }
+    .url {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 16px;
+      color: #104efb;
+      margin-top: 10px;
+      span {
+        font-weight: 500;
+      }
+    }
+    .desc {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 25px;
+      color: #104efb !important;
+      margin-top: 10px;
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+  //card achievement
   .freelancerCard {
     width: 100%;
     background: #f5f7f7;
@@ -929,6 +1028,15 @@ $colorBlue: #104efb;
     }
     &:nth-child(4) {
       order: 2;
+    }
+    &:nth-child(5) {
+      order: 5;
+    }
+    &:nth-child(6) {
+      order: 6;
+    }
+    &:nth-child(7) {
+      order: 7;
     }
 
     &:hover {
@@ -1718,10 +1826,11 @@ export default {
   components: {
     Slick,
     AudioCarousel,
-    VideoCarousel
+    VideoCarousel,
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
       activeTab: "portfolio",
       tabmodel: null,
       resume_tabs: [
@@ -1729,29 +1838,31 @@ export default {
         { name: "work-experience", label: "Work" },
         { name: "education", label: "Education" },
         { name: "skills", label: "Skills" },
-        { name: "hobbies", label: "Hobbies" }
+        { name: "hobbies", label: "Hobbies" },
+        { name: "references", label: "References" },
+        { name: "achievements", label: "Achievements" },
       ],
       skills: [
         {
           id: 1,
           skill_title: "php",
-          percentage: "80"
+          percentage: "80",
         },
         {
           id: 2,
           skill_title: "css3",
-          percentage: "50"
+          percentage: "50",
         },
         {
           id: 3,
           skill_title: "html5",
-          percentage: "50"
+          percentage: "50",
         },
         {
           id: 4,
           skill_title: "js",
-          percentage: "40"
-        }
+          percentage: "40",
+        },
       ],
       typeSkill: "",
       itemsPerRow: 4,
@@ -1761,23 +1872,23 @@ export default {
         {
           id: 1,
           name: "Programming Languages",
-          value: "programming_languages"
+          value: "programming_languages",
         },
         {
           id: 2,
           name: "Frameworks/ Databases",
-          value: "frameworks"
+          value: "frameworks",
         },
         {
           id: 3,
           name: "Design Skills",
-          value: "design"
+          value: "design",
         },
         {
           id: 4,
           name: "Software",
-          value: "software"
-        }
+          value: "software",
+        },
       ],
       currentUser: this.user,
       slides: [],
@@ -1803,8 +1914,8 @@ export default {
               variableWidth: false,
               vertical: true,
               verticalSwiping: true,
-              infinite: true
-            }
+              infinite: true,
+            },
           },
           {
             breakpoint: 480,
@@ -1814,10 +1925,10 @@ export default {
               variableWidth: false,
               vertical: true,
               verticalSwiping: true,
-              infinite: true
-            }
-          }
-        ]
+              infinite: true,
+            },
+          },
+        ],
       },
       slickContents: {
         slidesToShow: 4,
@@ -1833,30 +1944,31 @@ export default {
             breakpoint: 780,
             settings: {
               slidesToShow: 4,
-              slidesToScroll: 1
-            }
+              slidesToScroll: 1,
+            },
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 1
-            }
-          }
-        ]
+              slidesToScroll: 1,
+            },
+          },
+        ],
       },
       formMessage: {
         name: "",
         nameRules: [
-          v => !!v || "Name is required",
-          v => (v && v.length <= 10) || "Name must be less than 10 characters"
+          (v) => !!v || "Name is required",
+          (v) =>
+            (v && v.length <= 10) || "Name must be less than 10 characters",
         ],
         email: "",
         emailRules: [
-          v => !!v || "E-mail is required",
-          v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+          (v) => !!v || "E-mail is required",
+          (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
         ],
-        message: ""
+        message: "",
       },
       formHasErrors: false,
 
@@ -1867,35 +1979,35 @@ export default {
       dialogHireme: false,
       // --Player
       playing: false,
-      radioGroup: 1
+      radioGroup: 1,
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
+    currentTab: function (val) {
       this.activeTab = val;
-    }
+    },
   },
   methods: {
     skillCategory(skillName) {
       var filteredSkill = this.currentUser.skills.filter(
-        s => s.category === skillName
+        (s) => s.category === skillName
       );
       return filteredSkill;
     },
     findAudio(audio) {
-      var url = audio.find(s => s.type === "audio").url;
+      var url = audio.find((s) => s.type === "audio").url;
       return url;
     },
     findVideo(video) {
-      var url = video.find(s => s.type === "video").url;
+      var url = video.find((s) => s.type === "video").url;
       return url;
     },
     getProjectMainImage(project) {
       let mainImage = "";
 
       let images = project.images;
-      images.forEach(image => {
+      images.forEach((image) => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -1978,7 +2090,7 @@ export default {
             acc.push({
               id: cur.id,
               skill_title: cur.skill_title,
-              percentage: cur.percentage
+              percentage: cur.percentage,
             }),
           acc
         ),
@@ -1997,7 +2109,7 @@ export default {
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-    }
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -2007,6 +2119,9 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
-  }
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  },
 };
 </script>
