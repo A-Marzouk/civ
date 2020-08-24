@@ -49,6 +49,8 @@ export default {
   background-image: url("/images/resume_themes/theme1001/bg-header.png"),
     linear-gradient(#4870fc 100%, #4870fc 100%);
   background-size: cover;
+
+  background-repeat: repeat-x;
 }
 
 .header-profile {
@@ -69,6 +71,8 @@ export default {
     background-image: url("/images/resume_themes/theme1001/bg-header.png"),
       linear-gradient(#4870ff 100%, #4870ff 100%);
     background-size: contain;
+
+    background-repeat: repeat-x;
   }
 
   .header-profile {

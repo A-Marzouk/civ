@@ -12,6 +12,6 @@ class PromocodesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Promocode::class,1)->create();
+        factory(Promocode::class,3)->create();
     }
 }
