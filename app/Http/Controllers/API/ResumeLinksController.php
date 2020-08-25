@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\ResumeLink;
+use App\User;
 use Exception;
 use App\Http\Resources\ResumeLink as ResumeLinkResource;
 use Illuminate\Http\Request;
@@ -55,11 +56,25 @@ class ResumeLinksController extends Controller
         }else{
             // add
             $resumeLink = ResumeLink::create($request->toArray());
+            // check if it will be copied from another user data:
+            if(isset($request->copy_from_resume_id)){
+                $this->copyFromCIVResumeLink($resumeLink, $request->copy_from_resume_id);
+            }
         }
 
         if ($resumeLink->id){
             return new ResumeLinkResource($resumeLink);
         }
+    }
+
+    protected function copyFromCIVResumeLink($resume_link, $copy_from_resume_id){
+        $resumeLinkID = $resume_link->id;
+
+        // get user with all the relations | filter with $copy_from_resume_id
+        $user = User::withAllRelations(User::find($resume_link->user_id)->username, $copy_from_resume_id);
+
+        // copy all user relations to the current user and the new created resume_link.
+
     }
 
     public function show($id)
@@ -96,6 +111,8 @@ class ResumeLinksController extends Controller
             ]);
         }
     }
+
+
 
     protected function validator(array $data)
     {
