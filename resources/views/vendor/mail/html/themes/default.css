@@ -208,7 +208,8 @@ img {
     text-align: center;
     color: #888DB1;
 }
-.custom-footer a{
+
+.custom-footer a {
     cursor: pointer;
     color: #888DB1 !important;
 }
