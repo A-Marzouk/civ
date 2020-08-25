@@ -13,25 +13,41 @@
                 >
                   <div class="imageCol">
                     <span />
-                    <v-img class="profile-img" :src="currentUser.personal_info.profile_pic"></v-img>
+                    <v-img
+                      class="profile-img"
+                      :src="currentUser.personal_info.profile_pic"
+                    ></v-img>
                   </div>
                   <div class="profileCol">
                     <span class="head-name">
-                      {{
-                      currentUser.personal_info.full_name
-                      }}
+                      {{ currentUser.personal_info.full_name }}
                     </span>
-                    <span class="head-profile">{{ currentUser.personal_info.designation }}</span>
+                    <span class="head-profile">{{
+                      currentUser.personal_info.designation
+                    }}</span>
                   </div>
                   <div class="actionsSection">
-                    <a href @click.prevent="dialogMessage = true" class="send-message">
-                      <img src="/images/resume_themes/theme302/icons/icon-message.svg" alt />
+                    <a
+                      href
+                      @click.prevent="dialogMessage = true"
+                      class="send-message"
+                    >
+                      <img
+                        src="/images/resume_themes/theme302/icons/icon-message.svg"
+                        alt
+                      />
                     </a>
                     <a href @click.prevent="dialogAudio = true" class="audio">
-                      <img src="/images/resume_themes/theme302/icons/icon-audio.svg" alt />
+                      <img
+                        src="/images/resume_themes/theme302/icons/icon-audio.svg"
+                        alt
+                      />
                     </a>
                     <a href @click.prevent="dialogVideo = true" class="video">
-                      <img src="/images/resume_themes/theme302/icons/icon-video.svg" alt />
+                      <img
+                        src="/images/resume_themes/theme302/icons/icon-video.svg"
+                        alt
+                      />
                     </a>
                   </div>
                 </v-col>
@@ -43,22 +59,34 @@
                   }"
                 >
                   <div class="rateSection">
-                    <span class="price">$ {{ currentUser.payment_info[0].salary }}</span>
-                    <span class="text_price">{{ currentUser.payment_info[0].salary_frequency }} rate</span>
+                    <span class="price"
+                      >$ {{ currentUser.payment_info[0].salary }}</span
+                    >
+                    <span class="text_price"
+                      >{{
+                        currentUser.payment_info[0].salary_frequency
+                      }}
+                      rate</span
+                    >
                     <span class="hours">
                       {{ currentUser.availability_info[0].available_hours }}
                       hours
                     </span>
                     <span class="text_hours">
                       {{
-                      currentUser.availability_info[0]
-                      .available_hours_frequency
+                        currentUser.availability_info[0]
+                          .available_hours_frequency
                       }}
                       Availability
                     </span>
                   </div>
                   <div class="hireSection">
-                    <a href="#" class="btn-outline" @click.prevent="dialogHireme = true">Hire Me</a>
+                    <a
+                      href="#"
+                      class="btn-outline"
+                      @click.prevent="dialogHireme = true"
+                      >Hire Me</a
+                    >
                   </div>
                 </v-col>
               </v-row>
@@ -80,10 +108,15 @@
                 <v-col class="hold-hireme only-mob">
                   <div class="rateSection">
                     <div class="hold_rate_price">
-                      <span class="price">$ {{ currentUser.payment_info[0].salary }}</span>
-                      <span
-                        class="text_price"
-                      >{{ currentUser.payment_info[0].salary_frequency }} rate</span>
+                      <span class="price"
+                        >$ {{ currentUser.payment_info[0].salary }}</span
+                      >
+                      <span class="text_price"
+                        >{{
+                          currentUser.payment_info[0].salary_frequency
+                        }}
+                        rate</span
+                      >
                     </div>
                     <div class="hold_rate_hours">
                       <span class="hours">
@@ -92,22 +125,32 @@
                       </span>
                       <span class="text_hours">
                         {{
-                        currentUser.availability_info[0]
-                        .available_hours_frequency
+                          currentUser.availability_info[0]
+                            .available_hours_frequency
                         }}
                         Availability
                       </span>
                     </div>
                   </div>
                   <div class="hireSection">
-                    <a href="#" class="btn-outline" @click.prevent="dialogHireme = true">Hire Me</a>
+                    <a
+                      href="#"
+                      class="btn-outline"
+                      @click.prevent="dialogHireme = true"
+                      >Hire Me</a
+                    >
                   </div>
                 </v-col>
               </v-row>
             </v-container>
           </div>
           <div class="hold-tabs">
-            <v-tabs class="main-tabs_theme13" height="85" hide-slider v-model="tabmodel">
+            <v-tabs
+              class="main-tabs_theme13"
+              height="85"
+              hide-slider
+              v-model="tabmodel"
+            >
               <v-tab
                 v-for="(tab, index) in resume_tabs"
                 :key="index"
@@ -115,7 +158,8 @@
                 @click="activeTab = tab.name"
                 :class="[{ 'active-indicator': currentTab === tab.name }]"
                 :ripple="false"
-              >{{ tab.label }}</v-tab>
+                >{{ tab.label }}</v-tab
+              >
             </v-tabs>
           </div>
           <div class="hold-contents">
@@ -134,11 +178,17 @@
                   </slick>
                   <div class="nav-slider">
                     <a href="#" @click.prevent="prevSlide">
-                      <img src="/images/resume_themes/theme302/arrow-left.png" alt />
+                      <img
+                        src="/images/resume_themes/theme302/arrow-left.png"
+                        alt
+                      />
                     </a>
                     <span class="navDots"></span>
                     <a href="#" @click.prevent="nextSlide">
-                      <img src="/images/resume_themes/theme302/arrow-right.png" alt />
+                      <img
+                        src="/images/resume_themes/theme302/arrow-right.png"
+                        alt
+                      />
                     </a>
                   </div>
                 </div>
@@ -158,14 +208,14 @@
                         <span class="title-work">{{ work.job_title }}</span>
                         <span class="years-work">
                           {{ getFullYear(work.date_from) }}
-                          <span>&nbsp;-&nbsp; {{ getFullYear(work.date_to) }}</span>
+                          <span
+                            >&nbsp;-&nbsp; {{ getFullYear(work.date_to) }}</span
+                          >
                         </span>
                       </div>
                       <div class="hold-text">
                         <span class="title-company">
-                          {{
-                          work.company_name
-                          }}
+                          {{ work.company_name }}
                         </span>
                         <span class="list-tasks">{{ work.description }}</span>
                       </div>
@@ -186,9 +236,7 @@
                     >
                       <div class="hold-titles">
                         <span class="title-work">
-                          {{
-                          education.university_name
-                          }}
+                          {{ education.university_name }}
                         </span>
                         <span class="years-work">
                           {{ getFullYear(education.date_from) }}
@@ -197,14 +245,10 @@
                       </div>
                       <div class="hold-text">
                         <span class="title-company">
-                          {{
-                          education.degree_title
-                          }}
+                          {{ education.degree_title }}
                         </span>
                         <span class="list-tasks">
-                          {{
-                          education.description
-                          }}
+                          {{ education.description }}
                         </span>
                       </div>
                     </v-col>
@@ -231,9 +275,13 @@
                           )
                         "
                         :ripple="false"
-                      >{{ skill.name }}</v-tab>
+                        >{{ skill.name }}</v-tab
+                      >
                     </v-tabs>
-                    <v-tabs-items v-model="activeTabSkill" class="mc-subtabs_skills">
+                    <v-tabs-items
+                      v-model="activeTabSkill"
+                      class="mc-subtabs_skills"
+                    >
                       <v-tab-item
                         v-for="item in items"
                         :key="item.id"
@@ -257,7 +305,8 @@
                                 width="10"
                                 :value="s.percentage"
                                 color="#4C71F0"
-                              >{{ s.percentage }}%</v-progress-circular>
+                                >{{ s.percentage }}%</v-progress-circular
+                              >
                               <v-img
                                 src="/images/resume_themes/theme302/icons/icon-php.png"
                                 alt
@@ -276,16 +325,27 @@
               </v-tab-item>
               <!-- Hobbies -->
               <v-tab-item class="hobby-section" value="tab-4">
-                <v-container style="width:100%;" class="pa-md-4 pa-sm-12 pa-8">
-                  <v-row align="center" justify>
-                    <v-col xl="2" lg="3" md="4" sm="6" cols="12" v-for="i in 10" :key="i">
+                <v-container style="width: 100%;" class="pa-md-4 pa-sm-12 pa-8">
+                  <v-row align="center">
+                    <v-col
+                      xl="2"
+                      lg="3"
+                      md="4"
+                      sm="6"
+                      cols="12"
+                      v-for="(hobby, index) in currentUser.hobbies"
+                      :key="index"
+                      v-show="hobby.is_public"
+                    >
                       <v-card class="card-hobby pa-12" flat align="center">
                         <v-card-text class="hobby-title">
                           <v-row class="mt-n4">
                             <v-col xl="2" sm="3" cols="3">
                               <span></span>
                             </v-col>
-                            <v-col xl="10" sm="9" cols="9">Gardening</v-col>
+                            <v-col xl="10" sm="9" cols="9">
+                              {{ hobby.title }}
+                            </v-col>
                           </v-row>
                         </v-card-text>
                       </v-card>
@@ -296,25 +356,53 @@
               <!-- Hobbies -->
               <!-- References -->
               <v-tab-item class="reference-section" value="tab-5">
-                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-0">
+                <v-container
+                  style="width: 100%;"
+                  class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-0"
+                >
                   <v-row align="center">
-                    <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
+                    <v-col
+                      md="6"
+                      sm="12"
+                      cols="12"
+                      v-for="(reference, index) in currentUser.references"
+                      :key="index"
+                      v-show="reference.is_public"
+                    >
                       <v-card flat class="card-ref pa-sm-5 pa-2">
-                        <v-card-title class="ref-title">Sara William</v-card-title>
+                        <v-card-title class="ref-title">{{
+                          reference.name
+                        }}</v-card-title>
                         <v-card-subtitle class="ref-subtitle">
                           <v-row justify="space-between" dense>
-                            <v-col sm="6" cols="6" class="designation">CEO, IT Software Park</v-col>
-                            <v-col sm="6" cols="6" align="right" class="designation">david@gmail.com</v-col>
+                            <v-col sm="6" cols="6" class="designation">{{
+                              reference.title
+                            }}</v-col>
+                            <v-col
+                              sm="6"
+                              cols="6"
+                              align="right"
+                              class="designation"
+                              >{{ reference.email }}</v-col
+                            >
                           </v-row>
                           <v-row justify="space-between" class="mt-n5">
-                            <v-col sm="6" cols="6" class="designation">284/6B, Texas, USA</v-col>
-                            <v-col sm="6" cols="6" align="right" class="designation">+9606987564889</v-col>
+                            <v-col sm="6" cols="6" class="designation">{{
+                              reference.address
+                            }}</v-col>
+                            <v-col
+                              sm="6"
+                              cols="6"
+                              align="right"
+                              class="designation"
+                              >{{ reference.phone }}</v-col
+                            >
                           </v-row>
                         </v-card-subtitle>
 
-                        <v-card-text
-                          class="ref-desc"
-                        >Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.</v-card-text>
+                        <v-card-text class="ref-desc">
+                          {{ reference.reference_text }}</v-card-text
+                        >
                       </v-card>
                     </v-col>
                   </v-row>
@@ -323,23 +411,43 @@
               <!-- References -->
               <!--  Achivements -->
               <v-tab-item class="achievement-section" value="tab-6">
-                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-3">
+                <v-container
+                  style="width: 100%;"
+                  class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-3"
+                >
                   <v-row align="center">
-                    <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
+                    <v-col
+                      md="6"
+                      sm="12"
+                      cols="12"
+                      v-for="achievement in currentUser.achievements"
+                      :key="achievement.id"
+                      v-show="achievement.is_public"
+                    >
                       <v-card class="card-achievement pa-5" flat>
-                        <div :class="windowWidth<=599?'d-flex flex-column': 'd-flex flex-row'">
+                        <div
+                          :class="
+                            windowWidth <= 599
+                              ? 'd-flex flex-column'
+                              : 'd-flex flex-row'
+                          "
+                        >
                           <img
-                            src="/images/resume_themes/theme302/certificate.svg"
+                            style="width: 320px;"
+                            :src="achievement.image_src"
                             alt="certificate"
                           />
                           <div class="ml-5 mt-sm-0 mt-5">
-                            <div class="title">Herbrand Award, 2020 {{windowWidth}}</div>
+                            <div class="title">
+                              {{ achievement.title }} {{ windowWidth }}
+                            </div>
                             <div class="url">
-                              <span>URL:</span> https://linkedin.com/herbrand award
+                              <span>URL:</span> {{ achievement.url }}
+                              award
                             </div>
                             <div class="desc">
                               <span>Description:</span>
-                              The Herbrand Award for Distinguished Contributions to Automated Reasoning is an award given by CADE Inc. (although it predates the formal incorporation of CADE) to honour persons or groups for important contributions to the field of automated deduction.
+                              {{ achievement.description }}
                             </div>
                           </div>
                         </div>
@@ -395,7 +503,9 @@
               </v-col>
             </v-row>
             <v-row class="form-actions">
-              <v-btn depressed small @click="submitForm" class="btn-send">Send Message</v-btn>
+              <v-btn depressed small @click="submitForm" class="btn-send"
+                >Send Message</v-btn
+              >
               <v-btn text small @click="cancelForm">Cancel</v-btn>
             </v-row>
           </v-container>
@@ -419,7 +529,12 @@
                 <div class="audio-head">My Audio</div>
               </div>
               <div class="float-right">
-                <v-icon color="#fff" large @click="dialogAudio = false || pauseAudio()">mdi-close</v-icon>
+                <v-icon
+                  color="#fff"
+                  large
+                  @click="dialogAudio = false || pauseAudio()"
+                  >mdi-close</v-icon
+                >
               </div>
             </v-col>
           </v-row>
@@ -440,7 +555,9 @@
                 <div class="audio-head">My Video</div>
               </div>
               <div class="float-right">
-                <v-icon color="#fff" large @click="dialogVideo = false">mdi-close</v-icon>
+                <v-icon color="#fff" large @click="dialogVideo = false"
+                  >mdi-close</v-icon
+                >
               </div>
             </v-col>
           </v-row>
@@ -488,13 +605,19 @@
     >
       <v-card class="payment-wrap">
         <v-card-actions>
-          <v-icon class="close-icon" @click="dialogHireme = false">mdi-close</v-icon>
+          <v-icon class="close-icon" @click="dialogHireme = false"
+            >mdi-close</v-icon
+          >
         </v-card-actions>
         <v-container>
           <h3>Select Payment Method :</h3>
           <v-row class="hold-payment">
             <v-col cols="12" lg="12">
-              <v-radio-group v-model="radioGroup" :row="true" class="pay-method">
+              <v-radio-group
+                v-model="radioGroup"
+                :row="true"
+                class="pay-method"
+              >
                 <span class="item-pay">
                   <v-radio
                     value="1"
@@ -502,7 +625,10 @@
                     off-icon="mdi-checkbox-blank-circle"
                     :ripple="false"
                   ></v-radio>
-                  <img src="/images/resume_themes/theme302/icons/icon-paypal.png" alt />
+                  <img
+                    src="/images/resume_themes/theme302/icons/icon-paypal.png"
+                    alt
+                  />
                 </span>
                 <span class="item-pay">
                   <v-radio
@@ -512,7 +638,10 @@
                     off-icon="mdi-checkbox-blank-circle"
                     :ripple="false"
                   ></v-radio>
-                  <img src="/images/resume_themes/theme302/icons/icon-payonner.png" alt />
+                  <img
+                    src="/images/resume_themes/theme302/icons/icon-payonner.png"
+                    alt
+                  />
                 </span>
               </v-radio-group>
             </v-col>
@@ -1818,8 +1947,11 @@ $colorBlue: #104efb;
 </style>
 <script>
 import Slick from "vue-slick";
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 import AudioCarousel from "./media/AudioCarousel";
 import VideoCarousel from "./media/VideoCarousel";
+import Carousel from "./Carousel";
 export default {
   name: "theme302",
   props: ["user", "is_preview", "currentTab"],
@@ -1827,6 +1959,8 @@ export default {
     Slick,
     AudioCarousel,
     VideoCarousel,
+    VueSlickCarousel
+    
   },
   data() {
     return {
@@ -1956,6 +2090,14 @@ export default {
           },
         ],
       },
+      settings: {
+                    arrows: false,
+                    dots: true,
+                    infinite: true,
+                    slidesToShow: 3,
+                    slidesPerRow:1,
+                    rows:2,
+                },
       formMessage: {
         name: "",
         nameRules: [
