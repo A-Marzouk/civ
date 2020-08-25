@@ -8,7 +8,7 @@ class Testimonial extends Model
 {
     protected $table = 'testimonials';
     protected $fillable = [
-        'is_public','name','company','title','description','user_id'
+        'is_public','name','company','title','description','user_id','resume_link_id'
     ];
 
     // relation belongs to

@@ -1,17 +1,8 @@
 <template>
     <v-app>
         <div v-if="currentUser && personalInfo">
-
-            <my-upload @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></my-upload>
-
             <div id="myAccountTab" class="my-account-tab-wrapper">
                 <div class="profile-pic-row" v-if="personalInfo">
-                    <div class="profile-pic">
-                        <img :src="personalInfo.profile_pic"/>
-                        <div class="photo-cover" @click="showImageUpload = true">
-                            <img src="/images/resume_builder/camera-icon.png" alt="camera icon">
-                        </div>
-                    </div>
                     <div class="info-my-account">
                         <div class="name">{{personalInfo.first_name}}</div>
                         <div class="job-title">{{personalInfo.designation}}</div>
@@ -147,18 +138,10 @@
 </template>
 
 <script>
-    import myUpload from 'vue-image-crop-upload';
-
     export default {
         name: "MyAccount",
-        components: {
-            'my-upload': myUpload
-        },
         data() {
             return {
-
-                // image cropping:
-                showImageUpload: false,
                 subscriptionInfoModal: false,
                 priceTab: 0,
                 stripeInactive: "/images/pricing/icons/stripe-logo-inactive.png",
@@ -222,24 +205,6 @@
             }
         },
         methods: {
-
-            // Image cropping
-            cropSuccess(imgDataUrl) {
-                this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
-                this.applyEdit();
-            },
-
-            dataURLtoFile(dataURL, filename) {
-                var arr = dataURL.split(','), mime = arr[0].match(/:(.*?);/)[1],
-                    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-                while (n--) {
-                    u8arr[n] = bstr.charCodeAt(n);
-                }
-                return new File([u8arr], filename, {type: mime});
-            },
-
-
-            //
             subscribe() {
                 $('#subscribe_form').submit();
             },
@@ -550,8 +515,6 @@
             }
 
             .info-my-account {
-                margin-left: 21px;
-
                 .name {
                     font-family: Noto Sans, sans-serif;
                     font-style: normal;
@@ -1273,6 +1236,7 @@
     /* new input styles */
     .inner-text {
         padding-top: 4px;
+        white-space: nowrap;
         color: #aeaeae;
     }
 

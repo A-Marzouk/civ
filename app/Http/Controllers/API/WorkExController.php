@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use App\WorkEx;
@@ -43,6 +44,7 @@ class WorkExController extends Controller
             $workEx->update($request->toArray());
         }else{
             // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $workEx = WorkEx::create($request->toArray());
         }
 
@@ -55,6 +57,7 @@ class WorkExController extends Controller
     {
         foreach ($request->toArray() as $work){
             $this->validator($work)->validate();
+            $work['resume_link_id'] = User::find($work['user_id'])->resume_link_id;
             WorkEx::create($work);
         }
 

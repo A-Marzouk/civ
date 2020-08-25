@@ -25,9 +25,11 @@ class CreateLinksTable extends Migration
             $table->boolean('is_public')->default(true);
 
             $table->integer('user_id')->unsigned();
+            $table->integer('resume_link_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *

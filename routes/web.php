@@ -11,10 +11,9 @@
 |
 */
 
-
+use App\Mail\PasswordResetMail;
 
 Auth::routes(['verify' => true]);
-
 
 // public routes
 Route::get('/preview/{theme_id}/{slug?}', 'ResumeController@themePreview'); // resume preview
@@ -22,6 +21,10 @@ Route::get('/preview-by-code/{theme_code}', 'ResumeController@themePreviewByCode
 
 Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
+//email
+Route::get('/email', function(){
+    return new PasswordResetMail();
+});
 
 
 // Download Resume routes
@@ -34,6 +37,7 @@ Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
+
 
 
 // social sites register & login:
@@ -97,5 +101,7 @@ Route::group(['prefix' => 'workforce-admin'], function () {
 });
 
 // public cv url
-Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data
 Route::get('/{username}/reference', 'ResumeController@externalReferencePage'); // external reference
+Route::get('/{username}/{version?}', 'ResumeController@userResume'); // resume with real user data
+
+

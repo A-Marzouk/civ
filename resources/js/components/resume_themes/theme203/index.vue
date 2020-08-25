@@ -730,7 +730,6 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    console.log(this.currentUser);
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },

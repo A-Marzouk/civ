@@ -116,9 +116,6 @@ export default {
 			case "edit":
 				this.setActiveTab("editCV");
 				break;
-			case "view":
-				this.setActiveTab("viewCV");
-				break;
 			case "jobs":
 				this.setActiveTab("jobAlert");
 				break;
