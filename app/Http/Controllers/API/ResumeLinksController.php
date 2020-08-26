@@ -20,11 +20,6 @@ class ResumeLinksController extends Controller
         $this->middleware('auth:api');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Resources\Json\ResourceCollection
-     */
     public function index()
     {
         $resumeLinks = ResumeLink::where('user_id', Auth::user()->id)->paginate(5);
@@ -43,7 +38,7 @@ class ResumeLinksController extends Controller
     public function store(Request $request)
     {
 
-        if (!$this->is_auth($request)) {
+        if (!is_auth($request)) {
             throw new Exception('Not Authenticated!');
         }
 
@@ -67,7 +62,6 @@ class ResumeLinksController extends Controller
             return new ResumeLinkResource($newResumeLink);
         }
     }
-
 
     protected function copyUserRelationsToNewResumeLink($newResumeLink, $copiedFromResumeLinkID){
         $user = User::find($newResumeLink->user_id);
@@ -132,7 +126,7 @@ class ResumeLinksController extends Controller
             'id' => $id,
         ])->first();
 
-        if (!$this->is_auth($resumeLink)) {
+        if (!is_auth($resumeLink)) {
             throw new Exception('Not Authenticated!');
         }
 
@@ -153,7 +147,6 @@ class ResumeLinksController extends Controller
         }
     }
 
-
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -164,8 +157,4 @@ class ResumeLinksController extends Controller
         ]);
     }
 
-    protected function is_auth($request)
-    {
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
 }

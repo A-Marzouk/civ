@@ -40,7 +40,7 @@ class SkillsController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -94,7 +94,7 @@ class SkillsController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($skill)){
+        if(!is_auth($skill)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -131,7 +131,5 @@ class SkillsController extends Controller
         }
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

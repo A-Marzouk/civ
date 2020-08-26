@@ -96,6 +96,11 @@ function currentUser()
     return auth()->user();
 }
 
+function is_auth($request)
+{
+    return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
+}
+
 function previousUrl($route = null, $parameters = [])
 {
     $currentRoute = Route::currentRouteName();
@@ -264,8 +269,4 @@ function splitWhiteSpaces($value, $cleanString = true)
 function array_key_mirror($array)
 {
     return array_combine($array, $array);
-}
-
-function is_auth($request){
-    return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
 }

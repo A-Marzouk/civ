@@ -42,7 +42,7 @@ class LinksController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -79,7 +79,7 @@ class LinksController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($link)){
+        if(!is_auth($link)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -110,7 +110,5 @@ class LinksController extends Controller
         ]);
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

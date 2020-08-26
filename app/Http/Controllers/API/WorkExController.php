@@ -32,7 +32,7 @@ class WorkExController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -90,7 +90,7 @@ class WorkExController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($workEx)){
+        if(!is_auth($workEx)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -125,7 +125,5 @@ class WorkExController extends Controller
     }
 
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

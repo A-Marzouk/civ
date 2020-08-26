@@ -35,7 +35,7 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -69,7 +69,7 @@ class ProjectsController extends Controller
     }
 
     public function storeMany(Request $request){
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -117,7 +117,7 @@ class ProjectsController extends Controller
             'id' => $id
         ])->first();
 
-        if(!$this->is_auth($project)){
+        if(!is_auth($project)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -158,7 +158,5 @@ class ProjectsController extends Controller
         }
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

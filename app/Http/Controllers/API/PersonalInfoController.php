@@ -36,7 +36,7 @@ class PersonalInfoController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -86,7 +86,5 @@ class PersonalInfoController extends Controller
     }
 
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }
