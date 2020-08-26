@@ -13,11 +13,7 @@
                 <div class="user-data">
                     <div class="name">José Daniel Quintero</div>
                     <div class="profession">Fullstack Developer</div>
-                    <ul class="speciallity">
-                        <li class="item">Node js</li>
-                        <li class="item">React js</li>
-                        <li class="item">Laravel</li>
-                    </ul>
+                    <div class="overview">Overview here</div>
                 </div>
 
                 <div class="more-icon">
@@ -425,41 +421,9 @@ $purple: #FB423A;
                     }
                 }
 
-                .speciallity {
+                .overview {
                     display: flex;
                     padding: 0;
-                    
-                    .item {
-                        margin-right: 40px;
-                        position: relative;
-
-                        &:last-child {
-                            margin-right: 0;
-
-                            &::after {
-                                display: none;
-                            }
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            width: 7px;
-                            height: 7px;
-                            background: $mainColor;
-                            border-radius: 50%;
-                            right: -20px;
-                            top: calc(50% - 3.5px);
-                        }
-
-                        @media (max-width: 1200px) {
-
-                            &::after {
-                                height: 5px;
-                                width: 5px;
-                            }
-                        }
-                    }
 
                     @media (max-width: 780px) {
                         flex-wrap: wrap;
@@ -495,7 +459,7 @@ $purple: #FB423A;
                         margin-bottom: 18px;
                     }
 
-                    .speciallity {
+                    .overview {
                         display: none;
                     }
                 }

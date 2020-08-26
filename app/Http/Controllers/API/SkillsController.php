@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Skill as SkillResource;
 use App\Skill;
+use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,18 +40,17 @@ class SkillsController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
         $this->validator($request->all())->validate();
 
         if($request->isMethod('put') || $request->id != ''){
-            // update
             $skill = Skill::findOrFail($request->id);
             $skill->update($request->toArray());
         }else{
-            // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $skill =Skill::create($request->toArray());
         }
 
@@ -61,9 +61,14 @@ class SkillsController extends Controller
 
     public function storeMany(Request $request)
     {
-        if(Skill::insert($request->toArray())){
-           return ['status' =>'success'];
+
+        foreach ($request->toArray() as $skill){
+            $this->validator($skill)->validate();
+            $skill['resume_link_id'] = User::find($skill['user_id'])->resume_link_id;
+            Skill::create($skill);
         }
+
+        return ['status' =>'success'];
 
     }
 
@@ -89,7 +94,7 @@ class SkillsController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($skill)){
+        if(!is_auth($skill)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -101,7 +106,7 @@ class SkillsController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => ['sometimes', 'string', 'max:255','min:3'],
+            'title' => ['sometimes', 'string', 'max:255','min:2'],
             'percentage' => ['sometimes', 'numeric','min:30', 'max:100'],
         ]);
     }
@@ -126,7 +131,5 @@ class SkillsController extends Controller
         }
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

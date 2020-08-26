@@ -14,13 +14,10 @@ class UserModelTest extends TestCase
 
     /** @test */
     public function user_can_update_last_activity(){
-        // given: ( the environment )
-        $user = User::create(['name' => 'john', 'email' => 'johny@doe.com']);
+        $user = factory(User::class)->create();
 
-        //when: user updates the activity:
         $user->updateLastActivity();
 
-        // then:  totalDuration between last activity and now should be 0 seconds.
         $this->assertEquals($user->last_activity,'0');
     }
 }

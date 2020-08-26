@@ -1,18 +1,33 @@
 <template>
-  <v-app id="theme511">
+  <v-app id="theme511" v-if="currentUser">
     <v-container fluid>
       <v-row justify="center" class="px-lg-6 px-sm-4" dense>
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4">
           <v-container fluid>
             <v-row dense>
-              <v-col cols="2" lg="2" sm="3" align="center" align-self="center">
+              <v-col
+                class="profile-picture"
+                cols="2"
+                lg="2"
+                sm="3"
+                align="center"
+                align-self="center"
+              >
                 <v-img
                   @click.stop="drawer = !drawer"
                   :src="currentUser.personal_info.profile_pic"
                   alt="avatar"
-                  style="border-radius:50%;"
+                  style="border-radius: 50%;"
                   contain
                 ></v-img>
+
+                <a
+                  href="/preview-pdf-theme-by-code/theme21"
+                  class="pdf-btn"
+                  target="_blank"
+                >
+                  <svg-vue :icon="'themes.pdf-button-theme511'"></svg-vue>
+                </a>
 
                 <v-navigation-drawer
                   color="rgba(103, 100, 200, 0.95)"
@@ -50,7 +65,7 @@
                           activeTab === tab.value
                             ? 'drawer--tab-active'
                             : 'drawer--tab-disable',
-                          'menu--tabs white--text text-left'
+                          'menu--tabs white--text text-left',
                         ]"
                       >
                         <v-list-item-title>{{ tab.name }}</v-list-item-title>
@@ -65,7 +80,6 @@
                 class="pl-lg-8"
                 sm="6"
                 align-self="center"
-                :class="{ 'active-indicator': currentTab === 'profile' }"
               >
                 <div class="head">
                   {{ currentUser.personal_info.full_name }}
@@ -73,22 +87,32 @@
                 <div class="subhead">
                   {{ currentUser.personal_info.designation }}
                 </div>
-                <div class="details hidden-xs-only">
+                <div
+                  class="details hidden-xs-only"
+                  v-if="currentUser.personal_info.overview"
+                >
                   {{ currentUser.personal_info.overview }}
                 </div>
-                <div
-                  class="hidden-xs-only"
-                  :class="{
-                    'active-indicator': currentTab === 'pay-availability'
-                  }"
-                >
+                <div class="hidden-xs-only">
                   <div class="info-text d-inline-block mr-6 mr-sm-2">
                     hour rate
-                    <div class="info-rate d-inline-block mx-2 mx-sm-1" v-if="currentUser.payment_info">{{currentUser.payment_info[0].salary}} {{currentUser.payment_info[0].currency}}</div>
+                    <div
+                      class="info-rate d-inline-block mx-2 mx-sm-1"
+                      v-if="currentUser.payment_info"
+                    >
+                      {{ currentUser.payment_info[0].salary }}
+                      {{ currentUser.payment_info[0].currency }}
+                    </div>
                   </div>
                   <div class="info-text d-inline-block">
                     Weekly availability
-                    <div class="info-rate d-inline-block mx-2 mx-sm-1" v-if="currentUser.availability_info">{{currentUser.availability_info[0].available_hours}} Hours</div>
+                    <div
+                      class="info-rate d-inline-block mx-2 mx-sm-1"
+                      v-if="currentUser.availability_info"
+                    >
+                      {{ currentUser.availability_info[0].available_hours }}
+                      Hours
+                    </div>
                   </div>
                 </div>
               </v-col>
@@ -110,14 +134,10 @@
                     fab
                     elevation="0"
                   >
-                    <v-img
-                      :src="
-                        `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}.svg`
-                      "
-                      contain
-                      max-width="24"
-                      height="24"
-                    ></v-img>
+                    <svg-vue
+                      class="icon"
+                      :icon="Userlink.link_title.toLowerCase() + '-icon'"
+                    ></svg-vue>
                   </v-btn>
 
                   <v-btn
@@ -252,17 +272,17 @@
                 <v-tabs
                   background-color="transparent"
                   :slider-color="sliderColor()"
+                  v-model="indexOfActiveTab"
                   slider-size="5"
                   color="#000"
                   center-active
                   centered
                 >
                   <v-tab
-                    v-for="(tab, i) in tabs"
-                    :key="i"
+                    v-for="tab in tabs"
+                    :key="tab.value"
                     @click="activeTab = tab.value"
                     class="mx-auto"
-                    :class="[{ 'active-indicator': currentTab === tab.value }]"
                   >
                     <div class="text-capitalize tabtitle">{{ tab.name }}</div>
                   </v-tab>
@@ -282,8 +302,25 @@
                   :education="currentUser.education"
                   :activeTab="activeTab"
                 />
-                <Media style="margin-bottom:150px;" :activeTab="activeTab" :media="currentUser.media" :user_name="currentUser.full_name" />
+                <Media
+                  style="margin-bottom: 150px;"
+                  :activeTab="activeTab"
+                  :media="currentUser.media"
+                  :user_name="currentUser.full_name"
+                />
                 <About :activeTab="activeTab" :user="currentUser" />
+                <Hobbies
+                  :activeTab="activeTab"
+                  :hobbies="currentUser.hobbies"
+                />
+                <References
+                  :activeTab="activeTab"
+                  :references="currentUser.references"
+                />
+                <Achievement
+                  :activeTab="activeTab"
+                  :achievements="currentUser.achievements"
+                />
               </v-col>
             </v-row>
           </v-container>
@@ -302,6 +339,9 @@ import Skills from "./tabs/Skills";
 import Media from "./tabs/Media";
 import About from "./tabs/About";
 import payment from "./payments/payment";
+import Hobbies from "./tabs/Hobbies";
+import References from "./tabs/References";
+import Achievement from "./tabs/Achievement";
 export default {
   components: {
     Portfolio,
@@ -310,7 +350,10 @@ export default {
     Skills,
     Media,
     About,
-    payment
+    payment,
+    Hobbies,
+    References,
+    Achievement
   },
   props: ["user", "is_preview", "currentTab"],
   data() {
@@ -319,13 +362,17 @@ export default {
       currentUser: this.user,
       activeTab: "portfolio",
       paymentToggle: false,
+      indexOfActiveTab:0,
       tabs: [
         { name: "Portfolio", value: "portfolio" },
         { name: "Education", value: "education" },
         { name: "Experience", value: "work-experience" },
         { name: "Skills", value: "skills" },
         { name: "Media", value: "media" },
-        { name: "About Me", value: "about" }
+        { name: "About Me", value: "about" },
+        { name: "Hobbies", value: "hobbies" },
+        { name: "References", value: "references" },
+        { name: "Achievement", value: "achievement" },
       ]
     };
   },
@@ -337,11 +384,7 @@ export default {
   },
   computed: {
     borderadius() {
-      var border = document
-        .querySelector(".v-tabs-slider")
-        .borderRadius("50px");
-      return border;
-      console.log(border);
+      return document.querySelector(".v-tabs-slider").borderRadius("50px");
     },
     hireColor() {
       switch (this.$vuetify.breakpoint.name) {
@@ -374,24 +417,46 @@ export default {
       this.currentUser = this.$store.state.dummyUser;
     },
     sliderColor() {
-      if (this.activeTab == "portfolio") {
+      if (this.activeTab === "portfolio") {
         return "#F7B301";
       }
-      if (this.activeTab == "education") {
+      if (this.activeTab === "education") {
         return "#19AAC9";
       }
-      if (this.activeTab == "work") {
+      if (this.activeTab === "work") {
         return "#6764C8";
       }
-      if (this.activeTab == "skills") {
+      if (this.activeTab === "skills") {
         return "#F56068";
       }
-      if (this.activeTab == "media") {
+      if (this.activeTab === "media") {
         return "#39E1AA";
       }
-      if (this.activeTab == "about") {
+      if (this.activeTab === "about") {
         return "#F7B301";
       }
+      if (this.activeTab === "hobbies") {
+        return "#F7B301";
+      }
+      if (this.activeTab === "references") {
+        return "#F7B301";
+      }
+      if (this.activeTab === "achievement") {
+        return "#F7B301";
+      }
+    },
+    setActiveTabByURL(){
+      let currentParam = this.$route.query['current-view'];
+      this.activeTab = currentParam;
+
+      if(currentParam.includes('audio') || currentParam.includes('video')){
+        this.activeTab = 'media';
+      }
+      if(currentParam.includes('about') || currentParam.includes('profile')){
+        this.activeTab = 'about';
+      }
+
+      this.indexOfActiveTab = this.tabs.findIndex(tab => tab.value ===   this.activeTab);
     }
   },
   mounted() {
@@ -402,6 +467,11 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
+  },
+  created() {
+
+    // set active tab
+    this.setActiveTabByURL();
   }
 };
 </script>
@@ -533,6 +603,12 @@ export default {
   border: 5px solid #f56068;
   box-sizing: border-box;
   border-radius: 50px;
+
+  .icon {
+    height: 24px;
+    width: 24px;
+    fill: #f56068;
+  }
 }
 .hire {
   background: #fbffff;
@@ -609,6 +685,18 @@ export default {
   color: #000000;
 }
 
+.profile-picture {
+  position: relative;
+
+  .pdf-btn {
+    position: absolute;
+    right: 0;
+    bottom: 45px;
+    height: 50px;
+    width: 50px;
+  }
+}
+
 @media screen and (max-width: 1024px) and (min-width: 700px) {
   .head {
     font-family: Poppins;
@@ -678,8 +766,6 @@ export default {
 }
 @media screen and (max-width: 699px) and (min-width: 200px) {
   .head {
-    font-family: Poppins;
-    font-style: normal;
     font-weight: 800;
     font-size: 16px;
     line-height: 24px;

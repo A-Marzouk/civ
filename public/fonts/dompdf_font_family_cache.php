@@ -78,18 +78,60 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'open sans' => array(
-    'normal' => $rootDir . '/lib/fonts/open-sans-normal_2d61eedf1a366b3351d9409ac4a567a9',
+    'normal' => $fontDir . '/open-sans-normal_c7c2933cf25bf788d06ffa02358f3b92',
   ),
   'opensans-regular' => array(
-    'normal' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
-    'bold' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
-    'italic' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
-    'bold_italic' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
+    'normal' => $fontDir . '/OpenSans-Regular',
+    'bold' => $fontDir . '/OpenSans-Regular',
+    'italic' => $fontDir . '/OpenSans-Regular',
+    'bold_italic' => $fontDir . '/OpenSans-Regular',
   ),
   'raleway' => array(
-    'normal' => $fontDir . '/Raleway-Regular',
+    'normal' => $fontDir . '/raleway-normal_50d0eebadfd70281d351d5a617de5928',
     'bold' => $fontDir . '/Raleway-Bold',
     'italic' => $fontDir . '/Raleway-BoldItalic',
     'bold_italic' => $fontDir . '/Raleway-Regular',
+  ),
+  'muli' => array(
+    'normal' => $fontDir . '/muli-normal_ac284dc71e1b0704e4d0e81d205378b2',
+  ),
+  'fira' => array(
+    'normal' => $fontDir . '/fira-normal_87773dd5327ba0ec7ecfd977507e9240',
+  ),
+  'montserrat' => array(
+    'normal' => $fontDir . '/montserrat-normal_3f4ced0214179fda4ed8b5ca9920ea29',
+  ),
+  'montserrat bold' => array(
+    'normal' => $fontDir . '/montserrat-bold-normal_5f02ad5e4fb9f5d1888b050ae61df03b',
+  ),
+  'open sans bold' => array(
+    'normal' => $fontDir . '/open-sans-bold-normal_0ec39ddaa9bbbc1815bddb835c62acdf',
+  ),
+  'actor' => array(
+    'normal' => $fontDir . '/actor-normal_db9f1e3bf24b2b2a45469cebab9b002e',
+  ),
+  'thabit' => array(
+    'normal' => $fontDir . '/thabit-normal_69bc16a762370a42b4e9c1bf4dba49ea',
+  ),
+  'thabit bold' => array(
+    'normal' => $fontDir . '/thabit-bold-normal_2f07533a091e96b9cc533af285387030',
+  ),
+  'noto sans' => array(
+    'normal' => $fontDir . '/noto-sans-normal_e008ce4e7d1fb705e3c18c74dddecf0e',
+  ),
+  'noto sans bold' => array(
+    'normal' => $fontDir . '/noto-sans-bold-normal_0fefd6257cb2f55a5ef5adc6ac3562e9',
+  ),
+  'poppins bold' => array(
+    'normal' => $fontDir . '/poppins-bold-normal_7c0485404e2206f792d631a8ce99d45a',
+  ),
+  'poppins' => array(
+    'normal' => $fontDir . '/poppins-normal_3828d5fcf583696bd33b46fd22840d4f',
+  ),
+  'roboto' => array(
+    'normal' => $fontDir . '/roboto-normal_833aee83dece12fb10337205e66f4704',
+  ),
+  'roboto bold' => array(
+    'normal' => $fontDir . '/roboto-bold-normal_7a20d70e34b99f06c9551defed44b97d',
   ),
 ) ?>

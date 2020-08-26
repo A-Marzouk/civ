@@ -2,13 +2,14 @@
     <div class="work-container" id="worksSection">
 
         <!-- Tabs -->
-        <v-tabs class="resume-builder__tab-bar" hide-slider>
+        <v-tabs class="resume-builder__tab-bar" hide-slider height="51">
             <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setWorkCategory(tab)">
                 {{tab}}
             </v-tab>
         </v-tabs>
 
-        <div class="links-content resume-builder__scroll" v-if="works">
+
+        <v-card class="links-content resume-builder__scroll" v-if="works">
             <div class="link-inputs-row">
                 <div class="inputs">
                     <div class="left">
@@ -21,6 +22,7 @@
                                 :disabled="false"
                                 label="Company Name"
                                 :error="!!errors.company_name"
+                                :error-messages="errors.company_name"
                                 v-model="newWork.company_name"
                         >
                         </v-text-field>
@@ -29,11 +31,12 @@
                                 class="resume-builder__input civie-input"
                                 outlined
                                 color="#001CE2"
-                                placeholder="Job title"
+                                placeholder="Job Title"
                                 :class="{'resume-builder__input--disabled': false}"
                                 :disabled="false"
-                                label="Job title"
+                                label="Job Title"
                                 :error="!!errors.job_title"
+                                :error-messages="errors.job_title"
                                 v-model="newWork.job_title"
                         >
                         </v-text-field>
@@ -47,26 +50,21 @@
                                 :disabled="false"
                                 label="Website"
                                 :error="!!errors.website"
+                                :error-messages="errors.website"
                                 v-model="newWork.website"
                         >
                         </v-text-field>
 
                         <div class="date-group">
                             <div class="date-input">
-                                <label for="dateFrom">Date</label>
-                                <input type="date"  v-model="newWork.date_from">
-                                <div class="error" v-if="errors.date_from">
-                                    {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
-                                </div>
+                                <label :class="{'error-label' : errors.date_from}">Date</label>
+                                <input type="date" class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
                             </div>
                             <div class="date-input">
-                                <label for="dateTo" class="light d-flex align-items-center">
-                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> Present
+                                <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
+                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> <span class="present-text">Present</span>
                                 </label>
-                                <input type="date"  v-model="newWork.date_to" :disabled="newWork.present">
-                                <div class="error" v-if="errors.date_to">
-                                    {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
-                                </div>
+                                <input type="date" class="pr-2" :class="{'error-label' : errors.date_to}"  v-model="newWork.date_to" :disabled="newWork.present">
                             </div>
                         </div>
                     </div>
@@ -79,18 +77,19 @@
                                 :class="{'resume-builder__input--disabled': false}"
                                 :disabled="false"
                                 :error="!!errors.description"
+                                :error-messages="errors.description"
                                 v-model="newWork.description"
                                 label="Description"
                         >
                         </v-textarea>
                     </div>
                 </div>
-                <div class="btns">
-                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="addWorkEx">
+                <div class="btns mt-2">
+                    <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="addWorkEx">
                         {{newWork.id !== '' ? 'Update' : 'Add New'}}
                     </v-btn>
 
-                    <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearWorkEx" v-show="newWork.id !== '' ">
+                    <v-btn class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearWorkEx" v-show="newWork.id !== '' ">
                         Cancel
                     </v-btn>
                 </div>
@@ -100,7 +99,7 @@
                 <div
                         v-for="work in works"
                         class="education-item"
-                        :class="{'closed' : expandedWorkID !== work.id}"
+                        :class="{'closed' : expandedWorkID !== work.id, 'half-opacity' : !work.is_public}"
                         :key="work.id"
                 >
                     <div class="drag-handler">
@@ -163,13 +162,13 @@
                         <div class="date">
                             {{ `${work.date_from}${work.present ? ' - Present' : ' - ' + work.date_to}` }}
                         </div>
-                        <article>
+                        <article class="description-text">
                             {{work.description}}
                         </article>
                     </div>
                 </div>
             </draggable>
-        </div>
+        </v-card>
 
     </div>
 </template>
@@ -291,7 +290,7 @@
                         }else{
                             this.works.forEach( (myWork,index) => {
                                 if(myWork.id === response.data.data.id){
-                                    this.works[index] = response.data.data;
+                                    this.works.splice(index, 1, response.data.data);
                                 }
                             });
                         }
@@ -337,10 +336,21 @@
 
     $mainBlue: #001CE2;
     $inputTextColor: #888DB1;
+
     .ml-lg-custom3{
-        @media screen and (min-width: 1441px) and (max-width: 1903px){
-            margin-left: 50px !important;
+        
+        
+        @media screen and (min-width: 1340px) and (max-width: 1903px){
+            margin-left: 25px !important; // adjusted | 50px
         }
+
+        @media screen and (min-width: 1441px) {
+            margin-left: 25px !important; // adjusted | 50px
+        }
+    }
+
+    .present-text{
+        margin-right: 58px;
     }
 
     .work-container {
@@ -355,16 +365,15 @@
 
     #worksSection {
         @include lt-sm{
-            margin: 2%;
-            width: 95%;
+            max-width: 94%;
+            margin-right: auto;
+            margin-left: auto;
         }
         .links-content {
-
             display: flex;
             flex-direction: column;
             align-items: center;
-
-            height: 678px;
+            height: 330px;
             background: #fff;
             box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
             padding: 50px;
@@ -403,7 +412,7 @@
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-between;
-                    max-width: 640px;
+                    max-width: 620px; //adjusted | 640px
 
                     @include lt-md{
 
@@ -448,8 +457,8 @@
                                 position: absolute;
                                 top: -29px;
                                 letter-spacing: 0;
-                                font-weight: 500;
-                                font-size: 18px;
+                                font-size: 15px; // adjusted | 18px
+                                font-weight: 400; //added
                                 line-height: 25px;
                                 color: #888DB1;
                                 opacity: 1;
@@ -458,30 +467,22 @@
                                     font-size: 18px;
                                     color: #888DB1;
                                 }
-
-                                @include lt-sm {
-                                    font-size: 15px;
-                                }
                             }
 
                             label.light {
-                                font-size: 12px;
+                                font-size: 15px; // adjusted | 18px
                                 letter-spacing: 0;
+                                right: 0;
                                 opacity: 1;
 
-                                @include lt-lg {
-                                    font-size: 15px;
-                                }
-
                                 @include lt-md {
-                                    font-size: 11px;
                                     color: #888DB1;
                                 }
                             }
 
                             input {
-                                height: 50px;
-                                border: 2px solid #C4C9F5 !important;
+                                height: 48px; // adjusted | 50px
+                                border: 1.95px solid #C4C9F5 !important; // adjusted | 2px
                                 border-radius: 10px;
                                 opacity: 1;
                                 color: #c4c9f5;
@@ -494,6 +495,10 @@
                                 @include lt-md {
 
                                 }
+                            }
+
+                            input.error-input{
+                                border: 2px solid red !important;
                             }
 
                             input:focus{
@@ -516,8 +521,8 @@
 
                 .right{
                     margin-left: 0;
-                    @include xl{
-                        margin-left:40px;
+                    @include lt-xl{
+                        
                     }
 
                     @include lt-md{
@@ -724,6 +729,7 @@
                     color: $inputTextColor;
                     margin-top: 20px;
                     overflow: auto;
+                    word-break: break-all;
                 }
             }
 
@@ -781,5 +787,13 @@
         @include lt-sm{
 
         }
+    }
+
+    .error-label{
+        color: red !important;
+    }
+
+    .error-input{
+        border: 1.5px solid red !important;
     }
 </style>

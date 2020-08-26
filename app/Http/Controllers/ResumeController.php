@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\ResumeLink;
 use App\Theme;
 use App\User;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class ResumeController extends Controller
         }
 
         if($is_preview === 'false' &&  Auth::user()){
-            $user = User::withAllRelations( Auth::user()->username);
+            $user = User::withAllRelations(Auth::user()->username, Auth::user()->resume_link_id);
             if($user){
                 return view('defaultThemes.theme' . $theme->code,compact('user','is_preview'));
             }
@@ -69,17 +70,61 @@ class ResumeController extends Controller
         // return view('defaultPDFThemes.' . $themeCode);
     }
 
-    public function userResume ($username) {
-        // get user default cv code.
-        $user = User::withAllRelations($username);
+    public function userResume ($username, $version = '') {
+
+        // prepare user
+        $user = User::where('username', $username)->first();
         $is_preview = 'false' ;
+
         if($user){
-            // get theme code
-            $themeCode = $user->theme->code ;
+            $user = User::withAllRelations($username, $this->getVersionID($version, $user->id));
+            $theme = Theme::find($this->getVersionThemeID($version, $user->id));
+            $themeCode = $theme ? $theme->code : '1001' ;
             return view('defaultThemes.theme' . $themeCode, compact('user','is_preview'));
         }else{
             return abort(404);
         }
+    }
+
+    protected function getVersionThemeID($version, $user_id){
+
+        // check if this version exists:
+        $whereData = [
+            ['url', $version],
+            ['user_id', $user_id]
+        ];
+
+        $resumeURL = ResumeLink::where($whereData)->first();
+        if($resumeURL){
+           return $resumeURL->theme_id;
+        }
+
+        return 1 ;
+    }
+
+    protected function getVersionID($version, $user_id){
+        // check if this version exists:
+        $whereData = [
+            ['url', $version],
+            ['user_id', $user_id]
+        ];
+
+        $resumeURL = ResumeLink::where($whereData)->first();
+        if($resumeURL){
+            // version exists
+           return $resumeURL->id;
+        }
+
+        return '' ;
+    }
+
+
+    public function externalReferencePage($username){
+        $user = User::where('username', $username)->first();
+        if(!$user){
+            abort(404);
+        }
+        return view('resume_builder.external_reference', compact('user'));
     }
 
 }

@@ -1,21 +1,7 @@
 <template>
-    <v-app class="resume-builder__scroll">
+    <v-app>
         <div class="data-container">            
-            <v-card color="transparent" flat tile>
-                <!-- <v-tabs
-                    class="resume-builder__tab-bar"
-                    hide-slider
-                >
-                    <v-tab
-                        class="resume-builder__tab"
-                        v-for="tab in tabs"
-                        :key="tab"
-                        @click="activeTab = tab"
-                    >{{ tab }}</v-tab>
-                </v-tabs> -->
-            </v-card>
-
-            <v-card class="view-container resume-builder__scroll">
+            <v-card class="view-container resume-builder__scroll" flat>
                 <SchoolView :activeTab ="activeTab"></SchoolView>
             </v-card>
         </div>
@@ -40,7 +26,8 @@ import SchoolView from './education_tabs/school'
                     degree_title:'',
                     date_from:'',
                     date_to:'',
-                    present: false
+                    present: false,
+                    is_public: true
                 },
                 errors: {
                     new: {},
@@ -71,6 +58,7 @@ import SchoolView from './education_tabs/school'
                     date_from:education.date_from,
                     date_to:education.date_to,
                     present:education.present,
+                    is_public:education.is_public,
                 };
                 this.closeOptionsBtn();
             },
@@ -126,7 +114,7 @@ import SchoolView from './education_tabs/school'
             },
             addEducation(){
                 this.errors = {  new: {}, edit: {}};
-                this.newEducation.user_id = this.$store.state.user.id
+                this.newEducation.user_id = this.$store.state.user.id;
                 axios.post('/api/user/education', this.newEducation)
                     .then((response) => {
                         this.educations.unshift(response.data.data);
@@ -178,7 +166,7 @@ $mainBlue: #001CE2;
         margin-bottom:30px;
 
         .view-container {
-            max-height: 678px;
+            max-height: 335px;
             box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
         }
     }

@@ -1,9 +1,6 @@
 <template>
-    <v-app>
-        <v-container style="width:100%;">
-            <v-tabs class="resume-builder__tab-bar" hide-slider>
-                <v-tab class="resume-builder__tab"> Hobbies</v-tab>
-            </v-tabs>
+    <v-app class="main-content">
+        <div style="width:100%;">
             <v-card
                     class="card-main-hobbies pa-lg-10 pa-md-10 pa-sm-10 pa-3 resume-builder__scroll hobbies-content"
                     flat
@@ -22,6 +19,8 @@
                                             label="Type"
                                             color="#001CE2"
                                             v-model="editedHobby.category"
+                                            :error="!!errors.category"
+                                            :error-messages="errors.category"
                                     >
                                         <button class="dropdown-icon icon" slot="append" @click.prevent>
                                             <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -37,16 +36,18 @@
                                             label="Name"
                                             color="#001CE2"
                                             v-model="editedHobby.title"
+                                            :error="!!errors.title"
+                                            :error-messages="errors.title"
                                     >
                                     </v-text-field>
                                 </v-col>
 
                                 <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveHobby">
+                                    <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="saveHobby">
                                         {{editedHobby.id !== '' ? 'Update' : 'Add New'}}
                                     </v-btn>
 
-                                    <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearHobby" v-show="editedHobby.id !== '' ">
+                                    <v-btn class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearHobby" v-show="editedHobby.id !== '' ">
                                         Cancel
                                     </v-btn>
                                 </v-col>
@@ -54,7 +55,7 @@
                             </v-row>
                         </v-form>
                         <draggable v-model="hobbies" @start="drag=true" @end="drag=false"  handle=".drag-btn">
-                            <v-row align="center" v-for="hobby in hobbies" :key="hobby.id" v-if="hobbies">
+                            <v-row align="center" v-for="hobby in hobbies" :key="hobby.id" v-if="hobbies" :class="{'half-opacity' : !hobby.is_public}">
                                 <v-col xl="6" lg="8" md="8" sm="10" cols="12">
                                     <v-card class="card-holder pa-2 mb-3">
                                         <v-row justify="center">
@@ -111,7 +112,7 @@
                     </v-container>
                 </v-tabs-items>
             </v-card>
-        </v-container>
+        </div>
     </v-app>
 </template>
 
@@ -200,7 +201,7 @@
                         }else{
                             this.hobbies.forEach((hobby, index) => {
                                 if (hobby.id === response.data.data.id) {
-                                    this.hobbies[index] = response.data.data;
+                                    this.hobbies.splice(index, 1, response.data.data);
                                 }
                             });
                         }
@@ -284,14 +285,20 @@
                     this.showCategoryOptions = false;
                 }
             });
-
-            console.log(Vue.$cookies.get("spotify_access_token"));
         }
     };
 </script>
 
 <style scoped lang="scss">
     @import "../../../../../sass/media-queries";
+
+    .main-content{
+        @include lt-sm{
+            max-width: 94%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
 
     $mainBlue: #001ce2;
     .hobbies-content {

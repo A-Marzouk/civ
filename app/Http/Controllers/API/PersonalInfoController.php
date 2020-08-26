@@ -36,14 +36,17 @@ class PersonalInfoController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
         $this->validator($request->all())->validate();
         $user = User::find($request->user_id);
 
-        $personalInfo = $user->personalInfo;
+        $personalInfo = PersonalInfo::where([
+            ['user_id',$user->id],
+            ['resume_link_id', $user->resume_link_id]
+        ])->first();
         if($request->isMethod('put')){
             $personalInfo->update($request->toArray());
         }
@@ -83,7 +86,5 @@ class PersonalInfoController extends Controller
     }
 
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

@@ -1,7 +1,10 @@
 <template>
-  <div class="resume-builder__scroll" id="portfolio-tab">
+  <div class="portfolio-contents" id="portfolio-tab">
     <div class="data-container">
-      <v-card class="view-container resume-builder__scroll" style="overflow-x: hidden !important;">
+      <v-card
+        class="view-container resume-builder__scroll"
+        style="overflow-x: hidden !important;"
+      >
         <v-form class="grid-form" ref="form">
           <v-text-field
             id="projectName"
@@ -11,6 +14,7 @@
             color="#001CE2"
             v-model="editedProject.name"
             :error="!!errors.name"
+            :error-messages="errors.name"
           ></v-text-field>
           <v-text-field
             id="url"
@@ -21,6 +25,7 @@
             color="#001CE2"
             v-model="editedProject.link"
             :error="!!errors.link"
+            :error-messages="errors.link"
           ></v-text-field>
           <v-textarea
             id="description"
@@ -30,6 +35,7 @@
             color="#001CE2"
             v-model="editedProject.description"
             :error="!!errors.description"
+            :error-messages="errors.description"
           ></v-textarea>
           <!-- Using v-input classes -->
           <v-input
@@ -62,6 +68,7 @@
             color="#001CE2"
             v-model="editedProject.skills"
             :error="!!errors.skills"
+            :error-messages="errors.skills"
           ></v-text-field>
           <v-text-field
             id="software"
@@ -72,15 +79,19 @@
             color="#001CE2"
             v-model="editedProject.software"
             :error="!!errors.software"
+            :error-messages="errors.software"
           ></v-text-field>
 
           <div class="col-12 d-flex flex-column">
-            <div class="uploadedImagesList" v-if="editedProject.images.length > 0 ">
+            <div
+              class="uploadedImagesList"
+              v-if="editedProject.images.length > 0"
+            >
               <div
                 class="imageRow"
                 v-for="image in editedProject.images"
                 :key="image.id"
-                v-if="image.src"
+                v-show="image.src"
               >
                 <img :src="image.src" alt="project image" />
                 <div class="remove-image" @click="deleteProjectImage(image)">
@@ -89,19 +100,22 @@
               </div>
             </div>
 
-            <div>
+            <div class="d-flex mb-4" style="transform: translateX(-9px)">
               <v-btn
-                class="resume-builder__btn civie-btn filled ml-custom-n12"
-                raised
+                class="resume-builder__btn civie-btn filled"
+                raised depressed
                 @click="saveProject"
-              >{{editedProject.id !== '' ? 'Update' : 'Add New'}}</v-btn>
+                >{{ editedProject.id !== "" ? "Update" : "Add New" }}</v-btn
+              >
 
               <v-btn
-                class="resume-builder__btn civie-btn ml-2"
+                class="resume-builder__btn civie-btn cancel-btn"
+                depressed
                 raised
                 @click="clearProject"
-                v-show="editedProject.id !== '' "
-              >Cancel</v-btn>
+                v-show="editedProject.id !== ''"
+                >Cancel</v-btn
+              >
             </div>
           </div>
         </v-form>
@@ -110,56 +124,111 @@
           class="projects-list"
           v-if="projects"
           v-model="projects"
-          @start="drag=true"
-          @end="drag=false"
+          @start="drag = true"
+          @end="drag = false"
           handle=".drag-handler"
         >
-          <div class="project ml-md-4" v-for="project in projects">
+          <div
+            class="project ml-md-4"
+            v-for="project in projects"
+            :key="project.id"
+            :class="{ 'half-opacity': !project.is_public }"
+          >
             <div class="project__header">
               <v-btn depressed class="drag-and-drop-handler drag-handler">
                 <svg-vue :icon="'drag-and-drop-icon'" class="icon"></svg-vue>
               </v-btn>
               <div class="resume-builder__action-buttons-container">
-                <v-btn class="btn-icon civie-btn" depressed @click="toggleProject(project)">
-                  <svg-vue icon="eye-icon" :class="{'visible' : project.is_public}" class="icon"></svg-vue>
+                <v-btn
+                  class="btn-icon civie-btn"
+                  depressed
+                  @click="toggleProject(project)"
+                >
+                  <svg-vue
+                    icon="eye-icon"
+                    :class="{ visible: project.is_public }"
+                    class="icon"
+                  ></svg-vue>
                 </v-btn>
-                <v-btn class="btn-icon civie-btn" @click="editProject(project)" depressed>
+                <v-btn
+                  class="btn-icon civie-btn"
+                  @click="editProject(project)"
+                  depressed
+                >
                   <svg-vue
                     icon="edit-icon"
                     class="icon"
-                    :class="{'visible' : project.id === editedProject.id}"
+                    :class="{ visible: project.id === editedProject.id }"
                   ></svg-vue>
                 </v-btn>
-                <v-btn class="btn-icon civie-btn" @click="deleteProject(project)" depressed>
+                <v-btn
+                  class="btn-icon civie-btn"
+                  @click="deleteProject(project)"
+                  depressed
+                >
                   <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
                 </v-btn>
               </div>
             </div>
-            <div class="project__body">
+            <!-- <div class="project__body">
               <div class="project__img">
-                <div class="project__name">{{project.name}}</div>
+                <div class="project__name">{{ project.name }}</div>
                 <img :src="getMainImage(project)" alt="portfolio img" />
               </div>
-              <div class="project__info">
-                <div class="project__name">{{project.name}}</div>
+              <div class="project__info text-wrap">
+                <div class="project__name">
+                  {{ project.name }}
+                </div>
                 <div class="project__url">
                   <b>URL:</b>
-                  <a :href="project.link">{{project.link}}</a>
+                  <a :href="project.link">{{ project.link }}</a>
                 </div>
                 <div class="project__skills">
                   <b>Skills:</b>
-                  {{project.skills}}
+                  {{ project.skills }}
                 </div>
                 <div class="project__softwares">
                   <b>Software:</b>
-                  {{project.software}}
+                  {{ project.software }}
                 </div>
                 <div class="project__description">
                   <b>Description:</b>
-                  {{project.description}}
+                  {{ project.description }}
                 </div>
               </div>
-            </div>
+            </div> -->
+
+            <v-row class="project_body" no-gutters>
+              <v-col cols="12" sm="4" lg="4" class="project_img">
+                <div class="project_name d-block d-sm-none d-lg-none">
+                  {{ project.name }}
+                </div>
+                <v-img
+                  cover
+                  :aspect-ratio="1.2"
+                  :src="getMainImage(project)"
+                  alt="portfolio img"
+                >
+                </v-img>
+              </v-col>
+              <v-col cols="12" sm="8" lg="8" class="pl-0 pl-sm-4 project_info">
+                <div class="project_name d-none d-sm-block d-lg-block">
+                  {{ project.name }}
+                </div>
+                <div class="project_url">
+                  <b>URL:</b>
+                  <a :href="project.link">{{ project.link }}</a>
+                </div>
+                <div class="project_skills">
+                  <b>Skills:</b>
+                  {{ project.skills }}
+                </div>
+                <div class="project_description">
+                  <b>Description:</b>
+                  {{ project.description }}
+                </div>
+              </v-col>
+            </v-row>
           </div>
         </draggable>
       </v-card>
@@ -251,6 +320,7 @@ export default {
         });
     },
     editProject(project) {
+      this.removeFiles();
       $.each(project, field => {
         this.editedProject[field] = project[field];
       });
@@ -258,9 +328,8 @@ export default {
 
     toggleProject(project) {
       project.is_public = !project.is_public;
-      axios
-        .put("/api/user/projects", project)
-        .then(() => {
+      axios.put("/api/user/projects", project)
+        .then((response) => {
           this.$store.dispatch("flyingNotification");
         })
         .catch(error => {
@@ -284,7 +353,6 @@ export default {
     },
     checkMaximumFiles() {
       if (this.editedProject.images.length >= 5) {
-        console.log("Please, no more files...");
       }
     },
     removeFiles() {
@@ -297,7 +365,7 @@ export default {
       let formData = new FormData();
 
       $.each(this.editedProject, field => {
-        if (this.editedProject[field].length && field !== "images") {
+        if (field !== "images") {
           formData.append(field, this.editedProject[field]);
         }
       });
@@ -314,8 +382,7 @@ export default {
       formData.append("user_id", this.$store.state.user.id);
       formData.append("id", this.editedProject.id);
 
-      axios
-        .post("/api/user/projects", formData, {
+      axios.post("/api/user/projects", formData, {
           headers: { "Content-Type": "multipart/form-data" }
         })
         .then(response => {
@@ -324,7 +391,7 @@ export default {
           } else {
             this.projects.forEach((project, index) => {
               if (project.id === response.data.data.id) {
-                this.projects[index] = response.data.data;
+                this.projects.splice(index, 1, response.data.data);
               }
             });
           }
@@ -379,6 +446,15 @@ export default {
 .ml-custom-n12 {
   margin-left: -12px;
 }
+
+.portfolio-contents {
+  @include lt-sm {
+    max-width: 94%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
 #portfolio-tab {
   .view-container {
     max-height: 678px;
@@ -584,6 +660,53 @@ export default {
 
           @include lt-sm {
             flex-wrap: wrap;
+          }
+        }
+        &_body {
+          margin-top: 10px;
+          .project_img {
+            .project {
+              &_name {
+                @include lt-sm {
+                  display: block;
+                  font-size: 20px;
+                  font-weight: normal;
+                  color: $mainColor;
+                  margin-bottom: 10px;
+                }
+              }
+            }
+
+            @include lt-sm {
+              img {
+                margin-bottom: 15px;
+              }
+            }
+          }
+
+          .project_info {
+            margin-top: 14px;
+
+            .project {
+              &_name {
+                font-size: 24px;
+                font-weight: 700;
+                color: $mainColor;
+                margin-bottom: 10px;
+              }
+
+              &_url,
+              &_skills,
+              &_softwares,
+              &_description {
+                color: $inputTextColor;
+              }
+            }
+
+            @include lt-sm {
+              width: 100%;
+              margin-left: 0;
+            }
           }
         }
       }

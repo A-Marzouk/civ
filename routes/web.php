@@ -11,10 +11,9 @@
 |
 */
 
-
+use App\Mail\PasswordResetMail;
 
 Auth::routes(['verify' => true]);
-
 
 // public routes
 Route::get('/preview/{theme_id}/{slug?}', 'ResumeController@themePreview'); // resume preview
@@ -22,9 +21,14 @@ Route::get('/preview-by-code/{theme_code}', 'ResumeController@themePreviewByCode
 
 Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
+//email
+Route::get('/email', function(){
+    return new PasswordResetMail();
+});
+
 
 // Download Resume routes
-// Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
+ Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
 
 // Test theme preview
 Route::get('/preview-theme-pdf-by-code/{themeCode}', 'ResumeController@downloadPDFResume');
@@ -33,6 +37,7 @@ Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
+
 
 
 // social sites register & login:
@@ -60,10 +65,14 @@ Route::get('/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name
 Route::get('/resume-builder/edit/projects/new', 'ResumeBuilderController@index')->name('resume.builder.edit');
 Route::post('/resume-builder/import/pdf', 'ImportsController@extractTextFromPDF')->name('pdf.import.submit');
 Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDocx')->name('docx.import');
+Route::get('/resume-builder/import/behance/{behanceUsername}', 'ImportsController@getDataFromBehance')->name('behance.import');
 
 
 // subscription routes
+Route::get('/subscribe', 'SubscriptionController@subscribePage')->name('subscribe.page');
+
 Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
+Route::get('/subscription/cancel', 'SubscriptionController@cacnel')->name('subscription.cancel');
 Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
 Route::post('/subscribe', 'SubscriptionController@subscribeStripe')->name('subscribe.stripe');
 
@@ -92,4 +101,7 @@ Route::group(['prefix' => 'workforce-admin'], function () {
 });
 
 // public cv url
-Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data
+Route::get('/{username}/reference', 'ResumeController@externalReferencePage'); // external reference
+Route::get('/{username}/{version?}', 'ResumeController@userResume'); // resume with real user data
+
+

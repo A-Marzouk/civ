@@ -2,6 +2,14 @@ import vuetify from "./vuetify";
 
 import { store } from "./store/store";
 
+// VueRouter
+import VueRouter from 'vue-router';
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+    mode: 'history',
+});
+
 import resumeTheme2 from "./components/resume_themes/theme2/index";
 if ($("#resumeTheme2").length !== 0) {
     new Vue({
@@ -72,6 +80,7 @@ if ($("#resumeTheme8").length !== 0) {
     new Vue({
         el: "#resumeTheme8",
         store,
+        vuetify,
         components: {
             "resume-theme-8": resumeTheme8
         }
@@ -103,7 +112,7 @@ if ($("#resumeTheme102").length !== 0) {
     });
 }
 
-import resumeTheme103 from "./components/resume_themes/theme103";
+import resumeTheme103 from "./components/resume_themes/theme103/index";
 if ($("#resumeTheme103").length !== 0) {
     new Vue({
         el: "#resumeTheme103",
@@ -321,7 +330,7 @@ if ($("#resumeTheme403").length !== 0) {
     });
 }
 
-import resumeTheme203 from "./components/resume_themes/theme203";
+import resumeTheme203 from "./components/resume_themes/theme203/index";
 if ($("#resumeTheme203").length !== 0) {
     new Vue({
         el: "#resumeTheme203",
@@ -334,7 +343,7 @@ if ($("#resumeTheme203").length !== 0) {
     });
 }
 
-import resumeTheme204 from "./components/resume_themes/theme204";
+import resumeTheme204 from "./components/resume_themes/theme204/index";
 if ($("#resumeTheme204").length !== 0) {
     new Vue({
         el: "#resumeTheme204",
@@ -347,7 +356,7 @@ if ($("#resumeTheme204").length !== 0) {
     });
 }
 
-import resumeTheme205 from "./components/resume_themes/theme205";
+import resumeTheme205 from "./components/resume_themes/theme205/index";
 if ($("#resumeTheme205").length !== 0) {
     new Vue({
         el: "#resumeTheme205",
@@ -555,10 +564,12 @@ if ($("#resumeTheme1000").length !== 0) {
     });
 }
 
-import resumeTheme1001 from "./components/resume_themes/theme1001";
+import resumeTheme1001 from "./components/resume_themes/theme1001/index";
 if ($("#resumeTheme1001").length !== 0) {
     new Vue({
         el: "#resumeTheme1001",
+        store,
+        router,
         components: {
             "resume-theme-1001": resumeTheme1001
         }
@@ -761,6 +772,7 @@ if ($("#resumeTheme511").length !== 0) {
         el: "#resumeTheme511",
         vuetify,
         store,
+        router,
         components: {
             "resume-theme-511": resumeTheme511
         }

@@ -184,3 +184,13 @@ button:hover {
         }
     }
 }
+
+.half-opacity{
+    opacity: 0.5;
+}
+
+button.v-btn{
+    .v-ripple__container{
+        display:none !important;
+    }
+}

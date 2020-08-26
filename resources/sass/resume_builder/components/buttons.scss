@@ -4,8 +4,9 @@
         background-color: $mainColor !important;
         color: $secondaryColor;
         width: 120px !important;
-        height: 50px !important;
-        font-size: 18px !important;
+        height: 46px !important; //50px
+        font-size: 16px !important; //18px
+        font-weight: 400; //added
         @media screen and (max-width: 599px) {
             width: 100px !important;
             min-height: 40px !important;
@@ -13,10 +14,18 @@
             font-size: 15px !important;
         }
     }
+
+    
+    @media screen and (max-width: 599px) {
+        width: 100px !important;
+        min-height: 40px !important;
+        height: 40px;
+        font-size: 15px !important;
+    }
     // Reset default size
     &.v-size--default {
         border-radius: 5px;
-        height: 50px;
+        height: 45px;
         padding: 13px 21px;
         font-size: 18px;
         text-transform: none;
@@ -30,6 +39,24 @@
         background-color: transparent;
         border: solid 2px $mainColor;
         color: $mainColor;
+    }
+
+
+    // custom btn style 1.1
+    &.cancel-btn {
+        background-color: white !important;
+        color: $mainColor;
+        border: solid $mainColor 2px;
+        width: 120px !important;
+        height: 46px !important; //50px
+        font-size: 15.5px !important; //18px
+        font-weight: 400; //added 
+        margin-left: 20px; //added
+        @media screen and (max-width: 599px) {
+            width: 100px !important;
+            height: 20px !important;
+            font-size: 15px !important;
+        }
     }
 }
 

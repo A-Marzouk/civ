@@ -30,6 +30,6 @@ class WelcomeUserMail extends Mailable
     public function build()
     {
         return $this->subject('Mail from civ.ie')
-            ->view('emails.welcomeUser');
+            ->view('emails.WelcomeUser');
     }
 }

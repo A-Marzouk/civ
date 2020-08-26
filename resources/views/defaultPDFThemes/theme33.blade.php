@@ -13,7 +13,14 @@
 
         @font-face {
             font-family: 'Open Sans';
-            src: url(OpenSans-Regular.ttf) format("truetype");
+            src: url({{ public_path('/fonts/open-sans/OpenSans-Regular.ttf') }}) format("truetype");
+            /* font-weight: 400; // use the matching font-weight here ( 100, 200, 300, 400, etc).
+            font-style: normal; // use the matching font-style here */
+        }
+
+        @font-face {
+            font-family: 'Open Sans Bold';
+            src: url({{ public_path('/fonts/open-sans/OpenSans-Bold.ttf') }}) format("truetype");
             /* font-weight: 400; // use the matching font-weight here ( 100, 200, 300, 400, etc).
             font-style: normal; // use the matching font-style here */
         }
@@ -23,43 +30,41 @@
 
         .user-info .user-img__container {
             height: 210px;
-            display: inline-block;
+            vertical-align: top;
+            padding-right: 30px;
         }
 
         .user-img {
             height: 100%;
-            margin-right: 30px;
-        }
-
-        .user-info__personal__data {
-            display: inline-block;
         }
 
         .user-name {
-            font-family: 'Open Sans', Arial, sans-serif;
+            font-family: 'Open Sans Bold', Arial, sans-serif;
             font-size: 40px;
-            margin-bottom: 10px;
+            margin-bottom: 0;
+        }
+
+        .user-info__personal__data {
+            width: 600px;
         }
 
         .user-profession {
             font-family: 'Open Sans', Arial, sans-serif;
-            margin-bottom: 32px;
+            margin-bottom: 20px;
+            margin-top: -10px;
         }
 
         .user-contact{
             font-size: 14px;
             line-height: 1.2;
-            font-family: Open Sans;
-            margin-left: 37px;
+            font-family: 'Open Sans';
         }
 
         .user-social {
-            display: inline-block;
-            float: right;
-            font-family: Open Sans;
+            font-family: 'Open Sans';
             font-size: 14px;
             line-height: 19px;
-            margin-top: 60px;
+            width: 300px;
         }
 
         .user-social .link {
@@ -67,6 +72,7 @@
         }
 
         .user-social img {
+            margin-top: 2px;
             margin-right: 14px;
             height: 16px;
         }
@@ -79,7 +85,7 @@
         }
 
         .section-title {
-            font-family: 'Open Sans';
+            font-family: 'Open Sans Bold';
             font-size: 36px;
             line-height: 49px;            
         }
@@ -98,7 +104,7 @@
 
         section .content {
             font-size: 14px;
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
             line-height: 1.2;
         }
 
@@ -146,25 +152,25 @@
         }
 
         .company-name {
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
             font-style: normal;
             font-size: 24px;
         }
 
         .job-title {
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
             font-style: normal;
             font-size: 18px;
         }
 
         .work-date {
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
             font-style: normal;
             font-size: 13px;
         }
 
         .work-description {
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
             font-style: normal;
             font-size: 11px;
             line-height: 1.2;
@@ -200,7 +206,7 @@
         }
 
         .institute-name {
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
             font-style: normal;
             font-size: 32px;
             line-height: 44px;
@@ -208,7 +214,7 @@
 
         .grade-and-date {
             margin-top: 50px;
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
             font-style: normal;
             font-size: 18px;
             line-height: 25px;
@@ -216,7 +222,7 @@
         }
 
         .education-description {
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
             font-size: 14px;
             line-height: 1.2;
         }
@@ -248,7 +254,7 @@
         }
 
         .skill-category {
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
             font-size: 24px;
             margin-bottom: 25px;
             width: 100%;
@@ -261,7 +267,7 @@
 
         .skill-header div {
             display: inline-block;
-            font-family: Open Sans;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
         }
 
 
@@ -271,14 +277,14 @@
 
         .skill-bar {
             border: 1.5px solid #1D1D1D;
-            height: 22px;
+            height: 16px;
             width: 100%;
         }
 
         .skill-total {
             display: inline-block;
             background: #1D1D1D;
-            height: 22px;
+            height: 16px;
             vertical-align: top;
         }
 
@@ -295,27 +301,29 @@
 </head>
 <body>
     <div class="user-info">
-        <div class="user-info__personal">
-            <div class="user-img__container">
-                <img class="user-img" src="{{public_path('images/resume_builder/user.png')}}" alt="">
-            </div>
-            <div class="user-info__personal__data">
-                <div class="user-name">José Quintero</div>
-                <div class="user-profession">Fullstack Developer</div>
-
-                <div class="user-contact">
-                    <div>42 Great Windmill Street London W1D 7NB</div>
-                    <div>+584241714022</div>
-                    <div><a href='https://civ.ie'>civ.ie/myprofile</a></div>
-                </div>
-            </div>
-            <div class="user-social">
-                <div class="link"><a href="https://behance.net"><img src="{{public_path('images/resume_themes/theme33/behance.png')}}" alt=""><span>behance user</span></a></div>
-                <div class="link"><a href="https://dribbble.com"><img src="{{public_path('images/resume_themes/theme33/dribbble.png')}}" alt=""><span>dribble user</span></a></div>
-                <div class="link"><a href="https://instagram.com"><img src="{{public_path('images/resume_themes/theme33/instagram.png')}}" alt=""><span>instagram user</span></a></div>
-                <div class="link"><a href="https://linkedin.com"><img src="{{public_path('images/resume_themes/theme33/linkedin.png')}}" alt=""><span>linkedin user</span></a></div>
-            </div>
-        </div>
+        <table class="user-info__personal">
+            <tr>
+                <td class="user-img__container">
+                    <img class="user-img" src="{{public_path('images/resume_builder/user.png')}}" alt="">
+                </td>
+                <td class="user-info__personal__data">
+                    <div class="user-name">José Quintero</div>
+                    <div class="user-profession">Fullstack Developer</div>
+    
+                    <div class="user-contact">
+                        <div>42 Great Windmill Street London W1D 7NB</div>
+                        <div>+584241714022</div>
+                        <div><a href='https://civ.ie'>civ.ie/myprofile</a></div>
+                    </div>
+                </td>
+                <td class="user-social">
+                    <div class="link"><a href="https://behance.net"><img src="{{public_path('images/resume_themes/theme33/behance.png')}}" alt=""><span>behance user</span></a></div>
+                    <div class="link"><a href="https://dribbble.com"><img src="{{public_path('images/resume_themes/theme33/dribbble.png')}}" alt=""><span>dribble user</span></a></div>
+                    <div class="link"><a href="https://instagram.com"><img src="{{public_path('images/resume_themes/theme33/instagram.png')}}" alt=""><span>instagram user</span></a></div>
+                    <div class="link"><a href="https://linkedin.com"><img src="{{public_path('images/resume_themes/theme33/linkedin.png')}}" alt=""><span>linkedin user</span></a></div>
+                </td>
+            </tr>
+        </table>
         
         <div class="line-decorator"></div>
 

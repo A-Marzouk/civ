@@ -6,8 +6,7 @@
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
         <a class="btn-appbar-login" href="/login">
-          Log
-          <span>&nbsp;in</span>
+          Login
         </a>
       </v-app-bar>
       <!-- 1st inner container -->
@@ -51,8 +50,7 @@
                         <template slot="append">
                           <a
                             class="inner-link"
-                            href="javascript:void(0)"
-                            @click="scrollTo('createAccount')"
+                            href="/register"
                             v-show="is_username_valid"
                           >Sign up</a>
                         </template>
@@ -98,7 +96,7 @@
       <!-- 1st inner container ends here -->
 
       <!-- new 2nd layer -->
-      <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
+      <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up?</v-card-subtitle>
       <register-form :username="validUserName"></register-form>
 
       <!-- new 2nd layer -->
@@ -127,20 +125,25 @@
               tile
               align="center"
             >
-              <v-img
+              <video id="introVideo" width="95%" height="100%" controls v-show="videoOn">
+                <source src="/videos/civ_intro_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+
+              <v-img v-show="!videoOn"
                 src="/images/welcome_landing_page/icons/poster-video.png"
                 class="align-center hidden-sm-and-down"
               >
-                <v-btn fab color="#F8F8F8" class="btn-play" x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png" />
+                <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false" x-large>
+                  <img src="/images/welcome_landing_page/icons/play.png" @click="playIntroVideo"/>
                 </v-btn>
               </v-img>
-              <v-img
+              <v-img v-show="!videoOn"
                 src="/images/welcome_landing_page/icons/poster-video-tablet.png"
                 class="align-center hidden-md-and-up"
               >
-                <v-btn fab color="#F8F8F8" class="btn-play" x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png" />
+                <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false"  x-large>
+                  <img src="/images/welcome_landing_page/icons/play.png"  @click="playIntroVideo" />
                 </v-btn>
               </v-img>
             </v-card>
@@ -165,9 +168,9 @@
                   <v-col md="6" cols="12">
                     <span
                       class="hidden-sm-only"
-                    >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</span>
+                    >Add your data and then apply any theme to make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</span>
                     <span class="d-none d-sm-flex d-md-none">
-                      Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out
+                      Add your data and then apply any theme to make your resume visually amazing. Ensure that you stand out
                       <br />and make a great first impression with any hiring manager.
                     </span>
                   </v-col>
@@ -244,14 +247,14 @@
             <v-card flat tile color="transparent">
               <v-card-text class="follow-us-text">
                 <label>Follow Us:</label>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-2 ml-sm-0 ml-0">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-2 ml-sm-0 ml-0" href="https://www.facebook.com/civieapp">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/facebook.png"
                     alt="facebook"
                   />
                 </v-btn>
                 <span class="followers">14,044 Followers</span>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-1 ml-sm-0 ml-0">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-1 ml-sm-0 ml-0" href="https://www.instagram.com/civ.ie_/">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/instagram.png"
                     alt="instagram"
@@ -271,10 +274,11 @@
                   x-small
                   color="#ffffff"
                   class="footer-social-icon mx-1"
-                  v-for="i in contactIcons"
-                  :key="i.title"
+                  v-for="icon in contactIcons"
+                  :key="icon.title"
+                  :href="icon.url"
                 >
-                  <img :src="getContactIcons(i.title)" />
+                  <img :src="getContactIcons(icon.title)" />
                 </v-btn>
               </v-card-text>
             </v-card>
@@ -290,7 +294,7 @@
                     alt="facebook"
                   />
                 </v-btn>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-auto mt-n2">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-auto mt-n2"  href="https://www.instagram.com/civ.ie_/">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/instagram.png"
                     alt="instagram"
@@ -309,10 +313,11 @@
                   x-small
                   color="#ffffff"
                   class="footer-social-icon mx-sm-2 mx-1 mt-n2"
-                  v-for="i in contactIcons"
-                  :key="i.title"
+                  v-for="icon in contactIcons"
+                  :key="icon.title"
+                  :href="icon.url"
                 >
-                  <img :src="getContactIcons(i.title)" />
+                  <img :src="getContactIcons(icon.title)" />
                 </v-btn>
               </v-card-subtitle>
             </v-card>
@@ -334,6 +339,7 @@ export default {
   },
   data() {
     return {
+      videoOn: false,
       windowWidth: window.innerWidth,
       username: "",
       valid: false,
@@ -394,11 +400,11 @@ export default {
         { id: 5, title: "Easy acception line payments" }
       ],
       contactIcons: [
-        { id: 1, title: "email" },
-        { id: 2, title: "messenger" },
-        { id: 3, title: "skype" },
-        { id: 4, title: "whatsapp" },
-        { id: 5, title: "slack" }
+        { id: 1, title: "email", url:'mailto:hi@civ.ie' },
+        { id: 2, title: "messenger", url: "https://www.facebook.com/civieapp" },
+        { id: 3, title: "skype", url:'skype:magictime.uk'},
+        { id: 4, title: "whatsapp", url: 'https://wa.me/353868447832'},
+        { id: 4, title: "telegram", url: 'https://t.me/conormarjoram'},
       ],
       users: ["nishad", "ahmed", "anton", "gladwin"],
 
@@ -479,20 +485,13 @@ export default {
     getGalleryImages(id) {
       return `/images/welcome_landing_page/imgs/gallery/${id}.png`;
     },
-    getIntegrationImage(id) {
-      return `/images/welcome_landing_page/imgs/integration/${id}.png`;
-    },
     getContactIcons(title) {
-      return `/images/welcome_landing_page/icons/${title}.png`;
+      return `/images/welcome_landing_page/icons/contact_icons/${title}.png`;
     },
-    scrollTo(id) {
-      $("html, body").animate(
-        {
-          scrollTop: $("#" + id).offset().top
-        },
-        1500
-      );
-    }
+    playIntroVideo(){
+      this.videoOn = true;
+      document.getElementById('introVideo').play();
+    },
   }
 };
 </script>
@@ -505,6 +504,7 @@ export default {
 
 #welcomeView,
 #registerForm,
+#external_reference,
 #loginForm {
   .inner-text {
     padding-top: 6px;
@@ -514,6 +514,7 @@ export default {
   .inner-link {
     padding-top: 4px;
     padding-right: 10px;
+    white-space: nowrap;
     &:hover {
       text-decoration: none;
     }
@@ -654,19 +655,22 @@ export default {
   //appbar login btn
   .btn-appbar-login {
     font-family: "Montserrat" !important;
-    font-size: 18px !important;
+    padding: 0.76rem 2.6rem;
+    border-radius: 7px;
+    box-shadow: 0 10px 15px -3px rgba(0, 72, 254, 0.335);
+    letter-spacing: 2px;
+    background-color: rgb(0,70,254);
+    font-size: 12px !important;
     font-weight: bold !important;
-    text-transform: capitalize !important;
-    color: #0046fe !important;
-    span {
-      text-transform: lowercase !important;
-    }
+    text-transform: uppercase !important;
+    color: white !important;
 
     @media screen and (min-width: 1600px) {
       margin-right: 100px;
     }
     @media screen and (max-width: 1263px) {
-      font-size: 16px !important;
+      padding: 0.5rem 1.6rem;
+      font-size: 12px !important;
     }
   }
 
@@ -1024,6 +1028,24 @@ export default {
     }
   }
 
+  .v-text-field input {
+    color: #aeaeae !important;
+  }
+
+  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+    border: 2px solid #C4C9F5;
+  }
+
+  .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+    border: 2px solid #C4C9F5;
+  }
+
   .build-resume-title {
     font-family: "Montserrat" !important;
     font-weight: bold;
@@ -1332,24 +1354,6 @@ export default {
     margin-bottom: 10px;
   }
 
-  .v-text-field input {
-    color: #aeaeae !important;
-  }
-
-  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-    > .v-input__control
-    > .v-input__slot
-    fieldset {
-    border: 2px solid #ffffff !important;
-  }
-
-  .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-    > .v-input__control
-    > .v-input__slot
-    fieldset {
-    border: 2px solid #ebebeb !important;
-  }
-
   .slick-dots li button {
     width: 110px !important;
     height: 6px;
@@ -1409,5 +1413,26 @@ export default {
       margin-left: -40px;
     }
   }
+}
+
+#welcomeView{
+  .v-text-field input {
+    color: #aeaeae !important;
+  }
+
+  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+    border: 2px solid #ffffff !important;
+  }
+
+  .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+    border: 2px solid #ebebeb !important;
+  }
+
 }
 </style>

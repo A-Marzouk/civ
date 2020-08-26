@@ -15,6 +15,56 @@
         width: 164px;
     }
     
+    .scrollbar{
+        overflow-y: scroll;
+        height: 600px;
+        direction: rtl; 
+    }
+    .scrollbar::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);
+      
+        background-color: #F5F5F5;
+    }
+
+    .scrollbar::-webkit-scrollbar
+    {
+        width: 15px;
+        
+        background-color: #F5F5F5;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb
+    {
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,.3);
+        background-color:#2400FF;
+        height: 150px;
+    }
+    .newTitle{
+      
+        text-align: left;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 50px;
+        color:#623CEA;
+    }
+    .newSubtitle{
+        text-align: left;
+        font-family: 'Circular Std Book';
+        font-weight: normal;
+        font-size: 26px;
+        line-height: 41px;
+        color:#656565;
+    }
+    .hobbyTitle{
+        text-align: left;
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 55px;
+        color:#623CEA;
+    }
+    
     .tabtitle{
         font-size: .8rem;
         color: #3D3D3D;
@@ -148,7 +198,11 @@
              height: 50px;
         }
 @media (max-width:1600px) {
-
+    .scrollbar{
+        overflow-y: scroll;
+        height: 500px;
+        direction: rtl; 
+    }
      #theme501{
         padding: 0 5.8rem ;
         }
@@ -179,6 +233,11 @@
 
 
   @media only screen and  (max-width:768px) {
+    .scrollbar{
+        overflow-y: hidden;
+        height: auto;
+        direction: ltr; 
+    }
         .head {
             line-height: 1.5em;
             font-size: 1.5rem;
@@ -244,7 +303,7 @@
         .buttonsize{
             width: 100%;
             height: 50px;
-            margin-right: -60px;
+           
         }
         
     }
@@ -256,8 +315,27 @@
             line-height: 1.5em;
             font-size: 1.5rem;
         }
-
-        
+        .scrollbar{
+            overflow-y: hidden;
+            height: auto;
+            direction: ltr; 
+        }
+        .newTitle{
+      
+            text-align: left;
+            font-weight: 500;
+            font-size: 24px;
+            line-height:40px;
+            color:#623CEA;
+        }
+        .newSubtitle{
+            text-align: left;
+            font-family: 'Circular Std Book';
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 30px;
+            color:#656565;
+        }
         .profile{
             height: 120px; 
             min-width: 120px; 

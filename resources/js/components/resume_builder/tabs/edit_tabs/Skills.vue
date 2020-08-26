@@ -1,33 +1,33 @@
 <template>
   <v-app>
-    <v-container style="width: 100%">
+    <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
-        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
-          <v-tab
-            class="resume-builder__tab"
-            v-for="(tabName,i) in tabs"
-            :key="i"
-            @click="clearSkill"
-          >{{tabName.replace('_',' ')}}</v-tab>
+        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab" height="51">
+          <v-tab style="font-weight: 400"
+            class="resume-builder__tab" @click="setSkillCategory(tab)"
+            v-for="tab in tabs"
+            :key="tab"
+          >{{tab.replace('_',' ')}}</v-tab>
         </v-tabs>
       </v-card>
       <v-card
         class="card-skill-items pa-sm-5 pa-2 skills-content resume-builder__scroll"
         id="skillsContent"
       >
-        <v-tabs-items v-model="activeTab">
-          <v-tab-item v-for="(tabName,i) in tabs" :key="tabName + i">
+        <div>
+          <div>
             <v-container style="width:100%;">
-              <v-row align="baseline">
+              <v-row align="baseline mt-n12">
                 <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
-                      placeholder="Select an option"
+                      placeholder="Skill Title"
                       v-model="editedSkill.title"
                       label="Skill Title"
                       :error="!!errors.title"
+                      :error-messages="errors.title"
                       color="#001CE2"
                     ></v-text-field>
                   </v-card>
@@ -53,18 +53,20 @@
                       v-model="editedSkill.percentage"
                       label="Skill Amount"
                       :error="!!errors.percentage"
+                      :error-messages="errors.percentage"
                       color="#001CE2"
                     ></v-text-field>
                   </v-card>
                 </v-col>
 
-                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-md-n2 mt-sm-n10 mt-n6 d-flex">
+                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-lg-n2 my-md-n10 mt-sm-n10 mt-n6 d-flex">
                   <v-btn
-                    class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0"
+                    class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0 mr-lg-7 mr-md-7"
                     @click="addSkill"
                   >{{editedSkill.id === undefined ? 'Add New' : 'Update'}}</v-btn>
+                  
                   <v-btn
-                    class="resume-builder__btn civie-btn btn-add-new ml-3 mt-2 ml-xl-0 ml-lg-n2 ml-sm-n2 ml-0"
+                    class="resume-builder__btn civie-btn btn-add-new mt-2 ml-5"
                     @click="cancelEdit"
                     v-show="editedSkill.id !== undefined"
                   >Cancel</v-btn>
@@ -75,12 +77,14 @@
                     <v-row align="center" dense>
                       <v-col cols="12">
                         <draggable v-model="skills" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                          <v-card v-show="skill.category === tabs[activeTab]"
-                                  color="#E6E8FC"
-                                  class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
-                                  flat
+                          <v-card
                                   v-for="skill in skills"
                                   :key="skill.id"
+                                  v-show="skill.category === skillCategory"
+                                  color="#E6E8FC"
+                                  class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
+                                  :class="{'half-opacity' : !skill.is_public}"
+                                  flat
                           >
                             <v-card-text>
                               <!-- skill for desktop -->
@@ -159,7 +163,7 @@
                                     <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                                   </v-btn>
                                 </v-col>
-                                <v-col cols="6" align="right">
+                                <v-col cols="6" align="right" class="resume-builder__action-buttons-container">
                                   <v-btn
                                           color="#F2F3FD"
                                           depressed
@@ -219,10 +223,10 @@
                 </v-col>
               </v-row>
             </v-container>
-          </v-tab-item>
-        </v-tabs-items>
+          </div>
+        </div>
       </v-card>
-    </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -240,6 +244,7 @@ export default {
       windowWidth: window.innerWidth,
       typeItems: ["Programming Language"],
       activeTab: 0,
+      skillCategory:'programming_languages',
       tabs: ["programming_languages", "software", "design", "frameworks"],
       addNewSkill: false,
       optionSkillId: 0,
@@ -266,6 +271,10 @@ export default {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
     },
+    setSkillCategory(category) {
+      this.skillCategory = category;
+      this.clearSkill();
+    },
     toggleVisibility(skill) {
       skill.is_public = !skill.is_public;
       axios
@@ -286,19 +295,20 @@ export default {
           edit = true;
         }
 
-        this.editedSkill.category = this.tabs[this.activeTab];
+        this.editedSkill.category = this.skillCategory;
         this.editedSkill.user_id = this.$store.state.user.id;
 
         axios
           .post("/api/user/skills", this.editedSkill)
-          .then(response => {
+          .then( (response) => {
+            response.data.data.is_public = true;
             if (!edit) {
               let addedSkill = response.data.data;
               this.skills.push(addedSkill);
             } else {
               this.skills.forEach((skill, index) => {
                 if (skill.id === response.data.data.id) {
-                  this.skills[index] = response.data.data;
+                  this.skills.splice(index, 1, response.data.data);
                 }
               });
             }
@@ -308,9 +318,9 @@ export default {
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
-              this.errors.new = error.response.data.errors;
+              this.errors = error.response.data.errors;
             } else {
-              this.errors.new = "Something went wrong. Please try again.";
+              this.errors = "Something went wrong. Please try again.";
             }
             this.$store.dispatch("flyingNotification", {
               message: "Error",
@@ -340,7 +350,7 @@ export default {
     },
     clearSkill() {
       this.editedSkill = {
-        category: "",
+        category: this.skillCategory,
         title: "",
         percentage: ""
       };
@@ -393,7 +403,7 @@ export default {
 @import "../../../../../sass/media-queries";
 
 .civie-select,
-civie-input {
+.civie-input {
   min-width: 300px;
 }
 

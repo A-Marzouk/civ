@@ -1,8 +1,8 @@
 <template>
-	<div id="linksSection" data-app>
+	<div id="linksSection" data-app class="pa-md-0 pa-sm-0 pa-10">
 
 		<!-- Tabs -->
-		<v-tabs class="resume-builder__tab-bar" hide-slider>
+		<v-tabs class="resume-builder__tab-bar" hide-slider height="51">
 			<v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setLinkCategory(tab)">
 				{{tab}}
 			</v-tab>
@@ -21,18 +21,18 @@
 					<button class="input-prepended-icon" slot="prepend">
 						<img :src="`/images/resume_builder/${linkCategory}_icons/${editedLink.link_title.toLowerCase()}-1.svg`" alt="link icon">
 					</button>
-
 				</v-select>
 
-				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" placeholder="https://github.com/john-doe" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" v-model="editedLink.link">
+				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
 				</v-text-field>
 
-				<div class="d-flex mt-2">
-					<v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
+				<div class="d-flex mt-1">
+					<v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="saveLink">
 						{{editedLink.id !== '' ? 'Update' : 'Add New'}}
 					</v-btn>
 
-					<v-btn class="resume-builder__btn civie-btn ml-3" raised @click="clearLink" v-show="editedLink.id !== '' ">
+					<v-btn
+						class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearLink" v-show="editedLink.id !== '' ">
 						Cancel
 					</v-btn>
 				</div>
@@ -40,7 +40,7 @@
 			</div>
 
 			<draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false"  handle=".mover">
-				<div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory">
+				<div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory" :class="{'half-opacity' : !link.is_active}">
 					<div class="link-data">
 						<div class="mover">
 							<img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
@@ -103,7 +103,7 @@ export default {
 		linkCategory: "professional",
 		editedLink: {
 			id: "",
-			link_title: "website",
+			link_title: "Website",
 			link: "",
 			is_active: true
 		},
@@ -190,7 +190,7 @@ export default {
 					} else {
 						this.links.forEach((link, index) => {
 							if (link.id === response.data.data.id) {
-								this.links[index] = response.data.data;
+								this.links.splice(index, 1, response.data.data);
 							}
 						});
 					}
@@ -213,7 +213,7 @@ export default {
 		clearLink() {
 			this.editedLink = {
 				id: "",
-				link_title: "website",
+				link_title: "Website",
 				category: this.linkCategory,
 				link: "",
 				is_active: true,
@@ -221,7 +221,7 @@ export default {
 			};
 		},
 		validURL(str) {
-			var pattern = new RegExp(
+			let pattern = new RegExp(
 				"^(https?:\\/\\/)?" + // protocol
 				"((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
 				"((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
@@ -230,7 +230,14 @@ export default {
 					"(\\#[-a-z\\d_]*)?$",
 				"i"
 			); // fragment locator
+			if(this.editedLink.link_title === 'Skype'){
+				return this.testSkypeUrl(str);
+			}
 			return !!pattern.test(str);
+		},
+		testSkypeUrl(skype_url){
+			let skypePattern = /skype:/ig ;
+			return skypePattern.test(skype_url);
 		},
 		getCurrentCategories() {
 			if (this.linkCategory === "professional") {
@@ -290,9 +297,9 @@ $mainBlue: #001ce2;
 		align-items: center;
 		grid-auto-rows: 78px;
 		grid-template-columns: minmax(0px, 210px) minmax(0, 350px) auto;
-		grid-gap: 30px;
-		margin-top: 12px;
-		margin-bottom: 30px;
+		grid-gap: 20px; //adjusted | 30px
+		// margin-top: 12px;
+		margin-bottom: 50px; //adjusted | 30px
 
 		.civie-select {
 			max-width: 210px;
@@ -303,7 +310,7 @@ $mainBlue: #001ce2;
 
 			.input-prepended-icon {
 				position: absolute;
-				top: 39px;
+				top: 37px; // adjusted | 39px
 				left: 5px;
 
 				img {
@@ -317,7 +324,6 @@ $mainBlue: #001ce2;
 		}
 
 		.civie-btn {
-			min-height: 50px;
 			width: 120px;
 			align-self: end;
 		}
@@ -327,16 +333,13 @@ $mainBlue: #001ce2;
 			align-items:center;
 			flex-wrap: wrap;
 			margin-bottom: 25px;
-			.civie-select {
-				margin-right: 30px;
-			}
+			// .civie-select {
+			// 	margin-right: 30px;
+			// }
 
-			.civie-input {
-				margin-right: 30px;
-			}
-			.civie-btn{
-				margin-top: 5px;
-			}
+			// .civie-input {
+			// 	margin-right: 30px;
+			// }
 		}
 
 		@include lt-sm {
@@ -351,7 +354,7 @@ $mainBlue: #001ce2;
 				width: 100%;
 				grid-column: span 3;
 				grid-row: 2 / 3;
-				margin-top: 15px;
+				// margin-top: 15px;
 			} 
 			
 			.civie-btn {
@@ -450,4 +453,13 @@ $mainBlue: #001ce2;
 	padding-top: 5px;
 	padding-left: 3px;
 }
+
+//Custom fix 1.0
+
+.tabName {
+	text-transform: capitalize;
+	font-size: 1rem;
+	padding: 1.6rem;
+}
+
 </style>

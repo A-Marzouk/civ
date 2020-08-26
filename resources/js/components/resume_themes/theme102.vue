@@ -284,7 +284,7 @@ font-size: 18px;
                     color: #B4B4B6;
                 }
 
-                .speciallity {
+                .overview {
                     display: flex;
                     padding: 0;
                     color: #B4B4B6;

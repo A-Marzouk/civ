@@ -1,13 +1,13 @@
 <template>
-	<header id="header">
-		<div class="header-profile">
-			<ProfileActions />
+  <header id="header">
+    <div class="header-profile">
+      <ProfileActions />
 
-			<Avatar :src="currentUser.avatar" />
+      <Avatar :src="currentUser.personal_info.profile_pic" />
 
-			<ProfileDetail :currentUser="currentUser" />
-		</div>
-	</header>
+      <ProfileDetail :currentUser="currentUser" />
+    </div>
+  </header>
 </template>
 
 <script>
@@ -16,24 +16,24 @@ import ProfileActions from "./header/ProfileActions";
 import ProfileDetail from "./header/ProfileDetail";
 
 export default {
-	name: "Header",
+  name: "Header",
 
-	props: {
-		currentTab: {
-			type: String,
-			required: true
-		},
-		currentUser: {
-			type: Object,
-			required: true
-		}
-	},
+  props: {
+    activeTab: {
+      type: String,
+      required: true
+    },
+    currentUser: {
+      type: undefined,
+      required: true
+    }
+  },
 
-	components: { Avatar, ProfileActions, ProfileDetail },
+  components: { Avatar, ProfileActions, ProfileDetail },
 
-	data: () => {
-		return {};
-	}
+  data: () => {
+    return {};
+  }
 };
 </script>
 
@@ -41,65 +41,69 @@ export default {
 @import "./../scss/variables";
 
 #header {
-	font-family: $muli;
-	font-weight: 300;
-	padding: 20px;
-	padding-bottom: 25px;
-	color: #ffffff;
-	background-image: url("/images/resume_themes/theme1001/bg-header.png"),
-		linear-gradient(#4870fc 100%, #4870fc 100%);
-	background-size: cover;
+  font-family: $muli;
+  font-weight: 300;
+  padding: 20px;
+  padding-bottom: 25px;
+  color: #ffffff;
+  background-image: url("/images/resume_themes/theme1001/bg-header.png"),
+    linear-gradient(#4870fc 100%, #4870fc 100%);
+  background-size: cover;
+
+  background-repeat: repeat-x;
 }
 
 .header-profile {
-	position: relative;
-	display: flex;
-	font-family: inherit;
+  position: relative;
+  display: flex;
+  font-family: inherit;
 }
 
 @media (min-width: $sm) {
-	#header {
-		padding: 25px;
-		padding-bottom: 30px;
-	}
+  #header {
+    padding: 25px;
+    padding-bottom: 30px;
+  }
 }
 
 @media (min-width: $md) {
-	#header {
-		background-image: url("/images/resume_themes/theme1001/bg-header.png"),
-			linear-gradient(#4870ff 100%, #4870ff 100%);
-		background-size: contain;
-	}
+  #header {
+    background-image: url("/images/resume_themes/theme1001/bg-header.png"),
+      linear-gradient(#4870ff 100%, #4870ff 100%);
+    background-size: contain;
 
-	.header-profile {
-		align-items: center;
-	}
+    background-repeat: repeat-x;
+  }
+
+  .header-profile {
+    align-items: center;
+  }
 }
 
 @media (min-width: $lg) {
-	#header {
-		padding: 30px 50px;
-	}
+  #header {
+    padding: 30px 50px;
+  }
 
-	.header-profile {
-		max-width: $lg;
-		margin: 0 auto;
-	}
+  .header-profile {
+    max-width: $lg;
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: 1600px) {
-	#header {
-		padding: 50px 100px;
-	}
+  #header {
+    padding: 50px 100px;
+  }
 
-	.header-profile {
-		max-width: 1600px;
-	}
+  .header-profile {
+    max-width: 1600px;
+  }
 }
 
 @media (min-width: $xl) {
-	.header-profile {
-		max-width: $xl;
-	}
+  .header-profile {
+    max-width: $xl;
+  }
 }
 </style>

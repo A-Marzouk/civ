@@ -21,19 +21,18 @@ class DatabaseSeeder extends Seeder
         $this->call(SkillsTableSeeder::class);
         $this->call(HobbiesTableSeeder::class);
         $this->call(EducationTableSeeder::class);
+        $this->call(DownloadsTableSeeder::class);
         $this->call(WorkExTableSeeder::class);
-//        $this->call(PersonalInfoTableSeeder::class);  // commented out because we make relationship for each created USER.
         $this->call(LinksTableSeeder::class);
         $this->call(LanguagesTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
         $this->call(ProjectImagesTableSeeder::class);
         $this->call(AchievementsTableSeeder::class);
         $this->call(MediaTableSeeder::class);
-//        $this->call(ReferencesTableSeeder::class);  // commented out because we make relationship for each created USER.
         $this->call(ImportsTableSeeder::class);
         $this->call(ThemesTableSeeder::class);
         $this->call(TestimonialsTableSeeder::class);
-//        $this->call(RefereeTableSeeder::class);  // commented out because we make relationship for each created USER.
+        $this->call(PromocodesTableSeeder::class);
 //        $this->call(SummaryTableSeeder::class); // commented out because we make relationship for each created USER.
     }
 

@@ -1,7 +1,7 @@
 <template>
     <v-app>
-        <v-container style="width:100%;">
-            <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTab">
+        <div style="width:100%;" class="pa-md-0 pa-sm-0 pa-3">
+            <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTab" height="51">
                 <v-tab
                         class="resume-builder__tab"
                         v-for="(tabName,i) in tabs"
@@ -26,7 +26,7 @@
                                                 @change="selectCurrentPayment(salary_frequency)"
                                                 v-model="salary_frequency"
                                         >
-                                            <button class="dropdown-icon icon" slot="append">
+                                            <button class="dropdown-icon icon" slot="append" @click.prevent>
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
                                             </button>
                                         </v-select>
@@ -39,6 +39,7 @@
                                                 color="#001CE2"
                                                 label="Amount"
                                                 :error="!!errors.salary"
+                                                :error-messages="errors.salary"
                                                 v-model="currentPayment.salary"
                                         >
                                             <v-select
@@ -80,7 +81,7 @@
                                                 color="#001CE2"
                                                 v-model="availability_frequency"
                                         >
-                                            <button class="dropdown-icon icon" slot="append">
+                                            <button class="dropdown-icon icon" slot="append" @click.prevent>
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
                                             </button>
                                         </v-select>
@@ -93,6 +94,7 @@
                                                 color="#001CE2"
                                                 label="Hours"
                                                 :error="!!errors.available_hours"
+                                                :error-messages="errors.available_hours"
                                                 v-model="currentAvailability.available_hours"
                                         >
                                         </v-text-field>
@@ -107,7 +109,7 @@
                     </v-tab-item>
                 </v-tabs-items>
             </v-card>
-        </v-container>
+        </div>
     </v-app>
 </template>
 

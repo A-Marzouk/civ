@@ -1,6 +1,6 @@
 <template>
-  <div class="resume-builder__scroll" id="portfolio-tab">
-    <div class="data-container container">
+  <div class="main-content" id="portfolio-tab">
+    <div class="data-container pa-md-0 pa-sm-0 pa-10">
       <v-card class="view-container resume-builder__scroll">
         <v-form
                 class="grid-form"
@@ -14,6 +14,7 @@
                   color="#001CE2"
                   v-model="editedAchievement.type"
                   :error = "!!errors.type"
+                  :error-messages = "errors.type"
           >
           </v-text-field>
           <v-text-field
@@ -25,6 +26,7 @@
                   color="#001CE2"
                   v-model="editedAchievement.url"
                   :error = "!!errors.url"
+                  :error-messages = "errors.url"
           >
           </v-text-field>
           <v-textarea
@@ -35,11 +37,13 @@
                   color="#001CE2"
                   v-model="editedAchievement.description"
                   :error = "!!errors.description"
+                  :error-messages = "errors.description"
 
           ></v-textarea>
           <!-- Using v-input classes -->
           <v-input
                   class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
+                  :class="{'error' : !!errors.file || !!errors.image_src}"
                   outlined
                   label="Upload Image"
                   hint="(Maximum 1 file)"
@@ -50,7 +54,7 @@
                     :options="dropzoneOptions"
                     v-model = "editedAchievement.images"
                     :useCustomSlot="true"
-                    v-on:vdropzone-file-added="handlingEvent" v-on:vdropzone-drop="checkMaximumFiles" ref="newImages"
+                    v-on:vdropzone-file-added="handlingEvent" v-on:vdropzone-drop="checkMaximumFiles" v-on:vdropzone-removed-file="removeFile" ref="newImages"
             >
               <div class="dropzone-custom-content">
                 <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
@@ -62,10 +66,10 @@
                   class="resume-builder__input civie-input"
                   outlined
                   label="Year"
-                  hint="(Year)"
                   color="#001CE2"
                   v-model="editedAchievement.year"
                   :error = "!!errors.year"
+                  :error-messages = "errors.year"
           >
           </v-text-field>
           <v-text-field
@@ -73,20 +77,20 @@
                   class="resume-builder__input civie-input"
                   outlined
                   label="Title"
-                  hint="Type"
                   color="#001CE2"
                   v-model="editedAchievement.title"
                   :error = "!!errors.title"
+                  :error-messages = "errors.title"
           >
           </v-text-field>
 
-          <div class="col-12 d-flex flex-column">
-            <div>
-              <v-btn class="resume-builder__btn civie-btn filled ml-custom-n12" raised @click="saveAchievement">
+          <div class="col-12 d-flex flex-column" style="transform: translateX(-9px)">
+            <div class="d-flex">
+              <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="saveAchievement">
                 {{editedAchievement.id !== '' ? 'Update' : 'Add New'}}
               </v-btn>
 
-              <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
+              <v-btn class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
                 Cancel
               </v-btn>
             </div>
@@ -94,7 +98,7 @@
         </v-form>
 
         <draggable class="projects-list" v-if="achievements" v-model="achievements" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-          <div class="project ml-md-4" v-for="achievement in achievements">
+          <div class="project ml-md-4" v-for="achievement in achievements" :class="{'half-opacity' : !achievement.is_public}">
             <div class="project__header">
               <v-btn
                       depressed
@@ -154,11 +158,11 @@
                   <b>URL:</b> <a :href="achievement.url">{{achievement.url}}</a>
                 </div>
                 <div class="project__skills">
-                  <b>Skills:</b> {{achievement.category}}
+                  <b>Year:</b> {{achievement.year}}
                 </div>
                 <div class="project__description">
                   <b>Description: </b>
-                  { {{achievement.description}}
+                  {{achievement.description}}
                 </div>
               </div>
             </div>
@@ -236,7 +240,6 @@
         } );
 
       },
-
       toggleAchievement(achievement) {
         achievement.is_public = !achievement.is_public;
         axios.put("/api/user/achievements", achievement)
@@ -262,26 +265,28 @@
       handlingEvent: function (file) {
         if (this.editedAchievement.images.length < 1) {
           this.editedAchievement.images.push(file);
+          this.editedAchievement.image_src = 'Temporary URL';
         }else{
 
         }
       },
       checkMaximumFiles(){
         if (this.editedAchievement.images.length >= 1) {
-          console.log('Please, no more files...');
         }
       },
       removeFiles() {
         this.editedAchievement.images = [];
         this.$refs.newImages.removeAllFiles();
       },
-
+      removeFile(){
+        this.editedAchievement.image_src = '';
+      },
       saveAchievement() {
         this.errors = {};
         let formData = new FormData();
 
         $.each(this.editedAchievement, (field) => {
-          if (this.editedAchievement[field].length && field !== 'images') {
+          if (field !== 'images') {
             formData.append(field, this.editedAchievement[field]);
           }
         });
@@ -302,11 +307,12 @@
         axios.post('/api/user/achievements', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                 .then((response) => {
                   if (!edit) {
+                    response.data.data.is_public = true ;
                     this.achievements.push(response.data.data);
                   } else {
                     this.achievements.forEach((achievement, index) => {
                       if (achievement.id === response.data.data.id) {
-                        this.achievements[index] = response.data.data;
+                        this.achievements.splice(index, 1, response.data.data);
                       }
                     });
                   }
@@ -339,17 +345,6 @@
           images: [],
         };
         this.$refs.newImages.removeAllFiles();
-      },
-      canSubmit() {
-        let canSubmit = true;
-
-        $.each(this.editedAchievement, (field) => {
-          if (!this.editedAchievement[field].length) {
-            canSubmit = false;
-          }
-        });
-
-        return canSubmit;
       }
 
     },
@@ -365,6 +360,13 @@
   .ml-custom-n12{
     margin-left: -12px;
   }
+  .main-content{
+    @include lt-sm{
+      max-width: 94%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
   #portfolio-tab {
     .view-container {
       max-height: 678px;
@@ -376,7 +378,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-auto-rows: 104px;
-        grid-gap: 15px;
+        grid-gap: 20px; //adjusted | 15px
         padding: 50px 46px;
 
         .resume-builder__input {
@@ -386,7 +388,7 @@
           &.civie-dropzone {
             grid-row-start: 1;
             grid-row-end: 3;
-            height: 100%;
+            height: 98%;
 
             .v-input__control,
             .v-input__slot {

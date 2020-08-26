@@ -25,6 +25,11 @@ class AdminsController extends Controller
         $users = User::all();
         foreach ($users as $user){
             $user['is_admin'] = $user->hasRole('admin');
+            $user['can_test_builder'] = $user->can('test.builder.users');
+            $user['subscription'] = $user->subscription;
+            if($user->subscription){
+                $user['subscription']['promocode'] = $user->subscription->promocode;
+            }
         }
         return view('admin.dashboard', compact('users'));
     }

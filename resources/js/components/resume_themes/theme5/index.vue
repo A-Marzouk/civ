@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container fluid ma-0 pa-0 style="background-color:#f1f1f1;">
+    <v-container fluid ma-0 pa-0 style="background-color: #f1f1f1;">
       <v-row class="borpad pt-md-4" no-gutters justify-sm="end">
         <v-col md="6" sm="12" cols="12">
           <v-container>
@@ -94,7 +94,12 @@
                   </v-col>
                   <v-col cols="2" md="1" align="center">
                     <div
-                      style="width:2px; height:2.5rem; background-color:#CBCBCB;margin-top:50%"
+                      style="
+                        width: 2px;
+                        height: 2.5rem;
+                        background-color: #cbcbcb;
+                        margin-top: 50%;
+                      "
                     ></div>
                   </v-col>
                   <v-col cols="5" md="5" lg="5" align="center">
@@ -139,10 +144,20 @@
                   <v-col cols="8" align="center" class="mt-4">
                     <v-btn
                       dark
-                      style="height: 60px;width: 202px;border-radius: 6px;background: #fc5185;box-shadow: #fc7ea4 0px 10px 30px -8px;"
+                      style="
+                        height: 60px;
+                        width: 202px;
+                        border-radius: 6px;
+                        background: #fc5185;
+                        box-shadow: #fc7ea4 0px 10px 30px -8px;
+                      "
                     >
                       <img
-                        style="width:22.5px;height:18px;margin-right: 7.5px;"
+                        style="
+                          width: 22.5px;
+                          height: 18px;
+                          margin-right: 7.5px;
+                        "
                         src="/images/resume_themes/theme5/email.svg"
                         alt
                       />
@@ -188,12 +203,17 @@
                   </v-col>
                   <v-col cols="2" align="center">
                     <div
-                      style="width:2px; height:2.2rem; background:rgba(31,93,228,0.4);margin-top:30%"
+                      style="
+                        width: 2px;
+                        height: 2.2rem;
+                        background: rgba(31, 93, 228, 0.4);
+                        margin-top: 30%;
+                      "
                     ></div>
                   </v-col>
                   <v-col cols="5" align="center">
                     <div class="subtitle-1">Available for</div>
-                    <div class="headline  font-weight-bold txtcol">
+                    <div class="headline font-weight-bold txtcol">
                       <div>
                         <v-icon @click="availablePrev()"
                           >navigate_before</v-icon
@@ -228,10 +248,20 @@
                   <v-col cols="8" align="center" class="mt-4">
                     <v-btn
                       dark
-                      style="height: 60px;width: 202px;border-radius: 6px;background: #fc5185;box-shadow: rgba(252,81,133,0.4) 0px 10px 30px -8px;"
+                      style="
+                        height: 60px;
+                        width: 202px;
+                        border-radius: 6px;
+                        background: #fc5185;
+                        box-shadow: rgba(252, 81, 133, 0.4) 0px 10px 30px -8px;
+                      "
                     >
                       <img
-                        style="width:22.5px;height:18px;margin-right: 7.5px;"
+                        style="
+                          width: 22.5px;
+                          height: 18px;
+                          margin-right: 7.5px;
+                        "
                         src="/images/resume_themes/theme5/email.svg"
                         alt
                       />
@@ -244,28 +274,40 @@
                 <v-row no-gutters justify="center">
                   <v-col cols="12" class="text-center hidden-xs-only">
                     <v-btn
-                      style="height: 50px;width: 150px;border-radius: 6px;background: #5f45ff;box-shadow: #9180ff 0px 10px 30px -8px;"
+                      style="
+                        height: 50px;
+                        width: 150px;
+                        border-radius: 6px;
+                        background: #5f45ff;
+                        box-shadow: #9180ff 0px 10px 30px -8px;
+                      "
                       dark
                       class="mx-1"
                     >
                       <img
                         src="/images/resume_themes/theme5/call.svg"
                         alt="voice call"
-                        style="width: 18px;height: 18px;margin-right: 7.5px;"
+                        style="width: 18px; height: 18px; margin-right: 7.5px;"
                       />
-                      <div class="text-capitalize" style="font-size:14px;">
+                      <div class="text-capitalize" style="font-size: 14px;">
                         Voice call
                       </div>
                     </v-btn>
 
                     <v-btn
                       class="mx-1"
-                      style="height: 50px;width: 90px;border-radius: 6px;background: #e7e5f6;box-shadow: #e7e5f6 0px 10px 30px -8px;"
+                      style="
+                        height: 50px;
+                        width: 90px;
+                        border-radius: 6px;
+                        background: #e7e5f6;
+                        box-shadow: #e7e5f6 0px 10px 30px -8px;
+                      "
                     >
                       <img
                         src="/images/resume_themes/theme5/video.svg"
                         alt="video call"
-                        style="width: 27px;height: 18px;margin-right: 7.5px;"
+                        style="width: 27px; height: 18px; margin-right: 7.5px;"
                       />
                     </v-btn>
                   </v-col>
@@ -276,10 +318,15 @@
                       outlined
                       color="#5F45FF"
                       class="mx-1"
-                      style="height: 50px;width: 150px;border-radius: 6px;box-shadow: rgba(253,253,254,0.6) 0px 10px 30px -8px;"
+                      style="
+                        height: 50px;
+                        width: 150px;
+                        border-radius: 6px;
+                        box-shadow: rgba(253, 253, 254, 0.6) 0px 10px 30px -8px;
+                      "
                     >
                       <v-icon left>mdi-video</v-icon>
-                      <div class="text-capitalize" style="font-size:14px;">
+                      <div class="text-capitalize" style="font-size: 14px;">
                         Video call
                       </div>
                     </v-btn>
@@ -287,14 +334,20 @@
                     <v-btn
                       class="mx-1"
                       dark
-                      style="height: 50px;width: 150px;border-radius: 6px;background: #5f45ff;box-shadow: rgba(253,253,254,0.6) 0px 10px 30px -8px;"
+                      style="
+                        height: 50px;
+                        width: 150px;
+                        border-radius: 6px;
+                        background: #5f45ff;
+                        box-shadow: rgba(253, 253, 254, 0.6) 0px 10px 30px -8px;
+                      "
                     >
                       <img
                         src="/images/resume_themes/theme5/call.svg"
                         alt="voice call"
-                        style="width: 18px;height: 18px;margin-right: 7.5px;"
+                        style="width: 18px; height: 18px; margin-right: 7.5px;"
                       />
-                      <div class="text-capitalize" style="font-size:14px;">
+                      <div class="text-capitalize" style="font-size: 14px;">
                         Audio call
                       </div>
                     </v-btn>
@@ -310,13 +363,16 @@
                         :key="Userlink.id + '_link'"
                         target="_blank"
                         class="mx-1"
-                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;"
+                        style="
+                          width: 40px;
+                          min-width: 40px;
+                          height: 40px;
+                          box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
+                        "
                         v-show="Userlink.is_active && Userlink.is_public"
                       >
                         <img
-                          :src="
-                            `/images/resume_themes/theme5/social_icons/${Userlink.link_title.toLowerCase()}.svg`
-                          "
+                          :src="`/images/resume_themes/theme5/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
                           alt="social-icon"
                         />
                       </v-btn>
@@ -378,7 +434,13 @@
                   </v-col>
                   <v-col sm="2" align="center" class="ml-n4 mr-n4 mt-4">
                     <div
-                      style="width:2px; height:1.5rem; background-color:#CBCBCB;margin-top:20%;margin:auto;"
+                      style="
+                        width: 2px;
+                        height: 1.5rem;
+                        background-color: #cbcbcb;
+                        margin-top: 20%;
+                        margin: auto;
+                      "
                     ></div>
                   </v-col>
                   <v-col sm="5" align="center" class="mt-4">
@@ -430,13 +492,16 @@
                         :key="Userlink.id + '_link'"
                         target="_blank"
                         class="mx-1"
-                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;"
+                        style="
+                          width: 40px;
+                          min-width: 40px;
+                          height: 40px;
+                          box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
+                        "
                         v-show="Userlink.is_active && Userlink.is_public"
                       >
                         <img
-                          :src="
-                            `/images/resume_themes/theme5/social_icons/${Userlink.link_title.toLowerCase()}.svg`
-                          "
+                          :src="`/images/resume_themes/theme5/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
                           alt="social-icon"
                         />
                       </v-btn>
@@ -449,10 +514,20 @@
                   <v-col cols="12" class="text-center">
                     <v-btn
                       dark
-                      style="height: 60px;width: 202px;border-radius: 6px;background: #fc5185;box-shadow: #fc7ea4 0px 10px 30px -8px;"
+                      style="
+                        height: 60px;
+                        width: 202px;
+                        border-radius: 6px;
+                        background: #fc5185;
+                        box-shadow: #fc7ea4 0px 10px 30px -8px;
+                      "
                     >
                       <img
-                        style="width:22.5px;height:18px;margin-right: 7.5px;"
+                        style="
+                          width: 22.5px;
+                          height: 18px;
+                          margin-right: 7.5px;
+                        "
                         src="/images/resume_themes/theme5/email.svg"
                         alt
                       />
@@ -463,25 +538,37 @@
                 <v-row no-gutters justify="center" class="mt-6">
                   <v-col cols="12" class="text-center">
                     <v-btn
-                      style="height: 60px;width: 93px;border-radius: 6px;background: #5f45ff;box-shadow: #9180ff 0px 10px 30px -8px;"
+                      style="
+                        height: 60px;
+                        width: 93px;
+                        border-radius: 6px;
+                        background: #5f45ff;
+                        box-shadow: #9180ff 0px 10px 30px -8px;
+                      "
                       dark
                       class="mx-1"
                     >
                       <img
                         src="/images/resume_themes/theme5/call.svg"
                         alt="voice call"
-                        style="width: 18px;height: 18px;margin-right: 7.5px;"
+                        style="width: 18px; height: 18px; margin-right: 7.5px;"
                       />
                     </v-btn>
 
                     <v-btn
                       class="mx-1"
-                      style="height: 60px;width: 93px;border-radius: 6px;background: #e7e5f6;box-shadow: #e7e5f6 0px 10px 30px -8px;"
+                      style="
+                        height: 60px;
+                        width: 93px;
+                        border-radius: 6px;
+                        background: #e7e5f6;
+                        box-shadow: #e7e5f6 0px 10px 30px -8px;
+                      "
                     >
                       <img
                         src="/images/resume_themes/theme5/video.svg"
                         alt="video call"
-                        style="width: 27px;height: 18px;margin-right: 7.5px;"
+                        style="width: 27px; height: 18px; margin-right: 7.5px;"
                       />
                     </v-btn>
                   </v-col>
@@ -493,15 +580,20 @@
       </v-row>
     </v-container>
     <v-container fluid ma-0 pa-0>
-      <v-row class="borpad" no-gutters style="height:100%;">
+      <v-row class="borpad" no-gutters style="height: 100%;">
         <v-col md="12" sm="12" cols="12">
-          <v-container fluid ma-0 pa-0 style="max-width:100%">
+          <v-container fluid ma-0 pa-0 style="max-width: 100%;">
             <v-row no-gutters justify="center">
               <v-col
-                md="6"
+                md="10"
                 cols="11"
                 sm="11"
-                style="background-color:#f1f1f1;margin:1rem;border-radius:5px;padding:1rem;"
+                style="
+                  background-color: #f1f1f1;
+                  margin: 1rem;
+                  border-radius: 5px;
+                  padding: 1rem;
+                "
                 class="text-center"
               >
                 <v-tabs background-color="transparent" hide-slider centered>
@@ -521,7 +613,7 @@
           </v-container>
         </v-col>
         <v-col md="12" sm="12" cols="12" class="mt-4">
-          <v-container fluid ma-0 pa-0 style="max-width:100%">
+          <v-container fluid ma-0 pa-0 style="max-width: 100%;">
             <v-row no-gutters justify="center">
               <v-col v-if="activeTab === 'portfolio'" md="11" sm="11" cols="11">
                 <v-row no-gutters justify="center">
@@ -581,6 +673,7 @@
                   </v-timeline-item>
                 </v-timeline>
               </v-col>
+
               <v-col
                 v-if="activeTab === 'education'"
                 md="11"
@@ -609,11 +702,11 @@
                       <div class="edu-name font-weight-bold py-1">
                         {{ education.university_name }}
                       </div>
-                      <div class="subtitle-2 pb-1" style="color:#1F5DE4">
+                      <div class="subtitle-2 pb-1" style="color: #1f5de4;">
                         {{ education.university_name }},
                         {{ education.date_from }} - {{ education.date_to }}
                       </div>
-                      <div class="subtitle-2 pb-2" style="color:#707070;">
+                      <div class="subtitle-2 pb-2" style="color: #707070;">
                         {{ education.degree_title }}
                       </div>
                     </v-card>
@@ -696,6 +789,135 @@
                   </v-col>
                 </v-row>
               </v-col>
+
+              <!-- hobbies -->
+              <v-col
+                v-if="activeTab === 'hobbies'"
+                md="11"
+                sm="11"
+                cols="11"
+                class="pb-12"
+              >
+                <div class="hobby-container">
+                  <div
+                    class="hobby"
+                    v-for="(hobby, index) in currentUser.hobbies"
+                    :key="index"
+                    v-show="hobby.is_public"
+                  >
+                    <div
+                      class="hobby__layer"
+                      :class="[
+                        index % 2 === 0
+                          ? 'hobby_item--even'
+                          : 'hobby_item--odd',
+                      ]"
+                    ></div>
+
+                    <div class="hobby__content">
+                      <img
+                        src="/images/resume_themes/theme5/ball.png"
+                        class="hobby_img"
+                        alt="hobby_img"
+                      />
+                      <div class="text-capitalize">{{ hobby.title }}</div>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <!-- hobbies end-->
+
+              <!-- references -->
+              <v-col
+                v-if="activeTab === 'references'"
+                md="11"
+                sm="11"
+                cols="11"
+                class="pb-12"
+              >
+                <div class="reference-container">
+                  <div
+                    class="reference__card"
+                    v-for="(reference, index) in currentUser.references"
+                    :key="index"
+                    v-show="reference.is_public"
+                  >
+                    <div class="d-flex justify-space-between">
+                      <!-- card left -->
+                      <div>
+                        <div class="ref__username font-weight-bold">
+                          {{ reference.name }}
+                        </div>
+                        <div class="ref__position mb-3">
+                          {{ reference.title }}
+                        </div>
+
+                        <div class="mb-6">
+                          <div class="ref_smalltext">
+                            <span class="ref_company font-weight-bold pr-2">{{
+                              reference.company
+                            }}</span>
+                            {{ reference.created_at }}
+                          </div>
+                          <div class="ref_smalltext">
+                            {{ reference.reference_text }}
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- card right -->
+                      <div class="ref_address">
+                        {{ reference.address }}
+                      </div>
+                    </div>
+                    <div class="ref_smalltext">{{ reference.description }}</div>
+                  </div>
+                </div>
+              </v-col>
+              <!-- references end-->
+
+              <!-- Achievement section -->
+              <v-col
+                v-if="activeTab === 'achievements'"
+                md="11"
+                sm="11"
+                cols="11"
+                class="pb-12"
+              >
+                <div class="achievement-container">
+                  <div
+                    class="achievement__card"
+                    v-for="(achievement, index) in currentUser.achievements"
+                    :key="index"
+                    v-show="achievement.is_public"
+                  >
+                    <div class="achievement__content">
+                      <!-- card left -->
+                      <img
+                        class="achievement_img"
+                        :src="achievement.image_src"
+                        alt="certificate"
+                      />
+                      <!-- card right -->
+                      <div>
+                        <div class="award_title font-weight-bold">
+                          {{ achievement.title }}
+                        </div>
+                        <div class="award_year mb-2">
+                          {{ achievement.year }}
+                        </div>
+                        <div class="award_url font-weight-bold my-2">
+                          URL: {{ achievement.url }}
+                        </div>
+                        <div class="award_desc">
+                          {{ achievement.description }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <!-- Achievement end-->
             </v-row>
           </v-container>
         </v-col>
@@ -992,6 +1214,183 @@
       height: 8px !important;
     }
   }
+
+  // hobbies section start -------
+
+  .hobby-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: calc(10px + 10%) calc(10px + 5%);
+  }
+
+  .hobby__layer {
+    height: 8px;
+    width: 100%;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+  }
+
+  .hobby__content {
+    height: 5.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #f8f8f8;
+  }
+
+  .hobby_img {
+    height: 1.6rem;
+    width: auto;
+    margin-right: 10px;
+  }
+
+  .hobby_item--odd {
+    background-color: #fc5185;
+  }
+
+  .hobby_item--even {
+    background-color: #5f45ff;
+  }
+
+  //media quries ----
+  @media only screen and (max-width: 1284px) {
+    .hobby-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 640px) {
+    .hobby-container {
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 2rem calc(10px + 5%);
+    }
+  }
+  //media quries end ----
+
+  // hobbies section end --------
+
+  // reference section start ------
+
+  .reference-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px 40px;
+  }
+
+  .reference__card {
+    background-color: #f8f8f8;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+  }
+
+  .detail__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .ref__username {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .ref__position {
+    font-size: 1rem;
+    color: #1f5de4;
+  }
+
+  .ref_company {
+    // font-weight: 500;
+    color: #3c3748;
+  }
+
+  .ref_address {
+    font-size: 0.8rem;
+    color: #1f5de4;
+    max-width: 42%;
+  }
+
+  .ref_smalltext {
+    font-size: 0.8rem;
+    color: #3c3748;
+  }
+
+  //media queries
+  @media only screen and (max-width: 850px) {
+    .reference-container {
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 20px 30px;
+    }
+  }
+  //media queries end ---
+
+  // reference section end ------
+
+  // Achievement section start
+  .achievement-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px 40px;
+  }
+
+  .achievement__content {
+    display: flex;
+  }
+
+  .achievement__card {
+    padding: 1.8rem 1rem;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+  }
+
+  .achievement_img {
+    height: 8.1rem;
+    width: auto;
+    margin-right: 2rem;
+  }
+
+  .award_title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #3c3748;
+  }
+
+  .award_year {
+    font-size: 0.8rem;
+    color: #1f5de4;
+  }
+
+  .award_url {
+    font-size: 1rem;
+    color: #3c3748;
+  }
+
+  .award_desc {
+    font-size: 0.8rem;
+  }
+
+  //media queries
+  @media only screen and (max-width: 1184px) {
+    .achievement-container {
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 20px 30px;
+      max-width: 38rem;
+      margin: 0 auto;
+    }
+  }
+
+  @media only screen and (max-width: 522px) {
+    .achievement__content {
+      display: block;
+    }
+
+    .achievement_img {
+      margin: 0 auto;
+      margin-bottom: 1rem;
+    }
+  }
+  // Achievement section end
 }
 </style>
 
@@ -1026,6 +1425,18 @@ export default {
         {
           text: "About",
           value: "about"
+        },
+        {
+          text: "Hobbies",
+          value: "hobbies"
+        },
+        {
+          text: "References",
+          value: "references"
+        },
+        {
+          text: "Achievements",
+          value: 'achievements'
         }
       ],
       available: 0,
@@ -1111,6 +1522,84 @@ export default {
         },
         {
           color: "#004D40"
+        }
+      ],
+      hobbies: [
+        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' } 
+      ],
+      references: [
+        { 
+          name: "Emma Pearson",
+          position: 'UX Designer',
+          company: 'Wedevs',
+          duration: 'Oct 2018 - Nov 2019',
+          sub: 'User Interface designer',
+          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
+        },
+        { 
+          name: "Emma Pearson",
+          position: 'UX Designer',
+          company: 'Wedevs',
+          duration: 'Oct 2018 - Nov 2019',
+          sub: 'User Interface designer',
+          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
+        },
+        { 
+          name: "Emma Pearson",
+          position: 'UX Designer',
+          company: 'Wedevs',
+          duration: 'Oct 2018 - Nov 2019',
+          sub: 'User Interface designer',
+          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
+        },
+        { 
+          name: "Emma Pearson",
+          position: 'UX Designer',
+          company: 'Wedevs',
+          duration: 'Oct 2018 - Nov 2019',
+          sub: 'User Interface designer',
+          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
+        }
+      ],
+      achievements: [
+        {
+          src: '/images/resume_themes/theme5/certificate.png',
+          title: 'Award Certificate',
+          year: '2015',
+          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
+        },
+        {
+          src: '/images/resume_themes/theme5/certificate.png',
+          title: 'Award Certificate',
+          year: '2015',
+          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
+        },
+        {
+          src: '/images/resume_themes/theme5/certificate.png',
+          title: 'Award Certificate',
+          year: '2015',
+          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
+        },
+        {
+          src: '/images/resume_themes/theme5/certificate.png',
+          title: 'Award Certificate',
+          year: '2015',
+          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
         }
       ],
       currentUser: this.user

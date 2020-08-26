@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use phpDocumentor\Reflection\Types\Self_;
 use Spatie\Permission\Traits\HasRoles;
 use Carbon\Carbon;
 
@@ -20,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity'
+        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity','resume_link_id'
     ];
 
     /**
@@ -34,6 +35,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static $defaultRelations =
         [
+            'permissions',
+            'tabs',
             'skills',
             'hobbies',
             'education',
@@ -42,40 +45,55 @@ class User extends Authenticatable implements MustVerifyEmail
             'projects.images',
             'achievements',
             'media',
-            'reference',
-            'referee',
+            'references',
             'testimonials',
             'imports',
+            'downloads',
             'languages',
             'personalInfo',
             'availabilityInfo',
             'paymentInfo',
+            'resumeLinks',
+            'defaultResumeLink',
             'summary',
             'theme',
             'subscription'
         ];
 
+    public static $excludedFromVersionFilter = [
+        'permissions',
+        'projects.images',
+        'testimonials',
+        'resumeLinks',
+        'defaultResumeLink',
+        'subscription',
+        'theme',
+    ];
+
     public static $defaultOneToOneRelations = [
-        'reference',
-        'referee',
         'personalInfo',
         'availabilityInfo',
         'paymentInfo',
+        'defaultResumeLink',
         'summary',
         'theme',
         'subscription'
     ];
     public static $defaultOneToManyRelations = [
+        'tabs',
         'skills',
+        'references',
         'hobbies',
         'education',
         'workExperience',
         'links',
+        'resumeLinks',
         'projects',
         'achievements',
         'media',
         'testimonials',
         'imports',
+        'downloads',
         'languages'
     ];
 
@@ -101,9 +119,23 @@ class User extends Authenticatable implements MustVerifyEmail
 
     //user with all relations
 
-    public static function withAllRelations($username)
+    public static function withAllRelations($username, $resume_link_id = '')
     {
-        return User::where('username', $username)->with(self::$defaultRelations)->first();
+        $defaultRelations = self::$defaultRelations;
+
+        if($resume_link_id !== ''){
+            $defaultRelations = [] ;
+            foreach (self::$defaultRelations as $relation){
+                if(in_array($relation, self::$excludedFromVersionFilter)){
+                    $defaultRelations[] = $relation ;
+                    continue;
+                }
+                $defaultRelations[$relation] = function($q) use($resume_link_id) {$q->where('resume_link_id', $resume_link_id);} ;
+            }
+            $defaultRelations['projects'] = function($q) use($resume_link_id) {$q->where('resume_link_id', $resume_link_id);} ;
+        }
+
+        return User::where('username', $username)->with($defaultRelations)->first();
     }
 
     public function testName()
@@ -113,9 +145,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     // relations has Many
+    public function tabs()
+    {
+        return $this->hasMany(Tab::class)->orderBy('order');
+    }
+
     public function skills()
     {
         return $this->hasMany(Skill::class)->orderBy('order');
+    }
+
+    public function downloads()
+    {
+        return $this->hasMany(Download::class)->orderBy('order');
     }
 
     public function hobbies()
@@ -136,6 +178,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function links()
     {
         return $this->hasMany(Link::class)->orderBy('order');
+    }
+
+    public function resumeLinks()
+    {
+        return $this->hasMany(ResumeLink::class)->orderBy('order');
     }
 
     public function projects()
@@ -198,9 +245,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Summary::class);
     }
 
-    public function reference()
+    public function references()
     {
-        return $this->hasOne(Reference::class);
+        return $this->hasMany(Reference::class);
     }
 
     public function referee()
@@ -212,6 +259,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Theme::class);
     }
 
+    public function defaultResumeLink(){
+        return $this->belongsTo(ResumeLink::class,'resume_link_id');
+    }
 
 
     // user helper functions :

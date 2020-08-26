@@ -24,11 +24,14 @@ class CreateReferencesTable extends Migration
             $table->string('company')->nullable();
             $table->string('address')->nullable();
             $table->string('url')->nullable();
+            $table->string('image')->nullable();
             $table->text('reference_text')->nullable();
             $table->text('notes')->nullable();
             $table->boolean('is_public')->default(true);
+            $table->integer('order')->default(1);
 
             $table->integer('user_id')->unsigned();
+            $table->integer('resume_link_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

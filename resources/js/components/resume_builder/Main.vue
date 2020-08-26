@@ -23,14 +23,14 @@
 		</div>
 
 		<div class="flying-notification" id="flyingNotification">
-			<div class="d-flex align-items-center justify-content-center">
+			<div class="d-flex align-items-center justify-content-center w-100">
 				<img src="" id="flyingNotificationIconSrc" alt="notification modal">
 				<div class="text" id="flyingNotificationText"></div>
 			</div>
 		</div>
 
 		<div class="flying-notification delete" id="flyingNotificationDelete">
-			<div class="d-flex align-items-center justify-content-center">
+			<div class="d-flex align-items-center justify-content-center w-100">
 				<img src="/images/resume_builder/delete-icon-red.png" alt="notification modal">
 				<div class="text">Deleted</div>
 			</div>
@@ -104,7 +104,7 @@ export default {
 	},
 	mounted() {
 		this.$store.dispatch("setCurrentUser", this.$attrs.tempuser);
-		let currentTab = "myAccount";
+		let currentTab = "editCV";
 		let pathArray = window.location.pathname.split("/");
 		pathArray.forEach(tab => {
 			if (tab === "resume-builder") {
@@ -115,9 +115,6 @@ export default {
 		switch (currentTab) {
 			case "edit":
 				this.setActiveTab("editCV");
-				break;
-			case "view":
-				this.setActiveTab("viewCV");
 				break;
 			case "jobs":
 				this.setActiveTab("jobAlert");
@@ -316,7 +313,7 @@ body.modal-open {
 	height: 7px;
 	bottom: 0;
 	left: 0;
-	background: #1ec300;
+	background: #001ce2;
 }
 
 // import modal styles:

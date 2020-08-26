@@ -1,8 +1,8 @@
 <template>
     <div class="container skills-container">
-        <div v-for="(skill, index) in skillsList" :key="index + skill.name" class="skill">
+        <div v-for="(skill, index) in currentUser.skills" :key="index + skill.name" class="skill">
             <div class="skill-info">
-                <div class="skill-name">{{ skill.name }}</div>
+                <div class="skill-name">{{ skill.title }}</div>
                 <div class="skill-percentage">{{ skill.percentage }} %</div>
             </div>
             <div class="skill-progress">
@@ -16,6 +16,9 @@
 import RadialProgressBar from 'vue-radial-progress'
 
 export default {
+    props: [
+	'currentUser'
+    ],
     components: {
         RadialProgressBar
     },

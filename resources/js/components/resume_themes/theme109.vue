@@ -38,34 +38,16 @@
                         </transition>
                         <div class="theme-aside hideOnTablet">
                             Follow me - 
-                            <a href="javascript:;">
-                                Dribble
-                            </a>
-                            <a href="javascript:;">
-                                LinkedIn
-                            </a>
-                            <a href="javascript:;">
-                                Instagram
-                            </a>
-                            <a href="javascript:;">
-                                Behance
+                            <a :href="link.link" target="_blank" v-for="(link, i) in currentUser.links.filter(l => l.category === 'social' && l.is_active)" :key="link.link_title + i">
+                                {{ link.link_title }}
                             </a>
                         </div>
 
                         <div class="theme-aside showOnTablet hideOnMobile">
                             Social links
                             <span></span>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'instagram']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
+                            <a :href="link.link" target="_blank" v-for="(link, i) in currentUser.links.filter(l => l.category === 'social' && l.is_active)" :key="link.link_title + '-' + i">
+                                <font-awesome-icon :icon="['fab', link.link_title.toLowerCase()]"></font-awesome-icon>
                             </a>
                         </div>
 
@@ -96,7 +78,7 @@ export default {
         SkillsTab,
         ThemeHeader
     },
-    data: () => ({
+    data: (vm) => ({
         tab: 0,
         viewTabs: [
             'portfolio',
@@ -104,13 +86,30 @@ export default {
             'education',
             'skills-and-language',
             'about-me-&-awards'
-        ]
+        ],
+        currentUser: vm.user
     }),
     methods: {
         formatTab(tab) {
             let tabArray = tab.split('-').map(t => t.charAt(0).toUpperCase() + t.slice(1))
             return tabArray.join(" ")
+        },
+        /**
+         * @description
+         * Set the currentUser from dummyUser in the store state
+         */
+        setDummyUser() {
+            this.currentUser = this.$store.state.dummyUser;
         }
+    },
+    mounted () {
+        // if there is no user or the preview is true, set dummy user
+        if (!this.currentUser || this.is_preview) {
+            this.setDummyUser();
+        }
+
+        // let user accessible in included components.
+        this.$store.dispatch("updateThemeUser", this.currentUser);
     }
 }
 </script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subscription;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -17,18 +18,37 @@ class SubscriptionController extends Controller
     }
 
     public function index(){
-        if(Auth::user()->hasRole('admin')){
-            return redirect('/workforce-admin');
+        return view('subscription');
+    }
+
+    public function subscribePage(){
+        $subscription = auth()->user()->subscription ;
+
+        if(auth()->user()->can('test.builder.users') || env('APP_ENV') === 'local'){
+            return redirect('/resume-builder');
         }
 
-        return view('subscription');
+        if ($subscription){
+            if($subscription->sub_status === 'active' && !$this->isExpired($subscription)){
+                return redirect('/resume-builder');
+            }
+        }
+        return view('resume_builder.subscription_page');
+    }
+
+
+    protected function isExpired($subscription){
+        $expiring_date = Carbon::parse($subscription->expires_at);
+        $todays_date   = Carbon::now();
+
+        return $todays_date->gt($expiring_date);
     }
 
 
     public function subscribeStripe(Request $request)
     {
 
-        $plan = $request->plan;
+        $plan = $request->plan === 'monthly' ? env('STRIPE_LIVE_MONTHLY_PLAN_ID') : env('STRIPE_LIVE_YEARLY_PLAN_ID') ;
         Session::put('plan', $plan);
 
         Stripe::setApiKey(config('services.stripe.secret'));
@@ -61,6 +81,10 @@ class SubscriptionController extends Controller
         ]);
 
         return redirect(url('/') . '/resume-builder?redirect_from=stripe&status=success');
+    }
+
+    public function cacnel(){
+        return redirect(url('/') . '/resume-builder?redirect_from=stripe&status=cancel');
     }
 
 }

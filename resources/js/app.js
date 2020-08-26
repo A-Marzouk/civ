@@ -37,6 +37,30 @@ if ($("#pricing").length !== 0) {
     });
 }
 
+
+
+import subscriptionModal from './components/resume_builder/tabs/includes/SubscriptionModal';
+if ($("#subscription_modal").length !== 0) {
+    new Vue({
+        el: '#subscription_modal',
+        vuetify,
+        components: {
+            'subscription-modal': subscriptionModal
+        }
+    });
+}
+
+import externalReference from './components/resume_builder/externalReference';
+if ($("#external_reference").length !== 0) {
+    new Vue({
+        el: '#external_reference',
+        vuetify,
+        components: {
+            'external-reference': externalReference
+        }
+    });
+}
+
 //api components
 require('./API');
 

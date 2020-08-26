@@ -91,6 +91,11 @@ Route::group(['prefix' => 'user/'], function () {
 
 
 // WorkEx api routes:
+
+    // tabs
+    Route::post('/tabs/update-order', 'API\TabsController@updateTabsOrder');
+    Route::put('/tabs', 'API\TabsController@toggleVisibility');
+
     //list workExperience
     Route::get('/work-experience', 'API\WorkExController@index');
     //list single workExperience
@@ -115,9 +120,16 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
 // update activity
     Route::post('/update-last-activity', 'API\UsersController@updateLastActivity')->name('account.validate');
+// Promo code
+    Route::post('/apply-promo-code', 'API\UsersController@applyPromoCode')->name('user.apply.promocode');
 
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
+
+
+//  update user default resume :
+
+    Route::put('/update-default-resume', 'API\UsersController@updateUserDefaultResume');
 
 // Links api routes:
     Route::get('/links', 'API\LinksController@index');
@@ -127,6 +139,15 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/links/update-order', 'API\LinksController@updateLinksOrder');
     Route::put('/links', 'API\LinksController@store');
     Route::delete('/links/{id}', 'API\LinksController@destroy');
+
+
+// Resume Links api routes:
+    Route::get('/resume-links', 'API\ResumeLinksController@index');
+    Route::get('/resume-links/{id}', 'API\ResumeLinksController@show');
+    Route::post('/resume-links', 'API\ResumeLinksController@store');
+    Route::post('/resume-links/update-order', 'API\ResumeLinksController@updateResumeLinksOrder');
+    Route::put('/resume-links', 'API\ResumeLinksController@store');
+    Route::delete('/resume-links/{id}', 'API\ResumeLinksController@destroy');
 
 // Languages api routes:
     Route::get('/languages', 'API\LanguagesController@index');
@@ -140,6 +161,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/projects', 'API\ProjectsController@index');
     Route::get('/projects/{id}', 'API\ProjectsController@show');
     Route::post('/projects', 'API\ProjectsController@store');
+    Route::post('/projects/many', 'API\ProjectsController@storeMany');
     Route::post('/projects/update-order', 'API\ProjectsController@updateProjectsOrder');
     Route::put('/projects', 'API\ProjectsController@store');
     Route::delete('/projects/{id}', 'API\ProjectsController@destroy');
@@ -172,17 +194,19 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/availability-info', 'API\AvailabilityInfoController@store');
 
 // References api routes:
-    Route::get('/reference', 'API\ReferencesController@index');
-    Route::put('/reference', 'API\ReferencesController@store');
+    Route::get('/references', 'API\ReferencesController@index');
+    Route::get('/references/{id}', 'API\ReferencesController@show');
+    Route::put('/references', 'API\ReferencesController@store');
+    Route::post('/references', 'API\ReferencesController@store');
+    Route::post('/references/update-order', 'API\ReferencesController@updateReferencesOrder');
+    Route::delete('/references/{id}', 'API\ReferencesController@destroy');
 
-// Referee api routes:
-    Route::get('/referee', 'API\RefereeController@index');
-    Route::put('/referee', 'API\RefereeController@store');
 
 // Imports api routes:
     Route::get('/imports', 'API\ImportsController@index');
     Route::get('/imports/{id}', 'API\ImportsController@show');
     Route::post('/imports', 'API\ImportsController@store');
+    Route::post('/imports/update-order', 'API\ImportsController@updateImportsOrder');
     Route::put('/imports', 'API\ImportsController@store');
     Route::delete('/imports/{id}', 'API\ImportsController@destroy');
 
@@ -210,7 +234,13 @@ Route::post('logout', 'API\Auth\AuthController@logout');
 Route::group(['prefix' => 'admin/'], function () {
     Route::post('create-user', 'API\Admin\UsersController@createUser');
     Route::put('update-user', 'API\Admin\UsersController@updateUser');
+    Route::post('/give-test-permission', 'API\Admin\UsersController@giveTestPermission');
     Route::delete('delete-user/{id}', 'API\Admin\UsersController@deleteUser');
+
+    // Promocodes routes:
+    Route::get('promocodes', 'API\Admin\PromocodesController@index');
+    Route::post('promocode', 'API\Admin\PromocodesController@store');
+    Route::delete('delete-promocode/{id}', 'API\Admin\PromocodesController@destroy');
 });
 
 
