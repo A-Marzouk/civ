@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Import;
 use App\ResumeLink;
 use App\User;
 use Exception;
@@ -175,6 +176,17 @@ class ResumeLinksController extends Controller
         $this->copyHasManyRelationsFromAwayUserResumeLink($currentUser, $awayUser, $currentResumeLinkID, $awayResumeLinkID);
         $this->copyHasOneRelationsFromAwayUserResumeLink($currentUser, $awayUser, $currentResumeLinkID, $awayResumeLinkID);
 
+        $this->addImport($currentUser, $awayUser,$resumeLinkToBeCopied);
+
+    }
+
+    protected function addImport($currentUser, $awayUser, $resumeLinkToBeCopied){
+        Import::create([
+            'user_id' => $currentUser->id,
+            'url' => 'https://civ.ie/' . $awayUser->username . '/' . $resumeLinkToBeCopied->url,
+            'title' => 'https://civ.ie/' . $awayUser->username . '/' . $resumeLinkToBeCopied->url,
+            'resume_link_id' => $currentUser->resume_link_id,
+        ]);
     }
 
     protected function copyHasManyRelationsFromAwayUserResumeLink($currentUser, $awayUser, $currentResumeLinkID, $awayResumeLinkID){
