@@ -325,7 +325,18 @@
               </v-tab-item>
               <!-- Hobbies -->
               <v-tab-item class="hobby-section" value="tab-4">
-                <v-container style="width: 100%;" class="pa-md-4 pa-sm-12 pa-8">
+                <HobbyCarousel
+                  v-if="
+                    currentUser.hobbies.length >= 10 &&
+                    $vuetify.breakpoint.mdAndUp
+                  "
+                  :hobbies="currentUser.hobbies"
+                ></HobbyCarousel>
+                <v-container
+                  v-else
+                  style="width: 100%;"
+                  class="pa-md-4 pa-sm-12 pa-8"
+                >
                   <v-row align="center">
                     <v-col
                       xl="2"
@@ -356,7 +367,15 @@
               <!-- Hobbies -->
               <!-- References -->
               <v-tab-item class="reference-section" value="tab-5">
+                <ReferenceCarousel
+                  v-if="
+                    currentUser.references.length >= 5 &&
+                    $vuetify.breakpoint.mdAndUp
+                  "
+                  :references="currentUser.references"
+                ></ReferenceCarousel>
                 <v-container
+                  v-else
                   style="width: 100%;"
                   class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-0"
                 >
@@ -411,7 +430,15 @@
               <!-- References -->
               <!--  Achivements -->
               <v-tab-item class="achievement-section" value="tab-6">
+                <AchievementCarousel
+                  v-if="
+                    currentUser.achievements.length >= 5 &&
+                    $vuetify.breakpoint.mdAndUp
+                  "
+                  :achievements="currentUser.achievements"
+                ></AchievementCarousel>
                 <v-container
+                  v-else
                   style="width: 100%;"
                   class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-3"
                 >
@@ -1947,11 +1974,14 @@ $colorBlue: #104efb;
 </style>
 <script>
 import Slick from "vue-slick";
-import VueSlickCarousel from "vue-slick-carousel";
-import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+
+
 import AudioCarousel from "./media/AudioCarousel";
 import VideoCarousel from "./media/VideoCarousel";
-import Carousel from "./Carousel";
+import HobbyCarousel from "./hobby/HobbyCarousel";
+import ReferenceCarousel from "./reference/ReferenceCarousel";
+import AchievementCarousel from "./achievement/AchievementCarousel";
+
 export default {
   name: "theme302",
   props: ["user", "is_preview", "currentTab"],
@@ -1959,7 +1989,9 @@ export default {
     Slick,
     AudioCarousel,
     VideoCarousel,
-    VueSlickCarousel
+    HobbyCarousel,
+    ReferenceCarousel,
+    AchievementCarousel
     
   },
   data() {
@@ -2090,14 +2122,6 @@ export default {
           },
         ],
       },
-      settings: {
-                    arrows: false,
-                    dots: true,
-                    infinite: true,
-                    slidesToShow: 3,
-                    slidesPerRow:1,
-                    rows:2,
-                },
       formMessage: {
         name: "",
         nameRules: [
