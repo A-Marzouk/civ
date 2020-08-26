@@ -52,57 +52,62 @@ class ResumeLinksController extends Controller
 
         if ($request->isMethod('put') || $request->id != '') {
             // update
-            $resumeLink = ResumeLink::findOrFail($request->id);
-            $resumeLink->update($request->toArray());
+            $newResumeLink = ResumeLink::findOrFail($request->id);
+            $newResumeLink->update($request->toArray());
         } else {
             // add
-            $resumeLink = ResumeLink::create($request->except('copy_from_resume_id'));
+            $newResumeLink = ResumeLink::create($request->except('copy_from_resume_id'));
             // check if it will be copied from another user data:
-            if (isset($request->copy_from_resume_id)) {
-                $this->copyFromCIVResumeLink($resumeLink, $request->copy_from_resume_id);
+            if (isset($request->copy_from_resume_id)){
+                $this->copyUserRelationsToNewResumeLink($newResumeLink, $request->copy_from_resume_id);
             }
         }
 
-        if ($resumeLink->id) {
-            return new ResumeLinkResource($resumeLink);
+        if ($newResumeLink->id) {
+            return new ResumeLinkResource($newResumeLink);
         }
     }
 
-    protected function copyFromCIVResumeLink($resume_link, $copy_from_resume_id)
-    {
-        $user = User::find($resume_link->user_id);
-        // copy all hasMany relationships.
+
+    protected function copyUserRelationsToNewResumeLink($newResumeLink, $copiedFromResumeLinkID){
+        $user = User::find($newResumeLink->user_id);
+        $this->copyHasManyRelationsFromResumeLink($user, $newResumeLink->id, $copiedFromResumeLinkID);
+        $this->copyHasOneRelationsFromResumeLink($user, $newResumeLink->id, $copiedFromResumeLinkID);
+    }
+
+    protected function copyHasManyRelationsFromResumeLink($user, $newResumeLinkID, $copiedFromResumeLinkID){
         foreach (User::$defaultOneToManyRelations as $relation) {
 
             if (in_array($relation, User::$excludedFromVersionFilter) || $relation === 'tabs') {
                 continue;
             }
 
-            $userRelation = $user->$relation()->where(function (Builder $query) use ($copy_from_resume_id) {
-                return $query->where('resume_link_id', $copy_from_resume_id);
+            $userRelation = $user->$relation()->where(function (Builder $query) use ($copiedFromResumeLinkID) {
+                return $query->where('resume_link_id', $copiedFromResumeLinkID);
             })->get();
 
             foreach ($userRelation as $model) {
                 $newModel = $model->replicate();
-                $newModel->resume_link_id = $resume_link->id;
+                $newModel->resume_link_id = $newResumeLinkID;
                 $newModel->push();
             }
         }
+    }
 
-        // has one relationships:
+    protected function copyHasOneRelationsFromResumeLink($user, $newResumeLinkID, $copiedFromResumeLinkID){
         foreach (User::$defaultOneToOneRelations as $relation) {
             if (in_array($relation, User::$excludedFromVersionFilter)) {
                 continue;
             }
 
             $copiedFromRelationShip = $user->$relation()
-                ->where(function (Builder $query) use ($copy_from_resume_id) {
-                    return $query->where('resume_link_id', $copy_from_resume_id);
+                ->where(function (Builder $query) use ($copiedFromResumeLinkID) {
+                    return $query->where('resume_link_id', $copiedFromResumeLinkID);
                 })->first();
 
             $copiedToRelationShip = $user->$relation()
-                ->where(function (Builder $query) use ($resume_link) {
-                    return $query->where('resume_link_id', $resume_link->id);
+                ->where(function (Builder $query) use ($newResumeLinkID) {
+                    return $query->where('resume_link_id', $newResumeLinkID);
                 })->first();;
 
 
