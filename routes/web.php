@@ -11,6 +11,8 @@
 |
 */
 
+use App\Mail\PasswordResetMail;
+
 Auth::routes(['verify' => true]);
 
 // public routes
@@ -19,6 +21,10 @@ Route::get('/preview-by-code/{theme_code}', 'ResumeController@themePreviewByCode
 
 Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
+//email
+Route::get('/email', function(){
+    return new PasswordResetMail();
+});
 
 
 // Download Resume routes
@@ -97,3 +103,5 @@ Route::group(['prefix' => 'workforce-admin'], function () {
 // public cv url
 Route::get('/{username}/reference', 'ResumeController@externalReferencePage'); // external reference
 Route::get('/{username}/{version?}', 'ResumeController@userResume'); // resume with real user data
+
+

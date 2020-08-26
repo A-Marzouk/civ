@@ -39,7 +39,7 @@ class AvailabilityInfoController extends Controller
      */
     public function store(Request $request)
     {
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
         // here we will not save new we will directly update info.
@@ -65,7 +65,5 @@ class AvailabilityInfoController extends Controller
     }
 
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

@@ -41,7 +41,7 @@ class EducationController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -114,7 +114,7 @@ class EducationController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($education)){
+        if(!is_auth($education)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -135,7 +135,5 @@ class EducationController extends Controller
         ]);
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

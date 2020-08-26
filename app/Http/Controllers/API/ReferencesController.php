@@ -89,7 +89,7 @@ class ReferencesController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($reference)){
+        if(!is_auth($reference)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -131,7 +131,5 @@ class ReferencesController extends Controller
         ]);
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

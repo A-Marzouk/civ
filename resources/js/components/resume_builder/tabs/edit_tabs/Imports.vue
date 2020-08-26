@@ -124,6 +124,10 @@
                         </div>
 
                     </v-tab-item>
+
+                    <v-tab-item class="import-tab-item">
+                        <import-from-civ></import-from-civ>
+                    </v-tab-item>
                 </v-tabs-items>
             </v-card>
         </div>
@@ -597,7 +601,6 @@
             </div>
         </div>
 
-
         <div class="outer-container">
             <div class="title">
                 <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
@@ -700,17 +703,19 @@
     import draggable from "vuedraggable";
     import vue2Dropzone from "vue2-dropzone";
     import pdfExtractor from "../../components/ImportCV";
+    import ImportFromCIV from "./imports_includes/ImportFromCIV"
 
     export default {
         name: "Imports",
         components: {
             draggable,
             vueDropzone: vue2Dropzone,
-            pdfExtractor
+            pdfExtractor,
+            'import-from-civ':ImportFromCIV
         },
         data() {
             return {
-                tabs: ["PDF/DOC", "Behance", "LinkedIn"],
+                tabs: ["PDF/DOC", "Behance", "LinkedIn", "civ.ie"],
                 importTab: 0,
                 dropzoneOptions: {
                     url: "https://httpbin.org/post",
@@ -1344,7 +1349,6 @@
             }
         },
         methods: {
-
             getFormattedData(date) {
                 let d = new Date(date);
                 return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear() ;

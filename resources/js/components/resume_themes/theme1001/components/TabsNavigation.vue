@@ -188,7 +188,7 @@ export default {
   height: 48px;
   justify-content: space-between;
   align-items: center;
-  width: 80%; // adjusted | 100
+  width: 100%; 
 }
 
 .navigation {
@@ -328,8 +328,8 @@ export default {
   }
 
   .navigation__link {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px; //adjusted 20px
+    padding-right: 10px; //adjusted 20px
 
     &:last-child {
       padding-right: unset;
@@ -360,7 +360,7 @@ export default {
   }
 
   .navigation__link {
-    padding: 0 30px;
+    // padding: 0 30px;
   }
 
   .navigation__link a {
