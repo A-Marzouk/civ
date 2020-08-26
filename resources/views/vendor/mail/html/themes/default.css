@@ -115,7 +115,8 @@ img {
     -premailer-width: 100%;
     background-color: #f5f6ff;
     margin: 0;
-    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
 }
 
@@ -207,9 +208,10 @@ img {
     text-align: center;
     color: #888DB1;
 }
-.custom-footer a{
+
+.custom-footer a {
     cursor: pointer;
-    color: #888DB1;
+    color: #888DB1 !important;
 }
 
 .footer p {
@@ -335,3 +337,4 @@ img {
 .break-all {
     word-break: break-all;
 }
+
