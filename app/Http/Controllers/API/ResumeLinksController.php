@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Import;
 use App\ResumeLink;
 use App\User;
 use Exception;
@@ -102,7 +103,7 @@ class ResumeLinksController extends Controller
             $copiedToRelationShip = $user->$relation()
                 ->where(function (Builder $query) use ($newResumeLinkID) {
                     return $query->where('resume_link_id', $newResumeLinkID);
-                })->first();;
+                })->first();
 
 
             $copiedFromRelationShip->makeHidden(['id','resume_link_id']);
@@ -155,6 +156,114 @@ class ResumeLinksController extends Controller
             'title' => ['max:255'],
             'order' => ['max:255'],
         ]);
+    }
+
+    public function importFromCIVResume(Request $request){
+        $resumeLinkToBeCopied = $this->canFindResumeLink($request);
+
+        if(!$resumeLinkToBeCopied){
+            return [ 'errors' => [
+                'civResumeURL' => 'URL can not be found.'
+            ]];
+        }
+
+        $currentUser = User::find($request->user_id);
+        $awayUser = User::find($resumeLinkToBeCopied->user_id);
+
+        $currentResumeLinkID = $currentUser->resume_link_id; // to this we copy
+        $awayResumeLinkID    = $resumeLinkToBeCopied->id; // to copy to
+
+        $this->copyHasManyRelationsFromAwayUserResumeLink($currentUser, $awayUser, $currentResumeLinkID, $awayResumeLinkID);
+        $this->copyHasOneRelationsFromAwayUserResumeLink($currentUser, $awayUser, $currentResumeLinkID, $awayResumeLinkID);
+
+        $this->addImport($currentUser, $awayUser,$resumeLinkToBeCopied);
+
+    }
+
+    protected function addImport($currentUser, $awayUser, $resumeLinkToBeCopied){
+        Import::create([
+            'user_id' => $currentUser->id,
+            'url' => 'https://civ.ie/' . $awayUser->username . '/' . $resumeLinkToBeCopied->url,
+            'title' => 'https://civ.ie/' . $awayUser->username . '/' . $resumeLinkToBeCopied->url,
+            'resume_link_id' => $currentUser->resume_link_id,
+        ]);
+    }
+
+    protected function copyHasManyRelationsFromAwayUserResumeLink($currentUser, $awayUser, $currentResumeLinkID, $awayResumeLinkID){
+        foreach (User::$defaultOneToManyRelations as $relation) {
+
+            if (in_array($relation, User::$excludedFromVersionFilter) || $relation === 'tabs') {
+                continue;
+            }
+
+            $userRelation = $awayUser->$relation()->where(function (Builder $query) use ($awayResumeLinkID) {
+                return $query->where('resume_link_id', $awayResumeLinkID);
+            })->get();
+
+            foreach ($userRelation as $model) {
+                $newModel = $model->replicate();
+                $newModel->resume_link_id = $currentResumeLinkID;
+                $newModel->user_id = $currentUser->id;
+                $newModel->push();
+            }
+        }
+    }
+
+    protected function copyHasOneRelationsFromAwayUserResumeLink($currentUser, $awayUser, $currentResumeLinkID, $awayResumeLinkID){
+        foreach (User::$defaultOneToOneRelations as $relation) {
+            if (in_array($relation, User::$excludedFromVersionFilter)) {
+                continue;
+            }
+
+            $copiedFromRelationShip = $awayUser->$relation()
+                ->where(function (Builder $query) use ($awayResumeLinkID) {
+                    return $query->where('resume_link_id', $awayResumeLinkID);
+                })->first();
+
+            $copiedToRelationShip = $currentUser->$relation()
+                ->where(function (Builder $query) use ($currentResumeLinkID) {
+                    return $query->where('resume_link_id', $currentResumeLinkID);
+                })->first();
+
+
+            $copiedFromRelationShip->makeHidden(['id','resume_link_id','user_id']);
+            $copiedToRelationShip->update($copiedFromRelationShip->toArray());
+
+        }
+    }
+
+    protected function canFindResumeLink($request){
+        $userFound = false;
+        $versionFound = false;
+        $user = [];
+        $resumeLink = [];
+
+        if(isset($request->username)){
+            $user = User::where('username', $request->username)->first();
+            if($user){
+                $userFound = true;
+            }
+        }
+
+        if($userFound){
+            if (isset($request->version)){
+                $resumeLink = $user->resumeLinks->where('url', $request->version)->first();
+                if($resumeLink){
+                    $versionFound = true;
+                }
+            }else{
+                $resumeLink = $user->resumeLinks->where('url', '')->first();
+                if($resumeLink){
+                    $versionFound = true;
+                }
+            }
+        }
+
+        if($userFound && $versionFound){
+            return $resumeLink;
+        }
+
+        return false;
     }
 
 }
