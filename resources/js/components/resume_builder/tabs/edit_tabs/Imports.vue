@@ -2026,8 +2026,6 @@
 
             // crud on imports:
             addImport() {
-                console.log('called');
-
                 let formData = new FormData();
                 this.newImport.title = 'Import ' + (this.imports.length+1) + ' | ' + this.importType ;
                 this.newImport.url   = this.importURL;
