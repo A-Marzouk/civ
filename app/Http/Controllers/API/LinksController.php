@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Link;
+use App\User;
 use Exception;
 use App\Http\Resources\Link as LinkResource;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class LinksController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -54,6 +55,7 @@ class LinksController extends Controller
             $link->update($request->toArray());
         }else{
             // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $link = Link::create($request->toArray());
         }
 
@@ -77,7 +79,7 @@ class LinksController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($link)){
+        if(!is_auth($link)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -108,7 +110,5 @@ class LinksController extends Controller
         ]);
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

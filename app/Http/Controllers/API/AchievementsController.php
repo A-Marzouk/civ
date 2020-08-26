@@ -28,7 +28,7 @@ class AchievementsController extends Controller
 
     public function store(Request $request)
     {
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
         $this->validator($request->all())->validate();
@@ -91,7 +91,7 @@ class AchievementsController extends Controller
     {
         $achievement = Achievement::where(['id' => $id])->first();
 
-        if(!$this->is_auth($achievement)){
+        if(!is_auth($achievement)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -131,7 +131,5 @@ class AchievementsController extends Controller
         ]);
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

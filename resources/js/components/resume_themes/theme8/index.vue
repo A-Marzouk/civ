@@ -331,7 +331,7 @@ export default {
         .v-tab {
           font-style: italic;
           font-weight: bold;
-          font-size: 26px;
+          font-size: 24px;
           line-height: 48px;
           color: white;
           position: relative;

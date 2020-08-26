@@ -226,7 +226,7 @@
                                         class="resume-builder__input civie-textarea"
                                         outlined
                                         color="#001CE2"
-                                        label="Description"
+                                        label="Reference Text"
                                         v-model="editedReference.reference_text"
                                         :error="!!errors.reference_text"
                                         :error-messages="errors.reference_text"
