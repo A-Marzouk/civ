@@ -19,61 +19,68 @@
                   alt="avatar"
                   style="border-radius: 50%;"
                   contain
-                ></v-img>
+                >
+                </v-img>
+                <v-btn fab color="#f56068" class="pdf-btn" elevation="0">
+                  <v-img
+                    src="/images/resume_themes/theme511/social_icons/pdf.svg"
+                    :max-width="pdfIconSize"
+                    contain
+                  ></v-img>
+                </v-btn>
 
-                <a
+                <!-- <a
                   href="/preview-pdf-theme-by-code/theme21"
                   class="pdf-btn"
                   target="_blank"
                 >
-                  <svg-vue :icon="'themes.pdf-button-theme511'"></svg-vue>
-                </a>
+                  <svg-vue  :icon="'themes.pdf-button-theme511'"></svg-vue>
+                </a> -->
+              </v-col>
+              <v-navigation-drawer
+                color="rgba(103, 100, 200, 0.95)"
+                v-model="drawer"
+                absolute
+                hide-overlay
+                temporary
+                class="hidden-sm-and-up"
+              >
+                <div class="text-right mt-4">
+                  <v-btn text small>
+                    <v-icon color="#fff" @click.stop="drawer = !drawer"
+                      >close</v-icon
+                    >
+                  </v-btn>
+                </div>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title class="menu text-left"
+                      >Menu</v-list-item-title
+                    >
+                  </v-list-item-content>
+                </v-list-item>
 
-                <v-navigation-drawer
-                  color="rgba(103, 100, 200, 0.95)"
-                  v-model="drawer"
-                  absolute
-                  hide-overlay
-                  temporary
-                  class="hidden-sm-and-up"
-                >
-                  <div class="text-right mt-4">
-                    <v-btn text small>
-                      <v-icon color="#fff" @click.stop="drawer = !drawer"
-                        >close</v-icon
-                      >
-                    </v-btn>
-                  </div>
-                  <v-list-item>
-                    <v-list-item-content>
-                      <v-list-item-title class="menu text-left"
-                        >Menu</v-list-item-title
-                      >
+                <v-divider></v-divider>
+
+                <v-list>
+                  <v-list-item
+                    v-for="(tab, i) in tabs"
+                    :key="i"
+                    @click="activeTab = tab.value"
+                  >
+                    <v-list-item-content
+                      :class="[
+                        activeTab === tab.value
+                          ? 'drawer--tab-active'
+                          : 'drawer--tab-disable',
+                        'menu--tabs white--text text-left',
+                      ]"
+                    >
+                      <v-list-item-title>{{ tab.name }}</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
-
-                  <v-divider></v-divider>
-
-                  <v-list>
-                    <v-list-item
-                      v-for="(tab, i) in tabs"
-                      :key="i"
-                      @click="activeTab = tab.value"
-                    >
-                      <v-list-item-content
-                        :class="[
-                          activeTab === tab.value
-                            ? 'drawer--tab-active'
-                            : 'drawer--tab-disable',
-                          'menu--tabs white--text text-left',
-                        ]"
-                      >
-                        <v-list-item-title>{{ tab.name }}</v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list>
-                </v-navigation-drawer>
-              </v-col>
+                </v-list>
+              </v-navigation-drawer>
               <v-col
                 cols="auto"
                 lg="4"
@@ -409,6 +416,20 @@ export default {
         case "xl":
           return "#ffff";
       }
+    },
+    pdfIconSize(){
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "18";
+        case "sm":
+          return "24";
+        case "md":
+          return "24";
+        case "lg":
+          return "24";
+        case "xl":
+          return "26";
+      }
     }
   },
 
@@ -698,6 +719,17 @@ export default {
 }
 
 @media screen and (max-width: 1024px) and (min-width: 700px) {
+  .profile-picture {
+    position: relative;
+
+    .pdf-btn {
+      position: absolute;
+      right: 0;
+      bottom: 15px;
+      height: 50px;
+      width: 50px;
+    }
+  }
   .head {
     font-family: Poppins;
     font-style: normal;
@@ -765,6 +797,17 @@ export default {
   }
 }
 @media screen and (max-width: 699px) and (min-width: 200px) {
+  .profile-picture {
+    position: relative;
+
+    .pdf-btn {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 30px;
+      width: 30px;
+    }
+  }
   .head {
     font-weight: 800;
     font-size: 16px;
