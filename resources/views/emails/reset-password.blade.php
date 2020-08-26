@@ -1,12 +1,19 @@
 @component('mail::message')
-# Introduction
+# Introduction 
+## Hi John,
 
-The body of your message.
+You recently requested a link to reset your civ.ie password.
+Please set a new password by the link below:
+
 
 @component('mail::button', ['url' => ''])
-Button Text
+Change Password
+
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+Kindest regards,<br>
+civ.ie team
+<!-- {{ config('app.name') }} -->
 @endcomponent
+<style>
+</style>

@@ -38,8 +38,8 @@
                                 <!-- Body content -->
                                 <tr>
                                     <td class="content-cell">
-                                        <!-- {{ Illuminate\Mail\Markdown::parse($slot) }} -->
-                                        <h1>Password Reset</h1>
+                                        {{ Illuminate\Mail\Markdown::parse($slot) }}
+                                        <!-- <h1>Password Reset</h1>
                                         <hr class="custom-hrline">
                                         <h2>Hi John,</h2>
                                         <p class="custom-msg-content">
@@ -58,9 +58,7 @@
                                             Kindest regards,
                                             <br>
                                             civ.team
-                                        </p>
-
-
+                                        </p> -->
                                         {{ $subcopy ?? '' }}
                                     </td>
                                 </tr>
