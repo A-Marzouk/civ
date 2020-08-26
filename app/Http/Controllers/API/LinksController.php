@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Link;
+use App\User;
 use Exception;
 use App\Http\Resources\Link as LinkResource;
 use Illuminate\Http\Request;
@@ -54,6 +55,7 @@ class LinksController extends Controller
             $link->update($request->toArray());
         }else{
             // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $link = Link::create($request->toArray());
         }
 

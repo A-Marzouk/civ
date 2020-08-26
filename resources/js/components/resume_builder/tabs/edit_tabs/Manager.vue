@@ -379,11 +379,13 @@
                 }
                 this.editedResumeLink.user_id = this.user.id;
                 this.editedResumeLink.title   = this.editedResumeLink.url;
-                if(this.new_cv === 'copy' && this.copy_from_resume_id.url.length > 0){
-                    this.editedResumeLink.copy_from_resume_id   = this.copy_from_resume_id.url;
+                if(this.new_cv === 'copy'){
+                    this.editedResumeLink.copy_from_resume_id   = this.copy_from_resume_id;
                 }
                 axios.post("/api/user/resume-links", this.editedResumeLink)
-                    .then(response => {
+                    .then( (response) => {
+                        console.log(response.data);
+
                         if (!edit) {
                             let addedLink = response.data.data;
                             this.resumeLinks.push(addedLink);

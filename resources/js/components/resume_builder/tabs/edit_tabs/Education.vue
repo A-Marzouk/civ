@@ -26,7 +26,8 @@ import SchoolView from './education_tabs/school'
                     degree_title:'',
                     date_from:'',
                     date_to:'',
-                    present: false
+                    present: false,
+                    is_public: true
                 },
                 errors: {
                     new: {},
@@ -57,6 +58,7 @@ import SchoolView from './education_tabs/school'
                     date_from:education.date_from,
                     date_to:education.date_to,
                     present:education.present,
+                    is_public:education.is_public,
                 };
                 this.closeOptionsBtn();
             },
@@ -112,7 +114,7 @@ import SchoolView from './education_tabs/school'
             },
             addEducation(){
                 this.errors = {  new: {}, edit: {}};
-                this.newEducation.user_id = this.$store.state.user.id
+                this.newEducation.user_id = this.$store.state.user.id;
                 axios.post('/api/user/education', this.newEducation)
                     .then((response) => {
                         this.educations.unshift(response.data.data);
