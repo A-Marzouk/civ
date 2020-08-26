@@ -37,6 +37,7 @@
             return{
                 errors:{},
                 civResumeURL:'',
+                newImport:{},
             }
         },
         methods:{
@@ -44,9 +45,10 @@
                 this.errors = {} ;
                 let username = this.civResumeURL.split('/')[0];
                 let version  = this.civResumeURL.split('/')[1];
+                let imported = false;
                 axios.post('/api/user/resume-links/import', { username, version, user_id: this.user.id})
                     .then( (response) => {
-                        console.log(response.data);
+                       imported = true;
 
                         if(response.data.errors !== undefined){
                             this.errors = response.data.errors;
