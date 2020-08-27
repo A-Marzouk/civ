@@ -499,7 +499,7 @@
                             v-show="achievement.is_public"
                           >
                             <v-list-item>
-                              <v-list-item-avatar class="achievement-avatar">
+                              <v-list-item-avatar class="achievement-avatar" tile>
                                 <img :src="achievement.image_src" alt="hobby icon" />
                               </v-list-item-avatar>
                               <v-list-item-content>
@@ -1189,7 +1189,7 @@ export default {
   color: #000000 !important;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     font-size: 24px;
-    line-height: 22px;
+    line-height: 36px;
   }
   @media screen and (max-width: 959px) {
     font-size: 40px;
