@@ -569,7 +569,10 @@
       <!-- All Modals -->
       <!-- Hire Me Modal -->
       <v-dialog v-model="hireMeModal" max-width="567" persistent>
-        <v-card color="#F6F9FF" class="card-hire-me-modal pa-3">
+        <v-card
+          color="#F6F9FF"
+          class="card-hire-me-modal pa-3"
+        >
           <div align="right">
             <v-btn icon @click="hireMeModal = close">
               <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
@@ -597,6 +600,15 @@
                     ]"
                   >{{tab.title}}</v-tab>
                 </v-tabs>
+              </v-col>
+              <v-col xl="9" lg="9" cols="10" class="mt-n5">
+                <v-card flat align="center">
+                  <v-tabs-items v-model="hireMeTab">
+                    <v-tab-item class="tab-item">$10</v-tab-item>
+                    <v-tab-item class="tab-item">$20</v-tab-item>
+                    <v-tab-item class="tab-item">$30</v-tab-item>
+                  </v-tabs-items>
+                </v-card>
               </v-col>
             </v-row>
           </v-card-subtitle>
@@ -1331,6 +1343,14 @@ export default {
 // reference tab
 //hire me modal
 .card-hire-me-modal {
+  .title {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 35px;
+    color: #888db1 !important;
+  }
   border-radius: 10px !important;
   .hire-me-tab-text {
     font-family: "Noto Sans" !important;
@@ -1355,6 +1375,14 @@ export default {
   }
   .custom-tab-round-right {
     border-top-right-radius: 10px;
+  }
+  .tab-item {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    color: #001ce2 !important;
   }
 }
 // hire me modal
