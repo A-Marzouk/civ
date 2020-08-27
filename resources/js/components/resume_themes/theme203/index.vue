@@ -498,10 +498,21 @@
                             :key="index"
                             v-show="achievement.is_public"
                           >
-                            <div class="d-flex flex-row achievement">
-                              <img class="mt-5" :src="achievement.image_src" alt="hobby icon" />
+                            <div
+                              class="d-flex achievement"
+                              :class="[windowWidth<=1263?'flex-column':'flex-row']"
+                            >
+                              <div :align="windowWidth<=1263?'center':'left'">
+                                <img
+                                  class="mt-5"
+                                  :src="achievement.image_src"
+                                  alt="achievement image"
+                                />
+                              </div>
                               <v-card flat color="transparent">
-                                <v-card-subtitle class="achievement-title">{{achievement.title}}</v-card-subtitle>
+                                <v-card-subtitle
+                                  class="achievement-title"
+                                >{{achievement.title}}{{windowWidth}}</v-card-subtitle>
                                 <v-card-subtitle
                                   class="achievement-subtitle mt-xl-0 mt-n5"
                                 >{{achievement.description}}</v-card-subtitle>
@@ -578,7 +589,7 @@ export default {
   },
   data() {
     return {
-      indowWidth: window.innerWidth,
+      windowWidth: window.innerWidth,
       currentUser: this.user,
       socialIcons: [
         { id: 1, title: "behance" },
@@ -1134,21 +1145,21 @@ export default {
   }
 }
 .hobbies-avatar {
-  min-width: 126.88px !important;
-  min-height: 126.88px !important;
-  height: 126.88px !important;
-  width: 126.88px !important;
+  min-width: 63.44px !important;
+  min-height: 63.44px !important;
+  height: 63.44px !important;
+  width: 63.44px !important;
   @media screen and (max-width: 1903px) and (min-width: 1264px) {
-    min-width: 100px !important;
-    min-height: 100px !important;
-    height: 100px !important;
-    width: 100px !important;
+    min-width: 63.44px !important;
+    min-height: 63.44px !important;
+    height: 63.44px !important;
+    width: 63.44px !important;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 94.16px !important;
-    min-height: 94.16px !important;
-    height: 94.16px !important;
-    width: 94.16px !important;
+    min-width: 47.08px !important;
+    min-height: 47.08px !important;
+    height: 47.08px !important;
+    width: 47.08px !important;
   }
   @media screen and(max-width: 599px) {
     min-width: 45px !important;
@@ -1164,19 +1175,18 @@ export default {
     min-width: 160px !important;
     min-height: 124px !important;
     height: 124px !important;
-    width: 1px !important;
-    @media screen and (min-width: 600px) and (max-width: 959px) {
-      min-width: 119.1px !important;
-      min-height: 134px !important;
-      height: 134px !important;
-      width: 119.1px !important;
+    width: 160px !important;
+    @media screen and (max-width: 1263px) and (min-width: 600px) {
+      min-width: auto !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: auto !important;
     }
-    @media screen and (max-width: 599px) {
-      min-width: 76.75px !important;
-      min-height: 87px !important;
-      width: 76.75px !important;
-      height: 87px !important;
-      margin-top: -80px;
+    @media screen and (max-width: 959px) {
+      min-width: auto !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: auto !important;
     }
   }
 }
@@ -1190,6 +1200,9 @@ export default {
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     font-size: 24px;
     line-height: 36px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    font-size: 20px;
   }
   @media screen and (max-width: 959px) {
     font-size: 40px;
