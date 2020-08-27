@@ -34,6 +34,9 @@ class PaypalController extends Controller
     // Create a new instance with our paypal credentials
     public function __construct()
     {
+
+        $this->middleware(['auth']);
+
         // Detect if we are running in live mode or sandbox
         if(config('paypal.settings.mode') == 'live'){
             $this->client_id = config('paypal.live_client_id');
