@@ -498,21 +498,15 @@
                             :key="index"
                             v-show="achievement.is_public"
                           >
-                            <v-list-item>
-                              <v-list-item-avatar class="achievement-avatar" tile>
-                                <img :src="achievement.image_src" alt="hobby icon" />
-                              </v-list-item-avatar>
-                              <v-list-item-content>
-                                <v-list-item-title class="hobby-title">
-                                  <v-card flat color="transparent">
-                                    <v-card-subtitle class="achievement-title">{{achievement.title}}</v-card-subtitle>
-                                    <v-card-subtitle
-                                      class="achievement-subtitle mt-xl-0 mt-n5"
-                                    >{{achievement.description}}</v-card-subtitle>
-                                  </v-card>
-                                </v-list-item-title>
-                              </v-list-item-content>
-                            </v-list-item>
+                            <div class="d-flex flex-row achievement">
+                              <img class="mt-5" :src="achievement.image_src" alt="hobby icon" />
+                              <v-card flat color="transparent">
+                                <v-card-subtitle class="achievement-title">{{achievement.title}}</v-card-subtitle>
+                                <v-card-subtitle
+                                  class="achievement-subtitle mt-xl-0 mt-n5"
+                                >{{achievement.description}}</v-card-subtitle>
+                              </v-card>
+                            </div>
                           </v-col>
                         </template>
                       </v-row>
@@ -584,6 +578,7 @@ export default {
   },
   data() {
     return {
+      indowWidth: window.innerWidth,
       currentUser: this.user,
       socialIcons: [
         { id: 1, title: "behance" },
@@ -730,6 +725,9 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
@@ -1161,23 +1159,25 @@ export default {
 }
 // hobbies tab
 // achievement tab
-.achievement-avatar {
-  min-width: 152px !important;
-  min-height: 152px !important;
-  height: 152px !important;
-  width: 152px !important;
-  @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 119.1px !important;
-    min-height: 134px !important;
-    height: 134px !important;
-    width: 119.1px !important;
-  }
-  @media screen and (max-width: 599px) {
-    min-width: 76.75px !important;
-    min-height: 87px !important;
-    width: 76.75px !important;
-    height: 87px !important;
-    margin-top: -80px;
+.achievement {
+  img {
+    min-width: 160px !important;
+    min-height: 124px !important;
+    height: 124px !important;
+    width: 1px !important;
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      min-width: 119.1px !important;
+      min-height: 134px !important;
+      height: 134px !important;
+      width: 119.1px !important;
+    }
+    @media screen and (max-width: 599px) {
+      min-width: 76.75px !important;
+      min-height: 87px !important;
+      width: 76.75px !important;
+      height: 87px !important;
+      margin-top: -80px;
+    }
   }
 }
 .achievement-title {
