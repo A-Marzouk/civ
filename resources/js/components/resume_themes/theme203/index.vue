@@ -62,6 +62,7 @@
                                   align="center"
                                 >
                                   <img
+                                    class
                                     width="15"
                                     src="/images/resume_themes/theme203/icons/headphones.webp"
                                   />
@@ -564,6 +565,13 @@
         </v-row>
       </v-container>
       <!-- ......................................Tab Items .........................-->
+      <!-- All Modals -->
+      <!-- Hire Me Modal -->
+      <v-dialog v-model="dialog" max-width="567">
+        <v-card>Hello</v-card>
+      </v-dialog>
+      <!-- Hire Me Modal -->
+      <!-- All Modals  -->
 
       <!-- tab bar row -->
       <!-- Right Bottom bar -->
@@ -589,6 +597,7 @@ export default {
   },
   data() {
     return {
+      hireMeModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
       socialIcons: [
@@ -914,6 +923,11 @@ export default {
 .btn-headphone {
   width: 1.87rem !important;
   height: 1.81rem !important;
+  img {
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      margin-left: 1px;
+    }
+  }
 }
 
 /* Social Btn */
@@ -1201,7 +1215,7 @@ export default {
     font-size: 24px;
     line-height: 36px;
   }
-  @media screen and (min-width: 960px) and (max-width: 1263px){
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 22px;
   }
   @media screen and (max-width: 959px) {
