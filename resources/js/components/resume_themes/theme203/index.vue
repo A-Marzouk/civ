@@ -202,6 +202,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
+                                @click="hireMeModal = true"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -567,8 +568,39 @@
       <!-- ......................................Tab Items .........................-->
       <!-- All Modals -->
       <!-- Hire Me Modal -->
-      <v-dialog v-model="dialog" max-width="567">
-        <v-card>Hello</v-card>
+      <v-dialog v-model="hireMeModal" max-width="567" persistent>
+        <v-card color="#F6F9FF" class="card-hire-me-modal pa-3">
+          <div align="right">
+            <v-btn icon @click="hireMeModal = close">
+              <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
+            </v-btn>
+          </div>
+          <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
+          <v-card-subtitle>
+            <v-row>
+              <v-col xl="9" lg="9" cols="10">
+                <v-tabs
+                  center-active
+                  grow
+                  hide-slider
+                  v-model="hireMeTab"
+                  active-class="hire-me-tab-active"
+                  background-color="transparent"
+                >
+                  <v-tab
+                    v-for="tab in hireOptions"
+                    :key="tab.id"
+                    class="text-capitalize hire-me-tab-text"
+                    :class="[
+                      tab.title == 'Hourly'?'custom-tab-round-left':'',
+                      tab.title == 'Monthly'?'custom-tab-round-right':''
+                    ]"
+                  >{{tab.title}}</v-tab>
+                </v-tabs>
+              </v-col>
+            </v-row>
+          </v-card-subtitle>
+        </v-card>
       </v-dialog>
       <!-- Hire Me Modal -->
       <!-- All Modals  -->
@@ -600,6 +632,11 @@ export default {
       hireMeModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
+      hireOptions: [
+        { id: 1, title: "Hourly" },
+        { id: 2, title: "Weekly" },
+        { id: 3, title: "Monthly" },
+      ],
       socialIcons: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
@@ -608,6 +645,7 @@ export default {
         { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
+      hireMeTab: null,
       progressBarColor: "yellow",
       mainTabs: [
         {
@@ -1291,6 +1329,35 @@ export default {
   }
 }
 // reference tab
+//hire me modal
+.card-hire-me-modal {
+  border-radius: 10px !important;
+  .hire-me-tab-text {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #888db1 !important;
+    background: #ffffff;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  .hire-me-tab-active {
+    background: #001ce2 !important;
+    font-family: "Noto Sans" !important;
+    font-size: 18px;
+    line-height: 25px;
+    color: #ffffff !important;
+  }
+  .custom-tab-round-left {
+    border-top-left-radius: 10px;
+  }
+  .custom-tab-round-right {
+    border-top-right-radius: 10px;
+  }
+}
+// hire me modal
 </style>
 
 <style>
