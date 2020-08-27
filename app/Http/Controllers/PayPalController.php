@@ -129,8 +129,7 @@ class PaypalController extends Controller
 
     } // we use it only twice to create our plans
 
-
-    public function paypalRedirectMonthly(){
+    public function subscribePayPalMonthly(){
         // Create new agreement
         Session::put('plan', 'monthly');
 
@@ -167,7 +166,7 @@ class PaypalController extends Controller
 
     }
 
-    public function paypalRedirectYearly(){
+    public function subscribePayPalYearly(){
         Session::put('plan', 'yearly');
         // Create new agreement
         $agreement = new Agreement();
