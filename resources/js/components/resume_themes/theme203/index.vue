@@ -879,7 +879,7 @@ export default {
     font-size: 0.6rem !important;
   }
   @media screen and(max-width:599px) {
-    font-size: 0.5rem !important;
+    font-size: 0.56rem !important;
   }
 }
 
