@@ -581,7 +581,7 @@
           <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
           <v-card-subtitle>
             <v-row>
-              <v-col xl="9" lg="9" cols="10">
+              <v-col xl="9" lg="9" cols="12">
                 <v-tabs
                   center-active
                   grow
@@ -601,7 +601,7 @@
                   >{{tab.title}}</v-tab>
                 </v-tabs>
               </v-col>
-              <v-col xl="9" lg="9" cols="10" class="mt-n5">
+              <v-col xl="9" lg="9" cols="12" class="mt-n5">
                 <v-card flat align="center">
                   <v-tabs-items v-model="hireMeTab">
                     <v-tab-item class="tab-item">$10</v-tab-item>
