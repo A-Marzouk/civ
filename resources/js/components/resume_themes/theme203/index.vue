@@ -1202,7 +1202,7 @@ export default {
     line-height: 36px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px){
-    font-size: 20px;
+    font-size: 22px;
   }
   @media screen and (max-width: 959px) {
     font-size: 40px;
