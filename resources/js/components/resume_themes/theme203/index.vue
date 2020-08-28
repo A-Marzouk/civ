@@ -669,7 +669,7 @@
             <v-card flat class="card-payment pa-5">
               <div class="subtitle">Your total payment will be</div>
               <div class="total-payment-text">
-                <span>$</span>400
+                <span class="mr-2">$</span>400
               </div>
               <div class="subtitle">10 usd per hour x 40 hours</div>
             </v-card>
@@ -678,9 +678,27 @@
           <!-- Payment Method -->
           <v-card-subtitle>
             <div class="d-flex flex-row">
-              <div class="payment-logo">1</div>
-              <div class="payment-logo">2</div>
-              <div class>
+              <div class="payment-logo mx-2 align-self-center">
+                <a href="#">
+                  <img
+                    @mouseover="stripeHover=true"
+                    @mouseleave="stripeHover=false"
+                    :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
+                    alt="Stripe Logo"
+                  />
+                </a>
+              </div>
+              <div class="payment-logo mx-4 align-self-center">
+                <a href="#">
+                  <img
+                    @mouseover="paypalHover=true"
+                    @mouseleave="paypalHover=false"
+                    :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
+                    alt="Paypal Logo"
+                  />
+                </a>
+              </div>
+              <div class="mx-4">
                 <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
               </div>
             </div>
@@ -715,6 +733,8 @@ export default {
   },
   data() {
     return {
+      stripeHover: false,
+      paypalHover: false,
       hireMeModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
@@ -1489,7 +1509,6 @@ export default {
       box-shadow: 0px 0px 50px rgba(0, 19, 156, 0.05);
       border-radius: 10px;
       @media screen and (min-width: 960px) and (max-width: 1903px) {
-        width: auto;
         height: auto;
       }
       .subtitle {
