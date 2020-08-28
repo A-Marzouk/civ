@@ -62,6 +62,7 @@
                                   align="center"
                                 >
                                   <img
+                                    class
                                     width="15"
                                     src="/images/resume_themes/theme203/icons/headphones.webp"
                                   />
@@ -201,6 +202,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
+                                @click="hireMeModal = true"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -498,21 +500,26 @@
                             :key="index"
                             v-show="achievement.is_public"
                           >
-                            <v-list-item>
-                              <v-list-item-avatar class="achievement-avatar">
-                                <img :src="achievement.image_src" alt="hobby icon" />
-                              </v-list-item-avatar>
-                              <v-list-item-content>
-                                <v-list-item-title class="hobby-title">
-                                  <v-card flat color="transparent">
-                                    <v-card-subtitle class="achievement-title">{{achievement.title}}</v-card-subtitle>
-                                    <v-card-subtitle
-                                      class="achievement-subtitle mt-xl-0 mt-n5"
-                                    >{{achievement.description}}</v-card-subtitle>
-                                  </v-card>
-                                </v-list-item-title>
-                              </v-list-item-content>
-                            </v-list-item>
+                            <div
+                              class="d-flex achievement"
+                              :class="[windowWidth<=1263?'flex-column':'flex-row']"
+                            >
+                              <div :align="windowWidth<=1263?'center':'left'">
+                                <img
+                                  class="mt-5"
+                                  :src="achievement.image_src"
+                                  alt="achievement image"
+                                />
+                              </div>
+                              <v-card flat color="transparent">
+                                <v-card-subtitle
+                                  class="achievement-title"
+                                >{{achievement.title}}{{windowWidth}}</v-card-subtitle>
+                                <v-card-subtitle
+                                  class="achievement-subtitle mt-xl-0 mt-n5"
+                                >{{achievement.description}}</v-card-subtitle>
+                              </v-card>
+                            </div>
                           </v-col>
                         </template>
                       </v-row>
@@ -559,6 +566,56 @@
         </v-row>
       </v-container>
       <!-- ......................................Tab Items .........................-->
+      <!-- All Modals -->
+      <!-- Hire Me Modal -->
+      <v-dialog v-model="hireMeModal" max-width="567" persistent>
+        <v-card
+          color="#F6F9FF"
+          class="card-hire-me-modal pa-3"
+        >
+          <div align="right">
+            <v-btn icon @click="hireMeModal = close">
+              <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
+            </v-btn>
+          </div>
+          <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
+          <v-card-subtitle>
+            <v-row>
+              <v-col xl="9" lg="9" cols="12">
+                <v-tabs
+                  center-active
+                  grow
+                  hide-slider
+                  v-model="hireMeTab"
+                  active-class="hire-me-tab-active"
+                  background-color="transparent"
+                >
+                  <v-tab
+                    v-for="tab in hireOptions"
+                    :key="tab.id"
+                    class="text-capitalize hire-me-tab-text"
+                    :class="[
+                      tab.title == 'Hourly'?'custom-tab-round-left':'',
+                      tab.title == 'Monthly'?'custom-tab-round-right':''
+                    ]"
+                  >{{tab.title}}</v-tab>
+                </v-tabs>
+              </v-col>
+              <v-col xl="9" lg="9" cols="12" class="mt-n5">
+                <v-card flat align="center">
+                  <v-tabs-items v-model="hireMeTab">
+                    <v-tab-item class="tab-item">$10</v-tab-item>
+                    <v-tab-item class="tab-item">$20</v-tab-item>
+                    <v-tab-item class="tab-item">$30</v-tab-item>
+                  </v-tabs-items>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-card-subtitle>
+        </v-card>
+      </v-dialog>
+      <!-- Hire Me Modal -->
+      <!-- All Modals  -->
 
       <!-- tab bar row -->
       <!-- Right Bottom bar -->
@@ -584,7 +641,14 @@ export default {
   },
   data() {
     return {
+      hireMeModal: false,
+      windowWidth: window.innerWidth,
       currentUser: this.user,
+      hireOptions: [
+        { id: 1, title: "Hourly" },
+        { id: 2, title: "Weekly" },
+        { id: 3, title: "Monthly" },
+      ],
       socialIcons: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
@@ -593,6 +657,7 @@ export default {
         { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
+      hireMeTab: null,
       progressBarColor: "yellow",
       mainTabs: [
         {
@@ -730,6 +795,9 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
@@ -879,7 +947,7 @@ export default {
     font-size: 0.6rem !important;
   }
   @media screen and(max-width:599px) {
-    font-size: 0.5rem !important;
+    font-size: 0.56rem !important;
   }
 }
 
@@ -905,6 +973,11 @@ export default {
 .btn-headphone {
   width: 1.87rem !important;
   height: 1.81rem !important;
+  img {
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      margin-left: 1px;
+    }
+  }
 }
 
 /* Social Btn */
@@ -1136,21 +1209,21 @@ export default {
   }
 }
 .hobbies-avatar {
-  min-width: 126.88px !important;
-  min-height: 126.88px !important;
-  height: 126.88px !important;
-  width: 126.88px !important;
+  min-width: 63.44px !important;
+  min-height: 63.44px !important;
+  height: 63.44px !important;
+  width: 63.44px !important;
   @media screen and (max-width: 1903px) and (min-width: 1264px) {
-    min-width: 100px !important;
-    min-height: 100px !important;
-    height: 100px !important;
-    width: 100px !important;
+    min-width: 63.44px !important;
+    min-height: 63.44px !important;
+    height: 63.44px !important;
+    width: 63.44px !important;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 94.16px !important;
-    min-height: 94.16px !important;
-    height: 94.16px !important;
-    width: 94.16px !important;
+    min-width: 47.08px !important;
+    min-height: 47.08px !important;
+    height: 47.08px !important;
+    width: 47.08px !important;
   }
   @media screen and(max-width: 599px) {
     min-width: 45px !important;
@@ -1161,23 +1234,24 @@ export default {
 }
 // hobbies tab
 // achievement tab
-.achievement-avatar {
-  min-width: 152px !important;
-  min-height: 152px !important;
-  height: 152px !important;
-  width: 152px !important;
-  @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 119.1px !important;
-    min-height: 134px !important;
-    height: 134px !important;
-    width: 119.1px !important;
-  }
-  @media screen and (max-width: 599px) {
-    min-width: 76.75px !important;
-    min-height: 87px !important;
-    width: 76.75px !important;
-    height: 87px !important;
-    margin-top: -80px;
+.achievement {
+  img {
+    min-width: 160px !important;
+    min-height: 124px !important;
+    height: 124px !important;
+    width: 160px !important;
+    @media screen and (max-width: 1263px) and (min-width: 600px) {
+      min-width: auto !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: auto !important;
+    }
+    @media screen and (max-width: 959px) {
+      min-width: auto !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: auto !important;
+    }
   }
 }
 .achievement-title {
@@ -1189,7 +1263,10 @@ export default {
   color: #000000 !important;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     font-size: 24px;
-    line-height: 22px;
+    line-height: 36px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    font-size: 22px;
   }
   @media screen and (max-width: 959px) {
     font-size: 40px;
@@ -1264,6 +1341,51 @@ export default {
   }
 }
 // reference tab
+//hire me modal
+.card-hire-me-modal {
+  .title {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 35px;
+    color: #888db1 !important;
+  }
+  border-radius: 10px !important;
+  .hire-me-tab-text {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #888db1 !important;
+    background: #ffffff;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  .hire-me-tab-active {
+    background: #001ce2 !important;
+    font-family: "Noto Sans" !important;
+    font-size: 18px;
+    line-height: 25px;
+    color: #ffffff !important;
+  }
+  .custom-tab-round-left {
+    border-top-left-radius: 10px;
+  }
+  .custom-tab-round-right {
+    border-top-right-radius: 10px;
+  }
+  .tab-item {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    color: #001ce2 !important;
+  }
+}
+// hire me modal
 </style>
 
 <style>

@@ -91,7 +91,7 @@
             .str-content{
                 display: flex;
                 justify-content: space-between;
-                max-width: 1100px;
+                max-width: 1500px;
                 flex-wrap: wrap;
                 padding: 25px 30px;
                 margin-top:40px;
@@ -100,6 +100,7 @@
                 .tab-chip{
                     display:flex;
                     align-items: center;
+                    margin-top:25px;
 
                     @media screen and (max-width: 1024px){
                         width: 100%;
