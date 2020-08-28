@@ -569,7 +569,7 @@
       <!-- All Modals -->
       <!-- Hire Me Modal -->
       <v-dialog v-model="hireMeModal" max-width="567" persistent>
-        <v-card color="#F6F9FF" class="card-hire-me-modal pa-3">
+        <v-card color="#F6F9FF" class="card-hire-me-modal pa-sm-3 pa-5">
           <div align="right">
             <v-btn icon @click="hireMeModal = close">
               <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
@@ -599,8 +599,8 @@
                   >{{tab.title}}</v-tab>
                 </v-tabs>
               </v-col>
-              <v-col xl="9" lg="9" cols="12" class="mt-xl-5 mt-lg-2 mt-5">
-                <v-card flat align="center">
+              <v-col xl="9" lg="9" cols="12" class="mt-xl-n5 mt-lg-n5 mt-n5" :align="windowWidth<=599?'center':'left'">
+                <v-card flat align="center" height="43" class="pa-2" >
                   <v-tabs-items v-model="hireMeTab">
                     <v-tab-item class="tab-item">$10</v-tab-item>
                     <v-tab-item class="tab-item">$20</v-tab-item>
@@ -611,7 +611,7 @@
             </v-row>
             <!-- hire me tab -->
           </v-card-subtitle>
-          <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5">
+          <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5" :align="windowWidth<=599?'center':'left'">
             Select the number of Hours you need per week:
             <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5">
               <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
@@ -630,7 +630,10 @@
                   v-model="inputHour"
                 ></v-text-field>
               </div>
-              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2 btn-holder" @click="increamentHours()">
+              <div
+                class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2 btn-holder"
+                @click="increamentHours()"
+              >
                 <v-btn color="#F2F3FD" class="btn-decreament" icon>
                   <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
                 </v-btn>
@@ -638,7 +641,7 @@
             </div>
           </v-card-subtitle>
           <!-- Weekly -->
-          <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5">
+          <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5" :align="windowWidth<=599?'center':'left'">
             How many weeks would you like to book for?
             <div class="d-flex flex-row align-items-center mt-5">
               <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
@@ -667,8 +670,11 @@
           <!-- Weekly -->
 
           <!-- Total Payment -->
-          <v-card-subtitle class="total-payment mt-xl-5 mt-lg-2 mt-5">
-            <v-card flat class="card-payment pa-5">
+          <v-card-subtitle
+            class="total-payment mt-xl-5 mt-lg-2 mt-5"
+            :align="windowWidth<=599?'center':'left'"
+          >
+            <v-card flat class="card-payment pa-5" align="left">
               <div class="subtitle">Your total payment will be</div>
               <div class="total-payment-text">
                 <span class="mr-2">$</span>400
@@ -678,7 +684,7 @@
           </v-card-subtitle>
           <!-- Total Payment -->
           <!-- Payment Method -->
-          <v-card-subtitle>
+          <v-card-subtitle class="hidden-xs-only">
             <div class="d-flex flex-row">
               <div class="payment-logo mx-2 align-self-center">
                 <a href="#">
@@ -705,6 +711,38 @@
               </div>
             </div>
           </v-card-subtitle>
+          <!-- payment method for mobile -->
+          <v-card-subtitle class="hidden-sm-and-up" align="center">
+            <div class="d-flex flex-column" align="center">
+              <div class>
+                <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
+              </div>
+
+              <div class="d-flex flex-row mt-3 justify-content-center">
+                <div class="payment-logo mx-3 align-self-center">
+                  <a href="#">
+                    <img
+                      @mouseover="stripeHover=true"
+                      @mouseleave="stripeHover=false"
+                      :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
+                      alt="Stripe Logo"
+                    />
+                  </a>
+                </div>
+                <div class="payment-logo mt-2 mx-3">
+                  <a href="#">
+                    <img
+                      @mouseover="paypalHover=true"
+                      @mouseleave="paypalHover=false"
+                      :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
+                      alt="Paypal Logo"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </v-card-subtitle>
+          <!-- payment method for mobile -->
           <!-- Payment Method -->
         </v-card>
       </v-dialog>
@@ -901,22 +939,22 @@ export default {
   },
 
   methods: {
-    increamentHours(){
+    increamentHours() {
       this.inputHour++;
     },
-    decreamentHours(){
-      if(this.inputHour>0){
+    decreamentHours() {
+      if (this.inputHour > 0) {
         this.inputHour--;
       }
     },
 
-    increamentWeek(){
-      this.inputWeek ++;
+    increamentWeek() {
+      this.inputWeek++;
     },
 
-    decreamentWeek(){
-      if(this.inputWeek>0){
-        this.inputWeek --;
+    decreamentWeek() {
+      if (this.inputWeek > 0) {
+        this.inputWeek--;
       }
     },
 
@@ -1479,6 +1517,10 @@ export default {
     background: #ffffff;
     margin-left: 1px;
     margin-right: 1px;
+    @media screen and (max-width: 667px) {
+      font-size: 15px;
+      line-height: 20px;
+    }
   }
   .hire-me-tab-active {
     background: #001ce2 !important;
@@ -1486,6 +1528,10 @@ export default {
     font-size: 18px;
     line-height: 25px;
     color: #ffffff !important;
+    @media screen and (max-width: 667px) {
+      font-size: 15px;
+      line-height: 20px;
+    }
   }
   .custom-tab-round-left {
     border-top-left-radius: 10px;
@@ -1532,6 +1578,10 @@ export default {
       box-shadow: 0px 0px 50px rgba(0, 19, 156, 0.05);
       border-radius: 10px;
       @media screen and (min-width: 960px) and (max-width: 1903px) {
+        height: auto;
+      }
+      @media screen and (max-width: 667px) {
+        width: 253px;
         height: auto;
       }
       .subtitle {
@@ -1587,6 +1637,9 @@ export default {
   ) !important;
 }
 #resumeTheme203 {
+  .v-slide-group__prev.v-slide-group__prev--disabled {
+    display: none !important;
+  }
   .select-hour {
     .v-text-field input {
       font-family: "Noto Sans" !important;
