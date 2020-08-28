@@ -94,6 +94,7 @@ Route::group(['prefix' => 'user/'], function () {
 
     // tabs
     Route::post('/tabs/update-order', 'API\TabsController@updateTabsOrder');
+    Route::put('/tabs/toggle-tab', 'API\TabsController@toggleVisibility');
     Route::put('/tabs', 'API\TabsController@toggleVisibility');
 
     //list workExperience
