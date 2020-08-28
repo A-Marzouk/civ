@@ -615,7 +615,7 @@
             Select the number of Hours you need per week:
             <div class="d-flex flex-row align-items-center mt-5">
               <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
-                <v-btn color="#F2F3FD" class="btn-decreament" icon>
+                <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentHours()">
                   <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
                 </v-btn>
               </div>
@@ -627,9 +627,10 @@
                   hide-details
                   value="40 hours"
                   outlined
+                  v-model="inputHour"
                 ></v-text-field>
               </div>
-              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2 btn-holder">
+              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2 btn-holder" @click="increamentHours()">
                 <v-btn color="#F2F3FD" class="btn-decreament" icon>
                   <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
                 </v-btn>
@@ -641,7 +642,7 @@
             How many weeks would you like to book for?
             <div class="d-flex flex-row align-items-center mt-5">
               <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
-                <v-btn color="#F2F3FD" class="btn-decreament" icon>
+                <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentWeek()">
                   <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
                 </v-btn>
               </div>
@@ -653,10 +654,11 @@
                   hide-details
                   value="10 weeks"
                   outlined
+                  v-model="inputWeek"
                 ></v-text-field>
               </div>
               <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2 btn-holder">
-                <v-btn color="#F2F3FD" class="btn-decreament" icon>
+                <v-btn color="#F2F3FD" class="btn-decreament" icon @click="increamentWeek()">
                   <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
                 </v-btn>
               </div>
@@ -733,6 +735,8 @@ export default {
   },
   data() {
     return {
+      inputHour: 40,
+      inputWeek: 10,
       stripeHover: false,
       paypalHover: false,
       hireMeModal: false,
@@ -897,6 +901,25 @@ export default {
   },
 
   methods: {
+    increamentHours(){
+      this.inputHour++;
+    },
+    decreamentHours(){
+      if(this.inputHour>0){
+        this.inputHour--;
+      }
+    },
+
+    increamentWeek(){
+      this.inputWeek ++;
+    },
+
+    decreamentWeek(){
+      if(this.inputWeek>0){
+        this.inputWeek --;
+      }
+    },
+
     skillSubString(string) {
       let result = string.substring(0, 2);
       return result.toLowerCase();
