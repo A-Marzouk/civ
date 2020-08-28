@@ -1,5 +1,9 @@
 <template>
     <div class="profile" v-if="personalInfo" data-app>
+        <div class="d-flex justify-content-end w-100">
+            <tab-switcher currentTabTitle="about_me"></tab-switcher>
+        </div>
+
         <div class="profile-fields-wrapper">
             <div class="profile-fields">
 
@@ -194,8 +198,13 @@
 </template>
 
 <script>
+    import tabSwitcher from "./includes/TabSwitcher";
+
     export default {
         name: "Personal",
+        components: {
+            'tab-switcher' : tabSwitcher
+        },
         data(vm) {
             return {
                 errors: {},
