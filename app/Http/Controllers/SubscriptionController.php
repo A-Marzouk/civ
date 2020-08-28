@@ -83,7 +83,7 @@ class SubscriptionController extends Controller
         return redirect(url('/') . '/resume-builder?redirect_from=stripe&status=success');
     }
 
-    public function cacnel(){
+    public function cancel(){
         return redirect(url('/') . '/resume-builder?redirect_from=stripe&status=cancel');
     }
 

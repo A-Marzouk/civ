@@ -34,6 +34,9 @@ class PaypalController extends Controller
     // Create a new instance with our paypal credentials
     public function __construct()
     {
+
+        $this->middleware(['auth']);
+
         // Detect if we are running in live mode or sandbox
         if(config('paypal.settings.mode') == 'live'){
             $this->client_id = config('paypal.live_client_id');
@@ -129,8 +132,7 @@ class PaypalController extends Controller
 
     } // we use it only twice to create our plans
 
-
-    public function paypalRedirectMonthly(){
+    public function subscribePayPalMonthly(){
         // Create new agreement
         Session::put('plan', 'monthly');
 
@@ -167,7 +169,7 @@ class PaypalController extends Controller
 
     }
 
-    public function paypalRedirectYearly(){
+    public function subscribePayPalYearly(){
         Session::put('plan', 'yearly');
         // Create new agreement
         $agreement = new Agreement();

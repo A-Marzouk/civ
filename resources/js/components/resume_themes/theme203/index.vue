@@ -615,7 +615,9 @@
             Select the number of Hours you need per week:
             <div class="d-flex flex-row align-items-center mt-5">
               <div class="align-self-center mx-xl-2 mx-lg-3">
-                <v-btn color="#fff" fab class="btn-decreament">-</v-btn>
+                <v-btn color="#F2F3FD" class="btn-decreament" depressed="">
+                  <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt="">
+                </v-btn>
               </div>
               <div class="align-self-center mx-xl-2 mx-lg-3">
                 <v-text-field
@@ -1413,9 +1415,7 @@ export default {
     line-height: 25px;
     color: #888db1 !important;
     .btn-decreament {
-      width: 25.07px;
-      height: 25.07px;
-      color: #001CE2 !important;
+     
     }
     .input-hour {
       border-radius: 10px !important;

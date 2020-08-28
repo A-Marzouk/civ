@@ -1,6 +1,9 @@
 <template>
     <v-app>
-        <div class="data-container">            
+        <div class="data-container">
+            <div class="d-flex justify-content-end w-100">
+                <tab-switcher currentTabTitle="education"></tab-switcher>
+            </div>
             <v-card class="view-container resume-builder__scroll" flat>
                 <SchoolView :activeTab ="activeTab"></SchoolView>
             </v-card>
@@ -10,11 +13,13 @@
 
 <script>
 import SchoolView from './education_tabs/school'
+import tabSwitcher from "./includes/TabSwitcher";
 
     export default {
         name: "Education",
         components: {
-            SchoolView
+            SchoolView,
+            'tab-switcher' : tabSwitcher,
         },
         data: (vm) => {
             return {
