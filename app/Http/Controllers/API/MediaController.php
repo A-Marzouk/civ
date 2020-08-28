@@ -36,7 +36,7 @@ class MediaController extends Controller
     {
 
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -87,7 +87,7 @@ class MediaController extends Controller
         ])->first();
 
 
-        if(!$this->is_auth($media)){
+        if(!is_auth($media)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -122,7 +122,5 @@ class MediaController extends Controller
         ]);
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

@@ -94,6 +94,7 @@ Route::group(['prefix' => 'user/'], function () {
 
     // tabs
     Route::post('/tabs/update-order', 'API\TabsController@updateTabsOrder');
+    Route::put('/tabs/toggle-tab', 'API\TabsController@toggleVisibility');
     Route::put('/tabs', 'API\TabsController@toggleVisibility');
 
     //list workExperience
@@ -145,6 +146,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/resume-links', 'API\ResumeLinksController@index');
     Route::get('/resume-links/{id}', 'API\ResumeLinksController@show');
     Route::post('/resume-links', 'API\ResumeLinksController@store');
+    Route::post('/resume-links/import', 'API\ResumeLinksController@importFromCIVResume');
     Route::post('/resume-links/update-order', 'API\ResumeLinksController@updateResumeLinksOrder');
     Route::put('/resume-links', 'API\ResumeLinksController@store');
     Route::delete('/resume-links/{id}', 'API\ResumeLinksController@destroy');

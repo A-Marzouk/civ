@@ -120,8 +120,12 @@
                 </div>
 
                 <div class="d-flex mt-1">
-                    <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="saveLink">
-                        {{editedResumeLink.id !== '' ? 'Update' : 'Add New'}}
+                    <v-btn class="resume-builder__btn civie-btn filled" v-if="editedResumeLink.id !== ''" depressed raised @click="saveLink">
+                        Update
+                    </v-btn>
+
+                    <v-btn class="resume-builder__btn civie-btn filled" v-else depressed raised @click="openDialog">
+                        Add new
                     </v-btn>
 
                     <v-btn
@@ -129,6 +133,55 @@
                         Cancel
                     </v-btn>
                 </div>
+            </div>
+
+            <div class="text-center">
+                <v-dialog
+                        v-model="copyDialog"
+                        width="500"
+                >
+                    <v-card style="padding: 20px;" class="copy-dialog">
+                        <v-card-title class="headline grey lighten-2">
+                            Create a new CV URL
+                        </v-card-title>
+
+                        <v-radio-group v-model="new_cv" :mandatory="false">
+                            <v-radio label="New" value="new"></v-radio>
+                            <v-radio label="Copy from existing" value="copy"></v-radio>
+                        </v-radio-group>
+
+                        <v-select
+                                class="resume-builder__input civie-select"
+                                outlined
+                                v-show="new_cv === 'copy'"
+                                placeholder="Active CV"
+                                :items="resumeLinks"
+                                :item-text="selectionTitle"
+                                item-value="id"
+                                label="Select CV"
+                                color="#001CE2"
+                                v-model="copy_from_resume_id"
+                        >
+                            <button class="dropdown-icon icon" slot="append" @click.prevent>
+                                <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                            </button>
+                        </v-select>
+
+                        <v-divider></v-divider>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                    class="resume-builder__btn civie-btn filled"
+                                    depressed
+                                    raised
+                                    @click="saveLink"
+                            >
+                                Create
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
             </div>
 
             <div style="max-width: 450px; margin-bottom:40px;" v-if="resumeLinks" >
@@ -204,6 +257,9 @@
                 },
                 errors:{},
                 updatedResumeLinkID: '',
+                copy_from_resume_id: '',
+                new_cv: 'new',
+                copyDialog: false,
             }
         },
         computed: {
@@ -303,8 +359,19 @@
                         console.log(error);
                     });
             },
+            openDialog(){
+                this.errors = {} ;
+                // validate the entered url, if fine open the dialog if not put an error and return
+                if(this.editedResumeLink.url.length < 3){
+                    this.errors = {url : 'URL length can not be less than 3 characters'};
+                    return;
+                }
+
+                this.copyDialog = true;
+            },
             saveLink() {
                 this.errors = {};
+                this.copyDialog = false;
 
                 let edit = false;
                 if (this.editedResumeLink.id !== "") {
@@ -312,9 +379,13 @@
                 }
                 this.editedResumeLink.user_id = this.user.id;
                 this.editedResumeLink.title   = this.editedResumeLink.url;
-
+                if(this.new_cv === 'copy'){
+                    this.editedResumeLink.copy_from_resume_id   = this.copy_from_resume_id;
+                }
                 axios.post("/api/user/resume-links", this.editedResumeLink)
-                    .then(response => {
+                    .then( (response) => {
+                        console.log(response.data);
+
                         if (!edit) {
                             let addedLink = response.data.data;
                             this.resumeLinks.push(addedLink);
@@ -706,4 +777,13 @@
         }
     }
 
+</style>
+
+<style lang="scss">
+    .copy-dialog{
+        .v-input--selection-controls .v-radio>.v-label{
+            margin-top: 7px;
+            left: 5px !important;
+        }
+    }
 </style>

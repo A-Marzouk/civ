@@ -32,7 +32,7 @@ class PromocodesController extends Controller
 
     public function store(Request $request)
     {
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -59,7 +59,7 @@ class PromocodesController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($promocode)){
+        if(!is_auth($promocode)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -78,7 +78,5 @@ class PromocodesController extends Controller
         ]);
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

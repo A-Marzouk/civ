@@ -78,18 +78,18 @@ h3 {
     color: #3C76FF;
 }
 
-.btn-change-password {
-    width: 180px;
-    height: 45px;
-    display: inline-block;
-    background: #0046FE;
-    border-radius: 5px;
+.button-primary {
+    background: #0046FE !important;
+    border-radius: 5px !important;
     color: #ffffff;
-    padding: 10px;
     text-decoration-line: none;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 20px;
+    border-bottom: 8px solid #0046FE !important;
+    border-left: 18px solid #0046FE !important;
+    border-right: 18px solid #0046FE !important;
+    border-top: 8px solid #0046FE !important;
 }
 
 p {
@@ -115,7 +115,8 @@ img {
     -premailer-width: 100%;
     background-color: #f5f6ff;
     margin: 0;
-    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
 }
 
@@ -207,9 +208,10 @@ img {
     text-align: center;
     color: #888DB1;
 }
-.custom-footer a{
+
+.custom-footer a {
     cursor: pointer;
-    color: #888DB1;
+    color: #888DB1 !important;
 }
 
 .footer p {
@@ -335,3 +337,4 @@ img {
 .break-all {
     word-break: break-all;
 }
+

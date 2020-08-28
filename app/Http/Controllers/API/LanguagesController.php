@@ -36,7 +36,7 @@ class LanguagesController extends Controller
 
     public function store(Request $request)
     {
-        if(!$this->is_auth($request->user_id)){
+        if(!is_auth($request->user_id)){
             throw new Exception('Not Authenticated!');
         }
        // attach a language to user:
@@ -77,7 +77,7 @@ class LanguagesController extends Controller
 
     public function destroy($id,$user_id)
     {
-        if(!$this->is_auth($user_id)){
+        if(!is_auth($user_id)){
             throw new Exception('Not Authenticated!');
         }
         // detach a language from user:

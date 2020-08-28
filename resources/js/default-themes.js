@@ -728,18 +728,6 @@ if ($("#resumeTheme510").length !== 0) {
         }
     });
 }
-import resumeTheme601 from "./components/resume_themes/theme601";
-if ($("#resumeTheme601").length !== 0) {
-    new Vue({
-        el: "#resumeTheme601",
-        vuetify,
-        store,
-        iconfont: "mdi",
-        components: {
-            "resume-theme-601": resumeTheme601
-        }
-    });
-}
 
 import resumeTheme602 from "./components/resume_themes/theme602";
 if ($("#resumeTheme602").length !== 0) {

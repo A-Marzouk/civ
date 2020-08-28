@@ -1,11 +1,16 @@
 <template>
     <v-app class="media-contents">
         <div style="width:100%;">
-            <v-tabs class="resume-builder__tab-bar" hide-slider height="51">
-                <v-tab class="resume-builder__tab" v-for="tab in tabs" :key="tab" @click="changeTab(tab)">
-                    {{ tab === 'audio' ? 'Audio' : 'Video' }}
-                </v-tab>
-            </v-tabs>
+            <div class="d-flex">
+                <v-tabs class="resume-builder__tab-bar" hide-slider height="51">
+                    <v-tab class="resume-builder__tab" v-for="tab in tabs" :key="tab" @click="changeTab(tab)">
+                        {{ tab === 'audio' ? 'Audio' : 'Video' }}
+                    </v-tab>
+                </v-tabs>
+
+                <tab-switcher currentTabTitle="media"></tab-switcher>
+            </div>
+
             <v-card
                     class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 resume-builder__scroll main-content"
                     flat
@@ -334,12 +339,14 @@
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
     import draggable from "vuedraggable";
+    import tabSwitcher from "./includes/TabSwitcher";
 
     export default {
         name: "AudioVideo",
         components: {
             vueDropzone: vue2Dropzone,
-            draggable
+            draggable,
+            'tab-switcher' : tabSwitcher
         },
         data() {
             return {
