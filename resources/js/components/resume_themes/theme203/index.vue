@@ -569,10 +569,7 @@
       <!-- All Modals -->
       <!-- Hire Me Modal -->
       <v-dialog v-model="hireMeModal" max-width="567" persistent>
-        <v-card
-          color="#F6F9FF"
-          class="card-hire-me-modal pa-3"
-        >
+        <v-card color="#F6F9FF" class="card-hire-me-modal pa-3">
           <div align="right">
             <v-btn icon @click="hireMeModal = close">
               <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
@@ -580,6 +577,7 @@
           </div>
           <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
           <v-card-subtitle>
+            <!-- Hire me tab -->
             <v-row>
               <v-col xl="9" lg="9" cols="12">
                 <v-tabs
@@ -611,6 +609,28 @@
                 </v-card>
               </v-col>
             </v-row>
+            <!-- hire me tab -->
+          </v-card-subtitle>
+          <v-card-subtitle class="select-hour">
+            Select the number of Hours you need per week:
+            <div class="d-flex flex-row align-items-center mt-5">
+              <div class="align-self-center mx-xl-2 mx-lg-3">
+                <v-btn color="#fff" fab class="btn-decreament">-</v-btn>
+              </div>
+              <div class="align-self-center mx-xl-2 mx-lg-3">
+                <v-text-field
+                  background-color="#ffffff"
+                  class="input-hour"
+                  height="47"
+                  hide-details
+                  value="40 hours"
+                  outlined
+                ></v-text-field>
+              </div>
+              <div class="align-self-center mx-xl-2 mx-lg-3">
+                <v-btn color="#fff" fab class="btn-decreament">+</v-btn>
+              </div>
+            </div>
           </v-card-subtitle>
         </v-card>
       </v-dialog>
@@ -1384,11 +1404,30 @@ export default {
     line-height: 25px;
     color: #001ce2 !important;
   }
+
+  .select-hour {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #888db1 !important;
+    .btn-decreament {
+      width: 25.07px;
+      height: 25.07px;
+      color: #001CE2 !important;
+    }
+    .input-hour {
+      border-radius: 10px !important;
+      width: 160px;
+      height: 47px;
+    }
+  }
 }
 // hire me modal
 </style>
 
-<style>
+<style lang="scss">
 #resumeTheme203 .v-progress-linear__determinate {
   background-color: -moz-linear-gradient(
     138.05deg,
@@ -1402,5 +1441,24 @@ export default {
     #e5bf4e 51.95%,
     #ffde81 89.88%
   ) !important;
+}
+#resumeTheme203 {
+  .select-hour {
+    .v-text-field input {
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 25px;
+      color: #888db1 !important;
+      text-align: center !important;
+    }
+    .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+      > .v-input__control
+      > .v-input__slot
+      fieldset {
+      border: 2px solid #e6e8fc !important;
+    }
+  }
 }
 </style>
