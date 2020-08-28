@@ -599,7 +599,7 @@
                   >{{tab.title}}</v-tab>
                 </v-tabs>
               </v-col>
-              <v-col xl="9" lg="9" cols="12" class="mt-n5">
+              <v-col xl="9" lg="9" cols="12" class="mt-xl-5 mt-lg-2 mt-5">
                 <v-card flat align="center">
                   <v-tabs-items v-model="hireMeTab">
                     <v-tab-item class="tab-item">$10</v-tab-item>
@@ -611,9 +611,9 @@
             </v-row>
             <!-- hire me tab -->
           </v-card-subtitle>
-          <v-card-subtitle class="select-hour mt-5">
+          <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5">
             Select the number of Hours you need per week:
-            <div class="d-flex flex-row align-items-center mt-5">
+            <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5">
               <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
                 <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentHours()">
                   <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
@@ -638,7 +638,7 @@
             </div>
           </v-card-subtitle>
           <!-- Weekly -->
-          <v-card-subtitle class="select-hour mt-5">
+          <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5">
             How many weeks would you like to book for?
             <div class="d-flex flex-row align-items-center mt-5">
               <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
@@ -667,7 +667,7 @@
           <!-- Weekly -->
 
           <!-- Total Payment -->
-          <v-card-subtitle class="total-payment mt-5">
+          <v-card-subtitle class="total-payment mt-xl-5 mt-lg-2 mt-5">
             <v-card flat class="card-payment pa-5">
               <div class="subtitle">Your total payment will be</div>
               <div class="total-payment-text">
