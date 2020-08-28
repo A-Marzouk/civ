@@ -94,7 +94,8 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project = Project::where([
-            'id' => $id
+            'id' => $id,
+            'user_id' => Auth::user()->id
         ])->first();
 
         return new ProjectResource($project);

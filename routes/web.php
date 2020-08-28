@@ -72,15 +72,15 @@ Route::get('/resume-builder/import/behance/{behanceUsername}', 'ImportsControlle
 Route::get('/subscribe', 'SubscriptionController@subscribePage')->name('subscribe.page');
 
 Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
-Route::get('/subscription/cancel', 'SubscriptionController@cacnel')->name('subscription.cancel');
+Route::get('/subscription/cancel', 'SubscriptionController@cancel')->name('subscription.cancel');
 Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
 Route::post('/subscribe', 'SubscriptionController@subscribeStripe')->name('subscribe.stripe');
 
 // paypal
 
 Route::get('/subscribe/create-paypal-plan/{plan_period}', 'PaypalController@create_plan');
-Route::get('/subscribe/paypal/monthly', 'PaypalController@paypalRedirectMonthly')->name('paypal.redirect.monthly');
-Route::get('/subscribe/paypal/yearly', 'PaypalController@paypalRedirectYearly')->name('paypal.redirect.yearly');
+Route::get('/subscribe/paypal/monthly', 'PaypalController@subscribePayPalMonthly')->name('paypal.redirect.monthly');
+Route::get('/subscribe/paypal/yearly', 'PaypalController@subscribePayPalYearly')->name('paypal.redirect.yearly');
 Route::get('/subscribe/paypal/return', 'PaypalController@paypalReturn')->name('paypal.return');
 
 

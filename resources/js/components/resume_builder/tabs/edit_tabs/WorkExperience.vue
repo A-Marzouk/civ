@@ -1,12 +1,18 @@
 <template>
     <div class="work-container" id="worksSection">
 
-        <!-- Tabs -->
-        <v-tabs class="resume-builder__tab-bar" hide-slider height="51">
-            <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setWorkCategory(tab)">
-                {{tab}}
-            </v-tab>
-        </v-tabs>
+        <div class="d-flex">
+            <!-- Tabs -->
+            <v-tabs class="resume-builder__tab-bar" hide-slider height="51">
+                <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setWorkCategory(tab)">
+                    {{tab}}
+                </v-tab>
+            </v-tabs>
+
+            <tab-switcher currentTabTitle="work_experience"></tab-switcher>
+        </div>
+
+
 
 
         <v-card class="links-content resume-builder__scroll" v-if="works">
@@ -175,11 +181,13 @@
 
 <script>
     import draggable from "vuedraggable";
+    import tabSwitcher from "./includes/TabSwitcher";
 
     export default {
         name: "WorkExperience",
         components: {
-            draggable
+            draggable,
+            'tab-switcher' : tabSwitcher,
         },
         data() {
             return {
@@ -205,7 +213,6 @@
             }
         },
         computed: {
-
             works: {
                 get() {
                     return this.$store.state.user.work_experience;

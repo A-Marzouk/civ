@@ -111,57 +111,20 @@ class ResumeLinkObserver
         // Main default tabs
         
         $user = User::find($resumeLink->user_id);
-        
-        Tab::insert([
-            [
+        $defaultTabs = [];
+        foreach (Tab::$defaultTabs as $index => $tabTitle){
+            $defaultTabs[] = [
                 'user_id' => $user->id,
                 'resume_link_id' => $resumeLink->id,
-                'order' => 1,
+                'order' => $index + 1,
                 'is_public' => true,
-                'title' => 'work_experience',
-                'label' => 'Work Experience'
-            ],
-            [
-                'user_id' => $user->id,
-                'resume_link_id' => $resumeLink->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'education',
-                'label' => 'Education'
-            ],
-            [
-                'user_id' => $user->id,
-                'resume_link_id' => $resumeLink->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'skills',
-                'label' => 'Skills'
-            ],
-            [
-                'user_id' => $user->id,
-                'resume_link_id' => $resumeLink->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'portfolio',
-                'label' => 'Portfolio'
-            ],
-            [
-                'user_id' => $user->id,
-                'resume_link_id' => $resumeLink->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'about_me',
-                'label' => 'About Me'
-            ],
-            [
-                'user_id' => $user->id,
-                'resume_link_id' => $resumeLink->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'media',
-                'label' => 'Media'
-            ]
-        ]);
+                'title' => $tabTitle,
+                'label' => ucwords(str_replace('_',' ', $tabTitle))
+            ];
+        }
+
+        Tab::insert($defaultTabs);
+
         // personal info
         PersonalInfo::create([
             'user_id' => $user->id,
