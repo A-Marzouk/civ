@@ -668,13 +668,24 @@
           <v-card-subtitle class="total-payment mt-5">
             <v-card flat class="card-payment pa-5">
               <div class="subtitle">Your total payment will be</div>
-              <div class="total-payment">
+              <div class="total-payment-text">
                 <span>$</span>400
               </div>
               <div class="subtitle">10 usd per hour x 40 hours</div>
             </v-card>
           </v-card-subtitle>
           <!-- Total Payment -->
+          <!-- Payment Method -->
+          <v-card-subtitle>
+            <div class="d-flex flex-row">
+              <div class="payment-logo">1</div>
+              <div class="payment-logo">2</div>
+              <div class>
+                <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
+              </div>
+            </div>
+          </v-card-subtitle>
+          <!-- Payment Method -->
         </v-card>
       </v-dialog>
       <!-- Hire Me Modal -->
@@ -1489,7 +1500,7 @@ export default {
         line-height: 19px;
         color: #888db1 !important;
       }
-      .total-payment {
+      .total-payment-text {
         font-family: "Noto Sans" !important;
         font-weight: bold;
         font-size: 36px;
@@ -1501,6 +1512,18 @@ export default {
         }
       }
     }
+  }
+  .payment-btn {
+    width: 220px;
+    height: 60px !important;
+    border-radius: 5px !important;
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    color: #ffffff !important;
+    text-transform: capitalize !important;
   }
 }
 // hire me modal
