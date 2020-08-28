@@ -663,6 +663,18 @@
             </div>
           </v-card-subtitle>
           <!-- Weekly -->
+
+          <!-- Total Payment -->
+          <v-card-subtitle class="total-payment mt-5">
+            <v-card flat class="card-payment pa-5">
+              <div class="subtitle">Your total payment will be</div>
+              <div class="total-payment">
+                <span>$</span>400
+              </div>
+              <div class="subtitle">10 usd per hour x 40 hours</div>
+            </v-card>
+          </v-card-subtitle>
+          <!-- Total Payment -->
         </v-card>
       </v-dialog>
       <!-- Hire Me Modal -->
@@ -1456,6 +1468,38 @@ export default {
       border-radius: 10px !important;
       width: 160px;
       height: 47px;
+    }
+  }
+  // total payment
+  .total-payment {
+    .card-payment {
+      width: 279px;
+      height: 142px;
+      box-shadow: 0px 0px 50px rgba(0, 19, 156, 0.05);
+      border-radius: 10px;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        width: auto;
+        height: auto;
+      }
+      .subtitle {
+        font-family: "Noto Sans" !important;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 19px;
+        color: #888db1 !important;
+      }
+      .total-payment {
+        font-family: "Noto Sans" !important;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 49px;
+        color: #001ce2 !important;
+        span {
+          font-size: 14px;
+          line-height: 19px;
+        }
+      }
     }
   }
 }
