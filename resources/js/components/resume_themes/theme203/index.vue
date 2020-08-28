@@ -611,15 +611,15 @@
             </v-row>
             <!-- hire me tab -->
           </v-card-subtitle>
-          <v-card-subtitle class="select-hour">
+          <v-card-subtitle class="select-hour mt-5">
             Select the number of Hours you need per week:
             <div class="d-flex flex-row align-items-center mt-5">
-              <div class="align-self-center mx-xl-2 mx-lg-3">
-                <v-btn color="#F2F3FD" class="btn-decreament" depressed="">
-                  <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt="">
+              <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
+                <v-btn color="#F2F3FD" class="btn-decreament" icon>
+                  <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
                 </v-btn>
               </div>
-              <div class="align-self-center mx-xl-2 mx-lg-3">
+              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2">
                 <v-text-field
                   background-color="#ffffff"
                   class="input-hour"
@@ -629,11 +629,40 @@
                   outlined
                 ></v-text-field>
               </div>
-              <div class="align-self-center mx-xl-2 mx-lg-3">
-                <v-btn color="#fff" fab class="btn-decreament">+</v-btn>
+              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2 btn-holder">
+                <v-btn color="#F2F3FD" class="btn-decreament" icon>
+                  <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
+                </v-btn>
               </div>
             </div>
           </v-card-subtitle>
+          <!-- Weekly -->
+          <v-card-subtitle class="select-hour mt-5">
+            How many weeks would you like to book for?
+            <div class="d-flex flex-row align-items-center mt-5">
+              <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
+                <v-btn color="#F2F3FD" class="btn-decreament" icon>
+                  <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
+                </v-btn>
+              </div>
+              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2">
+                <v-text-field
+                  background-color="#ffffff"
+                  class="input-hour"
+                  height="47"
+                  hide-details
+                  value="10 weeks"
+                  outlined
+                ></v-text-field>
+              </div>
+              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2 btn-holder">
+                <v-btn color="#F2F3FD" class="btn-decreament" icon>
+                  <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
+                </v-btn>
+              </div>
+            </div>
+          </v-card-subtitle>
+          <!-- Weekly -->
         </v-card>
       </v-dialog>
       <!-- Hire Me Modal -->
@@ -1414,8 +1443,14 @@ export default {
     font-size: 18px;
     line-height: 25px;
     color: #888db1 !important;
-    .btn-decreament {
-     
+    .btn-holder {
+      display: block;
+      width: 47px;
+      height: 47px;
+      background: #f2f3fd;
+      border-radius: 5px;
+      padding: 6px;
+      margin-top: 10px;
     }
     .input-hour {
       border-radius: 10px !important;
