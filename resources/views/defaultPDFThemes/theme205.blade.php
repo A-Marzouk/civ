@@ -209,7 +209,7 @@
         .education .description {
             width: 100%;
             font-size: 16px;
-            line-height: 40px;
+            line-height: 26px;
             color: #6C6C6C;
             margin-top: 22px;
             font-family: 'Gotham Pro', Arial, Helvetica, sans-serif;
@@ -351,7 +351,8 @@
                     </div>
                     <div class="job-title">Fullstack Developer</div>
                     <div class="description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo atque error quisquam distinctio libero voluptatem odit reprehenderit voluptas cumque accusantium.
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo atque error quisquam distinctio libero voluptatem odit reprehenderit voluptas cumque accusantium.</p>
+                        <p>Officiis, deleniti? Assumenda quibusdam praesentium delectus cupiditate, corrupti.</p>
                     </div>
                 </td>
                 <td class="work">
@@ -361,7 +362,8 @@
                     </div>
                     <div class="job-title">Fullstack Developer</div>
                     <div class="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ullam aut praesentium, odit inventore consequatur nemo soluta assumenda nam error?
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ullam aut praesentium, odit inventore consequatur nemo soluta assumenda nam error?</p>
+                        <p>Aspernatur earum possimus incidunt. Excepturi asperiores tenetur illo, blanditiis esse alias.</p>
                     </div>
                 </td>
             </tr>
