@@ -1799,7 +1799,7 @@ export default {
         }
       ],
       available: 0,
-      activeTab: "about", // portfolio
+      activeTab: "portfolio",
       paymentInfo: 0,
       portfolio: [
         {
