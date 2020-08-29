@@ -761,12 +761,7 @@
       <!-- Hire Me Modal -->
 
       <!-- Email modal -->
-      <v-dialog
-        v-model="emailModal"
-        persistent
-        max-width="759"
-        style="border-radius: 40px !important;"
-      >
+      <v-dialog v-model="emailModal" persistent max-width="759" class="email-modal">
         <v-card class="card-email pa-5">
           <div class="d-flex flex-row justify-space-between">
             <div class="modal-title">Message</div>
@@ -779,6 +774,11 @@
           <v-card-text>
             <v-card class="pa-lg-10" flat color="transparent">
               <v-text-field class="email-input" color="#E0BB4C" placeholder="Name"></v-text-field>
+              <v-text-field type="email" class="email-input" color="#E0BB4C" placeholder="Email"></v-text-field>
+              <v-textarea color="#E0BB4C" placeholder="Message"></v-textarea>
+              <v-card-subtitle align="center" class="mt-5">
+                <v-btn color="#FCD259" depressed class="btn-send-mail">Send</v-btn>
+              </v-card-subtitle>
             </v-card>
           </v-card-text>
         </v-card>
@@ -1683,6 +1683,19 @@ export default {
       height: 26px;
     }
   }
+  .btn-send-mail {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000 !important;
+    width: 234px !important;
+    height: 67px !important;
+    box-shadow: 0px 0px 40px rgba(252, 210, 89, 0.24) !important;
+    border-radius: 100px !important;
+    text-transform: capitalize !important;
+  }
 }
 //email modal
 </style>
@@ -1742,12 +1755,26 @@ export default {
       line-height: 29px;
       color: rgba(224, 187, 76, 0.5) !important;
     }
-
     .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
       > .v-input__control
       > .v-input__slot
       fieldset {
       border: 2px solid #000000 !important;
+    }
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+    }
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea::placeholder {
+      color: rgba(224, 187, 76, 0.5) !important;
     }
   }
 }
