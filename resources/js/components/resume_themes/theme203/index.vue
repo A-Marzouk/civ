@@ -762,7 +762,7 @@
 
       <!-- Email modal -->
       <v-dialog v-model="emailModal" persistent max-width="759" class="email-modal">
-        <v-card class="card-email pa-5">
+        <v-card class="card-email pa-sm-6 pa-10">
           <div class="d-flex flex-row justify-space-between">
             <div class="modal-title">Message</div>
             <div>
@@ -771,7 +771,7 @@
               </v-btn>
             </div>
           </div>
-          <v-card-text>
+          <v-card-text class="mt-lg-0 mt-8">
             <v-card class="pa-lg-10" flat color="transparent">
               <v-text-field class="email-input" color="#E0BB4C" placeholder="Name"></v-text-field>
               <v-text-field type="email" class="email-input" color="#E0BB4C" placeholder="Email"></v-text-field>
@@ -1655,6 +1655,10 @@ export default {
     line-height: 18px;
     color: #ffffff !important;
     text-transform: capitalize !important;
+    @media screen and (max-width: 667px){
+      width: 194px !important;
+      height: 55.55px !important;
+    }
   }
 }
 // hire me modal
@@ -1745,6 +1749,10 @@ export default {
       font-size: 24px;
       line-height: 29px;
       color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
     }
 
     .v-text-field input::placeholder {
@@ -1754,13 +1762,22 @@ export default {
       font-size: 24px;
       line-height: 29px;
       color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
     }
-    .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+    .v-text-field > .v-input__control > .v-input__slot > .v-text-field__slot {
+      border-bottom: 2px solid #000000 !important;
+    }
+
+    .v-text-field
       > .v-input__control
       > .v-input__slot
-      fieldset {
-      border: 2px solid #000000 !important;
+      > .v-text-field__slot::before {
+      border-bottom: 2px solid #fcd259 !important;
     }
+
     .theme--light.v-input,
     .theme--light.v-input input,
     .theme--light.v-input textarea {
@@ -1770,11 +1787,24 @@ export default {
       font-size: 24px;
       line-height: 29px;
       color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
     }
     .theme--light.v-input,
     .theme--light.v-input input,
     .theme--light.v-input textarea::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
       color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
     }
   }
 }
