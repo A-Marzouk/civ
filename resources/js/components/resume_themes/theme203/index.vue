@@ -246,6 +246,36 @@
           <v-col cols="12">
             <v-card flat color="transparent" tile style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
+                <!--------------------- About ------------------------------>
+                <v-tab-item>
+                  <v-container>
+                    <v-row justify="center">
+                      <v-col xl="3">
+                        <v-card class="card-portfolio-left" flat color="transparent">
+                          <v-card-subtitle class="dob-text" align="center">
+                            <div>Date Of Birth</div>
+
+                            <div class="mt-3">
+                              <span class>01.14.1990</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle class="dob-text mt-5" align="center">
+                            <div>Nationality</div>
+
+                            <div class="mt-3">
+                              <span class>Moroccan</span>
+                            </div>
+                          </v-card-subtitle>
+                        </v-card>
+                      </v-col>
+                      <v-col cols="4"></v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+
+                <!--------------------- About ------------------------------>
+
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
@@ -837,30 +867,34 @@ export default {
       mainTabs: [
         {
           id: 1,
-          title: "Portfolio",
+          title: "About",
         },
         {
           id: 2,
-          title: "Work",
+          title: "Portfolio",
         },
         {
           id: 3,
-          title: "Education",
+          title: "Work",
         },
         {
           id: 4,
-          title: "Skills",
+          title: "Education",
         },
         {
           id: 5,
-          title: "Hobbies",
+          title: "Skills",
         },
         {
           id: 6,
-          title: "Achievements",
+          title: "Hobbies",
         },
         {
           id: 7,
+          title: "Achievements",
+        },
+        {
+          id: 8,
           title: "References",
         },
       ],
@@ -1040,9 +1074,10 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
-/*@import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");*/
+// @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 /* Shapes */
 .triangle-top-left {
@@ -1702,6 +1737,26 @@ export default {
   }
 }
 //email modal
+
+//portfolio section
+.card-portfolio-left {
+  .dob-text {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900 !important;
+    font-size: 20px;
+    line-height: 19px;
+    color: #1f1f1f !important;
+    span {
+      font-family: "Open Sans" !important;
+      font-weight: 600 !important;
+      font-size: 20px;
+      line-height: 35px;
+      color: #373737;
+    }
+  }
+}
+//portfolio section
 </style>
 
 <style lang="scss">
@@ -1754,8 +1809,6 @@ export default {
         line-height: 25px;
       }
     }
-
-    
 
     .v-text-field input::placeholder {
       font-family: "Montserrat" !important;
