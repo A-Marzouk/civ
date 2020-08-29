@@ -1655,7 +1655,7 @@ export default {
     line-height: 18px;
     color: #ffffff !important;
     text-transform: capitalize !important;
-    @media screen and (max-width: 667px){
+    @media screen and (max-width: 667px) {
       width: 194px !important;
       height: 55.55px !important;
     }
@@ -1755,6 +1755,8 @@ export default {
       }
     }
 
+    
+
     .v-text-field input::placeholder {
       font-family: "Montserrat" !important;
       font-style: normal;
@@ -1767,16 +1769,16 @@ export default {
         line-height: 25px;
       }
     }
-    .v-text-field > .v-input__control > .v-input__slot > .v-text-field__slot {
-      border-bottom: 2px solid #000000 !important;
-    }
+    // .v-text-field > .v-input__control > .v-input__slot > .v-text-field__slot {
+    //   border-bottom: 2px solid #000000 !important;
+    // }
 
-    .v-text-field
-      > .v-input__control
-      > .v-input__slot
-      > .v-text-field__slot::before {
-      border-bottom: 2px solid #fcd259 !important;
-    }
+    // .v-text-field
+    //   > .v-input__control
+    //   > .v-input__slot
+    //   > .v-text-field__slot:focus {
+    //   border-bottom: 2px solid #fcd259 !important;
+    // }
 
     .theme--light.v-input,
     .theme--light.v-input input,
