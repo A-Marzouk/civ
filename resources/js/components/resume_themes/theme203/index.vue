@@ -718,7 +718,7 @@
                 <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
               </div>
 
-              <div class="d-flex flex-row mt-3 justify-content-center">
+              <div class="d-flex flex-row mt-3 justify-content-center" align="center">
                 <div class="payment-logo mx-3 align-self-center">
                   <a href="#">
                     <img
@@ -729,7 +729,7 @@
                     />
                   </a>
                 </div>
-                <div class="payment-logo mt-2 mx-3">
+                <div class="payment-logo mt-2 mx-5">
                   <a href="#">
                     <img
                       @mouseover="paypalHover=true"
