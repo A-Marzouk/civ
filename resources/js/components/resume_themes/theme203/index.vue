@@ -35,7 +35,7 @@
                                   small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-email"
-                                  :href="'mailto:' + currentUser.personal_info.email"
+                                  @click="emailModal=true"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -117,7 +117,7 @@
                       small
                       depressed
                       class="mx-md-1 mx-sm-2 mx-1 btn-email"
-                      :href="'mailto:' + currentUser.personal_info.email"
+                      @click="emailModal=true"
                     >
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
@@ -599,8 +599,14 @@
                   >{{tab.title}}</v-tab>
                 </v-tabs>
               </v-col>
-              <v-col xl="9" lg="9" cols="12" class="mt-xl-n5 mt-lg-n5 mt-n5" :align="windowWidth<=599?'center':'left'">
-                <v-card flat align="center" height="43" class="pa-2" >
+              <v-col
+                xl="9"
+                lg="9"
+                cols="12"
+                class="mt-xl-n5 mt-lg-n5 mt-n5"
+                :align="windowWidth<=599?'center':'left'"
+              >
+                <v-card flat align="center" height="43" class="pa-2">
                   <v-tabs-items v-model="hireMeTab">
                     <v-tab-item class="tab-item">$10</v-tab-item>
                     <v-tab-item class="tab-item">$20</v-tab-item>
@@ -611,7 +617,10 @@
             </v-row>
             <!-- hire me tab -->
           </v-card-subtitle>
-          <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5" :align="windowWidth<=599?'center':'left'">
+          <v-card-subtitle
+            class="select-hour mt-xl-5 mt-lg-2 mt-5"
+            :align="windowWidth<=599?'center':'left'"
+          >
             Select the number of Hours you need per week:
             <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5">
               <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
@@ -641,7 +650,10 @@
             </div>
           </v-card-subtitle>
           <!-- Weekly -->
-          <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5" :align="windowWidth<=599?'center':'left'">
+          <v-card-subtitle
+            class="select-hour mt-xl-5 mt-lg-2 mt-5"
+            :align="windowWidth<=599?'center':'left'"
+          >
             How many weeks would you like to book for?
             <div class="d-flex flex-row align-items-center mt-5">
               <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
@@ -747,6 +759,32 @@
         </v-card>
       </v-dialog>
       <!-- Hire Me Modal -->
+
+      <!-- Email modal -->
+      <v-dialog
+        v-model="emailModal"
+        persistent
+        max-width="759"
+        style="border-radius: 40px !important;"
+      >
+        <v-card class="card-email pa-5">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">Message</div>
+            <div>
+              <v-btn icon depressed class="btn-email-modal-close" @click.stop="emailModal = false">
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <v-card-text>
+            <v-card class="pa-lg-10" flat color="transparent">
+              <v-text-field class="email-input" color="#E0BB4C" placeholder="Name"></v-text-field>
+            </v-card>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+      <!-- Email modal -->
+
       <!-- All Modals  -->
 
       <!-- tab bar row -->
@@ -778,6 +816,7 @@ export default {
       stripeHover: false,
       paypalHover: false,
       hireMeModal: false,
+      emailModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
       hireOptions: [
@@ -1619,6 +1658,33 @@ export default {
   }
 }
 // hire me modal
+
+// email modal
+.card-email {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+    align-self: center;
+    @media screen and (max-width: 667px) {
+      font-size: 18px;
+      line-height: 17px;
+    }
+  }
+  .btn-email-modal-close {
+    width: 41px;
+    height: 41px;
+    @media screen and (max-width: 667px) {
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+//email modal
 </style>
 
 <style lang="scss">
@@ -1655,6 +1721,33 @@ export default {
       > .v-input__slot
       fieldset {
       border: 2px solid #e6e8fc !important;
+    }
+  }
+
+  .card-email {
+    .v-text-field input {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+    }
+
+    .v-text-field input::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: rgba(224, 187, 76, 0.5) !important;
+    }
+
+    .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+      > .v-input__control
+      > .v-input__slot
+      fieldset {
+      border: 2px solid #000000 !important;
     }
   }
 }
