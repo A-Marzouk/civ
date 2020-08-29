@@ -6,7 +6,6 @@ use App\Project;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Artisan;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
@@ -81,21 +80,43 @@ class ProjectsTest extends TestCase
 
     }
 
-//    /** @test */
+    /** @test */
 
-//    public function a_project_requires_a_title(){
-//
-//        $this->withoutExceptionHandling();
-//
-//        $user = factory(User::class)->create();
-//        Passport::actingAs($user);
-//
-//        $projectAttributes = [
-//            'user_id' => $user->id
-//        ];
-//
-//
-//        $this->post('/api/user/projects', $projectAttributes)->assertSessionHasErrors('name');
-//    }
+    public function a_project_requires_a_name(){
+
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        Passport::actingAs($user);
+
+        $projectAttributes  = factory(Project::class)->raw(['name' => '', 'user_id' => $user->id]);
+
+        try{
+            $this->post('/api/user/projects', $projectAttributes);
+        }catch (\Exception $e){
+            $this->assertArrayHasKey('name', $e->errors());
+        }
+
+    }
+
+
+    /** @test */
+
+    public function a_project_requires_a_description(){
+
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        Passport::actingAs($user);
+
+        $projectAttributes  = factory(Project::class)->raw(['description' => '', 'user_id' => $user->id]);
+
+        try{
+            $this->post('/api/user/projects', $projectAttributes);
+        }catch (\Exception $e){
+            $this->assertArrayHasKey('description', $e->errors());
+        }
+
+    }
 
 }
