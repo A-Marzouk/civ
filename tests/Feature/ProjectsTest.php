@@ -119,4 +119,69 @@ class ProjectsTest extends TestCase
 
     }
 
+
+
+    /** @test */
+
+    public function a_project_requires_a_link(){
+
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        Passport::actingAs($user);
+
+        $projectAttributes  = factory(Project::class)->raw(['link' => '', 'user_id' => $user->id]);
+
+        try{
+            $this->post('/api/user/projects', $projectAttributes);
+        }catch (\Exception $e){
+            $this->assertArrayHasKey('link', $e->errors());
+        }
+
+    }
+
+
+
+
+    /** @test */
+
+    public function a_project_requires_skills(){
+
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        Passport::actingAs($user);
+
+        $projectAttributes  = factory(Project::class)->raw(['skills' => '', 'user_id' => $user->id]);
+
+        try{
+            $this->post('/api/user/projects', $projectAttributes);
+        }catch (\Exception $e){
+            $this->assertArrayHasKey('skills', $e->errors());
+        }
+
+    }
+
+
+
+
+    /** @test */
+
+    public function a_project_requires_software(){
+
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        Passport::actingAs($user);
+
+        $projectAttributes  = factory(Project::class)->raw(['software' => '', 'user_id' => $user->id]);
+
+        try{
+            $this->post('/api/user/projects', $projectAttributes);
+        }catch (\Exception $e){
+            $this->assertArrayHasKey('software', $e->errors());
+        }
+
+    }
+
 }
