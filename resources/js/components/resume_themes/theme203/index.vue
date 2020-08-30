@@ -1417,7 +1417,7 @@ export default {
     }
   }
 }
-//portfolio section
+//portfolio section closed
 </style>
 
 <style lang="scss">
