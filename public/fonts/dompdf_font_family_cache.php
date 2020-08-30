@@ -134,4 +134,25 @@
   'roboto bold' => array(
     'normal' => $fontDir . '/roboto-bold-normal_7a20d70e34b99f06c9551defed44b97d',
   ),
+  'gotham pro med' => array(
+    'normal' => $fontDir . '/gotham-pro-med-normal_3e829451277cb2a3ebdafdbcf7560eca',
+  ),
+  'gotham pro' => array(
+    'normal' => $fontDir . '/gotham-pro-normal_d88bf8b2c851fae3cff41abfab98396c',
+  ),
+  'open sans light' => array(
+    'normal' => $fontDir . '/open-sans-light-normal_92a6f93e12b34ea8608c3d29ba623b9b',
+  ),
+  'open sans regular' => array(
+    'normal' => $fontDir . '/open-sans-regular-normal_3828d5fcf583696bd33b46fd22840d4f',
+  ),
+  'open sans medium' => array(
+    'normal' => $fontDir . '/open-sans-medium-normal_d1d3b33f127ad0e6d7aa874869d0dbb2',
+  ),
+  'poppins medium' => array(
+    'normal' => $fontDir . '/poppins-medium-normal_d1d3b33f127ad0e6d7aa874869d0dbb2',
+  ),
+  'poppins regular' => array(
+    'normal' => $fontDir . '/poppins-regular-normal_3828d5fcf583696bd33b46fd22840d4f',
+  ),
 ) ?>

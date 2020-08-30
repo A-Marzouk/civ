@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="203" height="102" viewBox="0 0 203 102">
+  <defs>
+    <filter id="Контур_1300" x="0" y="0" width="1000" height="1000" filterUnits="userSpaceOnUse">
+      <feOffset dx="-2" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feFlood flood-color="#b5b5b5" flood-opacity="0.141"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Сгруппировать_3506" data-name="Сгруппировать 3506" transform="translate(-1665 -75)">
+    <g id="Сгруппировать_831" data-name="Сгруппировать 831" transform="translate(336 33)">
+      <g transform="matrix(1, 0, 0, 1, 1329, 42)" filter="url(#Контур_1300)">
+        <path id="Контур_1300-2" data-name="Контур 1300" d="M10.733,0H150.267C156.195,0,161,2.686,161,6V54c0,3.314-4.805,6-10.733,6H10.733C4.805,60,0,57.314,0,54V6C0,2.686,4.805,0,10.733,0Z" transform="translate(23 11)" fill="#e7e5f6"/>
+      </g>
+    </g>
+    <g id="Сгруппировать_3505" data-name="Сгруппировать 3505" transform="translate(4)">
+      <path id="Icon_material-video-call" data-name="Icon material-video-call" d="M25.5,15.75V10.5A1.5,1.5,0,0,0,24,9H6a1.5,1.5,0,0,0-1.5,1.5v15A1.5,1.5,0,0,0,6,27H24a1.5,1.5,0,0,0,1.5-1.5V20.25l6,6V9.75ZM21,19.5H16.5V24h-3V19.5H9v-3h4.5V12h3v4.5H21Z" transform="translate(1715.5 98)" fill="#5f45ff"/>
+      <text id="Video" transform="translate(1760.02 123)" fill="#5f45ff" font-size="18" font-family="NotoSans-Medium, Noto Sans" font-weight="500"><tspan x="0" y="0">Video</tspan></text>
+    </g>
+  </g>
+</svg>

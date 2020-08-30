@@ -35,7 +35,7 @@
                                   small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-email"
-                                  :href="'mailto:' + currentUser.personal_info.email"
+                                  @click="emailModal=true"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -117,7 +117,7 @@
                       small
                       depressed
                       class="mx-md-1 mx-sm-2 mx-1 btn-email"
-                      :href="'mailto:' + currentUser.personal_info.email"
+                      @click="emailModal=true"
                     >
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
@@ -246,6 +246,36 @@
           <v-col cols="12">
             <v-card flat color="transparent" tile style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
+                <!--------------------- About ------------------------------>
+                <v-tab-item>
+                  <v-container>
+                    <v-row justify="center">
+                      <v-col xl="3">
+                        <v-card class="card-portfolio-left" flat color="transparent">
+                          <v-card-subtitle class="dob-text" align="center">
+                            <div>Date Of Birth</div>
+
+                            <div class="mt-3">
+                              <span class>01.14.1990</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle class="dob-text mt-5" align="center">
+                            <div>Nationality</div>
+
+                            <div class="mt-3">
+                              <span class>Moroccan</span>
+                            </div>
+                          </v-card-subtitle>
+                        </v-card>
+                      </v-col>
+                      <v-col cols="4"></v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+
+                <!--------------------- About ------------------------------>
+
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
@@ -569,10 +599,7 @@
       <!-- All Modals -->
       <!-- Hire Me Modal -->
       <v-dialog v-model="hireMeModal" max-width="567" persistent>
-        <v-card
-          color="#F6F9FF"
-          class="card-hire-me-modal pa-3"
-        >
+        <v-card color="#F6F9FF" class="card-hire-me-modal pa-sm-3 pa-5">
           <div align="right">
             <v-btn icon @click="hireMeModal = close">
               <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
@@ -580,6 +607,7 @@
           </div>
           <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
           <v-card-subtitle>
+            <!-- Hire me tab -->
             <v-row>
               <v-col xl="9" lg="9" cols="12">
                 <v-tabs
@@ -601,8 +629,14 @@
                   >{{tab.title}}</v-tab>
                 </v-tabs>
               </v-col>
-              <v-col xl="9" lg="9" cols="12" class="mt-n5">
-                <v-card flat align="center">
+              <v-col
+                xl="9"
+                lg="9"
+                cols="12"
+                class="mt-xl-n5 mt-lg-n5 mt-n5"
+                :align="windowWidth<=599?'center':'left'"
+              >
+                <v-card flat align="center" height="43" class="pa-2">
                   <v-tabs-items v-model="hireMeTab">
                     <v-tab-item class="tab-item">$10</v-tab-item>
                     <v-tab-item class="tab-item">$20</v-tab-item>
@@ -611,10 +645,176 @@
                 </v-card>
               </v-col>
             </v-row>
+            <!-- hire me tab -->
           </v-card-subtitle>
+          <v-card-subtitle
+            class="select-hour mt-xl-5 mt-lg-2 mt-5"
+            :align="windowWidth<=599?'center':'left'"
+          >
+            Select the number of Hours you need per week:
+            <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5">
+              <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
+                <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentHours()">
+                  <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
+                </v-btn>
+              </div>
+              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2">
+                <v-text-field
+                  background-color="#ffffff"
+                  class="input-hour"
+                  height="47"
+                  hide-details
+                  value="40 hours"
+                  outlined
+                  v-model="inputHour"
+                ></v-text-field>
+              </div>
+              <div
+                class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2 btn-holder"
+                @click="increamentHours()"
+              >
+                <v-btn color="#F2F3FD" class="btn-decreament" icon>
+                  <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
+                </v-btn>
+              </div>
+            </div>
+          </v-card-subtitle>
+          <!-- Weekly -->
+          <v-card-subtitle
+            class="select-hour mt-xl-5 mt-lg-2 mt-5"
+            :align="windowWidth<=599?'center':'left'"
+          >
+            How many weeks would you like to book for?
+            <div class="d-flex flex-row align-items-center mt-5">
+              <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
+                <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentWeek()">
+                  <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
+                </v-btn>
+              </div>
+              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2">
+                <v-text-field
+                  background-color="#ffffff"
+                  class="input-hour"
+                  height="47"
+                  hide-details
+                  value="10 weeks"
+                  outlined
+                  v-model="inputWeek"
+                ></v-text-field>
+              </div>
+              <div class="align-self-center mx-xl-2 mx-lg-3 mx-md-3 mx-sm-2 mx-2 btn-holder">
+                <v-btn color="#F2F3FD" class="btn-decreament" icon @click="increamentWeek()">
+                  <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
+                </v-btn>
+              </div>
+            </div>
+          </v-card-subtitle>
+          <!-- Weekly -->
+
+          <!-- Total Payment -->
+          <v-card-subtitle
+            class="total-payment mt-xl-5 mt-lg-2 mt-5"
+            :align="windowWidth<=599?'center':'left'"
+          >
+            <v-card flat class="card-payment pa-5" align="left">
+              <div class="subtitle">Your total payment will be</div>
+              <div class="total-payment-text">
+                <span class="mr-2">$</span>400
+              </div>
+              <div class="subtitle">10 usd per hour x 40 hours</div>
+            </v-card>
+          </v-card-subtitle>
+          <!-- Total Payment -->
+          <!-- Payment Method -->
+          <v-card-subtitle class="hidden-xs-only">
+            <div class="d-flex flex-row">
+              <div class="payment-logo mx-2 align-self-center">
+                <a href="#">
+                  <img
+                    @mouseover="stripeHover=true"
+                    @mouseleave="stripeHover=false"
+                    :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
+                    alt="Stripe Logo"
+                  />
+                </a>
+              </div>
+              <div class="payment-logo mx-4 align-self-center">
+                <a href="#">
+                  <img
+                    @mouseover="paypalHover=true"
+                    @mouseleave="paypalHover=false"
+                    :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
+                    alt="Paypal Logo"
+                  />
+                </a>
+              </div>
+              <div class="mx-4">
+                <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
+              </div>
+            </div>
+          </v-card-subtitle>
+          <!-- payment method for mobile -->
+          <v-card-subtitle class="hidden-sm-and-up" align="center">
+            <div class="d-flex flex-column" align="center">
+              <div class>
+                <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
+              </div>
+
+              <div class="d-flex flex-row mt-3 justify-content-center" align="center">
+                <div class="payment-logo mx-3 align-self-center">
+                  <a href="#">
+                    <img
+                      @mouseover="stripeHover=true"
+                      @mouseleave="stripeHover=false"
+                      :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
+                      alt="Stripe Logo"
+                    />
+                  </a>
+                </div>
+                <div class="payment-logo mt-2 mx-5">
+                  <a href="#">
+                    <img
+                      @mouseover="paypalHover=true"
+                      @mouseleave="paypalHover=false"
+                      :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
+                      alt="Paypal Logo"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </v-card-subtitle>
+          <!-- payment method for mobile -->
+          <!-- Payment Method -->
         </v-card>
       </v-dialog>
       <!-- Hire Me Modal -->
+
+      <!-- Email modal -->
+      <v-dialog v-model="emailModal" persistent max-width="759" class="email-modal">
+        <v-card class="card-email pa-sm-6 pa-10">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">Message</div>
+            <div>
+              <v-btn icon depressed class="btn-email-modal-close" @click.stop="emailModal = false">
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <v-card-text class="mt-lg-0 mt-8">
+            <v-card class="pa-lg-10" flat color="transparent">
+              <v-text-field class="email-input" color="#E0BB4C" placeholder="Name"></v-text-field>
+              <v-text-field type="email" class="email-input" color="#E0BB4C" placeholder="Email"></v-text-field>
+              <v-textarea color="#E0BB4C" placeholder="Message"></v-textarea>
+              <v-card-subtitle align="center" class="mt-5">
+                <v-btn color="#FCD259" depressed class="btn-send-mail">Send</v-btn>
+              </v-card-subtitle>
+            </v-card>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+      <!-- Email modal -->
+
       <!-- All Modals  -->
 
       <!-- tab bar row -->
@@ -641,7 +841,12 @@ export default {
   },
   data() {
     return {
+      inputHour: 40,
+      inputWeek: 10,
+      stripeHover: false,
+      paypalHover: false,
       hireMeModal: false,
+      emailModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
       hireOptions: [
@@ -662,30 +867,34 @@ export default {
       mainTabs: [
         {
           id: 1,
-          title: "Portfolio",
+          title: "About",
         },
         {
           id: 2,
-          title: "Work",
+          title: "Portfolio",
         },
         {
           id: 3,
-          title: "Education",
+          title: "Work",
         },
         {
           id: 4,
-          title: "Skills",
+          title: "Education",
         },
         {
           id: 5,
-          title: "Hobbies",
+          title: "Skills",
         },
         {
           id: 6,
-          title: "Achievements",
+          title: "Hobbies",
         },
         {
           id: 7,
+          title: "Achievements",
+        },
+        {
+          id: 8,
           title: "References",
         },
       ],
@@ -803,6 +1012,25 @@ export default {
   },
 
   methods: {
+    increamentHours() {
+      this.inputHour++;
+    },
+    decreamentHours() {
+      if (this.inputHour > 0) {
+        this.inputHour--;
+      }
+    },
+
+    increamentWeek() {
+      this.inputWeek++;
+    },
+
+    decreamentWeek() {
+      if (this.inputWeek > 0) {
+        this.inputWeek--;
+      }
+    },
+
     skillSubString(string) {
       let result = string.substring(0, 2);
       return result.toLowerCase();
@@ -846,9 +1074,10 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
-/*@import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");*/
+// @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 /* Shapes */
 .triangle-top-left {
@@ -1362,6 +1591,10 @@ export default {
     background: #ffffff;
     margin-left: 1px;
     margin-right: 1px;
+    @media screen and (max-width: 667px) {
+      font-size: 15px;
+      line-height: 20px;
+    }
   }
   .hire-me-tab-active {
     background: #001ce2 !important;
@@ -1369,6 +1602,10 @@ export default {
     font-size: 18px;
     line-height: 25px;
     color: #ffffff !important;
+    @media screen and (max-width: 667px) {
+      font-size: 15px;
+      line-height: 20px;
+    }
   }
   .custom-tab-round-left {
     border-top-left-radius: 10px;
@@ -1384,11 +1621,145 @@ export default {
     line-height: 25px;
     color: #001ce2 !important;
   }
+
+  .select-hour {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #888db1 !important;
+    .btn-holder {
+      display: block;
+      width: 47px;
+      height: 47px;
+      background: #f2f3fd;
+      border-radius: 5px;
+      padding: 6px;
+      margin-top: 10px;
+    }
+    .input-hour {
+      border-radius: 10px !important;
+      width: 160px;
+      height: 47px;
+    }
+  }
+  // total payment
+  .total-payment {
+    .card-payment {
+      width: 279px;
+      height: 142px;
+      box-shadow: 0px 0px 50px rgba(0, 19, 156, 0.05);
+      border-radius: 10px;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        height: auto;
+      }
+      @media screen and (max-width: 667px) {
+        width: 253px;
+        height: auto;
+      }
+      .subtitle {
+        font-family: "Noto Sans" !important;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 19px;
+        color: #888db1 !important;
+      }
+      .total-payment-text {
+        font-family: "Noto Sans" !important;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 49px;
+        color: #001ce2 !important;
+        span {
+          font-size: 14px;
+          line-height: 19px;
+        }
+      }
+    }
+  }
+  .payment-btn {
+    width: 220px;
+    height: 60px !important;
+    border-radius: 5px !important;
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    color: #ffffff !important;
+    text-transform: capitalize !important;
+    @media screen and (max-width: 667px) {
+      width: 194px !important;
+      height: 55.55px !important;
+    }
+  }
 }
 // hire me modal
+
+// email modal
+.card-email {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+    align-self: center;
+    @media screen and (max-width: 667px) {
+      font-size: 18px;
+      line-height: 17px;
+    }
+  }
+  .btn-email-modal-close {
+    width: 41px;
+    height: 41px;
+    @media screen and (max-width: 667px) {
+      width: 26px;
+      height: 26px;
+    }
+  }
+  .btn-send-mail {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000 !important;
+    width: 234px !important;
+    height: 67px !important;
+    box-shadow: 0px 0px 40px rgba(252, 210, 89, 0.24) !important;
+    border-radius: 100px !important;
+    text-transform: capitalize !important;
+  }
+}
+//email modal
+
+//portfolio section
+.card-portfolio-left {
+  .dob-text {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900 !important;
+    font-size: 20px;
+    line-height: 19px;
+    color: #1f1f1f !important;
+    span {
+      font-family: "Open Sans" !important;
+      font-weight: 600 !important;
+      font-size: 20px;
+      line-height: 35px;
+      color: #373737;
+    }
+  }
+}
+//portfolio section
 </style>
 
-<style>
+<style lang="scss">
 #resumeTheme203 .v-progress-linear__determinate {
   background-color: -moz-linear-gradient(
     138.05deg,
@@ -1402,5 +1773,94 @@ export default {
     #e5bf4e 51.95%,
     #ffde81 89.88%
   ) !important;
+}
+#resumeTheme203 {
+  .v-slide-group__prev.v-slide-group__prev--disabled {
+    display: none !important;
+  }
+  .select-hour {
+    .v-text-field input {
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 25px;
+      color: #888db1 !important;
+      text-align: center !important;
+    }
+    .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+      > .v-input__control
+      > .v-input__slot
+      fieldset {
+      border: 2px solid #e6e8fc !important;
+    }
+  }
+
+  .card-email {
+    .v-text-field input {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+
+    .v-text-field input::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    // .v-text-field > .v-input__control > .v-input__slot > .v-text-field__slot {
+    //   border-bottom: 2px solid #000000 !important;
+    // }
+
+    // .v-text-field
+    //   > .v-input__control
+    //   > .v-input__slot
+    //   > .v-text-field__slot:focus {
+    //   border-bottom: 2px solid #fcd259 !important;
+    // }
+
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+  }
 }
 </style>
