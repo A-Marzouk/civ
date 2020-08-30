@@ -48,12 +48,12 @@
         </v-row>
         <!-- hire me tab -->
       </v-card-subtitle>
-      <v-card-subtitle
-        class="select-hour mt-xl-5 mt-lg-2 mt-5"
-        :align="windowWidth<=599?'center':'left'"
-      >
+      <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5">
         Select the number of Hours you need per week:
-        <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5">
+        <div
+          class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5"
+          :align="windowWidth<=599?'center':'left'"
+        >
           <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
             <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentHours()">
               <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
@@ -81,12 +81,12 @@
         </div>
       </v-card-subtitle>
       <!-- Weekly -->
-      <v-card-subtitle
-        class="select-hour mt-xl-5 mt-lg-2 mt-5"
-        :align="windowWidth<=599?'center':'left'"
-      >
+      <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5">
         How many weeks would you like to book for?
-        <div class="d-flex flex-row align-items-center mt-5">
+        <div
+          class="d-flex flex-row align-items-center mt-5"
+          :align="windowWidth<=599?'center':'left'"
+        >
           <div class="align-self-center mx-xl-2 mx-lg-3 btn-holder">
             <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentWeek()">
               <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
@@ -209,7 +209,7 @@ export default {
       stripeHover: false,
       paypalHover: false,
       hireMeTab: null,
-      hireModal:false,
+      hireModal: false,
       hireOptions: [
         { id: 1, title: "Hourly" },
         { id: 2, title: "Weekly" },
@@ -217,14 +217,14 @@ export default {
       ],
     };
   },
-  watch:{
-    hireMeModal:function(val){
-      if(val == true){
-        this.hireModal = true
-      }else{
-        this.hireModal = false
+  watch: {
+    hireMeModal: function (val) {
+      if (val == true) {
+        this.hireModal = true;
+      } else {
+        this.hireModal = false;
       }
-    }
+    },
   },
   mounted() {
     window.onresize = () => {
