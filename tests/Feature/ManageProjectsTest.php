@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
-class ProjectsTest extends TestCase
+class ManageProjectsTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
@@ -80,6 +80,9 @@ class ProjectsTest extends TestCase
 
     }
 
+
+//   Validation tests:
+
     /** @test */
 
     public function a_project_requires_a_name(){
@@ -120,7 +123,6 @@ class ProjectsTest extends TestCase
     }
 
 
-
     /** @test */
 
     public function a_project_requires_a_link(){
@@ -141,8 +143,6 @@ class ProjectsTest extends TestCase
     }
 
 
-
-
     /** @test */
 
     public function a_project_requires_skills(){
@@ -161,8 +161,6 @@ class ProjectsTest extends TestCase
         }
 
     }
-
-
 
 
     /** @test */
