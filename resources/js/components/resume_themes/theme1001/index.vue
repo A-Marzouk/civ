@@ -46,12 +46,15 @@ export default {
         return;
       }
 
-      if(currentParam.includes('education') || currentParam.includes('experience')){
-        this.activeTab = 'experience-education';
+      if(currentParam.includes('education') ){
+        this.activeTab = 'education';
+      }
+      if( currentParam.includes('work_experience')){
+        this.activeTab = 'work_experience';
       }
 
-      if(currentParam.includes('skills') || currentParam.includes('languages')){
-        this.activeTab = 'skills-languages';
+      if(currentParam.includes('skills') ){
+        this.activeTab = 'skills';
       }
 
       if(currentParam.includes('media') || currentParam.includes('audio') || currentParam.includes('video')){

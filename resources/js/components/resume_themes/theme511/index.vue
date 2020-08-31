@@ -217,7 +217,7 @@
           :hireMeModal="hireMeModal"
           :closePayment="closePayment"
         /> -->
-        <HireModal :hireMeModal="hireMeModal" />
+        <HireModal :hireMeModal="hireMeModal" :closePayment="closePayment" />
         <!-- Payment-dialog-box   -->
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4 mainheight">
           <v-container fluid>
@@ -325,7 +325,7 @@ export default {
       activeTab: "portfolio",
       messageToggle:false,
       hireMeModal: false,
-      hireMeModal:false,
+     
       indexOfActiveTab:0,
       tabs: [
         { name: "Portfolio", value: "portfolio" },
