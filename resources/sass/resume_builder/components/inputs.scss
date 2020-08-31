@@ -30,8 +30,7 @@
         }
     }
 
-    &.civie-select
-    {
+    &.civie-select {
         &.icon-prepended { // Select with prepend icon
             .v-input__slot {
                 .v-input__append-inner {
@@ -231,6 +230,18 @@
         flex-wrap: nowrap !important;
     }
 
+
+    // focused input:
+    &.v-input--is-focused > .v-input__control > .v-input__slot {
+        fieldset {
+            border: 1.95px solid $mainColor;
+        }
+
+        .v-label {
+            color: $mainColor !important;
+        }
+    }
+
     & > .v-input__control > .v-input__slot {
         min-height: 50px !important;
 
@@ -273,7 +284,7 @@
 
                     path {
                         stroke: $mainColor;
-                        color: none;
+                        color: unset;
                         fill: transparent;
                         transition: all 0.3s ease;
                     }
@@ -294,7 +305,7 @@
 
                     path {
                         stroke: $inputTextColor;
-                        color: none;
+                        color: unset;
                         fill: transparent;
                         transition: all 0.3s ease;
                     }
@@ -315,7 +326,7 @@
             &--active {
                 label {
                     transform: none;
-                    color: $mainColor;
+                    color: $mainColor !important;
                 }
             }
         }

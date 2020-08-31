@@ -9,7 +9,7 @@
 
                 <div class="profile-input-field input-field--current-location input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input civie-input"
+                            class="resume-builder__input civie-input eye-up-position"
                             label="Current Location"
                             v-model="personalInfo.location"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_location_active}"
@@ -67,7 +67,7 @@
 
                 <div class="profile-input-field input-field--nationality input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input civie-input"
+                            class="resume-builder__input civie-input eye-up-position"
                             label="Nationality"
                             v-model="personalInfo.nationality"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_nationality_active}"
@@ -113,7 +113,7 @@
 
                 <div class="profile-input-field input-field--hometown input-field--group-2">
                     <v-text-field
-                            class="resume-builder__input civie-input"
+                            class="resume-builder__input civie-input eye-up-position"
                             label="Hometown"
                             v-model="personalInfo.hometown"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_hometown_active}"
@@ -137,7 +137,7 @@
 
                 <div class="profile-input-field input-field--about input-field--group-3">
                     <v-textarea
-                            class="resume-builder__input profile-input civie-textarea"
+                            class="resume-builder__input profile-input civie-textarea eye-up-position"
                             color="#001CE2"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_about_active}"
                             :disabled="false"
@@ -156,7 +156,7 @@
 
                 <div class="profile-input-field input-field--overview input-field--group-3">
                     <v-textarea
-                            class="resume-builder__input profile-input civie-textarea"
+                            class="resume-builder__input profile-input civie-textarea eye-up-position"
                             color="#001CE2"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_overview_active}"
                             :disabled="false"
@@ -175,7 +175,7 @@
 
                 <div class="profile-input-field input-field--quote input-field--group-3">
                     <v-textarea
-                            class="resume-builder__input profile-input civie-textarea"
+                            class="resume-builder__input profile-input civie-textarea eye-up-position"
                             color="#001CE2"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_quote_active}"
                             :disabled="false"
@@ -750,10 +750,6 @@
 
 <style lang="scss">
     .profile .profile-fields .profile-input-field {
-        &.input-field--about .v-input__control {
-            height: 159px;
-        }
-
         .v-textarea.v-text-field--box {
             &.v-text-field--outlined:not(.v-input--dense) textarea,
             &.v-text-field--single-line:not(.v-input--dense) textarea {
@@ -790,5 +786,14 @@
     }
     #resumeBuilder .v-chip--select .v-chip .v-chip--clickable .v-chip--no-color .theme--light .v-size--default {
         margin-left: -7px;
+    }
+</style>
+
+<style lang="scss">
+    .resume-builder__input.civie-textarea.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
+        bottom: 162px;
+    }
+    .resume-builder__input.civie-input.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
+        bottom: 62px;
     }
 </style>

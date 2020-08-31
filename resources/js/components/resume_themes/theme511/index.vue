@@ -14,7 +14,6 @@
                 align-self="center"
               >
                 <v-img
-                  @click.stop="drawer = !drawer"
                   :src="currentUser.personal_info.profile_pic"
                   alt="avatar"
                   style="border-radius: 50%;"
@@ -28,6 +27,19 @@
                     contain
                   ></v-img>
                 </v-btn>
+                <v-btn
+                  fab
+                  color="#39E1AA"
+                  class="msg-btn hidden-sm-and-down"
+                  @click.stop="messageToggle = !messageToggle"
+                  elevation="0"
+                >
+                  <v-img
+                    src="/images/resume_themes/theme511/email.svg"
+                    :max-width="pdfIconSize"
+                    contain
+                  ></v-img>
+                </v-btn>
 
                 <!-- <a
                   href="/preview-pdf-theme-by-code/theme21"
@@ -37,13 +49,18 @@
                   <svg-vue  :icon="'themes.pdf-button-theme511'"></svg-vue>
                 </a> -->
               </v-col>
+              <MessageDialog
+                :messageToggle="messageToggle"
+                :closeDialog="closeDialog"
+              ></MessageDialog>
               <v-navigation-drawer
                 color="rgba(103, 100, 200, 0.95)"
                 v-model="drawer"
                 absolute
                 hide-overlay
                 temporary
-                class="hidden-sm-and-up"
+                :width="drawerWidth"
+                class="hidden-md-and-up"
               >
                 <div class="text-right mt-4">
                   <v-btn text small>
@@ -153,129 +170,62 @@
                     width="200"
                     min-width="60"
                     elevation="0"
-                    @click.stop="paymentToggle = !paymentToggle"
+                    @click.stop="hireMeModal = !hireMeModal"
                   >
-                    <div class="text-capitalize hire-text mr-lg-8">hire me</div>
-                    <v-btn
-                      color="#39E1AA"
-                      class="email"
-                      height="50"
-                      min-width="50"
-                      max-width="50"
-                      elevation="0"
-                      @click.stop="paymentToggle = !paymentToggle"
-                    >
-                      <v-img
-                        src="/images/resume_themes/theme511/email.svg"
-                        contain
-                        max-width="24"
-                        height="24"
-                      ></v-img>
-                    </v-btn>
+                    <div class="text-capitalize hire-text">hire me</div>
                   </v-btn>
                 </div>
+
                 <div class="text-sm-center text-right mt-sm-4 hidden-lg-and-up">
+                  <!-- message button -->
+                  <v-btn
+                    class="email hidden-md-and-up mr-2"
+                    :height="buttonSize"
+                    :max-width="buttonSize"
+                    elevation="0"
+                    fab
+                    @click.stop="messageToggle = !messageToggle"
+                  >
+                    <v-img
+                      src="/images/resume_themes/theme511/emailmob.svg"
+                      contain
+                      :max-width="pdfIconSize"
+                      height="12"
+                    ></v-img>
+                  </v-btn>
+                  <!-- message button -->
+                  <!-- hire me button -->
                   <v-btn
                     class="hire"
                     height="40"
-                    width="135"
+                    width="100"
                     min-width="40"
                     elevation="0"
-                    @click.stop="paymentToggle = !paymentToggle"
+                    @click.stop="hireMeModal = !hireMeModal"
                   >
-                    <div class="text-capitalize hire-text mr-6">hire me</div>
-
-                    <v-btn
-                      color="#39e1aa"
-                      class="email hidden-xs-only"
-                      height="40"
-                      min-width="40"
-                      max-width="40"
-                      elevation="0"
-                      @click.stop="paymentToggle = !paymentToggle"
-                    >
-                      <v-img
-                        src="/images/resume_themes/theme511/email.svg"
-                        contain
-                        max-width="24"
-                        height="24"
-                      ></v-img>
-                    </v-btn>
-                    <v-btn
-                      color="#ffff"
-                      class="email hidden-sm-and-up"
-                      height="40"
-                      min-width="40"
-                      max-width="40"
-                      elevation="0"
-                      @click.stop="paymentToggle = !paymentToggle"
-                    >
-                      <v-img
-                        src="/images/resume_themes/theme511/emailmob.svg"
-                        contain
-                        max-width="24"
-                        height="24"
-                      ></v-img>
-                    </v-btn>
+                    <div class="text-capitalize hire-text">hire me</div>
                   </v-btn>
+                  <!-- hire me button -->
                 </div>
               </v-col>
             </v-row>
           </v-container>
         </v-col>
         <!-- Payment-dialog-box   -->
-        <div>
-          <v-dialog
-            v-model="paymentToggle"
-            fullscreen
-            hide-overlay
-            transition="slide-y-transition"
-          >
-            <v-card class="pa-6">
-              <div class="text-right">
-                <v-btn text fab absolute top right small class="margBtn">
-                  <v-icon
-                    :color="lightMobile"
-                    @click.stop="paymentToggle = !paymentToggle"
-                    >close</v-icon
-                  >
-                </v-btn>
-              </div>
-              <v-container fluid>
-                <v-row no-gutters justify="center">
-                  <v-col cols="12" sm="12" lg="5" class="pa-4">
-                    <div class="paymentBack pt-lg-12 pt-10" align="center">
-                      <v-img
-                        class="pt-lg-12 payment-avatar"
-                        src="/images/resume_themes/theme511/avatar.png"
-                        alt="avatar"
-                        contain
-                      ></v-img>
-                      <div class="pt-lg-12 pt-8 send_payment">
-                        Send payment to
-                      </div>
-                      <div class="pb-lg-12 pb-12 payment_head">
-                        {{ currentUser.personal_info.full_name }}
-                      </div>
-                      <div class="py-lg-12"></div>
-                      <div class="py-lg-12"></div>
-                      <div class="py-lg-6"></div>
-                    </div>
-                  </v-col>
-                  <v-col cols="12" sm="12" lg="7" class="pa-4">
-                    <div class="payment--form-back">
-                      <payment></payment>
-                    </div>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card>
-          </v-dialog>
-        </div>
+        <!-- <payment
+          :currentUser="currentUser"
+          :hireMeModal="hireMeModal"
+          :closePayment="closePayment"
+        /> -->
+        <HireModal :hireMeModal="hireMeModal" />
+        <!-- Payment-dialog-box   -->
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4 mainheight">
           <v-container fluid>
             <v-row justify="center">
-              <v-col lg="10" sm="12" class="hidden-xs-only">
+              <v-col cols="12" class="text-center hidden-md-and-up">
+                <div class="menuText" @click.stop="drawer = !drawer">Menu</div>
+              </v-col>
+              <v-col lg="10" sm="12" class="hidden-sm-and-down">
                 <v-tabs
                   background-color="transparent"
                   :slider-color="sliderColor()"
@@ -349,6 +299,9 @@ import payment from "./payments/payment";
 import Hobbies from "./tabs/Hobbies";
 import References from "./tabs/References";
 import Achievement from "./tabs/Achievement";
+import MessageDialog from "./message/MessageDialog";
+import HireModal from "./payments/HireModal";
+
 export default {
   components: {
     Portfolio,
@@ -360,7 +313,9 @@ export default {
     payment,
     Hobbies,
     References,
-    Achievement
+    Achievement,
+    MessageDialog,
+    HireModal
   },
   props: ["user", "is_preview", "currentTab"],
   data() {
@@ -368,7 +323,9 @@ export default {
       drawer: null,
       currentUser: this.user,
       activeTab: "portfolio",
-      paymentToggle: false,
+      messageToggle:false,
+      hireMeModal: false,
+      hireMeModal:false,
       indexOfActiveTab:0,
       tabs: [
         { name: "Portfolio", value: "portfolio" },
@@ -430,10 +387,42 @@ export default {
         case "xl":
           return "26";
       }
+    },
+    buttonSize(){
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "30px";
+        case "sm":
+          return "40px";
+        case "md":
+          return "40px";
+        case "lg":
+          return "50px";
+        case "xl":
+          return "50px";
+      }
+    },
+    drawerWidth(){
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "300";
+        case "sm":
+          return "400";
+        case "md":
+          return "500";
+      }
     }
   },
 
   methods: {
+   closeDialog(){
+        console.log('closeDialog');
+        this.messageToggle = false;
+      },
+   closePayment(){
+        console.log('closePayment');
+        this.hireMeModal = false;
+      },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
@@ -502,6 +491,7 @@ export default {
   background: url("/images/resume_themes/theme511/back.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 .layer {
   background: #faf7f1;
@@ -550,6 +540,7 @@ export default {
   margin-top: 75px;
   margin-right: 30px;
 }
+
 @media screen and (max-width: 1024px) and (min-width: 700px) {
   .layer {
     background: #faf7f1;
@@ -639,10 +630,9 @@ export default {
   position: relative;
 }
 .email {
-  position: absolute;
-  background: #39e1aa;
+  background: #fff;
+  border: 2px solid #f56068;
   border-radius: 50px;
-  right: -17px;
 }
 
 .hire-text {
@@ -716,6 +706,13 @@ export default {
     height: 50px;
     width: 50px;
   }
+  .msg-btn {
+    position: absolute;
+    right: 0;
+    top: 45px;
+    height: 50px;
+    width: 50px;
+  }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 700px) {
@@ -726,6 +723,13 @@ export default {
       position: absolute;
       right: 0;
       bottom: 15px;
+      height: 50px;
+      width: 50px;
+    }
+    .msg-btn {
+      position: absolute;
+      right: 0;
+      top: 15px;
       height: 50px;
       width: 50px;
     }
@@ -757,8 +761,8 @@ export default {
     color: #000000;
   }
   .hire {
-    background: #ffffff;
-    border: 2px solid #39e1aa;
+    background: #f56068 !important;
+    border: 2px solid #f56068;
     box-sizing: border-box;
     border-radius: 50px;
   }
@@ -770,7 +774,15 @@ export default {
     line-height: 18px;
     /* identical to box height */
 
-    color: #39e1aa;
+    color: #faf7f1;
+  }
+  .menuText {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 34px;
+    color: #f56068;
   }
   .info-text {
     font-family: Poppins;
@@ -797,6 +809,14 @@ export default {
   }
 }
 @media screen and (max-width: 699px) and (min-width: 200px) {
+  .menuText {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: #f56068;
+  }
   .profile-picture {
     position: relative;
 
@@ -850,10 +870,9 @@ export default {
     color: #faf7f1;
   }
   .email {
-    position: absolute;
-    background: #39e1aa;
+    background: #fff;
+    border: 2px solid #f56068;
     border-radius: 50px;
-    right: -19px;
   }
   .info-text {
     font-family: Poppins;

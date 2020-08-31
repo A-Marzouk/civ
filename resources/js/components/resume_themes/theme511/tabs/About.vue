@@ -1,66 +1,58 @@
 <template>
   <v-container fluid v-if="activeTab === 'about'" class="pb-sm-12">
-    <v-row>
-      <v-col lg="12" cols="12" sm="12">
-        <div class="para">
-          {{ user.personal_info.about }}
-        </div>
+    <v-row no-gutters>
+      <v-col lg="2" cols="12" sm="3">
+        <v-row dense>
+          <v-col cols="6" sm="12" lg="12">
+            <div class="left-title">Date of Birth</div>
+            <div class="left-subtitle">01/14/90</div>
+          </v-col>
+          <v-col cols="6" sm="12" lg="12">
+            <div class="left-title">Nationality</div>
+            <div class="left-subtitle">Ukrainian</div>
+          </v-col>
+          <v-col cols="6" sm="12" lg="12">
+            <div class="left-title">Hometown</div>
+            <div class="left-subtitle">Kiev</div>
+          </v-col>
+          <v-col cols="6" sm="12" lg="12">
+            <div class="left-title">Languages</div>
+            <div class="left-subtitle">English</div>
+            <div class="left-subtitle">Arabic</div>
+            <div class="left-subtitle">French</div>
+          </v-col>
+        </v-row>
       </v-col>
-      <v-col cols="12" class="d-sm-block d-none d-lg-none py-4">
-        <div>
-          <v-btn
-            v-for="Userlink in user.links"
-            :key="Userlink.id + '_link'"
-            v-show="Userlink.is_active && Userlink.is_public"
-            :href="Userlink.link"
-            target="_blank"
-            class="socialRed mr-6"
-            fab
-            elevation="0"
-          >
-            <v-img
-              :src="
-                `/images/icons/${Userlink.link_title.toLowerCase()}-icon.svg`
-              "
-              contain
-              max-width="24"
-              height="24"
-            ></v-img>
-          </v-btn>
-        </div>
-      </v-col>
-      <v-col class="hidden-sm-and-up" cols="12">
-        <div class="py-8">
-          <div class="info-text d-inline-block mr-6 mr-sm-2">
-            hour rate
-            <div class="info-rate d-inline-block mx-2 mx-sm-1">$20</div>
-          </div>
-          <div class="info-text d-inline-block">
-            Weekly availability
-            <div class="info-rate d-inline-block mx-2 mx-sm-1">250</div>
-          </div>
-        </div>
-        <div class="follow py-2">Follow me</div>
-        <div class="py-6">
-          <v-btn
-            v-for="Userlink in user.links"
-            :key="Userlink.id + '_link'"
-            v-show="Userlink.is_active && Userlink.is_public"
-            :href="Userlink.link"
-            class="socialGreen mr-6"
-            fab
-            elevation="0"
-          >
-            <v-img
-              :src="
-                `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}Green.svg`
-              "
-              contain
-              max-width="24"
-              height="24"
-            ></v-img>
-          </v-btn>
-        </div>
+      <v-col lg="10" cols="12" sm="9">
+        <v-row no-gutters>
+          <v-col cols="12" class="mb-5 mt-2">
+            <div class="right-title">Overview Sumary</div>
+            <div class="right-subtitle mt-2">
+              В работе дизайнера есть много пространства для креатива, но это
+              только на первый взгляд кажется, что такие специалисты полагаются
+              исключительно на фантазию.
+            </div>
+          </v-col>
+          <v-col cols="12" class="mb-5 mt-2">
+            <div class="right-title">About Me</div>
+            <div class="right-subtitle mt-2">
+              B создавать графический контент. Если речь идет о веб-дизайне,
+              такой специалист должен разбираться в тонкостях интерфейса, чтобы
+              делать его удобным и понятным для пользователя.
+            </div>
+          </v-col>
+          <v-col cols="12" class="mb-5 mt-2">
+            <div class="right-title">Quote</div>
+            <div class="right-subtitle mt-2">
+              "The greatest glory in living lies not in never falling, but in
+              rising every time we fall." -Nelson Mandela
+            </div>
+          </v-col>
+          <v-col cols="12" class="mb-5 mt-2">
+            <div class="right-title">Location</div>
+            <div class="right-subtitle mt-2">Ireland, Dublin</div>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
@@ -83,59 +75,37 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.para {
+.left-title {
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 27px;
-
-  color: #333333;
+  line-height: 25px;
+  color: #39e1aa;
 }
-.socialGreen {
-  background: #fbffff;
-  border: 5px solid #39e1aa;
-  box-sizing: border-box;
-  border-radius: 50px;
-}
-.socialRed {
-  background: #fbffff;
-  border: 5px solid #f56068;
-  box-sizing: border-box;
-  border-radius: 50px;
-}
-.follow {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 18px;
-  /* identical to box height */
-
-  color: #000000;
-}
-.info-text {
+.left-subtitle {
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 12px;
-  line-height: 18px;
-  display: flex;
-  align-items: center;
-  text-transform: uppercase;
-
-  color: #000000;
+  font-size: 24px;
+  line-height: 36px;
+  color: #333333;
 }
-.info-rate {
+.right-title {
   font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 21px;
-  display: flex;
-  align-items: center;
-
-  color: #000000;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 25px;
+  color: #39e1aa;
+}
+.right-subtitle {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  color: #333333;
 }
 @media screen and (max-width: 699px) and (min-width: 200px) {
   .para {
