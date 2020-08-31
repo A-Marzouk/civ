@@ -30,7 +30,7 @@
             <v-col xl="11" lg="11" md="12" sm="12" align="left">
               <div class="d-flex flex-row">
                 <div>
-                  <v-btn icon depressed @click.prevent="playing ? pause() : play()">
+                  <v-btn class="btn-play" icon depressed @click.prevent="playing ? pause() : play()">
                     <img
                       src="/images/resume_themes/theme203/icons/play.svg"
                       v-if="!playing || paused"
@@ -42,7 +42,7 @@
                 <v-progress-linear
                   rounded
                   tile
-                  class="custom-progressbar"
+                  class="custom-progressbar ml-lg-2 mt-lg-2"
                   color="yellow"
                   background-color="#E0E0E0"
                   :value="percentage"
@@ -239,16 +239,7 @@ export default {
   color: #343434 !important;
 }
 .btn-play {
-  width: 54px;
-  height: 54px;
-  @media screen and (max-width: 959px) {
-    width: 73.85;
-    height: 73.85px;
-  }
-  @media screen and (max-width: 599px) {
-    width: 51px;
-    height: 51px;
-  }
+  z-index: 100;
 }
 .custom-progressbar {
   border-radius: 15px !important;
