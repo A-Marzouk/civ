@@ -18,7 +18,7 @@
 					<v-switch v-model="cvAutoUpdate"></v-switch>
 				</div>
 				<div class="refresh" @click="updateIframe('true')">
-					Refresh Your Data <img src="/icons/refresh.svg" alt="">
+					<span>Refresh Your Data</span> <img src="/icons/refresh.svg" alt="">
 				</div>
 			</div>
 
@@ -340,6 +340,10 @@ justify-content: flex-start;
 			}
 			.text{
 				margin-right:10px;
+				@include lt-sm{
+					max-width: 85px;
+					text-align: left;
+				}
 			}
 		}
 		.refresh{
@@ -348,6 +352,9 @@ justify-content: flex-start;
 			@include lt-sm{
 				flex-wrap: wrap;
 				justify-content :center;
+				span{
+					max-width: 65px;
+				}
 			}
 			img{
 				margin-left:10px;
