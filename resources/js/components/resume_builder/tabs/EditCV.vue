@@ -18,7 +18,7 @@
 					<v-switch v-model="cvAutoUpdate"></v-switch>
 				</div>
 				<div class="refresh" @click="updateIframe('true')">
-					<span>Refresh Your Data</span> <img src="/icons/refresh.svg" alt="">
+					<span>Refresh Your Data</span> <img src="/icons/refresh.svg" alt="refresh image" id="refreshImage">
 				</div>
 			</div>
 
@@ -85,13 +85,21 @@ export default {
 			// remove the spinner loader.
 			this.isFrameLoaded = true;
 		},
-		updateIframe(force = 'false'){
-			if(this.cvAutoUpdate || force === 'true'){
+		updateIframe(force = 'false') {
+			if (this.cvAutoUpdate || force === 'true') {
 				this.isFrameLoaded = false;
 				setTimeout(() => {
+					this.rotateImageEffect();
 					this.getThemeUrl();
-				},0);
+				}, 0);
 			}
+		},
+		rotateImageEffect(){
+			let refreshButton = $('#refreshImage') ;
+			refreshButton.addClass('rotate');
+			setTimeout(() => {
+				refreshButton.removeClass('rotate');
+			}, 4000);
 		}
 	},
 
@@ -358,6 +366,10 @@ justify-content: flex-start;
 			}
 			img{
 				margin-left:10px;
+				transition: all 1s;
+			}
+			img.rotate{
+				animation: rotation 2s 2 linear;
 			}
 			&:hover{
 				cursor: pointer;
@@ -404,6 +416,15 @@ justify-content: flex-start;
 					margin-right:30px;
 				}
 			}
+		}
+	}
+
+
+	// keyframes:
+
+	@keyframes rotation {
+		100%{
+			transform: rotate(359deg);
 		}
 	}
 </style>
