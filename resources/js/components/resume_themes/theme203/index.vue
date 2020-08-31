@@ -210,7 +210,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
-                                @click="hireMeModal = true"
+                              @click.stop="hireMeModal = !hireMeModal"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -258,7 +258,7 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">About</div>
                   <v-container>
-                    <v-row justify="left">
+                    <v-row>
                       <v-col
                         xl="3"
                         lg="3"
@@ -681,7 +681,7 @@
           <div class="d-flex flex-row justify-space-between">
             <div class="modal-title">Message</div>
             <div>
-              <v-btn icon depressed class="btn-email-modal-close" @click.stop="emailModal = false">
+              <v-btn icon depressed class="btn-email-modal-close" @click = "emailModal = false">
                 <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
               </v-btn>
             </div>
@@ -700,8 +700,8 @@
       </v-dialog>
       <!-- Email modal -->
       <!-- Audio Modal -->
-      <v-dialog v-model="audioModal" max-width="1710" persistent>
-        <v-card class="card-audio-modal pa-lg-5">
+      <v-dialog v-model="audioModal" max-width="1710" persistent style="overflow-y: hidden !important; overflow-x: hidde">
+        <v-card class="card-audio-modal pa-lg-10">
           <div class="d-flex flex-row justify-space-between">
             <div class="modal-title">My Audio</div>
             <div>
@@ -710,13 +710,12 @@
               </v-btn>
             </div>
           </div>
-          <!-- <audio-player
+          <audio-player
             :modalOpen="audioModal"
-            color="#FC5C8A"
-            v-for="i in 6"
+            v-for="i in 4"
             :key="i"
             file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-          ></audio-player>-->
+          ></audio-player>
         </v-card>
       </v-dialog>
       <!-- Audio Modal -->
@@ -730,7 +729,7 @@
   </v-app>
 </template>
 <script>
-import HireModal from "./hire_me/HireModal";
+import HireModal from "./payment/HireModal";
 import AudioPlayer from "./media/AudioPlayer";
 export default {
   name: "ResumeTheme203",

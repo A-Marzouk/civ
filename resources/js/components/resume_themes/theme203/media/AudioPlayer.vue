@@ -1,8 +1,13 @@
 <template>
-  <v-card flat class="pa-md-0 pa-0" color="transparent">
-    <v-card-text class="ml-xl-6 ml-lg-6">
-      <v-row justify="center" dense class="mt-xl-0 mt-lg-0 mt-md-10 mt-sm-12 mt-10">
-        <v-col xl="1" lg="1" md="1" sm="1" cols="2">
+  <v-card flat class="pa-md-0 pa-0 card-audio" color="transparent">
+    <v-card-text class>
+      <v-row
+        justify="center"
+        align="center"
+        dense
+        class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10"
+      >
+        <!-- <v-col xl="1" lg="1" md="1" sm="1" cols="2">
           <v-btn
             fab
             color="#FC5C8A"
@@ -13,8 +18,8 @@
             <v-icon color="white" x-large v-if="!playing || paused">mdi-play</v-icon>
             <v-icon color="white" x-large v-else>mdi-pause</v-icon>
           </v-btn>
-        </v-col>
-        <v-col xl="11" lg="11" md="11" sm="11" cols="10" align="left" class="mt-n8">
+        </v-col>-->
+        <v-col xl="10" lg="10" md="10" sm="10" cols="10" align="left" class="mt-n8">
           <v-row>
             <v-col xl="6" lg="6" md="6" cols="6">
               <div class="durationTime">{{currentTime}}</div>
@@ -23,15 +28,30 @@
               <div class="durationTime">{{totalDuration | secondToMinHours}}</div>
             </v-col>
             <v-col xl="11" lg="11" md="12" sm="12" align="left">
-              <v-progress-linear
-                class="custom-progressbar"
-                :value="percentage"
-                height="8"
-                :color="color"
-              ></v-progress-linear>
+              <div class="d-flex flex-row">
+                <div>
+                  <v-btn icon depressed @click.prevent="playing ? pause() : play()">
+                    <img src="/images/resume_themes/theme203/icons/play.svg" v-if="!playing || paused"/>
+                    <img src="/images/resume_themes/theme203/icons/pause.svg" v-else />
+                  </v-btn>
+                </div>
+                <v-progress-linear
+                  class="custom-progressbar"
+                  background-color="#E0E0E0"
+                  :value="percentage"
+                  height="8"
+                ></v-progress-linear>
+              </div>
             </v-col>
           </v-row>
-          <audio id="player" ref="player" :modalOpen="modalOpen" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
+          <audio
+            id="player"
+            ref="player"
+            :modalOpen="modalOpen"
+            v-on:ended="ended"
+            v-on:canplay="canPlay"
+            :src="file"
+          ></audio>
         </v-col>
       </v-row>
     </v-card-text>
@@ -56,9 +76,9 @@ export default {
   name: "AudioPlayer",
   components: {},
   props: {
-    modalOpen:{
+    modalOpen: {
       type: Boolean,
-      default:true,
+      default: true,
     },
     color: {
       type: String,
@@ -97,12 +117,12 @@ export default {
     };
   },
 
-  watch:{
-    modalOpen:function(val){
-      if(val== false){
+  watch: {
+    modalOpen: function (val) {
+      if (val == false) {
         this.stop();
       }
-    }
+    },
   },
   methods: {
     setPosition() {
@@ -226,6 +246,33 @@ export default {
 .custom-progressbar {
   @media screen and (min-width: 768px) and (max-width: 959px) {
     height: 12px !important;
+  }
+}
+</style>
+
+<style lang="scss">
+#resumeTheme203 {
+  .card-audio {
+    .v-progress-linear {
+      opacity: 0.7;
+      border-radius: 15px;
+      height: 22px !important;
+    }
+    .v-progress-linear__determinate {
+      background-color: linear-gradient(
+        92.63deg,
+        #fcd259 1.07%,
+        #e5bf4e 51.95%,
+        #ffde81 89.88%
+      );
+      border-color: linear-gradient(
+        92.63deg,
+        #fcd259 1.07%,
+        #e5bf4e 51.95%,
+        #ffde81 89.88%
+      );
+      border-radius: 15px;
+    }
   }
 }
 </style>
