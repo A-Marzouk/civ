@@ -2,13 +2,16 @@
   <v-app>
     <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
-        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab" height="51">
-          <v-tab style="font-weight: 400"
-            class="resume-builder__tab" @click="setSkillCategory(tab)"
-            v-for="tab in tabs"
-            :key="tab"
-          >{{tab.replace('_',' ')}}</v-tab>
-        </v-tabs>
+        <div class="d-flex">
+          <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab" height="51">
+            <v-tab style="font-weight: 400"
+                   class="resume-builder__tab" @click="setSkillCategory(tab)"
+                   v-for="tab in tabs"
+                   :key="tab"
+            >{{tab.replace('_',' ')}}</v-tab>
+          </v-tabs>
+          <tab-switcher currentTabTitle="skills"></tab-switcher>
+        </div>
       </v-card>
       <v-card
         class="card-skill-items pa-sm-5 pa-2 skills-content resume-builder__scroll"
@@ -233,11 +236,13 @@
 <script>
 
 import draggable from "vuedraggable";
+import tabSwitcher from "./includes/TabSwitcher";
 
 export default {
   name: "Skills",
   components: {
-    draggable
+    draggable,
+    'tab-switcher' : tabSwitcher,
   },
   data() {
     return {

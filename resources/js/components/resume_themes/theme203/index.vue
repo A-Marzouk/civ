@@ -35,7 +35,7 @@
                                   small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-email"
-                                  :href="'mailto:' + currentUser.personal_info.email"
+                                  @click="emailModal=true"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -62,6 +62,7 @@
                                   align="center"
                                 >
                                   <img
+                                    class
                                     width="15"
                                     src="/images/resume_themes/theme203/icons/headphones.webp"
                                   />
@@ -116,7 +117,7 @@
                       small
                       depressed
                       class="mx-md-1 mx-sm-2 mx-1 btn-email"
-                      :href="'mailto:' + currentUser.personal_info.email"
+                      @click="emailModal=true"
                     >
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
@@ -201,6 +202,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
+                                @click="hireMeModal = true"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -244,6 +246,36 @@
           <v-col cols="12">
             <v-card flat color="transparent" tile style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
+                <!--------------------- About ------------------------------>
+                <v-tab-item>
+                  <v-container>
+                    <v-row justify="center">
+                      <v-col xl="3">
+                        <v-card class="card-portfolio-left" flat color="transparent">
+                          <v-card-subtitle class="dob-text" align="center">
+                            <div>Date Of Birth</div>
+
+                            <div class="mt-3">
+                              <span class>01.14.1990</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle class="dob-text mt-5" align="center">
+                            <div>Nationality</div>
+
+                            <div class="mt-3">
+                              <span class>Moroccan</span>
+                            </div>
+                          </v-card-subtitle>
+                        </v-card>
+                      </v-col>
+                      <v-col cols="4"></v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+
+                <!--------------------- About ------------------------------>
+
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
@@ -498,21 +530,26 @@
                             :key="index"
                             v-show="achievement.is_public"
                           >
-                            <v-list-item>
-                              <v-list-item-avatar class="achievement-avatar">
-                                <img :src="achievement.image_src" alt="hobby icon" />
-                              </v-list-item-avatar>
-                              <v-list-item-content>
-                                <v-list-item-title class="hobby-title">
-                                  <v-card flat color="transparent">
-                                    <v-card-subtitle class="achievement-title">{{achievement.title}}</v-card-subtitle>
-                                    <v-card-subtitle
-                                      class="achievement-subtitle mt-xl-0 mt-n5"
-                                    >{{achievement.description}}</v-card-subtitle>
-                                  </v-card>
-                                </v-list-item-title>
-                              </v-list-item-content>
-                            </v-list-item>
+                            <div
+                              class="d-flex achievement"
+                              :class="[windowWidth<=1263?'flex-column':'flex-row']"
+                            >
+                              <div :align="windowWidth<=1263?'center':'left'">
+                                <img
+                                  class="mt-5"
+                                  :src="achievement.image_src"
+                                  alt="achievement image"
+                                />
+                              </div>
+                              <v-card flat color="transparent">
+                                <v-card-subtitle
+                                  class="achievement-title"
+                                >{{achievement.title}}{{windowWidth}}</v-card-subtitle>
+                                <v-card-subtitle
+                                  class="achievement-subtitle mt-xl-0 mt-n5"
+                                >{{achievement.description}}</v-card-subtitle>
+                              </v-card>
+                            </div>
                           </v-col>
                         </template>
                       </v-row>
@@ -559,6 +596,37 @@
         </v-row>
       </v-container>
       <!-- ......................................Tab Items .........................-->
+      <!-- All Modals -->
+      <!-- Hire Me Modal -->
+      <hire-modal :hireMeModal="hireMeModal"></hire-modal>
+      <!-- Hire Me Modal -->
+
+      <!-- Email modal -->
+      <v-dialog v-model="emailModal" persistent max-width="759" class="email-modal">
+        <v-card class="card-email pa-sm-6 pa-10">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">Message</div>
+            <div>
+              <v-btn icon depressed class="btn-email-modal-close" @click.stop="emailModal = false">
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <v-card-text class="mt-lg-0 mt-8">
+            <v-card class="pa-lg-10" flat color="transparent">
+              <v-text-field class="email-input" color="#E0BB4C" placeholder="Name"></v-text-field>
+              <v-text-field type="email" class="email-input" color="#E0BB4C" placeholder="Email"></v-text-field>
+              <v-textarea color="#E0BB4C" placeholder="Message"></v-textarea>
+              <v-card-subtitle align="center" class="mt-5">
+                <v-btn color="#FCD259" depressed class="btn-send-mail">Send</v-btn>
+              </v-card-subtitle>
+            </v-card>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+      <!-- Email modal -->
+
+      <!-- All Modals  -->
 
       <!-- tab bar row -->
       <!-- Right Bottom bar -->
@@ -568,8 +636,12 @@
   </v-app>
 </template>
 <script>
+import HireModal from './hire_me/HireModal';
 export default {
   name: "ResumeTheme203",
+  components:{
+    HireModal
+  },
   props: ["user", "is_preview"],
   filters: {
     capitalize: function (value) {
@@ -584,7 +656,10 @@ export default {
   },
   data() {
     return {
+      emailModal: false,
+      windowWidth: window.innerWidth,
       currentUser: this.user,
+      hireMeModal:false,
       socialIcons: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
@@ -593,34 +668,39 @@ export default {
         { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
+     
       progressBarColor: "yellow",
       mainTabs: [
         {
           id: 1,
-          title: "Portfolio",
+          title: "About",
         },
         {
           id: 2,
-          title: "Work",
+          title: "Portfolio",
         },
         {
           id: 3,
-          title: "Education",
+          title: "Work",
         },
         {
           id: 4,
-          title: "Skills",
+          title: "Education",
         },
         {
           id: 5,
-          title: "Hobbies",
+          title: "Skills",
         },
         {
           id: 6,
-          title: "Achievements",
+          title: "Hobbies",
         },
         {
           id: 7,
+          title: "Achievements",
+        },
+        {
+          id: 8,
           title: "References",
         },
       ],
@@ -730,6 +810,9 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
@@ -778,9 +861,10 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
-/*@import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");*/
+// @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 /* Shapes */
 .triangle-top-left {
@@ -879,7 +963,7 @@ export default {
     font-size: 0.6rem !important;
   }
   @media screen and(max-width:599px) {
-    font-size: 0.5rem !important;
+    font-size: 0.56rem !important;
   }
 }
 
@@ -905,6 +989,11 @@ export default {
 .btn-headphone {
   width: 1.87rem !important;
   height: 1.81rem !important;
+  img {
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      margin-left: 1px;
+    }
+  }
 }
 
 /* Social Btn */
@@ -1136,21 +1225,21 @@ export default {
   }
 }
 .hobbies-avatar {
-  min-width: 126.88px !important;
-  min-height: 126.88px !important;
-  height: 126.88px !important;
-  width: 126.88px !important;
+  min-width: 63.44px !important;
+  min-height: 63.44px !important;
+  height: 63.44px !important;
+  width: 63.44px !important;
   @media screen and (max-width: 1903px) and (min-width: 1264px) {
-    min-width: 100px !important;
-    min-height: 100px !important;
-    height: 100px !important;
-    width: 100px !important;
+    min-width: 63.44px !important;
+    min-height: 63.44px !important;
+    height: 63.44px !important;
+    width: 63.44px !important;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 94.16px !important;
-    min-height: 94.16px !important;
-    height: 94.16px !important;
-    width: 94.16px !important;
+    min-width: 47.08px !important;
+    min-height: 47.08px !important;
+    height: 47.08px !important;
+    width: 47.08px !important;
   }
   @media screen and(max-width: 599px) {
     min-width: 45px !important;
@@ -1161,23 +1250,24 @@ export default {
 }
 // hobbies tab
 // achievement tab
-.achievement-avatar {
-  min-width: 152px !important;
-  min-height: 152px !important;
-  height: 152px !important;
-  width: 152px !important;
-  @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 119.1px !important;
-    min-height: 134px !important;
-    height: 134px !important;
-    width: 119.1px !important;
-  }
-  @media screen and (max-width: 599px) {
-    min-width: 76.75px !important;
-    min-height: 87px !important;
-    width: 76.75px !important;
-    height: 87px !important;
-    margin-top: -80px;
+.achievement {
+  img {
+    min-width: 160px !important;
+    min-height: 124px !important;
+    height: 124px !important;
+    width: 160px !important;
+    @media screen and (max-width: 1263px) and (min-width: 600px) {
+      min-width: auto !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: auto !important;
+    }
+    @media screen and (max-width: 959px) {
+      min-width: auto !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: auto !important;
+    }
   }
 }
 .achievement-title {
@@ -1189,7 +1279,10 @@ export default {
   color: #000000 !important;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     font-size: 24px;
-    line-height: 22px;
+    line-height: 36px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    font-size: 22px;
   }
   @media screen and (max-width: 959px) {
     font-size: 40px;
@@ -1264,9 +1357,70 @@ export default {
   }
 }
 // reference tab
+
+
+// email modal
+.card-email {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+    align-self: center;
+    @media screen and (max-width: 667px) {
+      font-size: 18px;
+      line-height: 17px;
+    }
+  }
+  .btn-email-modal-close {
+    width: 41px;
+    height: 41px;
+    @media screen and (max-width: 667px) {
+      width: 26px;
+      height: 26px;
+    }
+  }
+  .btn-send-mail {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000 !important;
+    width: 234px !important;
+    height: 67px !important;
+    box-shadow: 0px 0px 40px rgba(252, 210, 89, 0.24) !important;
+    border-radius: 100px !important;
+    text-transform: capitalize !important;
+  }
+}
+//email modal
+
+//portfolio section
+.card-portfolio-left {
+  .dob-text {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900 !important;
+    font-size: 20px;
+    line-height: 19px;
+    color: #1f1f1f !important;
+    span {
+      font-family: "Open Sans" !important;
+      font-weight: 600 !important;
+      font-size: 20px;
+      line-height: 35px;
+      color: #373737;
+    }
+  }
+}
+//portfolio section closed
 </style>
 
-<style>
+<style lang="scss">
 #resumeTheme203 .v-progress-linear__determinate {
   background-color: -moz-linear-gradient(
     138.05deg,
@@ -1280,5 +1434,94 @@ export default {
     #e5bf4e 51.95%,
     #ffde81 89.88%
   ) !important;
+}
+#resumeTheme203 {
+  .v-slide-group__prev.v-slide-group__prev--disabled {
+    display: none !important;
+  }
+  .select-hour {
+    .v-text-field input {
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 25px;
+      color: #888db1 !important;
+      text-align: center !important;
+    }
+    .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+      > .v-input__control
+      > .v-input__slot
+      fieldset {
+      border: 2px solid #e6e8fc !important;
+    }
+  }
+
+  .card-email {
+    .v-text-field input {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+
+    .v-text-field input::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    // .v-text-field > .v-input__control > .v-input__slot > .v-text-field__slot {
+    //   border-bottom: 2px solid #000000 !important;
+    // }
+
+    // .v-text-field
+    //   > .v-input__control
+    //   > .v-input__slot
+    //   > .v-text-field__slot:focus {
+    //   border-bottom: 2px solid #fcd259 !important;
+    // }
+
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+  }
 }
 </style>
