@@ -248,10 +248,11 @@
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!--------------------- About ------------------------------>
                 <v-tab-item>
+                  <div class="watermark-text text-center">About</div>
                   <v-container>
-                    <v-row justify="center">
-                      <v-col xl="3">
-                        <v-card class="card-portfolio-left" flat color="transparent">
+                    <v-row justify="left">
+                      <v-col xl="3" lg="3">
+                        <v-card class="card-about-left" flat color="transparent">
                           <v-card-subtitle class="dob-text" align="center">
                             <div>Date Of Birth</div>
 
@@ -267,9 +268,56 @@
                               <span class>Moroccan</span>
                             </div>
                           </v-card-subtitle>
+
+                          <v-card-subtitle class="dob-text mt-5" align="center">
+                            <div>Hometown</div>
+
+                            <div class="mt-3">
+                              <span style="text-transform:uppercase;">RABAT</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle class="dob-text mt-5" align="center">
+                            <div>Languages</div>
+
+                            <div class="mt-3 d-flex flex-column">
+                              <span>Arabic</span>
+                              <span>English</span>
+                              <span>French</span>
+                            </div>
+                          </v-card-subtitle>
                         </v-card>
                       </v-col>
-                      <v-col cols="4"></v-col>
+                      <v-col xl="4" lg="7">
+                        <v-card class="card-about-right" flat color="transparent">
+                          <v-card-subtitle class="overview-title">Overview summary</v-card-subtitle>
+                          <!-- Overview -->
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- Overview -->
+
+                          <!-- about me -->
+                          <v-card-subtitle class="overview-title">About Me</v-card-subtitle>
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- about me -->
+
+                          <!-- quote -->
+                          <v-card-subtitle class="overview-title">Quote</v-card-subtitle>
+                          <v-card-text
+                            class="overview-text"
+                          >Born to rise</v-card-text>
+                          <!-- quote -->
+                          <!-- location -->
+                          <v-card-subtitle class="overview-title">Location</v-card-subtitle>
+                          <v-card-text
+                            class="overview-text"
+                          >Ireland, Dublin</v-card-text>
+                          <!-- location -->
+                        </v-card>
+                      </v-col>
                     </v-row>
                   </v-container>
                 </v-tab-item>
@@ -636,11 +684,11 @@
   </v-app>
 </template>
 <script>
-import HireModal from './hire_me/HireModal';
+import HireModal from "./hire_me/HireModal";
 export default {
   name: "ResumeTheme203",
-  components:{
-    HireModal
+  components: {
+    HireModal,
   },
   props: ["user", "is_preview"],
   filters: {
@@ -659,7 +707,7 @@ export default {
       emailModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
-      hireMeModal:false,
+      hireMeModal: false,
       socialIcons: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
@@ -668,7 +716,7 @@ export default {
         { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
-     
+
       progressBarColor: "yellow",
       mainTabs: [
         {
@@ -1358,7 +1406,6 @@ export default {
 }
 // reference tab
 
-
 // email modal
 .card-email {
   border-radius: 40px !important;
@@ -1399,8 +1446,8 @@ export default {
 }
 //email modal
 
-//portfolio section
-.card-portfolio-left {
+//about section
+.card-about-left {
   .dob-text {
     font-family: "Gotham Pro" !important;
     font-style: normal;
@@ -1417,7 +1464,25 @@ export default {
     }
   }
 }
-//portfolio section closed
+.card-about-right {
+  .overview-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 24px;
+    color: #1f1f1f !important;
+  }
+  .overview-text {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 35px;
+    color: #373737 !important;
+  }
+}
+//about section closed
 </style>
 
 <style lang="scss">
