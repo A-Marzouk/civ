@@ -6,8 +6,8 @@
           <v-img :src="img" contain width="65"></v-img>
         </v-col>
         <v-col cols="6">
-          <div class="title-audio-tm903">AUD{{title}}</div>
-          <div class="subtitle-audio-tm903">{{user_name}}</div>
+          <div class="title-audio-tm903">AUD{{ title }}</div>
+          <div class="subtitle-audio-tm903">{{ user_name }}</div>
           <div class="timer-audio-tm903">{{ currentTime }}</div>
         </v-col>
         <v-col cols="3" align="center" justify="center">
@@ -29,7 +29,7 @@
       </v-row>
     </v-card>
     <v-footer
-      style="z-index:500"
+      style="z-index: 500;"
       fixed
       color="#fff"
       class="media-player-tm903 hidden-xs-only"
@@ -44,9 +44,9 @@
             </v-col>
             <v-col sm="12" lg="auto" cols="3">
               <div class="audio-info-903">
-                <span class="title-audio-tm903">AUDIO_{{title}}</span>
+                <span class="title-audio-tm903">AUDIO_{{ title }}</span>
                 <br />
-                <span class="subtitle-audio-tm903">{{user_name}}</span>
+                <span class="subtitle-audio-tm903">{{ user_name }}</span>
               </div>
             </v-col>
             <v-col
@@ -59,7 +59,7 @@
                   color="transparent"
                   rounded
                   class="sliding"
-                  style="cursor:pointer;border-radius: 30px;"
+                  style="cursor: pointer; border-radius: 30px;"
                   @click.native="setPosition()"
                   :disabled="!loaded"
                   v-model="percentage"
@@ -72,7 +72,7 @@
                 <div class="d-flex">
                   <span class="timer-player-903">0:00</span>
                   <v-spacer></v-spacer>
-                  <span class="timer-player-903">{{currentTime}}</span>
+                  <span class="timer-player-903">{{ currentTime }}</span>
                 </div>
               </div>
               <audio
@@ -97,7 +97,7 @@
               color="transparent"
               rounded
               class="sliding"
-              style="cursor:pointer;border-radius: 30px;"
+              style="cursor: pointer; border-radius: 30px;"
               @click.native="setPosition()"
               :disabled="!loaded"
               v-model="percentage"
@@ -110,11 +110,11 @@
             <div class="d-flex">
               <span class="timer-player-903">0:00</span>
               <v-spacer></v-spacer>
-              <span class="timer-player-903">{{currentTime}}</span>
+              <span class="timer-player-903">{{ currentTime }}</span>
             </div>
           </div>
         </v-col>
-        <v-col lg="5" sm="6" cols="12">
+        <v-col lg="4" sm="6" cols="12">
           <div class="d-flex">
             <v-list-item-icon>
               <v-btn icon>
@@ -123,7 +123,7 @@
             </v-list-item-icon>
             <div>
               <v-btn
-                style="margin-left:auto;margin-right:auto;"
+                style="margin-left: auto; margin-right: auto;"
                 height="60"
                 width="60"
                 color="#39E1AA"
@@ -133,7 +133,7 @@
                 <v-icon color="#39E1AA">mdi-chevron-double-left</v-icon>
               </v-btn>
               <v-btn
-                style="margin-left:auto;margin-right:auto;"
+                style="margin-left: auto; margin-right: auto;"
                 elevation="0"
                 height="60"
                 width="60"
@@ -148,7 +148,7 @@
                 <v-icon color="#ffff" large v-else>mdi-pause</v-icon>
               </v-btn>
               <v-btn
-                style="margin-left:auto;margin-right:auto;"
+                style="margin-left: auto; margin-right: auto;"
                 height="60"
                 width="60"
                 color="#39E1AA"
@@ -175,7 +175,7 @@
             <span class="pl-7">2:00:00</span>
           </div>
         </v-col>
-        <v-col class="full-media-player-tm903" sm="2">
+        <v-col class="full-media-player-tm903" sm="2" lg="auto">
           <v-btn icon>
             <v-icon>mdi-fullscreen</v-icon>
           </v-btn>
@@ -183,7 +183,7 @@
       </v-row>
     </v-footer>
     <v-footer
-      style="z-index:500"
+      style="z-index: 500;"
       fixed
       color="#615EBC"
       class="mobile-media-player-tm511 hidden-sm-and-up"
@@ -191,7 +191,7 @@
       <v-container>
         <v-row justify="space-between">
           <v-col cols="3">
-            <div class="subtitle-audio-tm903 white--text">AUD{{title}}</div>
+            <div class="subtitle-audio-tm903 white--text">AUD{{ title }}</div>
           </v-col>
           <v-col cols="5">
             <div>
