@@ -251,9 +251,9 @@
                   <div class="watermark-text text-center">About</div>
                   <v-container>
                     <v-row justify="left">
-                      <v-col xl="3" lg="3">
+                      <v-col xl="3" lg="3" md="3" sm="4" cols="12" order-sm="1" order="12">
                         <v-card class="card-about-left" flat color="transparent">
-                          <v-card-subtitle class="dob-text" align="center">
+                          <v-card-subtitle class="dob-text" :align="windowWidth<=599?'left':'center'">
                             <div>Date Of Birth</div>
 
                             <div class="mt-3">
@@ -261,7 +261,7 @@
                             </div>
                           </v-card-subtitle>
 
-                          <v-card-subtitle class="dob-text mt-5" align="center">
+                          <v-card-subtitle class="dob-text mt-5" :align="windowWidth<=599?'left':'center'">
                             <div>Nationality</div>
 
                             <div class="mt-3">
@@ -269,7 +269,7 @@
                             </div>
                           </v-card-subtitle>
 
-                          <v-card-subtitle class="dob-text mt-5" align="center">
+                          <v-card-subtitle class="dob-text mt-5" :align="windowWidth<=599?'left':'center'">
                             <div>Hometown</div>
 
                             <div class="mt-3">
@@ -277,7 +277,7 @@
                             </div>
                           </v-card-subtitle>
 
-                          <v-card-subtitle class="dob-text mt-5" align="center">
+                          <v-card-subtitle class="dob-text mt-5" :align="windowWidth<=599?'left':'center'">
                             <div>Languages</div>
 
                             <div class="mt-3 d-flex flex-column">
@@ -288,7 +288,7 @@
                           </v-card-subtitle>
                         </v-card>
                       </v-col>
-                      <v-col xl="4" lg="7">
+                      <v-col xl="4" lg="7" md="7" sm="7" cols="12" order-sm="12" order="1">
                         <v-card class="card-about-right" flat color="transparent">
                           <v-card-subtitle class="overview-title">Overview summary</v-card-subtitle>
                           <!-- Overview -->
@@ -306,15 +306,11 @@
 
                           <!-- quote -->
                           <v-card-subtitle class="overview-title">Quote</v-card-subtitle>
-                          <v-card-text
-                            class="overview-text"
-                          >Born to rise</v-card-text>
+                          <v-card-text class="overview-text">Born to rise</v-card-text>
                           <!-- quote -->
                           <!-- location -->
                           <v-card-subtitle class="overview-title">Location</v-card-subtitle>
-                          <v-card-text
-                            class="overview-text"
-                          >Ireland, Dublin</v-card-text>
+                          <v-card-text class="overview-text">Ireland, Dublin</v-card-text>
                           <!-- location -->
                         </v-card>
                       </v-col>
@@ -1455,12 +1451,20 @@ export default {
     font-size: 20px;
     line-height: 19px;
     color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 17px;
+      line-height: 16px;
+    }
     span {
       font-family: "Open Sans" !important;
       font-weight: 600 !important;
       font-size: 20px;
       line-height: 35px;
       color: #373737;
+      @media screen and (max-width: 667px) {
+        font-size: 17px;
+        line-height: 35px;
+      }
     }
   }
 }
@@ -1472,6 +1476,10 @@ export default {
     font-size: 25px;
     line-height: 24px;
     color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 20px;
+      line-height: 19px;
+    }
   }
   .overview-text {
     font-family: "Open Sans" !important;
@@ -1480,6 +1488,10 @@ export default {
     font-size: 20px;
     line-height: 35px;
     color: #373737 !important;
+    @media screen and (max-width: 667px) {
+      font-size: 13px;
+      line-height: 23px;
+    }
   }
 }
 //about section closed
