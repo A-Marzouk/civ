@@ -24,6 +24,9 @@
     <link rel="icon" href="/images/welcome_landing_page/logo/civie_logo_res-01.png" type="image/x-icon">
     <!-- Fonts -->
 
+    {{-- Text prediction google Places API --}}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_PLACE_API_KEY')}}&libraries=places"></script>
+
 </head>
 <body >
     @yield('content')
