@@ -31,12 +31,17 @@
               <div class="d-flex flex-row">
                 <div>
                   <v-btn icon depressed @click.prevent="playing ? pause() : play()">
-                    <img src="/images/resume_themes/theme203/icons/play.svg" v-if="!playing || paused"/>
+                    <img
+                      src="/images/resume_themes/theme203/icons/play.svg"
+                      v-if="!playing || paused"
+                    />
                     <img src="/images/resume_themes/theme203/icons/pause.svg" v-else />
                   </v-btn>
                 </div>
+
                 <v-progress-linear
                   class="custom-progressbar"
+                  color="yellow"
                   background-color="#E0E0E0"
                   :value="percentage"
                   height="8"
@@ -271,7 +276,7 @@ export default {
         #e5bf4e 51.95%,
         #ffde81 89.88%
       );
-      border-radius: 15px;
+      //border-radius: 15px;
     }
   }
 }
