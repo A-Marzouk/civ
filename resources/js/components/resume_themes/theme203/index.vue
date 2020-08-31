@@ -701,14 +701,22 @@
       <!-- Email modal -->
       <!-- Audio Modal -->
       <v-dialog v-model="audioModal" max-width="1710">
-        <v-card class="pa-lg-12">
-          <audio-player
+        <v-card class="card-audio-modal pa-lg-12">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">My Audio</div>
+            <div>
+              <v-btn icon depressed class="btn-audio-modal-close" @click.stop="emailModal = false">
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <!-- <audio-player
             :modalOpen="audioModal"
             color="#FC5C8A"
             v-for="i in 6"
             :key="i"
             file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-          ></audio-player>
+          ></audio-player>-->
         </v-card>
       </v-dialog>
       <!-- Audio Modal -->
@@ -1540,11 +1548,24 @@ export default {
   }
 }
 //about section closed
-.about-hr-line {
-  opacity: 0.6;
-  border: 1px solid #000000;
-  transform: rotate(90deg);
+//audio modal
+.card-audio-modal {
+  .modal-title {
+    font-family: "Gotham Pro" !important; 
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+  }
+  .btn-audio-modal-close {
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
 }
+//audio modal
 </style>
 
 <style lang="scss">
