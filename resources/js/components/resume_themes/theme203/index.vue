@@ -60,6 +60,7 @@
                                   depressed
                                   class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
                                   align="center"
+                                  @click="audioModal=true"
                                 >
                                   <img
                                     class
@@ -132,7 +133,14 @@
                       <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
 
-                    <v-btn fab color="#FCD259" x-small depressed class="btn-headphone mx-1 mx-sm-2">
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      x-small
+                      depressed
+                      class="btn-headphone mx-1 mx-sm-2"
+                      @click="audioModal=true"
+                    >
                       <img
                         width="15"
                         style="margin-left:1px;"
@@ -251,9 +259,21 @@
                   <div class="watermark-text text-center">About</div>
                   <v-container>
                     <v-row justify="left">
-                      <v-col xl="3" lg="3" md="3" sm="4" cols="12" order-sm="1" order="12">
+                      <v-col
+                        xl="3"
+                        lg="3"
+                        md="3"
+                        sm="4"
+                        cols="12"
+                        order-sm="1"
+                        order="12"
+                        class="about-left-column"
+                      >
                         <v-card class="card-about-left" flat color="transparent">
-                          <v-card-subtitle class="dob-text" :align="windowWidth<=599?'left':'center'">
+                          <v-card-subtitle
+                            class="dob-text"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
                             <div>Date Of Birth</div>
 
                             <div class="mt-3">
@@ -261,7 +281,10 @@
                             </div>
                           </v-card-subtitle>
 
-                          <v-card-subtitle class="dob-text mt-5" :align="windowWidth<=599?'left':'center'">
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
                             <div>Nationality</div>
 
                             <div class="mt-3">
@@ -269,7 +292,10 @@
                             </div>
                           </v-card-subtitle>
 
-                          <v-card-subtitle class="dob-text mt-5" :align="windowWidth<=599?'left':'center'">
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
                             <div>Hometown</div>
 
                             <div class="mt-3">
@@ -277,7 +303,10 @@
                             </div>
                           </v-card-subtitle>
 
-                          <v-card-subtitle class="dob-text mt-5" :align="windowWidth<=599?'left':'center'">
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
                             <div>Languages</div>
 
                             <div class="mt-3 d-flex flex-column">
@@ -288,6 +317,7 @@
                           </v-card-subtitle>
                         </v-card>
                       </v-col>
+
                       <v-col xl="4" lg="7" md="7" sm="7" cols="12" order-sm="12" order="1">
                         <v-card class="card-about-right" flat color="transparent">
                           <v-card-subtitle class="overview-title">Overview summary</v-card-subtitle>
@@ -669,7 +699,19 @@
         </v-card>
       </v-dialog>
       <!-- Email modal -->
-
+      <!-- Audio Modal -->
+      <v-dialog v-model="audioModal" max-width="1710">
+        <v-card class="pa-lg-12">
+          <audio-player
+            :modalOpen="audioModal"
+            color="#FC5C8A"
+            v-for="i in 6"
+            :key="i"
+            file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+          ></audio-player>
+        </v-card>
+      </v-dialog>
+      <!-- Audio Modal -->
       <!-- All Modals  -->
 
       <!-- tab bar row -->
@@ -681,10 +723,12 @@
 </template>
 <script>
 import HireModal from "./hire_me/HireModal";
+import AudioPlayer from "./media/AudioPlayer";
 export default {
   name: "ResumeTheme203",
   components: {
     HireModal,
+    AudioPlayer,
   },
   props: ["user", "is_preview"],
   filters: {
@@ -700,6 +744,7 @@ export default {
   },
   data() {
     return {
+      audioModal: false,
       emailModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
@@ -1495,6 +1540,11 @@ export default {
   }
 }
 //about section closed
+.about-hr-line {
+  opacity: 0.6;
+  border: 1px solid #000000;
+  transform: rotate(90deg);
+}
 </style>
 
 <style lang="scss">
