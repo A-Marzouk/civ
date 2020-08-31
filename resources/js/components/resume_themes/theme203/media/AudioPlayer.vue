@@ -20,7 +20,7 @@
           </v-btn>
         </v-col>-->
         <v-col xl="10" lg="10" md="10" sm="10" cols="10" align="left" class="mt-n8">
-          <v-row>
+          <v-row justify="center">
             <v-col xl="6" lg="6" md="6" cols="6">
               <div class="durationTime">{{currentTime}}</div>
             </v-col>
@@ -40,11 +40,13 @@
                 </div>
 
                 <v-progress-linear
+                  rounded
+                  tile
                   class="custom-progressbar"
                   color="yellow"
                   background-color="#E0E0E0"
                   :value="percentage"
-                  height="8"
+                  height="22"
                 ></v-progress-linear>
               </div>
             </v-col>
@@ -249,6 +251,9 @@ export default {
   }
 }
 .custom-progressbar {
+  border-radius: 15px !important;
+  background: #e0e0e0 !important;
+  opacity: 0.7;
   @media screen and (min-width: 768px) and (max-width: 959px) {
     height: 12px !important;
   }
@@ -258,25 +263,8 @@ export default {
 <style lang="scss">
 #resumeTheme203 {
   .card-audio {
-    .v-progress-linear {
-      opacity: 0.7;
-      border-radius: 15px;
-      height: 22px !important;
-    }
     .v-progress-linear__determinate {
-      background-color: linear-gradient(
-        92.63deg,
-        #fcd259 1.07%,
-        #e5bf4e 51.95%,
-        #ffde81 89.88%
-      );
-      border-color: linear-gradient(
-        92.63deg,
-        #fcd259 1.07%,
-        #e5bf4e 51.95%,
-        #ffde81 89.88%
-      );
-      //border-radius: 15px;
+      border-radius: 15px !important;
     }
   }
 }
