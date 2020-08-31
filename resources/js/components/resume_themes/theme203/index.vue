@@ -700,12 +700,12 @@
       </v-dialog>
       <!-- Email modal -->
       <!-- Audio Modal -->
-      <v-dialog v-model="audioModal" max-width="1710">
-        <v-card class="card-audio-modal pa-lg-12">
+      <v-dialog v-model="audioModal" max-width="1710" persistent>
+        <v-card class="card-audio-modal pa-lg-5">
           <div class="d-flex flex-row justify-space-between">
             <div class="modal-title">My Audio</div>
             <div>
-              <v-btn icon depressed class="btn-audio-modal-close" @click.stop="emailModal = false">
+              <v-btn icon depressed class="btn-audio-modal-close" @click.stop="audioModal = false">
                 <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
               </v-btn>
             </div>
@@ -1550,6 +1550,7 @@ export default {
 //about section closed
 //audio modal
 .card-audio-modal {
+  border-radius: 40px !important;
   .modal-title {
     font-family: "Gotham Pro" !important; 
     font-style: normal;
