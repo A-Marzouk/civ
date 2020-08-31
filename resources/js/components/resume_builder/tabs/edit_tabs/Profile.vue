@@ -637,10 +637,6 @@
 
 <style lang="scss">
     .profile .profile-fields .profile-input-field {
-        &.input-field--about .v-input__control {
-            height: 159px;
-        }
-
         .v-textarea.v-text-field--box {
             &.v-text-field--outlined:not(.v-input--dense) textarea,
             &.v-text-field--single-line:not(.v-input--dense) textarea {
