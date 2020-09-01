@@ -701,7 +701,7 @@
       <!-- Email modal -->
       <!-- Audio Modal -->
       <v-dialog v-model="audioModal" max-width="1710" persistent style="overflow-y: hidden !important; overflow-x: hidde">
-        <v-card class="card-audio-modal pa-lg-10">
+        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
           <div class="d-flex flex-row justify-space-between">
             <div class="modal-title">My Audio</div>
             <div>

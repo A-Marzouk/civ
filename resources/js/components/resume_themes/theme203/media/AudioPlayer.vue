@@ -1,26 +1,50 @@
 <template>
   <v-card flat class="pa-md-0 pa-0 card-audio" color="transparent">
     <v-card-text class>
-      <v-row
-        justify="center"
-        align="center"
-        dense
-        class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10"
-      >
-        <!-- <v-col xl="1" lg="1" md="1" sm="1" cols="2">
-          <v-btn
-            fab
-            color="#FC5C8A"
-            class="btn-play"
-            depressed
-            @click.prevent="playing ? pause() : play()"
-          >
-            <v-icon color="white" x-large v-if="!playing || paused">mdi-play</v-icon>
-            <v-icon color="white" x-large v-else>mdi-pause</v-icon>
-          </v-btn>
-        </v-col>-->
-        <v-col xl="10" lg="10" md="10" sm="10" cols="10" align="left" class="mt-n8">
-          <v-row justify="center">
+      <v-row dense class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10">
+        <v-col xl="11" lg="10" md="10" sm="10" cols="10" align="left">
+          <v-list-item color="transparent">
+            <v-list-item-icon class="mr-n1">
+              <div>
+                <v-btn class="btn-play" icon depressed @click.prevent="playing ? pause() : play()">
+                  <img
+                    src="/images/resume_themes/theme203/icons/play.svg"
+                    v-if="!playing || paused"
+                  />
+                  <img src="/images/resume_themes/theme203/icons/pause.svg" v-else />
+                </v-btn>
+              </div>
+            </v-list-item-icon>
+            <v-list-item-content class="mt-xl-n12 mt-lg-n12 mt-md-n12 mt-sm-n12 mt-n12">
+              <v-list-item-subtitle class="mt-4">
+                <v-row no-gutters>
+                  <v-col cols="1" class="ml-n12"></v-col>
+                  <v-col cols="5" class="durationTime">
+                    <span class="mb-n4">
+                      <v-card flat color="transparent">{{ currentTime }}</v-card>
+                    </span>
+                  </v-col>
+                  <v-col cols="6" class="durationTime" align="right">
+                    <span class="mb-n4">
+                      <v-card flat color="transparent">{{ totalDuration | secondToMinHours }}</v-card>
+                    </span>
+                  </v-col>
+                </v-row>
+              </v-list-item-subtitle>
+              <v-list-item-subtitle>
+                <v-progress-linear
+                  rounded
+                  tile
+                  class="custom-progressbar"
+                  color="yellow"
+                  background-color="#E0E0E0"
+                  :value="percentage"
+                  height="22"
+                ></v-progress-linear>
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+          <!-- <v-row justify="center">
             <v-col xl="6" lg="6" md="6" cols="6">
               <div class="durationTime">{{currentTime}}</div>
             </v-col>
@@ -50,7 +74,7 @@
                 ></v-progress-linear>
               </div>
             </v-col>
-          </v-row>
+          </v-row>-->
           <audio
             id="player"
             ref="player"
