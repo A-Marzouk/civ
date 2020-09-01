@@ -1597,6 +1597,19 @@ export default {
   top:-30%;
   bottom: 0;
   margin:auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px){
+    font-size: 200px;
+    top: -60%;
+  }
+  @media screen and (min-width: 668px) and (max-width: 959px){
+    font-size: 150px;
+    top: -70%;
+  }
+  @media screen and (max-width: 667px){
+    font-size: 100px;
+    top: -70%;
+  }
+  
 }
 </style>
 
