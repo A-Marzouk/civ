@@ -275,15 +275,10 @@ export default {
       #e5bf4e 51.95%,
       #ffde81 89.88%
     ) !important;
-    background-size: 35px 35px;
-    transition: width 4s ease-in-out;
     height: 100%;
     width: 100%;
-    border-radius: 15px !important;
+    //border-radius: 15px !important;
   }
-  .v-progress-linear__determinate.yellow:after {
-    -webkit-animation: cssProgressActive 2s linear infinite;
-    animation: cssProgressActive 2s linear infinite;
-  }
+
 }
 </style>
