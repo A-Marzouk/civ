@@ -725,12 +725,14 @@
             </div>
           </div>
           <div class="watermark-text-modal">Audio</div>
-          <audio-player
-            :modalOpen="audioModal"
-            v-for="i in 4"
-            :key="i"
-            file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-          ></audio-player>
+          <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
+            <audio-player
+              :modalOpen="audioModal"
+              v-for="i in 6"
+              :key="i"
+              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+            ></audio-player>
+          </VueSlickCarousel>
         </v-card>
       </v-dialog>
 
@@ -847,6 +849,14 @@ export default {
             },
           },
         ],
+      },
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3,
       },
       mainTabs: [
         {
@@ -1817,8 +1827,8 @@ export default {
     }
   }
 
-  .slick-dots{
-    @media screen and (min-width: 960px) and (max-width: 1263px){
+  .slick-dots {
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
       margin-bottom: 20px;
     }
   }
@@ -1833,15 +1843,15 @@ export default {
     background: #fcd259 !important;
   }
 }
-#resumeTheme203 .video-slick .slick-list{
+#resumeTheme203 .video-slick .slick-list {
   padding-bottom: 50px;
-  @media screen and (min-width: 1264px) and (max-width: 1903px){
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
     padding-bottom: 40px;
   }
-  @media screen and (min-width: 600px) and (max-width:959px){
+  @media screen and (min-width: 600px) and (max-width: 959px) {
     padding-bottom: 30px;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     padding-bottom: 15px;
   }
 }
