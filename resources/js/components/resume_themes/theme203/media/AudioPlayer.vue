@@ -41,7 +41,7 @@
                   rounded
                   tile
                   class="custom-progressbar"
-                  color="yellow"
+                  color="transparent"
                   background-color="#E0E0E0"
                   :value="percentage"
                   height="22"
@@ -259,26 +259,27 @@ export default {
 
 <style lang="scss">
 #resumeTheme203 {
-  .v-progress-linear__determinate.yellow {
-    overflow: hidden;
-    position: absolute;
+  .card-audio {
+    .v-progress-linear__determinate {
+      overflow: hidden;
+      position: absolute;
+    }
+    .v-progress-linear__determinate:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: linear-gradient(
+        92.63deg,
+        #fcd259 1.07%,
+        #e5bf4e 51.95%,
+        #ffde81 89.88%
+      ) !important;
+      height: 100%;
+      width: 100%;
+      border-radius: 15px !important;
+    }
   }
-  .v-progress-linear__determinate.yellow:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-image: linear-gradient(
-      92.63deg,
-      #fcd259 1.07%,
-      #e5bf4e 51.95%,
-      #ffde81 89.88%
-    ) !important;
-    height: 100%;
-    width: 100%;
-    //border-radius: 15px !important;
-  }
-
 }
 </style>
