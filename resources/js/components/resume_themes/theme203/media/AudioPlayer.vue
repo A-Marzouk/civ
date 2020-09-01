@@ -25,7 +25,7 @@
                       <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
                     </span>
                   </v-col>
-                  <v-col cols="6" align="right" class="ml-xl-9">
+                  <v-col cols="6" align="right" class="ml-xl-9 ml-lg-7">
                     <span class="mb-n4">
                       <v-card
                         flat
