@@ -210,7 +210,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
-                              @click.stop="hireMeModal = !hireMeModal"
+                                @click.stop="hireMeModal = !hireMeModal"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -681,7 +681,7 @@
           <div class="d-flex flex-row justify-space-between">
             <div class="modal-title">Message</div>
             <div>
-              <v-btn icon depressed class="btn-email-modal-close" @click = "emailModal = false">
+              <v-btn icon depressed class="btn-email-modal-close" @click="emailModal = false">
                 <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
               </v-btn>
             </div>
@@ -700,24 +700,37 @@
       </v-dialog>
       <!-- Email modal -->
       <!-- Audio Modal -->
-      <v-dialog v-model="audioModal" max-width="1710" persistent style="overflow-y: hidden !important; overflow-x: hidde">
-        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
-          <div class="d-flex flex-row justify-space-between">
-            <div class="modal-title">My Audio</div>
-            <div>
-              <v-btn icon depressed class="btn-audio-modal-close" @click.stop="audioModal = false">
-                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
-              </v-btn>
+      <div class="div-audio-modal">
+        <v-dialog
+          v-model="audioModal"
+          max-width="1710"
+          persistent
+          style="overflow-y: hidden !important; overflow-x: hidde"
+        >
+          <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
+            <div class="d-flex flex-row justify-space-between">
+              <div class="modal-title">My Audio</div>
+              <div>
+                <v-btn
+                  icon
+                  depressed
+                  class="btn-audio-modal-close"
+                  @click.stop="audioModal = false"
+                >
+                  <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+                </v-btn>
+              </div>
             </div>
-          </div>
-          <audio-player
-            :modalOpen="audioModal"
-            v-for="i in 4"
-            :key="i"
-            file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-          ></audio-player>
-        </v-card>
-      </v-dialog>
+            <div class="watermark-text-modal">Audio</div>
+            <audio-player
+              :modalOpen="audioModal"
+              v-for="i in 4"
+              :key="i"
+              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+            ></audio-player>
+          </v-card>
+        </v-dialog>
+      </div>
       <!-- Audio Modal -->
       <!-- All Modals  -->
 
@@ -1551,7 +1564,7 @@ export default {
 .card-audio-modal {
   border-radius: 40px !important;
   .modal-title {
-    font-family: "Gotham Pro" !important; 
+    font-family: "Gotham Pro" !important;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
@@ -1566,6 +1579,25 @@ export default {
   }
 }
 //audio modal
+.watermark-text-modal {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right:0;
+  left:0;
+  top:-30%;
+  bottom: 0;
+  margin:auto;
+}
 </style>
 
 <style lang="scss">
