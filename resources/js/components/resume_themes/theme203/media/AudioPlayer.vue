@@ -3,7 +3,7 @@
     <v-card-subtitle class="durationTime mb-lg-n12 mb-md-n8 mb-n12">Audio-1</v-card-subtitle>
     <v-card-text class>
       <v-row dense class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10 mb-xl-0 mb-lg-n12 mb-mb-0">
-        <v-col xl="11" lg="11" md="11" sm="10" cols="10" align="left">
+        <v-col xl="11" lg="11" md="11" sm="11" cols="12" align="left">
           <v-list-item color="transparent">
             <v-list-item-icon class="mr-n1">
               <div>
@@ -16,7 +16,7 @@
                 </v-btn>
               </div>
             </v-list-item-icon>
-            <v-list-item-content class="mt-xl-n12 mt-lg-n12 mt-md-n12 mt-sm-n12 mt-n12">
+            <v-list-item-content class="mt-xl-n12 mt-lg-n12 mt-md-n10 mt-sm-n10 mt-n10">
               <v-list-item-subtitle class="mt-4">
                 <v-row no-gutters>
                   <v-col cols="1" class="ml-lg-n12 ml-md-n7"></v-col>
@@ -284,9 +284,6 @@ export default {
   border-radius: 15px !important;
   background: #e0e0e0 !important;
   opacity: 0.7;
-  @media screen and (min-width: 768px) and (max-width: 959px) {
-    height: 12px !important;
-  }
 }
 </style>
 
