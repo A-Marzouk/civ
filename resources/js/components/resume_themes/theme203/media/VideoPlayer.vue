@@ -72,7 +72,7 @@ export default {
 
 <style scoped lang="scss">
 .btn-play {
-  img{
+  img {
     width: 72px;
     height: 71.01px;
   }
@@ -164,3 +164,4 @@ export default {
   display: none;
 }
 </style>
+

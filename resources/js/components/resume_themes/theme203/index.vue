@@ -1811,13 +1811,17 @@ export default {
       }
     }
   }
-  // .card-video-modal{
-  //   .slick-slider{
-  //     padding-left: 100px;
-  //     @media screen and (min-width:1264px) and (max-width: 1903px){
-  //       padding-left: 110px;
-  //     }
-  //   }
-  // }
+
+  .card-video-modal {
+    .slick-dots li{
+      width: 18px;
+      height: 18px;
+      background: rgba(252, 210, 89, 0.3) !important;
+      border-radius: 50%;
+    }
+    .slick-dots li.slick-active button{
+      background: #FCD259 !important;
+    }
+  }
 }
 </style>
