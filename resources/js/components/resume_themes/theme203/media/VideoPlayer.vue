@@ -5,7 +5,7 @@
         <img src="/images/resume_themes/theme200/preview1.png" />
         <v-overlay absolute="true" :value="overlay" color="#6152CF" class="video-overlay">
           <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
-            <v-icon x-large color="#6152CF">mdi-play</v-icon>
+            <img src="/images/resume_themes/theme203/icons/play.svg" alt="play button" />
           </v-btn>
         </v-overlay>
       </div>
@@ -72,15 +72,9 @@ export default {
 
 <style scoped lang="scss">
 .btn-play {
-  width: 54px;
-  height: 54px;
-  @media screen and (max-width: 959px) {
-    width: 73.85;
-    height: 73.85px;
-  }
-  @media screen and (max-width: 599px) {
-    width: 51px;
-    height: 51px;
+  img{
+    width: 72px;
+    height: 71.01px;
   }
 }
 .card-video {

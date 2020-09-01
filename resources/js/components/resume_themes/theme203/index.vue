@@ -743,15 +743,15 @@
         persistent
         style="overflow-y: hidden !important; overflow-x: hidden !important;"
       >
-        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
+        <v-card class="card-video-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
           <div class="d-flex flex-row justify-space-between">
-            <div class="modal-title">My Audio</div>
+            <div class="modal-title">My Video</div>
             <div>
               <v-btn
                 icon
                 depressed
                 class="btn-audio-modal-close"
-                @click="audioModal = false"
+                @click="videoModal = false"
                 style="z-index: 100;"
               >
                 <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
@@ -759,12 +759,14 @@
             </div>
           </div>
           <div class="watermark-text-modal">Video</div>
-          <video-player
-            v-for="i in 2"
-            :key="i"
-            :modalOpen="videoModal"
-            link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-          ></video-player>
+          <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
+            <video-player
+              v-for="i in 6"
+              :key="i"
+              :modalOpen="videoModal"
+              link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            ></video-player>
+          </VueSlickCarousel>
         </v-card>
       </v-dialog>
       <!-- Video Modal -->
@@ -780,7 +782,7 @@
 <script>
 import HireModal from "./payment/HireModal";
 import AudioPlayer from "./media/AudioPlayer";
-import VideoPlayer from './media/VideoPlayer';
+import VideoPlayer from "./media/VideoPlayer";
 import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
@@ -820,6 +822,40 @@ export default {
       mainDataTab: null,
 
       progressBarColor: "yellow",
+      slickOptionsVideoModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 2,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+        ],
+      },
       mainTabs: [
         {
           id: 1,
@@ -1620,6 +1656,24 @@ export default {
     }
   }
 }
+
+.card-video-modal {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+  }
+  .btn-audio-modal-close {
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
 //audio modal
 .watermark-text-modal {
   font-family: "Gotham Pro" !important;
@@ -1757,5 +1811,13 @@ export default {
       }
     }
   }
+  // .card-video-modal{
+  //   .slick-slider{
+  //     padding-left: 100px;
+  //     @media screen and (min-width:1264px) and (max-width: 1903px){
+  //       padding-left: 110px;
+  //     }
+  //   }
+  // }
 }
 </style>
