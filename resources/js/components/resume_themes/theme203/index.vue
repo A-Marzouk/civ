@@ -737,28 +737,20 @@
       <!-- Audio Modal -->
 
       <!-- Video Modal -->
-      <v-dialog
-        v-model="videoModal"
-        max-width="1710"
-        persistent
-        style="overflow-y: hidden !important; overflow-x: hidden !important;"
-      >
-        <v-card class="card-video-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
-          <div class="d-flex flex-row justify-space-between">
-            <div class="modal-title">My Video</div>
-            <div>
-              <v-btn
-                icon
-                depressed
-                class="btn-audio-modal-close"
-                @click="videoModal = false"
-                style="z-index: 100;"
-              >
-                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
-              </v-btn>
-            </div>
-          </div>
-          <div class="watermark-text-modal">Video</div>
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+          <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
+            <v-btn
+              color="transparent"
+              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
+              icon
+              @click.stop="videoModal=false"
+              depressed
+            >
+              <img src="/images/resume_themes/theme203/icons/email-close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+
           <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
             <video-player
               v-for="i in 6"
@@ -1657,23 +1649,36 @@ export default {
   }
 }
 
-.card-video-modal {
-  border-radius: 40px !important;
-  .modal-title {
-    font-family: "Gotham Pro" !important;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 30px;
-    line-height: 29px;
-    color: #000000 !important;
+.card-modal-video-holder {
+  height: 850px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    height: 700px;
   }
-  .btn-audio-modal-close {
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    height: auto;
+  }
+  @media screen and (max-width: 959px) {
+    height: 1250px;
+  }
+  @media screen and (max-width: 599px) {
+    height: 770px;
+  }
+  .btn-video-close {
     img {
-      width: 32px;
-      height: 32px;
+      width: 50px;
+      height: 50px;
+      @media screen and (max-width: 959px) {
+        width: 63px;
+        height: 62px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 38px;
+        height: 38px;
+      }
     }
   }
 }
+
 //audio modal
 .watermark-text-modal {
   font-family: "Gotham Pro" !important;
@@ -1812,16 +1817,32 @@ export default {
     }
   }
 
-  .card-video-modal {
-    .slick-dots li{
-      width: 18px;
-      height: 18px;
-      background: rgba(252, 210, 89, 0.3) !important;
-      border-radius: 50%;
+  .slick-dots{
+    @media screen and (min-width: 960px) and (max-width: 1263px){
+      margin-bottom: 20px;
     }
-    .slick-dots li.slick-active button{
-      background: #FCD259 !important;
-    }
+  }
+
+  .slick-dots li {
+    width: 18px;
+    height: 18px;
+    background: rgba(252, 210, 89, 0.3) !important;
+    border-radius: 50%;
+  }
+  .slick-dots li.slick-active button {
+    background: #fcd259 !important;
+  }
+}
+#resumeTheme203 .video-slick .slick-list{
+  padding-bottom: 50px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    padding-bottom: 40px;
+  }
+  @media screen and (min-width: 600px) and (max-width:959px){
+    padding-bottom: 30px;
+  }
+  @media screen and (max-width: 599px){
+    padding-bottom: 15px;
   }
 }
 </style>

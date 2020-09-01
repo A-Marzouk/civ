@@ -73,8 +73,8 @@ export default {
 <style scoped lang="scss">
 .btn-play {
   img {
-    width: 72px;
-    height: 71.01px;
+    width: 72px !important;
+    height: 71.01px !important;
   }
 }
 .card-video {
@@ -82,10 +82,10 @@ export default {
   width: 781px;
   height: 541.31px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    height: 90%;
+    height: auto;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
-    height: 80%;
+    height: 70%;
   }
   @media screen and (max-width: 959px) {
     height: auto;
