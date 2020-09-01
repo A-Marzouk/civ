@@ -1,9 +1,9 @@
 <template>
   <v-card flat class="pa-xl-0 pa-lg-5 pa-md-0 pa-0 card-audio" color="transparent">
-    <v-card-subtitle class="durationTime mb-n12">Audio-1</v-card-subtitle>
+    <v-card-subtitle class="durationTime mb-lg-n12 mb-md-n8 mb-n12">Audio-1</v-card-subtitle>
     <v-card-text class>
-      <v-row dense class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10 mb-xl-0 mb-md-n12">
-        <v-col xl="11" lg="10" md="10" sm="10" cols="10" align="left">
+      <v-row dense class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10 mb-xl-0 mb-lg-n12 mb-mb-0">
+        <v-col xl="11" lg="11" md="11" sm="10" cols="10" align="left">
           <v-list-item color="transparent">
             <v-list-item-icon class="mr-n1">
               <div>
@@ -19,7 +19,7 @@
             <v-list-item-content class="mt-xl-n12 mt-lg-n12 mt-md-n12 mt-sm-n12 mt-n12">
               <v-list-item-subtitle class="mt-4">
                 <v-row no-gutters>
-                  <v-col cols="1" class="ml-n12"></v-col>
+                  <v-col cols="1" class="ml-lg-n12 ml-md-n7"></v-col>
                   <v-col cols="5">
                     <span class="mb-n4">
                       <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
@@ -27,7 +27,11 @@
                   </v-col>
                   <v-col cols="6" align="right">
                     <span class="mb-n4">
-                      <v-card flat color="transparent" class="durationTime">{{ totalDuration | secondToMinHours }}</v-card>
+                      <v-card
+                        flat
+                        color="transparent"
+                        class="durationTime"
+                      >{{ totalDuration | secondToMinHours }}</v-card>
                     </span>
                   </v-col>
                 </v-row>
@@ -269,6 +273,12 @@ export default {
 }
 .btn-play {
   z-index: 100;
+  img {
+    @media screen and (max-width: 1263px) {
+      width: 73px;
+      height: 72px;
+    }
+  }
 }
 .custom-progressbar {
   border-radius: 15px !important;
