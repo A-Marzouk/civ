@@ -6,28 +6,27 @@
 
         <div class="profile-fields-wrapper">
             <div class="profile-fields">
+                <div class="profile-input-field input-field--current-location input-field--group-1 custom-predict-input-wrapper" :class="{'half-opacity':!personalInfo.is_location_active}">
+                    <div class="custom-predict-input-label">
+                        <label :class="{'focused':locationLabelFocused}">Location</label>
 
-                <div class="profile-input-field input-field--current-location input-field--group-1">
-                    <v-text-field
-                            class="resume-builder__input civie-input eye-up-position"
-                            label="Current Location"
-                            v-model="personalInfo.location"
-                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_location_active}"
-                            :error="!!errors.location"
-                            :error-messages="errors.location"
-                            @blur="applyEdit('auto')"
-                            hide-details="auto"
-                            outlined
-                    >
-                        <button
-                                class=" trigger-icon icon mt-custom6"
-                                slot="append"
-                                @click="updateVisibility('location')"
-                        >
+                        <a href="javascript:void(0)" @click="updateVisibility('location')" class="eye">
                             <svg-vue class="profile-eye-icon" :icon="`eye-icon`"
-                                     :class="{'visible' : personalInfo.is_location_active}"></svg-vue>
-                        </button>
-                    </v-text-field>
+                                     :class="{'visible' : personalInfo.is_location_active}">
+                            </svg-vue>
+                        </a>
+                    </div>
+                    <vue-google-autocomplete
+                            id="locationInput"
+                            classname="custom-predict-input"
+                            placeholder=""
+                            v-on:placechanged="getAddressData"
+                            @focus="locationLabelFocused = true"
+                            @blur="saveLocationAfterBlur"
+                            @inputChange="locationInputChanged"
+                    >
+                    </vue-google-autocomplete>
+                    <span class="error" v-if="locationError">{{locationError}}</span>
                 </div>
 
                 <div class="profile-input-field input-field--date-of-birth input-field--group-1">
@@ -147,7 +146,8 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class="trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('about')">
+                        <button class="trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
+                                @click="updateVisibility('about')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_about_active}"></svg-vue>
                         </button>
@@ -166,7 +166,8 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('overview')">
+                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
+                                @click="updateVisibility('overview')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_overview_active}"></svg-vue>
                         </button>
@@ -185,7 +186,8 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"   @click="updateVisibility('quote')">
+                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
+                                @click="updateVisibility('quote')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_quote_active}"></svg-vue>
                         </button>
@@ -199,11 +201,13 @@
 
 <script>
     import tabSwitcher from "./includes/TabSwitcher";
+    import VueGoogleAutocomplete from 'vue-google-autocomplete'
 
     export default {
         name: "Personal",
         components: {
-            'tab-switcher' : tabSwitcher
+            'tab-switcher': tabSwitcher,
+            VueGoogleAutocomplete
         },
         data(vm) {
             return {
@@ -212,8 +216,16 @@
                 profile_pic_error: "",
                 savingType: "manual",
                 menu: false,
+
                 defaultLanguages: [],
-                selectedLanguages: []
+                selectedLanguages: [],
+                // predictive inputs data:
+                tries: 0,
+                address: '',
+                locationError: '',
+                locationInputText: '',
+                locationLabelFocused: false
+
             };
         },
         computed: {
@@ -234,7 +246,7 @@
                 this.$refs.menu.save(this.personalInfo.date_of_birth);
                 this.applyEdit("auto");
             },
-            updateVisibility(field_name){
+            updateVisibility(field_name) {
                 this.personalInfo['is_' + field_name + '_active'] = !this.personalInfo['is_' + field_name + '_active'];
                 this.applyEdit("auto");
             },
@@ -335,6 +347,36 @@
                 if (this.$store.state.user.languages) {
                     this.selectedLanguages = this.$store.state.user.languages.map(a => a.id);
                 }
+            },
+
+            // Prediction functions:
+            getAddressData: function (addressData) {
+                this.address = addressData;
+                this.personalInfo.location = addressData.route + ', ' + addressData.country;
+                this.setLocationValue();
+                this.applyEdit();
+            },
+            saveLocationAfterBlur(){
+                this.locationLabelFocused = false;
+                this.personalInfo.location = this.locationInputText ;
+                this.applyEdit();
+            },
+            locationInputChanged(input){
+                this.locationInputText = input.newVal;
+            },
+            setLocationValue() {
+                let locationInput = document.querySelector(".custom-predict-input");
+                this.tries++;
+                if (this.personalInfo && locationInput) {
+                    locationInput.value = this.personalInfo.location;
+                    this.tries = 0 ;
+                } else {
+                    if (this.tries < 10) {
+                        setTimeout(() => {
+                            this.setLocationValue();
+                        }, 1000);
+                    }
+                }
             }
         },
         mounted() {
@@ -347,6 +389,8 @@
                 .then(() => {
                     this.setUserPreSelectedLanguages();
                 });
+
+            this.setLocationValue();
         }
     };
 </script>
@@ -474,6 +518,7 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 20px;
+
                     .profile-input-field {
                         margin-bottom: unset;
 
@@ -491,6 +536,7 @@
                                 grid-row-start: 2;
                                 grid-row-end: 3;
                             }
+
                             &.input-field--nationality {
                                 grid-column-start: 1;
                                 grid-column-end: 2;
@@ -784,6 +830,7 @@
             }
         }
     }
+
     #resumeBuilder .v-chip--select .v-chip .v-chip--clickable .v-chip--no-color .theme--light .v-size--default {
         margin-left: -7px;
     }
@@ -793,7 +840,59 @@
     .resume-builder__input.civie-textarea.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
         bottom: 162px;
     }
+
     .resume-builder__input.civie-input.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
         bottom: 62px;
     }
+
+
+    // custom google input:
+
+    .custom-predict-input-wrapper {
+        display: flex;
+        flex-direction: column;
+
+
+        .custom-predict-input-label {
+            display: flex;
+            justify-content: space-between;
+
+            label {
+                color: #888DB1;
+                font-size: 16px;
+                margin-bottom: 10px;
+
+                &.focused {
+                    color: blue;
+                }
+            }
+
+            .eye {
+                margin-right: 14px;
+            }
+
+        }
+
+        .custom-predict-input {
+            height: 45px;
+            border: 1.9px solid #C4C9F5;
+            border-radius: 10px;
+            width: 100%;
+            margin-top: -4px;
+            padding-left: 12px;
+            color: #888DB1;
+
+            &:focus {
+                outline: none;
+                border: 1.9px solid blue;
+            }
+        }
+
+        .error {
+            font-size: 15px;
+            color: red;
+        }
+
+    }
+
 </style>

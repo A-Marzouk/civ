@@ -8,11 +8,12 @@
 import AboutMe from "./../views/AboutMe";
 import Media from "./../views/Media";
 import Portfolio from "./../views/Portfolio";
-import SkillsLanguages from "./../views/SkillsLanguages";
+import Skills from "./../views/Skills";
 import Hobbies from "./../views/Hobbies";
 import References from "./../views/References";
 import Achievement from "./../views/Achievement";
-import ExperienceEducation from "./ExperienceEducation/ExperienceEducation";
+import Experience from "./ExperienceEducation/Experience";
+import Education from "./ExperienceEducation/Education";
 
 
 export default {
@@ -22,11 +23,12 @@ export default {
     Media,
     AboutMe,
     Portfolio,
-    ExperienceEducation,
-    SkillsLanguages,
+    Experience,
+    Skills,
     Hobbies,
     References,
-    Achievement
+    Achievement,
+    Education
   },
 
   props: {

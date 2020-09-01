@@ -7,7 +7,7 @@
   >
     <v-card color="#F6F9FF" class="card-hire-me-modal pa-sm-3 pa-5">
       <div align="right">
-        <v-btn icon @click="hireMeModal = false">
+        <v-btn icon @click="closePayment()">
           <img
             src="/images/resume_themes/theme203/icons/close.svg"
             alt="close button"
@@ -250,6 +250,9 @@ export default {
       type: Boolean,
       default: true,
     },
+    closePayment:{
+      type:Function
+    }
   },
   data() {
     return {
