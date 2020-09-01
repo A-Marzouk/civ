@@ -13,7 +13,7 @@
                 id="resumeBuilder"
                 data-target="resumeBuilder"
                 @click.native="onItemClick('tabChanged','builder')"
-                to="/resume-builder/edit"
+                to="/resume-builder/edit/profile"
         >CV builder</router-link>
       </div>
       <hr />
@@ -23,7 +23,7 @@
           id="myAccount"
           data-target="myAccount"
           @click.native="onItemClick('tabChanged','account')"
-          to="/resume-builder"
+          to="/resume-builder/account"
         >Account Settings</router-link>
       </div>
       <hr />

@@ -44,10 +44,11 @@ import ResumeBuilderEditCVReferences from './components/resume_builder/tabs/edit
 if ($("#adminResumeBuilder").length !== 0) {
 
     const routes = [
-        {path: '/resume-builder', component: ResumeBuilderMyAccount, name:'my-account'},
+        {path: '/resume-builder/account', component: ResumeBuilderMyAccount, name:'my-account'},
         {
-            path: '/resume-builder/edit',
+            path: '/resume-builder',
             component: ResumeBuilderEditCV,
+            redirect: '/resume-builder/edit/profile',
             name:'edit',
             children: [
                 {
