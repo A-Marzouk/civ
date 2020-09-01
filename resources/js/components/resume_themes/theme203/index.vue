@@ -60,6 +60,7 @@
                                   depressed
                                   class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
                                   align="center"
+                                  @click="audioModal=true"
                                 >
                                   <img
                                     class
@@ -132,7 +133,14 @@
                       <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
 
-                    <v-btn fab color="#FCD259" x-small depressed class="btn-headphone mx-1 mx-sm-2">
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      x-small
+                      depressed
+                      class="btn-headphone mx-1 mx-sm-2"
+                      @click="audioModal=true"
+                    >
                       <img
                         width="15"
                         style="margin-left:1px;"
@@ -202,7 +210,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
-                                @click="hireMeModal = true"
+                                @click.stop="hireMeModal = !hireMeModal"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -248,11 +256,24 @@
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!--------------------- About ------------------------------>
                 <v-tab-item>
+                  <div class="watermark-text text-center">About</div>
                   <v-container>
-                    <v-row justify="center">
-                      <v-col xl="3">
-                        <v-card class="card-portfolio-left" flat color="transparent">
-                          <v-card-subtitle class="dob-text" align="center">
+                    <v-row>
+                      <v-col
+                        xl="3"
+                        lg="3"
+                        md="3"
+                        sm="4"
+                        cols="12"
+                        order-sm="1"
+                        order="12"
+                        class="about-left-column"
+                      >
+                        <v-card class="card-about-left" flat color="transparent">
+                          <v-card-subtitle
+                            class="dob-text"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
                             <div>Date Of Birth</div>
 
                             <div class="mt-3">
@@ -260,16 +281,69 @@
                             </div>
                           </v-card-subtitle>
 
-                          <v-card-subtitle class="dob-text mt-5" align="center">
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
                             <div>Nationality</div>
 
                             <div class="mt-3">
                               <span class>Moroccan</span>
                             </div>
                           </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Hometown</div>
+
+                            <div class="mt-3">
+                              <span style="text-transform:uppercase;">RABAT</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Languages</div>
+
+                            <div class="mt-3 d-flex flex-column">
+                              <span>Arabic</span>
+                              <span>English</span>
+                              <span>French</span>
+                            </div>
+                          </v-card-subtitle>
                         </v-card>
                       </v-col>
-                      <v-col cols="4"></v-col>
+
+                      <v-col xl="4" lg="7" md="7" sm="7" cols="12" order-sm="12" order="1">
+                        <v-card class="card-about-right" flat color="transparent">
+                          <v-card-subtitle class="overview-title">Overview summary</v-card-subtitle>
+                          <!-- Overview -->
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- Overview -->
+
+                          <!-- about me -->
+                          <v-card-subtitle class="overview-title">About Me</v-card-subtitle>
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- about me -->
+
+                          <!-- quote -->
+                          <v-card-subtitle class="overview-title">Quote</v-card-subtitle>
+                          <v-card-text class="overview-text">Born to rise</v-card-text>
+                          <!-- quote -->
+                          <!-- location -->
+                          <v-card-subtitle class="overview-title">Location</v-card-subtitle>
+                          <v-card-text class="overview-text">Ireland, Dublin</v-card-text>
+                          <!-- location -->
+                        </v-card>
+                      </v-col>
                     </v-row>
                   </v-container>
                 </v-tab-item>
@@ -607,7 +681,7 @@
           <div class="d-flex flex-row justify-space-between">
             <div class="modal-title">Message</div>
             <div>
-              <v-btn icon depressed class="btn-email-modal-close" @click.stop="emailModal = false">
+              <v-btn icon depressed class="btn-email-modal-close" @click="emailModal = false">
                 <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
               </v-btn>
             </div>
@@ -625,7 +699,41 @@
         </v-card>
       </v-dialog>
       <!-- Email modal -->
-
+      <!-- Audio Modal -->
+      <div class="div-audio-modal">
+        <v-dialog
+          v-model="audioModal"
+          max-width="1710"
+          persistent
+          style="overflow-y: hidden !important; overflow-x: hidde"
+        >
+          <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
+            <div class="d-flex flex-row justify-space-between">
+              <div class="modal-title">My Audio</div>
+              <div>
+                <v-btn
+                  icon
+                  depressed
+                  class="btn-audio-modal-close"
+                  @click.stop="audioModal = false"
+                >
+                  <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+                </v-btn>
+              </div>
+            </div>
+            <div class="watermark-text-modal">Audio</div>
+            <vueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
+              <audio-player
+                :modalOpen="audioModal"
+                v-for="i in 4"
+                :key="i"
+                file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+              ></audio-player>
+            </vueSlickCarousel>
+          </v-card>
+        </v-dialog>
+      </div>
+      <!-- Audio Modal -->
       <!-- All Modals  -->
 
       <!-- tab bar row -->
@@ -636,11 +744,15 @@
   </v-app>
 </template>
 <script>
-import HireModal from './hire_me/HireModal';
+import HireModal from "./payment/HireModal";
+import AudioPlayer from "./media/AudioPlayer";
+import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
-  components:{
-    HireModal
+  components: {
+    HireModal,
+    AudioPlayer,
+    VueSlickCarousel,
   },
   props: ["user", "is_preview"],
   filters: {
@@ -656,10 +768,11 @@ export default {
   },
   data() {
     return {
+      audioModal: false,
       emailModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
-      hireMeModal:false,
+      hireMeModal: false,
       socialIcons: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
@@ -668,7 +781,7 @@ export default {
         { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
-     
+
       progressBarColor: "yellow",
       mainTabs: [
         {
@@ -853,6 +966,15 @@ export default {
         }
       });
       return mainImage.src;
+    },
+    //audio Modal
+    slickOptionsAudioModal: {
+      infinite: false,
+      dots: true,
+      arrows: false,
+      slidesPerRow: 1,
+      slidesToScroll: 1,
+      rows: 3,
     },
   },
 };
@@ -1358,7 +1480,6 @@ export default {
 }
 // reference tab
 
-
 // email modal
 .card-email {
   border-radius: 40px !important;
@@ -1399,8 +1520,8 @@ export default {
 }
 //email modal
 
-//portfolio section
-.card-portfolio-left {
+//about section
+.card-about-left {
   .dob-text {
     font-family: "Gotham Pro" !important;
     font-style: normal;
@@ -1408,16 +1529,100 @@ export default {
     font-size: 20px;
     line-height: 19px;
     color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 17px;
+      line-height: 16px;
+    }
     span {
       font-family: "Open Sans" !important;
       font-weight: 600 !important;
       font-size: 20px;
       line-height: 35px;
       color: #373737;
+      @media screen and (max-width: 667px) {
+        font-size: 17px;
+        line-height: 35px;
+      }
     }
   }
 }
-//portfolio section closed
+.card-about-right {
+  .overview-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 24px;
+    color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 20px;
+      line-height: 19px;
+    }
+  }
+  .overview-text {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 35px;
+    color: #373737 !important;
+    @media screen and (max-width: 667px) {
+      font-size: 13px;
+      line-height: 23px;
+    }
+  }
+}
+//about section closed
+//audio modal
+.card-audio-modal {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+  }
+  .btn-audio-modal-close {
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+//audio modal
+.watermark-text-modal {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  left: 0;
+  top: -30%;
+  bottom: 0;
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    font-size: 200px;
+    top: -60%;
+  }
+  @media screen and (min-width: 668px) and (max-width: 959px) {
+    font-size: 150px;
+    top: -70%;
+  }
+  @media screen and (max-width: 667px) {
+    font-size: 100px;
+    top: -70%;
+  }
+}
 </style>
 
 <style lang="scss">
