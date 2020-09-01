@@ -46,6 +46,7 @@
                                   x-small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-video-player"
+                                  @click="videoModal = true"
                                 >
                                   <img
                                     width="15"
@@ -129,6 +130,7 @@
                       x-small
                       depressed
                       class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
+                      @click="videoModal = true"
                     >
                       <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
@@ -700,40 +702,72 @@
       </v-dialog>
       <!-- Email modal -->
       <!-- Audio Modal -->
-      <div class="div-audio-modal">
-        <v-dialog
-          v-model="audioModal"
-          max-width="1710"
-          persistent
-          style="overflow-y: hidden !important; overflow-x: hidden !important;"
-        >
-          <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
-            <div class="d-flex flex-row justify-space-between">
-              <div class="modal-title">My Audio</div>
-              <div>
-                <v-btn
-                  icon
-                  depressed
-                  class="btn-audio-modal-close"
-                  @click ="audioModal = false"
-                  style="z-index: 100;"
-                >
-                  <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
-                </v-btn>
-              </div>
-            </div>
-            <div class="watermark-text-modal">Audio</div>
-              <audio-player
-                :modalOpen="audioModal"
-                v-for="i in 4"
-                :key="i"
-                file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-              ></audio-player>
 
-          </v-card>
-        </v-dialog>
-      </div>
+      <v-dialog
+        v-model="audioModal"
+        max-width="1710"
+        persistent
+        style="overflow-y: hidden !important; overflow-x: hidden !important;"
+      >
+        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">My Audio</div>
+            <div>
+              <v-btn
+                icon
+                depressed
+                class="btn-audio-modal-close"
+                @click="audioModal = false"
+                style="z-index: 100;"
+              >
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <div class="watermark-text-modal">Audio</div>
+          <audio-player
+            :modalOpen="audioModal"
+            v-for="i in 4"
+            :key="i"
+            file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+          ></audio-player>
+        </v-card>
+      </v-dialog>
+
       <!-- Audio Modal -->
+
+      <!-- Video Modal -->
+      <v-dialog
+        v-model="videoModal"
+        max-width="1710"
+        persistent
+        style="overflow-y: hidden !important; overflow-x: hidden !important;"
+      >
+        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">My Audio</div>
+            <div>
+              <v-btn
+                icon
+                depressed
+                class="btn-audio-modal-close"
+                @click="audioModal = false"
+                style="z-index: 100;"
+              >
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <div class="watermark-text-modal">Video</div>
+          <video-player
+            v-for="i in 2"
+            :key="i"
+            :modalOpen="videoModal"
+            link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          ></video-player>
+        </v-card>
+      </v-dialog>
+      <!-- Video Modal -->
       <!-- All Modals  -->
 
       <!-- tab bar row -->
@@ -746,12 +780,14 @@
 <script>
 import HireModal from "./payment/HireModal";
 import AudioPlayer from "./media/AudioPlayer";
+import VideoPlayer from './media/VideoPlayer';
 import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
   components: {
     HireModal,
     AudioPlayer,
+    VideoPlayer,
     VueSlickCarousel,
   },
   props: ["user", "is_preview"],
@@ -769,6 +805,7 @@ export default {
   data() {
     return {
       audioModal: false,
+      videoModal: false,
       emailModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
