@@ -1081,27 +1081,7 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <!-- <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.length>0">
-            <template v-for="video in currentUser.media">
-              <div
-                :key="video.id"
-                class
-                align="center"
-                v-if="video.type=='video' && video.is_public==1"
-              >
-                <v-card class="card-video mb-md-0 md-sm-0 mb-5">
-                  <video style="width:100%;" controls>
-                    <source :src="video.url" type="video/mp4" />
-                  </video>
-                  <v-card-title class="video-window-title">{{video.title}}</v-card-title>
-                  <v-card-subtitle
-                    class="video-window-subtitle mt-n5"
-                    align="left"
-                  >{{video.transcript}}</v-card-subtitle>
-                </v-card>
-              </div>
-            </template>
-          </slick>-->
+          
           <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
             <video-player
               v-for="i in 6"
@@ -1128,15 +1108,6 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <!-- <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.length>0">
-            <template v-for="audio in currentUser.media">
-              <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
-                <audio controls style="width:100%;">
-                  <source :src="audio.url" type="audio/mpeg" />Your browser does not support the audio element.
-                </audio>
-              </div>
-            </template>
-          </vueSlickCarousel>-->
           <vueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
             <audio-player
               :modalOpen="audioModal"
