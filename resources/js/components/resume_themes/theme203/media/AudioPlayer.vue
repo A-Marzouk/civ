@@ -1,7 +1,8 @@
 <template>
-  <v-card flat class="pa-md-0 pa-0 card-audio" color="transparent">
+  <v-card flat class="pa-xl-0 pa-lg-5 pa-md-0 pa-0 card-audio" color="transparent">
+    <v-card-subtitle class="durationTime mb-n12">Audio-1</v-card-subtitle>
     <v-card-text class>
-      <v-row dense class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10">
+      <v-row dense class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10 mb-xl-0 mb-md-n12">
         <v-col xl="11" lg="10" md="10" sm="10" cols="10" align="left">
           <v-list-item color="transparent">
             <v-list-item-icon class="mr-n1">
@@ -19,14 +20,14 @@
               <v-list-item-subtitle class="mt-4">
                 <v-row no-gutters>
                   <v-col cols="1" class="ml-n12"></v-col>
-                  <v-col cols="5" class="durationTime">
+                  <v-col cols="5">
                     <span class="mb-n4">
-                      <v-card flat color="transparent">{{ currentTime }}</v-card>
+                      <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
                     </span>
                   </v-col>
-                  <v-col cols="6" class="durationTime" align="right">
+                  <v-col cols="6" align="right">
                     <span class="mb-n4">
-                      <v-card flat color="transparent">{{ totalDuration | secondToMinHours }}</v-card>
+                      <v-card flat color="transparent" class="durationTime">{{ totalDuration | secondToMinHours }}</v-card>
                     </span>
                   </v-col>
                 </v-row>
@@ -259,8 +260,12 @@ export default {
 
 <style scoped lang="scss">
 .durationTime {
-  font-size: 22px;
-  color: #343434 !important;
+  font-family: "Montserrat" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #8b8b8b !important;
 }
 .btn-play {
   z-index: 100;
