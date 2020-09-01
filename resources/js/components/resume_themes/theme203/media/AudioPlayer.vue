@@ -20,12 +20,12 @@
               <v-list-item-subtitle class="mt-4">
                 <v-row no-gutters>
                   <v-col cols="1" class="ml-lg-n12 ml-md-n7"></v-col>
-                  <v-col cols="5">
+                  <v-col cols="5" class="ml-xl-n5">
                     <span class="mb-n4">
                       <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
                     </span>
                   </v-col>
-                  <v-col cols="6" align="right">
+                  <v-col cols="6" align="right" class="ml-xl-8">
                     <span class="mb-n4">
                       <v-card
                         flat
