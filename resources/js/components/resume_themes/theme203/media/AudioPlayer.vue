@@ -16,7 +16,7 @@
                 </v-btn>
               </div>
             </v-list-item-icon>
-            <v-list-item-content class="mt-xl-n12 mt-lg-n12 mt-md-n10 mt-sm-n10 mt-n10">
+            <v-list-item-content class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10">
               <v-list-item-subtitle class="mt-4">
                 <v-row no-gutters>
                   <v-col cols="1" class="ml-lg-n12 ml-md-n7"></v-col>
@@ -49,7 +49,7 @@
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-          
+
           <audio
             id="player"
             ref="player"
@@ -259,10 +259,31 @@ export default {
 
 <style lang="scss">
 #resumeTheme203 {
-  .card-audio {
-    .v-progress-linear__determinate {
-      border-radius: 15px !important;
-    }
+  .v-progress-linear__determinate.yellow {
+    overflow: hidden;
+    position: absolute;
+  }
+  .v-progress-linear__determinate.yellow:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(
+      92.63deg,
+      #fcd259 1.07%,
+      #e5bf4e 51.95%,
+      #ffde81 89.88%
+    ) !important;
+    background-size: 35px 35px;
+    transition: width 4s ease-in-out;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px !important;
+  }
+  .v-progress-linear__determinate.yellow:after {
+    -webkit-animation: cssProgressActive 2s linear infinite;
+    animation: cssProgressActive 2s linear infinite;
   }
 }
 </style>

@@ -705,7 +705,7 @@
           v-model="audioModal"
           max-width="1710"
           persistent
-          style="overflow-y: hidden !important; overflow-x: hidde"
+          style="overflow-y: hidden !important; overflow-x: hidden !important;"
         >
           <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
             <div class="d-flex flex-row justify-space-between">
@@ -715,21 +715,21 @@
                   icon
                   depressed
                   class="btn-audio-modal-close"
-                  @click.stop="audioModal = false"
+                  @click ="audioModal = false"
+                  style="z-index: 100;"
                 >
                   <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
                 </v-btn>
               </div>
             </div>
             <div class="watermark-text-modal">Audio</div>
-            <vueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
               <audio-player
                 :modalOpen="audioModal"
                 v-for="i in 4"
                 :key="i"
                 file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
               ></audio-player>
-            </vueSlickCarousel>
+
           </v-card>
         </v-dialog>
       </div>
@@ -968,14 +968,6 @@ export default {
       return mainImage.src;
     },
     //audio Modal
-    slickOptionsAudioModal: {
-      infinite: false,
-      dots: true,
-      arrows: false,
-      slidesPerRow: 1,
-      slidesToScroll: 1,
-      rows: 3,
-    },
   },
 };
 </script>
