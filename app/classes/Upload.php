@@ -80,85 +80,15 @@ class Upload
         }
     }
 
-    public static function profilePicture($name, $user_id)
+    public static function profilePicture($request)
     {
-        $target_dir = 'uploads/pictures/';
-        $uploadOk = 1;
 
-        // allowed formats :
-        $formats = [
-            'image/bmp',
-            'image/x-ms-bmp',
-            'image/cgm',
-            'image/g3fax',
-            'image/gif',
-            'image/ief',
-            'image/jpeg',
-            'image/pjpeg',
-            'image/ktx',
-            'image/png',
-            'image/prs.btif',
-            'image/sgi',
-            'image/svg+xml',
-            'image/tiff',
-            'image/vnd.adobe.photoshop',
-            'image/vnd.dece.graphic',
-            'image/vnd.dvb.subtitle',
-            'image/vnd.djvu',
-            'image/vnd.dwg',
-            'image/vnd.dxf',
-            'image/vnd.fastbidsheet',
-            'image/vnd.fpx',
-            'image/vnd.fst',
-            'image/vnd.fujixerox.edmics-mmr',
-            'image/vnd.fujixerox.edmics-rlc',
-            'image/vnd.ms-modi',
-            'image/vnd.ms-photo',
-            'image/vnd.net-fpx',
-            'image/vnd.wap.wbmp',
-            'image/vnd.xiff',
-            'image/webp',
-            'image/x-3ds',
-            'image/x-cmu-raster',
-            'image/x-cmx',
-            'image/x-freehand',
-            'image/x-icon',
-            'image/x-mrsid-image',
-            'image/x-pcx',
-            'image/x-pict',
-            'image/x-portable-anymap',
-            'image/x-portable-bitmap',
-            'image/x-portable-graymap',
-            'image/x-portable-pixmap',
-            'image/x-rgb',
-            'image/x-tga',
-            'image/x-xbitmap',
-            'image/x-xpixmap',
-            'image/x-xwindowdump',
-        ];
+        $path = $request->file('profile_pic')->store(
+            'uploads/images',
+            'gcs'
+        );
 
-        // check file type :
-        if (!in_array($_FILES[$name]['type'], $formats)) {
-            $uploadOk = 0;
-        }
-
-        // Check file size - 25 MB
-        if ($_FILES[$name]["size"] > 25000000) {
-            $uploadOk = 0;
-        }
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            return false;
-        } else {
-            $array = explode('.', $_FILES[$name]['name']);
-            $extension = end($array);
-            $target_file = $target_dir . $name . '_' . $user_id . '_' . date(time()) . '.' . $extension;
-            if (move_uploaded_file($_FILES[$name]["tmp_name"], $target_file)) {
-                return $target_file;
-            } else {
-                return false;
-            }
-        }
+        return $path;
     }
 
     public static function certificate($name, $user_id)

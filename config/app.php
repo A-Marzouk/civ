@@ -180,6 +180,7 @@ return [
         \SocialiteProviders\Manager\ServiceProvider::class,
 
         Barryvdh\DomPDF\ServiceProvider::class,
+        Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
     ],
 
     /*

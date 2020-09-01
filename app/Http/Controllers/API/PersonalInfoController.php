@@ -52,7 +52,7 @@ class PersonalInfoController extends Controller
         }
 
         if (isset($_FILES['profile_pic'])) {
-            $pathToPicture = Upload::profilePicture('profile_pic', $request->user_id);
+            $pathToPicture = Upload::profilePicture($request);
             if($pathToPicture){
                 $personalInfo->update([
                     'profile_pic' => '/' . $pathToPicture
