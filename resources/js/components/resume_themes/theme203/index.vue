@@ -744,11 +744,13 @@
 <script>
 import HireModal from "./payment/HireModal";
 import AudioPlayer from "./media/AudioPlayer";
+import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
   components: {
     HireModal,
     AudioPlayer,
+    VueSlickCarousel,
   },
   props: ["user", "is_preview"],
   filters: {
