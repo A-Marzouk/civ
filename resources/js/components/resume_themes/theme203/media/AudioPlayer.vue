@@ -25,7 +25,7 @@
                       <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
                     </span>
                   </v-col>
-                  <v-col cols="6" align="right" class="ml-xl-8">
+                  <v-col cols="6" align="right" class="ml-xl-9">
                     <span class="mb-n4">
                       <v-card
                         flat
@@ -49,37 +49,7 @@
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-          <!-- <v-row justify="center">
-            <v-col xl="6" lg="6" md="6" cols="6">
-              <div class="durationTime">{{currentTime}}</div>
-            </v-col>
-            <v-col xl="5" lg="5" md="6" cols="6" align="right">
-              <div class="durationTime">{{totalDuration | secondToMinHours}}</div>
-            </v-col>
-            <v-col xl="11" lg="11" md="12" sm="12" align="left">
-              <div class="d-flex flex-row">
-                <div>
-                  <v-btn class="btn-play" icon depressed @click.prevent="playing ? pause() : play()">
-                    <img
-                      src="/images/resume_themes/theme203/icons/play.svg"
-                      v-if="!playing || paused"
-                    />
-                    <img src="/images/resume_themes/theme203/icons/pause.svg" v-else />
-                  </v-btn>
-                </div>
-
-                <v-progress-linear
-                  rounded
-                  tile
-                  class="custom-progressbar ml-lg-2 mt-lg-2"
-                  color="yellow"
-                  background-color="#E0E0E0"
-                  :value="percentage"
-                  height="22"
-                ></v-progress-linear>
-              </div>
-            </v-col>
-          </v-row>-->
+          
           <audio
             id="player"
             ref="player"
