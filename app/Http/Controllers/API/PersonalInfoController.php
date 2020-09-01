@@ -40,28 +40,20 @@ class PersonalInfoController extends Controller
             throw new Exception('Not Authenticated!');
         }
 
-        $this->validator($request->all())->validate();
+        $attributes = $this->validator($request->all())->validate();
+
         $user = User::find($request->user_id);
 
         $personalInfo = PersonalInfo::where([
             ['user_id',$user->id],
             ['resume_link_id', $user->resume_link_id]
         ])->first();
-        if($request->isMethod('put')){
-            $personalInfo->update($request->toArray());
+
+        if($request->file('profile_pic')){
+            $attributes['profile_pic'] = $request->file('profile_pic')->store('avatars');
         }
 
-        if (isset($_FILES['profile_pic'])) {
-            $pathToPicture = Upload::profilePicture('profile_pic', $request->user_id);
-            if($pathToPicture){
-                $personalInfo->update([
-                    'profile_pic' => '/' . $pathToPicture
-                ]);
-            }else{
-                throw new Exception('Failed to upload image');
-            }
-
-        }
+        $personalInfo->update($attributes);
 
         if (isset($personalInfo)){
             return new PersonalInfoResource($personalInfo);
