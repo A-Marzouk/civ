@@ -722,12 +722,14 @@
               </div>
             </div>
             <div class="watermark-text-modal">Audio</div>
-            <audio-player
-              :modalOpen="audioModal"
-              v-for="i in 4"
-              :key="i"
-              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-            ></audio-player>
+            <vueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
+              <audio-player
+                :modalOpen="audioModal"
+                v-for="i in 4"
+                :key="i"
+                file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+              ></audio-player>
+            </vueSlickCarousel>
           </v-card>
         </v-dialog>
       </div>
@@ -964,6 +966,15 @@ export default {
         }
       });
       return mainImage.src;
+    },
+    //audio Modal
+    slickOptionsAudioModal: {
+      infinite: false,
+      dots: true,
+      arrows: false,
+      slidesPerRow: 1,
+      slidesToScroll: 1,
+      rows: 3,
     },
   },
 };
@@ -1594,24 +1605,23 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  right:0;
-  left:0;
-  top:-30%;
+  right: 0;
+  left: 0;
+  top: -30%;
   bottom: 0;
-  margin:auto;
-  @media screen and (min-width: 960px) and (max-width: 1903px){
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
     font-size: 200px;
     top: -60%;
   }
-  @media screen and (min-width: 668px) and (max-width: 959px){
+  @media screen and (min-width: 668px) and (max-width: 959px) {
     font-size: 150px;
     top: -70%;
   }
-  @media screen and (max-width: 667px){
+  @media screen and (max-width: 667px) {
     font-size: 100px;
     top: -70%;
   }
-  
 }
 </style>
 
