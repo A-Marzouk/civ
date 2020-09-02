@@ -163,7 +163,7 @@ class Upload
 
     public static function certificate($name, $user_id)
     {
-        $target_dir = 'uploads/certificates/';
+        $target_dir = 'public/uploads/certificates/';
         $uploadOk = 1;
 
         // allowed formats for pictures:

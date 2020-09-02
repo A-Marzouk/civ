@@ -44,6 +44,13 @@
  */
 
 /*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*!
  * Vue.js v2.6.11
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
@@ -73,6 +80,12 @@
  * https://jquery.org/license
  *
  * Date: 2020-04-10T15:07Z
+ */
+
+/*!
+ * vue-friendly-iframe v0.18.0 (https://github.com/officert/vue-friendly-iframe)
+ * (c) 2020 Tim Officer
+ * Released under the MIT License.
  */
 
 /*!
@@ -1277,6 +1290,8 @@
 /*! exports provided: preset */
 
 /*! exports provided: stack */
+
+/*! https://mths.be/punycode v1.4.1 by @mathias */
 
 /*! no static exports found */
 
