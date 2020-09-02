@@ -74,7 +74,7 @@
                             :error-messages="errors.nationality"
                             hide-details="auto"
                             outlined
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit"
                     >
                         <button
                                 class=" trigger-icon icon mt-custom6"
@@ -110,28 +110,27 @@
                     </v-select>
                 </div>
 
-                <div class="profile-input-field input-field--hometown input-field--group-2">
-                    <v-text-field
-                            class="resume-builder__input civie-input eye-up-position"
-                            label="Hometown"
-                            v-model="personalInfo.hometown"
-                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_hometown_active}"
-                            :error="!!errors.hometown"
-                            :error-messages="errors.hometown"
-                            hide-details="auto"
-                            outlined
-                            @blur="applyEdit('auto')"
+                <div class="profile-input-field input-field--hometown input-field--group-2 custom-predict-input-wrapper">
+                    <div class="custom-predict-input-label">
+                        <label :class="{'focused':hometownLabelFocused}">Hometown</label>
+
+                        <a href="javascript:void(0)" @click="updateVisibility('hometown')" class="eye">
+                            <svg-vue class="profile-eye-icon" :icon="`eye-icon`"
+                                     :class="{'visible' : personalInfo.is_hometown_active}">
+                            </svg-vue>
+                        </a>
+                    </div>
+                    <vue-google-autocomplete
+                            id="hometownInput"
+                            classname="custom-predict-input hometown"
+                            placeholder=""
+                            v-on:placechanged="getAddressDataHomeTown"
+                            @focus="hometownLabelFocused = true"
+                            @blur="saveHometownAfterBlur"
+                            @inputChange="hometownInputChanged"
                     >
-                        <button
-                                class=" trigger-icon icon mt-custom6"
-                                :class="{'icon--disabled': false}"
-                                slot="append"
-                                @click="updateVisibility('hometown')"
-                        >
-                            <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
-                                     :class="{'visible' : personalInfo.is_hometown_active}"></svg-vue>
-                        </button>
-                    </v-text-field>
+                    </vue-google-autocomplete>
+                    <span class="error" v-if="hometownError">{{hometownError}}</span>
                 </div>
 
                 <div class="profile-input-field input-field--about input-field--group-3">
@@ -144,7 +143,7 @@
                             label="About Me"
                             hide-details="auto"
                             outlined
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit"
                     >
                         <button class="trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
                                 @click="updateVisibility('about')">
@@ -164,7 +163,7 @@
                             label="Overview Summary"
                             hide-details="auto"
                             outlined
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit"
                     >
                         <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
                                 @click="updateVisibility('overview')">
@@ -184,7 +183,7 @@
                             v-model="personalInfo.quote"
                             hide-details="auto"
                             outlined
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit"
                     >
                         <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
                                 @click="updateVisibility('quote')">
@@ -213,18 +212,23 @@
             return {
                 errors: {},
                 tempPic: "",
-                profile_pic_error: "",
                 savingType: "manual",
                 menu: false,
 
                 defaultLanguages: [],
                 selectedLanguages: [],
-                // predictive inputs data:
+                // predictive inputs data | location: 
                 tries: 0,
                 address: '',
                 locationError: '',
                 locationInputText: '',
-                locationLabelFocused: false
+                locationLabelFocused: false,
+                // predictive inputs data | hometown: 
+                hometownTries: 0,
+                hometownAddress: '',
+                hometownError: '',
+                hometownInputText: '',
+                hometownLabelFocused: false
 
             };
         },
@@ -252,8 +256,7 @@
             },
 
             syncLanguages() {
-                axios
-                    .post("/api/user/languages-sync", {
+                axios.post("/api/user/languages-sync", {
                         IDs: this.selectedLanguages,
                         user_id: this.user.id
                     })
@@ -267,17 +270,14 @@
                         });
                     });
             },
-            applyEdit(savingType) {
+            applyEdit() {
                 let formData = new FormData();
                 formData.append("_method", "put");
                 formData.append("user_id", this.user.id);
 
                 $.each(this.personalInfo, field => {
                     if (this.personalInfo[field] !== null) {
-                        if (field !== "email" && this.personalInfo[field].length) {
-                            formData.append(field, this.personalInfo[field]);
-                        }
-                        if (field === "profile_pic") {
+                        if (field !== "email" && field !== "profile_pic" && this.personalInfo[field].length) {
                             formData.append(field, this.personalInfo[field]);
                         }
                     }
@@ -285,16 +285,9 @@
 
                 this.errors = {};
 
-                axios.post("/api/user/personal-info", formData, {
-                    headers: {"Content-Type": "multipart/form-data"}
-                })
-                    .then(response => {
-                        if (savingType === "manual") {
-                            this.$store.dispatch("flyingNotification");
-                        } else {
-                            this.$store.dispatch("flyingNotification");
-                        }
-                        this.personalInfo.profile_pic = response.data.data.profile_pic;
+                axios.post("/api/user/personal-info", formData)
+                    .then( (response) => {
+                        this.$store.dispatch("flyingNotification");
                     })
                     .catch(error => {
                         if (typeof error.response.data === "object") {
@@ -308,31 +301,6 @@
                         });
                     });
             },
-            handleProfilePictureUpload() {
-                // validate uploaded file :
-                let isValid = this.validateUploadedFile(
-                    this.$refs.profile_picture.files[0]
-                );
-                if (isValid) {
-                    this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
-                    this.tempPic = URL.createObjectURL(this.$refs.profile_picture.files[0]);
-                    this.profile_pic_error = "";
-                    this.applyEdit("auto");
-                } else {
-                    this.profile_pic_error = "Incorrect file chosen!";
-                }
-            },
-            validateUploadedFile(file) {
-                let isValid = true;
-                if (file.type.search("image") === -1) {
-                    isValid = false;
-                }
-                if (file.size > 25000000) {
-                    isValid = false;
-                }
-                return isValid;
-            },
-
             canEditEmail() {
                 return !(
                     this.user.instagram_id !== null &&
@@ -352,7 +320,7 @@
             // Prediction functions:
             getAddressData: function (addressData) {
                 this.address = addressData;
-                this.personalInfo.location = addressData.route + ', ' + addressData.country;
+                this.personalInfo.location = `${addressData.route ? addressData.route + ', ' : ''}${addressData.administrative_area_level_1 ? addressData.administrative_area_level_1 + ', ' : ''}${addressData.country ? addressData.country : ''}`;
                 this.setLocationValue();
                 this.applyEdit();
             },
@@ -377,11 +345,40 @@
                         }, 1000);
                     }
                 }
+            },
+            
+            // Prediction functions hometown:
+            getAddressDataHomeTown: function (addressData) {
+                this.address = addressData;
+                this.personalInfo.hometown = `${addressData.route ? addressData.route + ', ' : ''}${addressData.administrative_area_level_1 ? addressData.administrative_area_level_1 + ', ' : ''}${addressData.country ? addressData.country : ''}`;
+                this.setHometownValue();
+                this.applyEdit();
+            },
+            saveHometownAfterBlur(){
+                this.hometownLabelFocused = false;
+                this.personalInfo.hometown = this.hometownInputText ;
+                this.applyEdit();
+            },
+            hometownInputChanged(input){
+                this.hometownInputText = input.newVal;
+            },
+            setHometownValue() {
+                let hometownInput = document.querySelector(".custom-predict-input.hometown");
+                this.hometownTries++;
+                if (this.personalInfo && hometownInput) {
+                    hometownInput.value = this.personalInfo.hometown;
+                    this.hometownTries = 0 ;
+                } else {
+                    if (this.hometownTries < 10) {
+                        setTimeout(() => {
+                            this.setHometownValue();
+                        }, 1000);
+                    }
+                }
             }
         },
         mounted() {
-            axios
-                .get("/api/user/languages-list")
+            axios.get("/api/user/languages-list")
                 .then(response => {
                     this.defaultLanguages = response.data.data;
                     this.defaultLanguages.sort((a, b) => (a.label > b.label) * 2 - 1);
@@ -391,6 +388,7 @@
                 });
 
             this.setLocationValue();
+            this.setHometownValue();
         }
     };
 </script>
