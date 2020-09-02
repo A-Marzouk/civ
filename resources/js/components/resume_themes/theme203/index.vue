@@ -46,6 +46,7 @@
                                   x-small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-video-player"
+                                  @click="videoModal = true"
                                 >
                                   <img
                                     width="15"
@@ -60,6 +61,7 @@
                                   depressed
                                   class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
                                   align="center"
+                                  @click="audioModal=true"
                                 >
                                   <img
                                     class
@@ -128,11 +130,19 @@
                       x-small
                       depressed
                       class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
+                      @click="videoModal = true"
                     >
                       <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
 
-                    <v-btn fab color="#FCD259" x-small depressed class="btn-headphone mx-1 mx-sm-2">
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      x-small
+                      depressed
+                      class="btn-headphone mx-1 mx-sm-2"
+                      @click="audioModal=true"
+                    >
                       <img
                         width="15"
                         style="margin-left:1px;"
@@ -202,7 +212,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
-                                @click="hireMeModal = true"
+                                @click.stop="hireMeModal = !hireMeModal"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -248,11 +258,24 @@
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!--------------------- About ------------------------------>
                 <v-tab-item>
+                  <div class="watermark-text text-center">About</div>
                   <v-container>
-                    <v-row justify="center">
-                      <v-col xl="3">
-                        <v-card class="card-portfolio-left" flat color="transparent">
-                          <v-card-subtitle class="dob-text" align="center">
+                    <v-row>
+                      <v-col
+                        xl="3"
+                        lg="3"
+                        md="3"
+                        sm="4"
+                        cols="12"
+                        order-sm="1"
+                        order="12"
+                        class="about-left-column"
+                      >
+                        <v-card class="card-about-left" flat color="transparent">
+                          <v-card-subtitle
+                            class="dob-text"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
                             <div>Date Of Birth</div>
 
                             <div class="mt-3">
@@ -260,16 +283,69 @@
                             </div>
                           </v-card-subtitle>
 
-                          <v-card-subtitle class="dob-text mt-5" align="center">
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
                             <div>Nationality</div>
 
                             <div class="mt-3">
                               <span class>Moroccan</span>
                             </div>
                           </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Hometown</div>
+
+                            <div class="mt-3">
+                              <span style="text-transform:uppercase;">RABAT</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Languages</div>
+
+                            <div class="mt-3 d-flex flex-column">
+                              <span>Arabic</span>
+                              <span>English</span>
+                              <span>French</span>
+                            </div>
+                          </v-card-subtitle>
                         </v-card>
                       </v-col>
-                      <v-col cols="4"></v-col>
+
+                      <v-col xl="4" lg="7" md="7" sm="7" cols="12" order-sm="12" order="1">
+                        <v-card class="card-about-right" flat color="transparent">
+                          <v-card-subtitle class="overview-title">Overview summary</v-card-subtitle>
+                          <!-- Overview -->
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- Overview -->
+
+                          <!-- about me -->
+                          <v-card-subtitle class="overview-title">About Me</v-card-subtitle>
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- about me -->
+
+                          <!-- quote -->
+                          <v-card-subtitle class="overview-title">Quote</v-card-subtitle>
+                          <v-card-text class="overview-text">Born to rise</v-card-text>
+                          <!-- quote -->
+                          <!-- location -->
+                          <v-card-subtitle class="overview-title">Location</v-card-subtitle>
+                          <v-card-text class="overview-text">Ireland, Dublin</v-card-text>
+                          <!-- location -->
+                        </v-card>
+                      </v-col>
                     </v-row>
                   </v-container>
                 </v-tab-item>
@@ -607,7 +683,7 @@
           <div class="d-flex flex-row justify-space-between">
             <div class="modal-title">Message</div>
             <div>
-              <v-btn icon depressed class="btn-email-modal-close" @click.stop="emailModal = false">
+              <v-btn icon depressed class="btn-email-modal-close" @click="emailModal = false">
                 <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
               </v-btn>
             </div>
@@ -625,7 +701,69 @@
         </v-card>
       </v-dialog>
       <!-- Email modal -->
+      <!-- Audio Modal -->
 
+      <v-dialog
+        v-model="audioModal"
+        max-width="1710"
+        persistent
+        style="overflow-y: hidden !important; overflow-x: hidden !important;"
+      >
+        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">My Audio</div>
+            <div>
+              <v-btn
+                icon
+                depressed
+                class="btn-audio-modal-close"
+                @click="audioModal = false"
+                style="z-index: 100;"
+              >
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <div class="watermark-text-modal">Audio</div>
+          <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
+            <audio-player
+              :modalOpen="audioModal"
+              v-for="i in 6"
+              :key="i"
+              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+            ></audio-player>
+          </VueSlickCarousel>
+        </v-card>
+      </v-dialog>
+
+      <!-- Audio Modal -->
+
+      <!-- Video Modal -->
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+          <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
+            <v-btn
+              color="transparent"
+              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
+              icon
+              @click.stop="videoModal=false"
+              depressed
+            >
+              <img src="/images/resume_themes/theme203/icons/email-close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+
+          <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
+            <video-player
+              v-for="i in 6"
+              :key="i"
+              :modalOpen="videoModal"
+              link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            ></video-player>
+          </VueSlickCarousel>
+        </v-card>
+      </v-dialog>
+      <!-- Video Modal -->
       <!-- All Modals  -->
 
       <!-- tab bar row -->
@@ -636,11 +774,17 @@
   </v-app>
 </template>
 <script>
-import HireModal from './hire_me/HireModal';
+import HireModal from "./payment/HireModal";
+import AudioPlayer from "./media/AudioPlayer";
+import VideoPlayer from "./media/VideoPlayer";
+import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
-  components:{
-    HireModal
+  components: {
+    HireModal,
+    AudioPlayer,
+    VideoPlayer,
+    VueSlickCarousel,
   },
   props: ["user", "is_preview"],
   filters: {
@@ -656,10 +800,12 @@ export default {
   },
   data() {
     return {
+      audioModal: false,
+      videoModal: false,
       emailModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
-      hireMeModal:false,
+      hireMeModal: false,
       socialIcons: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
@@ -668,8 +814,50 @@ export default {
         { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
-     
+
       progressBarColor: "yellow",
+      slickOptionsVideoModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 2,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+        ],
+      },
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3,
+      },
       mainTabs: [
         {
           id: 1,
@@ -854,6 +1042,7 @@ export default {
       });
       return mainImage.src;
     },
+    //audio Modal
   },
 };
 </script>
@@ -1358,7 +1547,6 @@ export default {
 }
 // reference tab
 
-
 // email modal
 .card-email {
   border-radius: 40px !important;
@@ -1399,8 +1587,8 @@ export default {
 }
 //email modal
 
-//portfolio section
-.card-portfolio-left {
+//about section
+.card-about-left {
   .dob-text {
     font-family: "Gotham Pro" !important;
     font-style: normal;
@@ -1408,16 +1596,131 @@ export default {
     font-size: 20px;
     line-height: 19px;
     color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 17px;
+      line-height: 16px;
+    }
     span {
       font-family: "Open Sans" !important;
       font-weight: 600 !important;
       font-size: 20px;
       line-height: 35px;
       color: #373737;
+      @media screen and (max-width: 667px) {
+        font-size: 17px;
+        line-height: 35px;
+      }
     }
   }
 }
-//portfolio section closed
+.card-about-right {
+  .overview-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 24px;
+    color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 20px;
+      line-height: 19px;
+    }
+  }
+  .overview-text {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 35px;
+    color: #373737 !important;
+    @media screen and (max-width: 667px) {
+      font-size: 13px;
+      line-height: 23px;
+    }
+  }
+}
+//about section closed
+//audio modal
+.card-audio-modal {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+  }
+  .btn-audio-modal-close {
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.card-modal-video-holder {
+  height: 850px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    height: 700px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    height: auto;
+  }
+  @media screen and (max-width: 959px) {
+    height: 1250px;
+  }
+  @media screen and (max-width: 599px) {
+    height: 770px;
+  }
+  .btn-video-close {
+    img {
+      width: 50px;
+      height: 50px;
+      @media screen and (max-width: 959px) {
+        width: 63px;
+        height: 62px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  }
+}
+
+//audio modal
+.watermark-text-modal {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  left: 0;
+  top: -30%;
+  bottom: 0;
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    font-size: 200px;
+    top: -60%;
+  }
+  @media screen and (min-width: 668px) and (max-width: 959px) {
+    font-size: 150px;
+    top: -70%;
+  }
+  @media screen and (max-width: 667px) {
+    font-size: 100px;
+    top: -70%;
+  }
+}
 </style>
 
 <style lang="scss">
@@ -1521,6 +1824,48 @@ export default {
         font-size: 18px;
         line-height: 25px;
       }
+    }
+  }
+
+  .slick-dots {
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .slick-dots li {
+    width: 18px;
+    height: 18px;
+    background: rgba(252, 210, 89, 0.3) !important;
+    border-radius: 50%;
+  }
+  .slick-dots li.slick-active button {
+    background: #fcd259 !important;
+  }
+  // video slick
+  .video-slick .slick-list {
+    padding-bottom: 50px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
+    }
+  }
+  .audio-slick .slick-list {
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
     }
   }
 }
