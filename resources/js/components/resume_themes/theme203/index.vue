@@ -46,6 +46,7 @@
                                   x-small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-video-player"
+                                  @click="videoModal = true"
                                 >
                                   <img
                                     width="15"
@@ -129,6 +130,7 @@
                       x-small
                       depressed
                       class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
+                      @click="videoModal = true"
                     >
                       <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
@@ -700,40 +702,68 @@
       </v-dialog>
       <!-- Email modal -->
       <!-- Audio Modal -->
-      <div class="div-audio-modal">
-        <v-dialog
-          v-model="audioModal"
-          max-width="1710"
-          persistent
-          style="overflow-y: hidden !important; overflow-x: hidde"
-        >
-          <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
-            <div class="d-flex flex-row justify-space-between">
-              <div class="modal-title">My Audio</div>
-              <div>
-                <v-btn
-                  icon
-                  depressed
-                  class="btn-audio-modal-close"
-                  @click.stop="audioModal = false"
-                >
-                  <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
-                </v-btn>
-              </div>
+
+      <v-dialog
+        v-model="audioModal"
+        max-width="1710"
+        persistent
+        style="overflow-y: hidden !important; overflow-x: hidden !important;"
+      >
+        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">My Audio</div>
+            <div>
+              <v-btn
+                icon
+                depressed
+                class="btn-audio-modal-close"
+                @click="audioModal = false"
+                style="z-index: 100;"
+              >
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
             </div>
-            <div class="watermark-text-modal">Audio</div>
-            <vueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
-              <audio-player
-                :modalOpen="audioModal"
-                v-for="i in 4"
-                :key="i"
-                file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-              ></audio-player>
-            </vueSlickCarousel>
-          </v-card>
-        </v-dialog>
-      </div>
+          </div>
+          <div class="watermark-text-modal">Audio</div>
+          <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
+            <audio-player
+              :modalOpen="audioModal"
+              v-for="i in 6"
+              :key="i"
+              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+            ></audio-player>
+          </VueSlickCarousel>
+        </v-card>
+      </v-dialog>
+
       <!-- Audio Modal -->
+
+      <!-- Video Modal -->
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+          <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
+            <v-btn
+              color="transparent"
+              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
+              icon
+              @click.stop="videoModal=false"
+              depressed
+            >
+              <img src="/images/resume_themes/theme203/icons/email-close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+
+          <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
+            <video-player
+              v-for="i in 6"
+              :key="i"
+              :modalOpen="videoModal"
+              link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            ></video-player>
+          </VueSlickCarousel>
+        </v-card>
+      </v-dialog>
+      <!-- Video Modal -->
       <!-- All Modals  -->
 
       <!-- tab bar row -->
@@ -746,12 +776,14 @@
 <script>
 import HireModal from "./payment/HireModal";
 import AudioPlayer from "./media/AudioPlayer";
+import VideoPlayer from "./media/VideoPlayer";
 import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
   components: {
     HireModal,
     AudioPlayer,
+    VideoPlayer,
     VueSlickCarousel,
   },
   props: ["user", "is_preview"],
@@ -769,6 +801,7 @@ export default {
   data() {
     return {
       audioModal: false,
+      videoModal: false,
       emailModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
@@ -783,6 +816,48 @@ export default {
       mainDataTab: null,
 
       progressBarColor: "yellow",
+      slickOptionsVideoModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 2,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+        ],
+      },
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3,
+      },
       mainTabs: [
         {
           id: 1,
@@ -968,14 +1043,6 @@ export default {
       return mainImage.src;
     },
     //audio Modal
-    slickOptionsAudioModal: {
-      infinite: false,
-      dots: true,
-      arrows: false,
-      slidesPerRow: 1,
-      slidesToScroll: 1,
-      rows: 3,
-    },
   },
 };
 </script>
@@ -1591,6 +1658,37 @@ export default {
     }
   }
 }
+
+.card-modal-video-holder {
+  height: 850px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    height: 700px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    height: auto;
+  }
+  @media screen and (max-width: 959px) {
+    height: 1250px;
+  }
+  @media screen and (max-width: 599px) {
+    height: 770px;
+  }
+  .btn-video-close {
+    img {
+      width: 50px;
+      height: 50px;
+      @media screen and (max-width: 959px) {
+        width: 63px;
+        height: 62px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  }
+}
+
 //audio modal
 .watermark-text-modal {
   font-family: "Gotham Pro" !important;
@@ -1726,6 +1824,48 @@ export default {
         font-size: 18px;
         line-height: 25px;
       }
+    }
+  }
+
+  .slick-dots {
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .slick-dots li {
+    width: 18px;
+    height: 18px;
+    background: rgba(252, 210, 89, 0.3) !important;
+    border-radius: 50%;
+  }
+  .slick-dots li.slick-active button {
+    background: #fcd259 !important;
+  }
+  // video slick
+  .video-slick .slick-list {
+    padding-bottom: 50px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
+    }
+  }
+  .audio-slick .slick-list {
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
     }
   }
 }
