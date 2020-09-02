@@ -16,7 +16,7 @@
                 </v-btn>
               </div>
             </v-list-item-icon>
-            <v-list-item-content class="mt-xl-n12 mt-lg-n12 mt-md-n10 mt-sm-n10 mt-n10">
+            <v-list-item-content class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10">
               <v-list-item-subtitle class="mt-4">
                 <v-row no-gutters>
                   <v-col cols="1" class="ml-lg-n12 ml-md-n7"></v-col>
@@ -25,7 +25,7 @@
                       <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
                     </span>
                   </v-col>
-                  <v-col cols="6" align="right" class="ml-xl-9">
+                  <v-col cols="6" align="right" class="ml-xl-9 ml-lg-7">
                     <span class="mb-n4">
                       <v-card
                         flat
@@ -41,7 +41,7 @@
                   rounded
                   tile
                   class="custom-progressbar"
-                  color="yellow"
+                  color="transparent"
                   background-color="#E0E0E0"
                   :value="percentage"
                   height="22"
@@ -49,7 +49,7 @@
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-          
+
           <audio
             id="player"
             ref="player"
@@ -261,6 +261,23 @@ export default {
 #resumeTheme203 {
   .card-audio {
     .v-progress-linear__determinate {
+      overflow: hidden;
+      position: absolute;
+    }
+    .v-progress-linear__determinate:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: linear-gradient(
+        92.63deg,
+        #fcd259 1.07%,
+        #e5bf4e 51.95%,
+        #ffde81 89.88%
+      ) !important;
+      height: 100%;
+      width: 100%;
       border-radius: 15px !important;
     }
   }

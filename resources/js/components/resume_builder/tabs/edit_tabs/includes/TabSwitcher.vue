@@ -39,7 +39,7 @@
 
     .switch{
         display: flex;
-        align-items:center;
+        align-items:baseline;
         margin-top: -3px;
         margin-right: 10px;
 
