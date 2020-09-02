@@ -1,7 +1,7 @@
 <template>
     <div class="work-container" id="worksSection">
 
-        <div class="d-flex">
+        <div class="d-flex reverse-on-phone">
             <!-- Tabs -->
             <v-tabs class="resume-builder__tab-bar" hide-slider height="51">
                 <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setWorkCategory(tab)">
@@ -802,5 +802,17 @@
 
     .error-input{
         border: 1.5px solid red !important;
+    }
+</style>
+
+<style lang="scss">
+    @import '../../../../../sass/media-queries';
+
+    .reverse-on-phone{
+        @include lt-sm{
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: flex-end;
+        }
     }
 </style>
