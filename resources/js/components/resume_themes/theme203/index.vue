@@ -1842,17 +1842,31 @@ export default {
   .slick-dots li.slick-active button {
     background: #fcd259 !important;
   }
-}
-#resumeTheme203 .video-slick .slick-list {
-  padding-bottom: 50px;
-  @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    padding-bottom: 40px;
+  // video slick
+  .video-slick .slick-list {
+    padding-bottom: 50px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
+    }
   }
-  @media screen and (min-width: 600px) and (max-width: 959px) {
-    padding-bottom: 30px;
-  }
-  @media screen and (max-width: 599px) {
-    padding-bottom: 15px;
+  .audio-slick .slick-list {
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
+    }
   }
 }
 </style>
