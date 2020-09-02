@@ -1,8 +1,8 @@
 <template>
-  <v-dialog v-model="hireModal" :hireMeModal="hireMeModal" max-width="567" persistent>
+  <v-dialog v-model="hireMeModal" :windowWidth="windowWidth" :hireMeModal = "hireMeModal" max-width="567" persistent>
     <v-card color="#F6F9FF" class="card-hire-me-modal pa-sm-3 pa-5">
       <div align="right">
-        <v-btn icon @click="hireMeModal = false">
+        <v-btn icon @click.native="closeModal()">
           <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
         </v-btn>
       </div>
@@ -199,16 +199,17 @@ export default {
       type: Boolean,
       default: true,
     },
+    windowWidth:{
+      type:Number
+    },
   },
   data() {
     return {
-      windowWidth: window.innerWidth,
       inputHour: 40,
       inputWeek: 10,
       stripeHover: false,
       paypalHover: false,
       hireMeTab: null,
-      hireModal: false,
       hireOptions: [
         { id: 1, title: "Hourly" },
         { id: 2, title: "Weekly" },
@@ -216,21 +217,12 @@ export default {
       ],
     };
   },
-  watch: {
-    hireMeModal: function (val) {
-      if (val == true) {
-        this.hireModal = true;
-      } else {
-        this.hireModal = false;
-      }
-    },
-  },
-  mounted() {
-    window.onresize = () => {
-      this.windowWidth = window.innerWidth;
-    };
-  },
+  
+  
   methods: {
+    closeModal(){
+      this.$emit("update:hireMeModal",false);
+    },
     increamentHours() {
       this.inputHour++;
     },

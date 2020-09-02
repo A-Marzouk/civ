@@ -212,7 +212,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
-                                @click.stop="hireMeModal = !hireMeModal"
+                                @click="hireMeModal = !hireMeModal"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -607,8 +607,7 @@
                             v-show="achievement.is_public"
                           >
                             <div
-                              class="d-flex achievement"
-                              :class="[windowWidth<=1263?'flex-column':'flex-row']"
+                              :class="[windowWidth<=1263?'d-flex achievement flex-column':'d-flex achievement flex-row']"
                             >
                               <div :align="windowWidth<=1263?'center':'left'">
                                 <img
@@ -674,7 +673,7 @@
       <!-- ......................................Tab Items .........................-->
       <!-- All Modals -->
       <!-- Hire Me Modal -->
-      <hire-modal :hireMeModal="hireMeModal"></hire-modal>
+      <hire-modal :hireMeModal.sync="hireMeModal" :widowWidth="windowWidth"></hire-modal>
       <!-- Hire Me Modal -->
 
       <!-- Email modal -->
@@ -1660,6 +1659,7 @@ export default {
 }
 
 .card-modal-video-holder {
+  border-radius: 40px !important;
   height: 850px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 700px;
@@ -1840,6 +1840,8 @@ export default {
     border-radius: 50%;
   }
   .slick-dots li.slick-active button {
+    width: 18px !important;
+    height: 18px !important;
     background: #fcd259 !important;
   }
   // video slick
