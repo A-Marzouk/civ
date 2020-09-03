@@ -978,12 +978,17 @@
 
             .vicp-close {
                 position: absolute;
-                left: 109px;
+                left: 48px;
                 top: 36px;
 
                 @include lt-sm{
                     left: 18px;
                 }
+
+                @include lt-md{
+                    left: 19px;
+                }
+
 
                 .vicp-icon4 {
                     position: relative;
@@ -1102,6 +1107,10 @@
                 width: 745px;
                 display: flex;
                 justify-content: space-between;
+
+                @include lt-md{
+                    width: 700px;
+                }
 
                 .vicp-crop-left {
                     float: left;
@@ -1379,6 +1388,10 @@
                     position: absolute;
                     bottom: 20px;
                     right: 5px;
+                }
+
+                @include lt-md{
+                    right: 16px;
                 }
 
                 a {
