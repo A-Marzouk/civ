@@ -6,15 +6,13 @@
             </div>
 
             <div class="vicp-step1" v-show="step == 1">
-                <div class="vicp-drop-area" @dragleave="preventDefault" @dragover="preventDefault" @dragenter="preventDefault" @click="handleClick" @drop="handleChange">
-                    <img class="vicp-icon1" src="/images/new_resume_builder/upload-arrow.svg" v-show="loading != 1" />
+                <div class="vicp-drop-area" @dragleave="preventDefault" @dragover="preventDefault"
+                     @dragenter="preventDefault" @click="handleClick" @drop="handleChange">
+                    <img class="vicp-icon1" src="/images/new_resume_builder/upload-arrow.svg" v-show="loading != 1"/>
                     <span class="vicp-hint" v-show="loading !== 1">Click or drag the photo here to upload</span>
                     <span class="vicp-hint sub-text" v-show="loading !== 1">Max size 5MB</span>
                     <span class="vicp-no-supported-hint" v-show="!isSupported">{{ lang.noSupported }}</span>
                     <input type="file" v-show="false" v-if="step == 1" @change="handleChange" ref="fileinput">
-                </div>
-                <div class="vicp-error" v-show="hasError">
-                    <i class="vicp-icon2"></i> {{ errorMsg }}
                 </div>
             </div>
 
@@ -47,8 +45,10 @@
 
                             <input type="range" :value="scale.range" step="1" min="0" max="100" @mousemove="zoomChange">
 
-                            <i @mousedown="startZoomSub" @mouseout="endZoomSub" @mouseup="endZoomSub" class="vicp-icon5"></i>
-                            <i @mousedown="startZoomAdd" @mouseout="endZoomAdd" @mouseup="endZoomAdd" class="vicp-icon6"></i>
+                            <i @mousedown="startZoomSub" @mouseout="endZoomSub" @mouseup="endZoomSub"
+                               class="vicp-icon5"></i>
+                            <i @mousedown="startZoomAdd" @mouseout="endZoomAdd" @mouseup="endZoomAdd"
+                               class="vicp-icon6"></i>
                         </div>
 
                         <div class="vicp-rotate" v-if="!noRotate">
@@ -92,6 +92,19 @@
                     <span class="mt-2">
                         !
                     </span>
+                </div>
+            </div>
+
+            <div class="vicp-step5" v-if="step === 5">
+                <div class="error-area">
+                    <img src="/images/new_resume_builder/error-icon.svg" alt="loading icon">
+                    <span>
+                        Please upload correct image type <br> Max size: 5MB
+                    </span>
+                </div>
+
+                <div class="vicp-operate">
+                    <a @click="setStep(1)" @mousedown="ripple">{{ lang.btn.back }}</a>
                 </div>
             </div>
 
@@ -165,7 +178,7 @@
             // 单文件大小限制
             maxSize: {
                 type: Number,
-                'default': 10240
+                'default': 5000
             },
             // 语言类型
             langType: {
@@ -292,7 +305,7 @@
                     naturalWidth: 0, //原宽
                     naturalHeight: 0
                 },
-                errors:{}
+                errors: {}
             }
         },
         computed: {
@@ -407,9 +420,9 @@
             },
             // 关闭控件
             off() {
-                setTimeout(()=> {
+                setTimeout(() => {
                     this.$emit('input', false);
-                    if(this.step >= 3 && this.loading !== 1){
+                    if (this.step >= 3 && this.loading !== 1) {
                         this.setStep(1);
                     }
                 }, 200);
@@ -417,7 +430,7 @@
             // 设置步骤
             setStep(no) {
                 // 延时是为了显示动画效果呢，哈哈哈
-                setTimeout(()=> {
+                setTimeout(() => {
                     this.step = no;
                 }, 200);
             },
@@ -460,6 +473,7 @@
                 // 仅限图片
                 if (file.type.indexOf('image') === -1) {
                     that.hasError = true;
+                    that.setStep(5);
                     that.errorMsg = lang.error.onlyImg;
                     return false;
                 }
@@ -467,6 +481,7 @@
                 // 超出大小
                 if (file.size / 1024 > maxSize) {
                     that.hasError = true;
+                    that.setStep(5);
                     that.errorMsg = lang.error.outOfSize + maxSize + 'kb';
                     return false;
                 }
@@ -477,6 +492,7 @@
                 let that = this;
                 that.loading = 0;
                 that.hasError = false;
+                that.setStep(1);
                 that.errorMsg = '';
                 that.progress = 0;
             },
@@ -485,7 +501,7 @@
                 this.$emit('src-file-set', file.name, file.type, file.size);
                 let that = this,
                     fr = new FileReader();
-                fr.onload = function(e) {
+                fr.onload = function (e) {
                     that.sourceImgUrl = fr.result;
                     that.startCrop();
                 }
@@ -506,7 +522,7 @@
                     sim = sourceImgMasking,
                     img = new Image();
                 img.src = sourceImgUrl;
-                img.onload = function() {
+                img.onload = function () {
                     let nWidth = img.naturalWidth,
                         nHeight = img.naturalHeight,
                         nRatio = nWidth / nHeight,
@@ -548,7 +564,7 @@
             imgStartMove(e) {
                 e.preventDefault();
                 // 支持触摸事件，则鼠标事件无效
-                if(this.isSupportTouch && !e.targetTouches){
+                if (this.isSupportTouch && !e.targetTouches) {
                     return false;
                 }
                 let et = e.targetTouches ? e.targetTouches[0] : e,
@@ -567,7 +583,7 @@
             imgMove(e) {
                 e.preventDefault();
                 // 支持触摸事件，则鼠标事件无效
-                if(this.isSupportTouch && !e.targetTouches){
+                if (this.isSupportTouch && !e.targetTouches) {
                     return false;
                 }
                 let et = e.targetTouches ? e.targetTouches[0] : e,
@@ -647,11 +663,12 @@
                     if (scale.zoomAddOn) {
                         let range = scale.range >= 100 ? 100 : ++scale.range;
                         that.zoomImg(range);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             zoom();
                         }, 60);
                     }
                 }
+
                 zoom();
             },
             // 按钮松开或移开取消放大
@@ -670,11 +687,12 @@
                     if (scale.zoomSubOn) {
                         let range = scale.range <= 0 ? 0 : --scale.range;
                         that.zoomImg(range);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             zoom();
                         }, 60);
                     }
                 }
+
                 zoom();
             },
             // 按钮松开或移开取消缩小
@@ -737,7 +755,7 @@
                 scale.width = nWidth;
                 scale.height = nHeight;
                 scale.range = newRange;
-                setTimeout(function() {
+                setTimeout(function () {
                     if (scale.range == newRange) {
                         that.createImg();
                     }
@@ -771,9 +789,9 @@
                 canvas.height = that.height;
                 ctx.clearRect(0, 0, that.width, that.height);
 
-                if(imgFormat == 'png'){
+                if (imgFormat == 'png') {
                     ctx.fillStyle = 'rgba(0,0,0,0)';
-                } else{
+                } else {
                     // 如果jpg 为透明区域设置背景，默认白色
                     ctx.fillStyle = imgBgc;
                 }
@@ -782,7 +800,7 @@
                 ctx.drawImage(sourceImg, x / scale, y / scale, width / scale, height / scale);
                 that.createImgUrl = canvas.toDataURL(mime);
             },
-            prepareUpload(){
+            prepareUpload() {
                 let {
                     url,
                     createImgUrl,
@@ -794,10 +812,10 @@
 
             },
 
-           upload(imgDataUrl){
-               this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
-               this.applyEdit();
-           },
+            upload(imgDataUrl) {
+                this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
+                this.applyEdit();
+            },
             dataURLtoFile(dataURL, filename) {
                 var arr = dataURL.split(','), mime = arr[0].match(/:(.*?);/)[1],
                     bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
@@ -826,19 +844,20 @@
                 this.loading = 1;
 
                 axios.post("/api/user/personal-info", formData, config)
-                    .then( (response) => {
-                        setTimeout( () => {
+                    .then((response) => {
+                        setTimeout(() => {
                             this.personalInfo.profile_pic = response.data.data.profile_pic;
                             this.setStep(4);
                             this.loading = 2;
                         }, 2000);
 
-                        setTimeout( () => {
+                        setTimeout(() => {
                             this.off();
                         }, 4500);
 
                     })
                     .catch(error => {
+                        this.setStep(5);
                         if (typeof error.response.data === "object") {
                             this.errors = error.response.data.errors;
                         } else {
@@ -851,10 +870,10 @@
                     });
             },
         },
-        created(){
+        created() {
             // 绑定按键esc隐藏此插件事件
-            document.addEventListener('keyup', (e)=>{
-                if(this.value && (e.key == 'Escape' || e.keyCode == 27)){
+            document.addEventListener('keyup', (e) => {
+                if (this.value && (e.key == 'Escape' || e.keyCode == 27)) {
                     this.off();
                 }
             })
@@ -916,13 +935,13 @@
     }
 
     @keyframes rotation {
-        0%{
+        0% {
             transform: rotate(180deg);
         }
-        50%{
+        50% {
             transform: rotate(0deg);
         }
-        100%{
+        100% {
             transform: rotate(180deg);
         }
     }
@@ -931,7 +950,7 @@
     .vicp-hint {
         display: block;
         font-size: 20px;
-        margin-top:20px;
+        margin-top: 20px;
         margin-bottom: 14px;
         letter-spacing: 0px;
         color: #4874F8;
@@ -982,7 +1001,7 @@
             -webkit-animation: vicp 0.12s ease-in;
             animation: vicp 0.12s ease-in;
 
-            @include lt-sm{
+            @include lt-sm {
                 height: 650px;
             }
 
@@ -991,11 +1010,11 @@
                 left: 48px;
                 top: 36px;
 
-                @include lt-sm{
+                @include lt-sm {
                     left: 18px;
                 }
 
-                @include lt-md{
+                @include lt-md {
                     left: 19px;
                 }
 
@@ -1043,8 +1062,8 @@
                 }
             }
 
-            .vicp-step1{
-                @include lt-sm{
+            .vicp-step1 {
+                @include lt-sm {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -1065,8 +1084,8 @@
                 border-radius: 24px;
                 text-align: center;
                 overflow: hidden;
-                @include lt-sm{
-                   width: 90%;
+                @include lt-sm {
+                    width: 90%;
                 }
 
 
@@ -1103,14 +1122,14 @@
                 display: flex;
                 justify-content: space-between;
 
-                @include lt-md{
+                @include lt-md {
                     width: 700px;
                 }
 
                 .vicp-crop-left {
                     float: left;
                     margin-left: 35px;
-                    @include lt-sm{
+                    @include lt-sm {
                         margin-left: 0px;
                         margin-top: 40px;
                     }
@@ -1302,7 +1321,7 @@
                             &.vicp-preview-item-circle {
                                 margin-right: 0;
                                 margin-left: 40px;
-                                
+
                                 img {
                                     width: 157px;
                                     border-radius: 50%;
@@ -1313,9 +1332,14 @@
                 }
             }
 
-            .vicp-step3{
+            .vicp-step3 {
 
-                .loading-area{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .loading-area {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -1329,16 +1353,17 @@
                     border-radius: 24px;
                     text-align: center;
                     overflow: hidden;
-                    @include lt-sm{
+                    @include lt-sm {
                         width: 90%;
                     }
 
-                    img{
+                    img {
                         animation: rotation 2s infinite linear;
                     }
                 }
 
             }
+
             .vicp-step3 .vicp-upload {
                 position: relative;
                 -webkit-box-sizing: border-box;
@@ -1400,8 +1425,13 @@
                 }
             }
 
-            .vicp-step4{
-                .success-area{
+            .vicp-step4 {
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .success-area {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -1414,17 +1444,62 @@
                     border-radius: 24px;
                     text-align: center;
                     overflow: hidden;
-                    @include lt-sm{
-                        width: 90%;
-                        span{
-                            font-size: 24px;
-                        }
+                    span {
+                        font-size: 55px;
+                        color: #4874F8;
                     }
 
-                   span{
-                       font-size: 55px;
-                       color: #4874F8;
-                   }
+                    @include lt-sm {
+                        width: 90%;
+                        span {
+                            font-size: 28px;
+                        }
+
+                        img{
+                            width: 50px;
+                        }
+                    }
+                }
+            }
+
+            .vicp-step5 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .error-area {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    padding: 35px;
+                    width: 615px;
+                    height: 265px;
+                    background: #F2F5FE 0% 0% no-repeat padding-box;
+                    border-radius: 24px;
+                    text-align: center;
+                    overflow: hidden;
+
+                    img {
+                        margin-right: 50px;
+                    }
+
+                    span {
+                        font-size: 22px;
+                        font-weight: bold;
+                        color: #F75252;
+                    }
+
+                    @include lt-sm {
+                        width: 90%;
+                        span {
+                            font-size: 18px;
+                        }
+                        img {
+                            margin-right: 10px;
+                        }
+                    }
                 }
             }
 
@@ -1433,13 +1508,13 @@
                 bottom: 47px;
                 right: 78px;
 
-                @include lt-sm{
+                @include lt-sm {
                     position: absolute;
                     bottom: 20px;
                     right: 5px;
                 }
 
-                @include lt-md{
+                @include lt-md {
                     right: 16px;
                 }
 

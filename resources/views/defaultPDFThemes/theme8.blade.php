@@ -297,7 +297,7 @@
 
                 <td class="user-social">
                     <div class="social">
-                        <a href="https://behance.com">
+                        <a href="https://behance.net">
                             <div class="img-wrapper">
                                 <img src="{{ public_path('images/resume_themes/theme8/behance-icon.png') }}" alt="">
                             </div>
@@ -321,7 +321,7 @@
                         </a>
                     </div>
                     <div class="social">
-                        <a href="https://behance.com">
+                        <a href="https://behance.net">
                             <div class="img-wrapper">
                                 <img src="{{ public_path('images/resume_themes/theme8/linkedin-icon.png') }}" alt="">
                             </div>
