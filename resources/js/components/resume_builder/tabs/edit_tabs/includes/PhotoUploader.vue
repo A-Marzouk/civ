@@ -56,11 +56,11 @@
                     <div class="vicp-crop-right" v-show="true">
                         <div class="vicp-preview">
                             <div class="vicp-preview-item" v-if="!noSquare">
-                                <img :src="createImgUrl" :style="previewStyle">
+                                <img :src="createImgUrl">
                                 <span>{{ lang.preview }}</span>
                             </div>
                             <div class="vicp-preview-item vicp-preview-item-circle" v-if="!noCircle">
-                                <img :src="createImgUrl" :style="previewStyle">
+                                <img :src="createImgUrl">
                                 <span>{{ lang.preview }}</span>
                             </div>
                         </div>
@@ -267,7 +267,7 @@
                 // 原图容器宽高
                 sourceImgContainer: { // sic
                     width: 240,
-                    height: 184 // 如果生成图比例与此一致会出现bug，先改成特殊的格式吧，哈哈哈
+                    height: 204 // 如果生成图比例与此一致会出现bug，先改成特殊的格式吧，哈哈哈
                 },
 
                 // 原图展示属性
@@ -1075,15 +1075,20 @@
 
             .vicp-step2 .vicp-crop {
                 overflow: hidden;
+                width: 745px;
+                display: flex;
+                justify-content: space-between;
 
                 .vicp-crop-left {
                     float: left;
+                    margin-left: 35px;
 
                     .vicp-img-container {
                         position: relative;
                         display: block;
-                        width: 240px;
-                        height: 180px;
+                        width: 220px;
+                        height: 200px;
+                        border-radius: 20px;
                         background-color: #e5e5e0;
                         overflow: hidden;
 
@@ -1117,7 +1122,7 @@
 
                     .vicp-rotate {
                         position: relative;
-                        width: 240px;
+                        width: 220px;
                         height: 18px;
 
                         i {
@@ -1153,16 +1158,16 @@
                     .vicp-range {
                         position: relative;
                         margin: 30px 0 10px 0;
-                        width: 240px;
+                        width: 220px;
                         height: 18px;
 
                         .vicp-icon5, .vicp-icon6 {
                             position: absolute;
-                            top: 0;
+                            top: -3px;
                             width: 18px;
                             height: 18px;
                             border-radius: 100%;
-                            background-color: rgba(0, 0, 0, 0.08);
+                            background-color: white;
                         }
 
                         .vicp-icon5:hover, .vicp-icon6:hover {
@@ -1183,7 +1188,7 @@
                                 top: 8px;
                                 width: 12px;
                                 height: 2px;
-                                background-color: #fff;
+                                background-color: #4874F8;
                             }
                         }
 
@@ -1198,7 +1203,7 @@
                                 top: 8px;
                                 width: 12px;
                                 height: 2px;
-                                background-color: #fff;
+                                background-color: #4874F8;
                             }
 
                             &::after {
@@ -1209,7 +1214,7 @@
                                 left: 8px;
                                 width: 2px;
                                 height: 12px;
-                                background-color: #fff;
+                                background-color: #4874F8;
                             }
                         }
 
@@ -1353,14 +1358,14 @@
                     float: right;
 
                     .vicp-preview {
-                        height: 150px;
+                        height: 210px;
                         overflow: hidden;
 
                         .vicp-preview-item {
                             position: relative;
                             padding: 5px;
-                            width: 100px;
-                            height: 100px;
+                            width: 157px;
+                            height: 157px;
                             float: left;
                             margin-right: 16px;
 
@@ -1369,7 +1374,7 @@
                                 bottom: -30px;
                                 width: 100%;
                                 font-size: 14px;
-                                color: #bbb;
+                                color: #4874F8;
                                 display: block;
                                 text-align: center;
                             }
@@ -1384,7 +1389,10 @@
                                 margin: auto;
                                 padding: 3px;
                                 background-color: #fff;
-                                border: 1px solid rgba(0, 0, 0, 0.15);
+                                width: 144px;
+                                height: 157px;
+                                border-radius: 8px;
+
                                 overflow: hidden;
                                 -webkit-user-select: none;
                                 -moz-user-select: none;
@@ -1394,9 +1402,11 @@
 
                             &.vicp-preview-item-circle {
                                 margin-right: 0;
-
+                                margin-left: 40px;
+                                
                                 img {
-                                    border-radius: 100%;
+                                    width: 157px;
+                                    border-radius: 50%;
                                 }
                             }
                         }
@@ -1466,6 +1476,10 @@
             }
 
             .vicp-operate {
+                position: absolute;
+                bottom: 47px;
+                right: 78px;
+
                 a {
                     position: relative;
                     float: left;
@@ -1477,8 +1491,8 @@
                     text-align: center;
                     cursor: pointer;
                     font-size: 18px;
-                    font-weight: bold;
-                    color: #4874F8;
+                    font-weight: bold !important;
+                    color: #4874F8 !important;
                     border-radius: 2px;
                     overflow: hidden;
                     -webkit-user-select: none;
