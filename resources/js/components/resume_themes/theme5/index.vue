@@ -150,6 +150,7 @@
                         background: #fc5185;
                         box-shadow: #fc7ea4 0px 10px 30px -8px;
                       "
+                      @click="hireMeModal=true"
                     >
                       <img
                         style="
@@ -254,6 +255,7 @@
                         background: #fc5185;
                         box-shadow: rgba(252, 81, 133, 0.4) 0px 10px 30px -8px;
                       "
+                      @click="hireMeModal=true"
                     >
                       <img
                         style="
@@ -541,6 +543,7 @@
                         background: #fc5185;
                         box-shadow: #fc7ea4 0px 10px 30px -8px;
                       "
+                      @click="hireMeModal=true"
                     >
                       <img
                         style="
@@ -1031,7 +1034,7 @@
                 </div>
               </v-card>
             </v-dialog>
-            <!-- Video modal -->
+            <!-- Video modal end-->
 
             <!-- Audio Modal -->
             <v-dialog v-model="audioModal" :elevation="0" max-width="1690" persistent content-class="ct-dialog">
@@ -1083,6 +1086,11 @@
           </v-container>
         </v-col>
       </v-row>
+      <!-- hire modal start -->
+    
+          <hire-modal :hireMeModal.sync="hireMeModal" :widowWidth="windowWidth"></hire-modal>
+
+          <!-- hire modal end -->
     </v-container>
   </v-app>
 </template>
@@ -1750,6 +1758,7 @@ import Slick from "vue-slick";
 import VueSlickCarousel from "vue-slick-carousel";
 import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
+import HireModal from "./payment/HireModal";
 
 export default {
   name: "theme8",
@@ -1759,9 +1768,12 @@ export default {
     VueSlickCarousel,
     AudioPlayer,
     VideoPlayer,
+    HireModal
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
+      hireMeModal:false,
       videoModal: false,
       audioModal: false,
       tabs: [
@@ -2035,6 +2047,10 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+
+    indow.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
