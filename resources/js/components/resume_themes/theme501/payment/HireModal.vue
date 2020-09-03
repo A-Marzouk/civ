@@ -1,9 +1,9 @@
 <template>
-  <v-dialog v-model="hireMeModal" :windowWidth="windowWidth" :currentUser = "currentUser" :hireMeModal = "hireMeModal" max-width="567" persistent>
+  <v-dialog v-model="hireMeModal" :windowWidth="windowWidth" :hireMeModal = "hireMeModal" max-width="567" persistent>
     <v-card color="#F6F9FF" class="card-hire-me-modal pa-sm-3 pa-5">
       <div align="right">
         <v-btn icon @click.native="closeModal()">
-          <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
+          <img src="/images/resume_themes/theme501/icons/close.svg" alt="close button" />
         </v-btn>
       </div>
       <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
@@ -55,7 +55,7 @@
         >
           <div class="align-self-center btn-holder">
             <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentHours()">
-              <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
+              <img src="/images/resume_themes/theme501/icons/tick-minus.svg" alt />
             </v-btn>
           </div>
           <div class="align-self-center mx-xl-3 mx-lg-3 mx-md-3 mx-sm-3 mx-5">
@@ -74,7 +74,7 @@
             @click="increamentHours()"
           >
             <v-btn color="#F2F3FD" class="btn-decreament" icon>
-              <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
+              <img src="/images/resume_themes/theme501/icons/tick-plus.svg" alt />
             </v-btn>
           </div>
         </div>
@@ -88,7 +88,7 @@
         <div class="d-flex flex-row align-items-center mt-5">
           <div class="align-self-center btn-holder">
             <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentWeek()">
-              <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
+              <img src="/images/resume_themes/theme501/icons/tick-minus.svg" alt />
             </v-btn>
           </div>
           <div class="align-self-center mx-xl-3 mx-lg-3 mx-md-3 mx-sm-3 mx-5">
@@ -104,7 +104,7 @@
           </div>
           <div class="align-self-center btn-holder">
             <v-btn color="#F2F3FD" class="btn-decreament" icon @click="increamentWeek()">
-              <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
+              <img src="/images/resume_themes/theme501/icons/tick-plus.svg" alt />
             </v-btn>
           </div>
         </div>
@@ -133,7 +133,7 @@
               <img
                 @mouseover="stripeHover=true"
                 @mouseleave="stripeHover=false"
-                :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
+                :src="stripeHover?'/images/resume_themes/theme501/icons/stripe-active.svg':'/images/resume_themes/theme501/icons/stripe.svg'"
                 alt="Stripe Logo"
               />
             </a>
@@ -143,7 +143,7 @@
               <img
                 @mouseover="paypalHover=true"
                 @mouseleave="paypalHover=false"
-                :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
+                :src="paypalHover?'/images/resume_themes/theme501/icons/paypal-active.svg':'/images/resume_themes/theme501/icons/paypal.svg'"
                 alt="Paypal Logo"
               />
             </a>
@@ -166,7 +166,7 @@
                 <img
                   @mouseover="stripeHover=true"
                   @mouseleave="stripeHover=false"
-                  :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
+                  :src="stripeHover?'/images/resume_themes/theme501/icons/stripe-active.svg':'/images/resume_themes/theme501/icons/stripe.svg'"
                   alt="Stripe Logo"
                 />
               </a>
@@ -176,7 +176,7 @@
                 <img
                   @mouseover="paypalHover=true"
                   @mouseleave="paypalHover=false"
-                  :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
+                  :src="paypalHover?'/images/resume_themes/theme501/icons/paypal-active.svg':'/images/resume_themes/theme501/icons/paypal.svg'"
                   alt="Paypal Logo"
                 />
               </a>
@@ -202,9 +202,6 @@ export default {
     windowWidth:{
       type:Number
     },
-    currentUser:{
-      type:Object
-    }
   },
   data() {
     return {
@@ -234,11 +231,9 @@ export default {
         this.inputHour--;
       }
     },
-
     increamentWeek() {
       this.inputWeek++;
     },
-
     decreamentWeek() {
       if (this.inputWeek > 0) {
         this.inputWeek--;
@@ -300,7 +295,6 @@ export default {
     line-height: 25px;
     color: #001ce2 !important;
   }
-
   .select-hour {
     font-family: "Noto Sans" !important;
     font-style: normal;

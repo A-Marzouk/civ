@@ -37,6 +37,42 @@ class UserObserver
     }
 
     /**
+     * Handle the user "before deleting" event.
+     *
+     * @param  \App\User $user
+     * @return void
+     *
+     */
+
+    public function deleting(User $user)
+    {
+
+        // Do some stuff before delete
+
+        // delete resume links:
+        $resumeLinks = $user->resumeLinks;
+        foreach ($resumeLinks as $link){
+            $link->delete();
+        }
+
+        // delete subscription:
+        $subscription = $user->subscription;
+        if($subscription){
+            $subscription->delete();
+        }
+
+
+        // delete subscription:
+        $permissions = $user->permissions;
+        if($permissions){
+            foreach ($permissions as $permission){
+                $permission->delete();
+            }
+        }
+    }
+
+
+    /**
      * Handle the user "deleted" event.
      *
      * @param  \App\User $user
@@ -46,15 +82,7 @@ class UserObserver
     {
         // delete all user relations :
 
-        foreach (User::$defaultOneToOneRelations as $relation) {
-            $user->$relation()->delete();
-        }
 
-        foreach (User::$defaultOneToManyRelations as $relation) {
-            foreach ($user->$relation as $model) {
-                $model->delete();
-            }
-        }
 
     }
 

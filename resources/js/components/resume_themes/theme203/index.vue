@@ -212,7 +212,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
-                                @click.stop="hireMeModal = !hireMeModal"
+                                @click="hireMeModal = !hireMeModal"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -331,6 +331,7 @@
 
                           <!-- about me -->
                           <v-card-subtitle class="overview-title">About Me</v-card-subtitle>
+                          <hr class="custom-hr hidden-xs-only" />
                           <v-card-text
                             class="overview-text"
                           >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
@@ -344,6 +345,7 @@
                           <v-card-subtitle class="overview-title">Location</v-card-subtitle>
                           <v-card-text class="overview-text">Ireland, Dublin</v-card-text>
                           <!-- location -->
+                          <hr class="custom-hr hidden-sm-and-up" />
                         </v-card>
                       </v-col>
                     </v-row>
@@ -607,8 +609,7 @@
                             v-show="achievement.is_public"
                           >
                             <div
-                              class="d-flex achievement"
-                              :class="[windowWidth<=1263?'flex-column':'flex-row']"
+                              :class="[windowWidth<=1263?'d-flex achievement flex-column':'d-flex achievement flex-row']"
                             >
                               <div :align="windowWidth<=1263?'center':'left'">
                                 <img
@@ -674,7 +675,11 @@
       <!-- ......................................Tab Items .........................-->
       <!-- All Modals -->
       <!-- Hire Me Modal -->
-      <hire-modal :hireMeModal="hireMeModal"></hire-modal>
+      <hire-modal
+        :hireMeModal.sync="hireMeModal"
+        :widowWidth="windowWidth"
+        :currentUser="currentUser"
+      ></hire-modal>
       <!-- Hire Me Modal -->
 
       <!-- Email modal -->
@@ -1660,6 +1665,7 @@ export default {
 }
 
 .card-modal-video-holder {
+  border-radius: 40px !important;
   height: 850px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 700px;
@@ -1719,6 +1725,26 @@ export default {
   @media screen and (max-width: 667px) {
     font-size: 100px;
     top: -70%;
+  }
+}
+.custom-hr {
+  width: 245.36px;
+  opacity: 0.6;
+  border: 1px solid #000000;
+  transform: rotate(90deg);
+  margin-left: -198px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    margin-left: -158px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    margin-left: -144px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    margin-left: -150px;
+  }
+  @media screen and (max-width: 599px) {
+    margin-left: 16px;
+    transform: rotate(180deg);
   }
 }
 </style>
@@ -1840,6 +1866,8 @@ export default {
     border-radius: 50%;
   }
   .slick-dots li.slick-active button {
+    width: 18px !important;
+    height: 18px !important;
     background: #fcd259 !important;
   }
   // video slick

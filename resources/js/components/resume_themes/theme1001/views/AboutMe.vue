@@ -5,8 +5,50 @@
     </div>
 
     <div class="about-me__detail">
-      <div class="detail__paragraph">
-        {{ currentUser.personal_info.about }}
+      <div class="left-side">
+        <div class="box">
+          <div class="title">Date of Birth</div>
+          <div class="subtitle">01/14/90</div>
+        </div>
+        <div class="box">
+          <div class="title">Nationality</div>
+          <div class="subtitle">Ukrainian</div>
+        </div>
+        <div class="box">
+          <div class="title">Hometown</div>
+          <div class="subtitle">Kiev</div>
+        </div>
+        <div class="box">
+          <div class="title">Languages</div>
+          <div class="subtitle">English</div>
+          <div class="subtitle">Arabic</div>
+          <div class="subtitle">Franch</div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="box vertical-space">
+          <div class="title">Overview Sumary</div>
+          <div class="subtitle">
+            В работе дизайнера есть много пространства для креатива, но это
+            только на первый взгляд кажется, что такие специалисты полагаются
+            исключительно на фантазию.
+          </div>
+        </div>
+        <div class="box">
+          <div class="title">About Me</div>
+          <div class="subtitle">
+            В работе дизайнера есть много пространства это только на кажется,
+            что такие специалисты полагаются исключительно на фантазию.
+          </div>
+        </div>
+        <div class="box">
+          <div class="title">Quote</div>
+          <div class="subtitle">B создавать графический контент.</div>
+        </div>
+        <div class="box">
+          <div class="title">Location</div>
+          <div class="subtitle">Ireland, Dublin</div>
+        </div>
       </div>
     </div>
   </div>
@@ -21,6 +63,116 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../scss/variables";
+
+.left-side {
+  width: 20%;
+  height: auto;
+  .box {
+    width: 100%;
+    padding-bottom: 2rem;
+    .title {
+      font-family: $muli;
+      color: #f8ab08;
+      font-size: 24px;
+      line-height: 30px;
+      font-weight: 500;
+    }
+    .subtitle {
+      font-family: $muli;
+      color: #cfd2df;
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+}
+.right-side {
+  width: 80%;
+  height: auto;
+  .box {
+    width: 100%;
+    padding-bottom: 3rem;
+    .title {
+      font-family: $muli;
+      color: #172c7a;
+      font-size: 30px;
+      line-height: 40px;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+    .subtitle {
+      font-family: $muli;
+      color: #cfd2df;
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+}
+@media (max-width: $md) {
+  .left-side {
+    width: 100%;
+    height: auto;
+
+    .box {
+      width: 50%;
+      float: left;
+      padding-bottom: 0.8rem;
+    }
+  }
+  .right-side {
+    width: 100%;
+    height: auto;
+
+    .box {
+      width: 100%;
+      float: left;
+      padding-bottom: 1rem;
+    }
+    .vertical-space {
+      margin-top: 1.5rem;
+    }
+  }
+}
+@media (max-width: $sm) {
+  .left-side {
+    width: 100%;
+    height: auto;
+
+    .box {
+      width: 50%;
+      float: left;
+      padding-bottom: 0.8rem;
+      .title {
+        font-size: 20px;
+        line-height: 26px;
+      }
+      .subtitle {
+        font-size: 26px;
+        line-height: 30px;
+      }
+    }
+  }
+  .right-side {
+    width: 100%;
+    height: auto;
+
+    .box {
+      width: 100%;
+      float: left;
+      padding-bottom: 1rem;
+      .title {
+        font-size: 20px;
+        line-height: 26px;
+      }
+      .subtitle {
+        font-size: 20px;
+        line-height: 26px;
+      }
+    }
+    .vertical-space {
+      margin-top: 1.5rem;
+    }
+  }
+}
 
 .about-me {
   font-family: $muli;

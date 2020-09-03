@@ -317,7 +317,7 @@
 
                 <td class="user-social">
                     <div class="social">
-                        <a data-icon="behance" href="https://behance.com">
+                        <a data-icon="behance" href="https://behance.net">
                             <div class="img-wrapper">
                                 <img src="{{ public_path('images/resume_themes/theme5/behance-icon.png') }}" alt="">
                             </div>
