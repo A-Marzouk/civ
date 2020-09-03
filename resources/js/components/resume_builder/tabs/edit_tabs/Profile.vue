@@ -1,7 +1,7 @@
 <template>
     <div class="profile" v-if="personalInfo" data-app>
 
-        <my-upload @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></my-upload>
+        <photoUploader @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></photoUploader>
 
         <div class="profile-fields-wrapper">
             <div class="profile-fields">
@@ -87,12 +87,12 @@
 </template>
 
 <script>
-    import myUpload from 'vue-image-crop-upload';
+    import photoUploader from './includes/PhotoUploader';
 
     export default {
         name: "Personal",
         components: {
-            'my-upload': myUpload
+            photoUploader
         },
         data(vm) {
             return {
@@ -678,5 +678,51 @@
 
     .resume-builder__input.url.min-height > .v-input__control > .v-input__slot {
         min-height: 47px !important;
+    }
+</style>
+
+<style lang="scss">
+    @import "../../../../../sass/media-queries";
+
+    // image crop styles not scoped
+    .vue-image-crop-upload {
+        .vicp-wrap {
+            @include lt-sm {
+                min-height: 530px;
+            }
+
+            .vicp-step1 {
+                .vicp-operate {
+                    a {
+                        color: #001ce2;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .vicp-step2 {
+
+                .vicp-crop {
+                    @include lt-sm {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+
+                        .vicp-crop-right {
+                            margin-top: 40px;
+                        }
+                    }
+
+                }
+
+                .vicp-operate {
+                    a {
+                        color: #001ce2;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
     }
 </style>
