@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="hireMeModal" :windowWidth="windowWidth" :hireMeModal = "hireMeModal" max-width="567" persistent>
+  <v-dialog v-model="hireMeModal" :windowWidth="windowWidth" :currentUser = "currentUser" :hireMeModal = "hireMeModal" max-width="567" persistent>
     <v-card color="#F6F9FF" class="card-hire-me-modal pa-sm-3 pa-5">
       <div align="right">
         <v-btn icon @click.native="closeModal()">
@@ -202,6 +202,9 @@ export default {
     windowWidth:{
       type:Number
     },
+    currentUser:{
+      type:Object
+    }
   },
   data() {
     return {
