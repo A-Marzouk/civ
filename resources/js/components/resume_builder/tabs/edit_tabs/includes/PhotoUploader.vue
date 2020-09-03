@@ -44,7 +44,9 @@
                         </div>
 
                         <div class="vicp-range">
+
                             <input type="range" :value="scale.range" step="1" min="0" max="100" @mousemove="zoomChange">
+
                             <i @mousedown="startZoomSub" @mouseout="endZoomSub" @mouseup="endZoomSub" class="vicp-icon5"></i>
                             <i @mousedown="startZoomAdd" @mouseout="endZoomAdd" @mouseup="endZoomAdd" class="vicp-icon6"></i>
                         </div>
@@ -1158,12 +1160,13 @@
                     .vicp-range {
                         position: relative;
                         margin: 30px 0 10px 0;
+                        display: flex;
+                        align-items: center;
                         width: 220px;
                         height: 18px;
 
                         .vicp-icon5, .vicp-icon6 {
                             position: absolute;
-                            top: -3px;
                             width: 18px;
                             height: 18px;
                             border-radius: 100%;
@@ -1215,140 +1218,6 @@
                                 width: 2px;
                                 height: 12px;
                                 background-color: #4874F8;
-                            }
-                        }
-
-                        input[type=range] {
-                            display: block;
-                            padding-top: 5px;
-                            margin: 0 auto;
-                            width: 180px;
-                            height: 8px;
-                            vertical-align: top;
-                            background: transparent;
-                            -webkit-appearance: none;
-                            -moz-appearance: none;
-                            appearance: none;
-                            cursor: pointer;
-
-                            /* 滑块
-                                             ---------------------------------------------------------------*/
-                            /* 轨道
-                                             ---------------------------------------------------------------*/
-
-                            &:focus {
-                                outline: none;
-                            }
-
-                            &::-webkit-slider-thumb {
-                                -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
-                                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
-                                -webkit-appearance: none;
-                                appearance: none;
-                                margin-top: -3px;
-                                width: 12px;
-                                height: 12px;
-                                background-color: #61c091;
-                                border-radius: 100%;
-                                border: none;
-                                -webkit-transition: 0.2s;
-                                transition: 0.2s;
-                            }
-
-                            &::-moz-range-thumb {
-                                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
-                                -moz-appearance: none;
-                                appearance: none;
-                                width: 12px;
-                                height: 12px;
-                                background-color: #61c091;
-                                border-radius: 100%;
-                                border: none;
-                                -webkit-transition: 0.2s;
-                                transition: 0.2s;
-                            }
-
-                            &::-ms-thumb {
-                                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
-                                appearance: none;
-                                width: 12px;
-                                height: 12px;
-                                background-color: #61c091;
-                                border: none;
-                                border-radius: 100%;
-                                -webkit-transition: 0.2s;
-                                transition: 0.2s;
-                            }
-
-                            &:active {
-                                &::-moz-range-thumb, &::-ms-thumb {
-                                    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
-                                    width: 14px;
-                                    height: 14px;
-                                }
-
-                                &::-webkit-slider-thumb {
-                                    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
-                                    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
-                                    margin-top: -4px;
-                                    width: 14px;
-                                    height: 14px;
-                                }
-                            }
-
-                            &::-webkit-slider-runnable-track {
-                                -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-                                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-                                width: 100%;
-                                height: 6px;
-                                cursor: pointer;
-                                border-radius: 2px;
-                                border: none;
-                                background-color: rgba(68, 170, 119, 0.3);
-                            }
-
-                            &::-moz-range-track {
-                                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-                                width: 100%;
-                                height: 6px;
-                                cursor: pointer;
-                                border-radius: 2px;
-                                border: none;
-                                background-color: rgba(68, 170, 119, 0.3);
-                            }
-
-                            &::-ms-track {
-                                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-                                width: 100%;
-                                cursor: pointer;
-                                background: transparent;
-                                border-color: transparent;
-                                color: transparent;
-                                height: 6px;
-                                border-radius: 2px;
-                                border: none;
-                            }
-
-                            &::-ms-fill-lower {
-                                background-color: rgba(68, 170, 119, 0.3);
-                            }
-
-                            &::-ms-fill-upper {
-                                background-color: rgba(68, 170, 119, 0.15);
-                            }
-
-                            &:focus {
-                                &::-webkit-slider-runnable-track, &::-moz-range-track {
-                                    background-color: rgba(68, 170, 119, 0.5);
-                                }
-
-                                &::-ms-fill-lower {
-                                    background-color: rgba(68, 170, 119, 0.45);
-                                }
-
-                                &::-ms-fill-upper {
-                                    background-color: rgba(68, 170, 119, 0.25);
-                                }
                             }
                         }
                     }
@@ -1604,5 +1473,15 @@
             transition: opacity 1.2s ease-out, transform 0.6s ease-out;
             transition: opacity 1.2s ease-out, transform 0.6s ease-out, -webkit-transform 0.6s ease-out;
         }
+    }
+</style>
+
+
+<style lang="scss">
+    /* Range input styles */
+    input[type="range"] {
+        width: 180px;
+        margin-left: 21px;
+        height: 2px;
     }
 </style>
