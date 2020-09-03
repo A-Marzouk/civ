@@ -124,6 +124,7 @@
         methods: {
             // Image cropping
             cropSuccess(imgDataUrl) {
+                return;
                 this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
                 this.applyEdit();
             },

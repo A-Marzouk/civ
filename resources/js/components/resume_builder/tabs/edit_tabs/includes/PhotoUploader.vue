@@ -75,23 +75,26 @@
             </div>
 
             <div class="vicp-step3" v-if="step == 3">
-                <div class="vicp-upload">
-                    <span class="vicp-loading" v-show="loading === 1">{{ lang.loading }}</span>
-                    <div class="vicp-progress-wrap">
-                        <span class="vicp-progress" v-show="loading === 1" :style="progressStyle"></span>
-                    </div>
-                    <div class="vicp-error" v-show="hasError">
-                        <i class="vicp-icon2"></i> {{ errorMsg }}
-                    </div>
-                    <div class="vicp-success" v-show="loading === 2">
-                        <i class="vicp-icon3"></i> {{ lang.success }}
-                    </div>
-                </div>
-                <div class="vicp-operate">
-                    <a @click="setStep(2)" @mousedown="ripple">{{ lang.btn.back }}</a>
-                    <a @click="off" @mousedown="ripple">{{ lang.btn.close }}</a>
+                <div class="loading-area">
+                    <img src="/images/new_resume_builder/loading-star.svg" alt="loading icon">
+                    <span class="vicp-hint" style="font-size: 24px;">
+                    Please wait
+                </span>
                 </div>
             </div>
+
+            <div class="vicp-step4" v-if="step == 4">
+                <div class="success-area">
+                    <span class="vicp-hint mr-1">
+                        You Look Good
+                    </span>
+                    <img src="/images/new_resume_builder/look-goog-icon.svg" alt="loading icon">
+                    <span class="mt-2">
+                        !
+                    </span>
+                </div>
+            </div>
+
             <canvas v-show="false" :width="width" :height="height" ref="canvas"></canvas>
         </div>
     </div>
@@ -288,11 +291,14 @@
                     minHeight: 0,
                     naturalWidth: 0, //原宽
                     naturalHeight: 0
-                }
+                },
+                errors:{}
             }
         },
         computed: {
-            // 进度条样式
+            personalInfo() {
+                return this.$store.state.user.personal_info;
+            },
             progressStyle() {
                 let {
                     progress
@@ -403,7 +409,7 @@
             off() {
                 setTimeout(()=> {
                     this.$emit('input', false);
-                    if(this.step == 3 && this.loading == 2){
+                    if(this.step >= 3 && this.loading !== 1){
                         this.setStep(1);
                     }
                 }, 200);
@@ -783,91 +789,67 @@
                     field,
                     ki
                 } = this;
-                this.$emit('crop-success', createImgUrl, field, ki);
-                if(typeof url == 'string' && url){
-                    this.upload();
-                }else{
-                    this.off();
-                }
+
+                this.upload(createImgUrl);
+
             },
-            // 上传图片
-            upload() {
-                let that = this,
-                    {
-                        lang,
-                        imgFormat,
-                        mime,
-                        url,
-                        params,
-                        headers,
-                        field,
-                        ki,
-                        createImgUrl,
-                        withCredentials,
-                        method
-                    } = this,
-                    fmData = new FormData();
-                fmData.append(field, data2blob(createImgUrl, mime), field + '.' + imgFormat);
 
-                // 添加其他参数
-                if (typeof params == 'object' && params) {
-                    Object.keys(params).forEach((k) => {
-                        fmData.append(k, params[k]);
-                    })
+           upload(imgDataUrl){
+               this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
+               this.applyEdit();
+           },
+            dataURLtoFile(dataURL, filename) {
+                var arr = dataURL.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
                 }
+                return new File([u8arr], filename, {type: mime});
+            },
+            applyEdit() {
+                this.errors = {};
 
-                // 监听进度回调
-                const uploadProgress = function(event) {
-                    if (event.lengthComputable) {
-                        that.progress = 100 * Math.round(event.loaded) / event.total;
-                    }
+                let formData = new FormData();
+                formData.append("_method", "put");
+                formData.append("user_id", this.personalInfo.user_id);
+                formData.append('profile_pic', this.personalInfo['profile_pic_file']);
+
+                const config = {
+                    onUploadProgress: progressEvent => {
+                        let progress = (progressEvent.loaded / progressEvent.total) * 100;
+                        console.log(progress);
+                    },
+                    headers: {"Content-Type": "multipart/form-data"}
                 };
 
-                // 上传文件
-                that.reset();
-                that.loading = 1;
-                that.setStep(3);
-                new Promise(function(resolve, reject) {
-                    let client = new XMLHttpRequest();
-                    client.open(method, url, true);
-                    client.withCredentials = withCredentials;
-                    client.onreadystatechange = function() {
-                        if (this.readyState !== 4) {
-                            return;
-                        }
-                        if (this.status === 200 || this.status === 201) {
-                            resolve(JSON.parse(this.responseText));
+                this.setStep(3);
+                this.loading = 1;
+
+                axios.post("/api/user/personal-info", formData, config)
+                    .then( (response) => {
+                        setTimeout( () => {
+                            this.personalInfo.profile_pic = response.data.data.profile_pic;
+                            this.setStep(4);
+                            this.loading = 2;
+                        }, 2000);
+
+                        setTimeout( () => {
+                            this.off();
+                        }, 4500);
+
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors = error.response.data.errors;
                         } else {
-                            reject(this.status);
+                            this.errors = "Something went wrong. Please try again.";
                         }
-                    };
-                    client.upload.addEventListener("progress", uploadProgress, false); //监听进度
-                    // 设置header
-                    if (typeof headers == 'object' && headers) {
-                        Object.keys(headers).forEach((k) => {
-                            client.setRequestHeader(k, headers[k]);
-                        })
-                    }
-                    client.send(fmData);
-                }).then(
-                    // 上传成功
-                    function(resData) {
-                        if (that.value) {
-                            that.loading = 2;
-                            that.$emit('crop-upload-success', resData, field, ki);
-                        }
-                    },
-                    // 上传失败
-                    function(sts) {
-                        if (that.value) {
-                            that.loading = 3;
-                            that.hasError = true;
-                            that.errorMsg = lang.fail;
-                            that.$emit('crop-upload-fail', sts, field, ki);
-                        }
-                    }
-                );
-            }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
         },
         created(){
             // 绑定按键esc隐藏此插件事件
@@ -930,6 +912,34 @@
             opacity: 1;
             -webkit-transform: scale(1) translatey(0);
             transform: scale(1) translatey(0);
+        }
+    }
+
+    @keyframes rotation {
+        0%{
+            transform: rotate(180deg);
+        }
+        50%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(180deg);
+        }
+    }
+
+
+    .vicp-hint {
+        display: block;
+        font-size: 20px;
+        margin-top:20px;
+        margin-bottom: 14px;
+        letter-spacing: 0px;
+        color: #4874F8;
+        line-height: 30px;
+
+        &.sub-text {
+            font-size: 13px;
+            margin: 0;
         }
     }
 
@@ -1063,21 +1073,6 @@
                 .vicp-icon1 {
                     width: 70px;
                     height: 70px;
-                }
-
-                .vicp-hint {
-                    display: block;
-                    font-size: 20px;
-                    margin-top:20px;
-                    margin-bottom: 14px;
-                    letter-spacing: 0px;
-                    color: #4874F8;
-                    line-height: 30px;
-
-                    &.sub-text {
-                        font-size: 13px;
-                        margin: 0;
-                    }
                 }
 
                 .vicp-no-supported-hint {
@@ -1318,6 +1313,32 @@
                 }
             }
 
+            .vicp-step3{
+
+                .loading-area{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    padding: 35px;
+                    width: 615px;
+                    height: 265px;
+                    background: #F2F5FE 0% 0% no-repeat padding-box;
+                    border-radius: 24px;
+                    text-align: center;
+                    overflow: hidden;
+                    @include lt-sm{
+                        width: 90%;
+                    }
+
+                    img{
+                        animation: rotation 2s infinite linear;
+                    }
+                }
+
+            }
             .vicp-step3 .vicp-upload {
                 position: relative;
                 -webkit-box-sizing: border-box;
@@ -1376,6 +1397,34 @@
                 .vicp-error, .vicp-success {
                     height: 100px;
                     line-height: 100px;
+                }
+            }
+
+            .vicp-step4{
+                .success-area{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    padding: 35px;
+                    width: 615px;
+                    height: 265px;
+                    background: #F2F5FE 0% 0% no-repeat padding-box;
+                    border-radius: 24px;
+                    text-align: center;
+                    overflow: hidden;
+                    @include lt-sm{
+                        width: 90%;
+                        span{
+                            font-size: 24px;
+                        }
+                    }
+
+                   span{
+                       font-size: 55px;
+                       color: #4874F8;
+                   }
                 }
             }
 
