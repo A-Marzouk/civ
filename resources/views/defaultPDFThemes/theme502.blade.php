@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Theme 205 Template</title>
+    <title>Theme 502 Template</title>
 
     <style>
 
@@ -299,21 +299,21 @@
                     <table class="user-social">
                         <tr>
                             <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme205/social_icons/behance-icon.png') }}" alt=""><span class="social-nickname">Username</span>
+                                <img src="{{ public_path('/images/resume_themes/theme502/social_icons/behance-icon.png') }}" alt=""><span class="social-nickname">Username</span>
                             </td>
                             <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme205/social_icons/linkedin-icon.png') }}" alt=""><span class="social-nickname">Username</span>
+                                <img src="{{ public_path('/images/resume_themes/theme502/social_icons/linkedin-icon.png') }}" alt=""><span class="social-nickname">Username</span>
                             </td>
                             <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme205/social_icons/google-icon.png') }}" alt=""><span class="social-nickname">Username</span>
+                                <img src="{{ public_path('/images/resume_themes/theme502/social_icons/google-icon.png') }}" alt=""><span class="social-nickname">Username</span>
                             </td>
                         </tr>
                         <tr>
                             <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme205/social_icons/dribbble-icon.png') }}" alt=""><span class="social-nickname">Username</span>
+                                <img src="{{ public_path('/images/resume_themes/theme502/social_icons/dribbble-icon.png') }}" alt=""><span class="social-nickname">Username</span>
                             </td>
                             <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme205/social_icons/instagram-icon.png') }}" alt=""><span class="social-nickname">Username</span>
+                                <img src="{{ public_path('/images/resume_themes/theme502/social_icons/instagram-icon.png') }}" alt=""><span class="social-nickname">Username</span>
                             </td>
                         </tr>
                     </table>
@@ -324,12 +324,12 @@
     
     <div class="decorator">
         <div class="dots-group">
-            <img src="{{ public_path('/images/resume_themes/theme205/dots-group-top-left.png') }}" alt="">
+            <img src="{{ public_path('/images/resume_themes/theme502/dots-group-top-left.png') }}" alt="">
         </div>
     </div>
 
     <div class="dots-group-bottom-right">
-        <img src="{{ public_path('/images/resume_themes/theme205/dots-group-bottom-right.png') }}" alt="">
+        <img src="{{ public_path('/images/resume_themes/theme502/dots-group-bottom-right.png') }}" alt="">
     </div>
 
     <section class="about">
@@ -431,7 +431,7 @@
     </section>
 
     <div class="dots-group-bottom-right">
-        <img src="{{ public_path('/images/resume_themes/theme205/dots-group-bottom-right.png') }}" alt="">
+        <img src="{{ public_path('/images/resume_themes/theme502/dots-group-bottom-right.png') }}" alt="">
     </div>
 
     <section class="skills">
