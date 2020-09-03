@@ -883,6 +883,8 @@
 
 
 <style lang="scss">
+    @import '../../../../../../sass/media-queries';
+
     @-webkit-keyframes vicp_progress {
         0% {
             background-position-y: 0;
@@ -970,10 +972,18 @@
             -webkit-animation: vicp 0.12s ease-in;
             animation: vicp 0.12s ease-in;
 
+            @include lt-sm{
+                height: 650px;
+            }
+
             .vicp-close {
                 position: absolute;
                 left: 109px;
                 top: 36px;
+
+                @include lt-sm{
+                    left: 18px;
+                }
 
                 .vicp-icon4 {
                     position: relative;
@@ -1018,6 +1028,14 @@
                 }
             }
 
+            .vicp-step1{
+                @include lt-sm{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
             .vicp-step1 .vicp-drop-area {
                 display: flex;
                 align-items: center;
@@ -1032,6 +1050,10 @@
                 border-radius: 24px;
                 text-align: center;
                 overflow: hidden;
+                @include lt-sm{
+                   width: 90%;
+                }
+
 
                 .vicp-icon1 {
                     width: 70px;
@@ -1084,6 +1106,10 @@
                 .vicp-crop-left {
                     float: left;
                     margin-left: 35px;
+                    @include lt-sm{
+                        margin-left: 0px;
+                        margin-top: 40px;
+                    }
 
                     .vicp-img-container {
                         position: relative;
@@ -1348,6 +1374,12 @@
                 position: absolute;
                 bottom: 47px;
                 right: 78px;
+
+                @include lt-sm{
+                    position: absolute;
+                    bottom: 20px;
+                    right: 5px;
+                }
 
                 a {
                     position: relative;
