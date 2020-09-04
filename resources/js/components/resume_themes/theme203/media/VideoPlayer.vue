@@ -77,6 +77,7 @@ export default {
   background: #000000;
   border: 5px solid #e0bb4c !important;
   border-radius:50% !important;
+  z-index: 100;
   img {
     max-width: 32px !important;
     min-width: 32px !important;
