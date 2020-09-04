@@ -753,11 +753,12 @@
               icon
               @click.stop="videoModal=false"
               depressed
+              style="z-index:100;"
             >
               <img src="/images/resume_themes/theme203/icons/email-close.svg" />
             </v-btn>
           </v-card-subtitle>
-
+          <div class="watermark-text-modal-video">Video</div>
           <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
             <video-player
               v-for="i in 6"
@@ -1725,6 +1726,39 @@ export default {
   @media screen and (max-width: 667px) {
     font-size: 100px;
     top: -70%;
+  }
+}
+
+//water mark text for video modal
+.watermark-text-modal-video {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  left: 0;
+  top: -30%;
+  bottom: 0;
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    font-size: 200px;
+    top: -60%;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    font-size: 150px;
+    top: -84%;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 100px;
+    top: -80%;
   }
 }
 .custom-hr {
