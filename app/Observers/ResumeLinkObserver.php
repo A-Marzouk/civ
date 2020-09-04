@@ -79,9 +79,12 @@ class ResumeLinkObserver
             ['url',''],
             ['user_id', $user->id]
         ])->first();
-        $user->update([
-            'resume_link_id' => $defaultResumeLink->id
-        ]);
+
+        if($defaultResumeLink){
+            $user->update([
+                'resume_link_id' => $defaultResumeLink->id
+            ]);
+        }
 
     }
 
