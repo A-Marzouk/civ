@@ -4,8 +4,8 @@
       <div ref="videoPoster">
         <img src="/images/resume_themes/theme200/preview1.png" />
         <v-overlay absolute="true" :value="overlay" color="#6152CF" class="video-overlay">
-          <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
-            <img src="/images/resume_themes/theme203/icons/play.svg" alt="play button" />
+          <v-btn class="btn-play" @click.prevent="playVideo()">
+            <v-img src="/images/resume_themes/theme203/icons/inner-play.svg"></v-img>
           </v-btn>
         </v-overlay>
       </div>
@@ -72,9 +72,15 @@ export default {
 
 <style scoped lang="scss">
 .btn-play {
+  width: 72px !important;
+  height: 71.01px !important;
+  background: #000000;
+  border: 5px solid #e0bb4c !important;
+  border-radius:50% !important;
   img {
-    width: 72px !important;
-    height: 71.01px !important;
+    max-width: 32px !important;
+    min-width: 32px !important;
+    max-height: 32px !important;
   }
 }
 .card-video {

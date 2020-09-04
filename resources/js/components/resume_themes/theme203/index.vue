@@ -749,7 +749,7 @@
           <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
             <v-btn
               color="transparent"
-              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
+              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n1 mt-md-0 mt-sm-5 mt-5 ml-md-0 ml-sm-0 ml-0"
               icon
               @click.stop="videoModal=false"
               depressed
