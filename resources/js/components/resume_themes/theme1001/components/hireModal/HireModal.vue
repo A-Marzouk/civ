@@ -8,10 +8,8 @@
             alt="close button"
         /></a>
       </div>
-      <div class="heading">
-        Book Conor on an
-      </div>
-      <div class="tab my-3">
+      <div class="heading">Book Conor on an</div>
+      <div class="tab my-2 my-sm-3">
         <ul class="nav nav-pills" id="pills-tab" role="tablist">
           <li class="nav-item">
             <a
@@ -135,13 +133,9 @@
       </div>
       <div class="card">
         <div class="card-body">
-          <div class="subtitle">
-            Your total payment will be
-          </div>
+          <div class="subtitle">Your total payment will be</div>
           <div class="title"><span>$</span>400</div>
-          <div class="subtitle">
-            10 usd per hour x 40 hours
-          </div>
+          <div class="subtitle">10 usd per hour x 40 hours</div>
         </div>
       </div>
       <div class="payment-section">
@@ -214,11 +208,10 @@ export default {
   props: {
     hireMeModal: {
       type: Boolean,
-     
     },
-    closeHireMeModal:{
-      type:Function
-    }
+    closeHireMeModal: {
+      type: Function,
+    },
   },
   data() {
     return {
@@ -296,10 +289,11 @@ export default {
 
     @media screen and (max-width: 475px) {
       width: 95%;
-      height: 650px;
+      height: auto;
       background: #f6f9ff;
       border-radius: 10px;
       overflow: auto;
+      padding: 2rem;
     }
     .close-button-section {
       width: 100%;
@@ -370,7 +364,7 @@ export default {
       border-radius: 10px;
       margin: 15px 0px;
       @media (max-width: 600px) {
-        margin: 15px auto;
+        margin: 10px auto;
       }
       .title {
         font-family: Noto Sans;

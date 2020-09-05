@@ -5,7 +5,7 @@
         <v-col cols="3" align="center" justify="center">
           <v-img
             class="thumbSize"
-            style="border-radius:10px;"
+            style="border-radius: 10px"
             :src="img"
           ></v-img>
         </v-col>
@@ -27,7 +27,7 @@
             height="90"
             width="90"
             class="playBtnSize"
-            style="border:1px solid #3D5ED4;"
+            style="border: 1px solid #3d5ed4"
             dark
             fab
             elevation="0"
@@ -42,7 +42,7 @@
       </v-row>
     </div>
     <v-footer
-      style="z-index:500"
+      style="z-index: 500"
       fixed
       color="#fff"
       class="media-player-tm1001 hide-on-mobile"
@@ -53,7 +53,7 @@
             <v-col sm="auto" class="hide-on-mobile">
               <v-img
                 class="thumbSize"
-                style="border-radius:10px;"
+                style="border-radius: 10px"
                 src="/images/resume_themes/theme1001/media/audio-1.png"
               ></v-img>
             </v-col>
@@ -80,7 +80,7 @@
               color="transparent"
               rounded
               class="sliding"
-              style="cursor:pointer;border-radius: 30px;"
+              style="cursor: pointer; border-radius: 30px"
               @click.native="setPosition()"
               :disabled="!loaded"
               v-model="percentage"
@@ -91,9 +91,9 @@
               ></v-img>
             </v-progress-linear>
             <div class="d-flex">
-              <span class="timer-player-1001">00.00</span>
+              <span class="timer-player-1001">{{ currentTime }}</span>
               <v-spacer></v-spacer>
-              <span class="timer-player-1001">05:38</span>
+              <span class="timer-player-1001">{{ duration }}</span>
             </div>
           </div>
         </v-col>
@@ -139,7 +139,7 @@
       </v-row>
     </v-footer>
     <v-footer
-      style="z-index:500"
+      style="z-index: 500"
       fixed
       color="#fff"
       class="media-player-tm1001 hide-smAndUp"
@@ -196,14 +196,14 @@
             </div>
           </div>
         </v-col>
-        <v-col class="linear-playing-audio-tm1001 " cols="12">
+        <v-col class="linear-playing-audio-tm1001" cols="12">
           <div>
             <v-progress-linear
               height="54"
               color="transparent"
               rounded
               class="sliding"
-              style="cursor:pointer;border-radius: 30px;height:40px;"
+              style="cursor: pointer; border-radius: 30px; height: 40px"
               @click.native="setPosition()"
               :disabled="!loaded"
               v-model="percentage"
@@ -224,58 +224,58 @@
   </div>
 </template>
 <script>
-const formatTime = second =>
+const formatTime = (second) =>
   new Date(second * 1000).toISOString().substr(11, 8);
 export default {
   name: "vuetify-audio",
   props: {
     title: {
       type: String,
-      default: null
+      default: null,
     },
     user_name: {
       type: String,
-      default: null
+      default: null,
     },
     file: {
       type: String,
-      default: null
+      default: null,
     },
     img: {
       type: String,
-      default: null
+      default: null,
     },
     autoPlay: {
       type: Boolean,
-      default: false
+      default: false,
     },
     ended: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     canPlay: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     color: {
       type: String,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: null
+      default: null,
     },
     user_name: {
       type: String,
-      default: null
+      default: null,
     },
     downloadable: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
-    duration: function() {
+    duration: function () {
       return this.audio ? formatTime(this.totalDuration) : "";
     },
     play_margin() {
@@ -291,7 +291,7 @@ export default {
         case "xl":
           return "ma-5";
       }
-    }
+    },
   },
   data() {
     return {
@@ -304,7 +304,7 @@ export default {
       currentTime: "00:00:00",
       audio: undefined,
       totalDuration: 0,
-      showFooter: false
+      showFooter: false,
     };
   },
   methods: {
@@ -322,7 +322,7 @@ export default {
     },
     play() {
       if (this.playing) return;
-      this.audio.play().then(_ => (this.playing = true));
+      this.audio.play().then((_) => (this.playing = true));
       this.paused = false;
       this.showFooter = true;
     },
@@ -346,7 +346,7 @@ export default {
       this.audio.load();
       this.audio.play();
     },
-    _handleLoaded: function() {
+    _handleLoaded: function () {
       if (this.audio.readyState >= 2) {
         if (this.audio.duration === Infinity) {
           // Fix duration for streamed audio source or blob based
@@ -367,12 +367,12 @@ export default {
         throw new Error("Failed to load sound file");
       }
     },
-    _handlePlayingUI: function(e) {
+    _handlePlayingUI: function (e) {
       this.percentage = (this.audio.currentTime / this.audio.duration) * 100;
       this.currentTime = formatTime(this.audio.currentTime);
       this.playing = true;
     },
-    _handlePlayPause: function(e) {
+    _handlePlayPause: function (e) {
       if (e.type === "play" && this.firstPlay) {
         // in some situations, audio.currentTime is the end one on chrome
         this.audio.currentTime = 0;
@@ -391,13 +391,13 @@ export default {
     _handleEnded() {
       this.paused = this.playing = false;
     },
-    init: function() {
+    init: function () {
       this.audio.addEventListener("timeupdate", this._handlePlayingUI);
       this.audio.addEventListener("loadeddata", this._handleLoaded);
       this.audio.addEventListener("pause", this._handlePlayPause);
       this.audio.addEventListener("play", this._handlePlayPause);
       this.audio.addEventListener("ended", this._handleEnded);
-    }
+    },
   },
   mounted() {
     this.audio = this.$refs.player;
@@ -409,7 +409,7 @@ export default {
     this.audio.removeEventListener("pause", this._handlePlayPause);
     this.audio.removeEventListener("play", this._handlePlayPause);
     this.audio.removeEventListener("ended", this._handleEnded);
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -71,36 +71,29 @@
               <span>Start A Chat!</span>
             </a>
             <a class="action__button" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13">
-                <g transform="translate(0.021 0.201)">
-                  <rect
-                    width="13"
-                    height="13"
-                    transform="translate(-0.021 -0.201)"
-                    fill="none"
+              <svg
+                width="18"
+                height="19"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:svgjs="http://svgjs.com/svgjs"
+                viewBox="0 0.5 20 20"
+                fill="#fff"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="19"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    paint-order="stroke fill markers"
+                    fill-rule="evenodd"
+                    d="M18.91 1.09A3.7 3.7 0 0 0 16.275 0H3.723A3.728 3.728 0 0 0 0 3.724v12.552A3.728 3.728 0 0 0 3.723 20h12.553a3.728 3.728 0 0 0 3.723-3.724V3.724a3.7 3.7 0 0 0-1.09-2.633zM6.478 8.497a.586.586 0 0 1 .829 0l2.106 2.106v-6.25a.586.586 0 0 1 1.171 0v6.25l2.107-2.106a.586.586 0 1 1 .828.828l-3.107 3.107a.584.584 0 0 1-.828 0L6.479 9.324a.585.585 0 0 1 0-.828zm9.17 7.738H4.35a.586.586 0 1 1 0-1.172h11.297a.586.586 0 1 1 0 1.172z"
                   />
-                  <g transform="translate(2.136 1.454)">
-                    <g>
-                      <path
-                        d="M.364,110a1.188,1.188,0,0,0-.364.871v4.584a1.188,1.188,0,0,0,.364.871,1.188,1.188,0,0,0,.871.364h.353v-7.053H1.234A1.188,1.188,0,0,0,.364,110Z"
-                        transform="translate(0 -108.224)"
-                        fill="#fff"
-                      />
-                      <path
-                        d="M114.573,37.077a.527.527,0,0,0-.529-.529H110.87a.527.527,0,0,0-.529.529v.882h-.705v7.053h5.642V37.958h-.705Zm-.705.882h-2.821v-.705h2.821Z"
-                        transform="translate(-107.52 -36.548)"
-                        fill="#fff"
-                      />
-                      <path
-                        d="M430.623,110a1.188,1.188,0,0,0-.871-.364H429.4v7.053h.353a1.242,1.242,0,0,0,1.234-1.234v-4.584A1.188,1.188,0,0,0,430.623,110Z"
-                        transform="translate(-421.113 -108.224)"
-                        fill="#fff"
-                      />
-                    </g>
-                  </g>
-                </g>
+                </svg>
               </svg>
-              <span>Upload Interviews</span>
+              <span>Download PDF </span>
             </a>
           </div>
         </div>
@@ -188,7 +181,6 @@
 </template>
 
 <script>
-
 import TabsNavigation from "./components/TabsNavigation";
 import TabsContent from "./components/TabsContent";
 //useless comps
@@ -196,11 +188,10 @@ import Avatar from "./components/header/Avatar";
 import HireModal from "./components/hireModal/HireModal";
 import ChatModal from "./components/chatModal/ChatModal";
 
-
 export default {
   name: "resume-theme-1001",
 
-  components: {  TabsNavigation, TabsContent,Avatar,HireModal,ChatModal},
+  components: { TabsNavigation, TabsContent, Avatar, HireModal, ChatModal },
   props: ["user", "is_preview", "currentTab"],
   data() {
     return {
@@ -208,25 +199,25 @@ export default {
       currentUser: this.user,
       hireMeModal: false,
       chatToggle: false,
-       isOpen: false
+      isOpen: false,
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
+    currentTab: function (val) {
       this.activeTab = val;
-    }
+    },
   },
   methods: {
-    	closeHireMeModal(){
-        console.log('closeHireMeModal');
-        this.hireMeModal = false;
-      },
-      closeChat(){
-        console.log('closeHireMeModal');
-        this.chatToggle = false;
-      },
-      open(e) {
+    closeHireMeModal() {
+      console.log("closeHireMeModal");
+      this.hireMeModal = false;
+    },
+    closeChat() {
+      console.log("closeHireMeModal");
+      this.chatToggle = false;
+    },
+    open(e) {
       if (!this.isOpen) {
         this.stopProp(e);
       }
@@ -244,32 +235,36 @@ export default {
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
-    setActiveTabByURL(){
-      let currentParam = this.$route.query['current-view'];
+    setActiveTabByURL() {
+      let currentParam = this.$route.query["current-view"];
 
-      if(!currentParam){
+      if (!currentParam) {
         return;
       }
 
-      if(currentParam.includes('education') ){
-        this.activeTab = 'education';
+      if (currentParam.includes("education")) {
+        this.activeTab = "education";
       }
-      if( currentParam.includes('work_experience')){
-        this.activeTab = 'work_experience';
-      }
-
-      if(currentParam.includes('skills') ){
-        this.activeTab = 'skills';
+      if (currentParam.includes("work_experience")) {
+        this.activeTab = "work_experience";
       }
 
-      if(currentParam.includes('media') || currentParam.includes('audio') || currentParam.includes('video')){
-        this.activeTab = 'media';
+      if (currentParam.includes("skills")) {
+        this.activeTab = "skills";
       }
 
-      if(currentParam.includes('about') || currentParam.includes('profile')){
-        this.activeTab = 'about-me';
+      if (
+        currentParam.includes("media") ||
+        currentParam.includes("audio") ||
+        currentParam.includes("video")
+      ) {
+        this.activeTab = "media";
       }
-    }
+
+      if (currentParam.includes("about") || currentParam.includes("profile")) {
+        this.activeTab = "about-me";
+      }
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -282,7 +277,7 @@ export default {
 
     // set active tab
     this.setActiveTabByURL();
-     window.addEventListener("click", this.close);
+    window.addEventListener("click", this.close);
   },
   destroyed() {
     window.removeEventListener("click", this.close);
@@ -290,7 +285,7 @@ export default {
   computed: {
     popupAnimation() {
       return this.isOpen ? "open" : "close";
-    }
+    },
   },
 };
 </script>
