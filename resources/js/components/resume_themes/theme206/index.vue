@@ -31,7 +31,7 @@
             </v-col>
 
             <!-- Social Buttons for tablet only -->
-            <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none mt-md-12 mt-sm-0">
+            <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none mt-md-8 mt-sm-0">
               <v-card flat color="transparent" class="pa-0 hire-me-card mt-md-2 mt-sm-0">
                 <v-btn color="#FAFAFA" class="btn-hire-me hidden-md-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
@@ -59,7 +59,7 @@
             <!-- Social Button for tablet only -->
 
             <!-- Availibility -->
-            <v-col xl="3" lg="4" md="5" sm="7" class=""> 
+            <v-col xl="3" lg="4" md="5" sm="7" class>
               <!-- Hour rate -->
               <v-card
                 class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-lg-12 ml-md-0"
@@ -316,11 +316,12 @@
                     >
                       <v-card class="card-education pa-5" hover>
                         <v-card-title class="education-title">
-                          {{ education.university_name }}
-                          <v-spacer></v-spacer>
-                          <span class="ml-xl-12 ml-lg-0 ml-md-0">
-                            <img src="/images/resume_themes/theme206/tabs/2.png" alt />
-                          </span>
+                          <v-row>
+                            <v-col cols="10">{{ education.university_name }}</v-col>
+                            <v-col cols="2" align="right">
+                              <img src="/images/resume_themes/theme206/tabs/2.png" alt />
+                            </v-col>
+                          </v-row>
                         </v-card-title>
                         <v-card-text class="education-subtitle">{{ education.description }}</v-card-text>
                         <v-card-actions class="education-session pl-4">
@@ -339,18 +340,20 @@
                     <v-col
                       cols="12"
                       sm="6"
-                      md="4"
+                      md="6"
+                      lg="4"
                       v-for="work in currentUser.work_experience"
                       :key="work.id"
                       v-show="work.is_public"
                     >
                       <v-card class="card-education pa-5" hover>
-                        <v-card-title class="experience-title">
-                          {{ work.job_title }}
-                          <v-spacer></v-spacer>
-                          <span class="ml-12">
-                            <img src="/images/resume_themes/theme206/tabs/3.png" alt />
-                          </span>
+                        <v-card-title class="education-title">
+                          <v-row>
+                            <v-col cols="10">{{ work.job_title }}</v-col>
+                            <v-col cols="2" align="right">
+                              <img src="/images/resume_themes/theme206/tabs/2.png" alt />
+                            </v-col>
+                          </v-row>
                         </v-card-title>
                         <v-card-text class="education-subtitle">{{ work.company_name }}</v-card-text>
                         <v-card-actions class="education-session pl-4">
@@ -904,7 +907,7 @@ export default {
 .btn-hire-me {
   width: 230px;
   height: 60px;
-  @media screen and (max-width: 1263px){
+  @media screen and (max-width: 1263px) {
     width: 240px;
   }
   text-transform: capitalize !important;
@@ -916,7 +919,7 @@ export default {
 .custom-social-btn {
   width: 60px;
   height: 60px !important;
-  @media screen and (min-width:600px) and (max-width: 1263px){
+  @media screen and (min-width: 600px) and (max-width: 1263px) {
     width: 60px;
     height: 60px !important;
   }
@@ -992,6 +995,7 @@ export default {
   color: #333333 !important;
   font-weight: bold !important;
   line-height: 30px !important;
+  font-size: 26px;
   img {
     width: 40px;
   }
