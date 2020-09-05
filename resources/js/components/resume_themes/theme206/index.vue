@@ -33,7 +33,7 @@
             <!-- Social Buttons for tablet only -->
             <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none mt-md-8 mt-sm-0">
               <v-card flat color="transparent" class="pa-0 hire-me-card mt-md-2 mt-sm-0">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-md-and-down" x-large>
+                <v-btn color="#FAFAFA" class="btn-hire-me hidden-md-and-down" x-large @click="hireMeModal = !hireMeModal">
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
@@ -115,7 +115,7 @@
             <!-- 3rd column -->
             <v-col lg="5" md="5" class="hidden-md-and-down mt-lg-0" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
+                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large @click="hireMeModal = !hireMeModal">
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
@@ -144,7 +144,7 @@
             <v-col md="3" sm="1" class="d-none d-sm-none d-md-flex d-lg-none"></v-col>
             <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none">
               <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
-                <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
+                <v-btn color="#FAFAFA" class="btn-hire-me" x-large @click="hireMeModal = !hireMeModal">
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
               </v-card>
@@ -206,7 +206,7 @@
             </v-list-item-content>
           </v-list-item>
           <v-card-text>
-            <v-btn color="#FAFAFA" class="btn-hire-me" block>
+            <v-btn color="#FAFAFA" class="btn-hire-me" block @click="hireMeModal = !hireMeModal">
               <v-icon color="#5843BE" left>mdi-email-outline</v-icon>Hire Me
             </v-btn>
           </v-card-text>
@@ -641,6 +641,13 @@
         </v-row>
       </v-container>
       <!-- Tab items container -->
+      <!-- All Modals -->
+      <hire-modal
+        :hireMeModal.sync="hireMeModal"
+        :widowWidth="windowWidth"
+        :currentUser="currentUser"
+      ></hire-modal>
+      <!-- All Modals -->
     </v-container>
     <!-- Main container -->
   </v-app>
@@ -648,10 +655,12 @@
 
 <script>
 import audioMedia from "./media/audioMedia";
+import HireModal from "../theme203/payment/HireModal";
 export default {
   props: ["user", "is_preview", "currentTab"],
   components: {
     audioMedia,
+    HireModal,
   },
   data() {
     return {
@@ -662,6 +671,7 @@ export default {
       activeTab: "portfolio",
       currentUser: this.user,
       currentSkillTab: 1,
+      hireMeModal: false,
       personalData: {
         name: "Hean Prinsloo",
         designation: "Graphic Designer",

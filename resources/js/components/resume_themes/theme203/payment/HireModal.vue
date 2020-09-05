@@ -250,6 +250,7 @@ export default {
 
 <style lang="scss" scoped>
 //hire me modal
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 .card-hire-me-modal {
   .title {
     font-family: "Noto Sans" !important;
