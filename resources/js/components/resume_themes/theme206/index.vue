@@ -7,7 +7,7 @@
           <v-img :src="currentUser.personal_info.profile_pic"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
-        <v-container fluid pa-0 ma-0 style="width: 100%;">
+        <v-container fluid pa-0 ma-lg-0 ma-md-2 ma-sm-4 ma-0 style="width: 100%;">
           <v-row class align="center" justify="center" dense>
             <v-col
               xl="4"
