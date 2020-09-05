@@ -33,7 +33,12 @@
             <!-- Social Buttons for tablet only -->
             <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none mt-md-8 mt-sm-0">
               <v-card flat color="transparent" class="pa-0 hire-me-card mt-md-2 mt-sm-0">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-md-and-down" x-large @click="hireMeModal = !hireMeModal">
+                <v-btn
+                  color="#FAFAFA"
+                  class="btn-hire-me hidden-md-and-down"
+                  x-large
+                  @click="hireMeModal = !hireMeModal"
+                >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
@@ -115,7 +120,12 @@
             <!-- 3rd column -->
             <v-col lg="5" md="5" class="hidden-md-and-down mt-lg-0" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large @click="hireMeModal = !hireMeModal">
+                <v-btn
+                  color="#FAFAFA"
+                  class="btn-hire-me hidden-sm-and-down"
+                  x-large
+                  @click="hireMeModal = !hireMeModal"
+                >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
@@ -144,7 +154,12 @@
             <v-col md="3" sm="1" class="d-none d-sm-none d-md-flex d-lg-none"></v-col>
             <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none">
               <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
-                <v-btn color="#FAFAFA" class="btn-hire-me" x-large @click="hireMeModal = !hireMeModal">
+                <v-btn
+                  color="#FAFAFA"
+                  class="btn-hire-me"
+                  x-large
+                  @click="hireMeModal = !hireMeModal"
+                >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
               </v-card>
@@ -482,10 +497,99 @@
                 <v-tab-item>
                   <v-card flat color="transparent">
                     <v-card-title class="about-me-title">About Me</v-card-title>
-                    <v-card-text
+                    <!-- <v-card-text
                       class="about-me-text"
                       v-if="currentUser.personal_info.about"
-                    >{{ currentUser.personal_info.about }}</v-card-text>
+                    >{{ currentUser.personal_info.about }}</v-card-text>-->
+                    <v-card>
+                      <v-row>
+                        <v-col
+                          xl="3"
+                          lg="3"
+                          md="3"
+                          sm="4"
+                          cols="12"
+                          order-sm="1"
+                          order="12"
+                          class="about-left-column"
+                        >
+                          <v-card class="card-about-left" flat color="transparent">
+                            <v-card-subtitle
+                              class="dob-text"
+                              :align="windowWidth<=599?'left':'center'"
+                            >
+                              <div>Date Of Birth</div>
+
+                              <div class>
+                                <span class>01/14/90</span>
+                              </div>
+                            </v-card-subtitle>
+
+                            <v-card-subtitle
+                              class="dob-text"
+                              :align="windowWidth<=599?'left':'center'"
+                            >
+                              <div>Nationality</div>
+
+                              <div class>
+                                <span class>Moroccan</span>
+                              </div>
+                            </v-card-subtitle>
+
+                            <v-card-subtitle
+                              class="dob-text"
+                              :align="windowWidth<=599?'left':'center'"
+                            >
+                              <div>Hometown</div>
+
+                              <div class>
+                                <span style="text-transform:uppercase;">RABAT</span>
+                              </div>
+                            </v-card-subtitle>
+
+                            <v-card-subtitle
+                              class="dob-text"
+                              :align="windowWidth<=599?'left':'center'"
+                            >
+                              <div>Languages</div>
+
+                              <div class="d-flex flex-column">
+                                <span>Arabic</span>
+                                <span>English</span>
+                                <span>French</span>
+                              </div>
+                            </v-card-subtitle>
+                          </v-card>
+                        </v-col>
+
+                        <v-col xl="6" lg="9" md="9" sm="7" cols="12" order-sm="12" order="1">
+                          <v-card class="card-about-right" flat color="transparent">
+                            <v-card-subtitle class="overview-title">Overview summary</v-card-subtitle>
+                            <!-- Overview -->
+                            <v-card-text
+                              class="overview-text mt-n4"
+                            >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                            <!-- Overview -->
+
+                            <!-- about me -->
+                            <v-card-subtitle class="overview-title">About Me</v-card-subtitle>
+                            <v-card-text
+                              class="overview-text mt-n4"
+                            >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                            <!-- about me -->
+
+                            <!-- quote -->
+                            <v-card-subtitle class="overview-title">Quote</v-card-subtitle>
+                            <v-card-text class="overview-text mt-n4">Born to rise</v-card-text>
+                            <!-- quote -->
+                            <!-- location -->
+                            <v-card-subtitle class="overview-title">Location</v-card-subtitle>
+                            <v-card-text class="overview-text mt-n4">Ireland, Dublin</v-card-text>
+                            <!-- location -->
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card>
                   </v-card>
                 </v-tab-item>
                 <!-- About Me -->
@@ -1066,9 +1170,60 @@ export default {
   color: #5843be !important;
   font-weight: bold !important;
 }
-.about-me-text {
-  font-family: "Poppins", sans-serif !important;
-  color: #000000 !important;
+// .about-me-text {
+//   font-family: "Poppins", sans-serif !important;
+//   color: #000000 !important;
+// }
+//about section
+.card-about-left {
+  .dob-text {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 25px;
+    color: #5843be !important;
+    @media screen and (max-width: 667px) {
+      font-size: 17px;
+      line-height: 16px;
+    }
+    span {
+      font-family: "Poppins" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 30px;
+      color: #333333 !important;
+      @media screen and (max-width: 667px) {
+        font-size: 17px;
+        line-height: 35px;
+      }
+    }
+  }
+}
+.card-about-right {
+  .overview-title {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 25px;
+    color: #5843be !important;
+    @media screen and (max-width: 667px) {
+      font-size: 20px;
+      line-height: 19px;
+    }
+  }
+  .overview-text {
+    font-family: "Open Sans" !important;
+    font-size: 18px;
+    line-height: 25px;
+    color: #333333 !important;
+    @media screen and (max-width: 667px) {
+      font-size: 13px;
+      line-height: 23px;
+    }
+  }
 }
 // about me
 //media
