@@ -501,7 +501,7 @@
                       class="about-me-text"
                       v-if="currentUser.personal_info.about"
                     >{{ currentUser.personal_info.about }}</v-card-text>-->
-                    <v-card>
+                    <v-card class="about-me-child">
                       <v-row>
                         <v-col
                           xl="3"
@@ -1175,53 +1175,58 @@ export default {
 //   color: #000000 !important;
 // }
 //about section
-.card-about-left {
-  .dob-text {
-    font-family: "Open Sans" !important;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 25px;
-    color: #5843be !important;
-    @media screen and (max-width: 667px) {
-      font-size: 17px;
-      line-height: 16px;
-    }
-    span {
-      font-family: "Poppins" !important;
+.about-me-child {
+  background: linear-gradient(0deg, #FAFAFA, #FAFAFA) !important;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 30px !important;
+  .card-about-left {
+    .dob-text {
+      font-family: "Open Sans" !important;
       font-style: normal;
       font-weight: normal;
-      font-size: 20px;
-      line-height: 30px;
-      color: #333333 !important;
+      font-size: 14px;
+      line-height: 25px;
+      color: #5843be !important;
       @media screen and (max-width: 667px) {
         font-size: 17px;
-        line-height: 35px;
+        line-height: 16px;
+      }
+      span {
+        font-family: "Poppins" !important;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 30px;
+        color: #333333 !important;
+        @media screen and (max-width: 667px) {
+          font-size: 17px;
+          line-height: 35px;
+        }
       }
     }
   }
-}
-.card-about-right {
-  .overview-title {
-    font-family: "Open Sans" !important;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 25px;
-    color: #5843be !important;
-    @media screen and (max-width: 667px) {
-      font-size: 20px;
-      line-height: 19px;
+  .card-about-right {
+    .overview-title {
+      font-family: "Open Sans" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 25px;
+      color: #5843be !important;
+      @media screen and (max-width: 667px) {
+        font-size: 20px;
+        line-height: 19px;
+      }
     }
-  }
-  .overview-text {
-    font-family: "Open Sans" !important;
-    font-size: 18px;
-    line-height: 25px;
-    color: #333333 !important;
-    @media screen and (max-width: 667px) {
-      font-size: 13px;
-      line-height: 23px;
+    .overview-text {
+      font-family: "Open Sans" !important;
+      font-size: 18px;
+      line-height: 25px;
+      color: #333333 !important;
+      @media screen and (max-width: 667px) {
+        font-size: 13px;
+        line-height: 23px;
+      }
     }
   }
 }
