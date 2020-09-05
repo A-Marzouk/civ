@@ -906,7 +906,7 @@ export default {
 }
 .btn-hire-me {
   width: 230px;
-  height: 60px;
+  height: 60px !important;
   @media screen and (max-width: 1263px) {
     width: 240px;
   }
