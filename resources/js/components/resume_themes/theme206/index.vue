@@ -39,7 +39,7 @@
 
                 <!-- social buttons -->
                 <v-btn
-                  class="custom-social-btn mx-2"
+                  class="custom-social-btn mx-md-3 mx-sm-3 mx-2"
                   :href="Userlink.link"
                   v-for="Userlink in currentUser.links"
                   :key="Userlink.id + '_link'"
@@ -902,14 +902,19 @@ export default {
   font-weight: bold;
 }
 .btn-hire-me {
-  width: 200px;
+  width: 230px;
+  height: 60px;
+  @media screen and (max-width: 1263px){
+    width: 240px;
+  }
   text-transform: capitalize !important;
   @media screen and (max-width: 599px) {
+    width: 299px;
     color: #5843be !important;
   }
 }
 .custom-social-btn {
-  max-width: 36px !important;
+  width: 60px;
   height: 60px !important;
   @media screen and (min-width:600px) and (max-width: 1263px){
     width: 60px;
@@ -919,7 +924,7 @@ export default {
   @media screen and (max-width: 599px) {
     height: 30px !important;
     width: 30px !important;
-    border-radius: 5px;
+    border-radius: 5px !important;
     box-shadow: 1.5px 1.5px 3px rgba(35, 35, 35, 0.4),
       -1px -1px 3px rgba(206, 206, 206, 0.24) !important;
   }
