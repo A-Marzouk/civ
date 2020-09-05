@@ -1,5 +1,12 @@
 <template>
-  <v-dialog v-model="hireMeModal" :windowWidth="windowWidth" :currentUser = "currentUser" :hireMeModal = "hireMeModal" max-width="567" persistent>
+  <v-dialog
+    v-model="hireMeModal"
+    :windowWidth="windowWidth"
+    :currentUser="currentUser"
+    :hireMeModal="hireMeModal"
+    max-width="567"
+    persistent
+  >
     <v-card color="#F6F9FF" class="card-hire-me-modal pa-sm-3 pa-5">
       <div align="right">
         <v-btn icon @click.native="closeModal()">
@@ -48,11 +55,12 @@
         </v-row>
         <!-- hire me tab -->
       </v-card-subtitle>
-      <v-card-subtitle class="select-hour mt-xl-5 mt-lg-2 mt-5" :align="windowWidth<=599?'center':'left'">
+      <v-card-subtitle
+        class="select-hour mt-xl-5 mt-lg-2 mt-5"
+        :align="windowWidth<=599?'center':'left'"
+      >
         <div align="left">Select the number of Hours you need per week:</div>
-        <div
-          class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5"
-        >
+        <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5">
           <div class="align-self-center btn-holder">
             <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentHours()">
               <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
@@ -69,10 +77,7 @@
               v-model="inputHour"
             ></v-text-field>
           </div>
-          <div
-            class="align-self-center  btn-holder"
-            @click="increamentHours()"
-          >
+          <div class="align-self-center btn-holder" @click="increamentHours()">
             <v-btn color="#F2F3FD" class="btn-decreament" icon>
               <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
             </v-btn>
@@ -199,12 +204,12 @@ export default {
       type: Boolean,
       default: true,
     },
-    windowWidth:{
-      type:Number
+    windowWidth: {
+      type: Number,
     },
-    currentUser:{
-      type:Object
-    }
+    currentUser: {
+      type: Object,
+    },
   },
   data() {
     return {
@@ -220,11 +225,10 @@ export default {
       ],
     };
   },
-  
-  
+
   methods: {
-    closeModal(){
-      this.$emit("update:hireMeModal",false);
+    closeModal() {
+      this.$emit("update:hireMeModal", false);
     },
     increamentHours() {
       this.inputHour++;
@@ -250,7 +254,7 @@ export default {
 
 <style lang="scss" scoped>
 //hire me modal
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 .card-hire-me-modal {
   .title {
     font-family: "Noto Sans" !important;
@@ -377,4 +381,24 @@ export default {
   }
 }
 // hire me modal
+</style>
+
+<style lang="scss">
+.select-hour {
+  .v-text-field input {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #888db1 !important;
+    text-align: center !important;
+  }
+  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+    > .v-input__control
+    > .v-input__slot
+    fieldset {
+    border: 2px solid #e6e8fc !important;
+  }
+}
 </style>
