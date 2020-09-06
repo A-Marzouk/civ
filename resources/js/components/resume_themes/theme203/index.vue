@@ -749,15 +749,16 @@
           <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
             <v-btn
               color="transparent"
-              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
+              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n1 mt-md-0 mt-sm-5 mt-5 ml-md-0 ml-sm-0 ml-0"
               icon
               @click.stop="videoModal=false"
               depressed
+              style="z-index:100;"
             >
               <img src="/images/resume_themes/theme203/icons/email-close.svg" />
             </v-btn>
           </v-card-subtitle>
-
+          <div class="watermark-text-modal-video">Video</div>
           <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
             <video-player
               v-for="i in 6"
@@ -1727,6 +1728,39 @@ export default {
     top: -70%;
   }
 }
+
+//water mark text for video modal
+.watermark-text-modal-video {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  left: 0;
+  top: -30%;
+  bottom: 0;
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    font-size: 200px;
+    top: -60%;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    font-size: 150px;
+    top: -84%;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 100px;
+    top: -80%;
+  }
+}
 .custom-hr {
   width: 245.36px;
   opacity: 0.6;
@@ -1768,23 +1802,7 @@ export default {
   .v-slide-group__prev.v-slide-group__prev--disabled {
     display: none !important;
   }
-  .select-hour {
-    .v-text-field input {
-      font-family: "Noto Sans" !important;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 25px;
-      color: #888db1 !important;
-      text-align: center !important;
-    }
-    .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-      > .v-input__control
-      > .v-input__slot
-      fieldset {
-      border: 2px solid #e6e8fc !important;
-    }
-  }
+  
 
   .card-email {
     .v-text-field input {
