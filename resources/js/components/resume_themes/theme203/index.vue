@@ -1802,23 +1802,7 @@ export default {
   .v-slide-group__prev.v-slide-group__prev--disabled {
     display: none !important;
   }
-  .select-hour {
-    .v-text-field input {
-      font-family: "Noto Sans" !important;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 25px;
-      color: #888db1 !important;
-      text-align: center !important;
-    }
-    .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-      > .v-input__control
-      > .v-input__slot
-      fieldset {
-      border: 2px solid #e6e8fc !important;
-    }
-  }
+  
 
   .card-email {
     .v-text-field input {
