@@ -57,7 +57,6 @@
                                             :error-messages="errors.title"
                                     >
                                     </v-text-field> -->
-
                                     <v-combobox
                                         v-model="editedHobby.title"
                                         :items="hobbyItems"
@@ -153,7 +152,7 @@
 
 <script>
     import draggable from "vuedraggable";
-    import hobbies from '../../helpers/interests'
+    import hobbyItems from '../../helpers/interests'
 
     export default {
         name: "Hobbies",
@@ -167,7 +166,7 @@
                     category: "",
                     title: ""
                 },
-                hobbyItems: hobbies,
+                hobbyItems: hobbyItems,
                 categoryOptions: [
                     'Social',
                     'Tech',
