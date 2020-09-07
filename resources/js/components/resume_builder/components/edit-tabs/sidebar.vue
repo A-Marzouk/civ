@@ -58,14 +58,13 @@
                             {{ sidebarLink.label }}
                         </span>
                         <div class="resume-builder__action-buttons-container" v-if="tabs">
-                            <v-btn class="btn-icon civie-btn" depressed v-if="!structureTabs.includes(sidebarLink.icon)" style="border-radius: 50%;">
+                            <v-btn class="btn-icon civie-btn" depressed v-if="!structureTabs.includes(sidebarLink.icon)" style="border-radius: 50%;"  @click="toggleTab(sidebarLink.title)">
                                 <svg-vue icon="eye-icon" class="icon" :class="{'visible' : isTabActive(sidebarLink.title)}"></svg-vue>
                             </v-btn>
                         </div>
                     </router-link>
 
-                    <hr v-if="sidebarLink.icon === 'pay-availability'"
-                        style="margin-right: 20px; margin-top: 20px; margin-bottom: 15px;">
+                    <hr v-if="sidebarLink.icon === 'pay-availability'" style="margin-right: 20px; margin-top: 20px; margin-bottom: 15px;">
                 </div>
             </div>
         </div>
@@ -220,11 +219,31 @@
                 let active = false;
                 this.tabs.forEach( (tab) => {
                     if(tab.title === tabTitle && tab.is_public){
-                        console.log(tab.title);
                         active = true;
                     }
                 });
                 return active;
+            },
+            toggleTab(tabTitle){
+                let currentTab = {} ;
+
+                this.tabs.forEach( (tab) => {
+                    if(tab.title === tabTitle && tab.is_public){
+                        currentTab = tab ;
+                        currentTab.is_public = !currentTab.is_public;
+                    }
+                });
+
+                console.log('TOGGLE');
+                console.log(currentTab);
+                if(currentTab.id){
+                    axios.put('/api/user/tabs/toggle-tab', currentTab)
+                        .then( (response) => {
+                            console.log(response.data);
+                            this.$store.dispatch('flyingNotification');
+                        });
+                }
+
             }
         },
 
