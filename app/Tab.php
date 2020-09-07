@@ -8,10 +8,10 @@ class Tab extends Model
 {
     protected $table ='tabs';
     protected $fillable = [
-        'is_public','title','label','order','user_id'
+        'is_public','title','label','order','user_id','resume_link_id'
     ];
 
-    public static $defaultTabs = ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media'];
+    public static $defaultTabs = ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements'];
 
     // relation belongs to
     public function user(){

@@ -88,7 +88,7 @@ export default {
   width: 781px;
   height: 541.31px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    height: 90%;
+    height: auto;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     height: 80%;

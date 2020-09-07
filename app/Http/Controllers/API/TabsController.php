@@ -11,18 +11,20 @@ use Illuminate\Support\Facades\Auth;
 
 class TabsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
 
     public function toggleVisibility(Request $request)
     {
-        if(!$this->is_auth($request)){
+
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
-        if($request->isMethod('put') || $request->id != '' ){
-            // update
-            $tab = Tab::findOrFail($request->id);
-            $tab->update($request->toArray());
-        }
+        $tab = Tab::findOrFail($request->id);
+        $tab->update($request->toArray());
 
         if ($tab->id){
             return new TabResource($tab);
@@ -39,7 +41,5 @@ class TabsController extends Controller
         }
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

@@ -83,7 +83,7 @@ class UsersController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'. $data['id'].',id',
-            'username' => 'required|unique:users,username,'. $data['id'].',id',
+            'username' => 'required|alpha_dash|unique:users,username,'. $data['id'].',id',
             'password' => 'sometimes|string|min:6|confirmed',
         ]);
     }
@@ -93,7 +93,7 @@ class UsersController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'. $data['id'].',id',
-            'username' => 'required|unique:users,username,'. $data['id'].',id',
+            'username' => 'required|alpha_dash|unique:users,username,'. $data['id'].',id',
         ]);
     }
 

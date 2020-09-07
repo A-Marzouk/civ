@@ -1,18 +1,42 @@
 <template>
     <div class="profile" v-if="personalInfo" data-app>
+
+        <photoUploader @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></photoUploader>
+
         <div class="profile-fields-wrapper">
             <div class="profile-fields">
                 <div class="profile-picture">
                     <div class="profile-label">
                         <div class="label" style="font-size: 15px">Photo</div>
 
-                        <div
-                                class="picture-preview"
-                                :style="`background-image: url(${personalInfo.profile_pic})`"
-                        >
+                        <div class="profile-pic">
+                            <img :src="personalInfo.profile_pic"/>
+                            <div class="photo-cover" @click="showImageUpload = true">
+                                <img src="/images/resume_builder/camera-icon.png" alt="camera icon">
+                            </div>
                         </div>
+
                     </div>
                     <div class="error" v-if="profile_pic_error">{{profile_pic_error}}</div>
+                </div>
+
+                <div class="profile-input-field input-field--username input-field--group-1">
+                    <span class="v-label v-label--active theme--light" style="color: #888DB1; font-size:16px;">
+                        My URL
+                    </span>
+                    <v-text-field
+                            class="resume-builder__input top-input-margin url min-height"  style="margin-top: -21px;"
+                            v-model="usernameCurrentValue"
+                            @blur="updateUsername"
+                            :outlined="true"
+                            :class="{'resume-builder__input--disabled': false}"
+                            :error="!!errors.username"
+                            :error-messages="errors.username"
+                    >
+                        <template slot="prepend-inner">
+                            <span class="inner-text" style="margin-top:-4.8px;">www.civ.ie/</span>
+                        </template>
+                    </v-text-field>
                 </div>
 
                 <div class="profile-input-field input-field--firstname input-field--group-1">
@@ -23,7 +47,7 @@
                             v-model="personalInfo.first_name"
                             :error="!!errors.first_name"
                             :error-messages="errors.first_name"
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit()"
                             hide-details="auto"
                             outlined
                     ></v-text-field>
@@ -37,7 +61,7 @@
                             :class="{'resume-builder__input--disabled': false}"
                             :error="!!errors.last_name"
                             :error-messages="errors.last_name"
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit()"
                             hide-details="auto"
                             outlined
                     ></v-text-field>
@@ -53,7 +77,7 @@
                             :error-messages="errors.designation"
                             outlined
                             hide-details="auto"
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit()"
                     ></v-text-field>
                 </div>
 
@@ -63,15 +87,21 @@
 </template>
 
 <script>
+    import photoUploader from './includes/PhotoUploader';
+
     export default {
         name: "Personal",
+        components: {
+            photoUploader
+        },
         data(vm) {
             return {
                 errors: {},
                 tempPic: "",
                 profile_pic_error: "",
-                savingType: "manual",
                 menu: false,
+                showImageUpload: false,
+                updatedUsername: ''
             };
         },
         computed: {
@@ -80,15 +110,61 @@
             },
             user() {
                 return this.$store.state.user;
+            },
+            usernameCurrentValue:{
+                get(){
+                    return this.$store.state.user.username;
+                },
+                set(value){
+                   this.updatedUsername = value;
+                }
             }
         },
 
         methods: {
+            // Image cropping
+            cropSuccess(imgDataUrl) {
+                return;
+                this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
+                this.applyEdit();
+            },
+
+            dataURLtoFile(dataURL, filename) {
+                var arr = dataURL.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new File([u8arr], filename, {type: mime});
+            },
+
+            //
             updateVisibility(field_name){
                 this.personalInfo['is_' + field_name + '_active'] = !this.personalInfo['is_' + field_name + '_active'];
-                this.applyEdit("auto");
+                this.applyEdit();
             },
-            applyEdit(savingType) {
+            updateUsername(){
+                this.errors = {};
+                axios.post("/api/user/account/submit", {username: this.updatedUsername, id: this.user.id})
+                    .then(() => {
+                        this.user.username = this.updatedUsername ;
+                        this.$store.dispatch("flyingNotification");
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = ["Something went wrong. Please try again."];
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
+            applyEdit() {
+                this.errors = {};
+
                 let formData = new FormData();
                 formData.append("_method", "put");
                 formData.append("user_id", this.user.id);
@@ -98,8 +174,8 @@
                         if (field !== "email" && this.personalInfo[field].length) {
                             formData.append(field, this.personalInfo[field]);
                         }
-                        if (field === "profile_pic") {
-                            formData.append(field, this.personalInfo[field]);
+                        if (field === "profile_pic_file") {
+                            formData.append('profile_pic', this.personalInfo['profile_pic_file']);
                         }
                     }
                 });
@@ -110,11 +186,7 @@
                         headers: {"Content-Type": "multipart/form-data"}
                     })
                     .then(response => {
-                        if (savingType === "manual") {
-                            this.$store.dispatch("flyingNotification");
-                        } else {
-                            this.$store.dispatch("flyingNotification");
-                        }
+                        this.$store.dispatch("flyingNotification");
                         this.personalInfo.profile_pic = response.data.data.profile_pic;
                     })
                     .catch(error => {
@@ -138,7 +210,7 @@
                     this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
                     this.tempPic = URL.createObjectURL(this.$refs.profile_picture.files[0]);
                     this.profile_pic_error = "";
-                    this.applyEdit("auto");
+                    this.applyEdit();
                 } else {
                     this.profile_pic_error = "Incorrect file chosen!";
                 }
@@ -207,46 +279,49 @@
                 box-shadow: 5px -5px 14px -5px rgba(0, 16, 131, 0.1),
                 -5px 5px 14px -5px rgba(0, 16, 131, 0.1);
 
+                .profile-pic {
+                    position: relative;
+                    overflow-y: hidden;
+                    border-radius: 50%;
+                    width: 110px;
+                    min-width: 110px;
+                    min-height: 110px;
+
+                    img {
+                        width: 110px;
+                        height: 110px;
+                        border-radius: 50%;
+                    }
+
+                    .photo-cover {
+                        &:hover {
+                            cursor: pointer;
+                        }
+
+                        width: 110px;
+                        height: 45px;
+                        background: #001CE2;
+                        opacity: 0.5;
+                        position: absolute;
+                        bottom: 0px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        img {
+                            width: 25px;
+                            height: 25px;
+                            opacity: 1;
+                            border-radius: 0;
+                        }
+                    }
+                }
+
                 .profile-picture {
                     padding-top: 13px;
                     padding-bottom: 15px;
 
                     .profile-label {
-                        .picture-preview {
-                            position: relative;
-                            overflow: hidden;
-                            height: 120px;
-                            width: 120px;
-                            background-color: #f2f3fd;
-                            background-size: cover;
-                            background-position: center;
-                            background-repeat: no-repeat;
-                            border-radius: 100px;
-
-                            .preview-cover {
-                                position: absolute;
-                                bottom: 0;
-                                left: 0;
-                                width: 100%;
-                                height: 50px;
-                                margin-bottom: 0;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                transition: background-color 0.3s;
-
-                                svg {
-                                    opacity: 0;
-                                    transition: opacity 0.3s;
-                                }
-                            }
-
-                            input[type="file"] {
-                                height: 0;
-                                width: 0;
-                            }
-                        }
-
                         .label {
                             color: #888db1;
                             font-size: 19px;
@@ -311,6 +386,13 @@
                                 grid-row-end: 4;
                             }
 
+                            &.input-field--username {
+                                grid-column-start: 2;
+                                grid-column-end: 3;
+                                grid-row-start: 1;
+                                grid-row-end: 2;
+                            }
+
                             &.input-field--lastname {
                                 grid-column-start: 2;
                                 grid-column-end: 3;
@@ -319,10 +401,10 @@
                             }
 
                             &.input-field--job-title {
-                                grid-column-start: 2;
-                                grid-column-end: 3;
-                                grid-row-start: 1;
-                                grid-row-end: 2;
+                                grid-column-start: 1;
+                                grid-column-end: 2;
+                                grid-row-start: 4;
+                                grid-row-end: 5;
                             }
                         }
 
@@ -370,6 +452,13 @@
                             &.input-field--firstname {
                                 grid-row-start: 1;
                                 grid-row-end: 2;
+                                grid-column-start: 3;
+                                grid-column-end: 4;
+                            }
+
+                            &.input-field--username{
+                                grid-row-start: 1;
+                                grid-row-end: 2;
                                 grid-column-start: 2;
                                 grid-column-end: 3;
                             }
@@ -377,37 +466,17 @@
                             &.input-field--lastname {
                                 grid-row-start: 1;
                                 grid-row-end: 2;
-                                grid-column-start: 3;
-                                grid-column-end: 4;
-                            }
-
-                            &.input-field--current-location {
-                                grid-row-start: 1;
-                                grid-row-end: 2;
                                 grid-column-start: 4;
                                 grid-column-end: 5;
-                            }
-
-                            &.input-field--date-of-birth {
-                                grid-row-start: 2;
-                                grid-row-end: 3;
-                                grid-column-start: 2;
-                                grid-column-end: 3;
                             }
 
                             &.input-field--job-title {
-                                grid-row-start: 1;
-                                grid-row-end: 2;
-                                grid-column-start: 4;
-                                grid-column-end: 5;
-                            }
-
-                            &.input-field--nationality {
+                                grid-column-start: 2;
+                                grid-column-end: 3;
                                 grid-row-start: 2;
                                 grid-row-end: 3;
-                                grid-column-start: 4;
-                                grid-column-end: 5;
                             }
+
                         }
 
                         &.input-field--group-2 {
@@ -569,10 +638,6 @@
 
 <style lang="scss">
     .profile .profile-fields .profile-input-field {
-        &.input-field--about .v-input__control {
-            height: 159px;
-        }
-
         .v-textarea.v-text-field--box {
             &.v-text-field--outlined:not(.v-input--dense) textarea,
             &.v-text-field--single-line:not(.v-input--dense) textarea {
@@ -610,5 +675,9 @@
 
     #resumeBuilder .v-chip--select .v-chip .v-chip--clickable .v-chip--no-color .theme--light .v-size--default {
         margin-left: -7px;
+    }
+
+    .resume-builder__input.url.min-height > .v-input__control > .v-input__slot {
+        min-height: 47px !important;
     }
 </style>

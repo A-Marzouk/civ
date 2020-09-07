@@ -6,6 +6,7 @@ use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\Import;
 use App\Http\Resources\Import as ImportResource;
+use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ class ImportsController extends Controller
     {
 
         $this->validator($request->all())->validate();
+        $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
         $import = Import::create($request->toArray());
 
         // if isset file - upload the file and save the url.

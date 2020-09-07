@@ -8,13 +8,33 @@
     ></a>
 
     <div class="custom-drop-down" :class="{'show' :show}">
+
       <div class="drop-down-item" :class="{'active' : activeTabMenu === 'builder'}">
         <router-link
                 id="resumeBuilder"
                 data-target="resumeBuilder"
                 @click.native="onItemClick('tabChanged','builder')"
-                to="/resume-builder/edit"
-        >CV builder</router-link>
+                to="/resume-builder/edit/profile"
+        >CV/Resume</router-link>
+      </div>
+      <hr />
+
+      <div class="drop-down-item disabled">
+        <router-link
+                id="jobSearch"
+                data-target="resumeBuilder"
+                to="/resume-builder/jobs"
+                event=""
+        >Job Search <small>(Coming Soon)</small></router-link>
+      </div>
+      <hr />
+      <div class="drop-down-item disabled">
+        <router-link
+                id="clients"
+                data-target="resumeBuilder"
+                to="/resume-builder/clients"
+                event=""
+        >Clients <small>(Coming Soon)</small></router-link>
       </div>
       <hr />
 
@@ -23,8 +43,8 @@
           id="myAccount"
           data-target="myAccount"
           @click.native="onItemClick('tabChanged','account')"
-          to="/resume-builder"
-        >Account Settings</router-link>
+          to="/resume-builder/account"
+        >Account</router-link>
       </div>
       <hr />
 
@@ -131,7 +151,7 @@ export default {
 
   .custom-drop-down {
     display: none;
-    max-width:200px;
+    max-width:220px;
     font-family: Noto Sans, "sans-serif";
     background: white;
     white-space: nowrap;
@@ -160,6 +180,15 @@ export default {
         &:hover {
           text-decoration: none;
           color: #0046fe;
+        }
+      }
+
+      &.disabled{
+        a{
+          &:hover{
+            color: #a0aec0;
+            cursor: default;
+          }
         }
       }
 

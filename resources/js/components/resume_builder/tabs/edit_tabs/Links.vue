@@ -19,7 +19,7 @@
 					</button>
 
 					<button class="input-prepended-icon" slot="prepend">
-						<img :src="`/images/resume_builder/${linkCategory}_icons/${editedLink.link_title.toLowerCase()}-1.svg`" alt="link icon">
+						<img :src="`/images/resume_builder/${linkCategory}_icons/${editedLink.link_title.toLowerCase().replace(' ','_')}-1.svg`" alt="link icon">
 					</button>
 				</v-select>
 
@@ -46,7 +46,7 @@
 							<img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
 						</div>
 						<div class="link-text">
-							<img :src="`/images/resume_builder/${linkCategory}_icons/${link.link_title.toLowerCase()}-1.svg`" alt="link icon">
+							<img :src="`/images/resume_builder/${linkCategory}_icons/${link.link_title.toLowerCase().replace(' ','_')}-1.svg`" alt="link icon">
 							<span>{{link.link}}</span>
 						</div>
 					</div>
@@ -95,7 +95,7 @@ export default {
 			"Pinterest",
 			"Twitter"
 		],
-		contactLinksCategories: ["Messenger", "Telegram", "Whatsapp", "Skype"],
+		contactLinksCategories: ["Messenger", "Telegram", "Whatsapp", "Skype", "Phone", "G. Calendar", "Calendly", "Zoom", "Hangouts"],
 		socialLinks: [],
 		professionalLinks: [],
 		contactLinks: [],
@@ -169,7 +169,7 @@ export default {
 		saveLink() {
 			this.errors = {};
 
-			if (!this.validURL(this.editedLink.link)) {
+			if (!this.validURL(this.editedLink.link) && !this.validPhone(this.editedLink.link)) {
 				this.errors = { link: "Not a valid link!" };
 				return;
 			}
@@ -211,9 +211,17 @@ export default {
 		},
 		cancelEdit() {},
 		clearLink() {
+			// link title depending on the link category:
+			let link_title = "Website";
+			if(this.linkCategory === 'social'){
+				link_title = "Facebook";
+			}
+			if(this.linkCategory === 'contact'){
+				link_title = "Messenger";
+			}
 			this.editedLink = {
 				id: "",
-				link_title: "Website",
+				link_title: link_title,
 				category: this.linkCategory,
 				link: "",
 				is_active: true,
@@ -233,6 +241,13 @@ export default {
 			if(this.editedLink.link_title === 'Skype'){
 				return this.testSkypeUrl(str);
 			}
+			return !!pattern.test(str);
+		},
+
+		validPhone(str) {
+			let pattern = new RegExp(
+				"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$"
+			); // fragment locator
 			return !!pattern.test(str);
 		},
 		testSkypeUrl(skype_url){

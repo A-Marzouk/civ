@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Hobby;
+use App\User;
 use Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class HobbiesController extends Controller
      */
     public function store(Request $request)
     {
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -52,6 +53,7 @@ class HobbiesController extends Controller
             $hobby = Hobby::findOrFail($request->id);
             $hobby->update($request->toArray());
         }else{
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $hobby =Hobby::create($request->toArray());
         }
 
@@ -99,7 +101,7 @@ class HobbiesController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($hobby)){
+        if(!is_auth($hobby)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -117,8 +119,6 @@ class HobbiesController extends Controller
         ]);
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }
 

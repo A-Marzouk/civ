@@ -11,10 +11,9 @@
 |
 */
 
-
+use App\Mail\PasswordResetMail;
 
 Auth::routes(['verify' => true]);
-
 
 // public routes
 Route::get('/preview/{theme_id}/{slug?}', 'ResumeController@themePreview'); // resume preview
@@ -22,6 +21,10 @@ Route::get('/preview-by-code/{theme_code}', 'ResumeController@themePreviewByCode
 
 Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
+//email
+Route::get('/email', function(){
+    return new PasswordResetMail();
+});
 
 
 // Download Resume routes
@@ -34,6 +37,7 @@ Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
+
 
 
 // social sites register & login:
@@ -68,15 +72,15 @@ Route::get('/resume-builder/import/behance/{behanceUsername}', 'ImportsControlle
 Route::get('/subscribe', 'SubscriptionController@subscribePage')->name('subscribe.page');
 
 Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
-Route::get('/subscription/cancel', 'SubscriptionController@cacnel')->name('subscription.cancel');
+Route::get('/subscription/cancel', 'SubscriptionController@cancel')->name('subscription.cancel');
 Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
 Route::post('/subscribe', 'SubscriptionController@subscribeStripe')->name('subscribe.stripe');
 
 // paypal
 
 Route::get('/subscribe/create-paypal-plan/{plan_period}', 'PaypalController@create_plan');
-Route::get('/subscribe/paypal/monthly', 'PaypalController@paypalRedirectMonthly')->name('paypal.redirect.monthly');
-Route::get('/subscribe/paypal/yearly', 'PaypalController@paypalRedirectYearly')->name('paypal.redirect.yearly');
+Route::get('/subscribe/paypal/monthly', 'PaypalController@subscribePayPalMonthly')->name('paypal.redirect.monthly');
+Route::get('/subscribe/paypal/yearly', 'PaypalController@subscribePayPalYearly')->name('paypal.redirect.yearly');
 Route::get('/subscribe/paypal/return', 'PaypalController@paypalReturn')->name('paypal.return');
 
 
@@ -97,5 +101,7 @@ Route::group(['prefix' => 'workforce-admin'], function () {
 });
 
 // public cv url
-Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data
 Route::get('/{username}/reference', 'ResumeController@externalReferencePage'); // external reference
+Route::get('/{username}/{version?}', 'ResumeController@userResume'); // resume with real user data
+
+

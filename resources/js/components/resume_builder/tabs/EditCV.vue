@@ -18,14 +18,16 @@
 					<v-switch v-model="cvAutoUpdate"></v-switch>
 				</div>
 				<div class="refresh" @click="updateIframe('true')">
-					Refresh Your Data <img src="/icons/refresh.svg" alt="">
+					<span>Refresh Your Data</span> <img src="/icons/refresh.svg" alt="refresh image" id="refreshImage">
 				</div>
 			</div>
 
 			<div class="cv-content-preview-wrapper" v-if="activeTab !== 'imports'">
 				<div class="cv-content-preview">
 					<div class="cv-preview-link">
-						<a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
+						<a v-if="user.username" :href="`https://civ.ie/${user.username}/${user.default_resume_link.url}`" target="_blank">
+							https://civ.ie/{{user.username}}/{{user.default_resume_link.url}}
+						</a>
 					</div>
 					<div class="cv-preview-theme-wrapper">
 						<div class="cv-preview-theme">
@@ -35,7 +37,7 @@
 										type="list-item-avatar-three-line, image, article, actions"
 								></v-skeleton-loader>
 							</div>
-							<vue-friendly-iframe v-if="user.username" :src="this.baseUrl + user.username + `?current-view=${activeTab}`" @iframe-load="onLoad"></vue-friendly-iframe>
+							<vue-friendly-iframe v-if="user.username" :src="this.baseUrl + user.username + '/' + user.default_resume_link.url" @iframe-load="onLoad"></vue-friendly-iframe>
 						</div>
 					</div>
 				</div>
@@ -67,9 +69,6 @@ export default {
 		}
 	},
 	methods:{
-		importComponent(path) {
-			return () => import('../../resume_themes/theme'+ path + '/index.vue');
-		},
 		getThemeUrl(){
 			// refresh iframe src:
 				this.baseUrl =  '';
@@ -86,13 +85,21 @@ export default {
 			// remove the spinner loader.
 			this.isFrameLoaded = true;
 		},
-		updateIframe(force = 'false'){
-			if(this.cvAutoUpdate || force === 'true'){
+		updateIframe(force = 'false') {
+			if (this.cvAutoUpdate || force === 'true') {
 				this.isFrameLoaded = false;
 				setTimeout(() => {
+					this.rotateImageEffect();
 					this.getThemeUrl();
-				},0);
+				}, 0);
 			}
+		},
+		rotateImageEffect(){
+			let refreshButton = $('#refreshImage') ;
+			refreshButton.addClass('rotate');
+			setTimeout(() => {
+				refreshButton.removeClass('rotate');
+			}, 4000);
 		}
 	},
 
@@ -341,6 +348,10 @@ justify-content: flex-start;
 			}
 			.text{
 				margin-right:10px;
+				@include lt-sm{
+					max-width: 85px;
+					text-align: left;
+				}
 			}
 		}
 		.refresh{
@@ -349,9 +360,16 @@ justify-content: flex-start;
 			@include lt-sm{
 				flex-wrap: wrap;
 				justify-content :center;
+				span{
+					max-width: 65px;
+				}
 			}
 			img{
 				margin-left:10px;
+				transition: all 1s;
+			}
+			img.rotate{
+				animation: rotation 2s 2 linear;
 			}
 			&:hover{
 				cursor: pointer;
@@ -398,6 +416,15 @@ justify-content: flex-start;
 					margin-right:30px;
 				}
 			}
+		}
+	}
+
+
+	// keyframes:
+
+	@keyframes rotation {
+		100%{
+			transform: rotate(359deg);
 		}
 	}
 </style>

@@ -12,6 +12,8 @@
         "barryvdh/laravel-dompdf": "^0.8.6",
         "behance/api-network": "dev-master",
         "fideloper/proxy": "^4.0",
+        "google/cloud-error-reporting": "^0.16.3",
+        "google/cloud-logging": "^1.20",
         "guzzlehttp/guzzle": "6.5.2",
         "laravel/framework": "^7.0",
         "laravel/helpers": "^1.2",
@@ -19,9 +21,11 @@
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "nunomaduro/collision": "^4.2",
         "paypal/rest-api-sdk-php": "^1.14",
         "phpoffice/phpword": "^0.17.0",
         "smalot/pdfparser": "^0.14.0",
+        "snowfire/beautymail": "^1.1",
         "socialiteproviders/instagram": "^3.0",
         "socialiteproviders/spotify": "^3.1",
         "spatie/laravel-permission": "^3.8",
@@ -30,10 +34,8 @@
         "symfony/translation": "5"
     },
     "require-dev": {
-        "facade/ignition": "^2.0",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5"
     },
     "config": {
@@ -53,6 +55,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/classes/helpers.php"
         ]
     },
     "autoload-dev": {

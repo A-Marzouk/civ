@@ -1,5 +1,8 @@
 <template>
     <v-app class="main-content">
+        <div class="d-flex justify-content-end w-100">
+            <tab-switcher currentTabTitle="hobbies"></tab-switcher>
+        </div>
         <div style="width:100%;">
             <v-card
                     class="card-main-hobbies pa-lg-10 pa-md-10 pa-sm-10 pa-3 resume-builder__scroll hobbies-content"
@@ -153,12 +156,15 @@
 <script>
     import draggable from "vuedraggable";
     import tabSwitcher from "./includes/TabSwitcher";
+
     import hobbyItems from '../../helpers/interests'
+
 
     export default {
         name: "Hobbies",
         components: {
-            draggable
+            draggable,
+            'tab-switcher' : tabSwitcher,
         },
         data() {
             return {

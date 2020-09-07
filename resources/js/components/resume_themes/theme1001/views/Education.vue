@@ -65,19 +65,31 @@ export default {
 }
 
 .item-view__wrapper {
+  width: 50%;
+  float: left;
   padding-top: 25px;
   padding-bottom: 25px;
 }
 
 @media (min-width: $md) {
   .education {
-    width: 50%;
+    width: 100%;
     padding-left: unset;
   }
 }
 
 @media (min-width: 1600px) {
   .item-view__wrapper {
+    width: 50%;
+    float: left;
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+}
+@media (max-width: 500px) {
+  .item-view__wrapper {
+    width: 75%;
+    float: left;
     padding-top: 45px;
     padding-bottom: 45px;
   }

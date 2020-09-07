@@ -2,13 +2,16 @@
   <v-app>
     <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
-        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab" height="51">
-          <v-tab style="font-weight: 400"
-            class="resume-builder__tab" @click="setSkillCategory(tab)"
-            v-for="tab in tabs"
-            :key="tab"
-          >{{tab.replace('_',' ')}}</v-tab>
-        </v-tabs>
+        <div class="d-flex reverse-on-phone">
+          <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab" height="51">
+            <v-tab style="font-weight: 400"
+                   class="resume-builder__tab" @click="setSkillCategory(tab.toString())"
+                   v-for="tab in tabs"
+                   :key="tab"
+            >{{tab.replace('_',' ')}}</v-tab>
+          </v-tabs>
+          <tab-switcher currentTabTitle="skills"></tab-switcher>
+        </div>
       </v-card>
       <v-card
         class="card-skill-items pa-sm-5 pa-2 skills-content resume-builder__scroll"
@@ -17,13 +20,13 @@
         <div>
           <div>
             <v-container style="width:100%;">
-              <v-row align="baseline">
+              <v-row align="baseline mt-n12">
                 <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
-                      placeholder="Select an option"
+                      placeholder="Skill Title"
                       v-model="editedSkill.title"
                       label="Skill Title"
                       :error="!!errors.title"
@@ -59,7 +62,7 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-md-n2 mt-sm-n10 mt-n6 d-flex">
+                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-lg-n2 my-md-n10 mt-sm-n10 mt-n6 d-flex">
                   <v-btn
                     class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0 mr-lg-7 mr-md-7"
                     @click="addSkill"
@@ -233,11 +236,13 @@
 <script>
 
 import draggable from "vuedraggable";
+import tabSwitcher from "./includes/TabSwitcher";
 
 export default {
   name: "Skills",
   components: {
-    draggable
+    draggable,
+    'tab-switcher' : tabSwitcher,
   },
   data() {
     return {

@@ -45,6 +45,7 @@ class ReferencesController extends Controller
             $reference->update($request->toArray());
         }else{
             // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $reference = Reference::create($request->toArray());
 
             // if external : send an email:
@@ -88,7 +89,7 @@ class ReferencesController extends Controller
             'id' => $id,
         ])->first();
 
-        if(!$this->is_auth($reference)){
+        if(!is_auth($reference)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -130,7 +131,5 @@ class ReferencesController extends Controller
         ]);
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

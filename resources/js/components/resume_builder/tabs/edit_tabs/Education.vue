@@ -1,6 +1,9 @@
 <template>
     <v-app>
-        <div class="data-container">            
+        <div class="data-container">
+            <div class="d-flex justify-content-end w-100">
+                <tab-switcher currentTabTitle="education"></tab-switcher>
+            </div>
             <v-card class="view-container resume-builder__scroll" flat>
                 <SchoolView :activeTab ="activeTab"></SchoolView>
             </v-card>
@@ -10,11 +13,13 @@
 
 <script>
 import SchoolView from './education_tabs/school'
+import tabSwitcher from "./includes/TabSwitcher";
 
     export default {
         name: "Education",
         components: {
-            SchoolView
+            SchoolView,
+            'tab-switcher' : tabSwitcher,
         },
         data: (vm) => {
             return {
@@ -26,7 +31,8 @@ import SchoolView from './education_tabs/school'
                     degree_title:'',
                     date_from:'',
                     date_to:'',
-                    present: false
+                    present: false,
+                    is_public: true
                 },
                 errors: {
                     new: {},
@@ -57,6 +63,7 @@ import SchoolView from './education_tabs/school'
                     date_from:education.date_from,
                     date_to:education.date_to,
                     present:education.present,
+                    is_public:education.is_public,
                 };
                 this.closeOptionsBtn();
             },
@@ -112,7 +119,7 @@ import SchoolView from './education_tabs/school'
             },
             addEducation(){
                 this.errors = {  new: {}, edit: {}};
-                this.newEducation.user_id = this.$store.state.user.id
+                this.newEducation.user_id = this.$store.state.user.id;
                 axios.post('/api/user/education', this.newEducation)
                     .then((response) => {
                         this.educations.unshift(response.data.data);

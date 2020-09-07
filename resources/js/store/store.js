@@ -378,7 +378,34 @@ export const store = new Vuex.Store({
                     updated_at: "2020-07-20 09:12:51"
                 },
             ],
-            media: []
+            media: [
+                {
+                    id: "1",
+                    type: "audio",
+                    transcript: "John Doe, One of the greatest UX designers of all time.",
+                    title: "John Doe",
+                    resume_link_id: "4",
+                    url: "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3",
+                    order: "1",
+                    is_public: "1",
+                    user_id: "2",
+                    created_at: "2020-06-23 09:34:43",
+                    updated_at: "2020-07-20 09:12:51"
+                },
+                {
+                    id: "2",
+                    type: "video",
+                    transcript: "John Doe, One of the greatest UX designers of all time.",
+                    title: "John Doe",
+                    resume_link_id: "4",
+                    url: '"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    order: "1",
+                    is_public: "1",
+                    user_id: "2",
+                    created_at: "2020-06-23 09:34:43",
+                    updated_at: "2020-07-20 09:12:51"
+                }
+            ]
         },
         themeUser: {},
         access_token: Vue.$cookies.get('access_token') || null
@@ -391,7 +418,7 @@ export const store = new Vuex.Store({
             state.themeUser = themeUser;
         },
         updateActivity(state) {
-            axios.post('/api/user/update-last-activity', {user_id: state.user.id}).then((response) => {
+            axios.post('/api/user/update-last-activity', { user_id: state.user.id }).then((response) => {
             }).catch((error) => {
                 console.log('Error - last activity');
             });
@@ -404,15 +431,23 @@ export const store = new Vuex.Store({
         },
         updateLinks(state, links) {
             state.user.links = links;
-            axios.post('/api/user/links/update-order', {links: links})
+            axios.post('/api/user/links/update-order', { links: links })
                 .then(response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateResumeLinks(state, resume_links) {
+            state.user.resume_links = resume_links;
+            axios.post('/api/user/resume-links/update-order', { resume_links: resume_links })
+                .then((response) => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
         updateReferences(state, references) {
             state.user.references = references;
-            axios.post('/api/user/references/update-order', {references: references})
+            axios.post('/api/user/references/update-order', { references: references })
                 .then(() => {
                     this.dispatch('flyingNotification');
                 })
@@ -420,7 +455,7 @@ export const store = new Vuex.Store({
         },
         updateTabs(state, tabs) {
             state.user.tabs = tabs;
-            axios.post('/api/user/tabs/update-order', {tabs: tabs})
+            axios.post('/api/user/tabs/update-order', { tabs: tabs })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -428,7 +463,7 @@ export const store = new Vuex.Store({
         },
         updateDownloads(state, downloads) {
             state.user.downloads = downloads;
-            axios.post('/api/user/downloads/update-order', {tabs: downloads})
+            axios.post('/api/user/downloads/update-order', { tabs: downloads })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -436,7 +471,7 @@ export const store = new Vuex.Store({
         },
         updateWorks(state, works) {
             state.user.work_experience = works;
-            axios.post('/api/user/work-experience/update-order', {works: works})
+            axios.post('/api/user/work-experience/update-order', { works: works })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -444,7 +479,7 @@ export const store = new Vuex.Store({
         },
         updateEducation(state, educations) {
             state.user.education = educations;
-            axios.post('/api/user/education/update-order', {educations: educations})
+            axios.post('/api/user/education/update-order', { educations: educations })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -452,7 +487,7 @@ export const store = new Vuex.Store({
         },
         updateProjects(state, projects) {
             state.user.projects = projects;
-            axios.post('/api/user/projects/update-order', {projects: projects})
+            axios.post('/api/user/projects/update-order', { projects: projects })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -460,7 +495,7 @@ export const store = new Vuex.Store({
         },
         updateImports(state, imports) {
             state.user.imports = imports;
-            axios.post('/api/user/imports/update-order', {imports: imports})
+            axios.post('/api/user/imports/update-order', { imports: imports })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -468,7 +503,7 @@ export const store = new Vuex.Store({
         },
         updateMedia(state, medias) {
             state.user.media = medias;
-            axios.post('/api/user/media/update-order', {medias: medias})
+            axios.post('/api/user/media/update-order', { medias: medias })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -476,7 +511,7 @@ export const store = new Vuex.Store({
         },
         updateSkills(state, skills) {
             state.user.skills = skills;
-            axios.post('/api/user/skills/update-order', {skills: skills})
+            axios.post('/api/user/skills/update-order', { skills: skills })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -484,7 +519,7 @@ export const store = new Vuex.Store({
         },
         updateHobbies(state, hobbies) {
             state.user.hobbies = hobbies;
-            axios.post('/api/user/hobbies/update-order', {hobbies: hobbies})
+            axios.post('/api/user/hobbies/update-order', { hobbies: hobbies })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -492,7 +527,7 @@ export const store = new Vuex.Store({
         },
         updateAchievements(state, achievements) {
             state.user.achievements = achievements;
-            axios.post('/api/user/achievements/update-order', {achievements: achievements})
+            axios.post('/api/user/achievements/update-order', { achievements: achievements })
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -570,12 +605,12 @@ export const store = new Vuex.Store({
         },
         logoutUnauthorizedUser() {
             axios.post('/logout').then((response) => {
-                    // remove access token from cookies:
-                    if (Vue.$cookies.isKey('access_token')) {
-                        Vue.$cookies.remove('access_token');
-                    }
-                    window.location.href = '/login';
+                // remove access token from cookies:
+                if (Vue.$cookies.isKey('access_token')) {
+                    Vue.$cookies.remove('access_token');
                 }
+                window.location.href = '/login';
+            }
             )
         },
         fullScreenNotification(store, payload = {}) {

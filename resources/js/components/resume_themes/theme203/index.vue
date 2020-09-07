@@ -35,7 +35,7 @@
                                   small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-email"
-                                  :href="'mailto:' + currentUser.personal_info.email"
+                                  @click="emailModal=true"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -46,6 +46,7 @@
                                   x-small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-video-player"
+                                  @click="videoModal = true"
                                 >
                                   <img
                                     width="15"
@@ -60,8 +61,10 @@
                                   depressed
                                   class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
                                   align="center"
+                                  @click="audioModal=true"
                                 >
                                   <img
+                                    class
                                     width="15"
                                     src="/images/resume_themes/theme203/icons/headphones.webp"
                                   />
@@ -116,7 +119,7 @@
                       small
                       depressed
                       class="mx-md-1 mx-sm-2 mx-1 btn-email"
-                      :href="'mailto:' + currentUser.personal_info.email"
+                      @click="emailModal=true"
                     >
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
@@ -127,11 +130,19 @@
                       x-small
                       depressed
                       class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
+                      @click="videoModal = true"
                     >
                       <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
 
-                    <v-btn fab color="#FCD259" x-small depressed class="btn-headphone mx-1 mx-sm-2">
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      x-small
+                      depressed
+                      class="btn-headphone mx-1 mx-sm-2"
+                      @click="audioModal=true"
+                    >
                       <img
                         width="15"
                         style="margin-left:1px;"
@@ -201,6 +212,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
+                                @click="hireMeModal = !hireMeModal"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -244,6 +256,104 @@
           <v-col cols="12">
             <v-card flat color="transparent" tile style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
+                <!--------------------- About ------------------------------>
+                <v-tab-item>
+                  <div class="watermark-text text-center">About</div>
+                  <v-container>
+                    <v-row>
+                      <v-col
+                        xl="3"
+                        lg="3"
+                        md="3"
+                        sm="4"
+                        cols="12"
+                        order-sm="1"
+                        order="12"
+                        class="about-left-column"
+                      >
+                        <v-card class="card-about-left" flat color="transparent">
+                          <v-card-subtitle
+                            class="dob-text"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Date Of Birth</div>
+
+                            <div class="mt-3">
+                              <span class>01.14.1990</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Nationality</div>
+
+                            <div class="mt-3">
+                              <span class>Moroccan</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Hometown</div>
+
+                            <div class="mt-3">
+                              <span style="text-transform:uppercase;">RABAT</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Languages</div>
+
+                            <div class="mt-3 d-flex flex-column">
+                              <span>Arabic</span>
+                              <span>English</span>
+                              <span>French</span>
+                            </div>
+                          </v-card-subtitle>
+                        </v-card>
+                      </v-col>
+
+                      <v-col xl="4" lg="7" md="7" sm="7" cols="12" order-sm="12" order="1">
+                        <v-card class="card-about-right" flat color="transparent">
+                          <v-card-subtitle class="overview-title">Overview summary</v-card-subtitle>
+                          <!-- Overview -->
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- Overview -->
+
+                          <!-- about me -->
+                          <v-card-subtitle class="overview-title">About Me</v-card-subtitle>
+                          <hr class="custom-hr hidden-xs-only" />
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- about me -->
+
+                          <!-- quote -->
+                          <v-card-subtitle class="overview-title">Quote</v-card-subtitle>
+                          <v-card-text class="overview-text">Born to rise</v-card-text>
+                          <!-- quote -->
+                          <!-- location -->
+                          <v-card-subtitle class="overview-title">Location</v-card-subtitle>
+                          <v-card-text class="overview-text">Ireland, Dublin</v-card-text>
+                          <!-- location -->
+                          <hr class="custom-hr hidden-sm-and-up" />
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+
+                <!--------------------- About ------------------------------>
+
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
@@ -498,21 +608,25 @@
                             :key="index"
                             v-show="achievement.is_public"
                           >
-                            <v-list-item>
-                              <v-list-item-avatar class="achievement-avatar">
-                                <img :src="achievement.image_src" alt="hobby icon" />
-                              </v-list-item-avatar>
-                              <v-list-item-content>
-                                <v-list-item-title class="hobby-title">
-                                  <v-card flat color="transparent">
-                                    <v-card-subtitle class="achievement-title">{{achievement.title}}</v-card-subtitle>
-                                    <v-card-subtitle
-                                      class="achievement-subtitle mt-xl-0 mt-n5"
-                                    >{{achievement.description}}</v-card-subtitle>
-                                  </v-card>
-                                </v-list-item-title>
-                              </v-list-item-content>
-                            </v-list-item>
+                            <div
+                              :class="[windowWidth<=1263?'d-flex achievement flex-column':'d-flex achievement flex-row']"
+                            >
+                              <div :align="windowWidth<=1263?'center':'left'">
+                                <img
+                                  class="mt-5"
+                                  :src="achievement.image_src"
+                                  alt="achievement image"
+                                />
+                              </div>
+                              <v-card flat color="transparent">
+                                <v-card-subtitle
+                                  class="achievement-title"
+                                >{{achievement.title}}{{windowWidth}}</v-card-subtitle>
+                                <v-card-subtitle
+                                  class="achievement-subtitle mt-xl-0 mt-n5"
+                                >{{achievement.description}}</v-card-subtitle>
+                              </v-card>
+                            </div>
                           </v-col>
                         </template>
                       </v-row>
@@ -559,6 +673,104 @@
         </v-row>
       </v-container>
       <!-- ......................................Tab Items .........................-->
+      <!-- All Modals -->
+      <!-- Hire Me Modal -->
+      <hire-modal
+        :hireMeModal.sync="hireMeModal"
+        :widowWidth="windowWidth"
+        :currentUser="currentUser"
+      ></hire-modal>
+      <!-- Hire Me Modal -->
+
+      <!-- Email modal -->
+      <v-dialog v-model="emailModal" persistent max-width="759" class="email-modal">
+        <v-card class="card-email pa-sm-6 pa-10">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">Message</div>
+            <div>
+              <v-btn icon depressed class="btn-email-modal-close" @click="emailModal = false">
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <v-card-text class="mt-lg-0 mt-8">
+            <v-card class="pa-lg-10" flat color="transparent">
+              <v-text-field class="email-input" color="#E0BB4C" placeholder="Name"></v-text-field>
+              <v-text-field type="email" class="email-input" color="#E0BB4C" placeholder="Email"></v-text-field>
+              <v-textarea color="#E0BB4C" placeholder="Message"></v-textarea>
+              <v-card-subtitle align="center" class="mt-5">
+                <v-btn color="#FCD259" depressed class="btn-send-mail">Send</v-btn>
+              </v-card-subtitle>
+            </v-card>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+      <!-- Email modal -->
+      <!-- Audio Modal -->
+
+      <v-dialog
+        v-model="audioModal"
+        max-width="1710"
+        persistent
+        style="overflow-y: hidden !important; overflow-x: hidden !important;"
+      >
+        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">My Audio</div>
+            <div>
+              <v-btn
+                icon
+                depressed
+                class="btn-audio-modal-close"
+                @click="audioModal = false"
+                style="z-index: 100;"
+              >
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <div class="watermark-text-modal">Audio</div>
+          <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
+            <audio-player
+              :modalOpen="audioModal"
+              v-for="i in 6"
+              :key="i"
+              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+            ></audio-player>
+          </VueSlickCarousel>
+        </v-card>
+      </v-dialog>
+
+      <!-- Audio Modal -->
+
+      <!-- Video Modal -->
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+          <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
+            <v-btn
+              color="transparent"
+              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n1 mt-md-0 mt-sm-5 mt-5 ml-md-0 ml-sm-0 ml-0"
+              icon
+              @click.stop="videoModal=false"
+              depressed
+              style="z-index:100;"
+            >
+              <img src="/images/resume_themes/theme203/icons/email-close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+          <div class="watermark-text-modal-video">Video</div>
+          <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
+            <video-player
+              v-for="i in 6"
+              :key="i"
+              :modalOpen="videoModal"
+              link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            ></video-player>
+          </VueSlickCarousel>
+        </v-card>
+      </v-dialog>
+      <!-- Video Modal -->
+      <!-- All Modals  -->
 
       <!-- tab bar row -->
       <!-- Right Bottom bar -->
@@ -568,8 +780,18 @@
   </v-app>
 </template>
 <script>
+import HireModal from "./payment/HireModal";
+import AudioPlayer from "./media/AudioPlayer";
+import VideoPlayer from "./media/VideoPlayer";
+import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
+  components: {
+    HireModal,
+    AudioPlayer,
+    VideoPlayer,
+    VueSlickCarousel,
+  },
   props: ["user", "is_preview"],
   filters: {
     capitalize: function (value) {
@@ -584,7 +806,12 @@ export default {
   },
   data() {
     return {
+      audioModal: false,
+      videoModal: false,
+      emailModal: false,
+      windowWidth: window.innerWidth,
       currentUser: this.user,
+      hireMeModal: false,
       socialIcons: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
@@ -593,34 +820,81 @@ export default {
         { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
+
       progressBarColor: "yellow",
+      slickOptionsVideoModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 2,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+        ],
+      },
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3,
+      },
       mainTabs: [
         {
           id: 1,
-          title: "Portfolio",
+          title: "About",
         },
         {
           id: 2,
-          title: "Work",
+          title: "Portfolio",
         },
         {
           id: 3,
-          title: "Education",
+          title: "Work",
         },
         {
           id: 4,
-          title: "Skills",
+          title: "Education",
         },
         {
           id: 5,
-          title: "Hobbies",
+          title: "Skills",
         },
         {
           id: 6,
-          title: "Achievements",
+          title: "Hobbies",
         },
         {
           id: 7,
+          title: "Achievements",
+        },
+        {
+          id: 8,
           title: "References",
         },
       ],
@@ -730,7 +1004,9 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    console.log(this.currentUser);
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
@@ -772,6 +1048,7 @@ export default {
       });
       return mainImage.src;
     },
+    //audio Modal
   },
 };
 </script>
@@ -779,9 +1056,10 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
-/*@import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");*/
+// @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 /* Shapes */
 .triangle-top-left {
@@ -880,7 +1158,7 @@ export default {
     font-size: 0.6rem !important;
   }
   @media screen and(max-width:599px) {
-    font-size: 0.5rem !important;
+    font-size: 0.56rem !important;
   }
 }
 
@@ -906,6 +1184,11 @@ export default {
 .btn-headphone {
   width: 1.87rem !important;
   height: 1.81rem !important;
+  img {
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      margin-left: 1px;
+    }
+  }
 }
 
 /* Social Btn */
@@ -1137,21 +1420,21 @@ export default {
   }
 }
 .hobbies-avatar {
-  min-width: 126.88px !important;
-  min-height: 126.88px !important;
-  height: 126.88px !important;
-  width: 126.88px !important;
+  min-width: 63.44px !important;
+  min-height: 63.44px !important;
+  height: 63.44px !important;
+  width: 63.44px !important;
   @media screen and (max-width: 1903px) and (min-width: 1264px) {
-    min-width: 100px !important;
-    min-height: 100px !important;
-    height: 100px !important;
-    width: 100px !important;
+    min-width: 63.44px !important;
+    min-height: 63.44px !important;
+    height: 63.44px !important;
+    width: 63.44px !important;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 94.16px !important;
-    min-height: 94.16px !important;
-    height: 94.16px !important;
-    width: 94.16px !important;
+    min-width: 47.08px !important;
+    min-height: 47.08px !important;
+    height: 47.08px !important;
+    width: 47.08px !important;
   }
   @media screen and(max-width: 599px) {
     min-width: 45px !important;
@@ -1162,23 +1445,24 @@ export default {
 }
 // hobbies tab
 // achievement tab
-.achievement-avatar {
-  min-width: 152px !important;
-  min-height: 152px !important;
-  height: 152px !important;
-  width: 152px !important;
-  @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 119.1px !important;
-    min-height: 134px !important;
-    height: 134px !important;
-    width: 119.1px !important;
-  }
-  @media screen and (max-width: 599px) {
-    min-width: 76.75px !important;
-    min-height: 87px !important;
-    width: 76.75px !important;
-    height: 87px !important;
-    margin-top: -80px;
+.achievement {
+  img {
+    min-width: 160px !important;
+    min-height: 124px !important;
+    height: 124px !important;
+    width: 160px !important;
+    @media screen and (max-width: 1263px) and (min-width: 600px) {
+      min-width: auto !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: auto !important;
+    }
+    @media screen and (max-width: 959px) {
+      min-width: auto !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: auto !important;
+    }
   }
 }
 .achievement-title {
@@ -1190,7 +1474,10 @@ export default {
   color: #000000 !important;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     font-size: 24px;
-    line-height: 22px;
+    line-height: 36px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    font-size: 22px;
   }
   @media screen and (max-width: 959px) {
     font-size: 40px;
@@ -1265,9 +1552,238 @@ export default {
   }
 }
 // reference tab
+
+// email modal
+.card-email {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+    align-self: center;
+    @media screen and (max-width: 667px) {
+      font-size: 18px;
+      line-height: 17px;
+    }
+  }
+  .btn-email-modal-close {
+    width: 41px;
+    height: 41px;
+    @media screen and (max-width: 667px) {
+      width: 26px;
+      height: 26px;
+    }
+  }
+  .btn-send-mail {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000 !important;
+    width: 234px !important;
+    height: 67px !important;
+    box-shadow: 0px 0px 40px rgba(252, 210, 89, 0.24) !important;
+    border-radius: 100px !important;
+    text-transform: capitalize !important;
+  }
+}
+//email modal
+
+//about section
+.card-about-left {
+  .dob-text {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900 !important;
+    font-size: 20px;
+    line-height: 19px;
+    color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 17px;
+      line-height: 16px;
+    }
+    span {
+      font-family: "Open Sans" !important;
+      font-weight: 600 !important;
+      font-size: 20px;
+      line-height: 35px;
+      color: #373737;
+      @media screen and (max-width: 667px) {
+        font-size: 17px;
+        line-height: 35px;
+      }
+    }
+  }
+}
+.card-about-right {
+  .overview-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 24px;
+    color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 20px;
+      line-height: 19px;
+    }
+  }
+  .overview-text {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 35px;
+    color: #373737 !important;
+    @media screen and (max-width: 667px) {
+      font-size: 13px;
+      line-height: 23px;
+    }
+  }
+}
+//about section closed
+//audio modal
+.card-audio-modal {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+  }
+  .btn-audio-modal-close {
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.card-modal-video-holder {
+  border-radius: 40px !important;
+  height: 850px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    height: 700px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    height: auto;
+  }
+  @media screen and (max-width: 959px) {
+    height: 1250px;
+  }
+  @media screen and (max-width: 599px) {
+    height: 770px;
+  }
+  .btn-video-close {
+    img {
+      width: 50px;
+      height: 50px;
+      @media screen and (max-width: 959px) {
+        width: 63px;
+        height: 62px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  }
+}
+
+//audio modal
+.watermark-text-modal {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  left: 0;
+  top: -30%;
+  bottom: 0;
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    font-size: 200px;
+    top: -60%;
+  }
+  @media screen and (min-width: 668px) and (max-width: 959px) {
+    font-size: 150px;
+    top: -70%;
+  }
+  @media screen and (max-width: 667px) {
+    font-size: 100px;
+    top: -70%;
+  }
+}
+
+//water mark text for video modal
+.watermark-text-modal-video {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  left: 0;
+  top: -30%;
+  bottom: 0;
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    font-size: 200px;
+    top: -60%;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    font-size: 150px;
+    top: -84%;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 100px;
+    top: -80%;
+  }
+}
+.custom-hr {
+  width: 245.36px;
+  opacity: 0.6;
+  border: 1px solid #000000;
+  transform: rotate(90deg);
+  margin-left: -198px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    margin-left: -158px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    margin-left: -144px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    margin-left: -150px;
+  }
+  @media screen and (max-width: 599px) {
+    margin-left: 16px;
+    transform: rotate(180deg);
+  }
+}
 </style>
 
-<style>
+<style lang="scss">
 #resumeTheme203 .v-progress-linear__determinate {
   background-color: -moz-linear-gradient(
     138.05deg,
@@ -1281,5 +1797,122 @@ export default {
     #e5bf4e 51.95%,
     #ffde81 89.88%
   ) !important;
+}
+#resumeTheme203 {
+  .v-slide-group__prev.v-slide-group__prev--disabled {
+    display: none !important;
+  }
+  
+
+  .card-email {
+    .v-text-field input {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+
+    .v-text-field input::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    // .v-text-field > .v-input__control > .v-input__slot > .v-text-field__slot {
+    //   border-bottom: 2px solid #000000 !important;
+    // }
+
+    // .v-text-field
+    //   > .v-input__control
+    //   > .v-input__slot
+    //   > .v-text-field__slot:focus {
+    //   border-bottom: 2px solid #fcd259 !important;
+    // }
+
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+  }
+
+  .slick-dots {
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .slick-dots li {
+    width: 18px;
+    height: 18px;
+    background: rgba(252, 210, 89, 0.3) !important;
+    border-radius: 50%;
+  }
+  .slick-dots li.slick-active button {
+    width: 18px !important;
+    height: 18px !important;
+    background: #fcd259 !important;
+  }
+  // video slick
+  .video-slick .slick-list {
+    padding-bottom: 50px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
+    }
+  }
+  .audio-slick .slick-list {
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
+    }
+  }
 }
 </style>

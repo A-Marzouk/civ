@@ -6,6 +6,7 @@ use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\ProjectImage;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\Project as ProjectResource;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -52,6 +53,7 @@ class ProjectsController extends Controller
             $project->update($request->toArray());
         }else{
             // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $project = Project::create($request->toArray());
         }
 
@@ -67,13 +69,14 @@ class ProjectsController extends Controller
     }
 
     public function storeMany(Request $request){
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
         $addedProjects = [];
 
         foreach($request->projects as $project){
+            $project['resume_link_id'] = User::find($project['user_id'])->resume_link_id;
             $newProject = Project::create($project);
             if(isset($project['image'])){
                 $newProject->images()->create([
@@ -91,7 +94,8 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project = Project::where([
-            'id' => $id
+            'id' => $id,
+            'user_id' => Auth::user()->id
         ])->first();
 
         return new ProjectResource($project);
@@ -114,7 +118,7 @@ class ProjectsController extends Controller
             'id' => $id
         ])->first();
 
-        if(!$this->is_auth($project)){
+        if(!is_auth($project)){
             throw new Exception('Not Authenticated!');
         }
 
@@ -136,11 +140,11 @@ class ProjectsController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['sometimes', 'string', 'max:255','min:3'],
-            'description' => ['sometimes', 'string', 'max:2500','min:3'],
-            'link' => ['sometimes', 'string','max:255','min:3'],
-            'skills' => ['sometimes', 'string','max:255','min:3'],
-            'software' => ['sometimes', 'string','max:255','min:3']
+            'name' => ['required', 'string', 'max:255','min:3'],
+            'description' => ['required', 'string', 'max:2500','min:3'],
+            'link' => ['required', 'string','max:255','min:3'],
+            'skills' => ['required', 'string','max:255','min:3'],
+            'software' => ['required', 'string','max:255','min:3']
         ]);
     }
 
@@ -155,7 +159,5 @@ class ProjectsController extends Controller
         }
     }
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }

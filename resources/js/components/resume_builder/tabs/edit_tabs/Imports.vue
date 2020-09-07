@@ -80,7 +80,7 @@
                                     v-model="behanceUsername"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;">behance.com/</span>
+                                    <span class="inner-text" style="margin-top:-3px;">behance.net/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -123,6 +123,10 @@
                             </div>
                         </div>
 
+                    </v-tab-item>
+
+                    <v-tab-item class="import-tab-item">
+                        <import-from-civ></import-from-civ>
                     </v-tab-item>
                 </v-tabs-items>
             </v-card>
@@ -597,7 +601,6 @@
             </div>
         </div>
 
-
         <div class="outer-container">
             <div class="title">
                 <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
@@ -700,17 +703,19 @@
     import draggable from "vuedraggable";
     import vue2Dropzone from "vue2-dropzone";
     import pdfExtractor from "../../components/ImportCV";
+    import ImportFromCIV from "./imports_includes/ImportFromCIV"
 
     export default {
         name: "Imports",
         components: {
             draggable,
             vueDropzone: vue2Dropzone,
-            pdfExtractor
+            pdfExtractor,
+            'import-from-civ':ImportFromCIV
         },
         data() {
             return {
-                tabs: ["PDF/DOC", "Behance", "LinkedIn"],
+                tabs: ["PDF/DOC", "Behance", "LinkedIn", "civ.ie"],
                 importTab: 0,
                 dropzoneOptions: {
                     url: "https://httpbin.org/post",
@@ -1344,7 +1349,6 @@
             }
         },
         methods: {
-
             getFormattedData(date) {
                 let d = new Date(date);
                 return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear() ;
@@ -1504,7 +1508,7 @@
 
             // Import data from Behance:
             importDataFromBehance(){
-                this.importURL = 'https://behance.com/' + this.behanceUsername ;
+                this.importURL = 'https://behance.net/' + this.behanceUsername ;
                 this.importType = 'Behance' ;
                 axios.get('/resume-builder/import/behance/' + this.behanceUsername)
                     .then((response) => {
@@ -2022,8 +2026,6 @@
 
             // crud on imports:
             addImport() {
-                console.log('called');
-
                 let formData = new FormData();
                 this.newImport.title = 'Import ' + (this.imports.length+1) + ' | ' + this.importType ;
                 this.newImport.url   = this.importURL;

@@ -11,6 +11,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Promocode;
+use App\ResumeLink;
 use App\Subscription;
 use App\Tab;
 use App\User;
@@ -38,9 +39,14 @@ class UsersController extends Controller
             $id = Auth::user()->id;
         }
 
-        $user = User::where('id',$id)->with(User::$defaultRelations)->first();
+        $user = User::find($id);
+
         if($user){
             $this->setDefaultTabs($user);
+            $this->setDefaultResumeLink($user);
+            // get user with updated relations:
+            $user = User::withAllRelations($user->username, $user->resume_link_id);
+
             return response()->json($user, 200);
         }
         return response()->json(['Error' => "Something went wrong."], 404);
@@ -96,12 +102,42 @@ class UsersController extends Controller
         ]);
     }
 
+    protected function setDefaultResumeLink($user){
+        if(isset($user->defaultResumeLink->id)){
+            return true;
+        }
+        // default resume link
+        $resumeLink = ResumeLink::create([
+            'user_id' => $user->id,
+            'url' => '',
+            'title' => 'civ.ie/',
+            'theme_id' => 1,
+            'order' => 1,
+            'is_public' => true
+        ]);
+
+        $user->update([
+            'resume_link_id' => $resumeLink->id
+        ]);
+    }
+
     public function updateUserTheme(Request $request){
+
+        $user = User::findOrFail($request->user_id);
+        $currentResume = $user->defaultResumeLink;
+        $currentResume->update(
+            ['theme_id' => $request->theme_id]
+        );
+
+        return ['status' => 'success'];
+    }
+
+    public function updateUserDefaultResume(Request $request){
 
         $user = User::findOrFail($request->user_id);
 
         $user->update(
-            ['theme_id' => $request->theme_id]
+            ['resume_link_id' => $request->resume_link_id]
         );
 
         return ['status' => 'success'];
@@ -109,10 +145,10 @@ class UsersController extends Controller
 
     public function editAccountData(Request $request){
         $request->validate([
-            'name' => 'required|max:191|min:3',
-            'email'     => 'required|max:191|email',
+            'name' => 'sometimes|max:191|min:3',
+            'email'     => 'sometimes|max:191|email',
             'password' => 'nullable|min:6|max:191|confirmed',
-            'username' => 'required|unique:users,username,'. $request['id'].',id',
+            'username' => 'required|alpha_dash|unique:users,username,'. $request['id'].',id',
         ]);
 
 

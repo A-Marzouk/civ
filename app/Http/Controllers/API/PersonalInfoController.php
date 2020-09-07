@@ -36,29 +36,24 @@ class PersonalInfoController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->is_auth($request)){
+        if(!is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
 
-        $this->validator($request->all())->validate();
+        $attributes = $this->validator($request->all())->validate();
+
         $user = User::find($request->user_id);
 
-        $personalInfo = $user->personalInfo;
-        if($request->isMethod('put')){
-            $personalInfo->update($request->toArray());
+        $personalInfo = PersonalInfo::where([
+            ['user_id',$user->id],
+            ['resume_link_id', $user->resume_link_id]
+        ])->first();
+
+        if($request->file('profile_pic')){
+            $attributes['profile_pic'] = $request->file('profile_pic')->store('avatars');
         }
 
-        if (isset($_FILES['profile_pic'])) {
-            $pathToPicture = Upload::profilePicture('profile_pic', $request->user_id);
-            if($pathToPicture){
-                $personalInfo->update([
-                    'profile_pic' => '/' . $pathToPicture
-                ]);
-            }else{
-                throw new Exception('Failed to upload image');
-            }
-
-        }
+        $personalInfo->update($attributes);
 
         if (isset($personalInfo)){
             return new PersonalInfoResource($personalInfo);
@@ -76,6 +71,7 @@ class PersonalInfoController extends Controller
             'profile_pic' => ['sometimes'],
             'phone' => ['sometimes', 'numeric','min:7'],
             'location' => ['sometimes', 'string', 'max:255','min:3'],
+            'hometown' => ['sometimes', 'string', 'max:255','min:3'],
             'about' => ['sometimes','string','max:2500'],
             'overview' => ['sometimes','string','max:2500'],
             'quote' => ['sometimes','string','max:2500'],
@@ -83,7 +79,5 @@ class PersonalInfoController extends Controller
     }
 
 
-    protected function is_auth($request){
-        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
-    }
+
 }
