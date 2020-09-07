@@ -153,6 +153,7 @@
 <script>
     import draggable from "vuedraggable";
     import hobbyItems from '../../helpers/interests'
+    import tabSwitcher from "./includes/TabSwitcher";
 
     export default {
         name: "Hobbies",
