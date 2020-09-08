@@ -732,7 +732,12 @@
           <div class="watermark-text-modal">Audio</div>
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
             <template v-for="item in currentUser.media">
-              <audio-player :key="item.id" v-show="item.type=='audio'" :modalOpen="audioModal" :file="item.url"></audio-player>
+              <audio-player
+                :key="item.id"
+                v-show="item.type=='audio'"
+                :modalOpen="audioModal"
+                :file="item.url"
+              ></audio-player>
             </template>
           </VueSlickCarousel>
         </v-card>
@@ -757,12 +762,14 @@
           </v-card-subtitle>
           <div class="watermark-text-modal-video">Video</div>
           <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
-            <video-player
-              v-for="i in 6"
-              :key="i"
-              :modalOpen="videoModal"
-              link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            ></video-player>
+            <template v-for="item in currentUser.media">
+              <video-player
+                v-show="item.type=='video'"
+                :key="item.id"
+                :modalOpen="videoModal"
+                :file="item.url"
+              ></video-player>
+            </template>
           </VueSlickCarousel>
         </v-card>
       </v-dialog>
