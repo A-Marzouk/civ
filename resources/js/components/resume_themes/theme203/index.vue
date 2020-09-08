@@ -731,12 +731,9 @@
           </div>
           <div class="watermark-text-modal">Audio</div>
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
-            <audio-player
-              :modalOpen="audioModal"
-              v-for="i in 6"
-              :key="i"
-              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-            ></audio-player>
+            <template v-for="item in currentUser.media">
+              <audio-player :key="item.id" v-show="item.type=='audio'" :modalOpen="audioModal" :file="item.url"></audio-player>
+            </template>
           </VueSlickCarousel>
         </v-card>
       </v-dialog>
@@ -1004,6 +1001,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
@@ -1712,20 +1710,20 @@ export default {
   justify-content: center;
   right: 0;
   left: 0;
-  top: -30%;
+  top: 0;
   bottom: 0;
   margin: auto;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
     font-size: 200px;
-    top: -60%;
+    top: -30%;
   }
   @media screen and (min-width: 668px) and (max-width: 959px) {
     font-size: 150px;
-    top: -70%;
+    top: -30%;
   }
   @media screen and (max-width: 667px) {
     font-size: 100px;
-    top: -70%;
+    top: -30%;
   }
 }
 
@@ -1802,7 +1800,6 @@ export default {
   .v-slide-group__prev.v-slide-group__prev--disabled {
     display: none !important;
   }
-  
 
   .card-email {
     .v-text-field input {
