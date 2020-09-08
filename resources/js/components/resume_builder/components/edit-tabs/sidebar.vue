@@ -36,7 +36,7 @@
                 </a>
             </div>
 
-            <div class="sidebar-links" :class="{'open' :open}">
+            <div class="sidebar-links" :class="{'open' :open}" v-if="tabs">
                 <div
                         v-for="sidebarLink in sidebarLinks"
                         class="sidebar-link"
@@ -45,21 +45,22 @@
                 >
                     <router-link
                             :to="sidebarLink.url"
-                            @click.native="setActive(sidebarLink)"
+                            @click.native=""
                             @mouseover.native="hoverMenu(sidebarLink)"
                             @mouseleave.native="hoverMenu(null)"
                             class="d-flex justify-content-between w-100"
+                            :class="{'half-opacity' : !isTabActive(sidebarLink.title)}"
                     >
-                        <div class="link-icon"
+                        <div class="link-icon" @click="setActive(sidebarLink)"
                              :class="[{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}, {'profile-ixklwxz-link-icon-active':activeHoverMenu==sidebarLink.icon}]">
                             <svg-vue :icon="`edit-cv-sidebar/${sidebarLink.icon}`"></svg-vue>
                         </div>
-                        <span style="flex:2;">
+                        <span style="flex:2;" @click="setActive(sidebarLink)">
                             {{ sidebarLink.label }}
                         </span>
-                        <div class="resume-builder__action-buttons-container" v-if="tabs">
+                        <div class="resume-builder__action-buttons-container">
                             <v-btn class="btn-icon civie-btn" depressed v-if="!structureTabs.includes(sidebarLink.icon)"
-                                   style="border-radius: 50%;" @click="toggleTab(sidebarLink.title)">
+                                   style="border-radius: 50%;" @click.prevent="toggleTab(sidebarLink.title)">
                                 <svg-vue icon="eye-icon" class="icon"
                                          :class="{'visible' : isTabActive(sidebarLink.title)}"></svg-vue>
                             </v-btn>
@@ -167,21 +168,25 @@
                         url: "/resume-builder/edit/structure",
                         icon: "structure",
                         label: "Structure",
+                        title: "structure",
                     },
                     {
                         url: "/resume-builder/edit/imports",
                         icon: "imports",
                         label: "Imports",
+                        title: "imports",
                     },
                     {
                         url: "/resume-builder/edit/manager",
                         icon: "manager",
-                        label: "Manager"
+                        label: "Manager",
+                        title: "manager"
                     },
                     {
                         url: "/resume-builder/edit/themes",
                         icon: "themes",
                         label: "Themes",
+                        title: "themes",
                     },
                 ],
                 structureTabs: [
@@ -221,7 +226,7 @@
             isTabActive(tabTitle) {
                 let active = false;
                 this.tabs.forEach((tab) => {
-                    if (tab.title === tabTitle && tab.is_public) {
+                    if ((tab.title === tabTitle && tab.is_public) || this.structureTabs.includes(tabTitle)) {
                         active = true;
                     }
                 });
