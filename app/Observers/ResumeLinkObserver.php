@@ -46,7 +46,10 @@ class ResumeLinkObserver
 
         // delete all user relations that has the resume_link_id of the deleted resume link.
 
-        $user = User::find($resumeLink->user_id);
+
+        $user = User::withTrashed()->where([
+            'id' => $resumeLink->user_id,
+        ])->first();
 
         foreach (User::$defaultOneToOneRelations as $relation) {
             if(in_array($relation, User::$excludedFromVersionFilter)){

@@ -74,6 +74,22 @@ class UsersController extends Controller
 
     }
 
+    public function deactivateAccount($id){
+        $user = User::where([
+            'id' => $id,
+        ])->first();
+
+        if($user->delete()){
+            if (Auth::check()) {
+                Auth::user()->token()->revoke();
+                return response()->json(['success' => 'Logged out - user token revoked'], 200);
+            }
+        }
+        else{
+            return 'fail';
+        }
+    }
+
     protected function setDefaultResumeLink($user){
         if(isset($user->defaultResumeLink->id)){
             return true;

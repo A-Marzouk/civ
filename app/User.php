@@ -6,14 +6,15 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use phpDocumentor\Reflection\Types\Self_;
 use Spatie\Permission\Traits\HasRoles;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasRoles, HasApiTokens;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity','resume_link_id'
+        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity','resume_link_id', 'deleted_at'
     ];
 
     /**
@@ -33,8 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public static $defaultRelations =
-        [
+    public static $defaultRelations = [
             'permissions',
             'tabs',
             'skills',
@@ -59,7 +59,6 @@ class User extends Authenticatable implements MustVerifyEmail
             'theme',
             'subscription'
         ];
-
     public static $excludedFromVersionFilter = [
         'permissions',
         'projects.images',
@@ -69,7 +68,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'subscription',
         'theme',
     ];
-
     public static $defaultOneToOneRelations = [
         'personalInfo',
         'availabilityInfo',
