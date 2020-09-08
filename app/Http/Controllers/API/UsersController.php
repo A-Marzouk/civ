@@ -53,13 +53,13 @@ class UsersController extends Controller
     }
 
     protected function setDefaultTabs($user){
-        if(count($user->tabs) > 0){
-            return true;
-        }
+        $userTabsTitles = $user->tabs->pluck('title')->all();
+
+        $notCreatedTabs = array_diff(Tab::$defaultTabs, $userTabsTitles);
 
         $defaultTabs = [] ;
 
-        foreach (Tab::$defaultTabs as $index => $tabTitle){
+        foreach ($notCreatedTabs as $index => $tabTitle){
             $defaultTabs[] = [
                 'user_id' => $user->id,
                 'resume_link_id' => $user->defaultResumeLink->id,

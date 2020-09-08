@@ -54,17 +54,20 @@
                              :class="[{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}, {'profile-ixklwxz-link-icon-active':activeHoverMenu==sidebarLink.icon}]">
                             <svg-vue :icon="`edit-cv-sidebar/${sidebarLink.icon}`"></svg-vue>
                         </div>
-                        <span style="flex:2;" >
+                        <span style="flex:2;">
                             {{ sidebarLink.label }}
                         </span>
                         <div class="resume-builder__action-buttons-container" v-if="tabs">
-                            <v-btn class="btn-icon civie-btn" depressed v-if="!structureTabs.includes(sidebarLink.icon)" style="border-radius: 50%;"  @click="toggleTab(sidebarLink.title)">
-                                <svg-vue icon="eye-icon" class="icon" :class="{'visible' : isTabActive(sidebarLink.title)}"></svg-vue>
+                            <v-btn class="btn-icon civie-btn" depressed v-if="!structureTabs.includes(sidebarLink.icon)"
+                                   style="border-radius: 50%;" @click="toggleTab(sidebarLink.title)">
+                                <svg-vue icon="eye-icon" class="icon"
+                                         :class="{'visible' : isTabActive(sidebarLink.title)}"></svg-vue>
                             </v-btn>
                         </div>
                     </router-link>
 
-                    <hr v-if="sidebarLink.icon === 'pay-availability'" style="margin-right: 20px; margin-top: 20px; margin-bottom: 15px;">
+                    <hr v-if="sidebarLink.icon === 'pay-availability'"
+                        style="margin-right: 20px; margin-top: 20px; margin-bottom: 15px;">
                 </div>
             </div>
         </div>
@@ -134,7 +137,7 @@
                         url: "/resume-builder/edit/achievement",
                         icon: "achievement",
                         label: "Achievement",
-                        title: "achievement",
+                        title: "achievements",
                     },
                     {
                         url: "/resume-builder/edit/references",
@@ -158,7 +161,7 @@
                         url: "/resume-builder/edit/pay-availability",
                         icon: "pay-availability",
                         label: "Pay availability",
-                        title: "portfolio",
+                        title: "pay_availability",
                     },
                     {
                         url: "/resume-builder/edit/structure",
@@ -197,9 +200,9 @@
             };
         },
 
-        computed:{
-            tabs(){
-                return this.$store.state.user.tabs ;
+        computed: {
+            tabs() {
+                return this.$store.state.user.tabs;
             }
         },
         methods: {
@@ -215,31 +218,28 @@
                     this.activeHoverMenu = null;
                 }
             },
-            isTabActive(tabTitle){
+            isTabActive(tabTitle) {
                 let active = false;
-                this.tabs.forEach( (tab) => {
-                    if(tab.title === tabTitle && tab.is_public){
+                this.tabs.forEach((tab) => {
+                    if (tab.title === tabTitle && tab.is_public) {
                         active = true;
                     }
                 });
                 return active;
             },
-            toggleTab(tabTitle){
-                let currentTab = {} ;
+            toggleTab(tabTitle) {
+                let currentTab = {};
 
-                this.tabs.forEach( (tab) => {
-                    if(tab.title === tabTitle && tab.is_public){
-                        currentTab = tab ;
+                this.tabs.forEach((tab) => {
+                    if (tab.title === tabTitle) {
+                        currentTab = tab;
                         currentTab.is_public = !currentTab.is_public;
                     }
                 });
 
-                console.log('TOGGLE');
-                console.log(currentTab);
-                if(currentTab.id){
+                if (currentTab.id) {
                     axios.put('/api/user/tabs/toggle-tab', currentTab)
-                        .then( (response) => {
-                            console.log(response.data);
+                        .then((response) => {
                             this.$store.dispatch('flyingNotification');
                         });
                 }
