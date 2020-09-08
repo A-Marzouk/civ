@@ -767,6 +767,8 @@
                 v-show="item.type=='video'"
                 :key="item.id"
                 :modalOpen="videoModal"
+                :title="item.title"
+                :details="item.transcript"
                 :file="item.url"
               ></video-player>
             </template>
