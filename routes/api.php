@@ -124,6 +124,8 @@ Route::group(['prefix' => 'user/'], function () {
 // Promo code
     Route::post('/apply-promo-code', 'API\UsersController@applyPromoCode')->name('user.apply.promocode');
 
+    Route::delete('/deactivate-account/{id}', 'API\UsersController@deactivateAccount')->name('deactivate.account');
+
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
 

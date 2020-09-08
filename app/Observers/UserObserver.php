@@ -46,7 +46,7 @@ class UserObserver
 
     public function deleting(User $user)
     {
-        // delete all user relations :
+        // delete all user relations : // TODO: subscription hold off.
         if($user->isForceDeleting()){
             // delete resume links:
             $resumeLinks = $user->resumeLinks;
