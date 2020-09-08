@@ -91,8 +91,9 @@
                             </v-text-field>
                         </div>
 
-                        <div class="action-btns NoDecor">
-                            <a class="save-btn" href="javascript:void(0)" @click="submitForm">Save Changes</a>
+                        <div class="action-btns NoDecor d-flex">
+                            <a class="save-btn mr-3" href="javascript:void(0)" @click="submitForm">Save Changes</a>
+                            <a class="save-btn delete" href="javascript:void(0)" @click="deleteAccount">Delete Account</a>
                         </div>
                     </div>
                 </div>
@@ -205,6 +206,18 @@
             }
         },
         methods: {
+            deleteAccount(){
+                if (!confirm('Are you sure you want to Deactivate your account ?')) {
+                    return;
+                }
+
+                axios.delete('/api/user/deactivate-account/' + this.user.id ).then( (response) => {
+                    console.log(response.data);
+                    // redirect to login page:
+                    window.location = '/login'
+                }).catch();
+
+            },
             subscribe() {
                 $('#subscribe_form').submit();
             },
@@ -826,6 +839,7 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        margin-bottom: 20px;
 
                         background: #001ce2;
                         border-radius: 5px;
@@ -836,6 +850,12 @@
                         font-size: 18px;
                         line-height: 25px;
                         color: #ffffff;
+
+                        &.delete{
+                            color: #C4C9F5;
+                            border: 2px solid #E6E8FC;
+                            background: white;
+                        }
                     }
 
                     .purchase-btn {

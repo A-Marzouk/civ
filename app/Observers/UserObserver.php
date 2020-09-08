@@ -46,29 +46,30 @@ class UserObserver
 
     public function deleting(User $user)
     {
+        // delete all user relations : // TODO: subscription hold off.
+        if($user->isForceDeleting()){
+            // delete resume links:
+            $resumeLinks = $user->resumeLinks;
+            foreach ($resumeLinks as $link){
+                $link->delete();
+            }
 
-        // Do some stuff before delete
-
-        // delete resume links:
-        $resumeLinks = $user->resumeLinks;
-        foreach ($resumeLinks as $link){
-            $link->delete();
-        }
-
-        // delete subscription:
-        $subscription = $user->subscription;
-        if($subscription){
-            $subscription->delete();
-        }
+            // delete subscription:
+            $subscription = $user->subscription;
+            if($subscription){
+                $subscription->delete();
+            }
 
 
-        // delete subscription:
-        $permissions = $user->permissions;
-        if($permissions){
-            foreach ($permissions as $permission){
-                $permission->delete();
+            // delete subscription:
+            $permissions = $user->permissions;
+            if($permissions){
+                foreach ($permissions as $permission){
+                    $permission->delete();
+                }
             }
         }
+
     }
 
 
