@@ -53,53 +53,25 @@ class UsersController extends Controller
     }
 
     protected function setDefaultTabs($user){
-        if(count($user->tabs) > 0){
-            return true;
+        $userTabsTitles = $user->tabs->pluck('title')->all();
+
+        $notCreatedTabs = array_diff(Tab::$defaultTabs, $userTabsTitles);
+
+        $defaultTabs = [] ;
+
+        foreach ($notCreatedTabs as $index => $tabTitle){
+            $defaultTabs[] = [
+                'user_id' => $user->id,
+                'resume_link_id' => $user->defaultResumeLink->id,
+                'order' => $index + 1,
+                'is_public' => true,
+                'title' => $tabTitle,
+                'label' => ucwords(str_replace('_',' ', $tabTitle))
+            ];
         }
-        return Tab::insert([
-            [
-                'user_id' => $user->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'work_experience',
-                'label' => 'Work Experience'
-            ],
-            [
-                'user_id' => $user->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'education',
-                'label' => 'Education'
-            ],
-            [
-                'user_id' => $user->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'skills',
-                'label' => 'Skills'
-            ],
-            [
-                'user_id' => $user->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'portfolio',
-                'label' => 'Portfolio'
-            ],
-            [
-                'user_id' => $user->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'about_me',
-                'label' => 'About Me'
-            ],
-            [
-                'user_id' => $user->id,
-                'order' => 1,
-                'is_public' => true,
-                'title' => 'media',
-                'label' => 'Media'
-            ]
-        ]);
+
+        Tab::insert($defaultTabs);
+
     }
 
     protected function setDefaultResumeLink($user){

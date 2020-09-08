@@ -14,7 +14,7 @@
                         <v-form>
                             <v-row align="center">
                                 <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                                    <v-select
+                                    <!-- <v-select
                                             class="resume-builder__input civie-select"
                                             outlined
                                             placeholder="Select an option"
@@ -28,11 +28,28 @@
                                         <button class="dropdown-icon icon" slot="append" @click.prevent>
                                             <svg-vue :icon="`dropdown-caret`"></svg-vue>
                                         </button>
-                                    </v-select>
+                                    </v-select> -->
+
+                                    <v-combobox
+                                        v-model="editedHobby.category"
+                                        :items="categoryOptions"
+                                        flat
+                                        placeholder="Select an option"
+                                        label="Type"
+                                        outlined
+                                        color="#001CE2"
+                                        class="resume-builder__input civie-select"
+                                        :error="!!errors.category"
+                                        :error-messages="errors.category"
+                                    >
+                                        <button class="dropdown-icon icon pb-1" slot="append" @click.prevent>
+                                            <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                                        </button>
+                                    </v-combobox>
                                 </v-col>
 
                                 <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                                    <v-text-field
+                                    <!-- <v-text-field
                                             class="resume-builder__input civie-input"
                                             outlined
                                             placeholder="Select an option"
@@ -42,7 +59,24 @@
                                             :error="!!errors.title"
                                             :error-messages="errors.title"
                                     >
-                                    </v-text-field>
+                                    </v-text-field> -->
+                                    <v-combobox
+                                        v-model="editedHobby.title"
+                                        :items="hobbyItems"
+                                        hide-no-data
+                                        flat
+                                        placeholder="Hobby"
+                                        label="Name"
+                                        outlined
+                                        color="#001CE2"
+                                        class="resume-builder__input civie-select"
+                                        :error="!!errors.title"
+                                        :error-messages="errors.title"
+                                    >
+                                        <button class="dropdown-icon icon pb-1" slot="append">
+                                            <svg-vue></svg-vue>
+                                        </button>
+                                    </v-combobox>
                                 </v-col>
 
                                 <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -123,6 +157,9 @@
     import draggable from "vuedraggable";
     import tabSwitcher from "./includes/TabSwitcher";
 
+    import hobbyItems from '../../helpers/interests'
+
+
     export default {
         name: "Hobbies",
         components: {
@@ -136,23 +173,24 @@
                     category: "",
                     title: ""
                 },
+                hobbyItems: hobbyItems,
                 categoryOptions: [
-                    {
-                        text: "Sports",
-                        value: "sports"
-                    },
-                    {
-                        text: "Ice skating",
-                        value: "ice_skating"
-                    },
-                    {
-                        text: "Cycling",
-                        value: "cycling"
-                    },
-                    {
-                        text: "Parkour",
-                        value: "parkour"
-                    }
+                    'Social',
+                    'Tech',
+                    'Music',
+                    'Community Service',
+                    'Sports',
+                    'Crafts',
+                    'Blogging',
+                    'Indoor',
+                    'Outdoor',
+                    'Science',
+                    'Personal & Others',
+                    'Literature',
+                    'Arts',
+                    'Food',
+                    'Martial Arts',
+                    'Building'
                 ],
                 optionHobbyId: 0,
                 errors: {}

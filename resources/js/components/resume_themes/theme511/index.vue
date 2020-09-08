@@ -459,6 +459,10 @@ export default {
       let currentParam = this.$route.query['current-view'];
       this.activeTab = currentParam;
 
+      if(!currentParam){
+        return;
+      }
+
       if(currentParam.includes('audio') || currentParam.includes('video')){
         this.activeTab = 'media';
       }

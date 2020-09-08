@@ -90,7 +90,7 @@
 
             .str-content{
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
                 max-width: 1500px;
                 flex-wrap: wrap;
                 padding: 25px 30px;
@@ -101,6 +101,7 @@
                     display:flex;
                     align-items: center;
                     margin-top:25px;
+                    margin-left:25px;
 
                     @media screen and (max-width: 1024px){
                         width: 100%;
