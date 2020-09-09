@@ -366,6 +366,7 @@
     margin-left: -12px;
   }
   .main-content{
+    margin-top: -42px !important;
     @include lt-sm{
       max-width: 94%;
       margin-right: auto;
