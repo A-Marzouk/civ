@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <div style="width:100%;" class="pa-md-0 pa-sm-0 pa-3">
+        <div style="width:100%;" class="main container pa-md-0 pa-sm-0 pa-3">
             <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTab" height="51">
                 <v-tab
                         class="resume-builder__tab"
@@ -307,7 +307,9 @@
 
 <style scoped lang="scss">
     @import "../../../../../sass/media-queries";
-
+    .main-container{
+        margin-top: -30px !important;
+    }
     .pay-content {
         height: 185px;
         background: #fff;
