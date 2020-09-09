@@ -454,6 +454,7 @@ export default {
 }
 
 .portfolio-contents {
+  margin-top: -48px !important;
   @include lt-sm {
     max-width: 94%;
     margin-right: auto;
