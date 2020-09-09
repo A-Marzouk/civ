@@ -12,7 +12,7 @@
             </div>
 
             <v-card
-                    class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 resume-builder__scroll main-content"
+                    class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 mt-0 resume-builder__scroll main-content"
                     flat
             >
                 <div>
@@ -543,6 +543,7 @@
     }
 
     .media-contents {
+        margin-top: -30px !important;
         @include lt-sm {
             max-width: 94%;
             margin-right: auto;
