@@ -148,9 +148,7 @@
                 </div>
 
                 <div class="dialog-header">
-                    <div>Nobody likes break ups...</div>
-                    <span><img src="/images/new_resume_builder/emotions/sad.svg" alt="sad"></span>
-                    <div> Are you sure you want to leave civie ?</div>
+                    <div>Nobody likes break ups... <img src="/images/new_resume_builder/emotions/sad.svg" style="display: inline-block;" alt="sad"><span>Are you sure you want to leave civie ?</span></div>
                 </div>
 
                 <div class="divider first"></div>
@@ -195,6 +193,7 @@
                     <div class="text-area-row w-100">
                         <v-textarea
                                 id="delete_reason"
+                                style="font-size: 12px;"
                                 class="resume-builder__input civie-textarea"
                                 outlined
                                 label="Please share more details so that we can improve"
@@ -615,6 +614,22 @@
             margin-top: 80px;
         }
 
+        @include lt-md{
+            padding: 40px 18px 15px 13px;
+            height: fit-content;
+            margin-bottom: 30px;
+            margin-top: 80px;
+        }
+
+        @include lt-lg{
+            padding: 40px 18px 15px 13px;
+            height: fit-content;
+        }
+
+        @include lt-xl{
+            height: fit-content;
+        }
+
         .dialog-header {
             display: flex;
             font-style: normal;
@@ -624,14 +639,21 @@
             color: #3C76FF;
 
             img {
-                margin-right: 5px;
-                margin-left: 5px;
+                margin-right: 10px;
+                margin-left: 3px;
                 margin-top: -2px;
             }
 
             @include lt-sm{
                 font-size: 18px;
                 flex-wrap: wrap;
+                span{
+                    display: block;
+                }
+            }
+
+            @include lt-lg{
+                font-size: 18px;
             }
         }
 
@@ -660,6 +682,13 @@
 
         .dialog-points {
             padding-left: 18px;
+            display: flex;
+            flex-direction: column;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 28px;
+            color: #888DB1;
 
             div {
                 display: flex;
@@ -672,18 +701,18 @@
                 }
             }
 
-            display: flex;
-            flex-direction: column;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 14px;
-            line-height: 28px;
-            color: #888DB1;
 
             @include lt-sm{
+                font-size: 13px;
                 padding-left: 10px;
                 div {
-                    display: flex;
+                    align-items: baseline;
+                }
+            }
+            @include lt-md{
+                font-size: 13px;
+                padding-left: 10px;
+                div {
                     align-items: baseline;
                 }
             }
