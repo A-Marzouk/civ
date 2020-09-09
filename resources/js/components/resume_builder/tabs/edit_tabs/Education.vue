@@ -169,6 +169,7 @@ $mainBlue: #001CE2;
 
         padding: 0;
         margin-bottom:30px;
+        margin-top: -42px !important;
 
         .view-container {
             max-height: 335px;

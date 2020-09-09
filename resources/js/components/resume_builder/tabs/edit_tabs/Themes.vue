@@ -11,7 +11,7 @@
                             <div v-for="theme in availableThemes" :key="theme.id" class="theme-container">
                                 <v-hover>
                                     <template v-slot:default="{ hover }">
-                                        <v-card class="card-theme-holder pa-0 ma-0":style="{ backgroundImage: `url(${theme.image})` }" flat color="transparent">
+                                        <v-card class="card-theme-holder pa-0 ma-0" :style="{ backgroundImage: `url(${theme.image})` }" flat color="transparent">
                                             <div>
                                                 <div class="theme-image holder" :class="theme.id == user.default_resume_link.theme_id? 'active': 'inactive'"></div>
                                                 <v-fade-transition>
@@ -373,11 +373,11 @@
             justify-content: space-between;
 
             @include lt-lg{
-                justify-content: space-around;
+                justify-content: left;
             }
 
             @media screen and (min-width: 1280px) and (max-width: 1460px) {
-                justify-content: space-around;
+                justify-content: left;
             }
 
             .theme-container{
