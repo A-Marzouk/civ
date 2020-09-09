@@ -140,8 +140,13 @@
             </v-card>
         </v-dialog>
 
-        <v-dialog v-model="deleteDialog" width="788">
+        <v-dialog class="delete-dialog" v-model="deleteDialog" width="788">
             <div class="delete-dialog-content">
+
+                <div class="close-dialog" @click="deleteDialog = false">
+                    <img src="/images/new_resume_builder/emotions/close.svg" alt="close">
+                </div>
+
                 <div class="dialog-header">
                     <div>Nobody likes break ups...</div>
                     <span><img src="/images/new_resume_builder/emotions/sad.svg" alt="sad"></span>
@@ -151,15 +156,18 @@
                 <div class="divider first"></div>
 
                 <div class="dialog-points">
-                    <span>
-                        <img src="/images/new_resume_builder/emotions/blue-bullet.svg" alt="blue bullet"> This will mean that your username civ.ie/yourname will be deleted and another user can use it.
-                    </span>
-                    <span>
+                    <div>
+                        <img src="/images/new_resume_builder/emotions/blue-bullet.svg" alt="blue bullet">
+                        <div class="d-block">
+                            This will mean that your username  <a :href="`https://civ.ie/${user.username}`">civ.ie/{{user.username}}</a> will be deleted and another user can use it.
+                        </div>
+                    </div>
+                    <div>
                         <img src="/images/new_resume_builder/emotions/blue-bullet.svg" alt="blue bullet"> You will not be seen by clients and recruiters.
-                    </span>
-                    <span>
+                    </div>
+                    <div>
                         <img src="/images/new_resume_builder/emotions/blue-bullet.svg" alt="blue bullet"> You cannot use job match to find the latest work opportunities.
-                    </span>
+                    </div>
                 </div>
 
                 <div class="divider second"></div>
@@ -565,6 +573,9 @@
     };
 </script>
 <style lang="scss" scoped>
+
+    @import "../../../../sass/media-queries";
+
     #input-29 {
         margin-top: 3px !important;
     }
@@ -578,6 +589,13 @@
     // dialog styles.
 
     .delete-dialog-content {
+        position: relative;
+        .close-dialog{
+            position: absolute;
+            top: 10px;
+            right: 7px;
+        }
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -587,6 +605,15 @@
         background: #FFFFFF;
         box-shadow: 0 15px 70px rgba(0, 16, 131, 0.06);
         padding: 66px 76px 33px 56px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        @include lt-sm{
+            padding: 60px 18px 15px 13px;
+            height: fit-content;
+            margin-bottom: 30px;
+            margin-top: 80px;
+        }
 
         .dialog-header {
             display: flex;
@@ -601,6 +628,11 @@
                 margin-left: 5px;
                 margin-top: -2px;
             }
+
+            @include lt-sm{
+                font-size: 18px;
+                flex-wrap: wrap;
+            }
         }
 
         .dialog-second-header {
@@ -610,24 +642,33 @@
             line-height: 30px;
             color: #3C76FF;
             margin-bottom: 36px;
+
+            @include lt-sm{
+                margin-bottom: 23px;
+                width: 100%;
+            }
         }
 
         .second-container {
             padding-left: 22px;
             padding-right: 22px;
+
+            @include lt-sm{
+                padding: 0;
+            }
         }
 
         .dialog-points {
             padding-left: 18px;
 
-            span {
+            div {
                 display: flex;
                 align-items: center;
 
                 img {
                     width: 5px;
                     height: 5px;
-                    margin-right: 5px;
+                    margin-right: 8px;
                 }
             }
 
@@ -638,6 +679,14 @@
             font-size: 14px;
             line-height: 28px;
             color: #888DB1;
+
+            @include lt-sm{
+                padding-left: 10px;
+                div {
+                    display: flex;
+                    align-items: baseline;
+                }
+            }
         }
 
         .dialog-check-points {
@@ -658,10 +707,17 @@
                 }
             }
 
+            @include lt-sm{
+                margin-left: -8px;
+            }
+
         }
 
         .text-area-row {
             margin-top: 20px;
+            @include lt-sm{
+                margin-top: 15px;
+            }
         }
 
         .divider {
@@ -673,11 +729,19 @@
             &.first {
                 margin-top: 23px;
                 margin-bottom: 23px;
+                @include lt-sm{
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                }
             }
 
             &.second {
                 margin-top: 20px;
                 margin-bottom: 30px;
+                @include lt-sm{
+                    margin-top: 16px;
+                    margin-bottom: 24px;
+                }
             }
         }
 
@@ -713,6 +777,9 @@
 
                 .delete-btn {
                     margin-top: 18px;
+                    @include lt-sm{
+                        margin-top: 12px;
+                    }
 
                     a {
                         width: 180px;
@@ -734,7 +801,6 @@
                 }
 
             }
-
             .keep {
                 display: flex;
                 flex-direction: column;
@@ -763,6 +829,10 @@
                 .keep-btn {
                     margin-top: 18px;
 
+                    @include lt-sm{
+                        margin-top: 12px;
+                    }
+
                     a {
                         width: 180px;
                         height: 45px;
@@ -782,6 +852,17 @@
                     }
                 }
             }
+
+            @include lt-sm{
+                flex-wrap: wrap;
+                .delete{
+                    margin-bottom: 23px;
+                    width: 100%;
+                }
+                .keep{
+                    width: 100%;
+                }
+            }
         }
     }
 
@@ -789,15 +870,27 @@
 </style>
 
 <style lang="scss">
+    @import "../../../../sass/media-queries";
+
     .text-area-row {
         .v-input.resume-builder__input.civie-textarea.v-textarea {
             .v-input__control {
                 .v-input__slot {
                     height: 94px !important;
+                    .v-text-field__slot{
+                        label{
+                            font-size: 12px !important;
+                        }
+                    }
                 }
             }
         }
     }
+
+    .v-dialog{
+        box-shadow: none !important;
+    }
+
 </style>
 
 <style lang="scss">
