@@ -362,7 +362,6 @@
 
     .work-container {
         width: 100%;
-        margin-top: -30px;
     }
 
 
