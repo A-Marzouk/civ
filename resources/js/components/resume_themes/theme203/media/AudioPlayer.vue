@@ -258,6 +258,7 @@ export default {
   border-radius: 15px !important;
   background: #e0e0e0 !important;
   opacity: 0.7;
+  margin-left: -5px;
 }
 </style>
 

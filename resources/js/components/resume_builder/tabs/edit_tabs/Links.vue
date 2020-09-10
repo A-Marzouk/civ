@@ -284,7 +284,6 @@ export default {
 $mainBlue: #001ce2;
 
 #linksSection {
-
 	@include lt-sm{
 		margin: 3%;
 	}
