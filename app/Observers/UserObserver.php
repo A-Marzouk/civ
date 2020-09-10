@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Mail\AccountDeactivated;
+use App\Mail\AccountRestored;
 use App\ResumeLink;
 use App\Tab;
 use App\User;
@@ -102,7 +103,9 @@ class UserObserver
      */
     public function restored(User $user)
     {
-        //
+        // send a notification email that he is restored.
+        Mail::to($user)->send(new AccountRestored($user));
+        // TODO: Cancel cron jobs reminders.
     }
 
     /**
