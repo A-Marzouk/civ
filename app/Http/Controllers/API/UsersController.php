@@ -79,6 +79,7 @@ class UsersController extends Controller
             'id' => $id,
         ])->first();
 
+        // soft delete and logout user.
         if($user->delete()){
             if (Auth::check()) {
                 Auth::user()->token()->revoke();
