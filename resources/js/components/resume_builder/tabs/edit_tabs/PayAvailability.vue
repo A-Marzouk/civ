@@ -307,9 +307,6 @@
 
 <style scoped lang="scss">
     @import "../../../../../sass/media-queries";
-    .main-container{
-        margin-top: -30px !important;
-    }
     .pay-content {
         height: 185px;
         background: #fff;

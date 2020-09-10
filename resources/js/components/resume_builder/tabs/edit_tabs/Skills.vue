@@ -406,9 +406,7 @@ export default {
 
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
-.main-container{
-  margin-top: -30px !important; 
-}
+
 .civie-select,
 .civie-input {
   min-width: 300px;

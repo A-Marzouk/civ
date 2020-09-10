@@ -421,8 +421,7 @@
         max-width: 94%;
         margin-right: auto;
         margin-left: auto;
-        margin-top: -42px !important;
-
+        
         .profile-fields-wrapper {
             padding: 10px;
             max-height: 450px;

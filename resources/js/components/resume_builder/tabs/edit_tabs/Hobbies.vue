@@ -1,5 +1,5 @@
 <template>
-  <v-app class="main-content" style="margin-top:-42px;">
+  <v-app class="main-content">
     <div class="d-flex justify-content-end w-100 main-container">
       <tab-switcher currentTabTitle="hobbies"></tab-switcher>
     </div>

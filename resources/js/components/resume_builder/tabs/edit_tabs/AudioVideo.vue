@@ -543,7 +543,6 @@
     }
 
     .media-contents {
-        margin-top: -30px !important;
         @include lt-sm {
             max-width: 94%;
             margin-right: auto;
