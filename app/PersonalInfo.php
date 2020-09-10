@@ -19,7 +19,7 @@ class PersonalInfo extends Model
     }
 
     public function getProfilePicAttribute($value){
-        if(Str::of($value)->contains('holder.png')){
+        if(Str::of($value)->contains('holder.png') || Str::of($value)->contains('http')){
             return $value;
         }
         return asset('storage/'. $value);

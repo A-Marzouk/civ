@@ -60,17 +60,21 @@ class SocialSitesRegisterController extends Controller
     private function findOrCreateUser($user,$provider)
     {
 
-        if ($authUser = User::where($provider.'_id', $user->id)->first()) {
+        // find all users including the soft deleted ones:
+
+        $authUser = User::withTrashed()
+            ->where($provider.'_id', $user->id)
+            ->orWhere('email', $user->email)
+            ->orWhere('username', $user->user['username'] ?? '')
+            ->first();
+
+        if ($authUser) {
+            if($authUser->deleted_at != null){
+                $authUser->restore();
+            }
             return $authUser;
         }
 
-        if ($authUser = User::where('email', $user->email)->first()) {
-            return $authUser;
-        }
-
-        if ($authUser = User::where('username',$user->user['username'] ?? '' )->first()) {
-            return $authUser;
-        }
 
         $newUser = User::create([
             'email' => $user->email ?? $user->user['username'],
@@ -85,7 +89,6 @@ class SocialSitesRegisterController extends Controller
                 ['profile_pic' => $user->avatar_original]
             );
         }
-
         else if(isset($user->avatar)){
             $newUser->personalInfo->update(
                 ['profile_pic' => $user->avatar]
@@ -192,7 +195,7 @@ class SocialSitesRegisterController extends Controller
     }
 
 
-//    instagram
+//    Instagram provider
     public function redirectToInstagramProvider()
     {
         return Socialite::driver('instagram')->redirect();
@@ -211,8 +214,6 @@ class SocialSitesRegisterController extends Controller
         auth()->login($authUser);
         return Redirect::to('/resume-builder')->withCookie(cookie('access_token',$token,1577000,null, null, false, false )); // 3 years
     }
-
-
 
 
     public function validateUsername(Request $request){

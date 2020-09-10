@@ -3,29 +3,33 @@
     <v-card class="card-video mb-md-0 mb-sm-5 mb-5">
       <div ref="videoPoster">
         <img src="/images/resume_themes/theme200/preview1.png" />
-        <v-overlay absolute="true" :value="overlay" color="#6152CF" class="video-overlay">
+        <v-overlay absolute :value="overlay" color="#6152CF" class="video-overlay">
           <v-btn class="btn-play" @click.prevent="playVideo()">
             <v-img src="/images/resume_themes/theme203/icons/inner-play.svg"></v-img>
           </v-btn>
         </v-overlay>
       </div>
       <div ref="videotm903" class="videotm903">
-        <video width="100%" ref="videoElem" controls :src="link" :modalOpen="modalOpen"></video>
+        <video width="100%" ref="videoElem" controls :src="file" :modalOpen="modalOpen"></video>
       </div>
-      <v-card-title class="video-window-title">Video Title</v-card-title>
+      <v-card-title class="video-window-title">{{title}}</v-card-title>
       <v-card-subtitle
         class="video-window-subtitle mt-xl-0 mt-lg-n3 mt-sm-0 mt-n6"
         align="left"
-      >Video Transcript</v-card-subtitle>
+      >{{details}}</v-card-subtitle>
     </v-card>
   </v-container>
 </template>
 <script>
 export default {
   props: {
-    link: {
+    file: {
       type: String,
       default: null,
+    },
+    title:{
+      type:String,
+      default: null
     },
     img: {
       type: String,

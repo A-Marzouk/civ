@@ -600,7 +600,8 @@
         align-items: center;
         font-family: 'Noto Sans', sans-serif;
         width: 100%;
-        height: 845px;
+        min-height: 845px;
+        height: fit-content;
         background: #FFFFFF;
         box-shadow: 0 15px 70px rgba(0, 16, 131, 0.06);
         padding: 66px 76px 33px 56px;
@@ -692,7 +693,7 @@
 
             div {
                 display: flex;
-                align-items: center;
+                align-items: baseline;
 
                 img {
                     width: 5px;
@@ -705,16 +706,10 @@
             @include lt-sm{
                 font-size: 13px;
                 padding-left: 10px;
-                div {
-                    align-items: baseline;
-                }
             }
             @include lt-md{
                 font-size: 13px;
                 padding-left: 10px;
-                div {
-                    align-items: baseline;
-                }
             }
         }
 

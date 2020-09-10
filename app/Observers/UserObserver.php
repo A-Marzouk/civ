@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\Mail\AccountDeactivated;
+use App\Mail\AccountRestored;
 use App\ResumeLink;
 use App\Tab;
 use App\User;
@@ -9,6 +11,7 @@ use App\AvailabilityInfo;
 use App\PaymentInfo;
 use App\PersonalInfo;
 use App\Summary;
+use Illuminate\Support\Facades\Mail;
 
 class UserObserver
 {
@@ -68,8 +71,15 @@ class UserObserver
                     $permission->delete();
                 }
             }
+        }else{
+            // soft delete
+            $this->notifyUser($user);
         }
 
+    }
+
+    protected function notifyUser($user){
+        Mail::to($user)->send(new AccountDeactivated($user));
     }
 
 
@@ -81,8 +91,6 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        // delete all user relations :
-
 
 
     }
@@ -95,7 +103,9 @@ class UserObserver
      */
     public function restored(User $user)
     {
-        //
+        // send a notification email that he is restored.
+        Mail::to($user)->send(new AccountRestored($user));
+        // TODO: Cancel cron jobs reminders.
     }
 
     /**
