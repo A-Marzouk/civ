@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
+    <div style="width: 100%" class="main-container pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
         <div class="d-flex reverse-on-phone">
           <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab" height="51">
