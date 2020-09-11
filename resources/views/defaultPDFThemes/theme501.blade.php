@@ -115,7 +115,7 @@
 
         .social-wrapper {
             font-family: 'Circular Book', Arial, Helvetica, sans-serif;
-            margin-top: 134px;
+            margin-top: 133px;
         }
 
         .user-social a {
@@ -148,7 +148,7 @@
             color: #fff;
             vertical-align: middle;
             text-align: center;
-            line-height: 80px;
+            line-height: 90px;
             margin-bottom: 60px;
         }
 
@@ -164,7 +164,7 @@
         }
 
         .about .section-title img {
-            margin-top: -14px;
+            margin-top: -18px;
         }
 
         .about .content .small {
@@ -220,7 +220,7 @@
         /* Works and education */
         .works-container .section-title img,
         .educations-container .section-title img {
-            margin-top: -18px;
+            margin-top: -24px;
         }
 
         .works-row,
@@ -251,8 +251,8 @@
         .work .decorator-side,
         .education .decorator-side {
             position: absolute;
-            left: -26px;
-            top: 7px;
+            left: -27px;
+            top: 6px;
             vertical-align: top;
         }
 
@@ -299,7 +299,7 @@
         }
 
         .skills .section-title img {
-            margin-top: -17px;
+            margin-top: -22px;
         }
 
         .skill-category {
@@ -386,18 +386,18 @@
                     <div class="user-info">
                         <a href="#">42 Great Windmill Street London W1D 7NB</a>
                         <a href="#">+584241714022</a>
-                        <a href="#">https://josedan10.github.io</a>
+                        <a href="https://josedan10.github.io">https://josedan10.github.io</a>
                     </div>
                 </td>
                 <td class="user-social">
                     <div class="social-wrapper">
-                        <a href="#">
+                        <a href="https://behance.com">
                             <img src="{{ public_path('/images/resume_themes/theme501/behance-icon.png') }}" alt=""> Behance User
                         </a>
-                        <a href="#">
+                        <a href="https://dribbble.com">
                             <img src="{{ public_path('/images/resume_themes/theme501/dribbble-icon.png') }}" alt=""> Dribbble User
                         </a>
-                        <a href="#">
+                        <a href="https://instagram.com">
                             <img src="{{ public_path('/images/resume_themes/theme501/instagram-icon.png') }}" alt=""> Instagram User
                         </a>
                     </div>
