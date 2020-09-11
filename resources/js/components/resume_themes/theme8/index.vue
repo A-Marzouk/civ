@@ -1,17 +1,16 @@
 <template>
   <v-app class="theme-container" v-if="currentUser">
     <vue-particles></vue-particles>
-    <HeaderTheme8 :currentUser="currentUser" @toogleAudioPopup="toogleAudioPopup" :isVisibleAudioPopup="isVisibleAudioPopup"></HeaderTheme8>
-
+    <HeaderTheme8
+      :currentUser="currentUser"
+      :chatToggle="chatToggle"
+      @updateChatToggle="updateChat"
+      :isVisibleAudioPopup="isVisibleAudioPopup"
+    ></HeaderTheme8>
+    <ChatModal :chatToggle="chatToggle" :closeChat="closeChat" />
     <div class="tabs-bar-wrapper">
-      <v-tabs
-        centered
-        show-arrows
-        grow
-      >
-        <v-tabs-slider
-          height="4px"
-        ></v-tabs-slider>
+      <v-tabs centered show-arrows grow>
+        <v-tabs-slider height="4px"></v-tabs-slider>
 
         <v-tab
           class="v-tab"
@@ -89,21 +88,28 @@
             </div>
 
             <div
-              style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
+              style="
+                font-size: 32px;
+                font-weight: bold;
+                margin-left: 75px;
+                margin-bottom: 19px;
+              "
               class="percentage"
             >
               {{ skill.percentage }}%
             </div>
           </div>
         </div>
-        <div
+        <!-- <div
           class="about"
           v-show="activeTab === 'about'"
           :class="{ active: activeTab === 'about' }"
         >
           <div class="about-me">
             <div class="about-title">About me</div>
-            <vue-markdown class="about-text">{{ currentUser.personal_info.about }}</vue-markdown>
+            <vue-markdown class="about-text">{{
+              currentUser.personal_info.about
+            }}</vue-markdown>
           </div>
           <div class="contact">
             <div class="contact-title">Contact</div>
@@ -111,20 +117,25 @@
               Email: {{ currentUser.personal_info.email }}
             </div>
           </div>
-        </div>
+        </div> -->
+        <About
+          v-show="activeTab === 'about'"
+          :class="{ active: activeTab === 'about' }"
+          :currentUser="currentUser"
+        ></About>
         <Hobbies
           v-show="activeTab === 'hobbies'"
-		      :class="{ active: activeTab === 'hobbies' }"
+          :class="{ active: activeTab === 'hobbies' }"
           :currentUser="currentUser"
         ></Hobbies>
         <References
           v-show="activeTab === 'references'"
-		      :class="{ active: activeTab === 'references' }"
+          :class="{ active: activeTab === 'references' }"
           :currentUser="currentUser"
         ></References>
         <Achievements
           v-show="activeTab === 'achievements'"
-		      :class="{ active: activeTab === 'achievements' }"
+          :class="{ active: activeTab === 'achievements' }"
           :currentUser="currentUser"
         ></Achievements>
       </div>
@@ -134,65 +145,71 @@
 
 <script>
 import Slick from "vue-slick";
-import VueMarkdown from 'vue-markdown';
-import Audio from './media/Audio'
+import VueMarkdown from "vue-markdown";
+import Audio from "./media/Audio";
 
-import HeaderTheme8 from './header';
-import Portfolio from './portfolio';
-import Hobbies from './hobbies';
-import References from './references';
-import Achievements from './achievements';
+import HeaderTheme8 from "./header";
+import Portfolio from "./portfolio";
+import About from "./about";
+import Hobbies from "./hobbies";
+import References from "./references";
+import Achievements from "./achievements";
+import ChatModal from "./message/ChatModal";
 
 export default {
   name: "theme8",
   props: ["user", "is_preview", "currentTab"],
   components: {
     Slick,
-    'vue-markdown': VueMarkdown,
+    "vue-markdown": VueMarkdown,
     HeaderTheme8,
     Portfolio,
+    About,
     Hobbies,
     References,
     Achievements,
+    ChatModal,
   },
   data() {
     return {
       tabs: [
         {
           text: "Portfolio",
-          value: "portfolio"
+          value: "portfolio",
         },
         {
           text: "Work",
-          value: "work-experience"
+          value: "work-experience",
         },
         {
           text: "Education",
-          value: "education"
+          value: "education",
         },
         {
           text: "Skills",
-          value: "skills"
+          value: "skills",
         },
         {
           text: "Hobbies",
-          value: "hobbies"
+          value: "hobbies",
         },
         {
           text: "References",
-          value: "references"
+          value: "references",
         },
         {
           text: "Achievements",
-          value: "achievements"
+          value: "achievements",
         },
         {
           text: "About",
-          value: "about"
+          value: "about",
         },
       ],
       isVisibleAudioPopup: false,
       activeTab: "portfolio",
+      chatToggle: false,
+
       slickOptions: {
         dots: false,
         arrows: false,
@@ -205,17 +222,22 @@ export default {
               arrows: false,
 
               centerMode: true,
-              slidesToShow: 1
-            }
-          }
-        ]
+              slidesToShow: 1,
+            },
+          },
+        ],
       },
-      currentUser: this.user
+      currentUser: this.user,
     };
   },
   methods: {
-    toogleAudioPopup () {
-      this.isVisibleAudioPopup = !this.isVisibleAudioPopup;
+    closeChat() {
+      console.log("closeChatModal");
+      this.chatToggle = false;
+    },
+
+    updateChat(params) {
+      this.chatToggle = params;
     },
     stringToLowerCase(string) {
       if (string) {
@@ -225,13 +247,10 @@ export default {
     },
 
     skillsBar() {
-      $(".skills .skill .skill-bar span").each(function() {
+      $(".skills .skill .skill-bar span").each(function () {
         $(this).animate(
           {
-            width:
-              $(this)
-                .parent()
-                .attr("data-bar") + "%"
+            width: $(this).parent().attr("data-bar") + "%",
           },
           1000
         );
@@ -242,20 +261,20 @@ export default {
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-    }
+    },
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
+    currentTab: function (val) {
       this.activeTab = val;
-    }
+    },
   },
   computed: {
     socialLinks() {
-      return this.user.links.filter(link => {
+      return this.user.links.filter((link) => {
         return link.category === "social_link" ? link : false;
       });
-    }
+    },
   },
   mounted() {
     this.skillsBar();
@@ -265,7 +284,7 @@ export default {
     }
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
-  }
+  },
 };
 </script>
 
@@ -273,8 +292,7 @@ export default {
 @import url(//fonts.googleapis.com/earlyaccess/thabit.css);
 
 #resumeTheme8 {
-  font-family: 'Thabit', 'Courier New', Courier, monospace;
-
+  font-family: "Thabit", "Courier New", Courier, monospace;
 
   .hideOnNotTablet {
     @media only screen and (min-width: 768px) {
@@ -311,7 +329,7 @@ export default {
       z-index: 1;
       background: #333232;
       box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-      
+
       .v-tabs {
         height: 100%;
         background: transparent;
@@ -319,14 +337,12 @@ export default {
         .v-tabs-bar {
           height: 100%;
           background: transparent;
-
         }
 
         .v-tabs-slider {
           background-color: #005bd1;
           height: 4px;
         }
-
 
         .v-tab {
           font-style: italic;
@@ -363,7 +379,6 @@ export default {
         }
       }
     }
-
 
     .tabs-wrapper {
       position: relative;
@@ -420,7 +435,7 @@ export default {
             }
 
             .title {
-              font-family: 'Thabit', 'Courier New', Courier, monospace;
+              font-family: "Thabit", "Courier New", Courier, monospace;
               font-weight: bold;
               font-size: 32px;
               line-height: 42px;
@@ -527,7 +542,7 @@ export default {
           background: #333232;
           box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
           border-radius: 30px;
-          padding: 58px;
+          padding: 50px 20px;
 
           .about-me {
             .about-title {
@@ -563,8 +578,6 @@ export default {
             }
           }
         }
-
-        
       }
     }
   }
