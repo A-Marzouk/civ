@@ -15,44 +15,25 @@
           </div>
         </div>
       </div>
-
-      <div class="tab-item">
-        <div class="tab-action">
-          <div
-            class="tab-item__option"
-            :class="{ active: activeTab === 'education' }"
-            @click="activeTab = 'education'"
-          >
-            <div>
-              <h3 class="option__title">Education</h3>
-              <div class="option__hint">Where I've learned</div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <div :class="{ 'experience-education': windowWidth >= 768 }">
+    <div :class="{ experience: windowWidth >= 768 }">
       <Experience
         :work_experience="currentUser.work_experience"
         v-if="activeTab === 'experience' || windowWidth >= 768"
-      />
-      <Education
-        :educations="currentUser.education"
-        v-if="activeTab === 'education' || windowWidth >= 768"
       />
     </div>
   </div>
 </template>
 
 <script>
-import Education from "./../../views/Education";
+
 import Experience from "./../../views/Experience";
 
 export default {
-  name: "experience-education",
+  name: "experience",
 
-  components: { Education, Experience },
+  components: {  Experience },
   props: ["currentUser"],
   data: () => {
     return {
@@ -169,7 +150,7 @@ export default {
   }
 
   .tab-item {
-    width: 50%;
+    width: 100%;
   }
 
   .tab-action {

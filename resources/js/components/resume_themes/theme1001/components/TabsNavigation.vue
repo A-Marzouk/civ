@@ -17,28 +17,35 @@
           <li
             class="navigation__link"
             :class="[
-              { active: activeTab === 'experience-education' },
+              { active: activeTab === 'experience' },
               { 'active-indicator': currentTab === 'work-experience' },
             ]"
           >
-            <a
-              href="#"
-              @click.prevent="$emit('tab-changed', 'experience-education')"
-              >Work experience & Education</a
+            <a href="#" @click.prevent="$emit('tab-changed', 'experience')"
+              >Work experience</a
             >
           </li>
           <li
             class="navigation__link"
             :class="[
-              { active: activeTab === 'skills-languages' },
+              { active: activeTab === 'education' },
+              { 'active-indicator': currentTab === 'education' },
+            ]"
+          >
+            <a href="#" @click.prevent="$emit('tab-changed', 'education')">
+              Education</a
+            >
+          </li>
+          <li
+            class="navigation__link"
+            :class="[
+              { active: activeTab === 'skills' },
               { 'active-indicator': currentTab === 'skills' },
             ]"
           >
-            <a
-              href="#"
-              @click.prevent="$emit('tab-changed', 'skills-languages')"
-              >Skills & Language</a
-            >
+            <a href="#" @click.prevent="$emit('tab-changed', 'skills')"
+              >Skills
+            </a>
           </li>
 
           <li
@@ -87,7 +94,7 @@
               >References
             </a>
           </li>
-          
+
           <li
             class="navigation__link"
             :class="[
@@ -99,7 +106,6 @@
               >Achievement
             </a>
           </li>
-
         </ul>
 
         <a href="#" class="toggle-social-links" @click="isOpen = !isOpen">
@@ -188,7 +194,7 @@ export default {
   height: 48px;
   justify-content: space-between;
   align-items: center;
-  width: 100%; 
+  width: 100%;
 }
 
 .navigation {

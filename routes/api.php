@@ -124,6 +124,8 @@ Route::group(['prefix' => 'user/'], function () {
 // Promo code
     Route::post('/apply-promo-code', 'API\UsersController@applyPromoCode')->name('user.apply.promocode');
 
+    Route::delete('/deactivate-account/{id}', 'API\UsersController@deactivateAccount')->name('deactivate.account');
+
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
 
@@ -237,7 +239,9 @@ Route::group(['prefix' => 'admin/'], function () {
     Route::post('create-user', 'API\Admin\UsersController@createUser');
     Route::put('update-user', 'API\Admin\UsersController@updateUser');
     Route::post('/give-test-permission', 'API\Admin\UsersController@giveTestPermission');
+    Route::post('/restore-user', 'API\Admin\UsersController@restoreUser');
     Route::delete('delete-user/{id}', 'API\Admin\UsersController@deleteUser');
+    Route::delete('force-delete-user/{id}', 'API\Admin\UsersController@forceDeleteUser');
 
     // Promocodes routes:
     Route::get('promocodes', 'API\Admin\PromocodesController@index');

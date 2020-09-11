@@ -6,28 +6,27 @@
 
         <div class="profile-fields-wrapper">
             <div class="profile-fields">
+                <div class="profile-input-field input-field--current-location input-field--group-1 custom-predict-input-wrapper" :class="{'half-opacity':!personalInfo.is_location_active}">
+                    <div class="custom-predict-input-label">
+                        <label :class="{'focused':locationLabelFocused}">Location</label>
 
-                <div class="profile-input-field input-field--current-location input-field--group-1">
-                    <v-text-field
-                            class="resume-builder__input civie-input"
-                            label="Current Location"
-                            v-model="personalInfo.location"
-                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_location_active}"
-                            :error="!!errors.location"
-                            :error-messages="errors.location"
-                            @blur="applyEdit('auto')"
-                            hide-details="auto"
-                            outlined
-                    >
-                        <button
-                                class=" trigger-icon icon mt-custom6"
-                                slot="append"
-                                @click="updateVisibility('location')"
-                        >
+                        <a href="javascript:void(0)" @click="updateVisibility('location')" class="eye">
                             <svg-vue class="profile-eye-icon" :icon="`eye-icon`"
-                                     :class="{'visible' : personalInfo.is_location_active}"></svg-vue>
-                        </button>
-                    </v-text-field>
+                                     :class="{'visible' : personalInfo.is_location_active}">
+                            </svg-vue>
+                        </a>
+                    </div>
+                    <vue-google-autocomplete
+                            id="locationInput"
+                            classname="custom-predict-input"
+                            placeholder=""
+                            v-on:placechanged="getAddressData"
+                            @focus="locationLabelFocused = true"
+                            @blur="saveLocationAfterBlur"
+                            @inputChange="locationInputChanged"
+                    >
+                    </vue-google-autocomplete>
+                    <span class="error" v-if="locationError">{{locationError}}</span>
                 </div>
 
                 <div class="profile-input-field input-field--date-of-birth input-field--group-1">
@@ -67,7 +66,7 @@
 
                 <div class="profile-input-field input-field--nationality input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input civie-input"
+                            class="resume-builder__input civie-input eye-up-position"
                             label="Nationality"
                             v-model="personalInfo.nationality"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_nationality_active}"
@@ -75,7 +74,7 @@
                             :error-messages="errors.nationality"
                             hide-details="auto"
                             outlined
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit"
                     >
                         <button
                                 class=" trigger-icon icon mt-custom6"
@@ -111,33 +110,32 @@
                     </v-select>
                 </div>
 
-                <div class="profile-input-field input-field--hometown input-field--group-2">
-                    <v-text-field
-                            class="resume-builder__input civie-input"
-                            label="Hometown"
-                            v-model="personalInfo.hometown"
-                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_hometown_active}"
-                            :error="!!errors.hometown"
-                            :error-messages="errors.hometown"
-                            hide-details="auto"
-                            outlined
-                            @blur="applyEdit('auto')"
+                <div class="profile-input-field input-field--hometown input-field--group-2 custom-predict-input-wrapper">
+                    <div class="custom-predict-input-label">
+                        <label :class="{'focused':hometownLabelFocused}">Hometown</label>
+
+                        <a href="javascript:void(0)" @click="updateVisibility('hometown')" class="eye">
+                            <svg-vue class="profile-eye-icon" :icon="`eye-icon`"
+                                     :class="{'visible' : personalInfo.is_hometown_active}">
+                            </svg-vue>
+                        </a>
+                    </div>
+                    <vue-google-autocomplete
+                            id="hometownInput"
+                            classname="custom-predict-input hometown"
+                            placeholder=""
+                            v-on:placechanged="getAddressDataHomeTown"
+                            @focus="hometownLabelFocused = true"
+                            @blur="saveHometownAfterBlur"
+                            @inputChange="hometownInputChanged"
                     >
-                        <button
-                                class=" trigger-icon icon mt-custom6"
-                                :class="{'icon--disabled': false}"
-                                slot="append"
-                                @click="updateVisibility('hometown')"
-                        >
-                            <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
-                                     :class="{'visible' : personalInfo.is_hometown_active}"></svg-vue>
-                        </button>
-                    </v-text-field>
+                    </vue-google-autocomplete>
+                    <span class="error" v-if="hometownError">{{hometownError}}</span>
                 </div>
 
                 <div class="profile-input-field input-field--about input-field--group-3">
                     <v-textarea
-                            class="resume-builder__input profile-input civie-textarea"
+                            class="resume-builder__input profile-input civie-textarea eye-up-position"
                             color="#001CE2"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_about_active}"
                             :disabled="false"
@@ -145,9 +143,10 @@
                             label="About Me"
                             hide-details="auto"
                             outlined
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit"
                     >
-                        <button class="trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('about')">
+                        <button class="trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
+                                @click="updateVisibility('about')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_about_active}"></svg-vue>
                         </button>
@@ -156,7 +155,7 @@
 
                 <div class="profile-input-field input-field--overview input-field--group-3">
                     <v-textarea
-                            class="resume-builder__input profile-input civie-textarea"
+                            class="resume-builder__input profile-input civie-textarea eye-up-position"
                             color="#001CE2"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_overview_active}"
                             :disabled="false"
@@ -164,9 +163,10 @@
                             label="Overview Summary"
                             hide-details="auto"
                             outlined
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit"
                     >
-                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('overview')">
+                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
+                                @click="updateVisibility('overview')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_overview_active}"></svg-vue>
                         </button>
@@ -175,7 +175,7 @@
 
                 <div class="profile-input-field input-field--quote input-field--group-3">
                     <v-textarea
-                            class="resume-builder__input profile-input civie-textarea"
+                            class="resume-builder__input profile-input civie-textarea eye-up-position"
                             color="#001CE2"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_quote_active}"
                             :disabled="false"
@@ -183,9 +183,10 @@
                             v-model="personalInfo.quote"
                             hide-details="auto"
                             outlined
-                            @blur="applyEdit('auto')"
+                            @blur="applyEdit"
                     >
-                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"   @click="updateVisibility('quote')">
+                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
+                                @click="updateVisibility('quote')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_quote_active}"></svg-vue>
                         </button>
@@ -199,21 +200,36 @@
 
 <script>
     import tabSwitcher from "./includes/TabSwitcher";
+    import VueGoogleAutocomplete from 'vue-google-autocomplete'
 
     export default {
         name: "Personal",
         components: {
-            'tab-switcher' : tabSwitcher
+            'tab-switcher': tabSwitcher,
+            VueGoogleAutocomplete
         },
         data(vm) {
             return {
                 errors: {},
                 tempPic: "",
-                profile_pic_error: "",
                 savingType: "manual",
                 menu: false,
+
                 defaultLanguages: [],
-                selectedLanguages: []
+                selectedLanguages: [],
+                // predictive inputs data | location: 
+                tries: 0,
+                address: '',
+                locationError: '',
+                locationInputText: '',
+                locationLabelFocused: false,
+                // predictive inputs data | hometown: 
+                hometownTries: 0,
+                hometownAddress: '',
+                hometownError: '',
+                hometownInputText: '',
+                hometownLabelFocused: false
+
             };
         },
         computed: {
@@ -234,14 +250,13 @@
                 this.$refs.menu.save(this.personalInfo.date_of_birth);
                 this.applyEdit("auto");
             },
-            updateVisibility(field_name){
+            updateVisibility(field_name) {
                 this.personalInfo['is_' + field_name + '_active'] = !this.personalInfo['is_' + field_name + '_active'];
                 this.applyEdit("auto");
             },
 
             syncLanguages() {
-                axios
-                    .post("/api/user/languages-sync", {
+                axios.post("/api/user/languages-sync", {
                         IDs: this.selectedLanguages,
                         user_id: this.user.id
                     })
@@ -255,17 +270,14 @@
                         });
                     });
             },
-            applyEdit(savingType) {
+            applyEdit() {
                 let formData = new FormData();
                 formData.append("_method", "put");
                 formData.append("user_id", this.user.id);
 
                 $.each(this.personalInfo, field => {
                     if (this.personalInfo[field] !== null) {
-                        if (field !== "email" && this.personalInfo[field].length) {
-                            formData.append(field, this.personalInfo[field]);
-                        }
-                        if (field === "profile_pic") {
+                        if (field !== "email" && field !== "profile_pic" && this.personalInfo[field].length) {
                             formData.append(field, this.personalInfo[field]);
                         }
                     }
@@ -273,16 +285,9 @@
 
                 this.errors = {};
 
-                axios.post("/api/user/personal-info", formData, {
-                    headers: {"Content-Type": "multipart/form-data"}
-                })
-                    .then(response => {
-                        if (savingType === "manual") {
-                            this.$store.dispatch("flyingNotification");
-                        } else {
-                            this.$store.dispatch("flyingNotification");
-                        }
-                        this.personalInfo.profile_pic = response.data.data.profile_pic;
+                axios.post("/api/user/personal-info", formData)
+                    .then( (response) => {
+                        this.$store.dispatch("flyingNotification");
                     })
                     .catch(error => {
                         if (typeof error.response.data === "object") {
@@ -296,31 +301,6 @@
                         });
                     });
             },
-            handleProfilePictureUpload() {
-                // validate uploaded file :
-                let isValid = this.validateUploadedFile(
-                    this.$refs.profile_picture.files[0]
-                );
-                if (isValid) {
-                    this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
-                    this.tempPic = URL.createObjectURL(this.$refs.profile_picture.files[0]);
-                    this.profile_pic_error = "";
-                    this.applyEdit("auto");
-                } else {
-                    this.profile_pic_error = "Incorrect file chosen!";
-                }
-            },
-            validateUploadedFile(file) {
-                let isValid = true;
-                if (file.type.search("image") === -1) {
-                    isValid = false;
-                }
-                if (file.size > 25000000) {
-                    isValid = false;
-                }
-                return isValid;
-            },
-
             canEditEmail() {
                 return !(
                     this.user.instagram_id !== null &&
@@ -335,11 +315,70 @@
                 if (this.$store.state.user.languages) {
                     this.selectedLanguages = this.$store.state.user.languages.map(a => a.id);
                 }
+            },
+
+            // Prediction functions:
+            getAddressData: function (addressData) {
+                this.address = addressData;
+                this.personalInfo.location = `${addressData.route ? addressData.route + ', ' : ''}${addressData.administrative_area_level_1 ? addressData.administrative_area_level_1 + ', ' : ''}${addressData.country ? addressData.country : ''}`;
+                this.setLocationValue();
+                this.applyEdit();
+            },
+            saveLocationAfterBlur(){
+                this.locationLabelFocused = false;
+                this.personalInfo.location = this.locationInputText ;
+                this.applyEdit();
+            },
+            locationInputChanged(input){
+                this.locationInputText = input.newVal;
+            },
+            setLocationValue() {
+                let locationInput = document.querySelector(".custom-predict-input");
+                this.tries++;
+                if (this.personalInfo && locationInput) {
+                    locationInput.value = this.personalInfo.location;
+                    this.tries = 0 ;
+                } else {
+                    if (this.tries < 10) {
+                        setTimeout(() => {
+                            this.setLocationValue();
+                        }, 1000);
+                    }
+                }
+            },
+            
+            // Prediction functions hometown:
+            getAddressDataHomeTown: function (addressData) {
+                this.address = addressData;
+                this.personalInfo.hometown = `${addressData.route ? addressData.route + ', ' : ''}${addressData.administrative_area_level_1 ? addressData.administrative_area_level_1 + ', ' : ''}${addressData.country ? addressData.country : ''}`;
+                this.setHometownValue();
+                this.applyEdit();
+            },
+            saveHometownAfterBlur(){
+                this.hometownLabelFocused = false;
+                this.personalInfo.hometown = this.hometownInputText ;
+                this.applyEdit();
+            },
+            hometownInputChanged(input){
+                this.hometownInputText = input.newVal;
+            },
+            setHometownValue() {
+                let hometownInput = document.querySelector(".custom-predict-input.hometown");
+                this.hometownTries++;
+                if (this.personalInfo && hometownInput) {
+                    hometownInput.value = this.personalInfo.hometown;
+                    this.hometownTries = 0 ;
+                } else {
+                    if (this.hometownTries < 10) {
+                        setTimeout(() => {
+                            this.setHometownValue();
+                        }, 1000);
+                    }
+                }
             }
         },
         mounted() {
-            axios
-                .get("/api/user/languages-list")
+            axios.get("/api/user/languages-list")
                 .then(response => {
                     this.defaultLanguages = response.data.data;
                     this.defaultLanguages.sort((a, b) => (a.label > b.label) * 2 - 1);
@@ -347,6 +386,9 @@
                 .then(() => {
                     this.setUserPreSelectedLanguages();
                 });
+
+            this.setLocationValue();
+            this.setHometownValue();
         }
     };
 </script>
@@ -379,7 +421,7 @@
         max-width: 94%;
         margin-right: auto;
         margin-left: auto;
-
+        
         .profile-fields-wrapper {
             padding: 10px;
             max-height: 450px;
@@ -474,6 +516,7 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 20px;
+
                     .profile-input-field {
                         margin-bottom: unset;
 
@@ -491,6 +534,7 @@
                                 grid-row-start: 2;
                                 grid-row-end: 3;
                             }
+
                             &.input-field--nationality {
                                 grid-column-start: 1;
                                 grid-column-end: 2;
@@ -750,10 +794,6 @@
 
 <style lang="scss">
     .profile .profile-fields .profile-input-field {
-        &.input-field--about .v-input__control {
-            height: 159px;
-        }
-
         .v-textarea.v-text-field--box {
             &.v-text-field--outlined:not(.v-input--dense) textarea,
             &.v-text-field--single-line:not(.v-input--dense) textarea {
@@ -788,7 +828,69 @@
             }
         }
     }
+
     #resumeBuilder .v-chip--select .v-chip .v-chip--clickable .v-chip--no-color .theme--light .v-size--default {
         margin-left: -7px;
     }
+</style>
+
+<style lang="scss">
+    .resume-builder__input.civie-textarea.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
+        bottom: 162px;
+    }
+
+    .resume-builder__input.civie-input.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
+        bottom: 62px;
+    }
+
+
+    // custom google input:
+
+    .custom-predict-input-wrapper {
+        display: flex;
+        flex-direction: column;
+
+
+        .custom-predict-input-label {
+            display: flex;
+            justify-content: space-between;
+
+            label {
+                color: #888DB1;
+                font-size: 16px;
+                margin-bottom: 10px;
+
+                &.focused {
+                    color: blue;
+                }
+            }
+
+            .eye {
+                margin-right: 14px;
+            }
+
+        }
+
+        .custom-predict-input {
+            height: 45px;
+            border: 1.9px solid #C4C9F5;
+            border-radius: 10px;
+            width: 100%;
+            margin-top: -4px;
+            padding-left: 12px;
+            color: #888DB1;
+
+            &:focus {
+                outline: none;
+                border: 1.9px solid blue;
+            }
+        }
+
+        .error {
+            font-size: 15px;
+            color: red;
+        }
+
+    }
+
 </style>

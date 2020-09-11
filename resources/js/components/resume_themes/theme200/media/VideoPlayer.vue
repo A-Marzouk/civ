@@ -3,7 +3,7 @@
     <v-card class="card-video mb-md-0 mb-sm-5 mb-5">
       <div ref="videoPoster">
         <img src="/images/resume_themes/theme200/preview1.png" />
-        <v-overlay absolute="true" :value="overlay" color="#6152CF" class="video-overlay">
+        <v-overlay absolute :value="overlay" color="#6152CF" class="video-overlay">
           <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
             <v-icon x-large color="#6152CF">mdi-play</v-icon>
           </v-btn>
@@ -88,7 +88,7 @@ export default {
   width: 781px;
   height: 541.31px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    height: 90%;
+    height: auto;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     height: 80%;

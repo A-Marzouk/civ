@@ -22,9 +22,9 @@
 @slot('footer')
 @component('mail::footer')
 <div class="custom-footer">
-    This email was sent to <a>johnsmith@email.com</a>
+    This email was sent by <a href="mailto:info@civ.ie">info@civ.ie</a>
     <br>
-    Update <a>subscription</a> prefences
+    Update <a href="https://civ.ie/login">subscription</a> preference
     <br>
     Please do not reply to this email. | Need help? Visit our <a>FAQ</a>
     <br>

@@ -66,7 +66,7 @@
                                     <div class="form-title sub">My Subscription</div>
                                 </div>
 
-                                <div class="action-btns NoDecor" >
+                                <div class="action-btns NoDecor">
                                     <a class="purchase-btn mt-n3" href="javascript:void(0)"
                                        @click="subscriptionInfoModal = true">View Subscription</a>
                                 </div>
@@ -91,15 +91,16 @@
                             </v-text-field>
                         </div>
 
-                        <div class="action-btns NoDecor">
-                            <a class="save-btn" href="javascript:void(0)" @click="submitForm">Save Changes</a>
+                        <div class="action-btns NoDecor d-flex">
+                            <a class="save-btn mr-3" href="javascript:void(0)" @click="submitForm">Save Changes</a>
+                            <a class="save-btn delete" href="javascript:void(0)" @click="openDeleteDialog">Delete
+                                Account</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- dialogs -->
-
         <v-dialog
                 v-model="subscriptionInfoModal"
                 max-width="550"
@@ -115,15 +116,20 @@
                     </v-btn>
                 </v-card-subtitle>
                 <v-card-text align="center" class="padding-sm-1">
-                    <v-row align="center" justify="center" class="p-5 d-flex flex-column" v-if="accountData.subscription">
+                    <v-row align="center" justify="center" class="p-5 d-flex flex-column"
+                           v-if="accountData.subscription">
                         <div>
-                            You have a <b style="text-transform: capitalize;">{{accountData.subscription.sub_frequency}}</b> subscription
+                            You have a <b
+                                style="text-transform: capitalize;">{{accountData.subscription.sub_frequency}}</b>
+                            subscription
                         </div>
                         <div>
-                            Price: <b style="text-transform: capitalize;">{{accountData.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}</b>
+                            Price: <b style="text-transform: capitalize;">{{accountData.subscription.sub_frequency ===
+                            'monthly' ? '5 USD/month' : '50 USD/year'}}</b>
                         </div>
                         <div>
-                            Expires at: <b style="text-transform: capitalize;">{{accountData.subscription.expires_at}}</b>
+                            Expires at: <b
+                                style="text-transform: capitalize;">{{accountData.subscription.expires_at}}</b>
                         </div>
                         <div>
                             Payment method: <b style="text-transform: capitalize;">{{accountData.subscription.payment_method}}</b>
@@ -133,6 +139,111 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
+
+        <v-dialog class="delete-dialog" v-model="deleteDialog" width="788">
+            <div class="delete-dialog-content">
+
+                <div class="close-dialog" @click="deleteDialog = false">
+                    <img src="/images/new_resume_builder/emotions/close.svg" alt="close">
+                </div>
+
+                <div class="dialog-header">
+                    <div>Nobody likes break ups... <img src="/images/new_resume_builder/emotions/sad.svg" style="display: inline-block;" alt="sad"><span>Are you sure you want to leave civie ?</span></div>
+                </div>
+
+                <div class="divider first"></div>
+
+                <div class="dialog-points">
+                    <div>
+                        <img src="/images/new_resume_builder/emotions/blue-bullet.svg" alt="blue bullet">
+                        <div class="d-block">
+                            This will mean that your username  <a :href="`https://civ.ie/${user.username}`">civ.ie/{{user.username}}</a> will be deleted and another user can use it.
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/images/new_resume_builder/emotions/blue-bullet.svg" alt="blue bullet"> You will not be seen by clients and recruiters.
+                    </div>
+                    <div>
+                        <img src="/images/new_resume_builder/emotions/blue-bullet.svg" alt="blue bullet"> You cannot use job match to find the latest work opportunities.
+                    </div>
+                </div>
+
+                <div class="divider second"></div>
+
+
+                <div class="dialog-second-header">
+                    Why do you want to leave?
+                </div>
+
+                <div class="second-container">
+                    <div class="dialog-check-points">
+                        <div class="left">
+                            <div v-for="checkPoint in checkPoints.left" :key="checkPoint.id" @click="toggleCheckPoint(checkPoint.id)" :class="{ 'half-opacity': !checkPoint.chosen}">
+                                <img src="/images/new_resume_builder/emotions/tick.svg" alt="tick" :class="{ 'blackAndWhite': !checkPoint.chosen}">
+                               {{checkPoint.title}}
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div v-for="checkPoint in checkPoints.right" :key="checkPoint.id" @click="toggleCheckPoint(checkPoint.id)" :class="{ 'half-opacity': !checkPoint.chosen}">
+                                <img src="/images/new_resume_builder/emotions/tick.svg" alt="tick" :class="{ 'blackAndWhite': !checkPoint.chosen}">
+                                {{checkPoint.title}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-area-row w-100">
+                        <v-textarea
+                                id="delete_reason"
+                                style="font-size: 12px;"
+                                class="resume-builder__input civie-textarea"
+                                outlined
+                                label="Please share more details so that we can improve"
+                                color="#001CE2"
+                                placeholder="I registered just to take a look."
+                                :error="!!errors.delete_reason"
+                                :error-messages="errors.delete_reason"
+                        ></v-textarea>
+                    </div>
+                    <div class="choose-row">
+                        <div class="delete">
+                            <div class="text">
+                                Im sorry civie but im breaking up with you
+                            </div>
+
+                            <div class="emotions-row">
+                                <img src="/images/new_resume_builder/emotions/sad_2.svg" alt="emotion">
+                                <img src="/images/new_resume_builder/emotions/shocked.svg" alt="emotion">
+                            </div>
+                            <div class="text">
+                                I want to end this relationship
+                            </div>
+
+                            <div class="delete-btn">
+                                <a href="javascript:void(0)" @click="deleteAccount">Confirm delete</a>
+                            </div>
+                        </div>
+                        <div class="keep">
+                            <div class="text">
+                                I'm willing to give it another try
+                            </div>
+
+                            <div class="emotions-row">
+                                <img src="/images/new_resume_builder/emotions/wink.svg" alt="emotion">
+                                <img src="/images/new_resume_builder/emotions/hands.svg" alt="emotion">
+                            </div>
+
+                            <div class="text">
+                                I forgive you
+                            </div>
+
+                            <div class="keep-btn">
+                                <a href="javascript:void(0)" @click="deleteDialog = false">Keep account</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </v-dialog>
+
         <!-- dialogs -->
     </v-app>
 </template>
@@ -179,6 +290,50 @@
                     "Free Domain URL"
                 ],
                 csrf_token: $('meta[name="csrf-token"]').attr('content'),
+
+                // delete dialog variables
+                deleteDialog: false,
+                checkPoints:{
+                    left:[
+                        {
+                            id: 1,
+                            chosen:false,
+                            title: 'I just wanted to test civie for a short time'
+                        },
+                        {
+                            id: 2,
+                            chosen:false,
+                            title: 'Civie doesnt have the features i need'
+                        },
+                        {
+                            id: 3,
+                            chosen:false,
+                            title: "I wasn't able to setup civie"
+                        },
+                        {
+                            id: 4,
+                            chosen:false,
+                            title: "It's not you, it's me"
+                        }
+                    ],
+                    right:[
+                        {
+                            id: 5,
+                            chosen:false,
+                            title: "Civie's pricing didnt work for me"
+                        },
+                        {
+                            id: 6,
+                            chosen:false,
+                            title: "Im no longer working as a freelancer"
+                        },
+                        {
+                            id: 7,
+                            chosen:false,
+                            title: "Other"
+                        },
+                    ],
+                },
             };
         },
         computed: {
@@ -205,6 +360,23 @@
             }
         },
         methods: {
+            // delete dialog:
+            toggleCheckPoint(checkPointID){
+                this.checkPoints.left.map( (point) => { if (point.id === checkPointID){ point.chosen = !point.chosen;} } );
+                this.checkPoints.right.map( (point) => { if (point.id === checkPointID){ point.chosen = !point.chosen;} } );
+            },
+
+            //
+            openDeleteDialog() {
+                this.deleteDialog = true;
+            },
+            deleteAccount() {
+                axios.delete('/api/user/deactivate-account/' + this.user.id).then((response) => {
+                    console.log(response.data);
+                    // redirect to login page:
+                    window.location = '/login'
+                }).catch();
+            },
             subscribe() {
                 $('#subscribe_form').submit();
             },
@@ -400,6 +572,9 @@
     };
 </script>
 <style lang="scss" scoped>
+
+    @import "../../../../sass/media-queries";
+
     #input-29 {
         margin-top: 3px !important;
     }
@@ -410,7 +585,338 @@
     }
 
 
+    // dialog styles.
+
+    .delete-dialog-content {
+        position: relative;
+        .close-dialog{
+            position: absolute;
+            top: 10px;
+            right: 7px;
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Noto Sans', sans-serif;
+        width: 100%;
+        min-height: 845px;
+        height: fit-content;
+        background: #FFFFFF;
+        box-shadow: 0 15px 70px rgba(0, 16, 131, 0.06);
+        padding: 66px 76px 33px 56px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        @include lt-sm{
+            padding: 60px 18px 15px 13px;
+            height: fit-content;
+            margin-bottom: 30px;
+            margin-top: 80px;
+        }
+
+        @include lt-md{
+            padding: 40px 18px 15px 13px;
+            height: fit-content;
+            margin-bottom: 30px;
+            margin-top: 80px;
+        }
+
+        @include lt-lg{
+            padding: 40px 18px 15px 13px;
+            height: fit-content;
+        }
+
+        @include lt-xl{
+            height: fit-content;
+        }
+
+        .dialog-header {
+            display: flex;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 19px;
+            line-height: 27px;
+            color: #3C76FF;
+
+            img {
+                margin-right: 10px;
+                margin-left: 3px;
+                margin-top: -2px;
+            }
+
+            @include lt-sm{
+                font-size: 18px;
+                flex-wrap: wrap;
+                span{
+                    display: block;
+                }
+            }
+
+            @include lt-lg{
+                font-size: 18px;
+            }
+        }
+
+        .dialog-second-header {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 30px;
+            color: #3C76FF;
+            margin-bottom: 36px;
+
+            @include lt-sm{
+                margin-bottom: 23px;
+                width: 100%;
+            }
+        }
+
+        .second-container {
+            padding-left: 22px;
+            padding-right: 22px;
+
+            @include lt-sm{
+                padding: 0;
+            }
+        }
+
+        .dialog-points {
+            padding-left: 18px;
+            display: flex;
+            flex-direction: column;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 28px;
+            color: #888DB1;
+
+            div {
+                display: flex;
+                align-items: baseline;
+
+                img {
+                    width: 5px;
+                    height: 5px;
+                    margin-right: 8px;
+                }
+            }
+
+
+            @include lt-sm{
+                font-size: 13px;
+                padding-left: 10px;
+            }
+            @include lt-md{
+                font-size: 13px;
+                padding-left: 10px;
+            }
+        }
+
+        .dialog-check-points {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+            font-size: 14px;
+            line-height: 28px;
+            color: #888DB1;
+
+            .left, .right {
+                div {
+                    display: flex;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            @include lt-sm{
+                margin-left: -8px;
+            }
+
+        }
+
+        .text-area-row {
+            margin-top: 20px;
+            @include lt-sm{
+                margin-top: 15px;
+            }
+        }
+
+        .divider {
+            background: #E6E8FC;
+            padding-top: 2px;
+            width: 100%;
+            max-width: 600px;
+
+            &.first {
+                margin-top: 23px;
+                margin-bottom: 23px;
+                @include lt-sm{
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                }
+            }
+
+            &.second {
+                margin-top: 20px;
+                margin-bottom: 30px;
+                @include lt-sm{
+                    margin-top: 16px;
+                    margin-bottom: 24px;
+                }
+            }
+        }
+
+        .choose-row {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+
+            .delete {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .text {
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 18px;
+                    text-align: center;
+                    color: #3C76FF;
+                }
+
+                .emotions-row {
+                    display: flex;
+                    margin-top: 8px;
+                    margin-bottom: 8px;
+
+                    img:first-child {
+                        margin-right: 6px;
+                    }
+                }
+
+                .delete-btn {
+                    margin-top: 18px;
+                    @include lt-sm{
+                        margin-top: 12px;
+                    }
+
+                    a {
+                        width: 180px;
+                        height: 45px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold;
+                        font-size: 15px;
+                        line-height: 20px;
+                        color: #FFFFFF;
+                        background: #8F94B6;
+                        border-radius: 5px;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+            }
+            .keep {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .text {
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 18px;
+                    text-align: center;
+                    color: #3C76FF;
+                }
+
+                .emotions-row {
+                    display: flex;
+                    margin-top: 8px;
+                    margin-bottom: 8px;
+
+                    img:first-child {
+                        margin-right: 6px;
+                    }
+                }
+
+                .keep-btn {
+                    margin-top: 18px;
+
+                    @include lt-sm{
+                        margin-top: 12px;
+                    }
+
+                    a {
+                        width: 180px;
+                        height: 45px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold;
+                        font-size: 15px;
+                        line-height: 20px;
+                        color: #FFFFFF;
+                        background: #3C76FF;
+                        border-radius: 5px;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+
+            @include lt-sm{
+                flex-wrap: wrap;
+                .delete{
+                    margin-bottom: 23px;
+                    width: 100%;
+                }
+                .keep{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+
 </style>
+
+<style lang="scss">
+    @import "../../../../sass/media-queries";
+
+    .text-area-row {
+        .v-input.resume-builder__input.civie-textarea.v-textarea {
+            .v-input__control {
+                .v-input__slot {
+                    height: 94px !important;
+                    .v-text-field__slot{
+                        label{
+                            font-size: 12px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .v-dialog{
+        box-shadow: none !important;
+    }
+
+</style>
+
 <style lang="scss">
     @import "../../../../sass/media-queries";
 
@@ -826,6 +1332,7 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        margin-bottom: 20px;
 
                         background: #001ce2;
                         border-radius: 5px;
@@ -836,6 +1343,12 @@
                         font-size: 18px;
                         line-height: 25px;
                         color: #ffffff;
+
+                        &.delete {
+                            color: #C4C9F5;
+                            border: 2px solid #E6E8FC;
+                            background: white;
+                        }
                     }
 
                     .purchase-btn {

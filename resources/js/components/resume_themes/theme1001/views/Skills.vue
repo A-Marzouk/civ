@@ -1,7 +1,7 @@
 <template>
   <div class="skills-languages">
     <div class="skills-languages__header">
-      <div class="header__title">Skills & Language</div>
+      <div class="header__title">Skills</div>
       <div class="header__hint">What I bring to the table</div>
     </div>
 
@@ -14,18 +14,6 @@
           :key="`skill-${skill.id}`"
         >
           <ItemSkillView :title="skill.title" :progress="skill.percentage" />
-        </div>
-      </div>
-
-      <hr class="hr-separator" />
-
-      <div class="languages">
-        <div
-          class="item-view__wrapper"
-          v-for="language in currentUser.languages"
-          :key="`lang-${language.id}`"
-        >
-          <ItemLangView :title="language.label" :progress="75" />
         </div>
       </div>
     </div>

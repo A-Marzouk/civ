@@ -35,7 +35,7 @@
                                   small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-email"
-                                  :href="'mailto:' + currentUser.personal_info.email"
+                                  @click="emailModal=true"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -46,6 +46,7 @@
                                   x-small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-video-player"
+                                  @click="videoModal = true"
                                 >
                                   <img
                                     width="15"
@@ -60,6 +61,7 @@
                                   depressed
                                   class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
                                   align="center"
+                                  @click="audioModal=true"
                                 >
                                   <img
                                     class
@@ -117,7 +119,7 @@
                       small
                       depressed
                       class="mx-md-1 mx-sm-2 mx-1 btn-email"
-                      :href="'mailto:' + currentUser.personal_info.email"
+                      @click="emailModal=true"
                     >
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
@@ -128,11 +130,19 @@
                       x-small
                       depressed
                       class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
+                      @click="videoModal = true"
                     >
                       <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
 
-                    <v-btn fab color="#FCD259" x-small depressed class="btn-headphone mx-1 mx-sm-2">
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      x-small
+                      depressed
+                      class="btn-headphone mx-1 mx-sm-2"
+                      @click="audioModal=true"
+                    >
                       <img
                         width="15"
                         style="margin-left:1px;"
@@ -202,7 +212,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
-                                @click="hireMeModal = true"
+                                @click="hireMeModal = !hireMeModal"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -246,6 +256,104 @@
           <v-col cols="12">
             <v-card flat color="transparent" tile style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
+                <!--------------------- About ------------------------------>
+                <v-tab-item>
+                  <div class="watermark-text text-center">About</div>
+                  <v-container>
+                    <v-row>
+                      <v-col
+                        xl="3"
+                        lg="3"
+                        md="3"
+                        sm="4"
+                        cols="12"
+                        order-sm="1"
+                        order="12"
+                        class="about-left-column"
+                      >
+                        <v-card class="card-about-left" flat color="transparent">
+                          <v-card-subtitle
+                            class="dob-text"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Date Of Birth</div>
+
+                            <div class="mt-3">
+                              <span class>01.14.1990</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Nationality</div>
+
+                            <div class="mt-3">
+                              <span class>Moroccan</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Hometown</div>
+
+                            <div class="mt-3">
+                              <span style="text-transform:uppercase;">RABAT</span>
+                            </div>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle
+                            class="dob-text mt-5"
+                            :align="windowWidth<=599?'left':'center'"
+                          >
+                            <div>Languages</div>
+
+                            <div class="mt-3 d-flex flex-column">
+                              <span>Arabic</span>
+                              <span>English</span>
+                              <span>French</span>
+                            </div>
+                          </v-card-subtitle>
+                        </v-card>
+                      </v-col>
+
+                      <v-col xl="4" lg="7" md="7" sm="7" cols="12" order-sm="12" order="1">
+                        <v-card class="card-about-right" flat color="transparent">
+                          <v-card-subtitle class="overview-title">Overview summary</v-card-subtitle>
+                          <!-- Overview -->
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- Overview -->
+
+                          <!-- about me -->
+                          <v-card-subtitle class="overview-title">About Me</v-card-subtitle>
+                          <hr class="custom-hr hidden-xs-only" />
+                          <v-card-text
+                            class="overview-text"
+                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          <!-- about me -->
+
+                          <!-- quote -->
+                          <v-card-subtitle class="overview-title">Quote</v-card-subtitle>
+                          <v-card-text class="overview-text">Born to rise</v-card-text>
+                          <!-- quote -->
+                          <!-- location -->
+                          <v-card-subtitle class="overview-title">Location</v-card-subtitle>
+                          <v-card-text class="overview-text">Ireland, Dublin</v-card-text>
+                          <!-- location -->
+                          <hr class="custom-hr hidden-sm-and-up" />
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+
+                <!--------------------- About ------------------------------>
+
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
@@ -501,8 +609,7 @@
                             v-show="achievement.is_public"
                           >
                             <div
-                              class="d-flex achievement"
-                              :class="[windowWidth<=1263?'flex-column':'flex-row']"
+                              :class="[windowWidth<=1263?'d-flex achievement flex-column':'d-flex achievement flex-row']"
                             >
                               <div :align="windowWidth<=1263?'center':'left'">
                                 <img
@@ -568,53 +675,107 @@
       <!-- ......................................Tab Items .........................-->
       <!-- All Modals -->
       <!-- Hire Me Modal -->
-      <v-dialog v-model="hireMeModal" max-width="567" persistent>
-        <v-card
-          color="#F6F9FF"
-          class="card-hire-me-modal pa-3"
-        >
-          <div align="right">
-            <v-btn icon @click="hireMeModal = close">
-              <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
-            </v-btn>
+      <hire-modal
+        :hireMeModal.sync="hireMeModal"
+        :widowWidth="windowWidth"
+        :currentUser="currentUser"
+      ></hire-modal>
+      <!-- Hire Me Modal -->
+
+      <!-- Email modal -->
+      <v-dialog v-model="emailModal" persistent max-width="759" class="email-modal">
+        <v-card class="card-email pa-sm-6 pa-10">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">Message</div>
+            <div>
+              <v-btn icon depressed class="btn-email-modal-close" @click="emailModal = false">
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
           </div>
-          <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
-          <v-card-subtitle>
-            <v-row>
-              <v-col xl="9" lg="9" cols="12">
-                <v-tabs
-                  center-active
-                  grow
-                  hide-slider
-                  v-model="hireMeTab"
-                  active-class="hire-me-tab-active"
-                  background-color="transparent"
-                >
-                  <v-tab
-                    v-for="tab in hireOptions"
-                    :key="tab.id"
-                    class="text-capitalize hire-me-tab-text"
-                    :class="[
-                      tab.title == 'Hourly'?'custom-tab-round-left':'',
-                      tab.title == 'Monthly'?'custom-tab-round-right':''
-                    ]"
-                  >{{tab.title}}</v-tab>
-                </v-tabs>
-              </v-col>
-              <v-col xl="9" lg="9" cols="12" class="mt-n5">
-                <v-card flat align="center">
-                  <v-tabs-items v-model="hireMeTab">
-                    <v-tab-item class="tab-item">$10</v-tab-item>
-                    <v-tab-item class="tab-item">$20</v-tab-item>
-                    <v-tab-item class="tab-item">$30</v-tab-item>
-                  </v-tabs-items>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-card-subtitle>
+          <v-card-text class="mt-lg-0 mt-8">
+            <v-card class="pa-lg-10" flat color="transparent">
+              <v-text-field class="email-input" color="#E0BB4C" placeholder="Name"></v-text-field>
+              <v-text-field type="email" class="email-input" color="#E0BB4C" placeholder="Email"></v-text-field>
+              <v-textarea color="#E0BB4C" placeholder="Message"></v-textarea>
+              <v-card-subtitle align="center" class="mt-5">
+                <v-btn color="#FCD259" depressed class="btn-send-mail">Send</v-btn>
+              </v-card-subtitle>
+            </v-card>
+          </v-card-text>
         </v-card>
       </v-dialog>
-      <!-- Hire Me Modal -->
+      <!-- Email modal -->
+      <!-- Audio Modal -->
+
+      <v-dialog
+        v-model="audioModal"
+        max-width="1710"
+        persistent
+        style="overflow-y: hidden !important; overflow-x: hidden !important;"
+      >
+        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
+          <div class="d-flex flex-row justify-space-between">
+            <div class="modal-title">My Audio</div>
+            <div>
+              <v-btn
+                icon
+                depressed
+                class="btn-audio-modal-close"
+                @click="audioModal = false"
+                style="z-index: 100;"
+              >
+                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              </v-btn>
+            </div>
+          </div>
+          <div class="watermark-text-modal">Audio</div>
+          <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
+            <template v-for="item in currentUser.media">
+              <audio-player
+                :key="item.id"
+                v-show="item.type=='audio'"
+                :modalOpen="audioModal"
+                :file="item.url"
+              ></audio-player>
+            </template>
+          </VueSlickCarousel>
+        </v-card>
+      </v-dialog>
+
+      <!-- Audio Modal -->
+
+      <!-- Video Modal -->
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+          <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
+            <v-btn
+              color="transparent"
+              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n1 mt-md-0 mt-sm-5 mt-5 ml-md-0 ml-sm-0 ml-0"
+              icon
+              @click.stop="videoModal=false"
+              depressed
+              style="z-index:100;"
+            >
+              <img src="/images/resume_themes/theme203/icons/email-close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+          <div class="watermark-text-modal-video">Video</div>
+          <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
+            <template v-for="item in currentUser.media">
+              <video-player
+                v-show="item.type=='video'"
+                :key="item.id"
+                :modalOpen="videoModal"
+                :title="item.title"
+                :details="item.transcript"
+                :file="item.url"
+              ></video-player>
+            </template>
+          </VueSlickCarousel>
+        </v-card>
+      </v-dialog>
+      <!-- Video Modal -->
       <!-- All Modals  -->
 
       <!-- tab bar row -->
@@ -625,8 +786,18 @@
   </v-app>
 </template>
 <script>
+import HireModal from "./payment/HireModal";
+import AudioPlayer from "./media/AudioPlayer";
+import VideoPlayer from "./media/VideoPlayer";
+import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
+  components: {
+    HireModal,
+    AudioPlayer,
+    VideoPlayer,
+    VueSlickCarousel,
+  },
   props: ["user", "is_preview"],
   filters: {
     capitalize: function (value) {
@@ -641,14 +812,12 @@ export default {
   },
   data() {
     return {
-      hireMeModal: false,
+      audioModal: false,
+      videoModal: false,
+      emailModal: false,
       windowWidth: window.innerWidth,
       currentUser: this.user,
-      hireOptions: [
-        { id: 1, title: "Hourly" },
-        { id: 2, title: "Weekly" },
-        { id: 3, title: "Monthly" },
-      ],
+      hireMeModal: false,
       socialIcons: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
@@ -657,35 +826,81 @@ export default {
         { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
-      hireMeTab: null,
+
       progressBarColor: "yellow",
+      slickOptionsVideoModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 2,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesPerRow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+        ],
+      },
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3,
+      },
       mainTabs: [
         {
           id: 1,
-          title: "Portfolio",
+          title: "About",
         },
         {
           id: 2,
-          title: "Work",
+          title: "Portfolio",
         },
         {
           id: 3,
-          title: "Education",
+          title: "Work",
         },
         {
           id: 4,
-          title: "Skills",
+          title: "Education",
         },
         {
           id: 5,
-          title: "Hobbies",
+          title: "Skills",
         },
         {
           id: 6,
-          title: "Achievements",
+          title: "Hobbies",
         },
         {
           id: 7,
+          title: "Achievements",
+        },
+        {
+          id: 8,
           title: "References",
         },
       ],
@@ -795,6 +1010,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
@@ -839,6 +1055,7 @@ export default {
       });
       return mainImage.src;
     },
+    //audio Modal
   },
 };
 </script>
@@ -846,9 +1063,10 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
-/*@import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");*/
+// @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 /* Shapes */
 .triangle-top-left {
@@ -1341,54 +1559,238 @@ export default {
   }
 }
 // reference tab
-//hire me modal
-.card-hire-me-modal {
-  .title {
-    font-family: "Noto Sans" !important;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 35px;
-    color: #888db1 !important;
-  }
-  border-radius: 10px !important;
-  .hire-me-tab-text {
-    font-family: "Noto Sans" !important;
+
+// email modal
+.card-email {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 25px;
-    color: #888db1 !important;
-    background: #ffffff;
-    margin-left: 1px;
-    margin-right: 1px;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+    align-self: center;
+    @media screen and (max-width: 667px) {
+      font-size: 18px;
+      line-height: 17px;
+    }
   }
-  .hire-me-tab-active {
-    background: #001ce2 !important;
-    font-family: "Noto Sans" !important;
-    font-size: 18px;
-    line-height: 25px;
-    color: #ffffff !important;
+  .btn-email-modal-close {
+    width: 41px;
+    height: 41px;
+    @media screen and (max-width: 667px) {
+      width: 26px;
+      height: 26px;
+    }
   }
-  .custom-tab-round-left {
-    border-top-left-radius: 10px;
-  }
-  .custom-tab-round-right {
-    border-top-right-radius: 10px;
-  }
-  .tab-item {
-    font-family: "Noto Sans" !important;
+  .btn-send-mail {
+    font-family: "Open Sans" !important;
     font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 25px;
-    color: #001ce2 !important;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000 !important;
+    width: 234px !important;
+    height: 67px !important;
+    box-shadow: 0px 0px 40px rgba(252, 210, 89, 0.24) !important;
+    border-radius: 100px !important;
+    text-transform: capitalize !important;
   }
 }
-// hire me modal
+//email modal
+
+//about section
+.card-about-left {
+  .dob-text {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900 !important;
+    font-size: 20px;
+    line-height: 19px;
+    color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 17px;
+      line-height: 16px;
+    }
+    span {
+      font-family: "Open Sans" !important;
+      font-weight: 600 !important;
+      font-size: 20px;
+      line-height: 35px;
+      color: #373737;
+      @media screen and (max-width: 667px) {
+        font-size: 17px;
+        line-height: 35px;
+      }
+    }
+  }
+}
+.card-about-right {
+  .overview-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 24px;
+    color: #1f1f1f !important;
+    @media screen and (max-width: 667px) {
+      font-size: 20px;
+      line-height: 19px;
+    }
+  }
+  .overview-text {
+    font-family: "Open Sans" !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 35px;
+    color: #373737 !important;
+    @media screen and (max-width: 667px) {
+      font-size: 13px;
+      line-height: 23px;
+    }
+  }
+}
+//about section closed
+//audio modal
+.card-audio-modal {
+  border-radius: 40px !important;
+  .modal-title {
+    font-family: "Gotham Pro" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000 !important;
+  }
+  .btn-audio-modal-close {
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.card-modal-video-holder {
+  border-radius: 40px !important;
+  height: 850px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    height: 700px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    height: auto;
+  }
+  @media screen and (max-width: 959px) {
+    height: 1250px;
+  }
+  @media screen and (max-width: 599px) {
+    height: 770px;
+  }
+  .btn-video-close {
+    img {
+      width: 50px;
+      height: 50px;
+      @media screen and (max-width: 959px) {
+        width: 63px;
+        height: 62px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  }
+}
+
+//audio modal
+.watermark-text-modal {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    font-size: 200px;
+    top: -30%;
+  }
+  @media screen and (min-width: 668px) and (max-width: 959px) {
+    font-size: 150px;
+    top: -30%;
+  }
+  @media screen and (max-width: 667px) {
+    font-size: 100px;
+    top: -30%;
+  }
+}
+
+//water mark text for video modal
+.watermark-text-modal-video {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  left: 0;
+  top: -30%;
+  bottom: 0;
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    font-size: 200px;
+    top: -60%;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    font-size: 150px;
+    top: -84%;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 100px;
+    top: -80%;
+  }
+}
+.custom-hr {
+  width: 245.36px;
+  opacity: 0.6;
+  border: 1px solid #000000;
+  transform: rotate(90deg);
+  margin-left: -198px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    margin-left: -158px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    margin-left: -144px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    margin-left: -150px;
+  }
+  @media screen and (max-width: 599px) {
+    margin-left: 16px;
+    transform: rotate(180deg);
+  }
+}
 </style>
 
-<style>
+<style lang="scss">
 #resumeTheme203 .v-progress-linear__determinate {
   background-color: -moz-linear-gradient(
     138.05deg,
@@ -1402,5 +1804,121 @@ export default {
     #e5bf4e 51.95%,
     #ffde81 89.88%
   ) !important;
+}
+#resumeTheme203 {
+  .v-slide-group__prev.v-slide-group__prev--disabled {
+    display: none !important;
+  }
+
+  .card-email {
+    .v-text-field input {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+
+    .v-text-field input::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    // .v-text-field > .v-input__control > .v-input__slot > .v-text-field__slot {
+    //   border-bottom: 2px solid #000000 !important;
+    // }
+
+    // .v-text-field
+    //   > .v-input__control
+    //   > .v-input__slot
+    //   > .v-text-field__slot:focus {
+    //   border-bottom: 2px solid #fcd259 !important;
+    // }
+
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: #e0bb4c !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    .theme--light.v-input,
+    .theme--light.v-input input,
+    .theme--light.v-input textarea::placeholder {
+      font-family: "Montserrat" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+      color: rgba(224, 187, 76, 0.5) !important;
+      @media screen and (max-width: 667px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+  }
+
+  .slick-dots {
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .slick-dots li {
+    width: 18px;
+    height: 18px;
+    background: rgba(252, 210, 89, 0.3) !important;
+    border-radius: 50%;
+  }
+  .slick-dots li.slick-active button {
+    width: 18px !important;
+    height: 18px !important;
+    background: #fcd259 !important;
+  }
+  // video slick
+  .video-slick .slick-list {
+    padding-bottom: 50px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
+    }
+  }
+  .audio-slick .slick-list {
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      padding-bottom: 40px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      padding-bottom: 30px;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 15px;
+    }
+  }
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
+    <div style="width: 100%" class="main-container pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
-        <div class="d-flex">
+        <div class="d-flex reverse-on-phone">
           <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab" height="51">
             <v-tab style="font-weight: 400"
-                   class="resume-builder__tab" @click="setSkillCategory(tab)"
+                   class="resume-builder__tab" @click="setSkillCategory(tab.toString())"
                    v-for="tab in tabs"
                    :key="tab"
             >{{tab.replace('_',' ')}}</v-tab>

@@ -29,11 +29,10 @@
                 cols="11"
                 class="text-md-left text-center text-sm-left"
               >
-                <div class="user-name font-weight-bold">
-                  {{ currentUser.personal_info.first_name }}
-                  {{ currentUser.personal_info.last_name }}
+                <div class="user-name font-weight-regular">
+                  {{ currentUser.personal_info.full_name }}
                 </div>
-                <div class="job-title py-1 pb-sm-2">
+                <div class="job-title py-2 pb-sm-2">
                   {{ currentUser.personal_info.designation }}
                 </div>
                 <div class="bio padrgt">
@@ -151,6 +150,7 @@
                         background: #fc5185;
                         box-shadow: #fc7ea4 0px 10px 30px -8px;
                       "
+                      @click="hireMeModal=true"
                     >
                       <img
                         style="
@@ -255,6 +255,7 @@
                         background: #fc5185;
                         box-shadow: rgba(252, 81, 133, 0.4) 0px 10px 30px -8px;
                       "
+                      @click="hireMeModal=true"
                     >
                       <img
                         style="
@@ -272,6 +273,7 @@
               </v-col>
               <v-col md="6">
                 <v-row no-gutters justify="center">
+
                   <v-col cols="12" class="text-center hidden-xs-only">
                     <v-btn
                       style="
@@ -281,8 +283,9 @@
                         background: #5f45ff;
                         box-shadow: #9180ff 0px 10px 30px -8px;
                       "
+                      @click.stop="audioModal=true"
                       dark
-                      class="mx-1"
+                      class="mx-1 ct-buttom-mrg"
                     >
                       <img
                         src="/images/resume_themes/theme5/call.svg"
@@ -290,7 +293,7 @@
                         style="width: 18px; height: 18px; margin-right: 7.5px;"
                       />
                       <div class="text-capitalize" style="font-size: 14px;">
-                        Voice call
+                        Audio
                       </div>
                     </v-btn>
 
@@ -298,49 +301,42 @@
                       class="mx-1"
                       style="
                         height: 50px;
-                        width: 90px;
+                        width: 150px;
                         border-radius: 6px;
                         background: #e7e5f6;
                         box-shadow: #e7e5f6 0px 10px 30px -8px;
                       "
+                      @click.stop="videoModal=true"
                     >
                       <img
                         src="/images/resume_themes/theme5/video.svg"
                         alt="video call"
                         style="width: 27px; height: 18px; margin-right: 7.5px;"
                       />
+
+                      <div class="text-capitalize" 
+                        style="
+                          font-size: 14px;
+                          color: #5f45ff;
+                        ">
+                        Video
+                      </div>
                     </v-btn>
                   </v-col>
+
                   <v-col cols="12" class="text-center hidden-sm-and-up">
                     <div class="text-center my-2">Take an interview</div>
                     <v-btn
-                      dark
-                      outlined
-                      color="#5F45FF"
-                      class="mx-1"
-                      style="
-                        height: 50px;
-                        width: 150px;
-                        border-radius: 6px;
-                        box-shadow: rgba(253, 253, 254, 0.6) 0px 10px 30px -8px;
-                      "
-                    >
-                      <v-icon left>mdi-video</v-icon>
-                      <div class="text-capitalize" style="font-size: 14px;">
-                        Video call
-                      </div>
-                    </v-btn>
-
-                    <v-btn
-                      class="mx-1"
-                      dark
                       style="
                         height: 50px;
                         width: 150px;
                         border-radius: 6px;
                         background: #5f45ff;
-                        box-shadow: rgba(253, 253, 254, 0.6) 0px 10px 30px -8px;
+                        box-shadow: #9180ff 0px 10px 30px -8px;
                       "
+                      @click.stop="audioModal=true"
+                      dark
+                      class="mx-1 ct-buttom-mrg"
                     >
                       <img
                         src="/images/resume_themes/theme5/call.svg"
@@ -348,7 +344,33 @@
                         style="width: 18px; height: 18px; margin-right: 7.5px;"
                       />
                       <div class="text-capitalize" style="font-size: 14px;">
-                        Audio call
+                        Audio
+                      </div>
+                    </v-btn>
+
+                    <v-btn
+                      class="mx-1"
+                      style="
+                        height: 50px;
+                        width: 150px;
+                        border-radius: 6px;
+                        background: #e7e5f6;
+                        box-shadow: #e7e5f6 0px 10px 30px -8px;
+                      "
+                       @click.stop="videoModal=true"
+                    >
+                      <img
+                        src="/images/resume_themes/theme5/video.svg"
+                        alt="video call"
+                        style="width: 27px; height: 18px; margin-right: 7.5px;"
+                      />
+
+                      <div class="text-capitalize" 
+                        style="
+                          font-size: 14px;
+                          color: #5f45ff;
+                        ">
+                        Video
                       </div>
                     </v-btn>
                   </v-col>
@@ -521,6 +543,7 @@
                         background: #fc5185;
                         box-shadow: #fc7ea4 0px 10px 30px -8px;
                       "
+                      @click="hireMeModal=true"
                     >
                       <img
                         style="
@@ -545,6 +568,7 @@
                         background: #5f45ff;
                         box-shadow: #9180ff 0px 10px 30px -8px;
                       "
+                      @click.stop="audioModal=true"
                       dark
                       class="mx-1"
                     >
@@ -564,6 +588,7 @@
                         background: #e7e5f6;
                         box-shadow: #e7e5f6 0px 10px 30px -8px;
                       "
+                       @click.stop="videoModal=true"
                     >
                       <img
                         src="/images/resume_themes/theme5/video.svg"
@@ -762,14 +787,16 @@
                   </v-col>
                 </v-row>
               </v-col>
+
+              <!-- about section start -->
               <v-col
                 v-if="activeTab === 'about'"
-                md="6"
+                md="10"
                 sm="11"
                 cols="11"
                 class="pb-12"
               >
-                <v-row no-gutters justify="center" class="shade py-12">
+                <!-- <v-row no-gutters justify="center" class="shade py-12">
                   <v-col md="10" sm="11" cols="11" class="pb-8">
                     <div class="headline">About Me</div>
                   </v-col>
@@ -787,8 +814,35 @@
                       Gmail: {{ currentUser.personal_info.email }}
                     </div>
                   </v-col>
-                </v-row>
+                </v-row> -->
+
+                <div class="about-container">
+
+                  <!-- short info -->
+                  <div class="short-info">
+                    <div v-for="(about_item, index) in about_section.short_info" :key="index"
+                      class="short-info-item mb-4" >
+                      <div class="short-info-title">{{ about_item.title }}</div>
+                      <div v-for="(short_value, index) in about_item.value" :key="index"
+                        class="short-info-value">{{ short_value }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- summary info -->
+                  <div class="summary-info">
+                    <div v-for="(summary_item, index) in about_section.summary" :key="index"
+                      class="summary-info-item mb-6">
+                      <div class="summary_title">{{ summary_item.title }}</div>
+                      <div class="summary_value">{{ summary_item.value }}</div>
+                    </div>
+                  </div>
+
+                </div>
+
               </v-col>
+
+              <!-- about section end -->
 
               <!-- hobbies -->
               <v-col
@@ -919,9 +973,124 @@
               </v-col>
               <!-- Achievement end-->
             </v-row>
+
+            <!-- video modal -->
+            <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+              <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+                <!-- <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
+                  <v-btn
+                    color="transparent"
+                    class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
+                    icon
+                    @click.stop="videoModal=false"
+                    depressed
+                  >
+                    <img 
+                    style="
+                      height: 0.7rem; width: auto;
+                    " 
+                    src="/images/resume_themes/theme200/icons/close.svg" />
+                  </v-btn>
+                </v-card-subtitle> -->
+
+
+                <!-- <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.length>0">
+                  <template v-for="video in currentUser.media">
+                    <div
+                      :key="video.id"
+                      class
+                      align="center"
+                      v-if="video.type=='video' && video.is_public==1"
+                    >
+                      <v-card class="card-video mb-md-0 md-sm-0 mb-5">
+                        <video style="width:100%;" controls>
+                          <source :src="video.url" type="video/mp4" />
+                        </video>
+                        <v-card-title class="video-window-title">{{video.title}}</v-card-title>
+                        <v-card-subtitle
+                          class="video-window-subtitle mt-n5"
+                          align="left"
+                        >{{video.transcript}}</v-card-subtitle>
+                      </v-card>
+                    </div>
+                  </template>
+                </slick>-->
+                <div class="audio-header video-2 d-flex justify-space-between mb-12">
+                  <div class="my-audio">My Video</div>
+                
+                  <img style="height: 1.4rem; width: auto; cursor: pointer;" 
+                    @click.stop="videoModal=false"
+                    src="/images/resume_themes/theme5/close.png" alt="close">
+                </div>
+
+                <div class="video-container">
+                  <video-player
+                    v-for="i in 3"
+                    :video_num="i"
+                    :key="i"
+                    :modalOpen="videoModal"
+                    link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                  ></video-player>
+                </div>
+              </v-card>
+            </v-dialog>
+            <!-- Video modal end-->
+
+            <!-- Audio Modal -->
+            <v-dialog v-model="audioModal" :elevation="0" max-width="1690" persistent content-class="ct-dialog">
+              <div class="audio-modal-main-card">
+                
+                
+                <!-- <v-card-subtitle align="right">
+                  <v-btn
+                    color="transparent"
+                    class="btn-video-close mb-xl-1 mb-lg-1 mt-xl-5 mt-lg-5 mt-md-0 mt-sm-5 mt-5"
+                    @click.stop="audioModal=false"
+                    depressed
+                    icon
+                  >
+                    <img src="/images/resume_themes/theme200/icons/close.svg" />
+                  </v-btn>
+                </v-card-subtitle> -->
+
+
+                <!-- <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.length>0">
+                  <template v-for="audio in currentUser.media">
+                    <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
+                      <audio controls style="width:100%;">
+                        <source :src="audio.url" type="audio/mpeg" />Your browser does not support the audio element.
+                      </audio>
+                    </div>
+                  </template>
+                </vueSlickCarousel> -->
+
+                <div class="audio-header d-flex justify-space-between mb-12">
+                  <div class="my-audio">My Audio</div>
+                
+                  <img style="height: 1.4rem; width: auto; cursor: pointer;" 
+                    @click.stop="audioModal=false"
+                    src="/images/resume_themes/theme5/close.png" alt="close">
+                </div>
+                
+                <audio-player
+                  :modalOpen="audioModal"
+                  color="#FC5C8A"
+                  v-for="i in 3"
+                  :key="i"
+                  :audio_num="i"
+                  file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+                ></audio-player>
+            </div>
+            </v-dialog>
+            <!-- Audio Modal -->
           </v-container>
         </v-col>
       </v-row>
+      <!-- hire modal start -->
+    
+          <hire-modal :hireMeModal.sync="hireMeModal" :widowWidth="windowWidth"></hire-modal>
+
+          <!-- hire modal end -->
     </v-container>
   </v-app>
 </template>
@@ -995,12 +1164,18 @@
     transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   }
   //Desktop Screen
-  .currentUser-name {
+  .user-name {
     font-size: 1.5rem;
   }
+  .job-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+
   .bio {
     font-size: 0.8rem;
-    line-height: 25px;
+    line-height: 23px;
+    color: #6B6B6B;
   }
   .padrgt {
     padding-right: 8rem;
@@ -1316,6 +1491,65 @@
     color: #3c3748;
   }
 
+  //about me section start
+
+  .about-container {
+    padding: 2.6rem 4rem;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+  }
+
+  //short info start
+  .short-info-title {
+    color: #FC5185;
+  }
+
+  .short-info-value {
+    color: #918F97;
+    font-size: 1.2rem;
+  }
+  //short info end
+
+  //summary info start
+
+  .summary_title {
+    color: #5F45FF;
+  }
+
+  .summary_value {
+    color: #3C3748;
+    font-size: 0.9rem;
+  }
+
+  //summary info end
+
+
+  //media queries
+  
+  //md screen
+  @media only screen and (max-width: 1060px) {
+    .about-container {
+      grid-template-columns: 22% 78%;
+    }
+  }
+
+  //sm screen
+  @media only screen and (max-width: 700px) {
+    .about-container {
+      grid-template-columns: 1fr;
+      padding: 1rem 1rem;
+    }
+
+    .short-info {
+      display: grid;
+      grid-template-columns: 3.8fr 1fr;
+    }
+  }
+
+  //about me section end
+
   //media queries
   @media only screen and (max-width: 850px) {
     .reference-container {
@@ -1323,6 +1557,20 @@
       grid-gap: 20px 30px;
     }
   }
+
+  //bottom margin
+  @media only screen and (max-width: 1438px) and (min-width : 435px) {
+    .ct-buttom-mrg {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media only screen and (max-width : 365px) {
+    .ct-buttom-mrg {
+      margin-bottom: 10px;
+    }
+  }
+
   //media queries end ---
 
   // reference section end ------
@@ -1391,6 +1639,112 @@
     }
   }
   // Achievement section end
+
+  // audio video modals start
+  .ct-dialog {
+    border-radius: 2rem;
+    background-color: rgb(248, 237, 80) !important;
+  }
+
+  .my-audio {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #5F45FF;
+  }
+
+  .card-modal-video-holder {
+    padding: 3rem 5.5rem;
+    // // height: 850px;
+    // @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    //   height: 700px;
+    // }
+    // @media screen and (min-width:960px) and (max-width: 1263px){
+    //   height: auto;
+    // }
+    // @media screen and (max-width: 959px) {
+    //   height: 1250px;
+    // }
+    // @media screen and (max-width: 599px) {
+    //   height: 770px;
+    // }
+    .btn-video-close {
+      img {
+        width: 50px;
+        height: 50px;
+        @media screen and (max-width: 959px) {
+          width: 63px;
+          height: 62px;
+        }
+        @media screen and (max-width: 599px) {
+          width: 38px;
+          height: 38px;
+        }
+      }
+    }
+  }
+
+  .video-container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 1.4rem;
+  }
+
+  .audio-modal-main-card {
+    min-height: 500px;
+    padding: 3rem 4rem;
+    background-color: #FFFFFF;
+
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      min-height: 600px;
+    }
+
+    @media screen and (max-width: 959px) {
+      min-height: 670px;
+    }
+
+    @media screen and (max-width: 599px) {
+      min-height: 734px;
+      padding: 1.5rem;
+    }
+  }
+
+  .audio-slick .slick-list {
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      padding-bottom: 40px !important;
+    }
+    @media screen and (max-width: 959px) {
+      padding-bottom: 80px !important;
+    }
+    @media screen and (max-width: 599px) {
+      padding-bottom: 180px !important;
+    }
+  }
+
+  // small screen
+
+  @media screen and (max-width: 1297px) {
+    .card-modal-video-holder {
+      padding: 1.4rem;
+    }
+
+    .video-container {
+      padding: 1rem;
+      grid-template-columns: repeat(2,1fr);
+    }
+  }
+
+   @media screen and (max-width: 900px) {
+    .video-container {
+      grid-template-columns: repeat(1,1fr);
+    }
+
+    .video-2 {
+      padding: 1rem;
+    }
+  }
+  
+
+  // audio video modals end
 }
 </style>
 
@@ -1400,11 +1754,28 @@
 }
 </style>
 <script>
+import Slick from "vue-slick";
+import VueSlickCarousel from "vue-slick-carousel";
+import AudioPlayer from "./media/AudioPlayer";
+import VideoPlayer from "./media/VideoPlayer";
+import HireModal from "./payment/HireModal";
+
 export default {
   name: "theme8",
   props: ["user", "is_preview", "currentTab"],
+  components: {
+    Slick,
+    VueSlickCarousel,
+    AudioPlayer,
+    VideoPlayer,
+    HireModal
+  },
   data() {
     return {
+      windowWidth: window.innerWidth,
+      hireMeModal:false,
+      videoModal: false,
+      audioModal: false,
       tabs: [
         {
           text: "Portfolio",
@@ -1602,6 +1973,29 @@ export default {
           description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
         }
       ],
+      about_section: {
+        short_info: [
+          { title: "Date of Birth", value: ['01/14/90'] },
+          { title: "Nationality", value: ['Ukrainian'] },
+          { title: "Hometown", value: ['Kiev'] },
+          { title: "Languages", value: ['English', 'Arabic', 'Franch'] },
+        ],
+        summary: [
+          { title: 'Overview Sumary', value: 'В работе дизайнера есть много пространства для креатива, но это только на первый взгляд кажется, что такие специалисты полагаются исключительно на фантазию.'},
+          { title: 'About Me', value: 'В работе дизайнера есть много пространства для креатива но это только на первый взгляд кажется, что такие специалисты полагаются исключительно на фантазию.'},
+          { title: 'Quote', value: 'B создавать графический контент.'},
+          { title: 'Location', value: 'Ireland, Dublin'}
+        ]
+      },
+      //audio Modal
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3,
+      },
       currentUser: this.user
     };
   },
@@ -1653,6 +2047,10 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+
+    indow.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
