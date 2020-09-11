@@ -7,12 +7,12 @@
           <v-list-item color="transparent">
             <v-list-item-icon class="mr-n1">
               <div>
-                <v-btn class="btn-play" icon depressed @click.prevent="playing ? pause() : play()">
-                  <img
-                    src="/images/resume_themes/theme203/icons/play.svg"
+                <v-btn class="btn-play" depressed @click.prevent="playing ? pause() : play()">
+                  <v-img
+                    src="/images/resume_themes/theme203/icons/inner-play.svg"
                     v-if="!playing || paused"
-                  />
-                  <img src="/images/resume_themes/theme203/icons/pause.svg" v-else />
+                  ></v-img>
+                  <v-img src="/images/resume_themes/theme203/icons/inner-pause.svg" v-else></v-img>
                 </v-btn>
               </div>
             </v-list-item-icon>
@@ -242,18 +242,23 @@ export default {
   color: #8b8b8b !important;
 }
 .btn-play {
+  width: 72px !important;
+  height: 71.01px !important;
+  background: #000000 !important;
+  border: 5px solid #e0bb4c !important;
+  border-radius:50% !important;
   z-index: 100;
   img {
-    @media screen and (max-width: 1263px) {
-      width: 73px;
-      height: 72px;
-    }
+    max-width: 32px !important;
+    min-width: 32px !important;
+    max-height: 32px !important;
   }
 }
 .custom-progressbar {
   border-radius: 15px !important;
   background: #e0e0e0 !important;
   opacity: 0.7;
+  margin-left: -5px;
 }
 </style>
 

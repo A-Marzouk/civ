@@ -11,7 +11,7 @@ class Tab extends Model
         'is_public','title','label','order','user_id','resume_link_id'
     ];
 
-    public static $defaultTabs = ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements'];
+    public static $defaultTabs = ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements', 'pay_availability', 'links'];
 
     // relation belongs to
     public function user(){

@@ -114,7 +114,8 @@
               </v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-4 mt-n4"
-              >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
+              >With <a href="https://civ.ie">civ.ie</a> you can create design-perfect, beautiful , interactive Resume's .. in less than 5 minutes.<br/>
+                Your Digital Resume <span style="color: #0046fe;">www.civ.ie/yourname</span> can be easily shared and updated.</v-card-subtitle>
             </v-card>
             <!-- 1st card -->
             <!-- 2nd card -->

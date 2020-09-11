@@ -212,7 +212,7 @@
                                 class="mx-n6 btn-hire-me"
                                 height="45"
                                 depressed
-                                @click.stop="hireMeModal = !hireMeModal"
+                                @click="hireMeModal = !hireMeModal"
                               >Hire Me</v-btn>
                             </v-card-text>
                           </v-card>
@@ -331,6 +331,7 @@
 
                           <!-- about me -->
                           <v-card-subtitle class="overview-title">About Me</v-card-subtitle>
+                          <hr class="custom-hr hidden-xs-only" />
                           <v-card-text
                             class="overview-text"
                           >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
@@ -344,6 +345,7 @@
                           <v-card-subtitle class="overview-title">Location</v-card-subtitle>
                           <v-card-text class="overview-text">Ireland, Dublin</v-card-text>
                           <!-- location -->
+                          <hr class="custom-hr hidden-sm-and-up" />
                         </v-card>
                       </v-col>
                     </v-row>
@@ -607,8 +609,7 @@
                             v-show="achievement.is_public"
                           >
                             <div
-                              class="d-flex achievement"
-                              :class="[windowWidth<=1263?'flex-column':'flex-row']"
+                              :class="[windowWidth<=1263?'d-flex achievement flex-column':'d-flex achievement flex-row']"
                             >
                               <div :align="windowWidth<=1263?'center':'left'">
                                 <img
@@ -674,7 +675,11 @@
       <!-- ......................................Tab Items .........................-->
       <!-- All Modals -->
       <!-- Hire Me Modal -->
-      <hire-modal :hireMeModal="hireMeModal"></hire-modal>
+      <hire-modal
+        :hireMeModal.sync="hireMeModal"
+        :widowWidth="windowWidth"
+        :currentUser="currentUser"
+      ></hire-modal>
       <!-- Hire Me Modal -->
 
       <!-- Email modal -->
@@ -726,12 +731,14 @@
           </div>
           <div class="watermark-text-modal">Audio</div>
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
-            <audio-player
-              :modalOpen="audioModal"
-              v-for="i in 6"
-              :key="i"
-              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
-            ></audio-player>
+            <template v-for="item in currentUser.media">
+              <audio-player
+                :key="item.id"
+                v-show="item.type=='audio'"
+                :modalOpen="audioModal"
+                :file="item.url"
+              ></audio-player>
+            </template>
           </VueSlickCarousel>
         </v-card>
       </v-dialog>
@@ -744,22 +751,27 @@
           <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
             <v-btn
               color="transparent"
-              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
+              class="btn-audio-modal-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n1 mt-md-0 mt-sm-5 mt-5 ml-md-0 ml-sm-0 ml-0"
               icon
               @click.stop="videoModal=false"
               depressed
+              style="z-index:100;"
             >
               <img src="/images/resume_themes/theme203/icons/email-close.svg" />
             </v-btn>
           </v-card-subtitle>
-
+          <div class="watermark-text-modal-video">Video</div>
           <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
-            <video-player
-              v-for="i in 6"
-              :key="i"
-              :modalOpen="videoModal"
-              link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            ></video-player>
+            <template v-for="item in currentUser.media">
+              <video-player
+                v-show="item.type=='video'"
+                :key="item.id"
+                :modalOpen="videoModal"
+                :title="item.title"
+                :details="item.transcript"
+                :file="item.url"
+              ></video-player>
+            </template>
           </VueSlickCarousel>
         </v-card>
       </v-dialog>
@@ -998,6 +1010,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
@@ -1660,6 +1673,7 @@ export default {
 }
 
 .card-modal-video-holder {
+  border-radius: 40px !important;
   height: 850px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 700px;
@@ -1705,6 +1719,39 @@ export default {
   justify-content: center;
   right: 0;
   left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    font-size: 200px;
+    top: -30%;
+  }
+  @media screen and (min-width: 668px) and (max-width: 959px) {
+    font-size: 150px;
+    top: -30%;
+  }
+  @media screen and (max-width: 667px) {
+    font-size: 100px;
+    top: -30%;
+  }
+}
+
+//water mark text for video modal
+.watermark-text-modal-video {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 400px;
+  line-height: 383px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.03) !important;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  left: 0;
   top: -30%;
   bottom: 0;
   margin: auto;
@@ -1712,13 +1759,33 @@ export default {
     font-size: 200px;
     top: -60%;
   }
-  @media screen and (min-width: 668px) and (max-width: 959px) {
+  @media screen and (min-width: 600px) and (max-width: 959px) {
     font-size: 150px;
-    top: -70%;
+    top: -84%;
   }
-  @media screen and (max-width: 667px) {
+  @media screen and (max-width: 599px) {
     font-size: 100px;
-    top: -70%;
+    top: -80%;
+  }
+}
+.custom-hr {
+  width: 245.36px;
+  opacity: 0.6;
+  border: 1px solid #000000;
+  transform: rotate(90deg);
+  margin-left: -198px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    margin-left: -158px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    margin-left: -144px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    margin-left: -150px;
+  }
+  @media screen and (max-width: 599px) {
+    margin-left: 16px;
+    transform: rotate(180deg);
   }
 }
 </style>
@@ -1741,23 +1808,6 @@ export default {
 #resumeTheme203 {
   .v-slide-group__prev.v-slide-group__prev--disabled {
     display: none !important;
-  }
-  .select-hour {
-    .v-text-field input {
-      font-family: "Noto Sans" !important;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 25px;
-      color: #888db1 !important;
-      text-align: center !important;
-    }
-    .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-      > .v-input__control
-      > .v-input__slot
-      fieldset {
-      border: 2px solid #e6e8fc !important;
-    }
   }
 
   .card-email {
@@ -1840,6 +1890,8 @@ export default {
     border-radius: 50%;
   }
   .slick-dots li.slick-active button {
+    width: 18px !important;
+    height: 18px !important;
     background: #fcd259 !important;
   }
   // video slick

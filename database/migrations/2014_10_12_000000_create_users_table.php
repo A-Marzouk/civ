@@ -37,6 +37,8 @@ class CreateUsersTable extends Migration
 
             $table->timestamp('last_activity')->default(Carbon::now()->toDateTimeString());
 
+
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

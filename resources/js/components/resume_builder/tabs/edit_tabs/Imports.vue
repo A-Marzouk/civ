@@ -80,7 +80,7 @@
                                     v-model="behanceUsername"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;">behance.com/</span>
+                                    <span class="inner-text" style="margin-top:-3px;">behance.net/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -1508,7 +1508,7 @@
 
             // Import data from Behance:
             importDataFromBehance(){
-                this.importURL = 'https://behance.com/' + this.behanceUsername ;
+                this.importURL = 'https://behance.net/' + this.behanceUsername ;
                 this.importType = 'Behance' ;
                 axios.get('/resume-builder/import/behance/' + this.behanceUsername)
                     .then((response) => {

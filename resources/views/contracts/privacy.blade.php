@@ -2,88 +2,115 @@
 
 @section('content')
 
-    <div class="policy">
-        <b>Civ.ie Privacy Policy</b>
+    <div class="policy mt-4" style="max-width: 95%; overflow: auto; margin: auto;">
+        <b style="font-size: larger;">Civ.ie Privacy Policy</b>
 
-        This Privacy Policy describes how civ.ie (civ.ie) may hold and process your
-        personal data during the course of its activities as a provider of recruitment services. civ.ie is committed to respecting your privacy and has taken steps to be compliant with the General Data Protection Regulation (GDPR), which came into force on 25 May 2018 and is designed to ensure personal data is processed lawfully, fairly, transparently and for specific, explicit and legitimate purposes. We keep our Privacy Policy under review and will advise of updates.
+        <b>Do we use cookies?</b>
+        Cookies are small bits of data which get stored on your computer. This information usually isn’t enough to directly identify you, but it allows us to deliver a page tailored to your particular needs and preferences.
 
-        Collection of data
-        During the course of its work, civ.ie may collect personal data which identifies, or can be use to identify, individuals. This personal data may include information such as name, age, home address, telephone number, email address, organisation name, job title, business address, occupation, examination records, bank and payment details, education and training details, CPD records, health, accomodation, convictions, application forms and assessment records. Personal data may be collected by a variety of means, including face to face, by telephone, mail, internet and e-mail, at events, and via third parties where you have consented to them sharing it. We may obtain and store information from third party sources.
+        <b> We use them to:</b>
+        - Keep you signed in
+        - Remember information you gave us about you, so you don’t have to give it to us every single time you stop by. Like your cookies preferences
+        - Understand how do you use our services, so we can make them better and provide you with personalized content
+        - Uniquely identify your browser and internet device, thanks to which we and our partners can target you with discounts to our service, ads and specialized content
 
-        Use of data
-        Your personal data is held and processed by civ.ie in accordance with legal bases set out in data protection law, specifically contract, legitimate interest, and consent, and as explained in this Privacy Policy.
-
-        If you are, or are in the process of assessment to become a freelancer with civ.ie your personal data may be lawfully processed by civ.ie on the basis of contract, as set out at the commencement of your application to become a freelancer. The personal data you supply in respect of your application for registration with civ.ie and the relevant clients will (as applicable) be used to;
-        *process your enquiry and subsequent application should you decide to proceed to the
-        application stage. Administer your ongoing accreditation and registration as a Freelancer including matters relating to your training needs, performance and history as a Freelancer.
-        *ensure you receive and are informed of the supports, including training and out of hours services which you, as a Freelancer with civ.ie are entitled.
-        *connect you with other Freelancers in the civ.ie community.
-        *communicate any matters which may affect your ability to freelance.
-        Your enquiry, application and subsequent assessment will be held on file as a record of the
-        assessment of your suitability to freelance by civ.ie’s assessment team and subsequently the relevant management. In the interests of transparency and for the specific purpose of making a “match” between client(s) and freelancer, civ.ie reserves the right to share your assessment including the personal data therein with our clients.
-
-        civ.ie’s approval or oversight from approved third parties requires that civ.ie retain associated data that will also be shared with the relevant body that may communicate with you on essential matters relating to your suitability or experience of freelancing with civ.ie. civ.ie has a legitimate interest in keeping its Freelancers informed, in a proportionate way, of our activities at both corporate and local levels. We may therefore lawfully use your personal data to send you periodic notices and information about events and service developments that we believe will be of benefit to you as a Freelancer. Similarly, we also have a legitimate interest in approaching you from time to time to request your involvement in expert surveys and consultations conducted by civ.ie to help us fulfil our stated aim of providing a quality freelancing service / platform. These legitimate interests apply unless or until you either resign as a Freelancer with civ.ie and have completed a service exit interview. Finally, where you have given us express consent, by providing us with your mailing preferences, you may also lawfully receive other communications about our products and services.
-
-        Employees of civ.ie
-        If you are a previous, current or prospective employee of civ.ie we may lawfully process your personal data on the basis of contract as set out in individual terms of employment. We will keep and use this data to manage our relationship with you effectively, lawfully and appropriately, during the recruitment process, while you are working for us, at the time when your employment ends and after you have left. Much of the information we hold will have been provided by you, but some may come from other internal sources, such as your manager, or in some cases external sources, such as referees and accreditation bodies.
-        Where necessary, we may keep information relating to your health, which could include reasons for absence. This information is used in order to comply with our health and safety
-        obligations and to administer and manage civ.ie sick pay, maternity pay, etc.. (where applicable).
-
-        civ.ie will only disclose information about you to third parties if we are required by law to do so by law or in order to comply with our contractual duties to you, for instance we may need to pass on certain information to our external payroll provider and pension provider (see ‘Data sharing’ below) or in the event that you leave our employment to provide an appropropriate reference in the event that you have nominated us as a referee. We may also store information provided by people who express an interest in working for us, whether via a formal application or expressed informally.
-
-        Contractors to civ.ie
-        civ.ie will retain and process personal data relating to contacts at third party companies contracted to support our activities, as made necessary by contracts agreed. This includes, but is not limited to, technical consultants, data processors, training tutors and service providers.
+        You can change your civie cookie settings at any time.
 
 
-        Users of civ.ie website
-        Neither civ.ie nor its website (www.civ.ie) hosts make use of your IP address, or other session information that is automatically captured by the web server, for any purpose other than system administration and to provide statistics that are used to evaluate the use of the Site. The Site makes use of ’cookies’, which are small text files that contain a unique identification number written to a user’s hard disk and read by a server programme. Cookies are used generally to keep a record of your details in order to recognise you the next time you visit. Cookies are used on the Sites to collect information about visits to the Sites. They use Google Analytics, a web analytics service provided by Google Inc. Google Analytics sets cookies in order to evaluate your use of the Sites and compile reports for us on activity on the Sites. We use the information to compile reports and to help us improve the website. The cookies collect information in an anonymous form only.
+        <b>There are different types of cookies:</b>
 
-        Google stores the information collected by the cookie on servers in the United States. Google
-        may also transfer this information to third parties where required to do so by law, or where such third parties process the information on Google’s  behalf. Google will not associate your
-        IP address with any other data held by Google. By using the Sites, you consent to the processing of data about you by Google in the manner and for the purposes set out above. You can opt-out of Google Analytics for Display Advertising and customize Google Display Network ads using the Ad Settings tool. As an added privacy measure, you can use Google Analytics opt-out browser add-on. Use of the Site does not require you to disclose personal information unless you choose to register an enquiry with civ.ie via the Site.
+        <b>Necessary cookies</b>
+        Without these cookies our website wouldn’t function and they cannot be switched off. We need them to provide services that you’ve asked for.
+        Want an example? We use these cookies when you sign in to civie. We also use them to remember things you’ve already done, like text you’ve entered into a registration form so it’ll be there when you go back to the page in the same session.
+        We are using our own cookies in addition to third parties such as Linkedin / Paypal
 
-        Data sharing
-        The owner of personal data held by civ.ie will at all times be civ.ie. We will never sell your data to third parties and, as data controller; civ.ie has taken steps to ensure that personal data remains in a secure environment. We will only share it with third parties in the case of trusted ‘data processors’, ‘joint data controllers’ or ‘data controllers in common’ with whom we have contracts in place to ensure onward data protection, or where we are required by law to do so.
+        <b>Performance cookies</b>
+        Thanks to these cookies, we can count visits and traffic sources to our pages. This allows us to measure and improve the performance of our website and provide you with content you’ll find interesting.
+        Performance cookies let us see which pages are the most and least popular, and how you and other visitors move around the site.
 
-        Data processors used by civ.ie
-        Personal data held by civ.ie may be processed by trusted third party data processors where we have an appropriate contract in place to ensure onward data protection in line with data protection law. Where data processors are headquartered outside the EU, additional protections have been ensured.
+        <b>Functional cookies</b>
+        These cookies allow us to provide you with better functionality and personalization. They may be set up by us or by third party providers whose services we’ve added to our pages.
+        The purpose of these cookies is to give you a more personalized experience, based on your previous visits and choices. If you don’t wish to allow these cookies, these services may not work.
 
-        civ.ie’s main data processors are listed below.
-        Google is contracted by the EI to provide a database platform – STREAK – to securely
-        store and manage data relating to enquiries, customers and contacts.
-        Google Analytics - Google is certified under the EU-US Privacy Shield.
-        Microsoft Corporation provides email services to the EI as well as providing the full suite of Office 365 programs and functions including SharePoint for encrypted file transfer.
-        Microsoft is certified under the EU-US Privacy Shield.
-        Financial systems and advisers for the payment of staff salaries and other payments, for management and payment of expenses and purchase invoices.
+        <b>Marketing cookies</b>
+        We use these cookies to uniquely identify your browser and internet device. Thanks to them, we and our partners can build a profile of your interests, and target you with discounts to our service and specialized content.
+        On the other hand, these cookies allow some companies to target you with advertising on other sites. This is to provide you with advertising that you might find interesting, rather than with a series of irrelevant ads you don’t care about.
+        Specifically, we are using Google Adwords, Facebook Ads, LinkedIn Ads.
 
-        civ.ie as a joint data controller or data controller in common
-        In a small number of cases civ.ie is a joint data controller or data controller in common with a partner organisation:
-        Working towards and achieving a match between a civ.ie Freelancer and a client in need of recruitment requires levels of disclosure of personal information to the Client. This is under, and protected by, specific protocols established by and followed by civ.ie.
+        After 12 months we’ll ask for your consent again or you can delete cookies anytime in your browser. Feel free to contact us if you want to know more.
 
-
-        Data Retention
-        Data is retained by civ.ie only for as long as it has legitimate reason to do so. Where your information is no longer required, it is either rendered anonymous for retention or disposed of in a secure manner.
-        civ.ie Freelancer data is retained for as long as availability to freelance is ‘current’ (until we are informed that a freelancer wishes to resign or they are retired by civ.ie and/or the relevant Recruitment manager), and for 6 years plus the current year. However, Freelancer records are retained beyond this to enable us to respond to queries relating to the retrospective care of / service to the client.
-        Customer data is retained for 6 years plus the current year after purchase, in line with Revenue requirements.
-        Data relating to past, current and prospective contributors to civ.ie’s work are retained for various durations as necessary to fulfil the specific legitimate interests.
-        Employee data will be retained for as long as the employment contract is in place or 6 years beyond termination of employment, in line with time limits in law. Details of unsuccessful job applicants will be retained for 1 year after the start date of the unsuccessful applicant, in line with legal requirements.
-        Data relating to contractors to civ.ie will be retained for the duration of the contracted work and 6 years plus the current year beyond, in line with Revenue requirements.
-        Enquiries and enquirer contacts that have no other relationship with civ.ie will be retained on our database only if they have given consent within 24 months of being asked, otherwise they will be deleted. Where a contact has unsubscribed, a simple record may be retained for the purposes of ensuring suppression of future email communications.
-
-        civ.ie will respond when requested to any data access request in line with data protection law. We will also, if asked, respect the right of an individual to ask to be forgotten entirely in so far as it does not undermine legal requirements.
-
-        If you believe that any information we are holding on you is incorrect or incomplete, please let us know as soon as possible and we will correct any information found to be incorrect.
+        <b>Controller’s Information concerning the personal data processing</b>
+        in accordance with the regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 , the General Data Protection Regulation on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation) (hereinafter the GDPR) and the Act No. 18/2018 Coll. on the protection of personal data and on the alteration and amendment of some acts as amended
 
 
-        Contact details
-        If you have any comments, questions or concerns about how civ.ie handles personal data, or in relation to your personal data held by civ.ie, please contact:
-        info@civ.ie
+        <b>1. Controller’s Identification data</b>
+        Your personal data are being processed by the Controller:
+        civie s.r.o., having its registered address at  2 Dublin Landings, North Dock, Dublin (hereinafter referred to as the “Controller”). The email of the Controller: hi@civie.ie
 
-        To contact the Data Protection Commission:
-        Office of the Data Protection Commission,
-        Co. Laois, R32 AP23, Ireland. Phone +353 (0761) 104 800 | LoCall 1890
-        25 22 31 | Fax +353 57 868 4757 | email info@dataprotection.ie.
+        <b>2. Purpose</b>
+            1- Your personal data is processed within the “civie” personal data filing system through an online platform operated on the domain civie.ie.
+            2- From the personal data provided by you, our system will create a CV Website with the graphic design of your choice.
+            3- We process your personal data for the purposes of carrying out the agreement existing between us based on your decision to engage our services (legal basis: the performance of a contract in accordance with Article 6 (1) (b) of the GDPR).
+            4- We also process your personal data for the purposes of understanding how our services are used and how we can improve them (by, in particular, analysing personal data we collected, making statistics) (legal basis: legitimate interest (in evaluating, developing and improving our services, products and systems) in accordance with Article 6 (1) (f) of GDPR).
+            5- On the basis of your consent granted through ticking the relevant tick box, you agree that your personal data may be used for the purposes of direct marketing and sending newsletters containing information of special offers or new products (legal basis: consent in accordance with Article 6 (1) (a) of the GDPR). You always have the right to withdraw the consent provided for such purpose by sending an email to: hi@civie.ie.
+            6- On the basis of your consent granted through ticking the relevant tick box, you agree that your personal data may be provided to: (i) partner employers and/or (ii) job recruitment agencies, with which the Controller has concluded an agreement, for the purposes of approaching you with job offers (legal basis: consent in accordance with Article 6 (1) (a) of the GDPR). You always have the right to withdraw the consent provided for such purpose by sending an email to: hi@civie.ie.
+
+        <b>3.List of your personal data</b>
+        The Controller processes in particular the following categories of your personal data:
+        Title, name, surname, address of permanent residence, delivery address, email address, phone number, date of birth, gender, age, marital status, information on the education, achieved degrees, courses attended, lectures, certificates or licenses, information on the membership in associations or organisations, language skills, information on former professional experience or practice, hobbies, picture, payment details, IP address, location and other data provided by you voluntarily when you use our services (i.e., when creating your CV website).
+        Testimonials: We display personal testimonials of customers on our website. With your consent, we may post your testimonial along with your name. If you wish to update or delete your testimonial, you can contact us hi@civie.ie.
+        Personal data provided by you are only visible to you; the Controller doesn't publish your personal data. Upon your own discretion, you can decide to publish your personal data.
+
+       <b>4. Storage period</b>
+        The Controller stores your personal data for 5 years from your last log in.
+
+        <b>5- Instruction regarding the voluntariness of provision of your personal data</b>
+            1- You provide your personal data voluntarily and it is only up to you to decide, which personal data you will disclose. The CV will only contain the information provided by you. You are entitled to change or delete your personal data entered into the online platform anytime.
+            2- Certain functions of the portal are only accessible to users logged-in through their social network account or email.
+
+       <b>6. Recipients</b>
+        The Controller uses cookies and other party applications which are getting basic data (email, IP, number of visits…) and anonymised data about users based on user’s consent. Examples: Google Analytics, Paypal. Full list of other parties (recipients) cookies and applications of which we use is listed under this Privacy policy.
+        The Controller may provide your resume on the basis of your consent to the following categories of recipients: (i) partner employers and/or (ii) job recruitment agencies, with which the Controller has concluded an agreement, for the purposes of approaching you with job offers. The Controller has taken the appropriate contractual and organisational measures to ensure that such recipients processes your personal data only in order to approach you with job offers you might be interested in. You always have the right to withdraw this consent by sending an email to: hi@civie.ie.
+
+       <b> 7. Disclosure of the Personal Data</b>
+        The Controller does not publish your personal data.
+
+       <b>8. Third Countries</b>
+        The Controller may transfer your personal data to third countries, i.e., countries that are not member states of the European Union or a party to the Agreement on the European Economic Area where we engage with external service providers. In such case, we transfer your personal data only to a country that are considered to have an adequate level of protection in accordance with the EU Commission's decision or there are appropriate safeguards in place to protect your personal data, such as standard contract clauses, binding internal company rules or US Privacy Shield. Regardless of the country in which your personal data is processed, the Controller takes reasonable technical, legal and organisational measures to ensure that the level of protection is the same as in the European Union and the European Economic Area. If you wish to know more about international transfers of your personal data and the appropriate safeguards that we have in place to govern the transfer of your personal data, you may contact us via hi@civie.ie.
+
+       <b>9. Rights</b>
+            1- We hereby notify you that pursuant to the Act, you are have the following rights:
+                1- You have a right of access to your personal data we process. This means you can contact us and request from us a confirmation whether or not your personal data are being processed and if so, you have the right to request access to your data, which we will provide to you in the form of a so-called "registry" (stating, in particular, purposes, categories of personal data, categories of recipients of personal data, storage periods or criteria for determining storage periods).
+                2- You have the right to have inaccurate personal data we have stored about you rectified
+                3- You may also ask us to erase your personal data from our systems. We will comply with such request unless we have a legitimate ground to not delete your personal data.
+                4- You have the right to object to processing that is based on a legitimate interest of ours if you have personal reasons that relate to the situation. We may however continue to process your information, despite your objection to the processing, if we have compelling legitimate reasons for the processing that outweigh your privacy interest. Where your personal data are processed for direct marketing purposes, you have the right to object at any time to processing of your personal data for such marketing, which includes profiling to the extent that it is related to such direct marketing.
+                5- You may request us to restrict certain processing of your personal data.
+                6- You have the right to receive your personal data from us in a structured, commonly used and machine-readable format in order to transmit the personal data to another controller.
+            2- As the data subject, you are also entitled to lodge a complaint with the Office for Personal Data Protection of Ireland, should you have a suspicion that your personal data are processed unlawfully.
+            3- If you do not possess full legal capacity, your rights can be exercised by your statutory representative.
+
+        <b>10.Form of the Assertion of your Rights</b>
+            1- You can exercise your rights:
+                1- in writing, whereas it must be clear from your application that you are asserting your claim; the application filed via email or fax must be delivered to the Controller in writing within three (3) days following its dispatch at the latest;
+                2- in person in a verbal form recorded in minutes, whereby it must be clear who asserts the claim, what is the content of the claim and when and by whom the minutes have been executed; the minutes must contain the signature of the person, who have executed the minutes as well as you’re your signature; the Controller is obliged to provide you with a copy of the minutes.
+
+        <b>11. Children’s Privacy</b>
+        Protecting the privacy of young children is especially important. For that reason, civie does not knowingly collect or solicit personal information from anyone under the age of 16. In the event that we learn that we have collected personal information from a child under age 16, we will delete that information as quickly as possible. Accordingly, children under the age of 16 may only use the service with the permission and supervision of their parents.
+
+        <b>12. How we protect your information?</b>
+        civie’s top priority is protecting your privacy and data, but we cannot ensure or warrant the security of any information you transmit to civie or guarantee that your information on the civie may not be accessed, disclosed, altered or destroyed by breach of any of our industry standard physical, technical or managerial safeguards. When you enter your data we encrypt that information using secure socket layer technology (SSL). No method of transmission over the Internet or method of electronic storage, is 100% secure, however. Therefore, we cannot guarantee its absolute security. We use a credit card processing company to bill you if you purchase services. This company does not retain, share, store or use personally identifiable information for any other purposes. If you have any questions feel free to contact us at hi@civ.ie.
+
+       <b>13. Data Protection Officer</b>
+        civie has a "Data Protection Officer" who is responsible for matter relating to privacy and data protection. This Data Protection Officer can be reached at following address:
+        2 Dublin Landings, North Dock, Dublin  hi@civ.ie
+
+        <b>14. Declaration of the User</b>
+        By using civie.ie I declare that I have been informed of the processing of my personal data and my rights and I agree to receive newsletters to my email address.
+
+        All changes to this Privacy Policy are effective when they are posted on this page. When we change the policy, we will let you know via email and/or a notice on our Site.
+
+        <div class="container"><hr></div>
+        This policy was last modified on 1st September 2020.
 
     </div>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="profile" v-if="personalInfo" data-app>
 
-        <my-upload @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></my-upload>
+        <photoUploader @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></photoUploader>
 
         <div class="profile-fields-wrapper">
             <div class="profile-fields">
@@ -87,12 +87,12 @@
 </template>
 
 <script>
-    import myUpload from 'vue-image-crop-upload';
+    import photoUploader from './includes/PhotoUploader';
 
     export default {
         name: "Personal",
         components: {
-            'my-upload': myUpload
+            photoUploader
         },
         data(vm) {
             return {
@@ -124,6 +124,7 @@
         methods: {
             // Image cropping
             cropSuccess(imgDataUrl) {
+                return;
                 this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
                 this.applyEdit();
             },

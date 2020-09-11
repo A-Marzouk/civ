@@ -78,6 +78,26 @@ class UsersController extends Controller
         }
     }
 
+    public function forceDeleteUser($id){
+        $user = User::withTrashed()->where([
+            'id' => $id,
+        ])->first();
+
+        if($user->forceDelete()){
+            return ['data' => ['id' => $id] ];
+        }
+        else{
+            return 'fail';
+        }
+    }
+
+
+    public function restoreUser(Request $request){
+      return User::withTrashed()
+            ->where('id', $request->id)
+            ->restore();
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
