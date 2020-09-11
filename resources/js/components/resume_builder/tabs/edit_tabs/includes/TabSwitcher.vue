@@ -1,6 +1,6 @@
 <template>
   <v-app style="max-height: 50px;">
-    <div class="switch custom-switch mr-xl-6 mr-lg-6 mr-md-6 mr-sm-6 mr-6" v-if="userTabs">
+    <div class="switch custom-switch mr-xl-5 mr-lg-5 mr-md-5 mr-sm-5 mr-5" v-if="userTabs">
       <div class="switch-text">ON/OFF</div>
       <template v-for="tab in userTabs">
         <v-switch
@@ -82,11 +82,6 @@ export default {
   .v-input--switch__thumb {
     height: 16px;
     width: 16px;
-  }
-  .v-application--is-ltr.v-input--switch.v-input--is-dirty
-    .v-input--selection-controls__ripple,
-  .v-application--is-ltr.v-input--switch.v-input--is-dirty.v-input--switch__thumb {
-    transform: translate(28px) !important;
   }
 }
 </style>
