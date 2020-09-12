@@ -3,7 +3,17 @@
     <div class="header-panel">
       <!-- profile pic -->
       <div class="profile-picture">
-        <img :src="currentUser.personal_info.profile_pic" alt />
+        <img
+          class="profile-img"
+          :src="currentUser.personal_info.profile_pic"
+          alt
+        />
+        <a href="/pdf-theme-preview-by-code-8" class="pdf-btn" target="_blank">
+          <svg-vue
+            class="pdf-icon"
+            :icon="'themes.pdf-button-theme8'"
+          ></svg-vue>
+        </a>
       </div>
 
       <!-- info container -->
@@ -12,13 +22,6 @@
           <!-- user name -->
           <div class="user-name">
             {{ currentUser.personal_info.full_name }}
-            <a
-              href="/pdf-theme-preview-by-code-8"
-              class="pdf-btn hide-pdf"
-              target="_blank"
-            >
-              <svg-vue :icon="'themes.pdf-button-theme8'"></svg-vue>
-            </a>
           </div>
 
           <!-- addition buttons -->
@@ -27,7 +30,7 @@
               <div class="text hideMeOnPhone pr-2">Interview:</div>
 
               <div class="video-btn">
-                <a href="javascript:void(0)">
+                <a href="javascript:void(0)" @click.prevent="openVideoModal">
                   <img
                     src="/images/resume_themes/theme8/video-player.svg"
                     alt="video icon"
@@ -36,7 +39,7 @@
                 </a>
               </div>
               <div class="audio-btn">
-                <a href="javascript:void(0)" @click.prevent="toogleAudio">
+                <a href="javascript:void(0)" @click.prevent="openAudioModal">
                   <img
                     src="/images/resume_themes/theme8/headphones.svg"
                     alt="audio icon"
@@ -193,7 +196,9 @@
               <!-- buttom -->
               <div class="prof-right">
                 <div class="hire-me-btn d-flex justify-content-center">
-                  <a href="javascript:void(0)">Hire Me</a>
+                  <a href="javascript:void(0)" @click.prevent="openHireModal"
+                    >Hire Me</a
+                  >
                 </div>
               </div>
             </div>
@@ -206,7 +211,7 @@
     <div class="show__sm-screen">
       <div class="interviews mt-8">
         <div class="video-btn">
-          <a href="javascript:void(0)">
+          <a href="javascript:void(0)" @click.prevent="openVideoModal">
             <img
               src="/images/resume_themes/theme8/video-player.svg"
               alt="video icon"
@@ -215,7 +220,7 @@
           </a>
         </div>
         <div class="audio-btn">
-          <a href="javascript:void(0)" @click.prevent="toogleAudio">
+          <a href="javascript:void(0)" @click.prevent="openAudioModal">
             <img
               src="/images/resume_themes/theme8/headphones.svg"
               alt="audio icon"
@@ -309,7 +314,9 @@
       <!-- buttom -->
       <div class="prof-right">
         <div class="hire-me-btn d-flex justify-content-center">
-          <a href="javascript:void(0)">Hire Me</a>
+          <a href="javascript:void(0)" @click.prevent="openHireModal"
+            >Hire Me</a
+          >
         </div>
       </div>
     </div>
@@ -331,10 +338,34 @@
     // profile picture
     .profile-picture {
       max-width: 200px;
-
+      max-height: 200px;
+      position: relative;
+      @media screen and (max-width: 475px) {
+        max-width: 100px;
+        max-height: 100px;
+      }
       img {
         width: 100%;
         border-radius: 50%;
+      }
+      .pdf-btn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 60px;
+        height: 60px;
+        @media screen and (max-width: 1024px) {
+          bottom: 75px;
+          right: -10px;
+        }
+        @media screen and (max-width: 475px) {
+          bottom: -10px;
+          right: -15px;
+        }
+        .pdf-icon {
+          width: 60px;
+          height: 60px;
+        }
       }
     }
 
@@ -354,13 +385,6 @@
       opacity: 1;
       padding-bottom: 13px;
       display: flex;
-
-      .pdf-btn {
-        width: 60px;
-        height: 60px;
-        margin-top: -6px;
-        margin-left: 10px;
-      }
     }
 
     .job-title {
@@ -368,12 +392,19 @@
       font-size: 21px;
       line-height: 27px;
       color: #ffffff;
+      @media screen and (max-width: 500px) {
+        font-size: 16px;
+        line-height: 25px;
+      }
     }
 
     .social {
       display: flex;
       margin-top: 54px;
 
+      @media (max-width: 500px) {
+        margin-top: 20px;
+      }
       .message-btn {
         margin-right: 30px;
         margin-bottom: 20px;
@@ -396,6 +427,17 @@
             width: 22px;
             height: 17px;
             margin-right: 10px;
+            @media screen and (max-width: 500px) {
+              width: 15px;
+              height: 15px;
+              margin-right: 5px;
+            }
+          }
+          @media screen and (max-width: 500px) {
+            width: 110px;
+            height: 35px;
+            font-size: 14px;
+            line-height: 16px;
           }
         }
       }
@@ -410,8 +452,14 @@
           img {
             width: 30px;
             height: auto;
+            @media screen and (max-width: 500px) {
+              width: 24px;
+            }
           }
           margin-right: 30px;
+          @media screen and (max-width: 500px) {
+            margin-right: 20px;
+          }
         }
         a:last-child {
           margin-right: 0;
@@ -586,6 +634,8 @@ hide__sm-screen {
 
   .show__sm-screen {
     display: block;
+    position: relative;
+    z-index: 1;
   }
 
   .grey-box {
@@ -642,10 +692,13 @@ hide__sm-screen {
     padding: 20px;
 
     .header-panel {
-      grid-template-columns: 30% 70%;
+      grid-template-columns: 25% 70%;
+      grid-gap: 0px;
 
       .user-name {
-        font-size: 20px !important;
+        font-size: 24px !important;
+        line-height: 30px;
+        padding-bottom: 5px;
       }
     }
   }
@@ -658,8 +711,8 @@ export default {
     "currentUser",
     "chatToggle",
     "hireToggle",
-    "audioModal",
-    "videoModal",
+    "audioToggle",
+    "videoToggle",
   ],
   data() {
     return {
@@ -680,10 +733,10 @@ export default {
       this.$emit("updateHireToggle", this.currentHire);
     },
     openAudioModal() {
-      this.$emit("updateAudioToggle", this.currentChat);
+      this.$emit("updateAudioToggle", this.currentAudio);
     },
     openVideoModal() {
-      this.$emit("updateVideoToggle", this.currentChat);
+      this.$emit("updateVideoToggle", this.currentVideo);
     },
     availableNext() {
       if (this.available == 2) {

@@ -1,53 +1,27 @@
 <template>
   <div class="chat" v-show="chatToggle">
     <div class="chat__content">
-      <div class="title">Message</div>
-      <div class="input">
-        <div class="label">Name</div>
-        <input class="input-field" placeholder="Amber Sal" />
-      </div>
-      <div class="input">
-        <div class="label">Email</div>
-        <input class="input-field" placeholder="Email" />
-      </div>
-      <div class="input">
-        <div class="label">Message</div>
-        <textarea placeholder="Message" class="message"></textarea>
-      </div>
-
-      <div class="button-section">
-        <div class="left">
-          <a href="#" class="send-button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              aria-hidden="true"
-              focusable="false"
-              width=".9em"
-              height=".6em"
-              style="
-                -ms-transform: rotate(360deg);
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-                margin-right: 5px;
-              "
-              preserveAspectRatio="xMidYMid meet"
-              viewBox="0 0 1792 1408"
-            >
-              <path
-                d="M1792 454v794q0 66-47 113t-113 47H160q-66 0-113-47T0 1248V454q44 49 101 87q362 246 497 345q57 42 92.5 65.5t94.5 48t110 24.5h2q51 0 110-24.5t94.5-48T1194 886q170-123 498-345q57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325q-10 7-42.5 30.5t-54 38t-52 32.5t-57.5 27t-50 9h-2q-23 0-50-9t-57.5-27t-52-32.5t-54-38T639 759q-91-64-262-182.5T172 434q-62-42-117-115.5T0 182q0-78 41.5-130T160 0h1472q65 0 112.5 47t47.5 113z"
-                fill="#fff"
-              />
-            </svg>
-
-            Send message
-          </a>
+      <div class="form">
+        <div class="input">
+          <input class="input-field" placeholder="Name" />
         </div>
-        <div class="right">
-          <a href="#" class="close-button" @click.prevent="closeChat()">
-            Cancel
-          </a>
+        <div class="input">
+          <input class="input-field" placeholder="Email" />
         </div>
+        <div class="input">
+          <textarea placeholder="Message" class="message"></textarea>
+        </div>
+
+        <div class="button-section">
+          <div class="left">
+            <a href="#" class="send-button"> Send </a>
+          </div>
+        </div>
+      </div>
+      <div class="chat__close">
+        <a href="#" class="chat__close_button" @click.prevent="closeChat()">
+          <img src="/images/resume_themes/theme8/close.svg" alt="close" />
+        </a>
       </div>
     </div>
   </div>
@@ -66,96 +40,142 @@ export default {
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 9999;
+
   &__content {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
+    width: 600px;
     height: auto;
-    background: #f1f4ff;
-    border-radius: 10px;
-    padding: 2rem;
+    background: #333232;
+    border-radius: 30px;
+    padding: 1.5rem 1rem;
 
     @media screen and (max-width: 475px) {
       width: 95%;
       height: auto;
-      background: #f1f4ff;
-      border-radius: 10px;
+      background: #333232;
+      border-radius: 30px;
     }
-    .title {
-      text-align: center;
+    .chat__close {
+      width: auto;
+      float: left;
+      &_button {
+        float: right;
+        border-radius: 50%;
+        border: 2px solid #005bd1;
+        padding: 7px;
 
-      font-weight: bold;
-      font-size: 29px;
-      color: #172c7a;
-    }
-    .input {
-      width: 100%;
-      .label {
-        font-family: "Muli-Regular", sans-serif;
-        color: #172c7a;
-        font-size: 14px;
-        padding-left: 15px;
-      }
-      .input-field {
-        border-radius: 5px;
-        background-color: #fff;
-        padding: 10px;
-        width: 100%;
-      }
-      .message {
-        width: 100%;
-        height: 150px;
-        background-color: #ffff;
-        border-radius: 5px;
-        padding: 20px;
+        img {
+          width: 14px;
+          height: 14px;
+        }
       }
     }
-    .button-section {
-      display: flex;
-      width: 100%;
-      justify-content: space-around;
-      margin-top: 1rem;
-      .left {
-        width: 45%;
+    .form {
+      width: 94%;
+      float: left;
+      margin-top: 2rem;
+      padding: 1rem 1.5rem 1rem 3.5rem;
+      @media screen and (max-width: 475px) {
+        width: 90%;
         float: left;
-        text-align: center;
-        .send-button {
-          height: 60px;
-          justify-content: center;
-          display: flex;
-          background-color: #3d5ed4;
-          border-radius: 5px;
-          text-align: center;
-          align-items: center;
-          color: #fff;
-          font-size: 16px;
+        margin-top: 2rem;
+        padding: 1rem 0rem 1rem 2rem;
+      }
+      .input {
+        width: 100%;
+        .label {
+          font-family: "Muli-Regular", sans-serif;
+          color: #172c7a;
+          font-size: 14px;
+          padding-left: 15px;
         }
-        a:hover {
+        .input-field {
+          font-family: "Open Sans";
+          font-style: normal;
+          font-weight: normal;
+          font-size: 20px;
+          line-height: 30px;
+          border: none;
+          border-bottom: 2px solid #fff;
           color: #fff;
-          text-decoration: none;
+          width: 100%;
+          padding: 10px;
+        }
+        .input-field:focus {
+          border: none;
+          border-bottom: 2px solid #005bd1;
+          color: #005bd1;
+          width: 100%;
+          outline: none;
+        }
+        .input-field::-webkit-input-placeholder {
+          color: #fff;
+        }
+        .input-field:focus::-webkit-input-placeholder {
+          color: #005bd1;
+        }
+
+        .message::-webkit-input-placeholder {
+          color: #fff;
+        }
+
+        .message:focus::-webkit-input-placeholder {
+          color: #005bd1;
+        }
+        .message {
+          font-family: "Open Sans";
+          font-style: normal;
+          font-weight: normal;
+          font-size: 20px;
+          line-height: 30px;
+          width: 100%;
+          height: 80px;
+          border: none;
+          border-bottom: 2px solid #fff;
+          color: #fff;
+          padding: 10px;
+        }
+        .message:focus {
+          border: none;
+          border-bottom: 2px solid #005bd1;
+          color: #005bd1;
+          width: 100%;
+          outline: none;
         }
       }
-      .right {
-        width: 45%;
-        float: left;
-        text-align: center;
-        .close-button {
-          height: 60px;
+      .button-section {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 3.5rem;
+        margin-bottom: 1rem;
+        .left {
+          width: 45%;
+          float: left;
           text-align: center;
-          align-items: center;
-          justify-content: center;
-          display: flex;
-          background-color: #ffff;
-          border: 1px solid #3d5ed4;
-          color: #3d5ed4;
-          border-radius: 5px;
-          font-size: 16px;
-        }
-        a:hover {
-          color: #3d5ed4;
-          text-decoration: none;
+          .send-button {
+            font-family: "Open Sans";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 24px;
+            line-height: 33px;
+            color: #ffffff;
+            height: 60px;
+            justify-content: center;
+            display: flex;
+            background: #005bd1;
+            box-shadow: 0px 0px 40px rgba(0, 91, 209, 0.4);
+            border-radius: 100px;
+            text-align: center;
+            align-items: center;
+          }
+          a:hover {
+            color: #fff;
+            text-decoration: none;
+          }
         }
       }
     }
