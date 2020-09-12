@@ -1,7 +1,7 @@
 <template>
   <v-app style="max-height: 50px;">
     <div class="switch custom-switch mr-xl-5 mr-lg-5 mr-md-5 mr-sm-5 mr-5" v-if="userTabs">
-      <div class="switch-text">ON/OFF</div>
+      <div class="switch-text">OFF/ON</div>
       <template v-for="tab in userTabs">
         <v-switch
           :ripple="false"
