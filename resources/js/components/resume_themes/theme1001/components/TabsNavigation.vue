@@ -146,29 +146,29 @@ export default {
   props: {
     activeTab: {
       type: String,
-      required: true
+      required: true,
     },
     currentUser: {
       type: undefined,
-      required: true
+      required: true,
     },
-    currentTab:{
-      type:undefined
-    }
+    currentTab: {
+      type: undefined,
+    },
   },
 
   components: { SocialLinks },
 
   data: () => {
     return {
-      isOpen: false
+      isOpen: false,
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
+    currentTab: function (val) {
       this.activeTab = val;
-    }
+    },
   },
 };
 </script>
@@ -320,8 +320,7 @@ export default {
 @media (min-width: $lg) {
   .tabs-navigation {
     display: flex;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 25px;
   }
 
   .navigation {
@@ -353,8 +352,7 @@ export default {
 
 @media (min-width: 1600px) {
   .tabs-navigation {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-right: 25px;
   }
 
   .tabs-navigation-inner {

@@ -1,17 +1,32 @@
 <template>
   <v-app class="theme-container" v-if="currentUser">
     <vue-particles></vue-particles>
-    <HeaderTheme8 :currentUser="currentUser" @toogleAudioPopup="toogleAudioPopup" :isVisibleAudioPopup="isVisibleAudioPopup"></HeaderTheme8>
-
+    <HeaderTheme8
+      :currentUser="currentUser"
+      :chatToggle="chatToggle"
+      :hireToggle="hireToggle"
+      :audioToggle="audioToggle"
+      :videoToggle="videoToggle"
+      @updateChatToggle="updateChat"
+      @updateHireToggle="updateHire"
+      @updateAudioToggle="updateAudio"
+      @updateVideoToggle="updateVideo"
+    ></HeaderTheme8>
+    <ChatModal :chatToggle="chatToggle" :closeChat="closeChat" />
+    <HireModal :hireToggle="hireToggle" :closeHire="closeHire" />
+    <AudioModal
+      :audioToggle="audioToggle"
+      :closeAudio="closeAudio"
+      :media="filterAudio(currentUser.media)"
+    />
+    <VideoModal
+      :videoToggle="videoToggle"
+      :closeVideo="closeVideo"
+      :media="filterVideo(currentUser.media)"
+    />
     <div class="tabs-bar-wrapper">
-      <v-tabs
-        centered
-        show-arrows
-        grow
-      >
-        <v-tabs-slider
-          height="4px"
-        ></v-tabs-slider>
+      <v-tabs centered show-arrows grow>
+        <v-tabs-slider height="4px"></v-tabs-slider>
 
         <v-tab
           class="v-tab"
@@ -77,33 +92,44 @@
         >
           <div
             class="skill-item skills d-flex align-items-end"
-            v-for="skill in currentUser.skills"
-            :key="skill.id + '_skill'"
+            v-for="(skill, i) in currentUser.skills"
+            :key="i + '_skill'"
           >
             <div class="skill">
               <div class="skill-title">{{ skill.title }}</div>
               <!-- bar -->
-              <div class="skill-bar" :data-bar="skill.percentage">
-                <span :style="getRandomColor()"></span>
+              <div class="skill-bar">
+                <div
+                  class="skill-bar-color"
+                  :style="
+                    'background:' +
+                    Randomcolors[i].color +
+                    ';width:' +
+                    skill.percentage +
+                    '%;'
+                  "
+                ></div>
               </div>
             </div>
 
             <div
-              style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
+              style="font-size: 32px; font-weight: bold; margin-left: 75px"
               class="percentage"
             >
               {{ skill.percentage }}%
             </div>
           </div>
         </div>
-        <div
+        <!-- <div
           class="about"
           v-show="activeTab === 'about'"
           :class="{ active: activeTab === 'about' }"
         >
           <div class="about-me">
             <div class="about-title">About me</div>
-            <vue-markdown class="about-text">{{ currentUser.personal_info.about }}</vue-markdown>
+            <vue-markdown class="about-text">{{
+              currentUser.personal_info.about
+            }}</vue-markdown>
           </div>
           <div class="contact">
             <div class="contact-title">Contact</div>
@@ -111,20 +137,25 @@
               Email: {{ currentUser.personal_info.email }}
             </div>
           </div>
-        </div>
+        </div> -->
+        <About
+          v-show="activeTab === 'about'"
+          :class="{ active: activeTab === 'about' }"
+          :currentUser="currentUser"
+        ></About>
         <Hobbies
           v-show="activeTab === 'hobbies'"
-		      :class="{ active: activeTab === 'hobbies' }"
+          :class="{ active: activeTab === 'hobbies' }"
           :currentUser="currentUser"
         ></Hobbies>
         <References
           v-show="activeTab === 'references'"
-		      :class="{ active: activeTab === 'references' }"
+          :class="{ active: activeTab === 'references' }"
           :currentUser="currentUser"
         ></References>
         <Achievements
           v-show="activeTab === 'achievements'"
-		      :class="{ active: activeTab === 'achievements' }"
+          :class="{ active: activeTab === 'achievements' }"
           :currentUser="currentUser"
         ></Achievements>
       </div>
@@ -134,65 +165,100 @@
 
 <script>
 import Slick from "vue-slick";
-import VueMarkdown from 'vue-markdown';
-import Audio from './media/Audio'
-
-import HeaderTheme8 from './header';
-import Portfolio from './portfolio';
-import Hobbies from './hobbies';
-import References from './references';
-import Achievements from './achievements';
+import VueMarkdown from "vue-markdown";
+import HeaderTheme8 from "./header";
+import Portfolio from "./portfolio";
+import About from "./about";
+import Hobbies from "./hobbies";
+import References from "./references";
+import Achievements from "./achievements";
+import ChatModal from "./message/ChatModal";
+import HireModal from "./hireme/HireModal";
+import AudioModal from "./media/AudioModal";
+import VideoModal from "./media/VideoModal";
 
 export default {
   name: "theme8",
   props: ["user", "is_preview", "currentTab"],
   components: {
     Slick,
-    'vue-markdown': VueMarkdown,
+    "vue-markdown": VueMarkdown,
     HeaderTheme8,
     Portfolio,
+    About,
     Hobbies,
     References,
     Achievements,
+    ChatModal,
+    HireModal,
+    AudioModal,
+    VideoModal,
   },
   data() {
     return {
       tabs: [
         {
           text: "Portfolio",
-          value: "portfolio"
+          value: "portfolio",
         },
         {
           text: "Work",
-          value: "work-experience"
+          value: "work-experience",
         },
         {
           text: "Education",
-          value: "education"
+          value: "education",
         },
         {
           text: "Skills",
-          value: "skills"
+          value: "skills",
         },
         {
           text: "Hobbies",
-          value: "hobbies"
+          value: "hobbies",
         },
         {
           text: "References",
-          value: "references"
+          value: "references",
         },
         {
           text: "Achievements",
-          value: "achievements"
+          value: "achievements",
         },
         {
           text: "About",
-          value: "about"
+          value: "about",
         },
       ],
-      isVisibleAudioPopup: false,
+      Randomcolors: [
+        { color: "#217BFF" },
+        { color: "#EE588A" },
+        { color: "#DD24BC" },
+        { color: "#F57C00" },
+        { color: "#00897B" },
+        { color: "#00ACC1" },
+        { color: "#E64A19" },
+        { color: "#217BFF" },
+        { color: "#EE588A" },
+        { color: "#DD24BC" },
+        { color: "#F57C00" },
+        { color: "#00897B" },
+        { color: "#00ACC1" },
+        { color: "#E64A19" },
+        { color: "#217BFF" },
+        { color: "#EE588A" },
+        { color: "#DD24BC" },
+        { color: "#F57C00" },
+        { color: "#00897B" },
+        { color: "#00ACC1" },
+        { color: "#E64A19" },
+      ],
       activeTab: "portfolio",
+      chatToggle: false,
+      hireToggle: false,
+      audioToggle: false,
+      videoToggle: false,
+
       slickOptions: {
         dots: false,
         arrows: false,
@@ -205,17 +271,50 @@ export default {
               arrows: false,
 
               centerMode: true,
-              slidesToShow: 1
-            }
-          }
-        ]
+              slidesToShow: 1,
+            },
+          },
+        ],
       },
-      currentUser: this.user
+      currentUser: this.user,
     };
   },
   methods: {
-    toogleAudioPopup () {
-      this.isVisibleAudioPopup = !this.isVisibleAudioPopup;
+    closeChat() {
+      console.log("closeChatModal");
+      this.chatToggle = false;
+    },
+    closeHire() {
+      console.log("closeHireModal");
+      this.hireToggle = false;
+    },
+    closeAudio() {
+      console.log("closeAudioModal");
+      this.audioToggle = false;
+    },
+    closeVideo() {
+      console.log("closeVideoModal");
+      this.videoToggle = false;
+    },
+    filterAudio(audios) {
+      var filterArray = audios.filter((a) => a.type === "audio");
+      return filterArray;
+    },
+    filterVideo(videos) {
+      var filterArray = videos.filter((a) => a.type === "video");
+      return filterArray;
+    },
+    updateChat(params) {
+      this.chatToggle = params;
+    },
+    updateHire(params) {
+      this.hireToggle = params;
+    },
+    updateAudio(params) {
+      this.audioToggle = params;
+    },
+    updateVideo(params) {
+      this.videoToggle = params;
     },
     stringToLowerCase(string) {
       if (string) {
@@ -224,57 +323,39 @@ export default {
       return "social_icon";
     },
 
-    skillsBar() {
-      $(".skills .skill .skill-bar span").each(function() {
-        $(this).animate(
-          {
-            width:
-              $(this)
-                .parent()
-                .attr("data-bar") + "%"
-          },
-          1000
-        );
-      });
-    },
-    getRandomColor() {
-      return "background:#" + Math.floor(Math.random() * 16777215).toString(16);
-    },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-    }
+    },
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
+    currentTab: function (val) {
       this.activeTab = val;
-    }
+    },
   },
   computed: {
     socialLinks() {
-      return this.user.links.filter(link => {
+      return this.user.links.filter((link) => {
         return link.category === "social_link" ? link : false;
       });
-    }
+    },
   },
   mounted() {
-    this.skillsBar();
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
-  }
+  },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 @import url(//fonts.googleapis.com/earlyaccess/thabit.css);
 
 #resumeTheme8 {
-  font-family: 'Thabit', 'Courier New', Courier, monospace;
-
+  font-family: "Thabit", "Courier New", Courier, monospace;
 
   .hideOnNotTablet {
     @media only screen and (min-width: 768px) {
@@ -311,7 +392,7 @@ export default {
       z-index: 1;
       background: #333232;
       box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-      
+
       .v-tabs {
         height: 100%;
         background: transparent;
@@ -319,14 +400,12 @@ export default {
         .v-tabs-bar {
           height: 100%;
           background: transparent;
-
         }
 
         .v-tabs-slider {
           background-color: #005bd1;
           height: 4px;
         }
-
 
         .v-tab {
           font-style: italic;
@@ -363,7 +442,6 @@ export default {
         }
       }
     }
-
 
     .tabs-wrapper {
       position: relative;
@@ -420,7 +498,7 @@ export default {
             }
 
             .title {
-              font-family: 'Thabit', 'Courier New', Courier, monospace;
+              font-family: "Thabit", "Courier New", Courier, monospace;
               font-weight: bold;
               font-size: 32px;
               line-height: 42px;
@@ -518,6 +596,7 @@ export default {
             font-size: 42px !important;
             line-height: 56px;
             color: #ffffff !important;
+            margin-bottom: 19px;
           }
         }
 
@@ -527,7 +606,7 @@ export default {
           background: #333232;
           box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
           border-radius: 30px;
-          padding: 58px;
+          padding: 50px 20px;
 
           .about-me {
             .about-title {
@@ -563,8 +642,6 @@ export default {
             }
           }
         }
-
-        
       }
     }
   }
@@ -745,6 +822,7 @@ export default {
               font-size: 36px !important;
               line-height: 48px;
               color: #ffffff !important;
+              margin-bottom: 19px;
             }
           }
 
@@ -950,12 +1028,16 @@ export default {
             justify-content: space-between;
             flex-wrap: wrap;
 
+            .skill-title {
+              line-height: 30px;
+              font-size: 24px;
+            }
             .skill-item {
               width: 790px;
-              height: 287px;
-              padding-left: 58px;
-              padding-right: 58px;
-              padding-bottom: 58px;
+              height: 190px;
+              padding-left: 30px;
+              padding-right: 30px;
+              padding-bottom: 30px;
               margin-bottom: 25px;
               background: #333232;
               box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
@@ -964,9 +1046,11 @@ export default {
 
             .percentage {
               font-weight: bold;
-              font-size: 42px !important;
-              line-height: 56px;
+              font-size: 22px !important;
+              line-height: 30px !important;
+              margin-left: 20px !important;
               color: #ffffff !important;
+              margin-bottom: 22px;
             }
           }
 
@@ -1073,57 +1157,16 @@ export default {
     @media only screen and (max-width: 765px) {
       height: 10px;
     }
-  }
-
-  .skills .skill .skill-bar.orange {
-    background: #ffd7b2;
-  }
-
-  .skills .skill .skill-bar span.orange {
-    background: #ff7c00;
-  }
-
-  .skills .skill .skill-bar.red {
-    background: #ffc1ec;
-  }
-
-  .skills .skill .skill-bar span.red {
-    background: #ff26be;
-  }
-
-  .skills.active .skill .skill-bar {
-    width: 100%;
-  }
-
-  .skills .skill .skill-bar span {
-    float: left;
-    width: 0;
-    background: #3c327b;
-    height: 20px;
-    border-radius: 23px;
-    position: relative;
-    transition: 1s cubic-bezier(1, 0, 0.5, 1);
-    -webkit-transition: 1s cubic-bezier(1, 0, 0.5, 1);
-    -ms-transition: 1s cubic-bezier(1, 0, 0.5, 1);
-
-    @media only screen and (max-width: 1600px) and (min-width: 760px) {
-      height: 16px;
+    .skill-bar-color {
+      height: 20px;
+      border-radius: 23px;
+      @media only screen and (max-width: 1600px) and (min-width: 760px) {
+        height: 16px;
+      }
+      @media only screen and (max-width: 765px) {
+        height: 10px;
+      }
     }
-    @media only screen and (max-width: 765px) {
-      height: 10px;
-    }
-  }
-
-  .skills .skill .skill-bar span b {
-    float: left;
-    width: 100%;
-    position: relative;
-    text-align: right;
-    opacity: 1;
-    font-size: 14px;
-    color: #3c327b;
-    font-weight: 400;
-    top: -13px;
   }
 
   // particles styles
@@ -1131,125 +1174,6 @@ export default {
     position: absolute;
     height: 100%;
     width: 100%;
-  }
-
-  @mixin modalPostion {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  @mixin modalPostionTablet {
-    position: absolute;
-    top: 50%;
-    left: 46%;
-    transform: translate(-50%, -50%);
-  }
-  @mixin modalPostionMobile {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-54%, -50%);
-  }
-  .media {
-    width: 100%;
-    height: 100vh;
-    z-index: 9999;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    &__content {
-      @include modalPostion;
-      width: 95%;
-      height: 40rem;
-      background-color: #fff;
-      border-radius: 30px;
-      @media only screen and (min-width: 650px) and (max-width: 1024px) {
-        @include modalPostionTablet;
-        width: 88%;
-        height: 30rem;
-      }
-      @media only screen and (min-width: 320px) and (max-width: 500px) {
-        @include modalPostionMobile;
-        width: 85%;
-        height: 30rem;
-      }
-      &_close {
-        width: 30px;
-        height: 30px;
-
-        border-radius: 50%;
-        background: #5289e7;
-        color: #fff;
-        float: right;
-        margin-top: 1.5rem;
-        margin-right: 1.5rem;
-
-        a > img {
-          width: 25px;
-          height: 25px;
-          margin: auto;
-          margin-top: 2px;
-        }
-      }
-      &__audio {
-        margin-top: 6%;
-        @media only screen and (min-width: 650px) and (max-width: 1024px) {
-          margin-top: 7%;
-        }
-        @media only screen and (min-width: 320px) and (max-width: 500px) {
-          margin-top: 12%;
-        }
-      }
-    }
-    &__contentV {
-      @include modalPostion;
-      width: 95%;
-      height: 40rem;
-      background-color: #fff;
-      border-radius: 30px;
-      @media only screen and (min-width: 650px) and (max-width: 1024px) {
-        @include modalPostionTablet;
-        width: 88%;
-        height: 60rem;
-      }
-      @media only screen and (min-width: 320px) and (max-width: 500px) {
-        top: 52%;
-        left: 50%;
-        transform: translate(-55%, -50%);
-        width: 85%;
-        height: 43rem;
-      }
-      &_close {
-        width: 30px;
-        height: 30px;
-
-        border-radius: 50%;
-        background: #5289e7;
-        color: #fff;
-        float: right;
-        margin-top: 1.5rem;
-        margin-right: 1.5rem;
-
-        a > img {
-          width: 25px;
-          height: 25px;
-          margin: auto;
-          margin-top: 2px;
-        }
-      }
-
-      &__video {
-        margin-top: 6%;
-        @media only screen and (min-width: 650px) and (max-width: 1024px) {
-          margin-top: 7%;
-        }
-        @media only screen and (min-width: 320px) and (max-width: 500px) {
-          margin-top: 10%;
-        }
-      }
-    }
   }
 }
 </style>
