@@ -80,7 +80,7 @@
                                   v-for="item in socialLinks"
                                   :key="item.id + '_link'"
                                   target="_blank"
-                                  v-show="item.is_active"
+                                  v-show="item.is_active==true"
                                 >
                                   <img
                                     width="15"
@@ -168,7 +168,7 @@
                         v-for="item in socialLinks"
                         :key="item.id + '_link'"
                         target="_blank"
-                        v-show="item.is_active"
+                        v-show="item.is_active==true"
                       >
                         <img
                           :width="item.title == 'map-markup'?11:15"
