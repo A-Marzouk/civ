@@ -5,7 +5,7 @@
         </div>
         <div style="width:100%;">
             <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
-                <v-container class>
+                <div>
 
                     <div class="reference-external-link-wrapper">
                         <div class="reference-external-link-input">
@@ -335,7 +335,7 @@
                             </div>
                         </div>
                     </draggable>
-                </v-container>
+                </div>
             </v-card>
         </div>
     </div>
@@ -586,7 +586,7 @@
     .reference-content {
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-        height: 573px;
+        height: 450px;
         padding: 50px;
         margin-bottom: 70px;
         scroll-behavior: smooth;

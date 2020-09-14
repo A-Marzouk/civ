@@ -203,7 +203,7 @@
     import VueGoogleAutocomplete from 'vue-google-autocomplete'
 
     export default {
-        name: "Personal",
+        name: "about",
         components: {
             'tab-switcher': tabSwitcher,
             VueGoogleAutocomplete
@@ -509,7 +509,6 @@
 
             .profile-fields-wrapper {
                 padding-right: 20px;
-                margin-top: 30px;
 
                 .profile-fields {
                     padding: 20px;

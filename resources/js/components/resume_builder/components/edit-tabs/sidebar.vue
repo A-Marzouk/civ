@@ -1,6 +1,6 @@
 <template>
     <aside class="sidebar">
-        <div class="sidebar-container ml-md-5 ml-sm-0 ml-1">
+        <div class="sidebar-container ml-sm-0 ml-1">
             <div class="sidebar-link-activator">
                 <a href="#" @click.prevent="open=!open" class="activator-preview-link">
                     <div
@@ -281,9 +281,13 @@
 
         .sidebar-container {
             position: relative;
+            @include gt-md{
+                position: absolute;
+            }
             background: #ffffff;
             font-family: Noto Sans, "sans-serif";
             max-width: 350px;
+            min-width: 300px;
             margin-left: auto;
             margin-right: auto;
 
@@ -348,6 +352,7 @@
                 }
 
                 &.sidebar-links {
+                    padding-left: 5px;
                     max-height: 0;
                     overflow: hidden;
                     position: absolute;
@@ -427,11 +432,20 @@
             padding-left: unset;
             padding-right: unset;
             margin-bottom: unset;
-            border-right: 1px solid rgba(0, 28, 226, 0.1);
 
             .sidebar-container {
                 background: transparent;
                 width: 300px;
+                height: 95%;
+                overflow: hidden;
+                transition: all 1s;
+                border-right: 1px solid rgba(0, 28, 226, 0.1);
+                border-bottom: 1px solid rgba(0, 28, 226, 0.1);
+                z-index: 10;
+                max-height: 940px;;
+                &:hover{
+                    height: 940px;
+                }
 
                 @media screen and (min-width: 1280px) and (max-width: 1520px) {
                     width: 200px;
