@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-app style="margin: 0; padding: 0; background: none;">
     <div style="width: 100%" class="main-container pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
         <div class="d-flex reverse-on-phone">
@@ -230,7 +230,7 @@
         </div>
       </v-card>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>

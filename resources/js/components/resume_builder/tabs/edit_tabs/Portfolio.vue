@@ -36,6 +36,8 @@
             class="resume-builder__input civie-textarea"
             outlined
             label="Description"
+            counter
+            maxlength="1000"
             color="#001CE2"
             v-model="editedProject.description"
             :error="!!errors.description"

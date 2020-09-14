@@ -35,7 +35,6 @@
                     </svg>
                 </a>
             </div>
-
             <div class="sidebar-links" :class="{'open' :open}" v-if="tabs">
                 <div
                         v-for="sidebarLink in sidebarLinks"
@@ -67,9 +66,12 @@
                         </div>
                     </router-link>
 
-                    <hr v-if="sidebarLink.icon === 'pay-availability'"
+                    <hr v-if="sidebarLink.icon === 'references'"
                         style="margin-right: 20px; margin-top: 20px; margin-bottom: 15px;">
                 </div>
+            </div>
+            <div class="arrow-icon" v-if="currentSidebarLink.title !== 'imports' ">
+                <img src="/images/new_resume_builder/arrow_down.svg" alt="arrow icon">
             </div>
         </div>
     </aside>
@@ -111,10 +113,28 @@
                         title: "links",
                     },
                     {
+                        url: "/resume-builder/edit/skills",
+                        icon: "skills",
+                        label: "Skills",
+                        title: "skills",
+                    },
+                    {
+                        url: "/resume-builder/edit/pay-availability",
+                        icon: "pay-availability",
+                        label: "Pay availability",
+                        title: "pay_availability",
+                    },
+                    {
                         url: "/resume-builder/edit/work-experience",
                         icon: "work-experience",
                         label: "Work experience",
                         title: "work_experience",
+                    },
+                    {
+                        url: "/resume-builder/edit/portfolio",
+                        icon: "portfolio",
+                        label: "Portfolio/Projects",
+                        title: "portfolio",
                     },
                     {
                         url: "/resume-builder/edit/education",
@@ -123,28 +143,17 @@
                         title: "education",
                     },
                     {
-                        url: "/resume-builder/edit/skills",
-                        icon: "skills",
-                        label: "Skills",
-                        title: "skills",
-                    },
-                    {
-                        url: "/resume-builder/edit/hobbies",
-                        icon: "hobbies",
-                        label: "Hobbies",
-                        title: "hobbies",
-                    },
-                    {
                         url: "/resume-builder/edit/achievement",
                         icon: "achievement",
                         label: "Achievement",
                         title: "achievements",
                     },
+
                     {
-                        url: "/resume-builder/edit/references",
-                        icon: "references",
-                        label: "References",
-                        title: "references",
+                        url: "/resume-builder/edit/hobbies",
+                        icon: "hobbies",
+                        label: "Hobbies",
+                        title: "hobbies",
                     },
                     {
                         url: "/resume-builder/edit/audio-video",
@@ -153,16 +162,24 @@
                         title: "media",
                     },
                     {
-                        url: "/resume-builder/edit/portfolio",
-                        icon: "portfolio",
-                        label: "Portfolio",
-                        title: "portfolio",
+                        url: "/resume-builder/edit/references",
+                        icon: "references",
+                        label: "References",
+                        title: "references",
+                    },
+
+
+                    {
+                        url: "/resume-builder/edit/themes",
+                        icon: "themes",
+                        label: "Themes",
+                        title: "themes",
                     },
                     {
-                        url: "/resume-builder/edit/pay-availability",
-                        icon: "pay-availability",
-                        label: "Pay availability",
-                        title: "pay_availability",
+                        url: "/resume-builder/edit/manager",
+                        icon: "manager",
+                        label: "Manager",
+                        title: "manager"
                     },
                     {
                         url: "/resume-builder/edit/structure",
@@ -176,18 +193,7 @@
                         label: "Imports",
                         title: "imports",
                     },
-                    {
-                        url: "/resume-builder/edit/manager",
-                        icon: "manager",
-                        label: "Manager",
-                        title: "manager"
-                    },
-                    {
-                        url: "/resume-builder/edit/themes",
-                        icon: "themes",
-                        label: "Themes",
-                        title: "themes",
-                    },
+
                 ],
                 structureTabs: [
                     'structure',
@@ -281,7 +287,7 @@
 
         .sidebar-container {
             position: relative;
-            @include gt-md{
+            @include gt-md {
                 position: absolute;
             }
             background: #ffffff;
@@ -291,6 +297,9 @@
             margin-left: auto;
             margin-right: auto;
 
+            .arrow-icon{
+                display: none;
+            }
             .sidebar-links,
             .sidebar-link-activator {
                 a {
@@ -404,6 +413,7 @@
                     }
                 }
             }
+
         }
 
         @media screen and (min-width: 375px) {
@@ -436,15 +446,28 @@
             .sidebar-container {
                 background: transparent;
                 width: 300px;
-                height: 95%;
+                height: 86.2%;
                 overflow: hidden;
-                transition: all 1s;
                 border-right: 1px solid rgba(0, 28, 226, 0.1);
                 border-bottom: 1px solid rgba(0, 28, 226, 0.1);
                 z-index: 10;
-                max-height: 940px;;
-                &:hover{
+                max-height: 935px;;
+                transition: all 1s;
+
+                &:hover {
                     height: 940px;
+                    .arrow-icon{
+                        opacity:0 ;
+                    }
+                }
+
+                .arrow-icon{
+                    display: block;
+                    position: absolute;
+                    bottom: 3px;
+                    right: 22px;
+                    opacity: 1;
+                    transition: inherit;
                 }
 
                 @media screen and (min-width: 1280px) and (max-width: 1520px) {

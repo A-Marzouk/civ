@@ -90,7 +90,7 @@
     import photoUploader from './includes/PhotoUploader';
 
     export default {
-        name: "Personal",
+        name: "profile",
         components: {
             photoUploader
         },

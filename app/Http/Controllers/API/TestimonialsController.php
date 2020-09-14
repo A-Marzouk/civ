@@ -85,7 +85,7 @@ class TestimonialsController extends Controller
             'name' => ['nullable', 'string', 'max:255','min:3'],
             'title' => ['sometimes', 'string','min:3', 'max:255'],
             'company' => ['nullable', 'string','min:3', 'max:255'],
-            'description' => ['sometimes', 'string','min:30', 'max:2500'],
+            'description' => ['sometimes', 'string','min:30', 'max:1000'],
         ]);
     }
 
