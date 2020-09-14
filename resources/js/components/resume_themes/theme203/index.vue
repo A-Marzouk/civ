@@ -279,7 +279,7 @@
                             <div>Date Of Birth</div>
 
                             <div class="mt-3">
-                              <span class>01.14.1990</span>
+                              <span class>{{currentUser.personal_info.date_of_birth}}</span>
                             </div>
                           </v-card-subtitle>
 
@@ -290,7 +290,7 @@
                             <div>Nationality</div>
 
                             <div class="mt-3">
-                              <span class>Moroccan</span>
+                              <span class>{{currentUser.personal_info.nationality}}</span>
                             </div>
                           </v-card-subtitle>
 
@@ -301,7 +301,7 @@
                             <div>Hometown</div>
 
                             <div class="mt-3">
-                              <span style="text-transform:uppercase;">RABAT</span>
+                              <span style="text-transform:uppercase;">{{currentUser.personal_info.hometown}}</span>
                             </div>
                           </v-card-subtitle>
 
@@ -326,7 +326,9 @@
                           <!-- Overview -->
                           <v-card-text
                             class="overview-text"
-                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          >
+                            {{currentUser.personal_info.overview}}
+                          </v-card-text>
                           <!-- Overview -->
 
                           <!-- about me -->
@@ -334,16 +336,18 @@
                           <hr class="custom-hr hidden-xs-only" />
                           <v-card-text
                             class="overview-text"
-                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          >
+                            {{currentUser.personal_info.about}}
+                          </v-card-text>
                           <!-- about me -->
 
                           <!-- quote -->
                           <v-card-subtitle class="overview-title">Quote</v-card-subtitle>
-                          <v-card-text class="overview-text">Born to rise</v-card-text>
+                          <v-card-text class="overview-text">{{currentUser.personal_info.quote}}</v-card-text>
                           <!-- quote -->
                           <!-- location -->
                           <v-card-subtitle class="overview-title">Location</v-card-subtitle>
-                          <v-card-text class="overview-text">Ireland, Dublin</v-card-text>
+                          <v-card-text class="overview-text">{{currentUser.personal_info.location}}</v-card-text>
                           <!-- location -->
                           <hr class="custom-hr hidden-sm-and-up" />
                         </v-card>
