@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pr-md-5">
         <div class="pa-md-0 pa-sm-0 pa-3 content-container">
             <v-tabs class="resume-builder__tab-bar" hide-slider v-model="importTab" height="51">
                 <v-tab
@@ -2114,10 +2114,10 @@
         &.shortened{
             height: 220px;
         }
-        height: 420px;
+        height: 460px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-        padding: 50px;
+        padding: 50px 50px 0 50px;
         margin-bottom: 70px;
         scroll-behavior: smooth;
         -webkit-transition: all 1s;

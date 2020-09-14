@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <div style="width: 100%" class="main-container pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
         <div class="d-flex reverse-on-phone">
@@ -230,7 +230,7 @@
         </div>
       </v-card>
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -413,7 +413,7 @@ export default {
 }
 
 .skills-content {
-  height: 323px;
+  height: 450px;
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   padding: 50px;

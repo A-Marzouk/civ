@@ -21,6 +21,11 @@ export const store = new Vuex.Store({
                 designation: 'User interface designer',
                 phone: '+990000000',
                 location: 'London',
+                date_of_birth: '2020-09-09',
+                quote: 'anything here is a quote',
+                overview: 'Cool overview is here',
+                nationality: 'American',
+                hometown: 'London',
                 about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.',
             },
             payment_info: [
