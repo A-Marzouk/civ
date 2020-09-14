@@ -2,8 +2,8 @@
   <v-app>
     <div style="width: 100%" class="main-container pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
-        <div class="d-flex reverse-on-phone">
-          <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab" height="51">
+        <div class="d-flex justifyspace reverse-on-phone" style="max-width: 86%">
+          <v-tabs class="resume-builder__tab-bar" center-active hide-slider v-model="activeTab" height="51">
             <v-tab style="font-weight: 400"
                    class="resume-builder__tab" @click="setSkillCategory(tab.toString())"
                    v-for="tab in tabs"
@@ -23,7 +23,7 @@
               <v-row align="baseline mt-n12">
                 <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
-                    <v-text-field
+                    <!-- <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
                       placeholder="Skill Title"
@@ -32,7 +32,24 @@
                       :error="!!errors.title"
                       :error-messages="errors.title"
                       color="#001CE2"
-                    ></v-text-field>
+                    ></v-text-field> -->
+
+                    <v-combobox
+                        v-model="editedSkill.title"
+                        :items="getSkillSet"
+                        flat
+                        placeholder="Skill Title"
+                        label="Skill Title"
+                        outlined
+                        color="#001CE2"
+                        class="resume-builder__input civie-select"
+                        :error="!!errors.title"
+                        :error-messages="errors.title"
+                    >
+                        <button class="dropdown-icon icon pb-1" slot="append">
+                            <!-- <svg-vue></svg-vue> -->
+                        </button>
+                    </v-combobox>
                   </v-card>
                 </v-col>
 
@@ -237,6 +254,7 @@
 
 import draggable from "vuedraggable";
 import tabSwitcher from "./includes/TabSwitcher";
+import { skills } from '../../helpers/pretexts';
 
 export default {
   name: "Skills",
@@ -249,10 +267,11 @@ export default {
       windowWidth: window.innerWidth,
       typeItems: ["Programming Language"],
       activeTab: 0,
-      skillCategory:'programming_languages',
-      tabs: ["programming_languages", "software", "design", "frameworks"],
+      skillCategory:'Leadership',
+      tabs: ["Leadership", "Professionalism", "Organizational", "Team Building", "Personal Life", "Analytical", "Sports", "Business related", "Technical", "Design", "Communication", "Creativity", "Nursing and Healthcare", "Engineering"],
       addNewSkill: false,
       optionSkillId: 0,
+      skillItems: skills,
       editedSkill: {
         category: "",
         title: "",
@@ -269,6 +288,9 @@ export default {
       set(skills) {
         this.$store.commit("updateSkills", skills);
       }
+    },
+    getSkillSet() {
+      return this.skillItems[this.skillCategory.split(" ")[0].toLowerCase()]
     }
   },
   props: ["selectProps"],
@@ -541,5 +563,13 @@ export default {
 #resumeBuilder .v-progress-linear__determinate {
   border-top-right-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
+}
+
+.v-slide-group__prev {
+  display: none !important;
+}
+
+.v-slide-group__next {
+  display: none !important;
 }
 </style>

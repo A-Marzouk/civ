@@ -14,38 +14,21 @@
             <v-form>
               <v-row align="center">
                 <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                  <!-- <v-select
-                                            class="resume-builder__input civie-select"
-                                            outlined
-                                            placeholder="Select an option"
-                                            :items="categoryOptions"
-                                            label="Type"
-                                            color="#001CE2"
-                                            v-model="editedHobby.category"
-                                            :error="!!errors.category"
-                                            :error-messages="errors.category"
-                                    >
-                                        <button class="dropdown-icon icon" slot="append" @click.prevent>
-                                            <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                                        </button>
-                  </v-select>-->
-
-                  <v-combobox
-                    v-model="editedHobby.category"
-                    :items="categoryOptions"
-                    flat
-                    placeholder="Select an option"
-                    label="Type"
-                    outlined
-                    color="#001CE2"
-                    class="resume-builder__input civie-select"
-                    :error="!!errors.category"
-                    :error-messages="errors.category"
+                  <v-select
+                          class="resume-builder__input civie-select"
+                          outlined
+                          placeholder="Select an option"
+                          :items="categoryOptions"
+                          label="Type"
+                          color="#001CE2"
+                          v-model="editedHobby.category"
+                          :error="!!errors.category"
+                          :error-messages="errors.category"
                   >
-                    <button class="dropdown-icon icon pb-1" slot="append" @click.prevent>
-                      <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                    </button>
-                  </v-combobox>
+                      <button class="dropdown-icon icon" slot="append" @click.prevent>
+                          <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                      </button>
+                  </v-select>
                 </v-col>
 
                 <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -62,7 +45,7 @@
                   </v-text-field>-->
                   <v-combobox
                     v-model="editedHobby.title"
-                    :items="hobbyItems"
+                    :items="getHobbies"
                     hide-no-data
                     flat
                     placeholder="Hobby"
@@ -74,7 +57,7 @@
                     :error-messages="errors.title"
                   >
                     <button class="dropdown-icon icon pb-1" slot="append">
-                      <svg-vue></svg-vue>
+                      <!-- <svg-vue></svg-vue> -->
                     </button>
                   </v-combobox>
                 </v-col>
@@ -170,7 +153,7 @@
 import draggable from "vuedraggable";
 import tabSwitcher from "./includes/TabSwitcher";
 
-import hobbyItems from "../../helpers/interests";
+import { interests } from "../../helpers/pretexts";
 
 export default {
   name: "Hobbies",
@@ -185,23 +168,21 @@ export default {
         category: "",
         title: "",
       },
-      hobbyItems: hobbyItems,
+      hobbyItems: interests,
       categoryOptions: [
         "Social",
         "Tech",
         "Music",
-        "Community Service",
         "Sports",
-        "Crafts",
-        "Blogging",
+        "Arts",
         "Indoor",
         "Outdoor",
         "Science",
         "Personal & Others",
         "Literature",
-        "Arts",
         "Food",
         "Martial Arts",
+        "Film",
         "Building",
       ],
       optionHobbyId: 0,
@@ -217,6 +198,9 @@ export default {
         this.$store.commit("updateHobbies", hobbies);
       },
     },
+    getHobbies() {
+      return this.editedHobby.category ? this.hobbyItems[this.editedHobby.category.split(" ")[0].toLowerCase()] : []
+    }
   },
   methods: {
     toggleHobby(hobby) {
