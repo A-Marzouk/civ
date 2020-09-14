@@ -19,8 +19,7 @@
     import draggable from "vuedraggable";
 
     export default {
-
-        name: "Structure",
+        name: "structure",
         components: {
             draggable
         },

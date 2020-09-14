@@ -128,7 +128,7 @@ class EducationController extends Controller
         return Validator::make($data, [
             'institution_type' => ['sometimes','string','max:255','min:3'],
             'university_name' => ['sometimes','string','max:255','min:3'],
-            'degree_title' => ['sometimes','string','max:2500','min:3'],
+            'degree_title' => ['sometimes','string','max:1000','min:3'],
             'date_from' => ['sometimes','date','max:255','min:3'],
             'date_to' => ['sometimes','nullable','date','max:255'],
             'present' =>['boolean']

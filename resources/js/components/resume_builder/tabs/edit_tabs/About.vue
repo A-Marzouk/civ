@@ -94,8 +94,7 @@
                             multiple
                             chips
                             placeholder="Select an option"
-                            @blur="syncLanguages"
-                            v-model="selectedLanguages"
+                            v-model="languages"
                             item-text="label"
                             item-value="id"
                             :items="defaultLanguages"
@@ -236,8 +235,13 @@
             personalInfo() {
                 return this.$store.state.user.personal_info;
             },
-            languages() {
-                return this.$store.state.user.languages.map(a => a.id);
+            languages: {
+                get(){
+                    return this.$store.state.user.languages.map(language => language.id);
+                },
+                set(newValue){
+                    this.syncLanguages(newValue);
+                }
             },
             user() {
                 return this.$store.state.user;
@@ -255,9 +259,9 @@
                 this.applyEdit("auto");
             },
 
-            syncLanguages() {
+            syncLanguages(newLangauges) {
                 axios.post("/api/user/languages-sync", {
-                        IDs: this.selectedLanguages,
+                        IDs: newLangauges,
                         user_id: this.user.id
                     })
                     .then(() => {

@@ -14,7 +14,7 @@
                     <v-tab-item>
                         <v-container style="width: 100%;">
                             <v-form>
-                                <v-row align="center">
+                                <v-row align="center" class="align-items-center">
                                     <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                                         <v-select
                                                 class="resume-builder__input civie-select"

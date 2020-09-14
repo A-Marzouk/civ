@@ -10,19 +10,6 @@
             </main>
         </div>
         <div class="preview-rows-wrapper">
-            <div v-if="activeTab !== 'imports'"
-                 class="v-application preview-action-row v-application--is-ltr theme--light">
-                <div class="switch">
-                    <div class="text">
-                        Preview Auto Update
-                    </div>
-                    <v-switch v-model="cvAutoUpdate"></v-switch>
-                </div>
-                <div class="refresh" @click="updateIframe('true')">
-                    <span>Refresh Your Data</span> <img src="/icons/refresh.svg" alt="refresh image" id="refreshImage">
-                </div>
-            </div>
-
             <div class="cv-content-preview-wrapper" v-if="activeTab !== 'imports'">
                 <div class="cv-content-preview">
                     <div class="cv-preview-link">
@@ -193,7 +180,7 @@
 
     .cv-content-preview-wrapper {
         overflow-y: hidden;
-        max-height: 1200px;
+        max-height: fit-content;
         min-height: 900px;
         max-width: 94%;
         margin-left: auto;

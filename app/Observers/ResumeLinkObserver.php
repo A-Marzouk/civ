@@ -144,28 +144,28 @@ class ResumeLinkObserver
                 'user_id' => $user->id,
                 'resume_link_id' => $resumeLink->id,
                 'salary_frequency' => 'hourly',
-                'salary' => 3,
+                'salary' => 10,
                 'currency' => 'usd'
             ],
             [
                 'user_id' => $user->id,
                 'resume_link_id' => $resumeLink->id,
                 'salary_frequency' => 'weekly',
-                'salary' => 30,
+                'salary' => 100,
                 'currency' => 'usd'
             ],
             [
                 'user_id' => $user->id,
                 'resume_link_id' => $resumeLink->id,
                 'salary_frequency' => 'monthly',
-                'salary' => 300,
+                'salary' => 1000,
                 'currency' => 'usd'
             ],
             [
                 'user_id' => $user->id,
                 'resume_link_id' => $resumeLink->id,
                 'salary_frequency' => 'yearly',
-                'salary' => 3000,
+                'salary' => 10000,
                 'currency' => 'usd'
             ]
         ]);
