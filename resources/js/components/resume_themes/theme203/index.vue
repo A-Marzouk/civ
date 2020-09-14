@@ -1,8 +1,8 @@
 <template>
   <v-app style="width:100%;">
     <div class="triangle-top-left"></div>
-    <div class="verical-sidebar"></div>
     <v-container ma-0 pa-0 fluid style="max-width:100% !important;" v-if="currentUser">
+      
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -12,7 +12,7 @@
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
-                <v-col md="8" cols="12" sm="7">
+                <v-col lg="8" md="10" sm="7" cols="12">
                   <v-card color="transparent" tile flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
@@ -22,7 +22,7 @@
                         <v-list-item-avatar size="80" class="hidden-sm-and-up mr-2">
                           <v-img :src="currentUser.personal_info.profile_pic"></v-img>
                         </v-list-item-avatar>
-                        <v-list-item-content>
+                        <v-list-item-content class="ml-lg-0 ml-md-5">
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent" tile>
                               {{ currentUser.personal_info.full_name }}
@@ -70,7 +70,7 @@
                                   />
                                 </v-btn>
                               </span>
-                              <span class="social-media-block hidden-sm-and-down">
+                              <span class="social-media-block hidden-md-and-down">
                                 <v-btn
                                   fab
                                   color="#FCD259"
@@ -80,7 +80,7 @@
                                   v-for="item in socialLinks"
                                   :key="item.id + '_link'"
                                   target="_blank"
-                                  v-show="item.is_active"
+                                  v-show="item.is_active==true"
                                 >
                                   <img
                                     width="15"
@@ -93,7 +93,7 @@
                           <v-list-item-title>
                             <v-card flat color="transparent" tile>
                               <span
-                                class="profile-subtitle"
+                                class="profile-subtitle mt-n5"
                               >{{ currentUser.personal_info.designation }}</span>
                             </v-card>
                           </v-list-item-title>
@@ -155,7 +155,7 @@
                 <!-- 2nd column only for tab and mobile version version -->
 
                 <!-- 2nd column social media icons -->
-                <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
+                <v-col lg="3" md="12" sm="12" cols="12" class="mt-n3 pa-0 hidden-lg-and-up" align="center">
                   <v-card flat color="tranparent">
                     <v-card-text class>
                       <v-btn
@@ -168,7 +168,7 @@
                         v-for="item in socialLinks"
                         :key="item.id + '_link'"
                         target="_blank"
-                        v-show="item.is_active"
+                        v-show="item.is_active==true"
                       >
                         <img
                           :width="item.title == 'map-markup'?11:15"
@@ -180,31 +180,31 @@
                 </v-col>
                 <!-- Social media icons -->
 
-                <v-col md="4" sm="8" cols="12">
+                <v-col lg="4" md="8" sm="8" cols="12">
                   <v-card flat color="transparent" tile class="ma-0 pa-0">
-                    <v-card-text class="ml-md-n5">
+                    <v-card-text class="ml-lg-n5">
                       <v-row no-gutters align="center" justify="center">
-                        <v-col cols="4" class="d-flex">
+                        <v-col xl="4" lg="4" md="4" sm="4" cols="4" align="center">
                           <v-card flat class="text-center" color="tranparent">
-                            <v-card-title
-                              class="hire-me-title"
-                            >{{ currentUser.payment_info[0].salary_frequency | capitalize }} rate</v-card-title>
                             <v-card-subtitle
-                              class="hire-me-subtitle"
+                              class="hire-me-title"
+                            >{{ currentUser.payment_info[0].salary_frequency | capitalize }} rate</v-card-subtitle>
+                            <v-card-subtitle
+                              class="hire-me-subtitle mt-n8"
                             >{{ currentUser.payment_info[0].salary }} {{ currentUser.payment_info[0].currency.toUpperCase() }}</v-card-subtitle>
                           </v-card>
                         </v-col>
                         <div style="height:41px; border:1px solid #D7D7D7;"></div>
-                        <v-col cols="4" class="d-flex">
+                        <v-col cols="4">
                           <v-card flat class="text-center" color="transparent" tile>
-                            <v-card-title class="hire-me-title">Available for</v-card-title>
+                            <v-card-subtitle class="hire-me-title">Available for</v-card-subtitle>
                             <v-card-subtitle
-                              class="hire-me-subtitle"
+                              class="hire-me-subtitle mt-n8"
                             >{{currentUser.availability_info[0].available_hours}} Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
-                        <v-col cols="3" class="d-flex">
+                        <v-col cols="3">
                           <v-card flat color="transparent" tile>
                             <v-card-text>
                               <v-btn
@@ -279,7 +279,7 @@
                             <div>Date Of Birth</div>
 
                             <div class="mt-3">
-                              <span class>01.14.1990</span>
+                              <span class>{{currentUser.personal_info.date_of_birth}}</span>
                             </div>
                           </v-card-subtitle>
 
@@ -290,7 +290,7 @@
                             <div>Nationality</div>
 
                             <div class="mt-3">
-                              <span class>Moroccan</span>
+                              <span class>{{currentUser.personal_info.nationality}}</span>
                             </div>
                           </v-card-subtitle>
 
@@ -301,7 +301,7 @@
                             <div>Hometown</div>
 
                             <div class="mt-3">
-                              <span style="text-transform:uppercase;">RABAT</span>
+                              <span style="text-transform:uppercase;">{{currentUser.personal_info.hometown}}</span>
                             </div>
                           </v-card-subtitle>
 
@@ -326,7 +326,9 @@
                           <!-- Overview -->
                           <v-card-text
                             class="overview-text"
-                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          >
+                            {{currentUser.personal_info.overview}}
+                          </v-card-text>
                           <!-- Overview -->
 
                           <!-- about me -->
@@ -334,16 +336,18 @@
                           <hr class="custom-hr hidden-xs-only" />
                           <v-card-text
                             class="overview-text"
-                          >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop</v-card-text>
+                          >
+                            {{currentUser.personal_info.about}}
+                          </v-card-text>
                           <!-- about me -->
 
                           <!-- quote -->
                           <v-card-subtitle class="overview-title">Quote</v-card-subtitle>
-                          <v-card-text class="overview-text">Born to rise</v-card-text>
+                          <v-card-text class="overview-text">{{currentUser.personal_info.quote}}</v-card-text>
                           <!-- quote -->
                           <!-- location -->
                           <v-card-subtitle class="overview-title">Location</v-card-subtitle>
-                          <v-card-text class="overview-text">Ireland, Dublin</v-card-text>
+                          <v-card-text class="overview-text">{{currentUser.personal_info.location}}</v-card-text>
                           <!-- location -->
                           <hr class="custom-hr hidden-sm-and-up" />
                         </v-card>
@@ -779,10 +783,12 @@
       <!-- All Modals  -->
 
       <!-- tab bar row -->
+      <div class="verical-sidebar"></div>
       <!-- Right Bottom bar -->
       <div class="triangle-bottom-right" style="text-align:right"></div>
       <!-- Right bottom bar -->
     </v-container>
+    
   </v-app>
 </template>
 <script>
@@ -1084,10 +1090,10 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    width: 17rem;
-    height: 16rem;
-  }
+  // @media screen and (min-width: 960px) and (max-width: 1200px) {
+  //   width: 17rem;
+  //   height: 16rem;
+  // }
 
   @media screen and (max-width: 599px) {
     width: 15.5rem;
@@ -1100,7 +1106,7 @@ export default {
 }
 
 .triangle-bottom-right {
-  position: fixed;
+  position: absolute;
   right: 0;
   bottom: 0;
   margin: 0;
@@ -1121,12 +1127,14 @@ export default {
 }
 
 .verical-sidebar {
-  position: fixed;
+  position: absolute;
   background: #e6bf4e;
   width: 2rem;
-  height: 100vh;
+  height: 100%;
   z-index: 1;
   bottom: 0;
+  top: 0;
+  left: 0;
   @media screen and (max-width: 599px) {
     width: 1rem;
   }
@@ -1139,19 +1147,16 @@ export default {
   height: 120px !important;
   max-width: 120px;
   max-height: 120px;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    width: 60px !important;
-    height: 60px !important;
-  }
+  // @media screen and (min-width: 960px) and (max-width: 1200px) {
+  //   width: 60px !important;
+  //   height: 60px !important;
+  // }
 }
 
 .profile-title {
   font-family: "Gotham Pro" !important;
   font-size: 1.53rem !important;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    font-size: 1rem !important;
-    margin-bottom: -10px;
-  }
+  
   @media screen and(max-width:599px) {
     font-size: 1.12rem !important;
   }
@@ -1161,19 +1166,12 @@ export default {
   font-family: "Gotham Pro" !important;
   font-size: 0.8rem !important;
   color: #444444 !important;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    font-size: 0.6rem !important;
-  }
+  
   @media screen and(max-width:599px) {
     font-size: 0.56rem !important;
   }
 }
 
-.email-icon-block {
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    margin-left: 30px;
-  }
-}
 .btn-email {
   width: 2.56rem !important;
   height: 2.56rem !important;
@@ -1236,9 +1234,7 @@ export default {
   font-size: 0.9rem !important;
   color: #8b8b8b !important;
   text-align: center !important;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    font-size: 0.6rem !important;
-  }
+  
   @media screen and (max-width: 959px) {
     font-size: 0.7rem !important;
   }
@@ -1298,9 +1294,7 @@ export default {
   font-weight: bold;
   margin-bottom: -20px;
   margin-top: -20px;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    font-size: 12px !important;
-  }
+  
   @media screen and (max-width: 959px) {
     font-size: 16px !important;
   }
@@ -1309,9 +1303,6 @@ export default {
   font-family: "Montserrat" !important;
   color: #000000 !important;
   font-size: 12px;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    font-size: 10px !important;
-  }
 }
 // .........................Desktop Portfolio...........................
 
@@ -1384,13 +1375,18 @@ export default {
 }
 .tablet-audio-video-flex {
   display: none;
-  @media screen and (max-width: 959px) {
-    display: inline;
+  @media screen and (max-width: 1263px) {
+    display: flex;
     text-align: right;
   }
   @media screen and (max-width: 599px) {
-    display: inline;
-    text-align: center;
+    display: flex;
+    text-align: right;
+  }
+  .audio-video-card{
+    @media screen and (max-width: 599px){
+      margin-left: 118px;
+    }
   }
 }
 
