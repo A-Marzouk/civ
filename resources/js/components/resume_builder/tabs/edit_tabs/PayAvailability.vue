@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="width:100%;" class="main-container pa-md-0 pa-sm-0 pa-3">
+        <div style="width:100%;" class="main-container pay-class pa-md-0 pa-sm-0 pa-3">
             <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTab" height="51">
                 <v-tab
                         class="resume-builder__tab"
@@ -307,6 +307,7 @@
 
 <style scoped lang="scss">
     @import "../../../../../sass/media-queries";
+
     .pay-content {
         height: 335px;
         background: #fff;
@@ -314,6 +315,14 @@
         padding: 50px;
         margin-bottom: 70px;
         scroll-behavior: smooth;
+    }
+
+    .pay-class{
+        @include lt-sm{
+            max-width: 94%;
+            margin-right: auto;
+            margin-left: auto;
+        }
     }
 
     .card-main {

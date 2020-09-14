@@ -267,9 +267,6 @@
                                             <audio controls class="audio-controller">
                                                 <source :src="media.url"/>
                                             </audio>
-                                            .audio-controller:after{
-                                                outline: none;
-                                            }
                                         </v-col>
                                     </v-row>
                                 </v-card>

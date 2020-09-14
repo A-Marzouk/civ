@@ -1,5 +1,5 @@
 <template>
-    <div style="padding-right:30px;">
+    <div class="pr-md-5">
         <div class="pa-md-0 pa-sm-0 pa-3 content-container">
             <v-tabs class="resume-builder__tab-bar" hide-slider v-model="importTab" height="51">
                 <v-tab

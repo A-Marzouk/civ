@@ -358,7 +358,7 @@ export default {
 
 $mainBlue: #001ce2;
 .hobbies-content {
-  height: 323px;
+  height: 335px;
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   padding: 50px;

@@ -606,7 +606,7 @@
 
 
     .links-content {
-        height: 323px;
+        height: 335px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         padding: 50px;
@@ -614,7 +614,7 @@
 
 
         @include lt-sm {
-            height: 400px;
+            height: 335px;
             padding: 20px;
         }
     }

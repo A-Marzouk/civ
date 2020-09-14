@@ -147,7 +147,7 @@
         height: 600px;
 
         @include lt-md{
-            height: 660px;
+            height: 515px;
         }
 
         &.imports-tab{
@@ -193,7 +193,6 @@
         max-width: 94%;
         margin-left: auto;
         margin-right: auto;
-        padding: 50px 10px 10px 10px;
 
         &::-webkit-scrollbar {
             width: 5px;
