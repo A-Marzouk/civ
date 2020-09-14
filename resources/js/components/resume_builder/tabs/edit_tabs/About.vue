@@ -424,7 +424,7 @@
         
         .profile-fields-wrapper {
             padding: 10px;
-            max-height: 450px;
+            max-height: 335px;
             overflow-y: scroll;
 
             .profile-fields {
@@ -509,7 +509,6 @@
 
             .profile-fields-wrapper {
                 padding-right: 20px;
-                margin-top: 30px;
 
                 .profile-fields {
                     padding: 20px;

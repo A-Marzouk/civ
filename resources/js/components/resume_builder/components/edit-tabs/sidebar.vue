@@ -352,7 +352,7 @@
                 }
 
                 &.sidebar-links {
-                    padding-left: 20px;
+                    padding-left: 5px;
                     max-height: 0;
                     overflow: hidden;
                     position: absolute;

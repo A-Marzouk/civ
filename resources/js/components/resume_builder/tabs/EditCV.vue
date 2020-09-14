@@ -146,6 +146,10 @@
 
         height: 600px;
 
+        @include lt-md{
+            height: 660px;
+        }
+
         &.imports-tab{
             height: 1200px;
         }
