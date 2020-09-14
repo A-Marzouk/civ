@@ -102,9 +102,9 @@
                   dark
                   rounded
                   small
-                  class="ct-transform hidden-sm-and-down"
+                  class="ct-transform"
                 >
-                  <span class="pl-4 pr-4">TAP TO CHAT</span>
+                  <span class="px-lg-4 px-md-4 px-sm-4 px-0">TAP TO CHAT</span>
                 </v-btn>
               </div>
 
@@ -1362,7 +1362,7 @@
             <audio-player
               :modalOpen="audioModal"
               color="#FC5C8A"
-              v-for="i in 3"
+              v-for="i in 2"
               :key="i"
               :audio_num="i"
               file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
@@ -1415,34 +1415,45 @@
           </div>
 
           <div class="audio_body white pb-4">
-            <div class="video-container">
-              <video-player
-                v-for="i in 3"
-                :video_num="i"
-                :key="i"
-                :modalOpen="videoModal"
-                link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-              ></video-player>
-            </div>
-
-            <div
-              class="paginate d-flex justify-center align-center mb-5"
-              style="opacity: 0.2"
+            <v-carousel
+              v-model="videoNum"
+              height="400"
+              :continuous="false"
+              :show-arrows="false"
+              hide-delimiter-background
             >
+              <v-carousel-item v-for="i in videos" :key="i.num">
+                <v-sheet class="transparent" height="100%">
+                  <video-player
+                    :video_num="i.num"
+                    :modalOpen="videoModal"
+                    link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                  ></video-player>
+                </v-sheet>
+              </v-carousel-item>
+            </v-carousel>
+
+            <div class="paginate d-flex justify-center align-center mb-5">
               <img
                 style="height: 1rem; width: auto"
+                @click="moveVideo('PREV')"
+                :class="[videoNum + 1 > 1 ? 'next-active' : 'next-deactive']"
                 src="/images/resume_themes/theme501/arr-left.png"
                 alt="left"
               />
 
               <div class="mx-2" style="color: #623cea; font-size: 24px">
-                1/5
+                {{ videoNum + 1 }}/{{ videos.length }}
               </div>
 
               <img
                 style="height: 1rem; width: auto"
+                @click="moveVideo('NEXT')"
+                :class="[
+                  videoNum < videos.length ? 'next-active' : 'next-deactive',
+                ]"
                 src="/images/resume_themes/theme501/arr-right.png"
-                alt="left"
+                alt="right"
               />
             </div>
           </div>
@@ -1511,6 +1522,8 @@ export default {
       message: false,
       audioModal: false,
       videoModal: false,
+      videoNum: 0,
+      videos: [{ num: 1 }, { num: 2 }, { num: 3 }, { num: 4 }, { num: 5 }],
       windowWidth: window.innerWidth,
       hireMeModal: false,
       text: [
@@ -1720,6 +1733,13 @@ export default {
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
+    },
+    moveVideo(operation) {
+      if (operation === "NEXT" && this.videos.length > this.videoNum + 1) {
+        this.videoNum = this.videoNum + 1;
+      } else if (1 <= this.videoNum && operation === "PREV") {
+        this.videoNum = this.videoNum - 1;
+      }
     },
   },
   mounted() {
@@ -1967,20 +1987,30 @@ export default {
 
 /* dialog style end */
 
-/* sm screen  */
-@media only screen and (max-width: 769px) {
-  .ct-info-container {
-    padding: 1rem;
-  }
+/* video next button style start */
+.next-active {
+  opacity: 1;
+  cursor: pointer;
+}
+.next-deactive {
+  opacity: 0.2;
+}
+/* video next button style end */
 
-  .ct-infotext {
-    margin-top: 0.8rem;
+@media only screen and (max-width: 1322px) {
+  .video-container {
+    display: grid;
+    grid-template-columns: 1fr;
   }
+}
 
-  .user_name {
-    font-size: 1.8rem !important;
-    font-weight: 200 !important;
-  }
+.ct-infotext {
+  margin-top: 0.8rem;
+}
+
+.user_name {
+  font-size: 1.8rem !important;
+  font-weight: 200 !important;
 }
 
 /* mobile screen */

@@ -84,6 +84,8 @@
                                 :disabled="false"
                                 :error="!!errors.description"
                                 :error-messages="errors.description"
+                                counter
+                                maxlength="1000"
                                 v-model="newWork.description"
                                 label="Description"
                         >
