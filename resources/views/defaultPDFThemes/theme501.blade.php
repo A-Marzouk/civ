@@ -115,7 +115,7 @@
 
         .social-wrapper {
             font-family: 'Circular Book', Arial, Helvetica, sans-serif;
-            margin-top: 133px;
+            margin-top: 130px;
         }
 
         .user-social a {
