@@ -1,8 +1,8 @@
 <template>
   <v-app style="width:100%;">
     <div class="triangle-top-left"></div>
-    <div class="verical-sidebar"></div>
     <v-container ma-0 pa-0 fluid style="max-width:100% !important;" v-if="currentUser">
+      
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -779,10 +779,12 @@
       <!-- All Modals  -->
 
       <!-- tab bar row -->
+      <div class="verical-sidebar"></div>
       <!-- Right Bottom bar -->
       <div class="triangle-bottom-right" style="text-align:right"></div>
       <!-- Right bottom bar -->
     </v-container>
+    
   </v-app>
 </template>
 <script>
@@ -1100,7 +1102,7 @@ export default {
 }
 
 .triangle-bottom-right {
-  position: fixed;
+  position: absolute;
   right: 0;
   bottom: 0;
   margin: 0;
@@ -1121,12 +1123,14 @@ export default {
 }
 
 .verical-sidebar {
-  position: fixed;
+  position: absolute;
   background: #e6bf4e;
   width: 2rem;
-  height: 100vh;
+  height: 100%;
   z-index: 1;
   bottom: 0;
+  top: 0;
+  left: 0;
   @media screen and (max-width: 599px) {
     width: 1rem;
   }
