@@ -117,7 +117,7 @@
     import Slick from "vue-slick";
 
     export default {
-        name: "PayAvailability",
+        name: "pay-availability",
         components: {
             Slick
         },
@@ -309,7 +309,7 @@
     @import "../../../../../sass/media-queries";
 
     .pay-content {
-        height: 335px;
+        height: 450px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         padding: 50px;

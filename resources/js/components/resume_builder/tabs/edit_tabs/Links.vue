@@ -76,6 +76,7 @@
 import draggable from "vuedraggable";
 
 export default {
+	name: "links",
 	components: {
 		draggable
 	},
@@ -289,7 +290,7 @@ $mainBlue: #001ce2;
 	}
 
 	.links-content {
-		height: 335px;
+		height: 450px;
 		background: #fff;
 		box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
 		padding: 50px;
@@ -297,7 +298,7 @@ $mainBlue: #001ce2;
 
 
 		@include lt-sm {
-			height: 335px;
+			height: 450px;
 			padding: 20px;
 		}
 	}

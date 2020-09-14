@@ -442,6 +442,7 @@
                 border-right: 1px solid rgba(0, 28, 226, 0.1);
                 border-bottom: 1px solid rgba(0, 28, 226, 0.1);
                 z-index: 10;
+                max-height: 940px;;
                 &:hover{
                     height: 940px;
                 }

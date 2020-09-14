@@ -54,7 +54,7 @@
 
     .str-main-content-container{
         width: 100%;
-        height: 335px;
+        height: 450px;
         overflow: auto;
         background: #FFFFFF;
         box-shadow: 0 5px 20px rgba(0, 16, 131, 0.1);

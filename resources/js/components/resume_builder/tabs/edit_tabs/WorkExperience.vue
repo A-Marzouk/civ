@@ -184,7 +184,7 @@
     import tabSwitcher from "./includes/TabSwitcher";
 
     export default {
-        name: "WorkExperience",
+        name: "work-experience",
         components: {
             draggable,
             'tab-switcher' : tabSwitcher,
@@ -380,7 +380,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 330px;
+            height: 450px;
             background: #fff;
             box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
             padding: 50px;
