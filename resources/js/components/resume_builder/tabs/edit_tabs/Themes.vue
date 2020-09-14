@@ -268,7 +268,7 @@
     }
 
     .main-content {
-        height: 525px;
+        height: 460px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         padding: 50px;

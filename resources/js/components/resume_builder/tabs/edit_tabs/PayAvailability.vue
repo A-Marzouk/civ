@@ -308,7 +308,7 @@
 <style scoped lang="scss">
     @import "../../../../../sass/media-queries";
     .pay-content {
-        height: 185px;
+        height: 335px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         padding: 50px;

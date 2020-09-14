@@ -374,7 +374,7 @@
   }
   #portfolio-tab {
     .view-container {
-      max-height: 678px;
+      max-height: 335px;
       overflow: auto;
       box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
       margin: 0 auto;

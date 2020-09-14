@@ -1750,7 +1750,7 @@
 
 <style>
 .active-indicator {
-  border: 2px solid #66daff !important;
+  /*border: 2px solid #66daff !important;*/
 }
 </style>
 <script>

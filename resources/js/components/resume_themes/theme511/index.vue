@@ -106,7 +106,7 @@
                 align-self="center"
               >
                 <div class="head">
-                  {{ currentUser.personal_info.full_name }}
+                  {{ currentUser.personal_info.first_name }} {{ currentUser.personal_info.last_name }}
                 </div>
                 <div class="subhead">
                   {{ currentUser.personal_info.designation }}

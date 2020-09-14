@@ -172,7 +172,7 @@ $mainBlue: #001CE2;
 
         .view-container {
             max-height: 335px;
-            box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
+            box-shadow: 0 5px 20px rgba($color: #001083, $alpha: 0.1);
         }
     }
 </style>
