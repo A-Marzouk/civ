@@ -7,15 +7,7 @@
           <v-img :src="currentUser.personal_info.profile_pic"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
-        <v-container
-          fluid
-          pa-0
-          ma-lg-0
-          ma-md-2
-          ma-sm-4
-          ma-0
-          style="width: 100%"
-        >
+        <v-container fluid pa-0 ma-lg-0 ma-md-2 ma-sm-4 ma-0 style="width: 100%">
           <v-row class align="center" justify="center" dense>
             <v-col
               xl="4"
@@ -25,31 +17,24 @@
               :class="{ 'active-indicator': currentTab === 'profile' }"
             >
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">{{
+                <v-card-title class="custom-profile-title">
+                  {{
                   currentUser.personal_info.full_name
-                }}</v-card-title>
-                <v-card-subtitle class="custom-profile-subtitle">
-                  {{ currentUser.personal_info.designation }}
-                </v-card-subtitle>
+                  }}
+                </v-card-title>
+                <v-card-subtitle
+                  class="custom-profile-subtitle"
+                >{{ currentUser.personal_info.designation }}</v-card-subtitle>
                 <v-card-text
                   class="custom-profile-text hidden-sm-and-down"
                   v-if="currentUser.personal_info.overview"
-                  >{{ currentUser.personal_info.overview }}</v-card-text
-                >
+                >{{ currentUser.personal_info.overview }}</v-card-text>
               </v-card>
             </v-col>
 
             <!-- Social Buttons for tablet only -->
-            <v-col
-              md="4"
-              sm="5"
-              class="d-none d-sm-flex d-md-flex d-lg-none mt-md-8 mt-sm-0"
-            >
-              <v-card
-                flat
-                color="transparent"
-                class="pa-0 hire-me-card mt-md-2 mt-sm-0"
-              >
+            <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none mt-md-8 mt-sm-0">
+              <v-card flat color="transparent" class="pa-0 hire-me-card mt-md-2 mt-sm-0">
                 <v-btn
                   color="#FAFAFA"
                   class="btn-hire-me hidden-md-and-down"
@@ -92,10 +77,7 @@
                 <v-card-text class="ml-xl-0 ml-lg-12 ml-md-0">
                   <v-list-item two-line class>
                     <v-list-item-avatar size="18">
-                      <img
-                        width="18"
-                        src="/images/resume_themes/theme206/icons/usd.png"
-                      />
+                      <img width="18" src="/images/resume_themes/theme206/icons/usd.png" />
                     </v-list-item-avatar>
                     <v-list-item-content>
                       <v-list-item-subtitle>
@@ -105,9 +87,11 @@
                       </v-list-item-subtitle>
                       <v-list-item-subtitle v-if="currentUser.payment_info">
                         <v-card color="transparent" flat tile>
-                          <span class="rate">{{
+                          <span class="rate">
+                            {{
                             currentUser.payment_info[0].salary
-                          }}</span>
+                            }}
+                          </span>
                         </v-card>
                       </v-list-item-subtitle>
                     </v-list-item-content>
@@ -117,15 +101,9 @@
                 <!-- Hour Rate -->
                 <!-- Weekly availibility -->
 
-                <v-list-item
-                  two-line
-                  class="availibilty-col ml-lg-0 ml-md-n10 ml-sm-n12 ml-0"
-                >
+                <v-list-item two-line class="availibilty-col ml-lg-0 ml-md-n10 ml-sm-n12 ml-0">
                   <v-list-item-avatar size="16">
-                    <img
-                      width="16"
-                      src="/images/resume_themes/theme206/icons/watch.png"
-                    />
+                    <img width="16" src="/images/resume_themes/theme206/icons/watch.png" />
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-subtitle>
@@ -135,9 +113,11 @@
                     </v-list-item-subtitle>
                     <v-list-item-subtitle v-if="currentUser.availability_info">
                       <v-card color="transparent" class="pa-0 ma-0" flat tile>
-                        <span class="rate">{{
+                        <span class="rate">
+                          {{
                           currentUser.availability_info[0].available_hours
-                        }}</span>
+                          }}
+                        </span>
                       </v-card>
                     </v-list-item-subtitle>
                   </v-list-item-content>
@@ -148,12 +128,7 @@
             <!-- Availibility  -->
 
             <!-- 3rd column -->
-            <v-col
-              lg="5"
-              md="5"
-              class="hidden-md-and-down mt-lg-0"
-              align="right"
-            >
+            <v-col lg="5" md="5" class="hidden-md-and-down mt-lg-0" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
                 <v-btn
                   color="#FAFAFA"
@@ -186,11 +161,7 @@
             <!-- 3rd column -->
 
             <!-- 4th column for tablet only -->
-            <v-col
-              md="3"
-              sm="1"
-              class="d-none d-sm-none d-md-flex d-lg-none"
-            ></v-col>
+            <v-col md="3" sm="1" class="d-none d-sm-none d-md-flex d-lg-none"></v-col>
             <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none">
               <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
                 <v-btn
@@ -214,23 +185,14 @@
         <v-btn icon color="#333333" @click.stop="drawer = !drawer">
           <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
         </v-btn>
-        <v-toolbar-title class="custom-toolbar-title-mobile">{{
+        <v-toolbar-title class="custom-toolbar-title-mobile">
+          {{
           currentUser.personal_info.full_name
-        }}</v-toolbar-title>
+          }}
+        </v-toolbar-title>
       </v-app-bar>
-      <v-navigation-drawer
-        app
-        color="#fafafa"
-        v-model="drawer"
-        temporary
-        absolute
-        width="350"
-      >
-        <v-card
-          flat
-          color="transparent"
-          :class="{ 'active-indicator': currentTab === 'profile' }"
-        >
+      <v-navigation-drawer app color="#fafafa" v-model="drawer" temporary absolute width="350">
+        <v-card flat color="transparent" :class="{ 'active-indicator': currentTab === 'profile' }">
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
           <v-list-item class="mt-n12">
             <v-list-item-avatar size="80">
@@ -240,16 +202,20 @@
             <v-list-item-content class="mt-12">
               <v-list-item-title>
                 <v-card color="transparent" class="pa-2" flat>
-                  <span class="profile-title-mobile">{{
+                  <span class="profile-title-mobile">
+                    {{
                     currentUser.personal_info.full_name
-                  }}</span>
+                    }}
+                  </span>
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
                 <v-card flat color="transparent" class="pa-2 mt-n5">
-                  <span class="profile-subtitle-mobile">{{
+                  <span class="profile-subtitle-mobile">
+                    {{
                     currentUser.personal_info.designation
-                  }}</span>
+                    }}
+                  </span>
                 </v-card>
               </v-list-item-subtitle>
               <v-list-item-title>
@@ -275,21 +241,18 @@
             </v-list-item-content>
           </v-list-item>
           <v-card-text>
-            <v-btn
-              color="#FAFAFA"
-              class="btn-hire-me"
-              block
-              @click="hireMeModal = !hireMeModal"
-            >
+            <v-btn color="#FAFAFA" class="btn-hire-me" block @click="hireMeModal = !hireMeModal">
               <v-icon color="#5843BE" left>mdi-email-outline</v-icon>Hire Me
             </v-btn>
           </v-card-text>
         </v-card>
         <v-card flat color="transparent">
           <v-card-title class="about-me-title-mobile">About Me</v-card-title>
-          <v-card-text class="about-me-text-mobile">{{
+          <v-card-text class="about-me-text-mobile">
+            {{
             currentUser.personal_info.about
-          }}</v-card-text>
+            }}
+          </v-card-text>
         </v-card>
       </v-navigation-drawer>
       <!-- For mobile version only -->
@@ -316,9 +279,11 @@
                 <v-avatar tile size="16">
                   <img :src="getTabIcon(tab.id)" width="16" />
                 </v-avatar>
-                <span class="ml-2" v-if="activeTab == tab.value">{{
+                <span class="ml-2" v-if="activeTab == tab.value">
+                  {{
                   tab.title
-                }}</span>
+                  }}
+                </span>
               </v-tab>
             </v-tabs>
             <!-- for mobile version  -->
@@ -372,10 +337,7 @@
                           v-show="project.is_public"
                         >
                           <v-card class="card-portfolio" hover>
-                            <v-img
-                              :aspect-ratio="1.2"
-                              :src="getProjectMainImage(project)"
-                            ></v-img>
+                            <v-img :aspect-ratio="1.2" :src="getProjectMainImage(project)"></v-img>
                           </v-card>
                         </v-col>
                       </v-row>
@@ -398,20 +360,21 @@
                       <v-card class="card-education pa-5" hover>
                         <v-card-title class="education-title">
                           <v-row>
-                            <v-col cols="10">{{
+                            <v-col cols="10">
+                              {{
                               education.university_name
-                            }}</v-col>
+                              }}
+                            </v-col>
                             <v-col cols="2" align="right">
-                              <img
-                                src="/images/resume_themes/theme206/tabs/2.png"
-                                alt
-                              />
+                              <img src="/images/resume_themes/theme206/tabs/2.png" alt />
                             </v-col>
                           </v-row>
                         </v-card-title>
-                        <v-card-text class="education-subtitle">{{
+                        <v-card-text class="education-subtitle">
+                          {{
                           education.description
-                        }}</v-card-text>
+                          }}
+                        </v-card-text>
                         <v-card-actions class="education-session pl-4">
                           {{ getFullYear(education.date_from) }} -
                           {{ getFullYear(education.date_to) }}
@@ -439,16 +402,15 @@
                           <v-row>
                             <v-col cols="10">{{ work.job_title }}</v-col>
                             <v-col cols="2" align="right">
-                              <img
-                                src="/images/resume_themes/theme206/tabs/2.png"
-                                alt
-                              />
+                              <img src="/images/resume_themes/theme206/tabs/2.png" alt />
                             </v-col>
                           </v-row>
                         </v-card-title>
-                        <v-card-text class="education-subtitle">{{
+                        <v-card-text class="education-subtitle">
+                          {{
                           work.company_name
-                        }}</v-card-text>
+                          }}
+                        </v-card-text>
                         <v-card-actions class="education-session pl-4">
                           {{ getFullYear(work.date_from) }} -
                           {{ getFullYear(work.date_to) }}
@@ -480,8 +442,7 @@
                                 ? 'skill-child-tab-active'
                                 : 'skill-child-tab',
                             ]"
-                            >{{ skill.title }}</v-tab
-                          >
+                          >{{ skill.title }}</v-tab>
                         </v-tabs>
                       </v-card>
                       <!-- Child Tabs -->
@@ -517,15 +478,16 @@
                                   <v-card color="#FAFAFA">
                                     <v-card-text>
                                       <v-row>
-                                        <v-col cols="6" class="skill-title">{{
+                                        <v-col cols="6" class="skill-title">
+                                          {{
                                           s.title
-                                        }}</v-col>
+                                          }}
+                                        </v-col>
                                         <v-col
                                           cols="6"
                                           align="right"
                                           class="skill-title"
-                                          >{{ s.percentage }}%</v-col
-                                        >
+                                        >{{ s.percentage }}%</v-col>
                                         <v-col cols="12">
                                           <v-progress-linear
                                             style="
@@ -595,11 +557,7 @@
                           order="12"
                           class="about-left-column"
                         >
-                          <v-card
-                            class="card-about-left"
-                            flat
-                            color="transparent"
-                          >
+                          <v-card class="card-about-left" flat color="transparent">
                             <v-card-subtitle
                               class="dob-text"
                               :align="windowWidth <= 599 ? 'left' : 'center'"
@@ -608,9 +566,11 @@
                               <div>Date Of Birth</div>
 
                               <div class>
-                                <span class>{{
+                                <span class>
+                                  {{
                                   currentUser.personal_info.date_of_birth
-                                }}</span>
+                                  }}
+                                </span>
                               </div>
                             </v-card-subtitle>
 
@@ -624,9 +584,9 @@
                               <div class>
                                 <span class>
                                   {{
-                                    currentUser.personal_info.nationality
-                                  }}</span
-                                >
+                                  currentUser.personal_info.nationality
+                                  }}
+                                </span>
                               </div>
                             </v-card-subtitle>
 
@@ -638,9 +598,11 @@
                               <div>Hometown</div>
 
                               <div class>
-                                <span style="text-transform: uppercase">{{
+                                <span style="text-transform: uppercase">
+                                  {{
                                   currentUser.personal_info.hometown
-                                }}</span>
+                                  }}
+                                </span>
                               </div>
                             </v-card-subtitle>
 
@@ -655,84 +617,71 @@
                                 <span
                                   v-for="(language, i) in currentUser.languages"
                                   :key="i"
-                                  >{{ language.label }}</span
-                                >
+                                >{{ language.label }}</span>
                               </div>
                             </v-card-subtitle>
                           </v-card>
                         </v-col>
 
-                        <v-col
-                          xl="6"
-                          lg="9"
-                          md="9"
-                          sm="7"
-                          cols="12"
-                          order-sm="12"
-                          order="1"
-                        >
-                          <v-card
-                            class="card-about-right"
-                            flat
-                            color="transparent"
-                          >
+                        <v-col xl="6" lg="9" md="9" sm="7" cols="12" order-sm="12" order="1">
+                          <v-card class="card-about-right" flat color="transparent">
                             <v-card-subtitle
                               v-if="currentUser.personal_info.overview"
                               class="overview-title"
-                              >Overview summary</v-card-subtitle
-                            >
+                            >Overview summary</v-card-subtitle>
                             <!-- Overview -->
                             <v-card-text
                               v-if="currentUser.personal_info.overview"
                               class="overview-text mt-n4"
-                              >{{
-                                currentUser.personal_info.overview
-                              }}</v-card-text
                             >
+                              {{
+                              currentUser.personal_info.overview
+                              }}
+                            </v-card-text>
                             <!-- Overview -->
 
                             <!-- about me -->
                             <v-card-subtitle
                               class="overview-title"
                               v-if="currentUser.personal_info.about"
-                              >About Me</v-card-subtitle
-                            >
+                            >About Me</v-card-subtitle>
                             <v-card-text
                               class="overview-text mt-n4"
                               v-if="currentUser.personal_info.about"
-                              >{{
-                                currentUser.personal_info.about
-                              }}</v-card-text
                             >
+                              {{
+                              currentUser.personal_info.about
+                              }}
+                            </v-card-text>
                             <!-- about me -->
 
                             <!-- quote -->
                             <v-card-subtitle
                               class="overview-title"
                               v-if="currentUser.personal_info.quote"
-                              >Quote</v-card-subtitle
-                            >
+                            >Quote</v-card-subtitle>
                             <v-card-text
                               class="overview-text mt-n4"
                               v-if="currentUser.personal_info.quote"
-                              >{{
-                                currentUser.personal_info.quote
-                              }}</v-card-text
                             >
+                              {{
+                              currentUser.personal_info.quote
+                              }}
+                            </v-card-text>
                             <!-- quote -->
                             <!-- location -->
                             <v-card-subtitle
                               class="overview-title"
                               v-if="currentUser.personal_info.location"
-                              >Location</v-card-subtitle
-                            >
+                            >Location</v-card-subtitle>
                             <v-card-text
                               class="overview-text mt-n4"
                               v-if="currentUser.personal_info.location"
-                              >{{
-                                currentUser.personal_info.location
-                              }}</v-card-text
                             >
+                              {{
+                              currentUser.personal_info.location
+                              }}
+                            </v-card-text>
                             <!-- location -->
                           </v-card>
                         </v-col>
@@ -756,10 +705,7 @@
                         :key="i"
                         v-show="hobby.is_public"
                       >
-                        <v-card
-                          class="card-hobby pa-md-5 pa-sm-5 pa-0 mb-5"
-                          hover
-                        >
+                        <v-card class="card-hobby pa-md-5 pa-sm-5 pa-0 mb-5" hover>
                           <v-card-text>
                             <div
                               class="d-flex flex-row justify-content-center align-items-center mt-md-0 mt-sm-0 mt-1"
@@ -769,9 +715,7 @@
                                 alt="football"
                                 class="mx-auto"
                               />
-                              <div class="hobby-title mx-auto my-auto">
-                                {{ hobby.title }}
-                              </div>
+                              <div class="hobby-title mx-auto my-auto">{{ hobby.title }}</div>
                             </div>
                           </v-card-text>
                         </v-card>
@@ -802,27 +746,17 @@
                             <!-- 1st column -->
                             <v-col md="6" sm="6" cols="12">
                               <div class="d-flex flex-column">
-                                <h3 class="reference-title">
-                                  {{ reference.name }}
-                                </h3>
-                                <p class="reference-subtitle mt-2">
-                                  {{ reference.title }}
-                                </p>
+                                <h3 class="reference-title">{{ reference.name }}</h3>
+                                <p class="reference-subtitle mt-2">{{ reference.title }}</p>
                               </div>
                             </v-col>
                             <!-- 1st column -->
                             <!-- 2nd column -->
                             <v-col md="6" sm="6" cols="12">
                               <div class="d-flex flex-column">
-                                <p class="reference-address">
-                                  {{ reference.address }}
-                                </p>
-                                <p class="reference-address mt-n3">
-                                  {{ reference.phone }}
-                                </p>
-                                <p class="reference-address mt-n3">
-                                  {{ reference.url }}
-                                </p>
+                                <p class="reference-address">{{ reference.address }}</p>
+                                <p class="reference-address mt-n3">{{ reference.phone }}</p>
+                                <p class="reference-address mt-n3">{{ reference.url }}</p>
                               </div>
                             </v-col>
                             <!-- 2nd column -->
@@ -838,9 +772,7 @@
                                     </p>
                                   </div>
                                 </div>
-                                <div class="reference-desc">
-                                  {{ reference.reference_text }}
-                                </div>
+                                <div class="reference-desc">{{ reference.reference_text }}</div>
                               </v-card>
                             </v-col>
                             <!-- 3rd column -->
@@ -871,43 +803,35 @@
                           class="card-achievement pa-xl-10 pa-lg-6 pa-md-12 pa-sm-9 pa-2 mb-6"
                           hover
                         >
-                          <div class="d-flex flex-row my-auto">
+                          <div
+                            class="d-flex my-auto"
+                            :class="[windowWidth<1264 ? 'flex-column': 'flex-row']"
+                          >
                             <img
                               class="mt-sm-0 mt-3"
                               :src="achievement.image_src"
-                              style="max-width: 300px"
                               alt="certificate"
                             />
                             <div class="ml-md-6 ml-sm-3 ml-1">
                               <p
                                 class="year mt-md-0 mt-sm-4 mt-0 hidden-xs-only"
-                              >
-                                {{ getFullYear(achievement.created_at) }}
-                              </p>
+                              >{{ getFullYear(achievement.created_at) }}</p>
                               <v-row>
                                 <v-col md="12" sm="12" cols="12">
-                                  <h3 class="title mt-xl-0 mt-lg-n8">
-                                    {{ achievement.title }}
-                                  </h3>
+                                  <h3 class="title mt-xl-0 mt-lg-n8">{{ achievement.title }}</h3>
                                 </v-col>
                                 <v-col cols="3" class="hidden-sm-and-up">
-                                  <p class="year">
-                                    {{ achievement.created_at }}
-                                  </p>
+                                  <p class="year">{{ achievement.created_at }}</p>
                                 </v-col>
                               </v-row>
 
-                              <p class="address mt-xl-0 mt-lg-n5 mt-sm-0 mt-n7">
-                                URL: {{ achievement.url }}
-                              </p>
-                              <p class="desc hidden-xs-only">
-                                {{ achievement.description }}
-                              </p>
+                              <p
+                                class="address mt-xl-0 mt-lg-n5 mt-sm-0 mt-n7"
+                              >URL: {{ achievement.url }}</p>
+                              <p class="desc hidden-xs-only">{{ achievement.description }}</p>
                             </div>
                           </div>
-                          <p class="desc hidden-sm-and-up mt-3">
-                            {{ achievement.description }}
-                          </p>
+                          <p class="desc hidden-sm-and-up mt-3">{{ achievement.description }}</p>
                         </v-card>
                       </v-col>
                     </v-row>
@@ -1671,6 +1595,14 @@ export default {
       @media screen and (max-width: 599px) {
         width: 104px;
         height: 81px;
+      }
+    }
+    img {
+      width: 252px;
+      height: 180px;
+      @media screen and (max-width: 1263px) {
+        width: auto;
+        height: auto;
       }
     }
   }
