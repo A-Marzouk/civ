@@ -15,7 +15,12 @@
         elevation="0"
         small
       >
-        <v-icon dark>mdi-{{ Userlink.link_title.toLowerCase() }} </v-icon>
+        <v-img
+          width="18"
+          height="18"
+          contain
+          :src="`/images/resume_themes/theme1001/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
+        ></v-img>
       </v-btn>
     </div>
   </div>

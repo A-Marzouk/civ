@@ -94,7 +94,7 @@ export default {
   }
 }
 .right-side {
-  width: 80%;
+  width: 75%;
   height: auto;
   .box {
     width: 100%;
@@ -246,6 +246,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       width: 66.6666%;
+      justify-content: space-around;
 
       .detail__paragraph {
         width: 50%;
