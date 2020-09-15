@@ -14,7 +14,7 @@
         </v-btn>
       </div>
       <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
-      <v-container fluid class="ma-0 pa-sm-5 pa-0">
+      <v-container fluid class="ma-0 pa-xl-10 pa-lg-5 pa-sm-5 pa-0 mt-n5">
         <!-- Hire me tab -->
         <v-row>
           <v-col xl="9" lg="9" cols="12">
@@ -50,10 +50,10 @@
         <!-- hire me tab -->
       </v-container>
 
-      <v-container fluid>
+      <v-container fluid class="ma-0 pa-xl-10 pa-lg-5 pa-sm-5 pa-0 mt-lg-n10 mt-sm-n5 mt-n5">
         <div class="select-hour mt-xl-5 mt-lg-2 mt-5">
-          <div align="left">Select the number of Hours you need per week:</div>
-          <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5 payment-logo">
+          <div align="left" class="mb-5">Select the number of Hours you need per week:</div>
+          <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5 payment-logo mt-5">
             <div class="align-self-center btn-holder">
               <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentHours()">
                 <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
@@ -78,8 +78,8 @@
           </div>
         </div>
         <!-- Weekly -->
-        <div class="select-hour mt-xl-5 mt-lg-2 mt-5">
-          <div align="left">How many weeks would you like to book for?</div>
+        <div class="select-hour mt-xl-10 mt-lg-10 mt-5">
+          <div align="left" class="mb-5">How many weeks would you like to book for?</div>
           <div class="d-flex flex-row align-items-center mt-5 payment-logo">
             <div class="align-self-center btn-holder">
               <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentWeek()">
@@ -108,7 +108,7 @@
 
         <!-- Total Payment -->
         <v-row :justify="windowWidth <= 599 ? 'center':'left'">
-          <div class="total-payment mt-xl-5 mt-lg-2 mt-sm-5 mt-12">
+          <div class="total-payment mt-xl-10 mt-lg-5 mt-sm-5 mt-12">
             <v-card flat class="card-payment pa-5" align="left">
               <div class="subtitle">Your total payment will be</div>
               <div class="total-payment-text">
@@ -118,45 +118,11 @@
             </v-card>
           </div>
         </v-row>
-      </v-container>
-      <!-- Total Payment -->
-      <!-- Payment Method -->
-      <div class="hidden-xs-only">
-        <div class="d-flex flex-row">
-          <div class="payment-logo mx-2 align-self-center">
-            <a href="#">
-              <img
-                @mouseover="stripeHover=true"
-                @mouseleave="stripeHover=false"
-                :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
-                alt="Stripe Logo"
-              />
-            </a>
-          </div>
-          <div class="payment-logo mx-4 align-self-center">
-            <a href="#">
-              <img
-                @mouseover="paypalHover=true"
-                @mouseleave="paypalHover=false"
-                :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
-                alt="Paypal Logo"
-              />
-            </a>
-          </div>
-          <div class="mx-4">
-            <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
-          </div>
-        </div>
-      </div>
-      <!-- payment method for mobile -->
-      <div class="hidden-sm-and-up" align="center">
-        <div class="d-flex flex-column" align="center">
-          <div class="mt-5">
-            <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
-          </div>
 
-          <div class="d-flex flex-row mt-3 payment-logo" align="center">
-            <div class="payment-logo mx-3 align-self-center">
+        <!-- Payment Method -->
+        <div class="hidden-xs-only mt-5">
+          <div class="d-flex flex-row">
+            <div class="payment-logo mx-2 align-self-center">
               <a href="#">
                 <img
                   @mouseover="stripeHover=true"
@@ -166,7 +132,7 @@
                 />
               </a>
             </div>
-            <div class="payment-logo mt-2 mx-5">
+            <div class="payment-logo mx-4 align-self-center">
               <a href="#">
                 <img
                   @mouseover="paypalHover=true"
@@ -176,11 +142,46 @@
                 />
               </a>
             </div>
+            <div class="mx-4">
+              <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- payment method for mobile -->
-      <!-- Payment Method -->
+        <!-- payment method for mobile -->
+        <div class="hidden-sm-and-up" align="center">
+          <div class="d-flex flex-column" align="center">
+            <div class="mt-5">
+              <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
+            </div>
+
+            <div class="d-flex flex-row mt-3 payment-logo" align="center">
+              <div class="payment-logo mx-3 align-self-center">
+                <a href="#">
+                  <img
+                    @mouseover="stripeHover=true"
+                    @mouseleave="stripeHover=false"
+                    :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
+                    alt="Stripe Logo"
+                  />
+                </a>
+              </div>
+              <div class="payment-logo mt-2 mx-5">
+                <a href="#">
+                  <img
+                    @mouseover="paypalHover=true"
+                    @mouseleave="paypalHover=false"
+                    :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
+                    alt="Paypal Logo"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- payment method for mobile -->
+        <!-- Payment Method -->
+      </v-container>
+      <!-- Total Payment -->
     </v-card>
   </v-dialog>
 </template>
