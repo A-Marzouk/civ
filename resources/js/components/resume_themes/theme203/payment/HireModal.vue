@@ -51,7 +51,7 @@
         <!-- hire me tab -->
       </v-container>
 
-      <v-container fluid class="ma-0 pa-xl-8 pa-lg-5 pa-sm-5 pa-0 mt-lg-n10 mt-sm-n5 mt-n5">
+      <v-container fluid class="ma-0 pa-xl-8 pa-lg-5 pa-sm-5 pa-0 mt-lg-n10 mt-sm-n5 mt-0">
         <div class="select-hour mt-xl-5 mt-lg-5 mt-5">
           <div align="left" class="mb-5">Select the number of Hours you need per week:</div>
           <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5 payment-logo mt-5">
@@ -79,7 +79,7 @@
           </div>
         </div>
         <!-- Weekly -->
-        <div class="select-hour mt-xl-10 mt-lg-5 mt-5">
+        <div class="select-hour mt-xl-10 mt-lg-5 mt-sm-10 mt-10">
           <div align="left" class="mb-5">How many weeks would you like to book for?</div>
           <div class="d-flex flex-row align-items-center mt-5 payment-logo">
             <div class="align-self-center btn-holder">
@@ -109,7 +109,7 @@
 
         <!-- Total Payment -->
         <v-row class="payment-logo pa-3 mt-xl-0 mt-lg-0">
-          <div class="total-payment mt-xl-10 mt-lg-5 mt-sm-5 mt-12">
+          <div class="total-payment mt-xl-10 mt-lg-5 mt-sm-10 mt-12">
             <v-card flat class="card-payment pa-5">
               <div class="subtitle">Your total payment will be</div>
               <div class="total-payment-text">
