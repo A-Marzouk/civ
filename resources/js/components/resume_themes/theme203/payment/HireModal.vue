@@ -7,14 +7,15 @@
     max-width="567"
     persistent
   >
-    <v-card color="#F6F9FF" class="card-hire-me-modal pa-sm-3 pa-5">
+    <v-card color="#F6F9FF" class="card-hire-me-modal pa-md-5 pa-sm-5 pa-5">
       <div align="right" class="mt-sm-0 mt-n5">
         <v-btn icon @click.native="closeModal()">
           <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
         </v-btn>
       </div>
-      <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
-      <v-container fluid class="ma-0 pa-xl-10 pa-lg-5 pa-sm-5 pa-0 mt-n5">
+      
+      <v-container fluid class="ma-0 pa-xl-8 pa-lg-5 pa-sm-5 pa-0 mt-n5">
+        <div class="title mt-n5">Book Conor on an</div>
         <!-- Hire me tab -->
         <v-row>
           <v-col xl="9" lg="9" cols="12">
@@ -50,8 +51,8 @@
         <!-- hire me tab -->
       </v-container>
 
-      <v-container fluid class="ma-0 pa-xl-10 pa-lg-5 pa-sm-5 pa-0 mt-lg-n10 mt-sm-n5 mt-n5">
-        <div class="select-hour mt-xl-5 mt-lg-2 mt-5">
+      <v-container fluid class="ma-0 pa-xl-8 pa-lg-5 pa-sm-5 pa-0 mt-lg-n10 mt-sm-n5 mt-n5">
+        <div class="select-hour mt-xl-5 mt-lg-5 mt-5">
           <div align="left" class="mb-5">Select the number of Hours you need per week:</div>
           <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5 payment-logo mt-5">
             <div class="align-self-center btn-holder">
@@ -65,9 +66,9 @@
                 class="input-hour"
                 height="47"
                 hide-details
-                value="40 hours"
                 outlined
-                v-model="inputHour"
+                readonly
+                :value="inputHour + ' hours'"
               ></v-text-field>
             </div>
             <div class="align-self-center btn-holder" @click="increamentHours()">
@@ -78,7 +79,7 @@
           </div>
         </div>
         <!-- Weekly -->
-        <div class="select-hour mt-xl-10 mt-lg-10 mt-5">
+        <div class="select-hour mt-xl-10 mt-lg-5 mt-5">
           <div align="left" class="mb-5">How many weeks would you like to book for?</div>
           <div class="d-flex flex-row align-items-center mt-5 payment-logo">
             <div class="align-self-center btn-holder">
@@ -92,9 +93,9 @@
                 class="input-hour"
                 height="47"
                 hide-details
-                value="10 weeks"
                 outlined
-                v-model="inputWeek"
+                readonly
+                :value="inputWeek + ' weeks'"
               ></v-text-field>
             </div>
             <div class="align-self-center btn-holder">
@@ -107,9 +108,9 @@
         <!-- Weekly -->
 
         <!-- Total Payment -->
-        <v-row :justify="windowWidth <= 599 ? 'center':'left'">
+        <v-row class="payment-logo pa-3 mt-xl-0 mt-lg-0">
           <div class="total-payment mt-xl-10 mt-lg-5 mt-sm-5 mt-12">
-            <v-card flat class="card-payment pa-5" align="left">
+            <v-card flat class="card-payment pa-5">
               <div class="subtitle">Your total payment will be</div>
               <div class="total-payment-text">
                 <span class="mr-2">$</span>400
