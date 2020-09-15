@@ -6,48 +6,56 @@
 
     <div class="about-me__detail">
       <div class="left-side">
-        <div class="box">
+        <div class="box" v-if="currentUser.personal_info.date_of_birth">
           <div class="title">Date of Birth</div>
-          <div class="subtitle">01/14/90</div>
+          <div class="subtitle">
+            {{ currentUser.personal_info.date_of_birth }}
+          </div>
         </div>
-        <div class="box">
+        <div class="box" v-if="currentUser.personal_info.nationality">
           <div class="title">Nationality</div>
-          <div class="subtitle">Ukrainian</div>
+          <div class="subtitle">
+            {{ currentUser.personal_info.nationality }}
+          </div>
         </div>
-        <div class="box">
+        <div class="box" v-if="currentUser.personal_info.hometown">
           <div class="title">Hometown</div>
-          <div class="subtitle">Kiev</div>
+          <div class="subtitle">{{ currentUser.personal_info.hometown }}</div>
         </div>
-        <div class="box">
+        <div class="box" v-if="currentUser.languages[0]">
           <div class="title">Languages</div>
-          <div class="subtitle">English</div>
-          <div class="subtitle">Arabic</div>
-          <div class="subtitle">Franch</div>
+          <div
+            class="subtitle"
+            v-for="(language, i) in currentUser.languages"
+            :key="i"
+          >
+            {{ language.label }}
+          </div>
         </div>
       </div>
       <div class="right-side">
-        <div class="box vertical-space">
+        <div
+          class="box vertical-space"
+          v-if="currentUser.personal_info.overview"
+        >
           <div class="title">Overview Sumary</div>
           <div class="subtitle">
-            В работе дизайнера есть много пространства для креатива, но это
-            только на первый взгляд кажется, что такие специалисты полагаются
-            исключительно на фантазию.
+            {{ currentUser.personal_info.overview }}
           </div>
         </div>
-        <div class="box">
+        <div class="box" v-if="currentUser.personal_info.about">
           <div class="title">About Me</div>
           <div class="subtitle">
-            В работе дизайнера есть много пространства это только на кажется,
-            что такие специалисты полагаются исключительно на фантазию.
+            {{ currentUser.personal_info.about }}
           </div>
         </div>
-        <div class="box">
+        <div class="box" v-if="currentUser.personal_info.quote">
           <div class="title">Quote</div>
-          <div class="subtitle">B создавать графический контент.</div>
+          <div class="subtitle">{{ currentUser.personal_info.quote }}</div>
         </div>
-        <div class="box">
+        <div class="box" v-if="currentUser.personal_info.location">
           <div class="title">Location</div>
-          <div class="subtitle">Ireland, Dublin</div>
+          <div class="subtitle">{{ currentUser.personal_info.location }}</div>
         </div>
       </div>
     </div>
@@ -57,7 +65,7 @@
 <script>
 export default {
   name: "about-me",
-  props: ["currentUser"]
+  props: ["currentUser"],
 };
 </script>
 

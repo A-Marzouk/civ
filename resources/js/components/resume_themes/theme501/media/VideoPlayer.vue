@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <v-card class="card-video mb-md-0 mb-sm-5 mb-5">
+    <v-card class="card-video white mb-md-0 mb-sm-5 mb-5">
       <div ref="videoPoster">
         <img src="/images/resume_themes/theme200/preview1.png" />
-        <v-overlay absolute="true" :value="overlay" color="#6152CF" class="video-overlay">
+        <v-overlay :absolute="true" :value="overlay" color="#6152CF" class="video-overlay">
           <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
             <v-icon x-large color="#6152CF">mdi-play</v-icon>
           </v-btn>
@@ -12,9 +12,9 @@
       <div ref="videotm903" class="videotm903">
         <video width="100%" ref="videoElem" controls :src="link" :modalOpen="modalOpen"></video>
       </div>
-      <v-card-title class="video-window-title">Video Title</v-card-title>
+      <v-card-title class="video-window-title py-2">Video Title</v-card-title>
       <v-card-subtitle
-        class="video-window-subtitle mt-xl-0 mt-lg-n3 mt-sm-0 mt-n6"
+        class="video-window-subtitle py-2"
         align="left"
       >Video Transcript</v-card-subtitle>
     </v-card>
@@ -85,8 +85,9 @@ export default {
 }
 .card-video {
   border-radius: 12px !important;
-  width: auto;
-  height: 541.31px;
+  max-width: 400px;
+  max-height: 350px !important;
+  margin: 0 auto;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 90%;
   }
@@ -101,7 +102,8 @@ export default {
   .video-overlay {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    height: 439.31px;
+    max-height: 275px !important;
+
     @media screen and (min-width: 1264px) and (max-width: 1903px) {
       height: 355.5px;
     }
@@ -110,23 +112,23 @@ export default {
       height: 249.75px;
     }
     @media screen and (min-width: 600px) and (max-width: 959px) {
-      height: 382.5px;
+      max-height: 275px !important;
     }
     @media screen and (max-width: 599px) {
       height: 198.56px;
     }
   }
   img {
-    height: 439.31px;
-    @media screen and (min-width: 1264px) and (max-width: 1903px) {
-      height: 355.5px;
-    }
+    max-height: 300px !important;
+    // @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    //   height: 355.5px;
+    // }
     @media screen and (min-width: 960px) and (max-width: 1263px) {
-      width: 444px;
+      // width: 444px;
       height: 249.75px;
     }
     @media screen and (min-width: 600px) and (max-width: 959px) {
-      height: 382.5px;
+      max-height: 300px !important
     }
     @media screen and (max-width: 599px) {
       height: 198.56px;
@@ -135,13 +137,13 @@ export default {
   // overlay
   .video-window-title {
     font-family: "Open Sans" !important;
-    font-size: 30px;
+    font-size: 24px;
     color: #2e2e2e !important;
     @media screen and (min-width: 1264px) and (max-width: 1903px) {
       font-size: 24px;
     }
     @media screen and (max-width: 959px) {
-      font-size: 32px;
+      font-size: 24px;
     }
     @media screen and (max-width: 599px) {
       font-size: 18px;
@@ -149,17 +151,17 @@ export default {
   }
   .video-window-subtitle {
     font-family: "Open Sans" !important;
-    font-size: 19px;
+    font-size: 16px;
     color: #7d7d7d !important;
     text-transform: capitalize !important;
     @media screen and (min-width: 1904px) {
-      margin-top: 2px;
+      // margin-top: 1px;
     }
     @media screen and (min-width: 1264px) and (max-width: 1903px) {
       font-size: 14px;
     }
     @media screen and (max-width: 959px) {
-      font-size: 18px;
+      font-size: 16px;
     }
     @media screen and (max-width: 599px) {
       font-size: 10px;
