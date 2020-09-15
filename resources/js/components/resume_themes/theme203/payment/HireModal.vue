@@ -128,7 +128,7 @@
                 <img
                   @mouseover="stripeHover=true"
                   @mouseleave="stripeHover=false"
-                  :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
+                  :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.png':'/images/resume_themes/theme203/icons/stripe.png'"
                   alt="Stripe Logo"
                 />
               </a>
@@ -138,7 +138,7 @@
                 <img
                   @mouseover="paypalHover=true"
                   @mouseleave="paypalHover=false"
-                  :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
+                  :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.png':'/images/resume_themes/theme203/icons/paypal.png'"
                   alt="Paypal Logo"
                 />
               </a>
@@ -161,8 +161,9 @@
                   <img
                     @mouseover="stripeHover=true"
                     @mouseleave="stripeHover=false"
-                    :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.svg':'/images/resume_themes/theme203/icons/stripe.svg'"
+                    :src="stripeHover?'/images/resume_themes/theme203/icons/stripe-active.png':'/images/resume_themes/theme203/icons/stripe.png'"
                     alt="Stripe Logo"
+                    style="width:60.07px; height: 24.98px;"
                   />
                 </a>
               </div>
@@ -171,8 +172,9 @@
                   <img
                     @mouseover="paypalHover=true"
                     @mouseleave="paypalHover=false"
-                    :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.svg':'/images/resume_themes/theme203/icons/paypal.svg'"
+                    :src="paypalHover?'/images/resume_themes/theme203/icons/paypal-active.png':'/images/resume_themes/theme203/icons/paypal.png'"
                     alt="Paypal Logo"
+                    style="width:100px; height: 25.37px;"
                   />
                 </a>
               </div>
