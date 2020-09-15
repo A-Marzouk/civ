@@ -28,13 +28,13 @@ export default {
   props: {
     isOpen: {
       type: Boolean,
-      default: false
+      default: false,
     },
     currentUser: {
       type: undefined,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 
@@ -64,7 +64,13 @@ export default {
 
   &.social-menu--open {
     border-top-width: 1px;
-    height: 48px;
+    height: auto;
+    padding: 5px 0px;
+    .v-btn--fab.v-size--small {
+      height: 40px;
+      width: 40px;
+      margin: 5px;
+    }
   }
 }
 
@@ -93,13 +99,20 @@ export default {
 
 @media (min-width: $sm) {
   .social-menu.social-menu--open {
-    height: 60px;
+    height: auto;
+    padding: 5px 0px;
   }
 }
 
 @media (min-width: $md) {
   .social-menu.social-menu--open {
-    height: 62px;
+    height: auto;
+    padding: 5px 0px;
+  }
+  .v-btn--fab.v-size--small {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
   }
 }
 
@@ -107,6 +120,7 @@ export default {
   .social-menu {
     width: auto;
     height: auto;
+    padding: 15px 10px;
   }
 
   .social-menu.social-menu--open {
