@@ -20,7 +20,7 @@
                   </div>
                   <div class="profileCol">
                     <span class="head-name">
-                      {{ currentUser.personal_info.full_name }}
+                      {{ currentUser.personal_info.first_name}} {{ currentUser.personal_info.last_name}}
                     </span>
                     <span class="head-profile">{{
                       currentUser.personal_info.designation
