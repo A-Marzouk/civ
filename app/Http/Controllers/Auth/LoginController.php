@@ -51,10 +51,6 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
-        }
-
         // restore and login if user is trashed:
         $user = \App\User::withTrashed()
             ->where('email', $request->only($this->username()))
@@ -64,6 +60,14 @@ class LoginController extends Controller
             $user->restore();
             return $this->sendLoginResponse($request);
         }
+
+        // normal attempt:
+
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse($request);
+        }
+
+
 
         $this->incrementLoginAttempts($request);
 
