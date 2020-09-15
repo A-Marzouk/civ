@@ -8,13 +8,13 @@
     persistent
   >
     <v-card color="#F6F9FF" class="card-hire-me-modal pa-sm-3 pa-5">
-      <div align="right">
+      <div align="right" class="mt-sm-0 mt-n5">
         <v-btn icon @click.native="closeModal()">
           <img src="/images/resume_themes/theme203/icons/close.svg" alt="close button" />
         </v-btn>
       </div>
       <v-card-title class="title mt-n5">Book Conor on an</v-card-title>
-      <v-card-subtitle>
+      <v-container fluid class="ma-0 pa-sm-5 pa-0">
         <!-- Hire me tab -->
         <v-row>
           <v-col xl="9" lg="9" cols="12">
@@ -37,13 +37,7 @@
               >{{tab.title}}</v-tab>
             </v-tabs>
           </v-col>
-          <v-col
-            xl="9"
-            lg="9"
-            cols="12"
-            class="mt-xl-n5 mt-lg-n5 mt-n5"
-            :align="windowWidth<=599?'center':'left'"
-          >
+          <v-col xl="9" lg="9" cols="12" class="mt-xl-n5 mt-lg-n5 mt-n5">
             <v-card flat align="center" height="43" class="pa-2">
               <v-tabs-items v-model="hireMeTab">
                 <v-tab-item class="tab-item">$10</v-tab-item>
@@ -54,84 +48,80 @@
           </v-col>
         </v-row>
         <!-- hire me tab -->
-      </v-card-subtitle>
-      <v-card-subtitle
-        class="select-hour mt-xl-5 mt-lg-2 mt-5"
-        :align="windowWidth<=599?'center':'left'"
-      >
-        <div align="left">Select the number of Hours you need per week:</div>
-        <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5">
-          <div class="align-self-center btn-holder">
-            <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentHours()">
-              <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
-            </v-btn>
-          </div>
-          <div class="align-self-center mx-xl-3 mx-lg-3 mx-md-3 mx-sm-3 mx-5">
-            <v-text-field
-              background-color="#ffffff"
-              class="input-hour"
-              height="47"
-              hide-details
-              value="40 hours"
-              outlined
-              v-model="inputHour"
-            ></v-text-field>
-          </div>
-          <div class="align-self-center btn-holder" @click="increamentHours()">
-            <v-btn color="#F2F3FD" class="btn-decreament" icon>
-              <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
-            </v-btn>
-          </div>
-        </div>
-      </v-card-subtitle>
-      <!-- Weekly -->
-      <v-card-subtitle
-        class="select-hour mt-xl-5 mt-lg-2 mt-5"
-        :align="windowWidth<=599?'center':'left'"
-      >
-        <div align="left">How many weeks would you like to book for?</div>
-        <div class="d-flex flex-row align-items-center mt-5">
-          <div class="align-self-center btn-holder">
-            <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentWeek()">
-              <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
-            </v-btn>
-          </div>
-          <div class="align-self-center mx-xl-3 mx-lg-3 mx-md-3 mx-sm-3 mx-5">
-            <v-text-field
-              background-color="#ffffff"
-              class="input-hour"
-              height="47"
-              hide-details
-              value="10 weeks"
-              outlined
-              v-model="inputWeek"
-            ></v-text-field>
-          </div>
-          <div class="align-self-center btn-holder">
-            <v-btn color="#F2F3FD" class="btn-decreament" icon @click="increamentWeek()">
-              <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
-            </v-btn>
-          </div>
-        </div>
-      </v-card-subtitle>
-      <!-- Weekly -->
+      </v-container>
 
-      <!-- Total Payment -->
-      <v-card-subtitle
-        class="total-payment mt-xl-5 mt-lg-2 mt-5"
-        :align="windowWidth<=599?'center':'left'"
-      >
-        <v-card flat class="card-payment pa-5" align="left">
-          <div class="subtitle">Your total payment will be</div>
-          <div class="total-payment-text">
-            <span class="mr-2">$</span>400
+      <v-container fluid>
+        <div class="select-hour mt-xl-5 mt-lg-2 mt-5">
+          <div align="left">Select the number of Hours you need per week:</div>
+          <div class="d-flex flex-row align-items-center mt-xl-5 mt-lg-2 mt-5 payment-logo">
+            <div class="align-self-center btn-holder">
+              <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentHours()">
+                <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
+              </v-btn>
+            </div>
+            <div class="align-self-center mx-xl-3 mx-lg-3 mx-md-3 mx-sm-3 mx-3">
+              <v-text-field
+                background-color="#ffffff"
+                class="input-hour"
+                height="47"
+                hide-details
+                value="40 hours"
+                outlined
+                v-model="inputHour"
+              ></v-text-field>
+            </div>
+            <div class="align-self-center btn-holder" @click="increamentHours()">
+              <v-btn color="#F2F3FD" class="btn-decreament" icon>
+                <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
+              </v-btn>
+            </div>
           </div>
-          <div class="subtitle">10 usd per hour x 40 hours</div>
-        </v-card>
-      </v-card-subtitle>
+        </div>
+        <!-- Weekly -->
+        <div class="select-hour mt-xl-5 mt-lg-2 mt-5">
+          <div align="left">How many weeks would you like to book for?</div>
+          <div class="d-flex flex-row align-items-center mt-5 payment-logo">
+            <div class="align-self-center btn-holder">
+              <v-btn color="#F2F3FD" class="btn-decreament" icon @click="decreamentWeek()">
+                <img src="/images/resume_themes/theme203/icons/tick-minus.svg" alt />
+              </v-btn>
+            </div>
+            <div class="align-self-center mx-xl-3 mx-lg-3 mx-md-3 mx-sm-3 mx-3">
+              <v-text-field
+                background-color="#ffffff"
+                class="input-hour"
+                height="47"
+                hide-details
+                value="10 weeks"
+                outlined
+                v-model="inputWeek"
+              ></v-text-field>
+            </div>
+            <div class="align-self-center btn-holder">
+              <v-btn color="#F2F3FD" class="btn-decreament" icon @click="increamentWeek()">
+                <img src="/images/resume_themes/theme203/icons/tick-plus.svg" alt />
+              </v-btn>
+            </div>
+          </div>
+        </div>
+        <!-- Weekly -->
+
+        <!-- Total Payment -->
+        <v-row :justify="windowWidth <= 599 ? 'center':'left'">
+          <div class="total-payment mt-xl-5 mt-lg-2 mt-sm-5 mt-12">
+            <v-card flat class="card-payment pa-5" align="left">
+              <div class="subtitle">Your total payment will be</div>
+              <div class="total-payment-text">
+                <span class="mr-2">$</span>400
+              </div>
+              <div class="subtitle">10 usd per hour x 40 hours</div>
+            </v-card>
+          </div>
+        </v-row>
+      </v-container>
       <!-- Total Payment -->
       <!-- Payment Method -->
-      <v-card-subtitle class="hidden-xs-only">
+      <div class="hidden-xs-only">
         <div class="d-flex flex-row">
           <div class="payment-logo mx-2 align-self-center">
             <a href="#">
@@ -157,15 +147,15 @@
             <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
           </div>
         </div>
-      </v-card-subtitle>
+      </div>
       <!-- payment method for mobile -->
-      <v-card-subtitle class="hidden-sm-and-up" align="center">
+      <div class="hidden-sm-and-up" align="center">
         <div class="d-flex flex-column" align="center">
-          <div class>
+          <div class="mt-5">
             <v-btn class="payment-btn" depressed color="#001CE2">Pay Now</v-btn>
           </div>
 
-          <div class="d-flex flex-row mt-3 justify-content-center" align="center">
+          <div class="d-flex flex-row mt-3 payment-logo" align="center">
             <div class="payment-logo mx-3 align-self-center">
               <a href="#">
                 <img
@@ -188,7 +178,7 @@
             </div>
           </div>
         </div>
-      </v-card-subtitle>
+      </div>
       <!-- payment method for mobile -->
       <!-- Payment Method -->
     </v-card>
@@ -330,6 +320,9 @@ export default {
   }
   // total payment
   .total-payment {
+    @media screen and (max-width: 599px) {
+      justify-content: center;
+    }
     .card-payment {
       width: 279px;
       height: 142px;
@@ -379,7 +372,13 @@ export default {
       height: 55.55px !important;
     }
   }
+  .payment-logo {
+    @media screen and (max-width: 599px) {
+      justify-content: center;
+    }
+  }
 }
+
 // hire me modal
 </style>
 

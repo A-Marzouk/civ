@@ -872,7 +872,7 @@
       <!-- Hire Me Modal -->
       <hire-modal
         :hireMeModal.sync="hireMeModal"
-        :widowWidth="windowWidth"
+        :windowWidth="windowWidth"
         :currentUser="currentUser"
       ></hire-modal>
       <!-- Hire Me Modal -->
