@@ -33,7 +33,7 @@
               v-for="(language, i) in user.languages"
               :key="i"
             >
-              {{ language }}
+              {{ language.label }}
             </div>
           </v-col>
         </v-row>

@@ -1043,7 +1043,7 @@
                 v-for="(language, i) in currentUser.languages"
                 :key="i"
               >
-                {{ language }}
+                {{ language.label }}
               </div>
             </div>
           </div>
