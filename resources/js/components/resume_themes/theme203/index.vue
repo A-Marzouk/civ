@@ -872,7 +872,7 @@
       <!-- Hire Me Modal -->
       <hire-modal
         :hireMeModal.sync="hireMeModal"
-        :widowWidth="windowWidth"
+        :windowWidth="windowWidth"
         :currentUser="currentUser"
       ></hire-modal>
       <!-- Hire Me Modal -->
@@ -964,7 +964,6 @@
           </VueSlickCarousel>
         </v-card>
       </v-dialog>
-
       <!-- Audio Modal -->
 
       <!-- Video Modal -->
@@ -1826,7 +1825,7 @@ export default {
   .dob-text {
     font-family: "Gotham Pro" !important;
     font-style: normal;
-    font-weight: 900 !important;
+    font-weight: 500 !important;
     font-size: 20px;
     line-height: 19px;
     color: #1f1f1f !important;
@@ -1836,7 +1835,7 @@ export default {
     }
     span {
       font-family: "Open Sans" !important;
-      font-weight: 600 !important;
+      font-weight: 300 !important;
       font-size: 20px;
       line-height: 35px;
       color: #373737;
@@ -1851,7 +1850,7 @@ export default {
   .overview-title {
     font-family: "Gotham Pro" !important;
     font-style: normal;
-    font-weight: 900;
+    font-weight: 500;
     font-size: 25px;
     line-height: 24px;
     color: #1f1f1f !important;
@@ -1863,7 +1862,7 @@ export default {
   .overview-text {
     font-family: "Open Sans" !important;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 300;
     font-size: 20px;
     line-height: 35px;
     color: #373737 !important;
