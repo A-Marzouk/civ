@@ -655,7 +655,7 @@
                                 <span
                                   v-for="(language, i) in currentUser.languages"
                                   :key="i"
-                                  >{{ language }}</span
+                                  >{{ language.label }}</span
                                 >
                               </div>
                             </v-card-subtitle>
