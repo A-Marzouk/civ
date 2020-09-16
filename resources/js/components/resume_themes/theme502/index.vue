@@ -35,7 +35,7 @@
             class="pl-sm-6 pl-md-3 pl-lg-6 pl-3"
           >
             <div class="head font-weight-bold">
-              {{ currentUser.personal_info.full_name }}
+              {{currentUser.personal_info.first_name}} {{ currentUser.personal_info.last_name}}
               <div class="text-left d-sm-inline-block d-none">
                 <v-btn fab color="#3E56CD" small class="ml-6" elevation="0">
                   <v-img

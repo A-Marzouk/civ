@@ -30,7 +30,7 @@
                 class="text-md-left text-center text-sm-left"
               >
                 <div class="user-name font-weight-regular">
-                  {{ currentUser.personal_info.full_name }}
+                  {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
                 </div>
                 <div class="job-title py-2 pb-sm-2">
                   {{ currentUser.personal_info.designation }}

@@ -24,7 +24,7 @@
                         <v-list-item-content class="ml-lg-0 ml-md-5">
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent" tile>
-                              {{ currentUser.personal_info.full_name }}
+                              {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
                               <span
                                 class="mx-8 hidden-sm-and-down email-icon-block"
                               >

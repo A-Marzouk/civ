@@ -21,7 +21,7 @@
         <div class="stack-one">
           <!-- user name -->
           <div class="user-name">
-            {{ currentUser.personal_info.full_name }}
+            {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
           </div>
 
           <!-- addition buttons -->
