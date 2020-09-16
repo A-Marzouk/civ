@@ -15,7 +15,12 @@
         elevation="0"
         small
       >
-        <v-icon dark>mdi-{{ Userlink.link_title.toLowerCase() }} </v-icon>
+        <v-img
+          width="18"
+          height="18"
+          contain
+          :src="`/images/resume_themes/theme1001/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
+        ></v-img>
       </v-btn>
     </div>
   </div>
@@ -28,13 +33,13 @@ export default {
   props: {
     isOpen: {
       type: Boolean,
-      default: false
+      default: false,
     },
     currentUser: {
       type: undefined,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 
@@ -64,7 +69,13 @@ export default {
 
   &.social-menu--open {
     border-top-width: 1px;
-    height: 48px;
+    height: auto;
+    padding: 5px 0px;
+    .v-btn--fab.v-size--small {
+      height: 40px;
+      width: 40px;
+      margin: 5px;
+    }
   }
 }
 
@@ -93,13 +104,20 @@ export default {
 
 @media (min-width: $sm) {
   .social-menu.social-menu--open {
-    height: 60px;
+    height: auto;
+    padding: 5px 0px;
   }
 }
 
 @media (min-width: $md) {
   .social-menu.social-menu--open {
-    height: 62px;
+    height: auto;
+    padding: 5px 0px;
+  }
+  .v-btn--fab.v-size--small {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
   }
 }
 
@@ -107,6 +125,7 @@ export default {
   .social-menu {
     width: auto;
     height: auto;
+    padding: 15px 10px;
   }
 
   .social-menu.social-menu--open {
