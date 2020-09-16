@@ -446,7 +446,7 @@
             .sidebar-container {
                 background: transparent;
                 width: 300px;
-                height: 86.2%;
+                height: 517px;
                 overflow: hidden;
                 border-right: 1px solid rgba(0, 28, 226, 0.1);
                 border-bottom: 1px solid rgba(0, 28, 226, 0.1);
