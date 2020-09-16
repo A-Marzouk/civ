@@ -19,7 +19,8 @@
                     <vue-google-autocomplete
                             id="locationInput"
                             classname="custom-predict-input"
-                            placeholder=""
+                            types="(cities)"
+                            placeholder="City or town"
                             v-on:placechanged="getAddressData"
                             @focus="locationLabelFocused = true"
                             @blur="saveLocationAfterBlur"
@@ -123,7 +124,8 @@
                     <vue-google-autocomplete
                             id="hometownInput"
                             classname="custom-predict-input hometown"
-                            placeholder=""
+                            placeholder="City or town"
+                            types="(cities)"
                             v-on:placechanged="getAddressDataHomeTown"
                             @focus="hometownLabelFocused = true"
                             @blur="saveHometownAfterBlur"
@@ -327,7 +329,8 @@
             // Prediction functions:
             getAddressData: function (addressData) {
                 this.address = addressData;
-                this.personalInfo.location = `${addressData.route ? addressData.route + ', ' : ''}${addressData.administrative_area_level_1 ? addressData.administrative_area_level_1 + ', ' : ''}${addressData.country ? addressData.country : ''}`;
+                console.log(addressData);
+                this.personalInfo.location = addressData.locality + ', ' + addressData.country;
                 this.setLocationValue();
                 this.applyEdit();
             },
@@ -357,7 +360,7 @@
             // Prediction functions hometown:
             getAddressDataHomeTown: function (addressData) {
                 this.address = addressData;
-                this.personalInfo.hometown = `${addressData.route ? addressData.route + ', ' : ''}${addressData.administrative_area_level_1 ? addressData.administrative_area_level_1 + ', ' : ''}${addressData.country ? addressData.country : ''}`;
+                this.personalInfo.hometown = addressData.locality + ', ' + addressData.country;
                 this.setHometownValue();
                 this.applyEdit();
             },
