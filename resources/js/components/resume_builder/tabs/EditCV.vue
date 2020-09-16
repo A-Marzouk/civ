@@ -146,8 +146,6 @@
             height: 1200px;
         }
 
-        position: relative;
-
         .edit-cv-content {
             padding: 5px 5px;
 

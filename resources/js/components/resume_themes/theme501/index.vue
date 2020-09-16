@@ -10,78 +10,7 @@
           cols="12"
           :class="{ 'active-indicator': currentTab === 'profile' }"
         >
-          <!-- <v-row no-gutters class="justify-start pink" align="center">
 
-           
-
-
-            <v-col
-              class="col-md-3 ml-sm-6 pl-3 pl-lg-0 pl-sm-1 pl-xl-0 red"
-              align-xl="center"
-              sm="3"
-              lg="3"
-              xl="2"
-              cols="4"
-              align-lg="center"
-              align-sm="start"
-              align-content="end"
-            >
-              <v-img
-                :src="currentUser.personal_info.profile_pic"
-                style="border: 3px solid white; border-radius: 50%;"
-                class="profile"
-                cover
-              ></v-img>
-            </v-col>
-
-            
-            <v-col
-              cols="6"
-              class="col-md-6 col-sm-6 pt-lg-12 pt-sm-6 pt-4 pl-xl-12 ml-xl-4 ml-lg-6 pl-6 blue"
-            >
-              <div
-                class="head font-weight-bold text-left mb-2"
-                style="color: whitesmoke;"
-              >
-                {{ currentUser.personal_info.full_name }}
-              </div>
-              <div class="subhead text-left mb-4 white--text">
-                {{ currentUser.personal_info.designation }}
-              </div>
-
-              <div class="mt-sm-8">
-                <v-btn
-                  fab
-                  outlined
-                  dark
-                  x-small
-                  v-for="Userlink in currentUser.links"
-                  :key="Userlink.id + '_link'"
-                  v-show="Userlink.is_active && Userlink.is_public"
-                  :href="Userlink.link"
-                  target="_blank"
-                  :height="iconSize"
-                  :width="iconSize"
-                  color="rgba(4, 199, 155,0.5)"
-                  class="mr-2 mt-1"
-                >
-                  <v-icon dark color="white"
-                    >mdi-{{ Userlink.link_title.toLowerCase() }}</v-icon
-                  >
-                </v-btn>
-              </div>
-            </v-col>
-
-            
-            <v-col class="hidden-lg-and-up pl-4 pl-sm-10 green" cols="2">
-              <img style="transform: translateY(7px)"
-                alt="phone call" src="/images/resume_themes/theme501/phonecall.png" >
-              
-              <img alt="phone call" src="/images/resume_themes/theme501/videocall.png" >
-            </v-col>
-
-            
-          </v-row> -->
 
           <!-- refactor -->
           <div
@@ -113,7 +42,7 @@
                   class="head font-weight-bold text-left mb-2 user_name"
                   style="color: whitesmoke"
                 >
-                  {{ currentUser.personal_info.full_name }}
+                  {{ currentUser.personal_info.first_name }} {{ currentUser.personal_info.last_name }}
                 </div>
                 <div
                   class="subhead text-left mb-4 white--text user_designation"
@@ -128,10 +57,11 @@
                     outlined
                     dark
                     x-small
-                    v-for="Userlink in currentUser.links"
-                    :key="Userlink.id + '_link'"
-                    v-show="Userlink.is_active && Userlink.is_public"
-                    :href="Userlink.link"
+                    v-for="userLink in currentUser.links"
+                    :key="userLink.id + '_link'"
+                    v-show="userLink.is_active && userLink.is_public"
+                    href="javascript:void(0)"
+                    @click="goToExternalLink(userLink.link)"
                     target="_blank"
                     :height="iconSize"
                     :width="iconSize"
@@ -139,7 +69,7 @@
                     class="mr-2 mt-1"
                   >
                     <v-icon dark color="white"
-                      >mdi-{{ Userlink.link_title.toLowerCase() }}</v-icon
+                      >mdi-{{ userLink.link_title.toLowerCase() }}</v-icon
                     >
                   </v-btn>
                 </div>
@@ -941,70 +871,6 @@
       </v-tab-item>
 
       <v-tab-item value="tab-4">
-        <!-- <v-row
-          justify="start"
-          justify-sm="start"
-          justify-lg="center"
-          class="mt-xl-6 mt-lg-10 mx-sm-6 mx-6 mx-lg-2"
-          no-gutters
-        >
-          <v-col cols="9" sm="11" class="hidden-md-and-up mt-12">
-            <v-img
-              :src="currentUser.personal_info.profile_pic"
-              class="box-layer"
-              contain
-            ></v-img>
-          </v-col>
-          <v-col md="6" sm="12" cols="11" class="mt-12 mt-sm-10">
-            <div class="mt-sm-10 mt-10 mt-lg-10">Hello, I'm</div>
-            <div class="display-2 mt-md-6 mt-sm-6">
-              {{ currentUser.personal_info.full_name }}
-            </div>
-            <div class="display-2 mt-md-2 mt-sm-2">
-              a
-              <span style="color: #623cea;">{{
-                currentUser.personal_info.designation
-              }}</span>
-            </div>
-            <div class="display-2 mt-md-12 mt-sm-8">About Me.</div>
-            <v-row dense class="mt-md-12 mt-sm-8">
-              <v-col cols="1">
-                <div class="line"></div>
-              </v-col>
-              <v-col cols="11" sm="12" lg="9">
-                <div class="title" style="color: #656565;">
-                  {{ currentUser.personal_info.about }}
-                </div>
-                <div class="mt-md-8 mt-sm-8 mt-6">
-                  <v-btn
-                    v-for="Userlink in currentUser.links"
-                    :key="Userlink.id + '_link'"
-                    v-show="Userlink.is_active && Userlink.is_public"
-                    :href="Userlink.link"
-                    target="_blank"
-                    dark
-                    class="px-0 mr-1"
-                    min-width="30"
-                    height="30"
-                    color="#414143"
-                  >
-                    <v-icon dark small color="white"
-                      >mdi-{{ Userlink.link_title.toLowerCase() }}</v-icon
-                    >
-                  </v-btn>
-                </div>
-              </v-col>
-            </v-row>
-          </v-col>
-          <v-col md="2" sm="4" class="hidden-sm-and-down mt-12">
-            <v-img
-              :src="currentUser.personal_info.profile_pic"
-              class="box-layer"
-              contain
-            ></v-img>
-          </v-col>
-        </v-row> -->
-
         <!-- about me refactor -->
         <div class="about_container">
           <!-- short info -->
@@ -1700,6 +1566,12 @@ export default {
     },
   },
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
     availableNext() {
       if (this.available == 2) {
         this.available = 0;

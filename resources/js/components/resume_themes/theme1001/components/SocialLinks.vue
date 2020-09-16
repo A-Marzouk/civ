@@ -3,10 +3,11 @@
     <div class="social-label">Follow Me On :</div>
     <div class="social_groups">
       <v-btn
-        v-for="Userlink in currentUser.links"
-        :key="Userlink.id + '_link'"
-        v-show="Userlink.is_active && Userlink.is_public"
-        :href="Userlink.link"
+        v-for="userLink in currentUser.links"
+        :key="userLink.id + '_link'"
+        v-show="userLink.is_active || userLink.is_public"
+        href="javascript:void(0)"
+        @click="goToExternalLink(userLink.link)"
         target="_blank"
         class="social mx-2"
         fab
@@ -15,7 +16,12 @@
         elevation="0"
         small
       >
-        <v-icon dark>mdi-{{ Userlink.link_title.toLowerCase() }} </v-icon>
+        <v-img
+          width="18"
+          height="18"
+          contain
+          :src="`/images/resume_themes/theme1001/social_icons/${userLink.link_title.toLowerCase()}.svg`"
+        ></v-img>
       </v-btn>
     </div>
   </div>
@@ -28,11 +34,20 @@ export default {
   props: {
     isOpen: {
       type: Boolean,
-      default: false
+      default: false,
     },
     currentUser: {
       type: undefined,
-      required: true
+      required: true,
+    },
+  },
+
+  methods:{
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
     }
   }
 };
@@ -64,7 +79,13 @@ export default {
 
   &.social-menu--open {
     border-top-width: 1px;
-    height: 48px;
+    height: auto;
+    padding: 5px 0px;
+    .v-btn--fab.v-size--small {
+      height: 40px;
+      width: 40px;
+      margin: 5px;
+    }
   }
 }
 
@@ -93,13 +114,20 @@ export default {
 
 @media (min-width: $sm) {
   .social-menu.social-menu--open {
-    height: 60px;
+    height: auto;
+    padding: 5px 0px;
   }
 }
 
 @media (min-width: $md) {
   .social-menu.social-menu--open {
-    height: 62px;
+    height: auto;
+    padding: 5px 0px;
+  }
+  .v-btn--fab.v-size--small {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
   }
 }
 
@@ -107,6 +135,7 @@ export default {
   .social-menu {
     width: auto;
     height: auto;
+    padding: 15px 10px;
   }
 
   .social-menu.social-menu--open {

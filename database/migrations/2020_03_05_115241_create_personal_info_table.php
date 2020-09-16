@@ -34,7 +34,7 @@ class CreatePersonalInfoTable extends Migration
             $table->string('hometown')->nullable();
             $table->boolean('is_hometown_active')->default(1);
 
-            $table->date('date_of_birth')->nullable();
+            $table->date('date_of_birth')->default('1995-01-01');
             $table->boolean('is_date_of_birth_active')->default(1);
 
             $table->string('location')->nullable();

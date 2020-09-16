@@ -30,7 +30,7 @@
                 class="text-md-left text-center text-sm-left"
               >
                 <div class="user-name font-weight-regular">
-                  {{ currentUser.personal_info.full_name }}
+                  {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
                 </div>
                 <div class="job-title py-2 pb-sm-2">
                   {{ currentUser.personal_info.designation }}
@@ -369,9 +369,10 @@
                     <div class="text-center">Follow me</div>
                     <div class="text-center mt-2">
                       <v-btn
-                        :href="Userlink.link"
-                        v-for="Userlink in currentUser.links"
-                        :key="Userlink.id + '_link'"
+                        href="javascript:void(0)"
+                        @click="goToExternalLink(userLink.link)"
+                        v-for="userLink in currentUser.links"
+                        :key="userLink.id + '_link'"
                         target="_blank"
                         class="mx-1"
                         style="
@@ -380,10 +381,10 @@
                           height: 40px;
                           box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
                         "
-                        v-show="Userlink.is_active && Userlink.is_public"
+                        v-show="userLink.is_active && userLink.is_public"
                       >
                         <img
-                          :src="`/images/resume_themes/theme5/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
+                          :src="`/images/resume_themes/theme5/social_icons/${userLink.link_title.toLowerCase()}.svg`"
                           alt="social-icon"
                         />
                       </v-btn>
@@ -498,9 +499,10 @@
                     <div class="text-center">Follow me</div>
                     <div class="text-center mt-2">
                       <v-btn
-                        :href="Userlink.link"
-                        v-for="Userlink in currentUser.links"
-                        :key="Userlink.id + '_link'"
+                        href="javascript:void(0)"
+                        @click="goToExternalLink(userLink.link)"
+                        v-for="userLink in currentUser.links"
+                        :key="userLink.id + '_link'"
                         target="_blank"
                         class="mx-1"
                         style="
@@ -509,10 +511,10 @@
                           height: 40px;
                           box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
                         "
-                        v-show="Userlink.is_active && Userlink.is_public"
+                        v-show="userLink.is_active && userLink.is_public"
                       >
                         <img
-                          :src="`/images/resume_themes/theme5/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
+                          :src="`/images/resume_themes/theme5/social_icons/${userLink.link_title.toLowerCase()}.svg`"
                           alt="social-icon"
                         />
                       </v-btn>
@@ -2091,6 +2093,12 @@ export default {
     },
   },
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
     availableNext() {
       if (this.available == 2) {
         this.available = 0;

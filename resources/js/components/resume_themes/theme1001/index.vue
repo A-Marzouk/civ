@@ -104,7 +104,7 @@
           class="profile-detail"
           :class="{ 'active-indicator': currentTab === 'profile' }"
         >
-          <h3 class="title" v-text="currentUser.personal_info.full_name"></h3>
+          <h3 class="title">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</h3>
           <h4
             class="sub-title"
             v-text="currentUser.personal_info.designation"
