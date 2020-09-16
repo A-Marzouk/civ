@@ -149,10 +149,11 @@
               >
                 <div class="text-right mt-lg-4 hidden-md-and-down">
                   <v-btn
-                    v-for="Userlink in currentUser.links"
-                    :key="Userlink.id + '_link'"
-                    v-show="Userlink.is_active && Userlink.is_public"
-                    :href="Userlink.link"
+                    v-for="userLink in currentUser.links"
+                    :key="userLink.id + '_link'"
+                    v-show="userLink.is_active && userLink.is_public"
+                    href="javascript:void(0)"
+                    @click="goToExternalLink(userLink.link)"
                     target="_blank"
                     class="social mx-3"
                     fab
@@ -160,7 +161,7 @@
                   >
                     <svg-vue
                       class="icon"
-                      :icon="Userlink.link_title.toLowerCase() + '-icon'"
+                      :icon="userLink.link_title.toLowerCase() + '-icon'"
                     ></svg-vue>
                   </v-btn>
 
@@ -415,6 +416,12 @@ export default {
   },
 
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
    closeDialog(){
         console.log('closeDialog');
         this.messageToggle = false;

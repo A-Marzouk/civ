@@ -57,10 +57,11 @@
                     outlined
                     dark
                     x-small
-                    v-for="Userlink in currentUser.links"
-                    :key="Userlink.id + '_link'"
-                    v-show="Userlink.is_active && Userlink.is_public"
-                    :href="Userlink.link"
+                    v-for="userLink in currentUser.links"
+                    :key="userLink.id + '_link'"
+                    v-show="userLink.is_active && userLink.is_public"
+                    href="javascript:void(0)"
+                    @click="goToExternalLink(userLink.link)"
                     target="_blank"
                     :height="iconSize"
                     :width="iconSize"
@@ -68,7 +69,7 @@
                     class="mr-2 mt-1"
                   >
                     <v-icon dark color="white"
-                      >mdi-{{ Userlink.link_title.toLowerCase() }}</v-icon
+                      >mdi-{{ userLink.link_title.toLowerCase() }}</v-icon
                     >
                   </v-btn>
                 </div>
@@ -1565,6 +1566,12 @@ export default {
     },
   },
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
     availableNext() {
       if (this.available == 2) {
         this.available = 0;
