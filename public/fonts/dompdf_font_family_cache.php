@@ -123,7 +123,7 @@
     'normal' => $fontDir . '/noto-sans-bold-normal_0fefd6257cb2f55a5ef5adc6ac3562e9',
   ),
   'poppins bold' => array(
-    'normal' => $fontDir . '/poppins-bold-normal_7c0485404e2206f792d631a8ce99d45a',
+    'normal' => $fontDir . '/poppins-bold-normal_e20c69b608ebd95b7829e4fe69df3542',
   ),
   'poppins' => array(
     'normal' => $fontDir . '/poppins-normal_3828d5fcf583696bd33b46fd22840d4f',
@@ -150,9 +150,24 @@
     'normal' => $fontDir . '/open-sans-medium-normal_d1d3b33f127ad0e6d7aa874869d0dbb2',
   ),
   'poppins medium' => array(
-    'normal' => $fontDir . '/poppins-medium-normal_d1d3b33f127ad0e6d7aa874869d0dbb2',
+    'normal' => $fontDir . '/poppins-medium-normal_d065d1180e9dbe56bb2c1ef46795bcad',
   ),
   'poppins regular' => array(
-    'normal' => $fontDir . '/poppins-regular-normal_3828d5fcf583696bd33b46fd22840d4f',
+    'normal' => $fontDir . '/poppins-regular-normal_94fc420110578d52fd4e7670f8d6742b',
+  ),
+  'circular medium' => array(
+    'normal' => $fontDir . '/circular-medium-normal_24d2e89e2cc8e5d0bcc2ab96f1e54bab',
+  ),
+  'circular book' => array(
+    'normal' => $fontDir . '/circular-book-normal_7717ee2e0ead903b627c532d46e55b5c',
+  ),
+  'averta' => array(
+    'normal' => $fontDir . '/averta-normal_027f6d0da6d511b03ad52d333ddadd52',
+  ),
+  'poppins light' => array(
+    'normal' => $fontDir . '/poppins-light-normal_a0e866008b80c51df64b2bdf89e15d46',
+  ),
+  'poppins semibold' => array(
+    'normal' => $fontDir . '/poppins-semibold-normal_d01959f7ba3893ce29e5cf84a74bbcdc',
   ),
 ) ?>
