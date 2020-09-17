@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid v-if="activeTab === 'about'" class="pb-sm-12">
+  <v-container fluid v-if="activeTab === 'about_me'" class="pb-sm-12">
     <v-row no-gutters>
       <v-col lg="2" cols="12" sm="3">
         <v-row dense>

@@ -425,7 +425,17 @@ export const store = new Vuex.Store({
             ]
         },
         themeUser: {},
-        access_token: Vue.$cookies.get('access_token') || null
+        access_token: Vue.$cookies.get('access_token') || null,
+        defaultTabs: ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements'],
+        excludedTabs:[
+            'structure',
+            'imports',
+            'manager',
+            'themes',
+            'links',
+            'pay_availability',
+            'profile', // main tab | can not be hidden
+        ]
     },
     mutations: {
         setCurrentUser: (state, data) => {
