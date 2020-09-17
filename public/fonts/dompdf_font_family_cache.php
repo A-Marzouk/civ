@@ -167,4 +167,7 @@
   'poppins light' => array(
     'normal' => $fontDir . '/poppins-light-normal_a0e866008b80c51df64b2bdf89e15d46',
   ),
+  'poppins semibold' => array(
+    'normal' => $fontDir . '/poppins-semibold-normal_d01959f7ba3893ce29e5cf84a74bbcdc',
+  ),
 ) ?>
