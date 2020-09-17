@@ -372,7 +372,7 @@
                             class="overview-title"
                             v-if="currentUser.personal_info.about"
                           >About Me</v-card-subtitle>
-                          <hr class="custom-hr hidden-xs-only" />
+                          <hr class="custom-hr hidden-xs-only" v-show="currentUser.personal_info.about" />
                           <v-card-text
                             class="overview-text"
                             v-if="currentUser.personal_info.about"
@@ -403,7 +403,7 @@
                             }}
                           </v-card-text>
                           <!-- location -->
-                          <hr class="custom-hr hidden-sm-and-up" />
+                          <hr class="custom-hr hidden-sm-and-up" v-show="currentUser.personal_info.location"/>
                         </v-card>
                       </v-col>
                     </v-row>
