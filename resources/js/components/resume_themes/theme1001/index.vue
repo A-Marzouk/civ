@@ -194,17 +194,7 @@ export default {
       currentUser: this.user,
       hireMeModal: false,
       chatToggle: false,
-      isOpen: false,
-      defaultTabs: ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements'],
-      excludedTabs:[
-        'structure',
-        'imports',
-        'manager',
-        'themes',
-        'links',
-        'pay_availability',
-        'profile', // main tab | can not be hidden
-      ]
+      isOpen: false
     };
   },
   watch: {
@@ -286,6 +276,12 @@ export default {
     window.removeEventListener("click", this.close);
   },
   computed: {
+    defaultTabs(){
+      return this.$store.state.defaultTabs ;
+    },
+    excludedTabs(){
+      return this.$store.state.excludedTabs ;
+    },
     popupAnimation() {
       return this.isOpen ? "open" : "close";
     },
