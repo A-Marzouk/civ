@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Averta Demo PE';
+    src: url('AvertaDemoPE-Regular.eot');
+    src: local('Averta Demo PE Regular'), local('AvertaDemoPE-Regular'),
+        url('AvertaDemoPE-Regular.eot?#iefix') format('embedded-opentype'),
+        url('AvertaDemoPE-Regular.woff2') format('woff2'),
+        url('AvertaDemoPE-Regular.woff') format('woff'),
+        url('AvertaDemoPE-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Averta Demo PE';
+    src: url('AvertaDemoPE-ExtraboldItalic.eot');
+    src: local('Averta Demo PE Extrabold Italic'), local('AvertaDemoPE-ExtraboldItalic'),
+        url('AvertaDemoPE-ExtraboldItalic.eot?#iefix') format('embedded-opentype'),
+        url('AvertaDemoPE-ExtraboldItalic.woff2') format('woff2'),
+        url('AvertaDemoPE-ExtraboldItalic.woff') format('woff'),
+        url('AvertaDemoPE-ExtraboldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
