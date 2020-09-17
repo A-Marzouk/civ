@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid v-if="activeTab === 'achievement'">
+  <v-container fluid v-if="activeTab === 'achievements'">
     <v-row>
       <v-col
         lg="6"
