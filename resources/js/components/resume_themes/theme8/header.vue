@@ -21,7 +21,8 @@
         <div class="stack-one">
           <!-- user name -->
           <div class="user-name">
-            {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
+            {{ currentUser.personal_info.first_name }}
+            {{ currentUser.personal_info.last_name }}
           </div>
 
           <!-- addition buttons -->
@@ -68,25 +69,6 @@
                     <span>Message</span>
                   </a>
                 </div>
-
-                <!-- <div class="video-btn hideOnNotTablet">
-                  <a href="javascript:void(0)">
-                    <img
-                      src="/images/resume_themes/theme8/video-player.svg"
-                      alt="video icon"
-                    />
-                    <span>Video</span>
-                  </a>
-                </div>
-                <div class="audio-btn hideOnNotTablet">
-                  <a href="javascript:void(0)" @click.prevent="toogleAudio">
-                    <img
-                      src="/images/resume_themes/theme8/headphones.svg"
-                      alt="audio icon"
-                    />
-                    <span>Audio</span>
-                  </a>
-                </div> -->
               </div>
 
               <div class="icons NoDecor">

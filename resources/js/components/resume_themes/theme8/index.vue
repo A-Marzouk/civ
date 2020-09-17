@@ -120,24 +120,7 @@
             </div>
           </div>
         </div>
-        <!-- <div
-          class="about"
-          v-show="activeTab === 'about'"
-          :class="{ active: activeTab === 'about' }"
-        >
-          <div class="about-me">
-            <div class="about-title">About me</div>
-            <vue-markdown class="about-text">{{
-              currentUser.personal_info.about
-            }}</vue-markdown>
-          </div>
-          <div class="contact">
-            <div class="contact-title">Contact</div>
-            <div class="email">
-              Email: {{ currentUser.personal_info.email }}
-            </div>
-          </div>
-        </div> -->
+
         <About
           v-show="activeTab === 'about'"
           :class="{ active: activeTab === 'about' }"

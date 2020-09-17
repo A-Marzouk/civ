@@ -25,7 +25,10 @@
               :class="{ 'active-indicator': currentTab === 'profile' }"
             >
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</v-card-title>
+                <v-card-title class="custom-profile-title"
+                  >{{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}</v-card-title
+                >
                 <v-card-subtitle class="custom-profile-subtitle">
                   {{ currentUser.personal_info.designation }}
                 </v-card-subtitle>
@@ -60,17 +63,17 @@
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-md-3 mx-sm-3 mx-2"
-                  :href="Userlink.link"
-                  v-for="Userlink in currentUser.links"
-                  :key="Userlink.id + '_link'"
+                  :href="userLink.link"
+                  v-for="userLink in currentUser.links"
+                  :key="userLink.id + '_link'"
                   target="_blank"
-                  v-show="Userlink.is_active && Userlink.is_public"
+                  v-show="userLink.is_active && userLink.is_public"
                   color="#FAFAFA"
                 >
                   <img
-                    :width="Userlink.link_title == 'facebook' ? '12' : '20'"
+                    :width="userLink.link_title == 'facebook' ? '12' : '20'"
                     x-large
-                    :src="getSocialIcon(Userlink.link_title)"
+                    :src="getSocialIcon(userLink.link_title)"
                   />
                 </v-btn>
                 <!-- social buttons -->
@@ -165,17 +168,17 @@
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-2"
-                  :href="Userlink.link"
-                  v-for="Userlink in currentUser.links"
-                  :key="Userlink.id + '_link'"
+                  :href="userLink.link"
+                  v-for="userLink in currentUser.links"
+                  :key="userLink.id + '_link'"
                   target="_blank"
-                  v-show="Userlink.is_active && Userlink.is_public"
+                  v-show="userLink.is_active && userLink.is_public"
                   color="#FAFAFA"
                 >
                   <img
-                    :width="Userlink.link_title == 'facebook' ? '12' : '20'"
+                    :width="userLink.link_title == 'facebook' ? '12' : '20'"
                     x-large
-                    :src="getSocialIcon(Userlink.link_title)"
+                    :src="getSocialIcon(userLink.link_title)"
                   />
                 </v-btn>
                 <!-- social buttons -->
@@ -212,7 +215,10 @@
         <v-btn icon color="#333333" @click.stop="drawer = !drawer">
           <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
         </v-btn>
-        <v-toolbar-title class="custom-toolbar-title-mobile">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</v-toolbar-title>
+        <v-toolbar-title class="custom-toolbar-title-mobile"
+          >{{ currentUser.personal_info.first_name }}
+          {{ currentUser.personal_info.last_name }}</v-toolbar-title
+        >
       </v-app-bar>
       <v-navigation-drawer
         app
@@ -236,7 +242,10 @@
             <v-list-item-content class="mt-12">
               <v-list-item-title>
                 <v-card color="transparent" class="pa-2" flat>
-                  <span class="profile-title-mobile">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</span>
+                  <span class="profile-title-mobile"
+                    >{{ currentUser.personal_info.first_name }}
+                    {{ currentUser.personal_info.last_name }}</span
+                  >
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
@@ -251,17 +260,17 @@
                   <v-btn
                     x-small
                     class="custom-social-btn mx-2"
-                    :href="Userlink.link"
-                    v-for="Userlink in currentUser.links"
-                    :key="Userlink.id + '_link'"
+                    :href="userLink.link"
+                    v-for="userLink in currentUser.links"
+                    :key="userLink.id + '_link'"
                     target="_blank"
-                    v-show="Userlink.is_active && Userlink.is_public"
+                    v-show="userLink.is_active && userLink.is_public"
                     color="#FAFAFA"
                     height="40"
                   >
                     <img
-                      :width="Userlink.link_title == 'facebook' ? '8' : '14'"
-                      :src="getSocialIcon(Userlink.link_title)"
+                      :width="userLink.link_title == 'facebook' ? '8' : '14'"
+                      :src="getSocialIcon(userLink.link_title)"
                     />
                   </v-btn>
                 </v-card>

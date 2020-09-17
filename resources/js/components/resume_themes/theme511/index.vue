@@ -16,7 +16,7 @@
                 <v-img
                   :src="currentUser.personal_info.profile_pic"
                   alt="avatar"
-                  style="border-radius: 50%;"
+                  style="border-radius: 50%"
                   contain
                 >
                 </v-img>
@@ -106,7 +106,8 @@
                 align-self="center"
               >
                 <div class="head">
-                  {{ currentUser.personal_info.first_name }} {{ currentUser.personal_info.last_name }}
+                  {{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}
                 </div>
                 <div class="subhead">
                   {{ currentUser.personal_info.designation }}
@@ -149,10 +150,10 @@
               >
                 <div class="text-right mt-lg-4 hidden-md-and-down">
                   <v-btn
-                    v-for="Userlink in currentUser.links"
-                    :key="Userlink.id + '_link'"
-                    v-show="Userlink.is_active && Userlink.is_public"
-                    :href="Userlink.link"
+                    v-for="userLink in currentUser.links"
+                    :key="userLink.id + '_link'"
+                    v-show="userLink.is_active && userLink.is_public"
+                    :href="userLink.link"
                     target="_blank"
                     class="social mx-3"
                     fab
@@ -160,7 +161,7 @@
                   >
                     <svg-vue
                       class="icon"
-                      :icon="Userlink.link_title.toLowerCase() + '-icon'"
+                      :icon="userLink.link_title.toLowerCase() + '-icon'"
                     ></svg-vue>
                   </v-btn>
 
@@ -260,7 +261,7 @@
                   :activeTab="activeTab"
                 />
                 <Media
-                  style="margin-bottom: 150px;"
+                  style="margin-bottom: 150px"
                   :activeTab="activeTab"
                   :media="currentUser.media"
                   :user_name="currentUser.full_name"
@@ -315,7 +316,7 @@ export default {
     References,
     Achievement,
     MessageDialog,
-    HireModal
+    HireModal,
   },
   props: ["user", "is_preview", "currentTab"],
   data() {
@@ -323,10 +324,10 @@ export default {
       drawer: null,
       currentUser: this.user,
       activeTab: "portfolio",
-      messageToggle:false,
+      messageToggle: false,
       hireMeModal: false,
-     
-      indexOfActiveTab:0,
+
+      indexOfActiveTab: 0,
       tabs: [
         { name: "Portfolio", value: "portfolio" },
         { name: "Education", value: "education" },
@@ -337,14 +338,14 @@ export default {
         { name: "Hobbies", value: "hobbies" },
         { name: "References", value: "references" },
         { name: "Achievement", value: "achievement" },
-      ]
+      ],
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
+    currentTab: function (val) {
       this.activeTab = val;
-    }
+    },
   },
   computed: {
     borderadius() {
@@ -374,7 +375,7 @@ export default {
           return "#ffff";
       }
     },
-    pdfIconSize(){
+    pdfIconSize() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
           return "18";
@@ -388,7 +389,7 @@ export default {
           return "26";
       }
     },
-    buttonSize(){
+    buttonSize() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
           return "30px";
@@ -402,7 +403,7 @@ export default {
           return "50px";
       }
     },
-    drawerWidth(){
+    drawerWidth() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
           return "300";
@@ -411,18 +412,18 @@ export default {
         case "md":
           return "500";
       }
-    }
+    },
   },
 
   methods: {
-   closeDialog(){
-        console.log('closeDialog');
-        this.messageToggle = false;
-      },
-   closePayment(){
-        console.log('closePayment');
-        this.hireMeModal = false;
-      },
+    closeDialog() {
+      console.log("closeDialog");
+      this.messageToggle = false;
+    },
+    closePayment() {
+      console.log("closePayment");
+      this.hireMeModal = false;
+    },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
@@ -455,23 +456,25 @@ export default {
         return "#F7B301";
       }
     },
-    setActiveTabByURL(){
-      let currentParam = this.$route.query['current-view'];
+    setActiveTabByURL() {
+      let currentParam = this.$route.query["current-view"];
       this.activeTab = currentParam;
 
-      if(!currentParam){
+      if (!currentParam) {
         return;
       }
 
-      if(currentParam.includes('audio') || currentParam.includes('video')){
-        this.activeTab = 'media';
+      if (currentParam.includes("audio") || currentParam.includes("video")) {
+        this.activeTab = "media";
       }
-      if(currentParam.includes('about') || currentParam.includes('profile')){
-        this.activeTab = 'about';
+      if (currentParam.includes("about") || currentParam.includes("profile")) {
+        this.activeTab = "about";
       }
 
-      this.indexOfActiveTab = this.tabs.findIndex(tab => tab.value ===   this.activeTab);
-    }
+      this.indexOfActiveTab = this.tabs.findIndex(
+        (tab) => tab.value === this.activeTab
+      );
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -483,10 +486,9 @@ export default {
     this.$store.dispatch("updateThemeUser", this.currentUser);
   },
   created() {
-
     // set active tab
     this.setActiveTabByURL();
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

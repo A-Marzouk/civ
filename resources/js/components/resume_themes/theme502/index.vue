@@ -23,7 +23,7 @@
               :src="currentUser.personal_info.profile_pic"
               :aspect-ratio="0.92"
               class="avatar mt-1"
-              style="border-radius: 0px 1rem 2rem 0px;"
+              style="border-radius: 0px 1rem 2rem 0px"
             ></v-img>
           </v-col>
           <v-col
@@ -35,7 +35,8 @@
             class="pl-sm-6 pl-md-3 pl-lg-6 pl-3"
           >
             <div class="head font-weight-bold">
-              {{currentUser.personal_info.first_name}} {{ currentUser.personal_info.last_name}}
+              {{ currentUser.personal_info.first_name }}
+              {{ currentUser.personal_info.last_name }}
               <div class="text-left d-sm-inline-block d-none">
                 <v-btn fab color="#3E56CD" small class="ml-6" elevation="0">
                   <v-img
@@ -73,11 +74,11 @@
                 class="px-0 mr-4"
                 color="#3E56CD"
                 fab
-                :href="Userlink.link"
-                v-for="Userlink in currentUser.links"
-                :key="Userlink.id + '_link'"
+                :href="userLink.link"
+                v-for="userLink in currentUser.links"
+                :key="userLink.id + '_link'"
                 target="_blank"
-                v-show="Userlink.is_active && Userlink.is_public"
+                v-show="userLink.is_active && userLink.is_public"
                 small
                 elevation="0"
               >
@@ -85,7 +86,7 @@
                   width="18"
                   height="18"
                   contain
-                  :src="`/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
+                  :src="`/images/resume_themes/theme502/social_icons/${userLink.link_title.toLowerCase()}.svg`"
                 ></v-img>
               </v-btn>
             </div>
@@ -180,7 +181,7 @@
             class="mx-xl-n6 d-none d-sm-block d-lg-block"
           >
             <div
-              style="width: 1px; height: 2rem; background-color: #d7d7d7;"
+              style="width: 1px; height: 2rem; background-color: #d7d7d7"
             ></div>
           </v-col>
 
@@ -232,7 +233,7 @@
           >
             <v-btn
               color="#2943c7"
-              style="border-radius: 10px; height: 50px;"
+              style="border-radius: 10px; height: 50px"
               class="hire"
             >
               <div
@@ -250,11 +251,11 @@
             class="px-0 mr-4"
             color="#3E56CD"
             fab
-            :href="Userlink.link"
-            v-for="Userlink in currentUser.links"
-            :key="Userlink.id + '_link'"
+            :href="userLink.link"
+            v-for="userLink in currentUser.links"
+            :key="userLink.id + '_link'"
             target="_blank"
-            v-show="Userlink.is_active && Userlink.is_public"
+            v-show="userLink.is_active && userLink.is_public"
             small
             elevation="0"
           >
@@ -262,7 +263,7 @@
               width="18"
               height="18"
               contain
-              :src="`/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
+              :src="`/images/resume_themes/theme502/social_icons/${userLink.link_title.toLowerCase()}.svg`"
             ></v-img>
           </v-btn>
         </div>
@@ -306,7 +307,7 @@
           sm="12"
           v-if="activeTab == 'portfolio'"
           key="one"
-          style="height: 100vh;"
+          style="height: 100vh"
         >
           <v-row
             justify="center"
@@ -346,7 +347,7 @@
           sm="12"
           v-if="activeTab == 'work-experience'"
           key="two"
-          style="height: 100vh;"
+          style="height: 100vh"
         >
           <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
             <v-col
@@ -401,7 +402,7 @@
           sm="12"
           v-if="activeTab == 'education'"
           key="three"
-          style="height: 100vh;"
+          style="height: 100vh"
         >
           <v-row justify="start" no-gutters class="px-4 px-lg-0 px-sm-6 mt-6">
             <v-col
@@ -451,7 +452,7 @@
           sm="12"
           v-if="activeTab == 'skills'"
           key="four"
-          style="height: 100vh;"
+          style="height: 100vh"
         >
           <v-row no-gutters justify="start" class="padleft">
             <v-col md="12" lg="12" class="mt-md-8 mt-sm-4">
@@ -465,7 +466,7 @@
                 grow
               >
                 <v-tabs-slider
-                  style="height: 0px; padding: 0 0 !important;"
+                  style="height: 0px; padding: 0 0 !important"
                 ></v-tabs-slider>
 
                 <v-tab
@@ -512,7 +513,7 @@
                 <v-col md="12" sm="12" cols="12">
                   <v-tabs-items
                     v-model="tabskill"
-                    style="background-color: transparent;"
+                    style="background-color: transparent"
                   >
                     <v-tab-item
                       v-show="
@@ -722,7 +723,7 @@
           sm="12"
           v-if="activeTab == 'references'"
           key="one"
-          style="height: 100vh;"
+          style="height: 100vh"
         >
           <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6 padleft">
             <v-col
@@ -776,7 +777,7 @@
           sm="12"
           v-if="activeTab == 'hobbies'"
           key="two"
-          style="height: 100vh;"
+          style="height: 100vh"
         >
           <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6 padleft">
             <v-col
@@ -822,7 +823,7 @@
           sm="12"
           v-if="activeTab == 'achievment'"
           key="one"
-          style="height: 100vh;"
+          style="height: 100vh"
         >
           <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6 padleft">
             <v-col
@@ -883,81 +884,86 @@ export default {
       media: [
         {
           id: 1,
-          src: "/images/resume_themes/theme502/email.svg"
+          src: "/images/resume_themes/theme502/email.svg",
         },
         {
           id: 2,
-          src: "/images/resume_themes/theme502/video-player.svg"
+          src: "/images/resume_themes/theme502/video-player.svg",
         },
         {
           id: 3,
-          src: "/images/resume_themes/theme502/headphones.svg"
-        }
+          src: "/images/resume_themes/theme502/headphones.svg",
+        },
       ],
       icons: [
         {
           id: 1,
-          src: "/images/resume_themes/theme502/behance.svg"
+          src: "/images/resume_themes/theme502/behance.svg",
         },
         {
           id: 2,
-          src: "/images/resume_themes/theme502/dribbble.svg"
+          src: "/images/resume_themes/theme502/dribbble.svg",
         },
         {
           id: 3,
-          src: "/images/resume_themes/theme502/instagram.svg"
+          src: "/images/resume_themes/theme502/instagram.svg",
         },
         {
           id: 4,
-          src: "/images/resume_themes/theme502/linkedin.svg"
+          src: "/images/resume_themes/theme502/linkedin.svg",
         },
         {
           id: 5,
-          src: "/images/resume_themes/theme502/google-plus.svg"
-        }
+          src: "/images/resume_themes/theme502/google-plus.svg",
+        },
       ],
       tabs: [
         {
           text: "Portfolio",
-          value: "portfolio"
+          value: "portfolio",
         },
         {
           text: "Work",
-          value: "work-experience"
+          value: "work-experience",
         },
         {
           text: "Education",
-          value: "education"
+          value: "education",
         },
         {
           text: "Skills",
-          value: "skills"
+          value: "skills",
         },
         {
           text: "References",
-          value: "references"
+          value: "references",
         },
         {
           text: "Hobbies",
-          value: "hobbies"
+          value: "hobbies",
         },
         {
           text: "Achievment",
-          value: "achievment"
-        }
-      ]
+          value: "achievment",
+        },
+      ],
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
+    currentTab: function (val) {
       this.activeTab = val;
-    }
+    },
   },
   methods: {
-   getFullYear(date) {
+    getFullYear(date) {
       let newDate = new Date(date);
-      let yyyy = newDate.getDate() + '/' + newDate.getMonth()  + '/' +newDate.getUTCFullYear();
+      let yyyy =
+        newDate.getDate() +
+        "/" +
+        newDate.getMonth() +
+        "/" +
+        newDate.getUTCFullYear();
       return yyyy;
     },
     availableNext() {
@@ -984,7 +990,7 @@ export default {
       let mainImage = "";
 
       let images = project.images;
-      images.forEach(image => {
+      images.forEach((image) => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -994,7 +1000,7 @@ export default {
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-    }
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -1004,7 +1010,7 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
-  }
+  },
 };
 </script>
 
