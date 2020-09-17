@@ -93,7 +93,8 @@
                 <a
                   v-for="item in currentUser.links"
                   :key="item.id + '_link'"
-                  :href="item.link"
+                  href="javascript:void(0)"
+                  @click="goToExternalLink(userLink.link)"
                   target="_blank"
                   v-show="item.is_active"
                 >
@@ -726,6 +727,12 @@ export default {
   },
 
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
     openChatModal() {
       this.$emit("updateChatToggle", this.currentChat);
     },

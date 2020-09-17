@@ -60,17 +60,18 @@
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-md-3 mx-sm-3 mx-2"
-                  :href="Userlink.link"
-                  v-for="Userlink in currentUser.links"
-                  :key="Userlink.id + '_link'"
+                  href="javascript:void(0)"
+                  @click="goToExternalLink(userLink.link)"
+                  v-for="userLink in currentUser.links"
+                  :key="userLink.id + '_link'"
                   target="_blank"
-                  v-show="Userlink.is_active && Userlink.is_public"
+                  v-show="userLink.is_active && userLink.is_public"
                   color="#FAFAFA"
                 >
                   <img
-                    :width="Userlink.link_title == 'facebook' ? '12' : '20'"
+                    :width="userLink.link_title == 'facebook' ? '12' : '20'"
                     x-large
-                    :src="getSocialIcon(Userlink.link_title)"
+                    :src="getSocialIcon(userLink.link_title)"
                   />
                 </v-btn>
                 <!-- social buttons -->
@@ -165,17 +166,18 @@
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-2"
-                  :href="Userlink.link"
-                  v-for="Userlink in currentUser.links"
-                  :key="Userlink.id + '_link'"
+                  href="javascript:void(0)"
+                  @click="goToExternalLink(userLink.link)"
+                  v-for="userLink in currentUser.links"
+                  :key="userLink.id + '_link'"
                   target="_blank"
-                  v-show="Userlink.is_active && Userlink.is_public"
+                  v-show="userLink.is_active && userLink.is_public"
                   color="#FAFAFA"
                 >
                   <img
-                    :width="Userlink.link_title == 'facebook' ? '12' : '20'"
+                    :width="userLink.link_title == 'facebook' ? '12' : '20'"
                     x-large
-                    :src="getSocialIcon(Userlink.link_title)"
+                    :src="getSocialIcon(userLink.link_title)"
                   />
                 </v-btn>
                 <!-- social buttons -->
@@ -251,17 +253,18 @@
                   <v-btn
                     x-small
                     class="custom-social-btn mx-2"
-                    :href="Userlink.link"
-                    v-for="Userlink in currentUser.links"
-                    :key="Userlink.id + '_link'"
+                    href="javascript:void(0)"
+                    @click="goToExternalLink(userLink.link)"
+                    v-for="userLink in currentUser.links"
+                    :key="userLink.id + '_link'"
                     target="_blank"
-                    v-show="Userlink.is_active && Userlink.is_public"
+                    v-show="userLink.is_active && userLink.is_public"
                     color="#FAFAFA"
                     height="40"
                   >
                     <img
-                      :width="Userlink.link_title == 'facebook' ? '8' : '14'"
-                      :src="getSocialIcon(Userlink.link_title)"
+                      :width="userLink.link_title == 'facebook' ? '8' : '14'"
+                      :src="getSocialIcon(userLink.link_title)"
                     />
                   </v-btn>
                 </v-card>
@@ -1019,6 +1022,12 @@ export default {
     },
   },
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
     skillCategory(skillName) {
       var filteredSkill = this.currentUser.skills.filter(
         (s) => s.category === skillName
