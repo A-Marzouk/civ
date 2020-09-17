@@ -6,7 +6,7 @@
                 <span>Drag to order tab view</span>
             </div>
             <draggable class="str-content" v-model="tabs" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                <div class="tab-chip" v-for="tab in tabs" :key="tab.label">
+                <div class="tab-chip" v-for="tab in tabs" v-if="!excludedTabs.includes(tab.title)" :key="tab.label">
                     <img src="/icons/edit-cv-sidebar/drag-btn-icon.svg" alt="drag button icon" class="drag-handler">
                     <span>{{tab.label}}</span>
                 </div>
@@ -25,7 +25,15 @@
         },
         data() {
             return {
-
+                excludedTabs:[
+                    'structure',
+                    'imports',
+                    'manager',
+                    'themes',
+                    'links',
+                    'pay_availability',
+                    'profile', // main tab | can not be hidden
+                ]
             }
         },
         computed: {

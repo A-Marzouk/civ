@@ -39,8 +39,8 @@
                 <div
                         v-for="sidebarLink in sidebarLinks"
                         class="sidebar-link"
-                        :class="{'active': activeTab === sidebarLink.icon}"
-                        :key="sidebarLink.icon"
+                        :class="{'active': activeTab === sidebarLink.title}"
+                        :key="sidebarLink.title"
                 >
                     <router-link
                             :to="sidebarLink.url"
@@ -51,14 +51,14 @@
                             :class="{'half-opacity' : !isTabActive(sidebarLink.title)}"
                     >
                         <div class="link-icon" @click="setActive(sidebarLink)"
-                             :class="[{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}, {'profile-ixklwxz-link-icon-active':activeHoverMenu==sidebarLink.icon}]">
+                             :class="[{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.title}, {'profile-ixklwxz-link-icon-active':activeHoverMenu==sidebarLink.title}]">
                             <svg-vue :icon="`edit-cv-sidebar/${sidebarLink.icon}`"></svg-vue>
                         </div>
                         <span style="flex:2;" @click="setActive(sidebarLink)">
                             {{ sidebarLink.label }}
                         </span>
                         <div class="resume-builder__action-buttons-container">
-                            <v-btn class="btn-icon civie-btn" depressed v-if="!structureTabs.includes(sidebarLink.icon)"
+                            <v-btn class="btn-icon civie-btn" depressed v-if="!structureTabs.includes(sidebarLink.title)"
                                    style="border-radius: 50%;" @click.prevent="toggleTab(sidebarLink.title)">
                                 <svg-vue icon="eye-icon" class="icon"
                                          :class="{'visible' : isTabActive(sidebarLink.title)}"></svg-vue>
@@ -66,7 +66,7 @@
                         </div>
                     </router-link>
 
-                    <hr v-if="sidebarLink.icon === 'references'"
+                    <hr v-if="sidebarLink.title === 'references'"
                         style="margin-right: 20px; margin-top: 20px; margin-bottom: 15px;">
                 </div>
             </div>
@@ -207,6 +207,7 @@
                     url: "/resume-builder/edit/profile",
                     icon: "profile",
                     label: "Profile",
+                    title: "profile"
                 },
             };
         },
@@ -220,11 +221,11 @@
             setActive(activeLink) {
                 this.open = false;
                 this.currentSidebarLink = activeLink;
-                this.$emit("onChange", activeLink.icon);
+                this.$emit("onChange", activeLink.title);
             },
             hoverMenu(sidebarLink) {
                 if (sidebarLink !== null) {
-                    this.activeHoverMenu = sidebarLink.icon;
+                    this.activeHoverMenu = sidebarLink.title;
                 } else {
                     this.activeHoverMenu = null;
                 }
@@ -266,8 +267,16 @@
             let activeLink = {};
 
             this.sidebarLinks.forEach((link) => {
-                if (link.icon === activeTab) {
+                if (link.title === activeTab.replace('-', '_')) {
                     activeLink = link;
+                }
+                if(activeTab === 'about'){
+                    activeLink = {
+                        url: "/resume-builder/edit/about",
+                        icon: "about",
+                        label: "About",
+                        title: "about_me",
+                    };
                 }
             });
 

@@ -135,7 +135,6 @@ export default {
   .social-menu {
     width: auto;
     height: auto;
-    padding: 15px 10px;
   }
 
   .social-menu.social-menu--open {

@@ -102,7 +102,6 @@
 
         <div
           class="profile-detail"
-          :class="{ 'active-indicator': currentTab === 'profile' }"
         >
           <h3 class="title">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</h3>
           <h4
@@ -119,9 +118,6 @@
           /> -->
           <div
             class="profile__hireme"
-            :class="{
-              'active-indicator': currentTab === 'pay-availability',
-            }"
             v-if="currentUser.payment_info && currentUser.availability_info"
           >
             <div class="hireme">
@@ -170,13 +166,12 @@
     />
     <ChatModal :chatToggle="chatToggle" :closeChat="closeChat" />
     <TabsNavigation
-      :activeTab="activeTab"
       :currentUser="currentUser"
-      @tab-changed="activeTab = $event"
-      :currentTab="currentTab"
+      @tab-changed="tabChanged"
+      :builderCurrentTabTitle="activeTab"
     />
 
-    <TabsContent :activeTab="activeTab" :currentUser="currentUser" />
+    <TabsContent :builderCurrentTabTitle="activeTab" :currentUser="currentUser" />
   </div>
 </template>
 
@@ -192,7 +187,7 @@ export default {
   name: "resume-theme-1001",
 
   components: { TabsNavigation, TabsContent, Avatar, HireModal, ChatModal },
-  props: ["user", "is_preview", "currentTab"],
+  props: ["user", "is_preview", "builderCurrentTabTitle"],
   data() {
     return {
       activeTab: "portfolio",
@@ -200,15 +195,32 @@ export default {
       hireMeModal: false,
       chatToggle: false,
       isOpen: false,
+      defaultTabs: ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements'],
+      excludedTabs:[
+        'structure',
+        'imports',
+        'manager',
+        'themes',
+        'links',
+        'pay_availability',
+        'profile', // main tab | can not be hidden
+      ]
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function (val) {
-      this.activeTab = val;
+    builderCurrentTabTitle: function (val) {
+      if(!this.defaultTabs.includes(val)){
+        this.activeTab = this.getFirstActiveTabTitle() ;
+      }else {
+        this.activeTab = val ;
+      }
     },
   },
   methods: {
+    tabChanged(value){
+      this.activeTab = value
+    },
     closeHireMeModal() {
       console.log("closeHireMeModal");
       this.hireMeModal = false;
@@ -236,35 +248,26 @@ export default {
       this.currentUser = this.$store.state.dummyUser;
     },
     setActiveTabByURL() {
-      let currentParam = this.$route.query["current-view"];
-
-      if (!currentParam) {
-        return;
-      }
-
-      if (currentParam.includes("education")) {
-        this.activeTab = "education";
-      }
-      if (currentParam.includes("work_experience")) {
-        this.activeTab = "work_experience";
-      }
-
-      if (currentParam.includes("skills")) {
-        this.activeTab = "skills";
-      }
-
-      if (
-        currentParam.includes("media") ||
-        currentParam.includes("audio") ||
-        currentParam.includes("video")
-      ) {
-        this.activeTab = "media";
-      }
-
-      if (currentParam.includes("about") || currentParam.includes("profile")) {
-        this.activeTab = "about-me";
+      const pathSplit = this.$route.path.split("/");
+      let currentActiveTab = pathSplit[pathSplit.length - 1];
+      if(!this.defaultTabs.includes(currentActiveTab)){
+        this.activeTab = this.getFirstActiveTabTitle() ;
+      }else {
+        this.activeTab = currentActiveTab ;
       }
     },
+    getFirstActiveTabTitle(){
+      let title = '';
+      this.currentUser.tabs.forEach( (tab) => {
+        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
+          if(title === ''){
+            title = tab.title ;
+          }
+        }
+      });
+
+      return title ;
+    }
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
