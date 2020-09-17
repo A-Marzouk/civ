@@ -63,7 +63,8 @@
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-md-3 mx-sm-3 mx-2"
-                  :href="userLink.link"
+                  href="javascript:void(0)"
+                  @click="goToExternalLink(userLink.link)"
                   v-for="userLink in currentUser.links"
                   :key="userLink.id + '_link'"
                   target="_blank"
@@ -168,7 +169,8 @@
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-2"
-                  :href="userLink.link"
+                  href="javascript:void(0)"
+                  @click="goToExternalLink(userLink.link)"
                   v-for="userLink in currentUser.links"
                   :key="userLink.id + '_link'"
                   target="_blank"
@@ -260,7 +262,8 @@
                   <v-btn
                     x-small
                     class="custom-social-btn mx-2"
-                    :href="userLink.link"
+                    href="javascript:void(0)"
+                    @click="goToExternalLink(userLink.link)"
                     v-for="userLink in currentUser.links"
                     :key="userLink.id + '_link'"
                     target="_blank"
@@ -1028,6 +1031,12 @@ export default {
     },
   },
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
     skillCategory(skillName) {
       var filteredSkill = this.currentUser.skills.filter(
         (s) => s.category === skillName

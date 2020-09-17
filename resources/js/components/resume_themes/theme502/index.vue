@@ -74,7 +74,8 @@
                 class="px-0 mr-4"
                 color="#3E56CD"
                 fab
-                :href="userLink.link"
+                href="javascript:void(0)"
+                @click="goToExternalLink(userLink.link)"
                 v-for="userLink in currentUser.links"
                 :key="userLink.id + '_link'"
                 target="_blank"
@@ -251,7 +252,8 @@
             class="px-0 mr-4"
             color="#3E56CD"
             fab
-            :href="userLink.link"
+            href="javascript:void(0)"
+            @click="goToExternalLink(userLink.link)"
             v-for="userLink in currentUser.links"
             :key="userLink.id + '_link'"
             target="_blank"
@@ -956,6 +958,12 @@ export default {
     },
   },
   methods: {
+    goToExternalLink(link) {
+      if (!link.includes("http")) {
+        link = "http://" + link;
+      }
+      window.location.href = link;
+    },
     getFullYear(date) {
       let newDate = new Date(date);
       let yyyy =

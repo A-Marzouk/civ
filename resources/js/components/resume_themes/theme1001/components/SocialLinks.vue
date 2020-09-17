@@ -5,8 +5,9 @@
       <v-btn
         v-for="userLink in currentUser.links"
         :key="userLink.id + '_link'"
-        v-show="userLink.is_active && userLink.is_public"
-        :href="userLink.link"
+        v-show="userLink.is_active || userLink.is_public"
+        href="javascript:void(0)"
+        @click="goToExternalLink(userLink.link)"
         target="_blank"
         class="social mx-2"
         fab
@@ -40,6 +41,15 @@ export default {
       required: true,
     },
   },
+
+  methods:{
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    }
+  }
 };
 </script>
 

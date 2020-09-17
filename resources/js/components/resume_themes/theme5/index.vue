@@ -370,7 +370,8 @@
                     <div class="text-center">Follow me</div>
                     <div class="text-center mt-2">
                       <v-btn
-                        :href="userLink.link"
+                        href="javascript:void(0)"
+                        @click="goToExternalLink(userLink.link)"
                         v-for="userLink in currentUser.links"
                         :key="userLink.id + '_link'"
                         target="_blank"
@@ -499,7 +500,8 @@
                     <div class="text-center">Follow me</div>
                     <div class="text-center mt-2">
                       <v-btn
-                        :href="userLink.link"
+                        href="javascript:void(0)"
+                        @click="goToExternalLink(userLink.link)"
                         v-for="userLink in currentUser.links"
                         :key="userLink.id + '_link'"
                         target="_blank"
@@ -2068,6 +2070,12 @@ export default {
     },
   },
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
     availableNext() {
       if (this.available == 2) {
         this.available = 0;

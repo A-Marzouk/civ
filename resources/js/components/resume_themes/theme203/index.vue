@@ -76,10 +76,11 @@
                                   small
                                   class="mx-md-1 mx-sm-2 social-btn"
                                   depressed
-                                  v-for="item in socialLinks"
+                                  v-for="item in currentUser.links"
+                                  @click="goToExternalLink(item.link)"
                                   :key="item.id + '_link'"
                                   target="_blank"
-                                  v-show="item.is_active == true"
+                                  v-show="item.is_public || item.is_active"
                                 >
                                   <img
                                     width="15"
@@ -166,10 +167,11 @@
                         class="mx-md-1 mx-sm-2 mx-1 social-btn"
                         depressed
                         :href="item.link"
-                        v-for="item in socialLinks"
+                        v-for="item in currentUser.links"
                         :key="item.id + '_link'"
+                        @click="goToExternalLink(item.link)"
                         target="_blank"
-                        v-show="item.is_active == true"
+                        v-show="item.is_public || item.is_active"
                       >
                         <img
                           :width="item.title == 'map-markup' ? 11 : 15"
@@ -1090,13 +1092,6 @@ export default {
       ],
     };
   },
-  computed: {
-    socialLinks() {
-      return this.currentUser.links.filter((link) => {
-        return link.category === "social_link" ? link : false;
-      });
-    },
-  },
   mounted() {
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
@@ -1111,6 +1106,12 @@ export default {
   },
 
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
     skillSubString(string) {
       let result = string.substring(0, 2);
       return result.toLowerCase();
