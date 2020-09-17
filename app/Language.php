@@ -11,4 +11,8 @@ class Language extends Model
     public function users(){
         return $this->belongsToMany(User::class);
     }
+
+    public static function englishLanguageID(){
+        return Language::where('name', 'english')->first()->id;
+    }
 }

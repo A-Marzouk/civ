@@ -1,54 +1,51 @@
 <template>
-    <v-app>
-        <v-container fluid>
-            <v-row>
-                <!-- side menu -->
-                <v-col xl="12" lg="12" md="12" sm="12" cols="12" align="left" class>
-                    <!-- tab bar -->
-                    <v-card class="card-themes-wrapper main-content resume-builder__scroll">
-                        <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
-                        <div v-if="user.default_resume_link"  class="theme-container-wrapper">
-                            <div v-for="theme in availableThemes" :key="theme.id" class="theme-container">
-                                <v-hover>
-                                    <template v-slot:default="{ hover }">
-                                        <v-card class="card-theme-holder pa-0 ma-0" :style="{ backgroundImage: `url(${theme.image})` }" flat color="transparent">
-                                            <div>
-                                                <div class="theme-image holder" :class="theme.id == user.default_resume_link.theme_id? 'active': 'inactive'"></div>
-                                                <v-fade-transition>
-                                                    <v-overlay
-                                                            v-if="hover"
+    <div>
+        <v-row>
+            <v-col xl="12" lg="12" md="12" sm="12" cols="12" align="left" class>
+                <!-- tab bar -->
+                <v-card class="card-themes-wrapper main-content resume-builder__scroll">
+                    <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
+                    <div v-if="user.default_resume_link"  class="theme-container-wrapper">
+                        <div v-for="theme in availableThemes" :key="theme.id" class="theme-container">
+                            <v-hover>
+                                <template v-slot:default="{ hover }">
+                                    <v-card class="card-theme-holder pa-0 ma-0" :style="{ backgroundImage: `url(${theme.image})` }" flat color="transparent">
+                                        <div>
+                                            <div class="theme-image holder" :class="theme.id == user.default_resume_link.theme_id? 'active': 'inactive'"></div>
+                                            <v-fade-transition>
+                                                <v-overlay
+                                                        v-if="hover"
+                                                        absolute
+                                                        color="#ffffff"
+                                                        opacity="0.5"
+                                                        class="custom-overlay"
+                                                >
+                                                    <v-btn
+                                                            color="#001CE2"
                                                             absolute
-                                                            color="#ffffff"
-                                                            opacity="0.5"
-                                                            class="custom-overlay"
+                                                            class="btn-activate"
+                                                            :class="{active : theme.id === user.default_resume_link.theme_id}"
+                                                            depressed
+                                                            @click="activateTheme(theme.id)"
                                                     >
-                                                        <v-btn
-                                                                color="#001CE2"
-                                                                absolute
-                                                                class="btn-activate"
-                                                                :class="{active : theme.id === user.default_resume_link.theme_id}"
-                                                                depressed
-                                                                @click="activateTheme(theme.id)"
-                                                        >
-                                                            {{theme.id === user.default_resume_link.theme_id ? 'Active' : 'Activate'}}
-                                                            <img
-                                                                    src="/icons/check.svg"
-                                                            />
-                                                        </v-btn>
-                                                    </v-overlay>
-                                                </v-fade-transition>
-                                            </div>
-                                        </v-card>
-                                    </template>
-                                </v-hover>
-                            </div>
+                                                        {{theme.id === user.default_resume_link.theme_id ? 'Active' : 'Activate'}}
+                                                        <img
+                                                                src="/icons/check.svg"
+                                                        />
+                                                    </v-btn>
+                                                </v-overlay>
+                                            </v-fade-transition>
+                                        </div>
+                                    </v-card>
+                                </template>
+                            </v-hover>
                         </div>
-                    </v-card>
-                    <v-card flat tile color="transparent"></v-card>
-                </v-col>
-            </v-row>
-        </v-container>
-    </v-app>
+                    </div>
+                </v-card>
+                <v-card flat tile color="transparent"></v-card>
+            </v-col>
+        </v-row>
+    </div>
 </template>
 
 <script>
@@ -268,7 +265,7 @@
     }
 
     .main-content {
-        height: 525px;
+        height: 450px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         padding: 50px;
@@ -279,6 +276,7 @@
         }
         @include lt-sm{
             padding: 25px;
+            max-width: 94%;
         }
         @media screen and (min-width: 1904px) {
             max-width: 1480px !important;
@@ -373,7 +371,7 @@
             justify-content: space-between;
 
             @include lt-lg{
-                justify-content: left;
+                justify-content: space-around;
             }
 
             @media screen and (min-width: 1280px) and (max-width: 1460px) {

@@ -35,7 +35,7 @@
             class="pl-sm-6 pl-md-3 pl-lg-6 pl-3"
           >
             <div class="head font-weight-bold">
-              {{ currentUser.personal_info.full_name }}
+              {{currentUser.personal_info.first_name}} {{ currentUser.personal_info.last_name}}
               <div class="text-left d-sm-inline-block d-none">
                 <v-btn fab color="#3E56CD" small class="ml-6" elevation="0">
                   <v-img
@@ -73,11 +73,12 @@
                 class="px-0 mr-4"
                 color="#3E56CD"
                 fab
-                :href="Userlink.link"
-                v-for="Userlink in currentUser.links"
-                :key="Userlink.id + '_link'"
+                href="javascript:void(0)"
+                @click="goToExternalLink(userLink.link)"
+                v-for="userLink in currentUser.links"
+                :key="userLink.id + '_link'"
                 target="_blank"
-                v-show="Userlink.is_active && Userlink.is_public"
+                v-show="userLink.is_active && userLink.is_public"
                 small
                 elevation="0"
               >
@@ -85,7 +86,7 @@
                   width="18"
                   height="18"
                   contain
-                  :src="`/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
+                  :src="`/images/resume_themes/theme502/social_icons/${userLink.link_title.toLowerCase()}.svg`"
                 ></v-img>
               </v-btn>
             </div>
@@ -250,11 +251,12 @@
             class="px-0 mr-4"
             color="#3E56CD"
             fab
-            :href="Userlink.link"
-            v-for="Userlink in currentUser.links"
-            :key="Userlink.id + '_link'"
+            href="javascript:void(0)"
+            @click="goToExternalLink(userLink.link)"
+            v-for="userLink in currentUser.links"
+            :key="userLink.id + '_link'"
             target="_blank"
-            v-show="Userlink.is_active && Userlink.is_public"
+            v-show="userLink.is_active && userLink.is_public"
             small
             elevation="0"
           >
@@ -262,7 +264,7 @@
               width="18"
               height="18"
               contain
-              :src="`/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
+              :src="`/images/resume_themes/theme502/social_icons/${userLink.link_title.toLowerCase()}.svg`"
             ></v-img>
           </v-btn>
         </div>
@@ -955,6 +957,12 @@ export default {
     }
   },
   methods: {
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
    getFullYear(date) {
       let newDate = new Date(date);
       let yyyy = newDate.getDate() + '/' + newDate.getMonth()  + '/' +newDate.getUTCFullYear();

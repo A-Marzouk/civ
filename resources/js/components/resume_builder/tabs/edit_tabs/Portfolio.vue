@@ -36,6 +36,8 @@
             class="resume-builder__input civie-textarea"
             outlined
             label="Description"
+            counter
+            maxlength="1000"
             color="#001CE2"
             v-model="editedProject.description"
             :error="!!errors.description"
@@ -463,9 +465,9 @@ export default {
 
 #portfolio-tab {
   .view-container {
-    max-height: 678px;
+    max-height: 450px;
     overflow: auto;
-    box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
+    box-shadow: 0 5px 20px rgba($color: #001083, $alpha: 0.1);
     margin: 0 auto;
 
     .grid-form {

@@ -1,6 +1,6 @@
 <template>
-    <v-app>
-        <div style="width:100%;" class="main container pa-md-0 pa-sm-0 pa-3">
+    <div>
+        <div style="width:100%;" class="main-container pay-class pa-md-0 pa-sm-0 pa-3">
             <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTab" height="51">
                 <v-tab
                         class="resume-builder__tab"
@@ -14,7 +14,7 @@
                     <v-tab-item>
                         <v-container style="width: 100%;">
                             <v-form>
-                                <v-row align="center">
+                                <v-row align="center" class="align-items-center">
                                     <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                                         <v-select
                                                 class="resume-builder__input civie-select"
@@ -110,14 +110,14 @@
                 </v-tabs-items>
             </v-card>
         </div>
-    </v-app>
+    </div>
 </template>
 
 <script>
     import Slick from "vue-slick";
 
     export default {
-        name: "PayAvailability",
+        name: "pay-availability",
         components: {
             Slick
         },
@@ -307,13 +307,22 @@
 
 <style scoped lang="scss">
     @import "../../../../../sass/media-queries";
+
     .pay-content {
-        height: 185px;
+        height: 450px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         padding: 50px;
         margin-bottom: 70px;
         scroll-behavior: smooth;
+    }
+
+    .pay-class{
+        @include lt-sm{
+            max-width: 94%;
+            margin-right: auto;
+            margin-left: auto;
+        }
     }
 
     .card-main {

@@ -13,7 +13,7 @@
 		<div class="links-content resume-builder__scroll" v-if="links">
 
 			<div class="link-inputs-row">
-				<v-select class="resume-builder__input civie-select icon-prepended" outlined hint="Select platform" persistent-hint :items="getCurrentCategories()" label="Site" color="#001CE2" v-model="editedLink.link_title">
+				<v-select class="resume-builder__input civie-select icon-prepended" outlined hint="Select platform" persistent-hint :items="getCurrentCategories()" label="Category" color="#001CE2" v-model="editedLink.link_title">
 					<button class="dropdown-icon icon" slot="append">
 						<svg-vue :icon="`dropdown-caret`"></svg-vue>
 					</button>
@@ -23,7 +23,7 @@
 					</button>
 				</v-select>
 
-				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
+				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" :label="getLabel()" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
 				</v-text-field>
 
 				<div class="d-flex mt-1">
@@ -76,6 +76,7 @@
 import draggable from "vuedraggable";
 
 export default {
+	name: "links",
 	components: {
 		draggable
 	},
@@ -95,7 +96,7 @@ export default {
 			"Pinterest",
 			"Twitter"
 		],
-		contactLinksCategories: ["Messenger", "Telegram", "Whatsapp", "Skype", "Phone", "G. Calendar", "Calendly", "Zoom", "Hangouts"],
+		contactLinksCategories: ["Email", "Messenger", "Telegram", "Whatsapp", "Skype", "Phone", "G. Calendar", "Calendly", "Zoom", "Hangouts"],
 		socialLinks: [],
 		professionalLinks: [],
 		contactLinks: [],
@@ -114,6 +115,21 @@ export default {
 			this.editedLink.id = link.id;
 			this.editedLink.link_title = link.link_title;
 			this.editedLink.link = link.link;
+		},
+		getLabel(){
+			switch (this.editedLink.link_title) {
+				case "Skype":
+					return "ID";
+				case "Whatsapp":
+					return "Phone number";
+				case "Phone":
+					return "Phone number";
+				case "Email":
+					return "Email";
+				default:
+					return 'URL'
+
+			}
 		},
 		setLinkCategory(category) {
 			this.linkCategory = category;
@@ -217,7 +233,7 @@ export default {
 				link_title = "Facebook";
 			}
 			if(this.linkCategory === 'contact'){
-				link_title = "Messenger";
+				link_title = "Email";
 			}
 			this.editedLink = {
 				id: "",
@@ -241,6 +257,9 @@ export default {
 			if(this.editedLink.link_title === 'Skype'){
 				return this.testSkypeUrl(str);
 			}
+			if(this.editedLink.link_title === 'Email'){
+				return this.testEmail(str);
+			}
 			return !!pattern.test(str);
 		},
 
@@ -253,6 +272,10 @@ export default {
 		testSkypeUrl(skype_url){
 			let skypePattern = /skype:/ig ;
 			return skypePattern.test(skype_url);
+		},
+		testEmail(email){
+			let emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return emailPattern.test(email);
 		},
 		getCurrentCategories() {
 			if (this.linkCategory === "professional") {
@@ -289,7 +312,7 @@ $mainBlue: #001ce2;
 	}
 
 	.links-content {
-		height: 323px;
+		height: 450px;
 		background: #fff;
 		box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
 		padding: 50px;
@@ -297,7 +320,7 @@ $mainBlue: #001ce2;
 
 
 		@include lt-sm {
-			height: 400px;
+			height: 450px;
 			padding: 20px;
 		}
 	}

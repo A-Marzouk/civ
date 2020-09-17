@@ -63,6 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'permissions',
         'projects.images',
         'testimonials',
+        'languages',
         'resumeLinks',
         'defaultResumeLink',
         'subscription',

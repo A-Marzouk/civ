@@ -267,9 +267,6 @@
                                             <audio controls class="audio-controller">
                                                 <source :src="media.url"/>
                                             </audio>
-                                            .audio-controller:after{
-                                                outline: none;
-                                            }
                                         </v-col>
                                     </v-row>
                                 </v-card>
@@ -697,7 +694,7 @@
     }
 
     .main-content {
-        height: 520px;
+        height: 450px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         padding: 50px;

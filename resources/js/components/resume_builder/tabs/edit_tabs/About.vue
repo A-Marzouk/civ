@@ -19,7 +19,8 @@
                     <vue-google-autocomplete
                             id="locationInput"
                             classname="custom-predict-input"
-                            placeholder=""
+                            types="(cities)"
+                            placeholder="City or town"
                             v-on:placechanged="getAddressData"
                             @focus="locationLabelFocused = true"
                             @blur="saveLocationAfterBlur"
@@ -65,27 +66,28 @@
                 </div>
 
                 <div class="profile-input-field input-field--nationality input-field--group-1">
-                    <v-text-field
-                            class="resume-builder__input civie-input eye-up-position"
-                            label="Nationality"
-                            v-model="personalInfo.nationality"
-                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_nationality_active}"
-                            :error="!!errors.nationality"
-                            :error-messages="errors.nationality"
-                            hide-details="auto"
-                            outlined
-                            @blur="applyEdit"
-                    >
-                        <button
-                                class=" trigger-icon icon mt-custom6"
-                                :class="{'icon--disabled': false}"
-                                slot="append"
-                                @click="updateVisibility('nationality')"
-                        >
-                            <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
-                                     :class="{'visible' : personalInfo.is_nationality_active}"></svg-vue>
-                        </button>
-                    </v-text-field>
+                    <v-autocomplete
+                                    class="resume-builder__input civie-input eye-up-position"
+                                    v-model="personalInfo.nationality"
+                                    :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_nationality_active}"
+                                    :items="nationalities"
+                                    outlined
+                                    dense
+                                    :error="!!errors.nationality"
+                                    :error-messages="errors.nationality"
+                                    label="Nationality"
+                                    @blur="applyEdit"
+                            >
+                                <button
+                                        class=" trigger-icon icon mt-custom6"
+                                        :class="{'icon--disabled': false}"
+                                        slot="append"
+                                        @click="updateVisibility('nationality')"
+                                >
+                                    <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
+                                             :class="{'visible' : personalInfo.is_nationality_active}"></svg-vue>
+                                </button>
+                            </v-autocomplete>
                 </div>
 
                 <div class="profile-input-field input-field--languages input-field--group-2">
@@ -94,8 +96,7 @@
                             multiple
                             chips
                             placeholder="Select an option"
-                            @blur="syncLanguages"
-                            v-model="selectedLanguages"
+                            v-model="languages"
                             item-text="label"
                             item-value="id"
                             :items="defaultLanguages"
@@ -123,7 +124,8 @@
                     <vue-google-autocomplete
                             id="hometownInput"
                             classname="custom-predict-input hometown"
-                            placeholder=""
+                            placeholder="City or town"
+                            types="(cities)"
                             v-on:placechanged="getAddressDataHomeTown"
                             @focus="hometownLabelFocused = true"
                             @blur="saveHometownAfterBlur"
@@ -201,9 +203,10 @@
 <script>
     import tabSwitcher from "./includes/TabSwitcher";
     import VueGoogleAutocomplete from 'vue-google-autocomplete'
+    import {nationalities} from '../../helpers/nationalities'
 
     export default {
-        name: "Personal",
+        name: "about",
         components: {
             'tab-switcher': tabSwitcher,
             VueGoogleAutocomplete
@@ -228,7 +231,8 @@
                 hometownAddress: '',
                 hometownError: '',
                 hometownInputText: '',
-                hometownLabelFocused: false
+                hometownLabelFocused: false,
+                nationalities: nationalities
 
             };
         },
@@ -236,8 +240,13 @@
             personalInfo() {
                 return this.$store.state.user.personal_info;
             },
-            languages() {
-                return this.$store.state.user.languages.map(a => a.id);
+            languages: {
+                get(){
+                    return this.$store.state.user.languages.map(language => language.id);
+                },
+                set(newValue){
+                    this.syncLanguages(newValue);
+                }
             },
             user() {
                 return this.$store.state.user;
@@ -255,9 +264,9 @@
                 this.applyEdit("auto");
             },
 
-            syncLanguages() {
+            syncLanguages(newLangauges) {
                 axios.post("/api/user/languages-sync", {
-                        IDs: this.selectedLanguages,
+                        IDs: newLangauges,
                         user_id: this.user.id
                     })
                     .then(() => {
@@ -320,7 +329,8 @@
             // Prediction functions:
             getAddressData: function (addressData) {
                 this.address = addressData;
-                this.personalInfo.location = `${addressData.route ? addressData.route + ', ' : ''}${addressData.administrative_area_level_1 ? addressData.administrative_area_level_1 + ', ' : ''}${addressData.country ? addressData.country : ''}`;
+                console.log(addressData);
+                this.personalInfo.location = addressData.locality + ', ' + addressData.country;
                 this.setLocationValue();
                 this.applyEdit();
             },
@@ -350,7 +360,7 @@
             // Prediction functions hometown:
             getAddressDataHomeTown: function (addressData) {
                 this.address = addressData;
-                this.personalInfo.hometown = `${addressData.route ? addressData.route + ', ' : ''}${addressData.administrative_area_level_1 ? addressData.administrative_area_level_1 + ', ' : ''}${addressData.country ? addressData.country : ''}`;
+                this.personalInfo.hometown = addressData.locality + ', ' + addressData.country;
                 this.setHometownValue();
                 this.applyEdit();
             },
@@ -509,7 +519,6 @@
 
             .profile-fields-wrapper {
                 padding-right: 20px;
-                margin-top: 30px;
 
                 .profile-fields {
                     padding: 20px;
@@ -893,4 +902,24 @@
 
     }
 
+</style>
+
+<style lang="scss">
+    @import "../../../../../sass/media-queries";
+    /*
+    .v-autocomplete__content{
+        top: 325px !important;
+        @include lt-sm{
+            top: 427px !important;
+        }
+
+        @include lt-md{
+            top: 487px !important;
+        }
+
+        @include lt-md{
+            top: 310px !important;
+        }
+    }
+    */
 </style>

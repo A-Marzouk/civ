@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Language;
 use App\Mail\AccountDeactivated;
 use App\Mail\AccountRestored;
 use App\ResumeLink;
@@ -131,6 +132,9 @@ class UserObserver
             'order' => 1,
             'is_public' => true
         ]);
+
+        // English by default:
+        $user->languages()->attach(Language::englishLanguageID());
 
         $user->update([
             'resume_link_id' => $resumeLink->id,

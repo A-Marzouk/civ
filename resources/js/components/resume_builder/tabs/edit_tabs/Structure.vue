@@ -1,5 +1,5 @@
 <template>
-    <div class="str-main-content-container" v-if="tabs">
+    <div class="str-main-content-container resume-builder__scroll" v-if="tabs">
         <div class="str-main-content">
             <div class="title">
                 <img src="/icons/edit-cv-sidebar/structure.svg" alt="structure icon">
@@ -19,8 +19,7 @@
     import draggable from "vuedraggable";
 
     export default {
-
-        name: "Structure",
+        name: "structure",
         components: {
             draggable
         },
@@ -54,9 +53,10 @@
 
     .str-main-content-container{
         width: 100%;
-        min-height:250px;
+        height: 450px;
+        overflow: auto;
         background: #FFFFFF;
-        box-shadow: 0 5px 100px rgba(0, 16, 131, 0.1);
+        box-shadow: 0 5px 20px rgba(0, 16, 131, 0.1);
         border-radius: 0;
         padding:50px 40px;
 
