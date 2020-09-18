@@ -375,7 +375,7 @@
             }
 
             @media screen and (min-width: 1280px) and (max-width: 1460px) {
-                justify-content: left;
+                justify-content: space-around;
             }
 
             .theme-container{

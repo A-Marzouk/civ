@@ -81,19 +81,20 @@
 
                 <v-list>
                   <v-list-item
-                    v-for="(tab, i) in tabs"
+                    v-for="(tab, i) in currentUser.tabs"
+                    v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
                     :key="i"
-                    @click="activeTab = tab.value"
+                    @click="activeTab = tab.title"
                   >
                     <v-list-item-content
                       :class="[
-                        activeTab === tab.value
+                        activeTab === tab.title
                           ? 'drawer--tab-active'
                           : 'drawer--tab-disable',
                         'menu--tabs white--text text-left',
                       ]"
                     >
-                      <v-list-item-title>{{ tab.name }}</v-list-item-title>
+                      <v-list-item-title>{{ tab.label }}</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>
@@ -237,12 +238,13 @@
                   centered
                 >
                   <v-tab
-                    v-for="tab in tabs"
-                    :key="tab.value"
-                    @click="activeTab = tab.value"
+                    v-for="tab in currentUser.tabs"
+                    v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                    :key="tab.title"
+                    @click="activeTab = tab.title"
                     class="mx-auto"
                   >
-                    <div class="text-capitalize tabtitle">{{ tab.name }}</div>
+                    <div class="text-capitalize tabtitle">{{ tab.label }}</div>
                   </v-tab>
                 </v-tabs>
               </v-col>
@@ -318,7 +320,7 @@ export default {
     MessageDialog,
     HireModal
   },
-  props: ["user", "is_preview", "currentTab"],
+  props: ["user", "is_preview", "builderCurrentTabTitle"],
   data() {
     return {
       drawer: null,
@@ -326,28 +328,28 @@ export default {
       activeTab: "portfolio",
       messageToggle:false,
       hireMeModal: false,
-     
       indexOfActiveTab:0,
-      tabs: [
-        { name: "Portfolio", value: "portfolio" },
-        { name: "Education", value: "education" },
-        { name: "Experience", value: "work-experience" },
-        { name: "Skills", value: "skills" },
-        { name: "Media", value: "media" },
-        { name: "About Me", value: "about" },
-        { name: "Hobbies", value: "hobbies" },
-        { name: "References", value: "references" },
-        { name: "Achievement", value: "achievement" },
-      ]
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
-      this.activeTab = val;
+    builderCurrentTabTitle: function(val) {
+      if(!this.defaultTabs.includes(val)){
+        this.activeTab = this.getFirstActiveTabTitle() ;
+      }else {
+        this.activeTab = val ;
+      }
+
+      this.setTabIndex();
     }
   },
   computed: {
+    defaultTabs(){
+      return this.$store.state.defaultTabs ;
+    },
+    excludedTabs(){
+      return this.$store.state.excludedTabs ;
+    },
     borderadius() {
       return document.querySelector(".v-tabs-slider").borderRadius("50px");
     },
@@ -416,6 +418,21 @@ export default {
   },
 
   methods: {
+    getFirstActiveTabTitle(){
+      let title = '';
+      this.currentUser.tabs.forEach( (tab) => {
+        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
+          if(title === ''){
+            title = tab.title ;
+          }
+        }
+      });
+
+      return title ;
+    },
+    setTabIndex(){
+      this.indexOfActiveTab = this.currentUser.tabs.findIndex(tab => tab.title === this.activeTab);
+    },
     goToExternalLink(link){
       if(!link.includes('http')){
         link = 'http://' + link ;
@@ -463,21 +480,15 @@ export default {
       }
     },
     setActiveTabByURL(){
-      let currentParam = this.$route.query['current-view'];
-      this.activeTab = currentParam;
-
-      if(!currentParam){
-        return;
+      const pathSplit = this.$route.path.split("/");
+      let currentActiveTab = pathSplit[pathSplit.length - 1];
+      if(!this.defaultTabs.includes(currentActiveTab)){
+        this.activeTab = this.getFirstActiveTabTitle() ;
+      }else {
+        this.activeTab = currentActiveTab ;
       }
 
-      if(currentParam.includes('audio') || currentParam.includes('video')){
-        this.activeTab = 'media';
-      }
-      if(currentParam.includes('about') || currentParam.includes('profile')){
-        this.activeTab = 'about';
-      }
-
-      this.indexOfActiveTab = this.tabs.findIndex(tab => tab.value ===   this.activeTab);
+      this.setTabIndex();
     }
   },
   mounted() {

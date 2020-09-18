@@ -3,108 +3,15 @@
     <div class="tabs-navigation-inner">
       <div class="navigation-wrapper">
         <ul class="navigation">
-          <li
+          <li v-for="tab in currentUser.tabs" v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public" :key="tab.id"
             class="navigation__link"
             :class="[
-              { active: activeTab === 'portfolio' },
-              { 'active-indicator': currentTab === 'portfolio' },
+              { active: builderCurrentTabTitle === tab.title},
             ]"
           >
-            <a href="#" @click.prevent="$emit('tab-changed', 'portfolio')"
-              >Portfolio</a
+            <a href="#" @click.prevent="$emit('tab-changed', tab.title)"
+              >{{tab.label}}</a
             >
-          </li>
-          <li
-            class="navigation__link"
-            :class="[
-              { active: activeTab === 'experience' },
-              { 'active-indicator': currentTab === 'work-experience' },
-            ]"
-          >
-            <a href="#" @click.prevent="$emit('tab-changed', 'experience')"
-              >Work experience</a
-            >
-          </li>
-          <li
-            class="navigation__link"
-            :class="[
-              { active: activeTab === 'education' },
-              { 'active-indicator': currentTab === 'education' },
-            ]"
-          >
-            <a href="#" @click.prevent="$emit('tab-changed', 'education')">
-              Education</a
-            >
-          </li>
-          <li
-            class="navigation__link"
-            :class="[
-              { active: activeTab === 'skills' },
-              { 'active-indicator': currentTab === 'skills' },
-            ]"
-          >
-            <a href="#" @click.prevent="$emit('tab-changed', 'skills')"
-              >Skills
-            </a>
-          </li>
-
-          <li
-            class="navigation__link"
-            :class="[
-              { active: activeTab === 'about-me' },
-              { 'active-indicator': currentTab === 'about' },
-            ]"
-          >
-            <a href="#" @click.prevent="$emit('tab-changed', 'about-me')"
-              >About Me</a
-            >
-          </li>
-          <li
-            class="navigation__link"
-            :class="[
-              { active: activeTab === 'media' },
-              { 'active-indicator': currentTab === 'media' },
-            ]"
-          >
-            <a href="#" @click.prevent="$emit('tab-changed', 'media')"
-              >Media
-            </a>
-          </li>
-
-          <li
-            class="navigation__link"
-            :class="[
-              { active: activeTab === 'hobbies' },
-              { 'active-indicator': currentTab === 'hobbies' },
-            ]"
-          >
-            <a href="#" @click.prevent="$emit('tab-changed', 'hobbies')"
-              >Hobbies
-            </a>
-          </li>
-
-          <li
-            class="navigation__link"
-            :class="[
-              { active: activeTab === 'references' },
-              { 'active-indicator': currentTab === 'references' },
-            ]"
-          >
-            <a href="#" @click.prevent="$emit('tab-changed', 'references')"
-              >References
-            </a>
-          </li>
-
-          <li
-            class="navigation__link"
-            :class="[
-              { active: activeTab === 'achievement' },
-              { 'active-indicator': currentTab === 'achievement' },
-            ]"
-          >
-            <a href="#" @click.prevent="$emit('tab-changed', 'achievement')"
-              >Achievement
-            </a>
           </li>
         </ul>
 
@@ -144,17 +51,16 @@ export default {
   name: "tabs-navigation",
 
   props: {
-    activeTab: {
-      type: String,
-      required: true,
-    },
     currentUser: {
       type: undefined,
       required: true,
     },
-    currentTab: {
+    builderCurrentTabTitle:{
       type: undefined,
-    },
+    }
+  },
+  methods:{
+
   },
 
   components: { SocialLinks },
@@ -162,13 +68,19 @@ export default {
   data: () => {
     return {
       isOpen: false,
+      excludedTabs:[
+        'structure',
+        'imports',
+        'manager',
+        'themes',
+        'links',
+        'pay_availability',
+        'profile', // main tab | can not be hidden
+      ]
     };
   },
   watch: {
-    // if current tab changed, change the active tab as well.
-    currentTab: function (val) {
-      this.activeTab = val;
-    },
+
   },
 };
 </script>

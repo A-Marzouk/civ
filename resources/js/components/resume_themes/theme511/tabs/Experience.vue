@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid v-if="activeTab === 'work-experience'">
+  <v-container fluid v-if="activeTab === 'work_experience'">
     <v-row>
       <v-col
         lg="4"
