@@ -11,7 +11,7 @@
             <v-container fluid ma-0 pa-0 style="max-width: 100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
-                <v-col lg="8" md="10" sm="7" cols="12">
+                <v-col lg="8" md="7" sm="7" cols="12">
                   <v-card color="transparent" tile flat style="z-index: 2" class="pa-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
@@ -26,7 +26,7 @@
                             <v-card class="pa-0" flat color="transparent" tile>
                               {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
                               <span
-                                class="mx-8 hidden-sm-and-down email-icon-block"
+                                class="mx-8 hidden-md-and-down email-icon-block"
                               >
                                 <v-btn
                                   fab
@@ -157,7 +157,7 @@
                 <!-- 2nd column only for tab and mobile version version -->
 
                 <!-- 2nd column social media icons -->
-                <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
+                <v-col lg="3" md="12" sm="12" cols="12" class="mt-n3 pa-0 hidden-lg-and-up" align="center">
                   <v-card flat color="tranparent">
                     <v-card-text class>
                       <v-btn
@@ -1217,7 +1217,7 @@ export default {
   position: absolute;
   background: #e6bf4e;
   width: 2rem;
-  height: 100%;
+  min-height: 100%;
   z-index: 1;
   bottom: 0;
   top: 0;
