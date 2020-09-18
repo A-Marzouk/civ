@@ -21,7 +21,7 @@
           <tab-switcher currentTabTitle="skills"></tab-switcher>
         </div>
       </v-card>
-      <div style="padding-right: 20px;" class="resume-builder__scroll skills-content">
+      <div class="resume-builder__scroll skills-content">
         <v-card class="card-skill-items pa-sm-5 pa-2" id="skillsContent">
           <div>
             <div>
@@ -476,7 +476,7 @@ export default {
 }
 
 .skills-content {
-  height: 450px;
+  //height: 450px;
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   padding-right: 20px;
@@ -497,6 +497,7 @@ export default {
 .card-skill-items {
   width: 100%;
   padding: 50px;
+  height: 450px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: auto !important;
   }

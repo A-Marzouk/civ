@@ -9,9 +9,8 @@
 		</v-tabs>
 
 		<!-- Content -->
-
+		<div></div>
 		<div class="links-content resume-builder__scroll" v-if="links">
-
 			<div class="link-inputs-row">
 				<v-select class="resume-builder__input civie-select icon-prepended" outlined hint="Select platform" persistent-hint :items="getCurrentCategories()" label="Category" color="#001CE2" v-model="editedLink.link_title">
 					<button class="dropdown-icon icon" slot="append">
