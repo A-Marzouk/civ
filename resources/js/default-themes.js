@@ -443,6 +443,7 @@ if ($("#resumeTheme206").length !== 0) {
         el: "#resumeTheme206",
         vuetify,
         store,
+        router,
         iconfont: "fa4",
         components: {
             "resume-theme-206": resumeTheme206
