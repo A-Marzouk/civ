@@ -107,7 +107,7 @@
                 <!-- 1st column profile pic and icons -->
 
                 <!-- 2nd column only for tab and mobile version version -->
-                <v-col sm="5" cols="12" class="tablet-audio-video-flex">
+                <v-col md="5" sm="5" cols="12" class="tablet-audio-video-flex">
                   <v-card
                     flat
                     color="transparent"
