@@ -1,5 +1,5 @@
 <template>
-  <v-app style="margin: 0; padding: 0; background: none;">
+  <v-app style="margin: 0; padding: 0; background: none;" class="skills-container">
     <div style="width: 100%" class="main-container pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
         <div class="d-flex justifyspace reverse-on-phone" style="max-width: 86%">
@@ -602,12 +602,17 @@ export default {
 }
 </style>
 
-<style>
+<style lang="scss">
 #resumeBuilder .v-progress-linear__determinate {
   border-top-right-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
 }
-
+.skills-container {
+  .switch {
+    margin-right: 0 !important;
+    background: rgb(250, 250, 253);
+  }
+}
 .v-slide-group__prev {
   display: none !important;
 }
