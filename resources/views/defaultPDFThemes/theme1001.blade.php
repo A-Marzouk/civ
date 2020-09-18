@@ -98,7 +98,7 @@
         }
 
         .theme-header .user-social a img {
-            height: 35px;
+            height: 30px;
             margin-top: 2px;
             margin-right: 10px;
         }
@@ -118,13 +118,15 @@
             width: 180px;
             height: 48px;
             padding-top: 12px;
-            padding-left: 50px;
+            /* padding-left: 50px; */
             margin-left: -50px;
             color: #F3F5FC;
+            text-align: center;
             background-color: #3D5ED4;
         }
 
         section .section-title .title-decorator {
+            display: none;            
             height: 5px;
             margin-top: 13px;
             margin-left: -3px;
@@ -176,6 +178,7 @@
 
         .work-header .decorator,
         .education-header .decorator {
+            display: none;
             height: 1px;
             background-color: #BEC2D4;
             width: 40px;
@@ -186,6 +189,9 @@
 
         .work .work-header .work-icon,
         .education .education-header .education-icon {
+            display: none;
+            height: 0;
+            width: 0;
             position: absolute;
             left: -85px;
             top: 10px;
@@ -203,6 +209,7 @@
 
         .job-title .decorator,
         .grade-title .decorator {
+            display: none;
             position: absolute;
             left: -25px;
             top: 10px;
@@ -362,7 +369,7 @@
     <section class="about">
         <h1 class="section-title">
             About
-            <div class="title-decorator"></div>
+            {{-- <div class="title-decorator"></div> --}}
         </h1>
 
         <div class="content">
@@ -375,7 +382,7 @@
     <section class="work-experience">
         <h1 class="section-title">
             Experience
-            <div class="title-decorator"></div>
+            {{-- <div class="title-decorator"></div> --}}
         </h1>
 
         <table>
@@ -384,7 +391,7 @@
                         <div class="work-header">
                             <div class="company-name">Civie</div>
                             <div class="decorator"></div>
-                            <img src="{{ public_path('/images/resume_themes/theme1001/work-icon.png') }}" alt="" class="work-icon">
+                            {{-- <img src="{{ public_path('/images/resume_themes/theme1001/work-icon.png') }}" alt="" class="work-icon"> --}}
                             <div class="date">2019 - Now</div>
                         </div>
                         <div class="job-title">
@@ -402,7 +409,7 @@
                         <div class="work-header">
                             <div class="company-name">Civie</div>
                             <div class="decorator"></div>
-                            <img src="{{ public_path('/images/resume_themes/theme1001/work-icon.png') }}" alt="" class="work-icon">
+                            {{-- <img src="{{ public_path('/images/resume_themes/theme1001/work-icon.png') }}" alt="" class="work-icon"> --}}
                             <div class="date">2019 - Now</div>
                         </div>
                         <div class="job-title">
@@ -419,7 +426,7 @@
                         <div class="work-header">
                             <div class="company-name">Civie</div>
                             <div class="decorator"></div>
-                            <img src="{{ public_path('/images/resume_themes/theme1001/work-icon.png') }}" alt="" class="work-icon">
+                            {{-- <img src="{{ public_path('/images/resume_themes/theme1001/work-icon.png') }}" alt="" class="work-icon"> --}}
                             <div class="date">2019 - Now</div>
                         </div>
                         <div class="job-title">
@@ -437,7 +444,7 @@
                         <div class="work-header">
                             <div class="company-name">Civie</div>
                             <div class="decorator"></div>
-                            <img src="{{ public_path('/images/resume_themes/theme1001/work-icon.png') }}" alt="" class="work-icon">
+                            {{-- <img src="{{ public_path('/images/resume_themes/theme1001/work-icon.png') }}" alt="" class="work-icon"> --}}
                             <div class="date">2019 - Now</div>
                         </div>
                         <div class="job-title">
@@ -453,7 +460,7 @@
     <section class="educations">
         <h1 class="section-title">
             Education
-            <div class="title-decorator"></div>
+            {{-- <div class="title-decorator"></div> --}}
         </h1>
 
         <table>
@@ -463,7 +470,7 @@
                         <div class="education-header">
                             <div class="school-name">Simon Bolivar University</div>
                             <div class="decorator"></div>
-                            <img src="{{ public_path('/images/resume_themes/theme1001/education-icon.png') }}" alt="" class="education-icon">
+                            {{-- <img src="{{ public_path('/images/resume_themes/theme1001/education-icon.png') }}" alt="" class="education-icon"> --}}
                             <div class="date">2014 - 2019</div>
                         </div>
                         <div class="grade-title">Computing Mathematics</div>
@@ -475,7 +482,7 @@
                         <div class="education-header">
                             <div class="school-name">Simon Bolivar University</div>
                             <div class="decorator"></div>
-                            <img src="{{ public_path('/images/resume_themes/theme1001/education-icon.png') }}" alt="" class="education-icon">
+                            {{-- <img src="{{ public_path('/images/resume_themes/theme1001/education-icon.png') }}" alt="" class="education-icon"> --}}
                             <div class="date">2014 - 2019</div>
                         </div>
                         <div class="grade-title">Computing Mathematics</div>
@@ -492,7 +499,7 @@
                         <div class="education-header">
                             <div class="school-name">Simon Bolivar University</div>
                             <div class="decorator"></div>
-                            <img src="{{ public_path('/images/resume_themes/theme1001/education-icon.png') }}" alt="" class="education-icon">
+                            {{-- <img src="{{ public_path('/images/resume_themes/theme1001/education-icon.png') }}" alt="" class="education-icon"> --}}
                             <div class="date">2014 - 2019</div>
                         </div>
                         <div class="grade-title">Computing Mathematics</div>
@@ -504,7 +511,7 @@
                         <div class="education-header">
                             <div class="school-name">Simon Bolivar University</div>
                             <div class="decorator"></div>
-                            <img src="{{ public_path('/images/resume_themes/theme1001/education-icon.png') }}" alt="" class="education-icon">
+                            {{-- <img src="{{ public_path('/images/resume_themes/theme1001/education-icon.png') }}" alt="" class="education-icon"> --}}
                             <div class="date">2014 - 2019</div>
                         </div>
                         <div class="grade-title">Computing Mathematics</div>
@@ -518,7 +525,7 @@
     <section class="skills">
         <h1 class="section-title">
             Skills
-            <div class="title-decorator"></div>
+            {{-- <div class="title-decorator"></div> --}}
         </h1>
 
         <div class="container">
@@ -605,7 +612,7 @@
     <section class="languages">
         <h1 class="section-title">
             Languages
-            <div class="title-decorator"></div>
+            {{-- <div class="title-decorator"></div> --}}
         </h1>
 
         <div class="container">
