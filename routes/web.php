@@ -30,6 +30,7 @@ Route::get('/preview-theme-pdf-by-code/{themeCode}', 'ResumeController@downloadP
 
 Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
+Route::get('/faq','HomeController@faq')->name('faq');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
