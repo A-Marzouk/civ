@@ -1,7 +1,7 @@
 <template>
   <v-app style="width: 100%">
     <div class="triangle-top-left"></div>
-    <v-container ma-0 pa-0 fluid style="max-width: 100% !important" v-if="currentUser">
+    <v-container ma-0 pa-0 fluid style="max-width: 100% !important; min-height:100vh;" v-if="currentUser">
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -874,7 +874,7 @@
       <!-- tab bar row -->
       <div class="verical-sidebar"></div>
       <!-- Right Bottom bar -->
-      <div class="triangle-bottom-right" style="text-align: right"></div>
+      <div class="triangle-bottom-right"></div>
       <!-- Right bottom bar -->
     </v-container>
   </v-app>
@@ -1196,8 +1196,6 @@ export default {
   position: absolute;
   right: 0;
   bottom: 0;
-  margin: 0;
-  padding: 0;
   background: #fcd259;
   height: 15.75rem;
   width: 10rem;
@@ -1206,7 +1204,6 @@ export default {
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
-  float: right;
   @media screen and(max-width:959px) {
     width: 8rem;
     height: 7.75rem;
@@ -1217,7 +1214,7 @@ export default {
   position: absolute;
   background: #e6bf4e;
   width: 2rem;
-  min-height: 100%;
+  min-height: 100vh; 
   z-index: 1;
   bottom: 0;
   top: 0;
