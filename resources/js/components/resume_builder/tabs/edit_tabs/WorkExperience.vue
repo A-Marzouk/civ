@@ -8,8 +8,6 @@
                     {{tab}}
                 </v-tab>
             </v-tabs>
-
-            <tab-switcher currentTabTitle="work_experience"></tab-switcher>
         </div>
 
 
@@ -183,13 +181,12 @@
 
 <script>
     import draggable from "vuedraggable";
-    import tabSwitcher from "./includes/TabSwitcher";
+
 
     export default {
         name: "work-experience",
         components: {
-            draggable,
-            'tab-switcher' : tabSwitcher,
+            draggable
         },
         data() {
             return {

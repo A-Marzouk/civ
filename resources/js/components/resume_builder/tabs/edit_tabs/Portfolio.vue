@@ -1,9 +1,5 @@
 <template>
   <div class="portfolio-contents" id="portfolio-tab">
-    <div class="d-flex justify-content-end w-100">
-      <tab-switcher currentTabTitle="portfolio"></tab-switcher>
-    </div>
-
     <div class="data-container">
       <v-card
         class="view-container resume-builder__scroll"
@@ -245,14 +241,14 @@
 <script>
 import vue2Dropzone from "vue2-dropzone";
 import draggable from "vuedraggable";
-import tabSwitcher from "./includes/TabSwitcher";
+
 
 export default {
   name: "Portfolio",
   components: {
     vueDropzone: vue2Dropzone,
     draggable,
-    'tab-switcher' : tabSwitcher
+
   },
   data: () => ({
     editedProject: {

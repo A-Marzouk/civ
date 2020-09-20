@@ -10,7 +10,6 @@
                    :key="tab"
             >{{tab.replace('_',' ')}}</v-tab>
           </v-tabs>
-          <tab-switcher currentTabTitle="skills"></tab-switcher>
         </div>
       </v-card>
       <v-card
@@ -253,14 +252,13 @@
 <script>
 
 import draggable from "vuedraggable";
-import tabSwitcher from "./includes/TabSwitcher";
+
 import { skills } from '../../helpers/pretexts';
 
 export default {
   name: "Skills",
   components: {
-    draggable,
-    'tab-switcher' : tabSwitcher,
+    draggable
   },
   data() {
     return {

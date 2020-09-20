@@ -1,7 +1,6 @@
 <template>
     <div class="main-content">
         <div class="d-flex justify-content-end w-100">
-            <tab-switcher currentTabTitle="references"></tab-switcher>
         </div>
         <div style="width:100%;">
             <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
@@ -344,13 +343,13 @@
 <script>
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
-    import tabSwitcher from "./includes/TabSwitcher";
+
 
     export default {
         name: "References",
         components: {
             vueDropzone: vue2Dropzone,
-            'tab-switcher' : tabSwitcher
+
         },
         data() {
             return {

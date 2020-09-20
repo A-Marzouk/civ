@@ -7,8 +7,6 @@
                         {{ tab === 'audio' ? 'Audio' : 'Video' }}
                     </v-tab>
                 </v-tabs>
-
-                <tab-switcher currentTabTitle="media"></tab-switcher>
             </div>
 
             <v-card
@@ -336,14 +334,14 @@
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
     import draggable from "vuedraggable";
-    import tabSwitcher from "./includes/TabSwitcher";
+
 
     export default {
         name: "AudioVideo",
         components: {
             vueDropzone: vue2Dropzone,
             draggable,
-            'tab-switcher' : tabSwitcher
+
         },
         data() {
             return {
