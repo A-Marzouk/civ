@@ -14,9 +14,23 @@
               class="custom-expansion-panels"
               active-class="custom-expansion-panels-active"
               flat
+              v-model="faqPanel"
             >
-              <v-expansion-panel v-for="(item,i) in 5" :key="i" class="mb-5 custom-expansion-panel">
-                <v-expansion-panel-header class="custom-panel-header">What is cv builder ?</v-expansion-panel-header>
+              <v-expansion-panel
+                v-for="(item,i) in 5"
+                :key="i"
+                class="mb-5 custom-expansion-panel"
+                @click="currentPanel = i"
+              >
+                <v-expansion-panel-header class="custom-panel-header" disable-icon-rotate>
+                  What is cv builder ?
+                  <template v-slot:actions>
+                    <img
+                      :src="currentPanel == faqPanel ? '/images/welcome_landing_page/icons/chevron-down.svg' : '/images/welcome_landing_page/icons/chevron-right.svg'"
+                      alt
+                    />
+                  </template>
+                </v-expansion-panel-header>
                 <v-expansion-panel-content
                   class="custom-panel-content"
                 >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-expansion-panel-content>
@@ -44,6 +58,8 @@ export default {
   data() {
     return {
       windowWidth: window.innerWidth,
+      faqPanel: null,
+      currentPanel: '',
     };
   },
   //mounted
