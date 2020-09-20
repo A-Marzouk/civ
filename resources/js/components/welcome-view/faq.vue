@@ -9,10 +9,17 @@
         <v-row align="center" justify="center">
           <v-col xl="9" lg="10">
             <h1 class="faq-header my-12">Frequently Asked Questions</h1>
-            <v-expansion-panels focusable active-class="panel-header-active">
-              <v-expansion-panel v-for="(item,i) in 5" :key="i">
-                <v-expansion-panel-header class="panel-header">What is cv builder</v-expansion-panel-header>
-                <v-expansion-panel-content>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-expansion-panel-content>
+            <v-expansion-panels
+              focusable
+              class="custom-expansion-panels"
+              active-class="custom-expansion-panels-active"
+              flat
+            >
+              <v-expansion-panel v-for="(item,i) in 5" :key="i" class="mb-5 custom-expansion-panel">
+                <v-expansion-panel-header class="custom-panel-header">What is cv builder ?</v-expansion-panel-header>
+                <v-expansion-panel-content
+                  class="custom-panel-content"
+                >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
           </v-col>
@@ -314,13 +321,38 @@ export default {
       text-align: center;
       color: #001d68 !important;
     }
-    .panel-header {
+    .custom-panel-header {
       font-family: "Noto Sans" !important;
       font-style: normal;
       font-weight: 600;
       font-size: 20px;
       line-height: 30px;
-      color: #ffffff !important;
+      color: #687494;
+    }
+    .custom-panel-content {
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 28px;
+      color: #687494 !important;
+      padding-top: 15px;
+    }
+
+    .custom-expansion-panel {
+      background: #f6f9ff;
+      border-radius: 6px !important;
+      box-shadow: none !important;
+    }
+
+    .custom-expansion-panels-active {
+      border-radius: 6px;
+      box-shadow: 0px 4px 70px rgba(0, 0, 0, 0.07) !important;
+      background: #ffffff;
+      .custom-panel-header {
+        background: #1917ef;
+        color: #ffffff !important;
+      }
     }
   }
   //faq container
