@@ -1,8 +1,8 @@
 <template>
   <div class="portfolio-contents" id="portfolio-tab">
-    <div class="data-container">
+    <div class="data-container view-container resume-builder__scroll">
       <v-card
-        class="view-container resume-builder__scroll"
+        class=""
         style="overflow-x: hidden !important;"
       >
         <v-form class="grid-form" ref="form">
@@ -242,13 +242,11 @@
 import vue2Dropzone from "vue2-dropzone";
 import draggable from "vuedraggable";
 
-
 export default {
   name: "Portfolio",
   components: {
     vueDropzone: vue2Dropzone,
-    draggable,
-
+    draggable
   },
   data: () => ({
     editedProject: {

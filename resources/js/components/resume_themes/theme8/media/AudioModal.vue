@@ -131,8 +131,10 @@ export default {
       height: 30rem;
     }
     @media only screen and (min-width: 320px) and (max-width: 500px) {
-      @include modalPostionMobile;
-      width: 92%;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
       height: 30rem;
     }
     &_close {

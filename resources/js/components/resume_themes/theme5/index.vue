@@ -30,7 +30,8 @@
                 class="text-md-left text-center text-sm-left"
               >
                 <div class="user-name font-weight-regular">
-                  {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
+                  {{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}
                 </div>
                 <div class="job-title py-2 pb-sm-2">
                   {{ currentUser.personal_info.designation }}
@@ -783,26 +784,6 @@
                 cols="11"
                 class="pb-12"
               >
-                <!-- <v-row no-gutters justify="center" class="shade py-12">
-                  <v-col md="10" sm="11" cols="11" class="pb-8">
-                    <div class="headline">About Me</div>
-                  </v-col>
-                  <v-col md="10" sm="11" cols="11" class="pb-8">
-                    <div class="subtitle-1 grey--text lighten-2">
-                      {{ currentUser.personal_info.about }}
-                    </div>
-                  </v-col>
-
-                  <v-col md="10" sm="11" cols="11" class="pb-8">
-                    <div class="headline">Contact</div>
-                  </v-col>
-                  <v-col md="10" sm="11" cols="11">
-                    <div class="title">
-                      Gmail: {{ currentUser.personal_info.email }}
-                    </div>
-                  </v-col>
-                </v-row> -->
-
                 <div class="about-container">
                   <!-- short info -->
                   <div class="short-info">
@@ -1815,11 +1796,7 @@
 }
 </style>
 
-<style>
-.active-indicator {
-  /*border: 2px solid #66daff !important;*/
-}
-</style>
+
 <script>
 import Slick from "vue-slick";
 import VueSlickCarousel from "vue-slick-carousel";

@@ -16,7 +16,7 @@
                 <v-img
                   :src="currentUser.personal_info.profile_pic"
                   alt="avatar"
-                  style="border-radius: 50%;"
+                  style="border-radius: 50%"
                   contain
                 >
                 </v-img>
@@ -82,7 +82,8 @@
                 <v-list>
                   <v-list-item
                     v-for="(tab, i) in currentUser.tabs"
-                    v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                    v-if="!excludedTabs.includes(tab.title)"
+                    v-show="tab.is_public"
                     :key="i"
                     @click="activeTab = tab.title"
                   >
@@ -107,7 +108,8 @@
                 align-self="center"
               >
                 <div class="head">
-                  {{ currentUser.personal_info.first_name }} {{ currentUser.personal_info.last_name }}
+                  {{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}
                 </div>
                 <div class="subhead">
                   {{ currentUser.personal_info.designation }}
@@ -239,7 +241,8 @@
                 >
                   <v-tab
                     v-for="tab in currentUser.tabs"
-                    v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                    v-if="!excludedTabs.includes(tab.title)"
+                    v-show="tab.is_public"
                     :key="tab.title"
                     @click="activeTab = tab.title"
                     class="mx-auto"
@@ -263,7 +266,7 @@
                   :activeTab="activeTab"
                 />
                 <Media
-                  style="margin-bottom: 150px;"
+                  style="margin-bottom: 150px"
                   :activeTab="activeTab"
                   :media="currentUser.media"
                   :user_name="currentUser.full_name"
@@ -318,7 +321,7 @@ export default {
     References,
     Achievement,
     MessageDialog,
-    HireModal
+    HireModal,
   },
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   data() {
@@ -326,29 +329,29 @@ export default {
       drawer: null,
       currentUser: this.user,
       activeTab: "portfolio",
-      messageToggle:false,
+      messageToggle: false,
       hireMeModal: false,
-      indexOfActiveTab:0,
+      indexOfActiveTab: 0,
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    builderCurrentTabTitle: function(val) {
-      if(!this.defaultTabs.includes(val)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = val ;
+    builderCurrentTabTitle: function (val) {
+      if (!this.defaultTabs.includes(val)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = val;
       }
 
       this.setTabIndex();
-    }
+    },
   },
   computed: {
-    defaultTabs(){
-      return this.$store.state.defaultTabs ;
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
     },
-    excludedTabs(){
-      return this.$store.state.excludedTabs ;
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
     },
     borderadius() {
       return document.querySelector(".v-tabs-slider").borderRadius("50px");
@@ -377,7 +380,7 @@ export default {
           return "#ffff";
       }
     },
-    pdfIconSize(){
+    pdfIconSize() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
           return "18";
@@ -391,7 +394,7 @@ export default {
           return "26";
       }
     },
-    buttonSize(){
+    buttonSize() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
           return "30px";
@@ -405,7 +408,7 @@ export default {
           return "50px";
       }
     },
-    drawerWidth(){
+    drawerWidth() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
           return "300";
@@ -414,39 +417,41 @@ export default {
         case "md":
           return "500";
       }
-    }
+    },
   },
 
   methods: {
-    getFirstActiveTabTitle(){
-      let title = '';
-      this.currentUser.tabs.forEach( (tab) => {
-        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
-          if(title === ''){
-            title = tab.title ;
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
           }
         }
       });
 
-      return title ;
+      return title;
     },
-    setTabIndex(){
-      this.indexOfActiveTab = this.currentUser.tabs.findIndex(tab => tab.title === this.activeTab);
+    setTabIndex() {
+      this.indexOfActiveTab = this.currentUser.tabs.findIndex(
+        (tab) => tab.title === this.activeTab
+      );
     },
-    goToExternalLink(link){
-      if(!link.includes('http')){
-        link = 'http://' + link ;
+    goToExternalLink(link) {
+      if (!link.includes("http")) {
+        link = "http://" + link;
       }
-      window.location.href = link ;
+      window.location.href = link;
     },
-   closeDialog(){
-        console.log('closeDialog');
-        this.messageToggle = false;
-      },
-   closePayment(){
-        console.log('closePayment');
-        this.hireMeModal = false;
-      },
+    closeDialog() {
+      console.log("closeDialog");
+      this.messageToggle = false;
+    },
+    closePayment() {
+      console.log("closePayment");
+      this.hireMeModal = false;
+    },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
@@ -479,17 +484,17 @@ export default {
         return "#F7B301";
       }
     },
-    setActiveTabByURL(){
+    setActiveTabByURL() {
       const pathSplit = this.$route.path.split("/");
       let currentActiveTab = pathSplit[pathSplit.length - 1];
-      if(!this.defaultTabs.includes(currentActiveTab)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = currentActiveTab ;
+      if (!this.defaultTabs.includes(currentActiveTab)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = currentActiveTab;
       }
 
       this.setTabIndex();
-    }
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -501,10 +506,9 @@ export default {
     this.$store.dispatch("updateThemeUser", this.currentUser);
   },
   created() {
-
     // set active tab
     this.setActiveTabByURL();
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

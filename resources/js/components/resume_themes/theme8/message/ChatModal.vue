@@ -53,7 +53,7 @@ export default {
     padding: 1.5rem 1rem;
 
     @media screen and (max-width: 475px) {
-      width: 95%;
+      width: 90%;
       height: auto;
       background: #333232;
       border-radius: 30px;
@@ -83,6 +83,12 @@ export default {
         float: left;
         margin-top: 2rem;
         padding: 1rem 0rem 1rem 2rem;
+      }
+      @media screen and (max-width: 375px) {
+        width: 88%;
+        float: left;
+        margin-top: 2rem;
+        padding: 1rem 0rem 1rem 1rem;
       }
       .input {
         width: 100%;

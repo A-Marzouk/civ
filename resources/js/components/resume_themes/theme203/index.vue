@@ -1,7 +1,7 @@
 <template>
   <v-app style="width: 100%">
     <div class="triangle-top-left"></div>
-    <v-container ma-0 pa-0 fluid style="max-width: 100% !important" v-if="currentUser">
+    <v-container ma-0 pa-0 fluid style="max-width: 100% !important; min-height:100vh;" v-if="currentUser">
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -11,7 +11,7 @@
             <v-container fluid ma-0 pa-0 style="max-width: 100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
-                <v-col lg="8" md="10" sm="7" cols="12">
+                <v-col lg="8" md="7" sm="7" cols="12">
                   <v-card color="transparent" tile flat style="z-index: 2" class="pa-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
@@ -26,7 +26,7 @@
                             <v-card class="pa-0" flat color="transparent" tile>
                               {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
                               <span
-                                class="mx-8 hidden-sm-and-down email-icon-block"
+                                class="mx-8 hidden-md-and-down email-icon-block"
                               >
                                 <v-btn
                                   fab
@@ -107,7 +107,7 @@
                 <!-- 1st column profile pic and icons -->
 
                 <!-- 2nd column only for tab and mobile version version -->
-                <v-col sm="5" cols="12" class="tablet-audio-video-flex">
+                <v-col md="5" sm="5" cols="12" class="tablet-audio-video-flex">
                   <v-card
                     flat
                     color="transparent"
@@ -157,7 +157,7 @@
                 <!-- 2nd column only for tab and mobile version version -->
 
                 <!-- 2nd column social media icons -->
-                <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
+                <v-col lg="3" md="12" sm="12" cols="12" class="mt-n3 pa-0 hidden-lg-and-up" align="center">
                   <v-card flat color="tranparent">
                     <v-card-text class>
                       <v-btn
@@ -372,7 +372,7 @@
                             class="overview-title"
                             v-if="currentUser.personal_info.about"
                           >About Me</v-card-subtitle>
-                          <hr class="custom-hr hidden-xs-only" />
+                          <hr class="custom-hr hidden-xs-only" v-show="currentUser.personal_info.about" />
                           <v-card-text
                             class="overview-text"
                             v-if="currentUser.personal_info.about"
@@ -403,7 +403,7 @@
                             }}
                           </v-card-text>
                           <!-- location -->
-                          <hr class="custom-hr hidden-sm-and-up" />
+                          <hr class="custom-hr hidden-sm-and-up" v-show="currentUser.personal_info.location"/>
                         </v-card>
                       </v-col>
                     </v-row>
@@ -874,7 +874,7 @@
       <!-- tab bar row -->
       <div class="verical-sidebar"></div>
       <!-- Right Bottom bar -->
-      <div class="triangle-bottom-right" style="text-align: right"></div>
+      <div class="triangle-bottom-right"></div>
       <!-- Right bottom bar -->
     </v-container>
   </v-app>
@@ -1196,8 +1196,6 @@ export default {
   position: absolute;
   right: 0;
   bottom: 0;
-  margin: 0;
-  padding: 0;
   background: #fcd259;
   height: 15.75rem;
   width: 10rem;
@@ -1206,7 +1204,6 @@ export default {
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
-  float: right;
   @media screen and(max-width:959px) {
     width: 8rem;
     height: 7.75rem;
@@ -1217,7 +1214,7 @@ export default {
   position: absolute;
   background: #e6bf4e;
   width: 2rem;
-  height: 100%;
+  min-height: 100vh; 
   z-index: 1;
   bottom: 0;
   top: 0;
