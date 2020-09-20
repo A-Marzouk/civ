@@ -4,9 +4,9 @@
       <tab-switcher currentTabTitle="portfolio"></tab-switcher>
     </div>
 
-    <div class="data-container">
+    <div class="data-container view-container resume-builder__scroll">
       <v-card
-        class="view-container resume-builder__scroll"
+        class=""
         style="overflow-x: hidden !important;"
       >
         <v-form class="grid-form" ref="form">

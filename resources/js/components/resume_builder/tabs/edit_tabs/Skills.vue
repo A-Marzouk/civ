@@ -1,29 +1,35 @@
 <template>
-  <v-app style="margin: 0; padding: 0; background: none;">
+  <v-app style="margin: 0; padding: 0; background: none;" class="skills-container">
     <div style="width: 100%" class="main-container pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
         <div class="d-flex justifyspace reverse-on-phone" style="max-width: 86%">
-          <v-tabs class="resume-builder__tab-bar" center-active hide-slider v-model="activeTab" height="51">
-            <v-tab style="font-weight: 400"
-                   class="resume-builder__tab" @click="setSkillCategory(tab.toString())"
-                   v-for="tab in tabs"
-                   :key="tab"
+          <v-tabs
+            class="resume-builder__tab-bar"
+            center-active
+            hide-slider
+            v-model="activeTab"
+            height="51"
+          >
+            <v-tab
+              style="font-weight: 400"
+              class="resume-builder__tab"
+              @click="setSkillCategory(tab.toString())"
+              v-for="tab in tabs"
+              :key="tab"
             >{{tab.replace('_',' ')}}</v-tab>
           </v-tabs>
           <tab-switcher currentTabTitle="skills"></tab-switcher>
         </div>
       </v-card>
-      <v-card
-        class="card-skill-items pa-sm-5 pa-2 skills-content resume-builder__scroll"
-        id="skillsContent"
-      >
-        <div>
+      <div class="resume-builder__scroll skills-content">
+        <v-card class="card-skill-items pa-sm-5 pa-2" id="skillsContent">
           <div>
-            <v-container style="width:100%;">
-              <v-row align="baseline mt-n12">
-                <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
-                  <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
-                    <!-- <v-text-field
+            <div>
+              <v-container style="width:100%;">
+                <v-row align="baseline mt-n12">
+                  <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
+                    <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
+                      <!-- <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
                       placeholder="Skill Title"
@@ -32,9 +38,9 @@
                       :error="!!errors.title"
                       :error-messages="errors.title"
                       color="#001CE2"
-                    ></v-text-field> -->
+                      ></v-text-field>-->
 
-                    <v-combobox
+                      <v-combobox
                         v-model="editedSkill.title"
                         :items="getSkillSet"
                         flat
@@ -45,239 +51,274 @@
                         class="resume-builder__input civie-select"
                         :error="!!errors.title"
                         :error-messages="errors.title"
-                    >
+                      >
                         <button class="dropdown-icon icon pb-1" slot="append">
-                            <!-- <svg-vue></svg-vue> -->
+                          <!-- <svg-vue></svg-vue> -->
                         </button>
-                    </v-combobox>
-                  </v-card>
-                </v-col>
+                      </v-combobox>
+                    </v-card>
+                  </v-col>
 
-                <v-col
-                  xl="4"
-                  lg="4"
-                  md="6"
-                  sm="6"
-                  cols="12"
-                  class="mt-md-0 mt-sm-n10 mt-n12 ml-xl-n7"
-                >
-                  <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
-                    <v-text-field
-                      class="resume-builder__input civie-input"
-                      outlined
-                      type="number"
-                      min="0"
-                      max="99"
-                      step="1"
-                      placeholder="99%"
-                      v-model="editedSkill.percentage"
-                      label="Skill Amount"
-                      :error="!!errors.percentage"
-                      :error-messages="errors.percentage"
-                      color="#001CE2"
-                    ></v-text-field>
-                  </v-card>
-                </v-col>
+                  <v-col
+                    xl="4"
+                    lg="4"
+                    md="6"
+                    sm="6"
+                    cols="12"
+                    class="mt-md-0 mt-sm-n10 mt-n12 ml-xl-n7"
+                  >
+                    <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
+                      <v-text-field
+                        class="resume-builder__input civie-input"
+                        outlined
+                        type="number"
+                        min="0"
+                        max="99"
+                        step="1"
+                        placeholder="99%"
+                        v-model="editedSkill.percentage"
+                        label="Skill Amount"
+                        :error="!!errors.percentage"
+                        :error-messages="errors.percentage"
+                        color="#001CE2"
+                      ></v-text-field>
+                    </v-card>
+                  </v-col>
 
-                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-lg-n2 my-md-n10 mt-sm-n10 mt-n6 d-flex">
-                  <v-btn
-                    class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0 mr-lg-7 mr-md-7"
-                    @click="addSkill"
-                  >{{editedSkill.id === undefined ? 'Add New' : 'Update'}}</v-btn>
-                  
-                  <v-btn
-                    class="resume-builder__btn civie-btn btn-add-new mt-2 ml-5"
-                    @click="cancelEdit"
-                    v-show="editedSkill.id !== undefined"
-                  >Cancel</v-btn>
-                </v-col>
+                  <v-col
+                    xl="4"
+                    lg="4"
+                    md="6"
+                    sm="6"
+                    cols="3"
+                    class="mt-lg-n2 my-md-n10 mt-sm-n10 mt-n6 d-flex"
+                  >
+                    <v-btn
+                      class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0 mr-lg-7 mr-md-7"
+                      @click="addSkill"
+                    >{{editedSkill.id === undefined ? 'Add New' : 'Update'}}</v-btn>
 
-                <v-col xl="6" :lg="windowWidth<1440?'8':'7'" md="12" sm="12" cols="12">
-                  <v-container fluid style="width:100%;" ma-0 pa-0>
-                    <v-row align="center" dense>
-                      <v-col cols="12">
-                        <draggable v-model="skills" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                          <v-card
-                                  v-for="skill in skills"
-                                  :key="skill.id"
-                                  v-show="skill.category === skillCategory"
-                                  color="#E6E8FC"
-                                  class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
-                                  :class="{'half-opacity' : !skill.is_public}"
-                                  flat
+                    <v-btn
+                      class="resume-builder__btn civie-btn btn-add-new mt-2 ml-5"
+                      @click="cancelEdit"
+                      v-show="editedSkill.id !== undefined"
+                    >Cancel</v-btn>
+                  </v-col>
+
+                  <v-col xl="6" :lg="windowWidth<1440?'8':'7'" md="12" sm="12" cols="12">
+                    <v-container fluid style="width:100%;" ma-0 pa-0>
+                      <v-row align="center" dense>
+                        <v-col cols="12">
+                          <draggable
+                            v-model="skills"
+                            @start="drag=true"
+                            @end="drag=false"
+                            handle=".drag-handler"
                           >
-                            <v-card-text>
-                              <!-- skill for desktop -->
-                              <v-row align="center" justify="center" class="mt-n3 row-skill-details">
-                                <v-col xl="1" lg="2" md="1" sm="1" cols="2" class="drag-handler">
-                                  <v-btn depressed class="btn-v_bar" color="#F2F3FD">
-                                    <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
-                                  </v-btn>
-                                </v-col>
-                                <v-col xl="6" lg="5" md="7" sm="6" cols="6">
-                                  <v-card color="transparent" flat tile>
-                                    <div class="skill-title">{{skill.title}}</div>
-                                    <div class="mt-3">
-                                      <v-progress-linear
-                                              class="progress-skill"
-                                              height="8"
-                                              rounded
-                                              color="#001CE2"
-                                              background-color="#C4C9F5"
-                                              :value="skill.percentage"
-                                      ></v-progress-linear>
-                                    </div>
-                                  </v-card>
-                                </v-col>
-                                <v-col xl="2" lg="2" md="1" sm="2" cols="2" class="mt-5">
-                                  <span class="skill-title">{{skill.percentage}}%</span>
-                                </v-col>
-                                <v-col
-                                        xl="3"
-                                        lg="3"
-                                        md="3"
-                                        sm="3"
-                                        cols="3"
-                                        align="right"
-                                        class="mt-5 resume-builder__action-buttons-container"
+                            <v-card
+                              v-for="skill in skills"
+                              :key="skill.id"
+                              v-show="skill.category === skillCategory"
+                              color="#E6E8FC"
+                              class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
+                              :class="{'half-opacity' : !skill.is_public}"
+                              flat
+                            >
+                              <v-card-text>
+                                <!-- skill for desktop -->
+                                <v-row
+                                  align="center"
+                                  justify="center"
+                                  class="mt-n3 row-skill-details"
                                 >
-                                  <v-btn
-                                          color="#F2F3FD"
-                                          depressed
-                                          @click="toggleVisibility(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-1 mx-1"
-                                  >
-                                    <svg-vue
-                                            icon="eye-icon"
-                                            :class="{'visible' : skill.is_public}"
-                                            class="icon"
-                                    ></svg-vue>
-                                  </v-btn>
-                                  <v-btn
-                                          color="#F2F3FD"
-                                          depressed
-                                          @click="editSkill(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-1 mr-1"
-                                  >
-                                    <svg-vue icon="edit-icon" class="icon"></svg-vue>
-                                  </v-btn>
-                                  <v-btn
-                                          color="#F2F3FD"
-                                          depressed
-                                          @click="deleteSkill(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-1 mr-1"
-                                  >
-                                    <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
-                                  </v-btn>
-                                </v-col>
-                              </v-row>
-
-                              <!-- skill for mobile -->
-                              <v-row
-                                      align="center"
-                                      justify="center"
-                                      class="row-skill-details-mobile mt-n5"
-                              >
-                                <v-col cols="6">
-                                  <v-btn depressed class="btn-v_bar drag-handler">
-                                    <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
-                                  </v-btn>
-                                </v-col>
-                                <v-col cols="6" align="right" class="resume-builder__action-buttons-container">
-                                  <v-btn
-                                          color="#F2F3FD"
-                                          depressed
-                                          @click="toggleVisibility(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
-                                  >
-                                    <svg-vue
-                                            icon="eye-icon"
-                                            :class="{'visible' : skill.is_public}"
-                                            class="icon"
-                                    ></svg-vue>
-                                  </v-btn>
-                                  <v-btn
-                                          color="#F2F3FD"
-                                          depressed
-                                          @click="editSkill(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
-                                  >
-                                    <svg-vue icon="edit-icon" class="icon"></svg-vue>
-                                  </v-btn>
-                                  <v-btn
-                                          color="#F2F3FD"
-                                          depressed
-                                          @click="deleteSkill(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
-                                  >
-                                    <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
-                                  </v-btn>
-                                </v-col>
-                                <v-col cols="12" class="mt-n4">
-                                  <v-row align="center">
-                                    <v-col cols="12" class="mb-1">
+                                  <v-col xl="1" lg="2" md="1" sm="1" cols="2" class="drag-handler">
+                                    <v-btn depressed class="btn-v_bar" color="#F2F3FD">
+                                      <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                                    </v-btn>
+                                  </v-col>
+                                  <v-col xl="6" lg="5" md="7" sm="6" cols="6">
+                                    <v-card color="transparent" flat tile>
                                       <div class="skill-title">{{skill.title}}</div>
-                                    </v-col>
-                                    <v-col cols="9" class="mt-n5">
-                                      <v-progress-linear
-                                              class="progress-skill"
-                                              height="8"
-                                              rounded
-                                              color="#001CE2"
-                                              background-color="#C4C9F5"
-                                              :value="skill.percentage"
-                                      ></v-progress-linear>
-                                    </v-col>
-                                    <v-col cols="3" class="mt-n5">
-                                      <div class="skill-title mt-n1">{{skill.percentage}}%</div>
-                                    </v-col>
-                                  </v-row>
-                                </v-col>
-                              </v-row>
-                            </v-card-text>
-                          </v-card>
-                        </draggable>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-col>
-              </v-row>
-            </v-container>
+                                      <div class="mt-3">
+                                        <v-progress-linear
+                                          class="progress-skill"
+                                          height="8"
+                                          rounded
+                                          color="#001CE2"
+                                          background-color="#C4C9F5"
+                                          :value="skill.percentage"
+                                        ></v-progress-linear>
+                                      </div>
+                                    </v-card>
+                                  </v-col>
+                                  <v-col xl="2" lg="2" md="1" sm="2" cols="2" class="mt-5">
+                                    <span class="skill-title">{{skill.percentage}}%</span>
+                                  </v-col>
+                                  <v-col
+                                    xl="3"
+                                    lg="3"
+                                    md="3"
+                                    sm="3"
+                                    cols="3"
+                                    align="right"
+                                    class="mt-5 resume-builder__action-buttons-container"
+                                  >
+                                    <v-btn
+                                      color="#F2F3FD"
+                                      depressed
+                                      @click="toggleVisibility(skill)"
+                                      class="btn-skill-action mr-xl-1 mr-lg-1 mx-1"
+                                    >
+                                      <svg-vue
+                                        icon="eye-icon"
+                                        :class="{'visible' : skill.is_public}"
+                                        class="icon"
+                                      ></svg-vue>
+                                    </v-btn>
+                                    <v-btn
+                                      color="#F2F3FD"
+                                      depressed
+                                      @click="editSkill(skill)"
+                                      class="btn-skill-action mr-xl-1 mr-lg-1 mr-1"
+                                    >
+                                      <svg-vue icon="edit-icon" class="icon"></svg-vue>
+                                    </v-btn>
+                                    <v-btn
+                                      color="#F2F3FD"
+                                      depressed
+                                      @click="deleteSkill(skill)"
+                                      class="btn-skill-action mr-xl-1 mr-lg-1 mr-1"
+                                    >
+                                      <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
+                                    </v-btn>
+                                  </v-col>
+                                </v-row>
+
+                                <!-- skill for mobile -->
+                                <v-row
+                                  align="center"
+                                  justify="center"
+                                  class="row-skill-details-mobile mt-n5"
+                                >
+                                  <v-col cols="6">
+                                    <v-btn depressed class="btn-v_bar drag-handler">
+                                      <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                                    </v-btn>
+                                  </v-col>
+                                  <v-col
+                                    cols="6"
+                                    align="right"
+                                    class="resume-builder__action-buttons-container"
+                                  >
+                                    <v-btn
+                                      color="#F2F3FD"
+                                      depressed
+                                      @click="toggleVisibility(skill)"
+                                      class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                    >
+                                      <svg-vue
+                                        icon="eye-icon"
+                                        :class="{'visible' : skill.is_public}"
+                                        class="icon"
+                                      ></svg-vue>
+                                    </v-btn>
+                                    <v-btn
+                                      color="#F2F3FD"
+                                      depressed
+                                      @click="editSkill(skill)"
+                                      class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                    >
+                                      <svg-vue icon="edit-icon" class="icon"></svg-vue>
+                                    </v-btn>
+                                    <v-btn
+                                      color="#F2F3FD"
+                                      depressed
+                                      @click="deleteSkill(skill)"
+                                      class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                    >
+                                      <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
+                                    </v-btn>
+                                  </v-col>
+                                  <v-col cols="12" class="mt-n4">
+                                    <v-row align="center">
+                                      <v-col cols="12" class="mb-1">
+                                        <div class="skill-title">{{skill.title}}</div>
+                                      </v-col>
+                                      <v-col cols="9" class="mt-n5">
+                                        <v-progress-linear
+                                          class="progress-skill"
+                                          height="8"
+                                          rounded
+                                          color="#001CE2"
+                                          background-color="#C4C9F5"
+                                          :value="skill.percentage"
+                                        ></v-progress-linear>
+                                      </v-col>
+                                      <v-col cols="3" class="mt-n5">
+                                        <div class="skill-title mt-n1">{{skill.percentage}}%</div>
+                                      </v-col>
+                                    </v-row>
+                                  </v-col>
+                                </v-row>
+                              </v-card-text>
+                            </v-card>
+                          </draggable>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </div>
           </div>
-        </div>
-      </v-card>
+        </v-card>
+      </div>
     </div>
   </v-app>
 </template>
 
 <script>
-
 import draggable from "vuedraggable";
 import tabSwitcher from "./includes/TabSwitcher";
-import { skills } from '../../helpers/pretexts';
+import { skills } from "../../helpers/pretexts";
 
 export default {
   name: "Skills",
   components: {
     draggable,
-    'tab-switcher' : tabSwitcher,
+    "tab-switcher": tabSwitcher,
   },
   data() {
     return {
       windowWidth: window.innerWidth,
       typeItems: ["Programming Language"],
       activeTab: 0,
-      skillCategory:'Leadership',
-      tabs: ["Leadership", "Professionalism", "Organizational", "Team Building", "Personal Life", "Analytical", "Sports", "Business related", "Technical", "Design", "Communication", "Creativity", "Nursing and Healthcare", "Engineering"],
+      skillCategory: "Leadership",
+      tabs: [
+        "Leadership",
+        "Professionalism",
+        "Organizational",
+        "Team Building",
+        "Personal Life",
+        "Analytical",
+        "Sports",
+        "Business related",
+        "Technical",
+        "Design",
+        "Communication",
+        "Creativity",
+        "Nursing and Healthcare",
+        "Engineering",
+      ],
       addNewSkill: false,
       optionSkillId: 0,
       skillItems: skills,
       editedSkill: {
         category: "",
         title: "",
-        percentage: ""
+        percentage: "",
       },
-      errors: {}
+      errors: {},
     };
   },
   computed: {
@@ -287,11 +328,11 @@ export default {
       },
       set(skills) {
         this.$store.commit("updateSkills", skills);
-      }
+      },
     },
     getSkillSet() {
-      return this.skillItems[this.skillCategory.split(" ")[0].toLowerCase()]
-    }
+      return this.skillItems[this.skillCategory.split(" ")[0].toLowerCase()];
+    },
   },
   props: ["selectProps"],
   methods: {
@@ -306,10 +347,10 @@ export default {
       skill.is_public = !skill.is_public;
       axios
         .post("/api/user/skills/toggle-visibility", skill)
-        .then(response => {
+        .then((response) => {
           this.$store.dispatch("flyingNotification");
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
@@ -327,7 +368,7 @@ export default {
 
         axios
           .post("/api/user/skills", this.editedSkill)
-          .then( (response) => {
+          .then((response) => {
             response.data.data.is_public = true;
             if (!edit) {
               let addedSkill = response.data.data;
@@ -343,7 +384,7 @@ export default {
             this.clearSkill();
             this.$store.dispatch("flyingNotification");
           })
-          .catch(error => {
+          .catch((error) => {
             if (typeof error.response.data === "object") {
               this.errors = error.response.data.errors;
             } else {
@@ -351,7 +392,7 @@ export default {
             }
             this.$store.dispatch("flyingNotification", {
               message: "Error",
-              iconSrc: "/images/resume_builder/error.png"
+              iconSrc: "/images/resume_builder/error.png",
             });
           });
       }
@@ -359,7 +400,7 @@ export default {
     validateSkill() {
       this.errors = {
         new: {},
-        edit: {}
+        edit: {},
       };
 
       if (this.editedSkill.title && this.editedSkill.percentage) {
@@ -379,7 +420,7 @@ export default {
       this.editedSkill = {
         category: this.skillCategory,
         title: "",
-        percentage: ""
+        percentage: "",
       };
     },
     editSkill(skill) {
@@ -388,7 +429,7 @@ export default {
         category: skill.category,
         title: skill.title,
         percentage: skill.percentage,
-        user_id: skill.user_id
+        user_id: skill.user_id,
       };
 
       // scroll to the top of the element:
@@ -402,7 +443,7 @@ export default {
       }
       axios
         .delete("/api/user/skills/" + skill.id)
-        .then(response => {
+        .then((response) => {
           this.$store.dispatch("flyingNotificationDelete");
           this.skills.forEach((skill, index) => {
             if (skill.id === response.data.data.id) {
@@ -410,19 +451,19 @@ export default {
             }
           });
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     cancelEdit() {
       this.clearSkill();
-    }
+    },
   },
   mounted() {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
-  }
+  },
 };
 </script>
 
@@ -435,10 +476,10 @@ export default {
 }
 
 .skills-content {
-  height: 450px;
+  //height: 450px;
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-  padding: 50px;
+  padding-right: 20px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
   overflow-y: scroll;
@@ -455,6 +496,8 @@ export default {
 }
 .card-skill-items {
   width: 100%;
+  padding: 50px;
+  height: 450px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: auto !important;
   }
@@ -523,7 +566,7 @@ export default {
       min-height: 30px !important;
       width: 30px !important;
       height: 30px !important;
-      background: #F2F3FD;
+      background: #f2f3fd;
     }
 
     .row-skill-details {
@@ -552,19 +595,24 @@ export default {
   }
 }
 
-  .drag-handler{
-    &:hover{
-      cursor: pointer;
-    }
+.drag-handler {
+  &:hover {
+    cursor: pointer;
   }
+}
 </style>
 
-<style>
+<style lang="scss">
 #resumeBuilder .v-progress-linear__determinate {
   border-top-right-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
 }
-
+.skills-container {
+  .switch {
+    margin-right: 0 !important;
+    background: rgb(250, 250, 253);
+  }
+}
 .v-slide-group__prev {
   display: none !important;
 }

@@ -3,8 +3,8 @@
         <div class="d-flex justify-content-end w-100">
             <tab-switcher currentTabTitle="references"></tab-switcher>
         </div>
-        <div style="width:100%;">
-            <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
+        <div style="width:100%;" class="resume-builder__scroll reference-content">
+            <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5" flat>
                 <div>
 
                     <div class="reference-external-link-wrapper">
@@ -587,13 +587,14 @@
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         height: 450px;
-        padding: 50px;
         margin-bottom: 70px;
         scroll-behavior: smooth;
+        padding-right: 20px;
     }
 
     .card-ref {
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
+        padding: 50px;
         @media screen and (min-width: 1264px) and (max-width: 1903px) {
             width: auto;
         }
