@@ -24,7 +24,10 @@
               sm="7"
             >
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</v-card-title>
+                <v-card-title class="custom-profile-title"
+                  >{{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}</v-card-title
+                >
                 <v-card-subtitle class="custom-profile-subtitle">
                   {{ currentUser.personal_info.designation }}
                 </v-card-subtitle>
@@ -213,7 +216,10 @@
         <v-btn icon color="#333333" @click.stop="drawer = !drawer">
           <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
         </v-btn>
-        <v-toolbar-title class="custom-toolbar-title-mobile">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</v-toolbar-title>
+        <v-toolbar-title class="custom-toolbar-title-mobile"
+          >{{ currentUser.personal_info.first_name }}
+          {{ currentUser.personal_info.last_name }}</v-toolbar-title
+        >
       </v-app-bar>
       <v-navigation-drawer
         app
@@ -236,7 +242,10 @@
             <v-list-item-content class="mt-12">
               <v-list-item-title>
                 <v-card color="transparent" class="pa-2" flat>
-                  <span class="profile-title-mobile">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</span>
+                  <span class="profile-title-mobile"
+                    >{{ currentUser.personal_info.first_name }}
+                    {{ currentUser.personal_info.last_name }}</span
+                  >
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
