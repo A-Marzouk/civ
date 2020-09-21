@@ -1,6 +1,10 @@
 .resume-builder__tab-bar {
     border-radius: 10px 10px 0px 0px;
 
+    .v-item-group{
+        width: fit-content !important;
+    }
+
     .v-tab {
         background-color: $auxBgColor-gray;
         color: $inputTextColor;
