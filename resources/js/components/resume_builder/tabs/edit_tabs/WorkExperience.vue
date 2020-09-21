@@ -66,7 +66,7 @@
                                     <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
                                         <input type="checkbox" class="checkbox" v-model="newWork.present"> <span class="present-text">Present</span>
                                     </label>
-                                    <input type="date" class="pr-2" :class="{'error-label' : errors.date_to}"  v-model="newWork.date_to" :disabled="newWork.present" v-show="!newWork.present">
+                                    <input type="date" class="pr-2" style="transition: all 1.5s;" :class="{'error-label' : errors.date_to, 'zero-opacity': newWork.present}"  v-model="newWork.date_to" :disabled="newWork.present"">
                                 </div>
                             </div>
                         </div>
@@ -344,12 +344,12 @@
     .ml-lg-custom3{
         
         
-        @media screen and (min-width: 1340px) and (max-width: 1903px){
-            margin-left: 25px !important; // adjusted | 50px
+        @media screen and (min-width: 1468px) and (max-width: 1903px){
+            margin-left: 25px !important;
         }
 
         @media screen and (min-width: 1441px) {
-            margin-left: 25px !important; // adjusted | 50px
+            margin-left: 25px !important;
         }
     }
 
