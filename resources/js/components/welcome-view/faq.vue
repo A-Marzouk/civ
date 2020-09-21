@@ -7,7 +7,7 @@
       <!-- main navigation bar -->
       <v-container class="faq-main-container">
         <v-row align="center" justify="center">
-          <v-col xl="9" lg="10">
+          <v-col xl="9" lg="10" md="10" sm="10" cols="12">
             <h1 class="faq-header my-12">Frequently Asked Questions</h1>
             <v-expansion-panels
               focusable
@@ -23,7 +23,7 @@
                 @click="clickPanelHeader(item.id)"
               >
                 <v-expansion-panel-header class="custom-panel-header" disable-icon-rotate>
-                  What is cv builder ?
+                  {{ item.title }}
                   <template v-slot:actions>
                     <img
                       :src="currentPanel == item.id ? '/images/welcome_landing_page/icons/chevron-down.svg' : '/images/welcome_landing_page/icons/chevron-right.svg'"
@@ -31,9 +31,7 @@
                     />
                   </template>
                 </v-expansion-panel-header>
-                <v-expansion-panel-content
-                  class="custom-panel-content"
-                >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-expansion-panel-content>
+                <v-expansion-panel-content class="custom-panel-content">{{item.content}}</v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
           </v-col>
@@ -377,6 +375,10 @@ export default {
       line-height: 64px;
       text-align: center;
       color: #001d68 !important;
+      @media screen and (max-width: 604px){
+        font-size: 30px;
+        line-height: 40px;
+      }
     }
     .custom-panel-header {
       font-family: "Noto Sans" !important;
