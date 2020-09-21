@@ -71,7 +71,9 @@
                     });
             },
             importComponent(id) {
-                let myTheme = {}
+                let myTheme = {
+                    code: 1001
+                };
                 this.availableThemes.forEach( (theme) => {
                     if(theme.id === id){
                         myTheme = theme;

@@ -1,18 +1,18 @@
 <template>
   <div>
     <div style="width:100%;" class="main-container pay-class pa-md-0 pa-sm-0 pa-3">
-      <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTab" height="51">
+      <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTabOrder" height="51">
         <v-tab
           class="resume-builder__tab"
           v-for="(tabName,i) in tabs"
           :key="i"
         >{{tabName.replace('_',' ')}}</v-tab>
       </v-tabs>
-      <div class="">
+      <div>
         <v-card class="card-main pa-10 resume-builder__scroll pay-content" flat id="payContent">
-          <v-tabs-items v-model="payTab">
+          <v-tabs-items v-model="payTabOrder">
             <v-tab-item>
-              <v-container style="width: 100%;">
+              <v-container style="width: 100%;" v-if="currentPayment">
                 <v-form>
                   <v-row align="center" class="align-items-center">
                     <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -23,7 +23,6 @@
                         :items="payFrequency"
                         label="Frequency"
                         color="#001CE2"
-                        @change="selectCurrentPayment(salary_frequency)"
                         v-model="salary_frequency"
                       >
                         <button class="dropdown-icon icon" slot="append" @click.prevent>
@@ -68,7 +67,7 @@
               </v-container>
             </v-tab-item>
             <v-tab-item>
-              <v-container style="width: 100%;">
+              <v-container style="width: 100%;" v-if="currentAvailability">
                 <v-form>
                   <v-row align="center">
                     <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -77,7 +76,6 @@
                         outlined
                         placeholder="Select an option"
                         :items="hoursFrequency"
-                        @change="selectCurrentAvailability(availability_frequency)"
                         label="Frequency"
                         color="#001CE2"
                         v-model="availability_frequency"
@@ -110,6 +108,36 @@
                 </v-form>
               </v-container>
             </v-tab-item>
+            <v-tab-item>
+              <v-container style="width: 100%;">
+                <v-form>
+                  <v-row align="center">
+                    <v-col xl="3" lg="4" md="6" sm="6" cols="12">
+                      <v-select
+                              class="resume-builder__input civie-select"
+                              outlined
+                              placeholder="Select an option"
+                              :items="paymentMethods"
+                              label="Payment Method"
+                              color="#001CE2"
+                              v-model="payment_method"
+                      >
+                        <button class="dropdown-icon icon" slot="append" @click.prevent>
+                          <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                        </button>
+                      </v-select>
+                    </v-col>
+
+
+                    <v-col xl="3" lg="4" md="6" sm="6" cols="12">
+                      <v-btn
+                              class="resume-builder__btn civie-btn filled btn-add-new mt-md-0 mt-sm-0 mt-n5 btn-add-new-custom"
+                      >Submit</v-btn>
+                    </v-col>
+                  </v-row>
+                </v-form>
+              </v-container>
+            </v-tab-item>
           </v-tabs-items>
         </v-card>
       </div>
@@ -127,11 +155,30 @@ export default {
   },
   data() {
     return {
-      payTab: 0,
-      salary_frequency: "hourly",
-      availability_frequency: "weekly",
+      tabs: ["Rate Card", "Availability", "Payment Methods"],
+      payTabOrder: 0,
       errors: {},
-      tabs: ["Payment", "Availability"],
+
+      // first tab | rate card
+      salary_frequency: "hourly",
+      payFrequency: [
+        {
+          text: "Hourly",
+          value: "hourly",
+        },
+        {
+          text: "Weekly",
+          value: "weekly",
+        },
+        {
+          text: "Monthly",
+          value: "monthly",
+        },
+        {
+          text: "Yearly",
+          value: "yearly",
+        },
+      ],
       currencies: [
         {
           text: "USD",
@@ -158,24 +205,9 @@ export default {
           value: "inr",
         },
       ],
-      payFrequency: [
-        {
-          text: "Hourly",
-          value: "hourly",
-        },
-        {
-          text: "Weekly",
-          value: "weekly",
-        },
-        {
-          text: "Monthly",
-          value: "monthly",
-        },
-        {
-          text: "Yearly",
-          value: "yearly",
-        },
-      ],
+
+
+      // second tab | availability:
       hoursFrequency: [
         {
           text: "Weekly",
@@ -190,60 +222,46 @@ export default {
           value: "yearly",
         },
       ],
-      disabledInput: false,
-      showCurrencyOptions: false,
-      currentAvailability: {},
-      currentPayment: {},
+      availability_frequency: "weekly",
+
+
+      // third tab | payment methods:
+      paymentMethods:[
+              'PayPal',
+              'Stripe',
+              'Bank Account'
+      ],
+      payment_method: ''
     };
   },
   computed: {
-    paymentInfo() {
-      let info = this.$store.state.user.payment_info;
-      if (info) {
-        this.currentPayment = info[0];
+    currentPayment:{
+      get(){
+        let info = this.$store.state.user.payment_info;
+        if(info){
+          return info.find( paymentInfo => {
+            return paymentInfo.salary_frequency === this.salary_frequency
+          });
+        }
       }
-      return info;
     },
-    availabilityInfo() {
-      let info = this.$store.state.user.availability_info;
-      if (info) {
-        this.currentAvailability = info[0];
+    currentAvailability:{
+      get(){
+        let info = this.$store.state.user.availability_info;
+        if(info){
+          return info.find( availabilityInfo => {
+            return availabilityInfo.available_hours_frequency === this.availability_frequency
+          });
+        }
       }
-      return info;
-    },
+    }
   },
-  props: ["selectProps", "inputProps"],
-  methods: {
-    toggleSelect() {
-      this.disabledSelect = !this.disabledSelect;
-    },
-    toggleInput() {
-      this.disabledInput = !this.disabledInput;
-    },
 
+  methods: {
     updatePaymentInfo() {
       this.errors = {};
 
-      axios
-        .put("/api/user/payment-info", this.currentPayment)
-        .then((response) => {
-          this.$store.dispatch("flyingNotification");
-        })
-        .catch((error) => {
-          if (typeof error.response.data === "object") {
-            console.log(error.response.data.errors);
-            this.errors = error.response.data.errors;
-          } else {
-            this.errors = "Something went wrong. Please try again.";
-          }
-          this.$store.dispatch("flyingNotification", {
-            message: "Error",
-            iconSrc: "/images/resume_builder/error.png",
-          });
-        });
-
-      axios
-        .put("/api/user/availability-info", this.currentAvailability)
+      axios.put("/api/user/payment-info", this.currentPayment)
         .then((response) => {
           this.$store.dispatch("flyingNotification");
         })
@@ -260,12 +278,10 @@ export default {
           });
         });
     },
-
     updateAvailabilityInfo() {
       this.errors = {};
 
-      axios
-        .put("/api/user/availability-info", this.currentAvailability)
+      axios.put("/api/user/availability-info", this.currentAvailability)
         .then((response) => {
           this.$store.dispatch("flyingNotification");
         })
@@ -281,32 +297,12 @@ export default {
             iconSrc: "/images/resume_builder/error.png",
           });
         });
-    },
-
-    selectCurrentPayment(frequency) {
-      this.paymentInfo.forEach((payment) => {
-        if (
-          payment.salary_frequency.toLowerCase() === frequency.toLowerCase()
-        ) {
-          this.currentPayment = payment;
-        }
-      });
-    },
-
-    selectCurrentAvailability(frequency) {
-      this.availabilityInfo.forEach((availability) => {
-        if (availability.available_hours_frequency === frequency) {
-          this.currentAvailability = availability;
-        }
-      });
-    },
+    }
   },
 
   mounted() {
-    if (this.paymentInfo) {
-      this.selectCurrentPayment("hourly");
-      this.selectCurrentAvailability("weekly");
-    }
+
+
   },
 };
 </script>

@@ -9,12 +9,8 @@
                 </v-tabs>
             </div>
 
-            <v-card
-                    class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 mt-0 resume-builder__scroll main-content"
-                    flat
-            >
+            <div class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 mt-0 resume-builder__scroll main-content">
                 <div>
-                    <!-- Audio tab -->
                     <div v-if="mediaCategory === 'audio'">
                         <div style="width: 100%;" class="inputs-wrapper">
                             <div class="text-inputs">
@@ -104,8 +100,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Video tab -->
                     <div v-if="mediaCategory === 'video'">
                         <div style="width: 100%;">
                             <div class="inputs-wrapper">
@@ -185,7 +179,6 @@
 
                         </div>
                     </div>
-
                     <draggable v-if="medias" v-model="medias" @start="drag=true" @end="drag=false" class="mt-3" handle=".drag-handler">
                         <v-row align="center" dense v-for="media in medias" :key="media.id"
                                :class="{'half-opacity' : !media.is_public}">
@@ -325,7 +318,7 @@
                         </v-row>
                     </draggable>
                 </div>
-            </v-card>
+            </div>
         </div>
     </v-app>
 </template>
