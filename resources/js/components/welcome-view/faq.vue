@@ -7,7 +7,7 @@
       <!-- main navigation bar -->
       <v-container class="faq-main-container">
         <v-row align="center" justify="center">
-          <v-col xl="9" lg="10">
+          <v-col xl="9" lg="10" md="10" sm="10" cols="12">
             <h1 class="faq-header my-12">Frequently Asked Questions</h1>
             <v-expansion-panels
               focusable
@@ -17,23 +17,21 @@
               v-model="faqPanel"
             >
               <v-expansion-panel
-                v-for="(item,i) in 5"
+                v-for="(item,i) in faqData"
                 :key="i"
                 class="mb-5 custom-expansion-panel"
-                @click="currentPanel = i"
+                @click="clickPanelHeader(item.id)"
               >
                 <v-expansion-panel-header class="custom-panel-header" disable-icon-rotate>
-                  What is cv builder ?
+                  {{ item.title }}
                   <template v-slot:actions>
                     <img
-                      :src="currentPanel == faqPanel ? '/images/welcome_landing_page/icons/chevron-down.svg' : '/images/welcome_landing_page/icons/chevron-right.svg'"
+                      :src="currentPanel == item.id ? '/images/welcome_landing_page/icons/chevron-down.svg' : '/images/welcome_landing_page/icons/chevron-right.svg'"
                       alt
                     />
                   </template>
                 </v-expansion-panel-header>
-                <v-expansion-panel-content
-                  class="custom-panel-content"
-                >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-expansion-panel-content>
+                <v-expansion-panel-content class="custom-panel-content">{{item.content}}</v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
           </v-col>
@@ -59,7 +57,39 @@ export default {
     return {
       windowWidth: window.innerWidth,
       faqPanel: null,
-      currentPanel: '',
+      currentPanel: "",
+      faqData: [
+        {
+          id: 1,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+        {
+          id: 2,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+        {
+          id: 3,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+        {
+          id: 4,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+        {
+          id: 5,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+      ],
     };
   },
   //mounted
@@ -67,6 +97,15 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
+  },
+  methods: {
+    clickPanelHeader(id) {
+      if (this.currentPanel == id) {
+        this.currentPanel = null;
+      } else {
+        this.currentPanel = id;
+      }
+    },
   },
 };
 </script>
@@ -336,6 +375,10 @@ export default {
       line-height: 64px;
       text-align: center;
       color: #001d68 !important;
+      @media screen and (max-width: 604px){
+        font-size: 30px;
+        line-height: 40px;
+      }
     }
     .custom-panel-header {
       font-family: "Noto Sans" !important;
