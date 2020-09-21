@@ -17,16 +17,16 @@
               v-model="faqPanel"
             >
               <v-expansion-panel
-                v-for="(item,i) in 5"
+                v-for="(item,i) in faqData"
                 :key="i"
                 class="mb-5 custom-expansion-panel"
-                @click="currentPanel = i"
+                @click="currentPanel = item.id"
               >
                 <v-expansion-panel-header class="custom-panel-header" disable-icon-rotate>
                   What is cv builder ?
                   <template v-slot:actions>
                     <img
-                      :src="currentPanel == faqPanel ? '/images/welcome_landing_page/icons/chevron-down.svg' : '/images/welcome_landing_page/icons/chevron-right.svg'"
+                      :src="currentPanel == item.id ? '/images/welcome_landing_page/icons/chevron-down.svg' : '/images/welcome_landing_page/icons/chevron-right.svg'"
                       alt
                     />
                   </template>
@@ -59,7 +59,39 @@ export default {
     return {
       windowWidth: window.innerWidth,
       faqPanel: null,
-      currentPanel: '',
+      currentPanel: "",
+      faqData: [
+        {
+          id: 1,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+        {
+          id: 2,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+        {
+          id: 3,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+        {
+          id: 4,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+        {
+          id: 5,
+          title: "What is cv builder",
+          content:
+            "A resume is a document created and used by a person to present their background, skills, and accomplishments. Resumes can be used for a variety of reasons, but most often they are used to secure new employment.A typical resume contains a summary of relevant job experience and education.",
+        },
+      ],
     };
   },
   //mounted
