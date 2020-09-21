@@ -164,8 +164,8 @@ export default {
       top: 52%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 92%;
-      height: 43rem;
+      width: 90%;
+      height: auto;
       padding: 0.5rem;
     }
     &_close {

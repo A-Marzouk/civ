@@ -189,6 +189,10 @@ button:hover {
     opacity: 0.5 !important;
 }
 
+.zero-opacity{
+    opacity: 0 !important;
+}
+
 .blackAndWhite{
     filter: grayscale(100%) !important;
 }

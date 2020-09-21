@@ -170,4 +170,16 @@
   'poppins semibold' => array(
     'normal' => $fontDir . '/poppins-semibold-normal_d01959f7ba3893ce29e5cf84a74bbcdc',
   ),
+  'mulish bold' => array(
+    'normal' => $fontDir . '/mulish-bold-normal_74c81fcbe3200f934f1d143534e8f90a',
+  ),
+  'mulish semibold' => array(
+    'normal' => $fontDir . '/mulish-semibold-normal_869cd17ab28d4b2ca0bd55514b93d85e',
+  ),
+  'mulish medium' => array(
+    'normal' => $fontDir . '/mulish-medium-normal_6f0e47f078134e1a4c1e691392a7be1e',
+  ),
+  'mulish regular' => array(
+    'normal' => $fontDir . '/mulish-regular-normal_9279266ba869c0950dcd594a902ef3ae',
+  ),
 ) ?>

@@ -8,188 +8,183 @@
                     {{tab}}
                 </v-tab>
             </v-tabs>
-
-            <tab-switcher currentTabTitle="work_experience"></tab-switcher>
         </div>
 
+        <div class="outer-container resume-builder__scroll" v-if="works">
+            <div class="links-content">
+                <div class="link-inputs-row">
+                    <div class="inputs">
+                        <div class="left">
+                            <v-text-field
+                                    class="resume-builder__input civie-input"
+                                    outlined
+                                    color="#001CE2"
+                                    placeholder="Company"
+                                    :class="{'resume-builder__input--disabled': false}"
+                                    :disabled="false"
+                                    label="Company Name"
+                                    :error="!!errors.company_name"
+                                    :error-messages="errors.company_name"
+                                    v-model="newWork.company_name"
+                            >
+                            </v-text-field>
 
+                            <v-text-field
+                                    class="resume-builder__input civie-input"
+                                    outlined
+                                    color="#001CE2"
+                                    placeholder="Job Title"
+                                    :class="{'resume-builder__input--disabled': false}"
+                                    :disabled="false"
+                                    label="Job Title"
+                                    :error="!!errors.job_title"
+                                    :error-messages="errors.job_title"
+                                    v-model="newWork.job_title"
+                            >
+                            </v-text-field>
 
+                            <v-text-field
+                                    class="resume-builder__input civie-input"
+                                    outlined
+                                    color="#001CE2"
+                                    placeholder="Website"
+                                    :class="{'resume-builder__input--disabled': false}"
+                                    :disabled="false"
+                                    label="Website"
+                                    :error="!!errors.website"
+                                    :error-messages="errors.website"
+                                    v-model="newWork.website"
+                            >
+                            </v-text-field>
 
-        <v-card class="links-content resume-builder__scroll" v-if="works">
-            <div class="link-inputs-row">
-                <div class="inputs">
-                    <div class="left">
-                        <v-text-field
-                                class="resume-builder__input civie-input"
-                                outlined
-                                color="#001CE2"
-                                placeholder="Company"
-                                :class="{'resume-builder__input--disabled': false}"
-                                :disabled="false"
-                                label="Company Name"
-                                :error="!!errors.company_name"
-                                :error-messages="errors.company_name"
-                                v-model="newWork.company_name"
-                        >
-                        </v-text-field>
-
-                        <v-text-field
-                                class="resume-builder__input civie-input"
-                                outlined
-                                color="#001CE2"
-                                placeholder="Job Title"
-                                :class="{'resume-builder__input--disabled': false}"
-                                :disabled="false"
-                                label="Job Title"
-                                :error="!!errors.job_title"
-                                :error-messages="errors.job_title"
-                                v-model="newWork.job_title"
-                        >
-                        </v-text-field>
-
-                        <v-text-field
-                                class="resume-builder__input civie-input"
-                                outlined
-                                color="#001CE2"
-                                placeholder="Website"
-                                :class="{'resume-builder__input--disabled': false}"
-                                :disabled="false"
-                                label="Website"
-                                :error="!!errors.website"
-                                :error-messages="errors.website"
-                                v-model="newWork.website"
-                        >
-                        </v-text-field>
-
-                        <div class="date-group">
-                            <div class="date-input">
-                                <label :class="{'error-label' : errors.date_from}">Date</label>
-                                <input type="date" class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
-                            </div>
-                            <div class="date-input">
-                                <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
-                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> <span class="present-text">Present</span>
-                                </label>
-                                <input type="date" class="pr-2" :class="{'error-label' : errors.date_to}"  v-model="newWork.date_to" :disabled="newWork.present">
+                            <div class="date-group">
+                                <div class="date-input">
+                                    <label :class="{'error-label' : errors.date_from}">Date</label>
+                                    <input type="date" class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
+                                </div>
+                                <div class="date-input">
+                                    <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
+                                        <input type="checkbox" class="checkbox" v-model="newWork.present"> <span class="present-text">Present</span>
+                                    </label>
+                                    <input type="date" class="pr-2" style="transition: all 1.5s;" :class="{'error-label' : errors.date_to, 'zero-opacity': newWork.present}"  v-model="newWork.date_to" :disabled="newWork.present"">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="right">
-                        <v-textarea
-                                class="ml-lg-custom3 resume-builder__input profile-input civie-textarea"
-                                outlined
-                                color="#001CE2"
-                                :class="{'resume-builder__input--disabled': false}"
-                                :disabled="false"
-                                :error="!!errors.description"
-                                :error-messages="errors.description"
-                                counter
-                                maxlength="1000"
-                                v-model="newWork.description"
-                                label="Description"
-                        >
-                        </v-textarea>
+                        <div class="right">
+                            <v-textarea
+                                    class="ml-lg-custom3 resume-builder__input profile-input civie-textarea"
+                                    outlined
+                                    color="#001CE2"
+                                    :class="{'resume-builder__input--disabled': false}"
+                                    :disabled="false"
+                                    :error="!!errors.description"
+                                    :error-messages="errors.description"
+                                    counter
+                                    maxlength="1000"
+                                    v-model="newWork.description"
+                                    label="Description"
+                            >
+                            </v-textarea>
+                        </div>
+                    </div>
+                    <div class="btns mt-2">
+                        <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="addWorkEx">
+                            {{newWork.id !== '' ? 'Update' : 'Add New'}}
+                        </v-btn>
+
+                        <v-btn class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearWorkEx" v-show="newWork.id !== '' ">
+                            Cancel
+                        </v-btn>
                     </div>
                 </div>
-                <div class="btns mt-2">
-                    <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="addWorkEx">
-                        {{newWork.id !== '' ? 'Update' : 'Add New'}}
-                    </v-btn>
+                <draggable class="education-list" v-model="works" @start="drag=true" @end="drag=false"  handle=".drag-handler">
+                    <div
+                            v-for="work in works"
+                            class="education-item"
+                            :class="{'closed' : expandedWorkID !== work.id, 'half-opacity' : !work.is_public}"
+                            :key="work.id"
+                    >
+                        <div class="drag-handler">
+                            <span class="circle"></span>
+                            <span class="circle"></span>
+                            <span class="circle"></span>
+                        </div>
 
-                    <v-btn class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearWorkEx" v-show="newWork.id !== '' ">
-                        Cancel
-                    </v-btn>
-                </div>
+                        <div class="education-item__header">
+                            <div class="description">
+                                <svg-vue :icon="'work-experience-icon'" class='icon'></svg-vue>
+                                <div class="school-name">
+                                    {{work.company_name}},
+                                    <span class="gray">{{work.website}}</span>
+                                    <div class="grade-title">{{work.job_title}}</div>
+                                </div>
+                            </div>
+                            <div
+                                    class="resume-builder__action-buttons-container"
+                            >
+                                <v-btn
+                                        class="btn-icon civie-btn"  @click="toggleWorkVisibility(work)"
+                                        depressed
+                                >
+                                    <svg-vue
+                                            icon="eye-icon"
+                                            class="icon"
+                                            :class="{'visible' : work.is_public}"
+                                    ></svg-vue>
+                                </v-btn>
+                                <v-btn
+                                        class="btn-icon civie-btn"  @click="editWork(work)"
+                                        depressed
+                                >
+                                    <svg-vue
+                                            icon="edit-icon"
+                                            class="icon"
+                                            :class="{'visible' : newWork.id === work.id}"
+                                    ></svg-vue>
+                                </v-btn>
+                                <v-btn
+                                        class="btn-icon civie-btn" @click="deleteWork(work)"
+                                        depressed
+                                >
+                                    <svg-vue
+                                            icon="trash-delete-icon"
+                                            class="icon"
+                                    ></svg-vue>
+                                </v-btn>
+                                <v-btn
+                                        class="btn-icon mainBg civie-btn toogleDropdownBtn"
+                                        :class="{'closed' : expandedWorkID !== work.id}"
+                                        @click="toggleWorkCard(work)"
+                                        depressed
+                                ></v-btn>
+                            </div>
+                        </div>
+
+                        <div class="education-item__content">
+                            <div class="date">
+                                {{ `${work.date_from}${work.present ? ' - Present' : ' - ' + work.date_to}` }}
+                            </div>
+                            <article class="description-text">
+                                {{work.description}}
+                            </article>
+                        </div>
+                    </div>
+                </draggable>
             </div>
-
-            <draggable class="education-list" v-model="works" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                <div
-                        v-for="work in works"
-                        class="education-item"
-                        :class="{'closed' : expandedWorkID !== work.id, 'half-opacity' : !work.is_public}"
-                        :key="work.id"
-                >
-                    <div class="drag-handler">
-                        <span class="circle"></span>
-                        <span class="circle"></span>
-                        <span class="circle"></span>
-                    </div>
-
-                    <div class="education-item__header">
-                        <div class="description">
-                            <svg-vue :icon="'work-experience-icon'" class='icon'></svg-vue>
-                            <div class="school-name">
-                                {{work.company_name}},
-                                <span class="gray">{{work.website}}</span>
-                                <div class="grade-title">{{work.job_title}}</div>
-                            </div>
-                        </div>
-                        <div
-                                class="resume-builder__action-buttons-container"
-                        >
-                            <v-btn
-                                    class="btn-icon civie-btn"  @click="toggleWorkVisibility(work)"
-                                    depressed
-                            >
-                                <svg-vue
-                                        icon="eye-icon"
-                                        class="icon"
-                                        :class="{'visible' : work.is_public}"
-                                ></svg-vue>
-                            </v-btn>
-                            <v-btn
-                                    class="btn-icon civie-btn"  @click="editWork(work)"
-                                    depressed
-                            >
-                                <svg-vue
-                                        icon="edit-icon"
-                                        class="icon"
-                                        :class="{'visible' : newWork.id === work.id}"
-                                ></svg-vue>
-                            </v-btn>
-                            <v-btn
-                                    class="btn-icon civie-btn" @click="deleteWork(work)"
-                                    depressed
-                            >
-                                <svg-vue
-                                        icon="trash-delete-icon"
-                                        class="icon"
-                                ></svg-vue>
-                            </v-btn>
-                            <v-btn
-                                    class="btn-icon mainBg civie-btn toogleDropdownBtn"
-                                    :class="{'closed' : expandedWorkID !== work.id}"
-                                    @click="toggleWorkCard(work)"
-                                    depressed
-                            ></v-btn>
-                        </div>
-                    </div>
-
-                    <div class="education-item__content">
-                        <div class="date">
-                            {{ `${work.date_from}${work.present ? ' - Present' : ' - ' + work.date_to}` }}
-                        </div>
-                        <article class="description-text">
-                            {{work.description}}
-                        </article>
-                    </div>
-                </div>
-            </draggable>
-        </v-card>
+        </div>
 
     </div>
 </template>
 
 <script>
     import draggable from "vuedraggable";
-    import tabSwitcher from "./includes/TabSwitcher";
+
 
     export default {
         name: "work-experience",
         components: {
-            draggable,
-            'tab-switcher' : tabSwitcher,
+            draggable
         },
         data() {
             return {
@@ -349,12 +344,12 @@
     .ml-lg-custom3{
         
         
-        @media screen and (min-width: 1340px) and (max-width: 1903px){
-            margin-left: 25px !important; // adjusted | 50px
+        @media screen and (min-width: 1468px) and (max-width: 1903px){
+            margin-left: 25px !important;
         }
 
         @media screen and (min-width: 1441px) {
-            margin-left: 25px !important; // adjusted | 50px
+            margin-left: 25px !important;
         }
     }
 
@@ -378,15 +373,21 @@
             margin-right: auto;
             margin-left: auto;
         }
+
+        .outer-container{
+            height: 450px;
+            overflow-y: scroll;
+            padding-right:23px;
+            box-shadow: 0 0 50px 0 rgba(0, 16, 131, 0.1);
+            background: rgb(245, 245, 245,0.9);
+        }
+
         .links-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 450px;
             background: #fff;
-            box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
             padding: 50px;
-            margin-bottom: 70px;
 
             @include lt-md{
                 padding: 35px 10px;

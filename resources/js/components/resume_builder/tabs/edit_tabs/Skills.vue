@@ -10,30 +10,13 @@
                    :key="tab"
             >{{tab.replace('_',' ')}}</v-tab>
           </v-tabs>
-          <tab-switcher currentTabTitle="skills"></tab-switcher>
         </div>
       </v-card>
-      <v-card
-        class="card-skill-items pa-sm-5 pa-2 skills-content resume-builder__scroll"
-        id="skillsContent"
-      >
-        <div>
-          <div>
-            <v-container style="width:100%;">
-              <v-row align="baseline mt-n12">
+      <div class="skills-content resume-builder__scroll" id="skillsContent">
+          <div style="width:100%;" class="card-skill-items">
+              <v-row class="align-items-baseline">
                 <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
-                    <!-- <v-text-field
-                      class="resume-builder__input civie-input"
-                      outlined
-                      placeholder="Skill Title"
-                      v-model="editedSkill.title"
-                      label="Skill Title"
-                      :error="!!errors.title"
-                      :error-messages="errors.title"
-                      color="#001CE2"
-                    ></v-text-field> -->
-
                     <v-combobox
                         v-model="editedSkill.title"
                         :items="getSkillSet"
@@ -91,7 +74,9 @@
                     v-show="editedSkill.id !== undefined"
                   >Cancel</v-btn>
                 </v-col>
+              </v-row>
 
+              <v-row>
                 <v-col xl="6" :lg="windowWidth<1440?'8':'7'" md="12" sm="12" cols="12">
                   <v-container fluid style="width:100%;" ma-0 pa-0>
                     <v-row align="center" dense>
@@ -242,10 +227,8 @@
                   </v-container>
                 </v-col>
               </v-row>
-            </v-container>
           </div>
-        </div>
-      </v-card>
+      </div>
     </div>
   </v-app>
 </template>
@@ -253,14 +236,13 @@
 <script>
 
 import draggable from "vuedraggable";
-import tabSwitcher from "./includes/TabSwitcher";
+
 import { skills } from '../../helpers/pretexts';
 
 export default {
   name: "Skills",
   components: {
-    draggable,
-    'tab-switcher' : tabSwitcher,
+    draggable
   },
   data() {
     return {
@@ -438,7 +420,10 @@ export default {
   height: 450px;
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-  padding: 50px;
+  padding-right: 22px;
+  @include lt-sm{
+    padding-right: 10px;
+  }
   margin-bottom: 70px;
   scroll-behavior: smooth;
   overflow-y: scroll;
@@ -455,8 +440,20 @@ export default {
 }
 .card-skill-items {
   width: 100%;
+  @include lt-sm{
+    padding: 0 30px;
+  }
+  @include lt-md{
+    padding: 0 30px;
+  }
+  @include lt-lg{
+    padding: 0 30px;
+  }
+
+
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: auto !important;
+    padding: 0 30px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     width: auto !important;

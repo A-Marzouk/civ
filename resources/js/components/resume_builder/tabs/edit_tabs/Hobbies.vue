@@ -1,33 +1,28 @@
 <template>
   <v-app class="main-content">
     <div class="d-flex justify-content-end w-100 main-container">
-      <tab-switcher currentTabTitle="hobbies"></tab-switcher>
     </div>
-    <div style="width:100%;">
-      <v-card
-        class="card-main-hobbies pa-lg-10 pa-md-10 pa-sm-10 pa-3 resume-builder__scroll hobbies-content"
-        flat
-        id="hobbiesContent"
-      >
+    <div style="width:100%;" class="resume-builder__scroll hobbies-content">
+      <v-card class="card-main-hobbies pa-lg-10 pa-md-10 pa-sm-10 pa-3" flat id="hobbiesContent">
         <v-tabs-items>
           <v-container style="width: 100%;">
             <v-form>
               <v-row align="center">
                 <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                   <v-select
-                          class="resume-builder__input civie-select"
-                          outlined
-                          placeholder="Select an option"
-                          :items="categoryOptions"
-                          label="Type"
-                          color="#001CE2"
-                          v-model="editedHobby.category"
-                          :error="!!errors.category"
-                          :error-messages="errors.category"
+                    class="resume-builder__input civie-select"
+                    outlined
+                    placeholder="Select an option"
+                    :items="categoryOptions"
+                    label="Type"
+                    color="#001CE2"
+                    v-model="editedHobby.category"
+                    :error="!!errors.category"
+                    :error-messages="errors.category"
                   >
-                      <button class="dropdown-icon icon" slot="append" @click.prevent>
-                          <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                      </button>
+                    <button class="dropdown-icon icon" slot="append" @click.prevent>
+                      <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                    </button>
                   </v-select>
                 </v-col>
 
@@ -151,15 +146,14 @@
 
 <script>
 import draggable from "vuedraggable";
-import tabSwitcher from "./includes/TabSwitcher";
+
 
 import { interests } from "../../helpers/pretexts";
 
 export default {
   name: "Hobbies",
   components: {
-    draggable,
-    "tab-switcher": tabSwitcher,
+    draggable
   },
   data() {
     return {
@@ -199,8 +193,10 @@ export default {
       },
     },
     getHobbies() {
-      return this.editedHobby.category ? this.hobbyItems[this.editedHobby.category.split(" ")[0].toLowerCase()] : []
-    }
+      return this.editedHobby.category
+        ? this.hobbyItems[this.editedHobby.category.split(" ")[0].toLowerCase()]
+        : [];
+    },
   },
   methods: {
     toggleHobby(hobby) {
@@ -345,7 +341,7 @@ $mainBlue: #001ce2;
   height: 450px;
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-  padding: 50px;
+  padding-right: 20px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
   @media screen and (max-width: 599px) {
@@ -355,6 +351,8 @@ $mainBlue: #001ce2;
 
 .card-main-hobbies {
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
+  padding: 50px;
+  height: 450px;
   @media screen and (max-width: 1903px) {
     width: auto;
   }

@@ -22,10 +22,12 @@
               lg="3"
               md="8"
               sm="7"
-              :class="{ 'active-indicator': currentTab === 'profile' }"
             >
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</v-card-title>
+                <v-card-title class="custom-profile-title"
+                  >{{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}</v-card-title
+                >
                 <v-card-subtitle class="custom-profile-subtitle">
                   {{ currentUser.personal_info.designation }}
                 </v-card-subtitle>
@@ -214,7 +216,10 @@
         <v-btn icon color="#333333" @click.stop="drawer = !drawer">
           <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
         </v-btn>
-        <v-toolbar-title class="custom-toolbar-title-mobile">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</v-toolbar-title>
+        <v-toolbar-title class="custom-toolbar-title-mobile"
+          >{{ currentUser.personal_info.first_name }}
+          {{ currentUser.personal_info.last_name }}</v-toolbar-title
+        >
       </v-app-bar>
       <v-navigation-drawer
         app
@@ -227,7 +232,6 @@
         <v-card
           flat
           color="transparent"
-          :class="{ 'active-indicator': currentTab === 'profile' }"
         >
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
           <v-list-item class="mt-n12">
@@ -238,7 +242,10 @@
             <v-list-item-content class="mt-12">
               <v-list-item-title>
                 <v-card color="transparent" class="pa-2" flat>
-                  <span class="profile-title-mobile">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</span>
+                  <span class="profile-title-mobile"
+                    >{{ currentUser.personal_info.first_name }}
+                    {{ currentUser.personal_info.last_name }}</span
+                  >
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
@@ -298,49 +305,51 @@
           <v-col cols="12" md="11" lg="12">
             <!-- for mobile version  -->
             <v-tabs
-              v-model="mainDataTab"
+              v-model="indexOfActiveTab"
               centered
               center-active
               hide-slider
               class="hidden-sm-and-up my-10"
             >
               <v-tab
-                v-for="tab in tabItems"
-                :key="tab.id"
-                @click="activeTab = tab.value"
-                :class="[activeTab == tab.value ? 'active-mobile-tab' : '']"
+                v-for="tab in currentUser.tabs"
+                :key="tab.title"
+                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                @click="activeTab = tab.title"
+                :class="[activeTab === tab.title ? 'active-mobile-tab' : '']"
               >
                 <v-avatar tile size="16">
-                  <img :src="getTabIcon(tab.id)" width="16" />
+                  <img :src="getTabIcon(tab.title)" width="16" />
                 </v-avatar>
-                <span class="ml-2" v-if="activeTab == tab.value">{{
-                  tab.title
+                <span class="ml-2" v-if="activeTab === tab.title">{{
+                  tab.label
                 }}</span>
               </v-tab>
             </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
             <v-tabs
-              v-model="mainDataTab"
               centered
+              v-model="indexOfActiveTab"
               center-active
               hide-slider
               class="hidden-xs-only mt-md-10 my-md-0 my-sm-3"
             >
               <v-tab
-                v-for="tab in tabItems"
-                :key="tab.id"
-                @click="activeTab = tab.value"
+                v-for="tab in currentUser.tabs"
+                :key="tab.title"
+                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                @click="activeTab = tab.title"
                 class="mx-md-2 mx-sm-2 text-capitalize"
                 :class="[
-                  activeTab == tab.value ? 'custom-active-tab' : '',
+                  activeTab === tab.title ? 'custom-active-tab' : '',
                   'ct-tab',
                 ]"
               >
                 <v-avatar tile>
-                  <img :src="getTabIcon(tab.id)" class="mr-md-4" />
+                  <img :src="getTabIcon(tab.title)" class="mr-md-4" />
                 </v-avatar>
-                <span>{{ tab.title }}</span>
+                <span>{{ tab.label }}</span>
               </v-tab>
             </v-tabs>
             <!-- Tab for desktop and tablet -->
@@ -354,9 +363,9 @@
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent">
-              <v-tabs-items v-model="mainDataTab">
+              <v-tabs-items v-model="indexOfActiveTab">
                 <!-- Portfolio -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('portfolio')">
                   <v-card color="transparent" flat>
                     <v-card-text>
                       <v-row>
@@ -381,7 +390,7 @@
                 </v-tab-item>
                 <!-- Portfolio -->
                 <!-- Education -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('education')">
                   <v-row>
                     <v-col
                       cols="12"
@@ -420,7 +429,7 @@
                 <!-- Education -->
 
                 <!-- Experience -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('work_experience')">
                   <v-row>
                     <v-col
                       cols="12"
@@ -457,7 +466,7 @@
                 <!-- Experience -->
 
                 <!-- Skills -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('skills')">
                   <v-row>
                     <v-col cols="12">
                       <v-card color="transparent" flat>
@@ -553,7 +562,7 @@
                 </v-tab-item>
                 <!-- Skills -->
                 <!-- Media -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('media')">
                   <v-card flat color="transparent" v-if="currentUser.media">
                     <v-card-text>
                       <v-row>
@@ -573,7 +582,7 @@
                 </v-tab-item>
                 <!-- Media -->
                 <!-- About Me -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('about_me')">
                   <v-card flat color="transparent">
                     <v-card-title class="about-me-title">About Me</v-card-title>
                     <!-- <v-card-text
@@ -740,7 +749,7 @@
                 <!-- About Me -->
 
                 <!-- Hobbies tab -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('hobbies')">
                   <v-container>
                     <v-row align="center" class="mx-auto">
                       <v-col
@@ -778,7 +787,7 @@
                 </v-tab-item>
                 <!-- Hobbies tab -->
                 <!-- References tab -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('references')">
                   <v-container>
                     <v-row align="center" class="mx-auto">
                       <v-col
@@ -849,7 +858,7 @@
                 </v-tab-item>
                 <!-- References tab -->
                 <!-- Achievements tab -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('achievements')">
                   <v-container
                     :fluid="windowWidth <= 959 ? true : false"
                     class="achievement-container"
@@ -933,7 +942,7 @@
 import audioMedia from "./media/audioMedia";
 import HireModal from "../theme203/payment/HireModal";
 export default {
-  props: ["user", "is_preview", "currentTab"],
+  props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
     audioMedia,
     HireModal,
@@ -942,67 +951,12 @@ export default {
     return {
       windowWidth: window.innerWidth,
       drawer: false,
-      mainDataTab: "",
       skillTab: "",
       activeTab: "portfolio",
       currentUser: this.user,
+      indexOfActiveTab: 0,
       currentSkillTab: 1,
       hireMeModal: false,
-      personalData: {
-        name: "Hean Prinsloo",
-        designation: "Graphic Designer",
-        detail:
-          "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices...",
-      },
-      socialIcons: [
-        { id: 1, title: "twitter" },
-        { id: 2, title: "facebook" },
-        { id: 3, title: "instagram" },
-      ],
-      tabItems: [
-        { id: 1, title: "Portfolio", value: "portfolio" },
-        { id: 2, title: "Education", value: "education" },
-        { id: 3, title: "Experience", value: "work-experience" },
-        { id: 4, title: "Skills", value: "skills" },
-        { id: 5, title: "Media", value: "media" },
-        { id: 6, title: "About Me", value: "about" },
-        { id: 7, title: "Hobbies", value: "hobby" },
-        { id: 8, title: "References", value: "reference" },
-        { id: 9, title: "Achievements", value: "achievement" },
-      ],
-      portfolioItems: [
-        { id: 1, image: 1 },
-        { id: 2, image: 2 },
-        { id: 3, image: 3 },
-        { id: 4, image: 4 },
-        { id: 5, image: 1 },
-        { id: 6, image: 2 },
-        { id: 7, image: 3 },
-        { id: 8, image: 4 },
-      ],
-      experienceItems: [
-        {
-          id: 1,
-          title: "Front End Developer",
-          detail:
-            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
-          session: "2010-2013",
-        },
-        {
-          id: 2,
-          title: "UX/UI Designer",
-          detail:
-            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
-          session: "2010-2013",
-        },
-        {
-          id: 2,
-          title: "Graphic Design",
-          detail:
-            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
-          session: "2010-2013",
-        },
-      ],
       skills: [
         {
           id: 1,
@@ -1017,11 +971,44 @@ export default {
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function (val) {
-      this.activeTab = val;
+    builderCurrentTabTitle: function(val) {
+      if(!this.defaultTabs.includes(val)){
+        this.activeTab = this.getFirstActiveTabTitle() ;
+      }else {
+        this.activeTab = val ;
+      }
+
+      this.setTabIndex();
+    }
+  },
+  computed:{
+    defaultTabs(){
+      return this.$store.state.defaultTabs ;
     },
+    excludedTabs(){
+      return this.$store.state.excludedTabs ;
+    }
   },
   methods: {
+    getFirstActiveTabTitle(){
+      let title = '';
+      this.currentUser.tabs.forEach( (tab) => {
+        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
+          if(title === ''){
+            title = tab.title ;
+          }
+        }
+      });
+
+      return title ;
+    },
+    setTabIndex(){
+      this.indexOfActiveTab = this.currentUser.tabs.findIndex(tab => tab.title === this.activeTab);
+    },
+    getTabIndex(tabTitle){
+      let index =  this.currentUser.tabs.findIndex(tab => tab.title === tabTitle);
+      return index;
+    },
     goToExternalLink(link){
       if(!link.includes('http')){
         link = 'http://' + link ;
@@ -1078,12 +1065,24 @@ export default {
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
+    setActiveTabByURL(){
+      const pathSplit = this.$route.path.split("/");
+      let currentActiveTab = pathSplit[pathSplit.length - 1];
+      if(!this.defaultTabs.includes(currentActiveTab)){
+        this.activeTab = this.getFirstActiveTabTitle() ;
+      }else {
+        this.activeTab = currentActiveTab ;
+      }
+    }
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+
+    // set active tab
+    this.setActiveTabByURL();
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);

@@ -1,9 +1,5 @@
 <template>
     <div class="profile" v-if="personalInfo" data-app>
-        <div class="d-flex justify-content-end w-100">
-            <tab-switcher currentTabTitle="about_me"></tab-switcher>
-        </div>
-
         <div class="profile-fields-wrapper">
             <div class="profile-fields">
                 <div class="profile-input-field input-field--current-location input-field--group-1 custom-predict-input-wrapper" :class="{'half-opacity':!personalInfo.is_location_active}">
@@ -201,14 +197,13 @@
 </template>
 
 <script>
-    import tabSwitcher from "./includes/TabSwitcher";
+
     import VueGoogleAutocomplete from 'vue-google-autocomplete'
     import {nationalities} from '../../helpers/nationalities'
 
     export default {
         name: "about",
         components: {
-            'tab-switcher': tabSwitcher,
             VueGoogleAutocomplete
         },
         data(vm) {
