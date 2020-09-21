@@ -20,7 +20,7 @@
                 v-for="(item,i) in faqData"
                 :key="i"
                 class="mb-5 custom-expansion-panel"
-                @click="currentPanel = item.id"
+                @click="clickPanelHeader(item.id)"
               >
                 <v-expansion-panel-header class="custom-panel-header" disable-icon-rotate>
                   What is cv builder ?
@@ -99,6 +99,15 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
+  },
+  methods: {
+    clickPanelHeader(id) {
+      if (this.currentPanel == id) {
+        this.currentPanel = null;
+      } else {
+        this.currentPanel = id;
+      }
+    },
   },
 };
 </script>
