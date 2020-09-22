@@ -1659,10 +1659,6 @@ export default {
   .btn-email-modal-close {
     width: 41px;
     height: 41px;
-    @media screen and (max-width: 667px) {
-      width: 26px;
-      height: 26px;
-    }
   }
   .btn-send-mail {
     font-family: "Open Sans" !important;
