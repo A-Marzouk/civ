@@ -624,7 +624,12 @@
         <VideoCarousel class="video-player"></VideoCarousel>
       </v-card>
     </v-dialog>-->
-    <v-dialog
+    <hire-modal
+        :hireMeModal.sync="dialogHireme"
+        :windowWidth="windowWidth"
+        :currentUser="currentUser"
+      ></hire-modal>
+    <!-- <v-dialog
       v-model="dialogHireme"
       persistent
       max-width="850"
@@ -676,7 +681,7 @@
           </v-row>
         </v-container>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
   </v-app>
 </template>
 <style lang="scss" >
@@ -1982,6 +1987,7 @@ import VideoCarousel from "./media/VideoCarousel";
 import HobbyCarousel from "./hobby/HobbyCarousel";
 import ReferenceCarousel from "./reference/ReferenceCarousel";
 import AchievementCarousel from "./achievement/AchievementCarousel";
+import HireModal from "../theme203/payment/HireModal"
 
 export default {
   name: "theme302",
@@ -1992,7 +1998,8 @@ export default {
     VideoCarousel,
     HobbyCarousel,
     ReferenceCarousel,
-    AchievementCarousel
+    AchievementCarousel,
+    HireModal
     
   },
   data() {
