@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Billable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,6 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasRoles, HasApiTokens;
     use SoftDeletes;
+    use Billable;
 
     /**
      * The attributes that are mass assignable.

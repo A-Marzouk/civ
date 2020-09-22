@@ -10,6 +10,7 @@ use App\ResumeLink;
 use App\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Stripe\Stripe;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -35,5 +36,9 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Project::observe(ProjectObserver::class);
         ResumeLink::observe(ResumeLinkObserver::class);
+
+        // Stripe key:
+        Stripe::setApiKey(config('services.stripe.secret'));
+
     }
 }
