@@ -1672,6 +1672,11 @@ export default {
     box-shadow: 0px 0px 40px rgba(252, 210, 89, 0.24) !important;
     border-radius: 100px !important;
     text-transform: capitalize !important;
+    @media screen and (max-width:360px){
+      width: 139.6px !important;
+      height: 40px !important;
+      font-size: 16px;
+    }
   }
 }
 //email modal
