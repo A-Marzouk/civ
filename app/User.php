@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use PayPal\Api\Payment;
 use Spatie\Permission\Traits\HasRoles;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -211,6 +212,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Testimonial::class);
     }
 
+    public function paymentMethods()
+    {
+        return $this->hasMany(PaymentMethod::class);
+    }
 
     // many to many relationships:
     public function languages()
