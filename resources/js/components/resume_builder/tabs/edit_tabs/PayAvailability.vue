@@ -183,17 +183,27 @@
                                     </div>
                                     <div class="action-btns">
                                         <div class="resume-builder__action-buttons-container">
-                                            <v-btn class="btn-icon civie-btn" depressed
-                                                   @click="togglePaymentMethodPrimarity(paymentMethod)">
-                                                <svg-vue icon="tick-icon" class="icon"
-                                                         :class="{'visible' : paymentMethod.is_primary}"></svg-vue>
-                                            </v-btn>
+                                            <v-tooltip top>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-btn class="btn-icon civie-btn" depressed v-on="on" v-bind="attrs"
+                                                           @click="togglePaymentMethodPrimarity(paymentMethod)">
+                                                        <svg-vue icon="tick-icon" class="icon"
+                                                                 :class="{'visible' : paymentMethod.is_primary}"></svg-vue>
+                                                    </v-btn>
+                                                </template>
+                                                <span>Make Primary</span>
+                                            </v-tooltip>
 
-                                            <v-btn class="btn-icon civie-btn" depressed
-                                                   @click="togglePaymentMethod(paymentMethod)">
-                                                <svg-vue icon="eye-icon" class="icon"
-                                                         :class="{'visible' : paymentMethod.is_active}"></svg-vue>
-                                            </v-btn>
+                                            <v-tooltip top>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-btn class="btn-icon civie-btn" depressed v-on="on" v-bind="attrs"
+                                                           @click="togglePaymentMethod(paymentMethod)">
+                                                        <svg-vue icon="eye-icon" class="icon"
+                                                                 :class="{'visible' : paymentMethod.is_active}"></svg-vue>
+                                                    </v-btn>
+                                                </template>
+                                                <span>Hide/Show</span>
+                                            </v-tooltip>
 
                                             <v-btn class="btn-icon civie-btn" depressed
                                                    @click="editPaymentMethod(paymentMethod)">
