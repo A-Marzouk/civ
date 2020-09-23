@@ -38,6 +38,14 @@ Route::group(['prefix' => 'user/'], function () {
     //delete skill
     Route::delete('skills/{id}', 'API\SkillsController@destroy');
 
+// payment methods api routes:
+    Route::get('/payment-methods', 'API\PaymentMethodsController@index');
+    Route::get('/payment-methods/{id}', 'API\PaymentMethodsController@show');
+    Route::post('/payment-methods', 'API\PaymentMethodsController@store');
+    Route::post('/payment-methods/make-primary', 'API\PaymentMethodsController@makePrimary');
+    Route::post('/payment-methods/update-order', 'API\PaymentMethodsController@updatePaymentMethodsOrder');
+    Route::delete('payment-methods/{id}', 'API\PaymentMethodsController@destroy');
+
 
 // Hobbies api routes:
     //list skills

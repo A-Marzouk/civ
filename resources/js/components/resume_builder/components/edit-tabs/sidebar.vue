@@ -156,7 +156,7 @@
                         title: "hobbies",
                     },
                     {
-                        url: "/resume-builder/edit/audio-video",
+                        url: "/resume-builder/edit/media",
                         icon: "audio-video",
                         label: "Audio/Video",
                         title: "media",
@@ -278,6 +278,7 @@
                         title: "about_me",
                     };
                 }
+
             });
 
             this.setActive(activeLink);

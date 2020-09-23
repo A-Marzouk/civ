@@ -270,7 +270,7 @@
                             }
                         });
 
-                        this.closeOptionsBtn();
+
                     })
                     .catch(error => {
                         console.log(error);

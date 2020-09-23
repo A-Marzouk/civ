@@ -65,15 +65,18 @@ Route::get('/resume-builder/import/behance/{behanceUsername}', 'ImportsControlle
 
 
 // subscription routes
-Route::get('/subscribe', 'SubscriptionController@subscribePage')->name('subscribe.page');
+Route::get('/subscribe', 'Billing\StripeController@subscribePage')->name('subscribe.page');
+Route::post('/subscribe', 'Billing\StripeController@subscribeStripe')->name('subscribe.stripe');
+Route::get('/subscription', 'Billing\StripeController@index')->name('subscription');
+Route::get('/subscription/cancel', 'Billing\StripeController@cancel')->name('subscription.cancel');
+Route::get('/subscription/success', 'Billing\StripeController@subscriptionSuccess')->name('subscription.success');
 
-Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
-Route::get('/subscription/cancel', 'SubscriptionController@cancel')->name('subscription.cancel');
-Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
-Route::post('/subscribe', 'SubscriptionController@subscribeStripe')->name('subscribe.stripe');
+// webhooks:
+Route::post('/stripe/webhooks', 'Billing\StripeWebhooksController@handle')->name('stripe.webhooks');
+
+
 
 // paypal
-
 Route::get('/subscribe/create-paypal-plan/{plan_period}', 'PaypalController@create_plan');
 Route::get('/subscribe/paypal/monthly', 'PaypalController@subscribePayPalMonthly')->name('paypal.redirect.monthly');
 Route::get('/subscribe/paypal/yearly', 'PaypalController@subscribePayPalYearly')->name('paypal.redirect.yearly');

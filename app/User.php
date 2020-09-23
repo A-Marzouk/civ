@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Traits\Billable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use PayPal\Api\Payment;
 use Spatie\Permission\Traits\HasRoles;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,6 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasRoles, HasApiTokens;
     use SoftDeletes;
+    use Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'permissions',
             'tabs',
             'skills',
+            'paymentMethods',
             'hobbies',
             'education',
             'workExperience',
@@ -81,6 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static $defaultOneToManyRelations = [
         'tabs',
         'skills',
+        'paymentMethods',
         'references',
         'hobbies',
         'education',
@@ -209,6 +214,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Testimonial::class);
     }
 
+    public function paymentMethods()
+    {
+        return $this->hasMany(PaymentMethod::class);
+    }
 
     // many to many relationships:
     public function languages()

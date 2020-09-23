@@ -96,7 +96,7 @@ if ($("#adminResumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVHobbies
                 },
                 {
-                    path: '/resume-builder/edit/audio-video',
+                    path: '/resume-builder/edit/media',
                     component: ResumeBuilderEditCVAudioVideo
                 },
                 {

@@ -100,41 +100,94 @@
 
         <Avatar :src="currentUser.personal_info.profile_pic" />
 
-        <div
-          class="profile-detail"
-        >
-          <h3 class="title">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</h3>
+        <div class="profile-detail">
+          <h3 class="title">
+            {{ currentUser.personal_info.first_name }}
+            {{ currentUser.personal_info.last_name }}
+          </h3>
           <h4
             class="sub-title"
             v-text="currentUser.personal_info.designation"
           ></h4>
 
-          <!-- <ProfileHireMe
-            v-if="currentUser.payment_info && currentUser.availability_info"
-            :hourly-rate="currentUser.payment_info[0].salary"
-            :weekly-availability="
-              currentUser.availability_info[0].available_hours
-            "
-          /> -->
           <div
             class="profile__hireme"
             v-if="currentUser.payment_info && currentUser.availability_info"
           >
             <div class="hireme">
+              <!--hourly rate -->
               <div class="hireme-rate">
-                <strong>${{ currentUser.payment_info[0].salary }}</strong>
-                <span>Hour rate</span>
+                <div>
+                  Rate
+                  <div
+                    v-for="(payment_Info, index) in currentUser.payment_info"
+                    :key="index"
+                    v-show="payment_Info.is_public"
+                    class="d-inline-block ml-2"
+                  >
+                    <strong v-if="paymentInfo == index"
+                      >${{ payment_Info.salary }}</strong
+                    >
+                  </div>
+                </div>
+                <div class="text-capitalize">
+                  <v-icon large dark @click="paymentInfoPrev()"
+                    >navigate_before</v-icon
+                  >
+                  <div
+                    v-for="(payment_Info, index) in currentUser.payment_info"
+                    :key="index"
+                    v-show="payment_Info.is_public"
+                    class="d-inline-block"
+                  >
+                    <span v-if="paymentInfo == index" class="hourly-title">{{
+                      payment_Info.salary_frequency
+                    }}</span>
+                  </div>
+                  <v-icon large dark @click="paymentInfoNext()"
+                    >navigate_next</v-icon
+                  >
+                </div>
               </div>
+              <!--hourly rate -->
+              <!--weekly avblty -->
+              <div class="hireme-rate">
+                <div>
+                  Availability
 
-              <div class="hireme-rate">
-                <strong
-                  >{{
-                    currentUser.availability_info[0].available_hours
-                  }}
-                  Hr</strong
-                >
-                <span>Weekly availability</span>
+                  <div
+                    v-for="(availability_info,
+                    index) in currentUser.availability_info"
+                    :key="index"
+                    v-show="availability_info.is_public"
+                    class="d-inline-block ml-2"
+                  >
+                    <strong v-if="available == index">
+                      {{ availability_info.available_hours }} hrs
+                    </strong>
+                  </div>
+                </div>
+                <div>
+                  <v-icon large dark @click="availablePrev()"
+                    >navigate_before</v-icon
+                  >
+                  <div
+                    v-for="(availability_info,
+                    index) in currentUser.availability_info"
+                    :key="index"
+                    v-show="availability_info.is_public"
+                    class="d-inline-block"
+                  >
+                    <span class="hourly-title" v-if="available == index">
+                      {{ availability_info.available_hours_frequency }}
+                    </span>
+                  </div>
+                  <v-icon large dark @click="availableNext()"
+                    >navigate_next</v-icon
+                  >
+                </div>
               </div>
+              <!--weekly avblty -->
             </div>
             <div>
               <a
@@ -171,7 +224,10 @@
       :builderCurrentTabTitle="activeTab"
     />
 
-    <TabsContent :builderCurrentTabTitle="activeTab" :currentUser="currentUser" />
+    <TabsContent
+      :builderCurrentTabTitle="activeTab"
+      :currentUser="currentUser"
+    />
   </div>
 </template>
 
@@ -194,22 +250,24 @@ export default {
       currentUser: this.user,
       hireMeModal: false,
       chatToggle: false,
-      isOpen: false
+      isOpen: false,
+      available: 0,
+      paymentInfo: 0,
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
     builderCurrentTabTitle: function (val) {
-      if(!this.defaultTabs.includes(val)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = val ;
+      if (!this.defaultTabs.includes(val)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = val;
       }
     },
   },
   methods: {
-    tabChanged(value){
-      this.activeTab = value
+    tabChanged(value) {
+      this.activeTab = value;
     },
     closeHireMeModal() {
       console.log("closeHireMeModal");
@@ -230,7 +288,26 @@ export default {
     close() {
       this.isOpen = false;
     },
-
+    availableNext() {
+      if (this.available == 2) {
+        this.available = 0;
+      } else this.available++;
+    },
+    availablePrev() {
+      if (this.available == 0) {
+        this.available = 0;
+      } else this.available--;
+    },
+    paymentInfoNext() {
+      if (this.paymentInfo == 2) {
+        this.paymentInfo = 0;
+      } else this.paymentInfo++;
+    },
+    paymentInfoPrev() {
+      if (this.paymentInfo == 0) {
+        this.paymentInfo = 0;
+      } else this.paymentInfo--;
+    },
     stopProp(e) {
       e.stopPropagation();
     },
@@ -240,24 +317,24 @@ export default {
     setActiveTabByURL() {
       const pathSplit = this.$route.path.split("/");
       let currentActiveTab = pathSplit[pathSplit.length - 1];
-      if(!this.defaultTabs.includes(currentActiveTab)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = currentActiveTab ;
+      if (!this.defaultTabs.includes(currentActiveTab)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = currentActiveTab;
       }
     },
-    getFirstActiveTabTitle(){
-      let title = '';
-      this.currentUser.tabs.forEach( (tab) => {
-        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
-          if(title === ''){
-            title = tab.title ;
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
           }
         }
       });
 
-      return title ;
-    }
+      return title;
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -276,11 +353,11 @@ export default {
     window.removeEventListener("click", this.close);
   },
   computed: {
-    defaultTabs(){
-      return this.$store.state.defaultTabs ;
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
     },
-    excludedTabs(){
-      return this.$store.state.excludedTabs ;
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
     },
     popupAnimation() {
       return this.isOpen ? "open" : "close";
@@ -309,7 +386,11 @@ export default {
   display: flex;
   font-family: inherit;
 }
-
+.hourly-title {
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 700;
+}
 @media (min-width: $sm) {
   #header {
     padding: 25px;
@@ -566,6 +647,8 @@ export default {
 .hireme {
   display: flex;
   align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   flex: 1;
 }
 
@@ -583,14 +666,14 @@ export default {
   font-weight: 700;
 }
 
-.hireme-rate span {
-  font-family: inherit;
-  font-size: 9px;
-  font-weight: 300;
-  line-height: 10px;
-  white-space: nowrap;
-  color: #d3d6e4;
-}
+// .hireme-rate span {
+//   font-family: inherit;
+//   font-size: 9px;
+//   font-weight: 300;
+//   line-height: 10px;
+//   white-space: nowrap;
+//   color: #d3d6e4;
+// }
 
 @media (min-width: 375px) {
   .hireme-rate strong {
@@ -598,10 +681,10 @@ export default {
     line-height: 25px;
   }
 
-  .hireme-rate span {
-    font-size: 11px;
-    line-height: 13px;
-  }
+  // .hireme-rate span {
+  //   font-size: 11px;
+  //   line-height: 13px;
+  // }
 }
 
 @media (min-width: $sm) {
@@ -617,10 +700,10 @@ export default {
     line-height: 21px;
   }
 
-  .hireme-rate span {
-    font-size: 10px;
-    line-height: 13px;
-  }
+  // .hireme-rate span {
+  //   font-size: 10px;
+  //   line-height: 13px;
+  // }
 }
 
 @media (min-width: $md) {
@@ -646,10 +729,10 @@ export default {
     line-height: 26px;
   }
 
-  .hireme-rate span {
-    font-size: 12px;
-    line-height: 14px;
-  }
+  // .hireme-rate span {
+  //   font-size: 12px;
+  //   line-height: 14px;
+  // }
 }
 
 @media (min-width: 1600px) {
@@ -662,10 +745,10 @@ export default {
     line-height: 36px;
   }
 
-  .hireme-rate span {
-    font-size: 14px;
-    line-height: 18px;
-  }
+  // .hireme-rate span {
+  //   font-size: 14px;
+  //   line-height: 18px;
+  // }
 }
 //profile-hireme
 
