@@ -141,6 +141,7 @@
                                                     color="#001CE2"
                                                     :class="{'resume-builder__input--disabled': false}"
                                                     label="Payment Link"
+                                                    placholder="https://pay.stripe.com/john-doe"
                                                     :error="!!errors.link"
                                                     :error-messages="errors.link"
                                                     v-model="paymentMethodObject.link"
@@ -149,7 +150,11 @@
                                         <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                                             <v-btn @click="addPaymentMethod"
                                                    class="resume-builder__btn civie-btn filled btn-add-new mt-md-0 mt-sm-0 mt-n5 btn-add-new-custom"
-                                            >Add
+                                            >
+                                                {{isEditing ? 'Update' : 'Add'}}
+                                            </v-btn>
+                                            <v-btn v-if="isEditing" @click="clearPaymentMethod" class="resume-builder__btn civie-btn filled btn-add-new mt-md-0 mt-sm-0 mt-n5 btn-add-new-custom">
+                                                Cancel
                                             </v-btn>
                                         </v-col>
                                     </v-row>
@@ -337,8 +342,8 @@
                 get() {
                     return this.$store.state.user.payment_methods;
                 },
-                set() {
-
+                set(paymentMethods) {
+                    this.$store.commit("updatePaymentMethods", paymentMethods);
                 }
             },
             isEditing() {
@@ -418,8 +423,16 @@
                         });
                     });
             },
-            editPaymentMethod() {
-
+            editPaymentMethod(paymentMethod) {
+                this.paymentMethodObject = {
+                    id: paymentMethod.id,
+                    name: paymentMethod.name,
+                    link: paymentMethod.link,
+                    is_active: paymentMethod.is_active,
+                    is_primary: paymentMethod.is_primary,
+                    order: paymentMethod.order,
+                    user_id: paymentMethod.user_id
+                };
             },
             togglePaymentMethod(paymentMethod) {
                 paymentMethod.is_active = !paymentMethod.is_active;
