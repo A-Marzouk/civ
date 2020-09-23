@@ -1737,6 +1737,7 @@ export default {
 //audio modal
 .card-audio-modal {
   border-radius: 40px !important;
+  overflow-y: hidden !important;
   .modal-title {
     font-family: "Gotham Pro" !important;
     font-style: normal;
@@ -1755,6 +1756,7 @@ export default {
 
 .card-modal-video-holder {
   border-radius: 40px !important;
+  overflow-y: hidden !important;
   height: 850px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 700px;
