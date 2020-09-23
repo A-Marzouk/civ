@@ -1,6 +1,6 @@
 <template>
-  <div class="social-menu" :class="{ 'social-menu--open': isOpen }">
-    <div class="social-label">Follow Me On :</div>
+  <div class="social-menu">
+    <div class="social-label">Follow Me</div>
     <div class="social-carousel-wrapper">
       <div
         class="social-carousel--nav__left"
@@ -8,7 +8,7 @@
         v-if="currentUser.links.length > 5"
         :disabled="atHeadOfList"
       >
-        <v-icon dark>mdi-chevron-left</v-icon>
+        <v-icon color="#5F45FF" large>mdi-chevron-left</v-icon>
       </div>
       <div class="social-carousel">
         <div class="social-carousel--overflow-container">
@@ -20,24 +20,26 @@
             ref="track"
           >
             <v-btn
-              v-for="userLink in currentUser.links"
-              :key="userLink.id + '_link'"
-              v-show="userLink.is_active || userLink.is_public"
               href="javascript:void(0)"
               @click="goToExternalLink(userLink.link)"
+              v-for="userLink in currentUser.links"
+              :key="userLink.id + '_link'"
               target="_blank"
-              class="social-carousel--btn social mx-2"
-              fab
-              outlined
-              color="#fff"
-              elevation="0"
-              small
+              class="mx-1"
+              style="
+                width: 40px;
+                min-width: 40px;
+                height: 40px;
+                box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
+              "
+              v-show="userLink.is_active && userLink.is_public"
             >
               <v-img
-                width="18"
-                height="18"
                 contain
-                :src="`/images/resume_themes/theme1001/social_icons/${userLink.link_title.toLowerCase()}.svg`"
+                width="40"
+                height="40"
+                :src="`/images/resume_themes/theme5/social_icons/${userLink.link_title.toLowerCase()}.svg`"
+                alt="social-icon"
               ></v-img>
             </v-btn>
           </div>
@@ -50,7 +52,7 @@
         v-if="currentUser.links.length > 5"
         :disabled="atEndOfList"
       >
-        <v-icon dark>mdi-chevron-right</v-icon>
+        <v-icon color="#5F45FF" large>mdi-chevron-right</v-icon>
       </div>
     </div>
   </div>
@@ -61,10 +63,6 @@ export default {
   name: "social-links",
 
   props: {
-    isOpen: {
-      type: Boolean,
-      default: false,
-    },
     currentUser: {
       type: undefined,
       required: true,
@@ -154,7 +152,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./../scss/variables";
+@import "./scss/variables";
 
 //social_carousel
 .social-carousel-wrapper {
@@ -166,7 +164,7 @@ export default {
 .social-carousel {
   display: flex;
   justify-content: center;
-  width: 220px;
+  width: 190px;
 
   &--overflow-container {
     overflow: hidden;
@@ -216,12 +214,13 @@ export default {
   }
 }
 .social-menu {
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   width: 100%;
-  height: 0;
+
+  text-align: center;
   border-top: 0px solid #d3d6e4;
   transition: all 0.3s;
 
@@ -240,7 +239,7 @@ export default {
 .social-label {
   font-size: 15px;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.67);
+  color: rgba(0, 0, 0, 0.87);
 }
 .social_groups {
   max-width: 260px;
