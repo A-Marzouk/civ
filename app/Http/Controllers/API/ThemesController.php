@@ -25,7 +25,7 @@ class ThemesController extends Controller
      */
     public function themesList()
     {
-        $themes = Theme::all();
+        $themes = Theme::orderBy('order')->get();
         return ThemeResource::collection($themes);
     }
 
