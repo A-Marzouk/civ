@@ -367,29 +367,7 @@
                 </v-row>
                 <v-row no-gutters justify="center" class="mt-6">
                   <v-col cols="12">
-                    <div class="text-center">Follow me</div>
-                    <div class="text-center mt-2">
-                      <v-btn
-                        href="javascript:void(0)"
-                        @click="goToExternalLink(userLink.link)"
-                        v-for="userLink in currentUser.links"
-                        :key="userLink.id + '_link'"
-                        target="_blank"
-                        class="mx-1"
-                        style="
-                          width: 40px;
-                          min-width: 40px;
-                          height: 40px;
-                          box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
-                        "
-                        v-show="userLink.is_active && userLink.is_public"
-                      >
-                        <img
-                          :src="`/images/resume_themes/theme5/social_icons/${userLink.link_title.toLowerCase()}.svg`"
-                          alt="social-icon"
-                        />
-                      </v-btn>
-                    </div>
+                    <SocialLinks :currentUser="currentUser"></SocialLinks>
                   </v-col>
                 </v-row>
               </v-col>
@@ -497,29 +475,7 @@
                     </div>
                   </v-col>
                   <v-col cols="11" align="center" class="mt-6 ml-2">
-                    <div class="text-center">Follow me</div>
-                    <div class="text-center mt-2">
-                      <v-btn
-                        href="javascript:void(0)"
-                        @click="goToExternalLink(userLink.link)"
-                        v-for="userLink in currentUser.links"
-                        :key="userLink.id + '_link'"
-                        target="_blank"
-                        class="mx-1"
-                        style="
-                          width: 40px;
-                          min-width: 40px;
-                          height: 40px;
-                          box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
-                        "
-                        v-show="userLink.is_active && userLink.is_public"
-                      >
-                        <img
-                          :src="`/images/resume_themes/theme5/social_icons/${userLink.link_title.toLowerCase()}.svg`"
-                          alt="social-icon"
-                        />
-                      </v-btn>
-                    </div>
+                    <SocialLinks :currentUser="currentUser"></SocialLinks>
                   </v-col>
                 </v-row>
               </v-col>
@@ -1803,7 +1759,7 @@ import VueSlickCarousel from "vue-slick-carousel";
 import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
 import HireModal from "./payment/HireModal";
-
+import SocialLinks from "./SocialLinks";
 export default {
   name: "theme8",
   props: ["user", "is_preview", "currentTab"],
@@ -1813,6 +1769,7 @@ export default {
     AudioPlayer,
     VideoPlayer,
     HireModal,
+    SocialLinks,
   },
   data() {
     return {
@@ -1857,32 +1814,7 @@ export default {
       available: 0,
       activeTab: "portfolio",
       paymentInfo: 0,
-      portfolio: [
-        {
-          id: 0,
-          src: "/images/resume_themes/theme5/portfolio-1.png",
-        },
-        {
-          id: 1,
-          src: "/images/resume_themes/theme5/portfolio-2.png",
-        },
-        {
-          id: 2,
-          src: "/images/resume_themes/theme5/portfolio-3.png",
-        },
-        {
-          id: 3,
-          src: "/images/resume_themes/theme5/portfolio-4.png",
-        },
-        {
-          id: 4,
-          src: "/images/resume_themes/theme5/portfolio-5.png",
-        },
-        {
-          id: 5,
-          src: "/images/resume_themes/theme5/portfolio-6.png",
-        },
-      ],
+
       skillColor: [
         {
           color: "#3C327B",
@@ -1939,118 +1871,7 @@ export default {
           color: "#004D40",
         },
       ],
-      hobbies: [
-        { image: "/images/resume_themes/theme5/ball.png", hobby: "football" },
-        { image: "/images/resume_themes/theme5/ball2.png", hobby: "football" },
-        { image: "/images/resume_themes/theme5/ball.png", hobby: "football" },
-        { image: "/images/resume_themes/theme5/ball2.png", hobby: "football" },
-        { image: "/images/resume_themes/theme5/ball.png", hobby: "football" },
-        { image: "/images/resume_themes/theme5/ball2.png", hobby: "football" },
-        { image: "/images/resume_themes/theme5/ball.png", hobby: "football" },
-        { image: "/images/resume_themes/theme5/ball2.png", hobby: "football" },
-      ],
-      references: [
-        {
-          name: "Emma Pearson",
-          position: "UX Designer",
-          company: "Wedevs",
-          duration: "Oct 2018 - Nov 2019",
-          sub: "User Interface designer",
-          address:
-            "42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile",
-          description:
-            "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.",
-        },
-        {
-          name: "Emma Pearson",
-          position: "UX Designer",
-          company: "Wedevs",
-          duration: "Oct 2018 - Nov 2019",
-          sub: "User Interface designer",
-          address:
-            "42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile",
-          description:
-            "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.",
-        },
-        {
-          name: "Emma Pearson",
-          position: "UX Designer",
-          company: "Wedevs",
-          duration: "Oct 2018 - Nov 2019",
-          sub: "User Interface designer",
-          address:
-            "42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile",
-          description:
-            "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.",
-        },
-        {
-          name: "Emma Pearson",
-          position: "UX Designer",
-          company: "Wedevs",
-          duration: "Oct 2018 - Nov 2019",
-          sub: "User Interface designer",
-          address:
-            "42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile",
-          description:
-            "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.",
-        },
-      ],
-      achievements: [
-        {
-          src: "/images/resume_themes/theme5/certificate.png",
-          title: "Award Certificate",
-          year: "2015",
-          url: "fjfjfkgvhjhjhgkfuiuriutiurot6576",
-          description:
-            "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”",
-        },
-        {
-          src: "/images/resume_themes/theme5/certificate.png",
-          title: "Award Certificate",
-          year: "2015",
-          url: "fjfjfkgvhjhjhgkfuiuriutiurot6576",
-          description:
-            "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”",
-        },
-        {
-          src: "/images/resume_themes/theme5/certificate.png",
-          title: "Award Certificate",
-          year: "2015",
-          url: "fjfjfkgvhjhjhgkfuiuriutiurot6576",
-          description:
-            "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”",
-        },
-        {
-          src: "/images/resume_themes/theme5/certificate.png",
-          title: "Award Certificate",
-          year: "2015",
-          url: "fjfjfkgvhjhjhgkfuiuriutiurot6576",
-          description:
-            "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”",
-        },
-      ],
-      about_section: {
-        short_info: [
-          { title: "Date of Birth", value: ["01/14/90"] },
-          { title: "Nationality", value: ["Ukrainian"] },
-          { title: "Hometown", value: ["Kiev"] },
-          { title: "Languages", value: ["English", "Arabic", "Franch"] },
-        ],
-        summary: [
-          {
-            title: "Overview Sumary",
-            value:
-              "В работе дизайнера есть много пространства для креатива, но это только на первый взгляд кажется, что такие специалисты полагаются исключительно на фантазию.",
-          },
-          {
-            title: "About Me",
-            value:
-              "В работе дизайнера есть много пространства для креатива но это только на первый взгляд кажется, что такие специалисты полагаются исключительно на фантазию.",
-          },
-          { title: "Quote", value: "B создавать графический контент." },
-          { title: "Location", value: "Ireland, Dublin" },
-        ],
-      },
+
       //audio Modal
       slickOptionsAudioModal: {
         infinite: false,
@@ -2070,11 +1891,11 @@ export default {
     },
   },
   methods: {
-    goToExternalLink(link){
-      if(!link.includes('http')){
-        link = 'http://' + link ;
+    goToExternalLink(link) {
+      if (!link.includes("http")) {
+        link = "http://" + link;
       }
-      window.location.href = link ;
+      window.location.href = link;
     },
     availableNext() {
       if (this.available == 2) {
@@ -2118,7 +1939,7 @@ export default {
       this.setDummyUser();
     }
 
-    indow.onresize = () => {
+    window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
 
