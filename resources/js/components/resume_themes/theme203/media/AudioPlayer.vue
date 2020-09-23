@@ -17,15 +17,14 @@
               </div>
             </v-list-item-icon>
             <v-list-item-content class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10">
-              <v-list-item-subtitle class="mt-4">
+              <v-list-item-subtitle class="mt-4 ml-sm-5 ml-4">
                 <v-row no-gutters>
-                  <v-col cols="1" class="ml-lg-n12 ml-md-n7"></v-col>
-                  <v-col cols="5" class="ml-xl-n5">
+                  <v-col lg="6" cols="6" class="">
                     <span class="mb-n4">
                       <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
                     </span>
                   </v-col>
-                  <v-col cols="6" align="right" class="ml-xl-9 ml-lg-7">
+                  <v-col lg="6" cols="5" align="right" class="ml-lg-n5">
                     <span class="mb-n4">
                       <v-card
                         flat
@@ -258,7 +257,7 @@ export default {
   border-radius: 15px !important;
   background: #e0e0e0 !important;
   opacity: 0.7;
-  margin-left: -5px;
+  margin-left: -4px;
 }
 </style>
 
