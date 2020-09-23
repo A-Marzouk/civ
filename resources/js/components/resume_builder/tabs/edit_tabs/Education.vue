@@ -58,7 +58,7 @@ export default {
         present: education.present,
         is_public: education.is_public,
       };
-      this.closeOptionsBtn();
+
     },
     applyEdit() {
       this.editedEducation.user_id = this.educations[0].user_id;
@@ -106,7 +106,7 @@ export default {
             }
           });
 
-          this.closeOptionsBtn();
+
         })
         .catch((error) => {
           console.log(error);

@@ -21,6 +21,7 @@ class CreatePaymentMethodsTable extends Migration
             $table->boolean('is_primary')->default(false);
             $table->boolean('is_active')->default(false);
             $table->integer('user_id')->unsigned();
+            $table->integer('resume_link_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

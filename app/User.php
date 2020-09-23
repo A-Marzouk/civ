@@ -41,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'permissions',
             'tabs',
             'skills',
+            'paymentMethods',
             'hobbies',
             'education',
             'workExperience',
@@ -84,6 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static $defaultOneToManyRelations = [
         'tabs',
         'skills',
+        'paymentMethods',
         'references',
         'hobbies',
         'education',

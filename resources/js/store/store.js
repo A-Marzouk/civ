@@ -612,6 +612,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updatePaymentMethods(state, paymentMethods) {
+            state.user.payment_methods = paymentMethods;
+            axios.post('/api/user/payment-methods/update-order', { paymentMethods: paymentMethods })
+                .then( () => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         updateHobbies(state, hobbies) {
             state.user.hobbies = hobbies;
             axios.post('/api/user/hobbies/update-order', { hobbies: hobbies })
