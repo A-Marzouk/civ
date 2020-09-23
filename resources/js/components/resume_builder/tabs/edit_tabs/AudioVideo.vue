@@ -546,8 +546,13 @@
                         mediaFile: null
                     };
                     this.currentUploadMethod = 'upload';
-                    this.$refs.filesDropZone_0.removeAllFiles();
-                    this.$refs.filesDropZone_1.removeAllFiles();
+                    if( this.$refs.filesDropZone_0){
+                        this.$refs.filesDropZone_0.removeAllFiles();
+                    }
+                    if(this.$refs.filesDropZone_1){
+                        this.$refs.filesDropZone_1.removeAllFiles();
+                    }
+
                 }catch(error){
                     console.log(error)
                 }

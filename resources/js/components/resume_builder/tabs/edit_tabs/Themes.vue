@@ -14,11 +14,12 @@
                                             <div class="theme-image holder" :class="theme.id == user.default_resume_link.theme_id? 'active': 'inactive'"></div>
                                             <v-fade-transition>
                                                 <v-overlay
-                                                        v-if="hover"
+                                                        v-if="hover || theme.id === user.default_resume_link.theme_id"
                                                         absolute
                                                         color="#ffffff"
                                                         opacity="0.5"
                                                         class="custom-overlay"
+                                                        :class="{ 'notActive' : !theme.is_active}"
                                                 >
                                                     <v-btn
                                                             color="#001CE2"
@@ -26,13 +27,17 @@
                                                             class="btn-activate"
                                                             :class="{active : theme.id === user.default_resume_link.theme_id}"
                                                             depressed
+                                                            v-if="theme.is_active"
                                                             @click="activateTheme(theme.id)"
                                                     >
                                                         {{theme.id === user.default_resume_link.theme_id ? 'Active' : 'Activate'}}
-                                                        <img
-                                                                src="/icons/check.svg"
-                                                        />
+                                                        <img src="/icons/check.svg"/>
                                                     </v-btn>
+
+                                                    <div class="coming-soon-label"  v-if="!theme.is_active">
+                                                        Coming soon
+                                                    </div>
+
                                                 </v-overlay>
                                             </v-fade-transition>
                                         </div>
@@ -436,6 +441,9 @@
                         background: none;
                         border: 1px solid #888db1 !important;
                         border-radius: 26px !important;
+                        &.notActive{
+                            background: rgb(255,255,255,0.95);
+                        }
                     }
                     .btn-preview-data {
                         width: 120px;
@@ -513,6 +521,7 @@
                         font-weight: 500;
                         font-size: 12px;
                         line-height: 12px;
+                        background: #53B71F !important;
                         text-transform: capitalize !important;
 
                         img {
@@ -522,9 +531,32 @@
                         }
                     }
 
+                    .coming-soon-label{
+                        position: absolute;
+                        margin-left: auto;
+                        margin-right: auto;
+                        left: 0;
+                        right: 0;
+                        width: 130px;
+                        height: 45px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 5px;
+                        border: 1.5px solid #001ce2;
+                        background: white;
+                        color: #001ce2;
+                        font-family: "Noto Sans", sans-serif !important;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 13px;
+                        line-height: 12px;
+                        text-transform: capitalize !important;
+                    }
+
 
                     .active {
-                        border: 3px solid #001ce2;
+                        border: 3px solid #53B71F;
                     }
 
                     .inactive {
@@ -536,7 +568,7 @@
         }
 
         .selected-theme {
-            border: 3px solid #001ce2;
+            border: 3px solid #53B71F;
         }
     }
 
