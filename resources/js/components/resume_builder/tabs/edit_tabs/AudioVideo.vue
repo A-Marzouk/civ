@@ -244,6 +244,14 @@
                                                 ></svg-vue>
                                             </v-btn>
                                             <v-btn
+                                                    color="#F2F3FD"
+                                                    depressed
+                                                    @click="editMedia(media)"
+                                                    class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                            >
+                                                <svg-vue icon="edit-icon" class="icon"></svg-vue>
+                                            </v-btn>
+                                            <v-btn
                                                     class="btn-icon civie-btn"
                                                     @click="deleteMedia(media)"
                                                     depressed
@@ -406,6 +414,9 @@
                 url_valid = url.match(urlRegex);
 
                 return file_valid || url_valid;
+            },
+            editMedia(media){
+
             },
             toggleMedia(media) {
                 media.is_public = !media.is_public;
