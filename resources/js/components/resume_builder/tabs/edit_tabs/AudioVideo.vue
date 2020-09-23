@@ -31,102 +31,14 @@
                                         :error="!!errors.transcript"
                                         :error-messages="errors.transcript"
                                         color="#001CE2"
-                                        label="Transcript"
+                                        label="Description / Transcript"
                                         hint="Optional"
 
                                 >
                                 </v-text-field>
                             </div>
-                            <div class="media-inputs">
-                                <v-input
-                                        class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
-                                        outlined
-                                        label="Upload File"
-                                        hint="(Maximum 1 files)"
-                                        height="50"
-                                        :error="!!errors.url"
-                                        :error-messages="errors.url"
-
-                                >
-                                    <vue-dropzone
-                                            class="civie-dropzone-input"
-                                            ref="filesDropZone_0"
-                                            id="dropzone_0"
-                                            :options="dropzoneOptions"
-                                            :useCustomSlot="true"
-                                            v-on:vdropzone-file-added="handlingEvent"
-
-                                    >
-                                        <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
-                                            <div class="mr-5">
-                                                <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
-                                            </div>
-                                            <div class="upload-text">Browse/Drag</div>
-                                        </div>
-                                    </vue-dropzone>
-                                </v-input>
-                                <span class="or-text">or</span>
-                                <v-text-field
-                                        class="resume-builder__input civie-input title-input link-input"
-                                        outlined
-                                        v-model="newMedia.url"
-                                        :error="!!errors.url"
-                                        :error-messages="errors.url"
-                                        placeholder="Link URL"
-                                        color="#001CE2"
-                                >
-                                    <template v-slot:prepend-inner>
-                                        <img
-                                                class="ml-3 mt-n1"
-                                                src="/images/new_resume_builder/icons/main/link.svg"
-                                        />
-                                    </template>
-                                </v-text-field>
-                                <span class="or-text">or</span>
-                                <v-btn class="btn-record" depressed @click="toggleRecord">
-                                    Record
-                                </v-btn>
-
-                                <div class="w-100" v-if="currentUploadMethod == 'record'">
-                                    <div class="w-100 d-flex justify-content-center audio-recorder mt-3">
-                                        <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
-                                                        :show-upload-button="false"/>
-                                    </div>
-                                </div>
-
-                                <v-btn class="btn-new" depressed @click="uploadMedia">
-                                    Add New
-                                </v-btn>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-if="mediaCategory === 'video'">
-                        <div style="width: 100%;">
-                            <div class="inputs-wrapper">
-                                <div class="text-inputs">
-                                    <v-text-field
-                                            class="resume-builder__input civie-input title-input"
-                                            outlined
-                                            v-model="newMedia.title"
-                                            :error="!!errors.title"
-                                            :error-messages="errors.title"
-                                            color="#001CE2"
-                                            label="Title"
-                                    >
-                                    </v-text-field>
-                                    <v-text-field
-                                            class="resume-builder__input civie-input transcript-input"
-                                            outlined
-                                            v-model="newMedia.transcript"
-                                            :error="!!errors.transcript"
-                                            :error-messages="errors.transcript"
-                                            color="#001CE2"
-                                            label="Transcript"
-                                            hint="Optional"
-                                    >
-                                    </v-text-field>
-                                </div>
-                                <div class="media-inputs">
+                            <div class="media-inputs" :class="{ 'justify-content-end' : isEditing}">
+                                <template v-if="!isEditing">
                                     <v-input
                                             class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
                                             outlined
@@ -139,9 +51,9 @@
                                     >
                                         <vue-dropzone
                                                 class="civie-dropzone-input"
-                                                ref="filesDropZone_1"
-                                                id="dropzone_1"
-                                                :options="dropzoneOptionsVideo"
+                                                ref="filesDropZone_0"
+                                                id="dropzone_0"
+                                                :options="dropzoneOptions"
                                                 :useCustomSlot="true"
                                                 v-on:vdropzone-file-added="handlingEvent"
 
@@ -171,8 +83,109 @@
                                             />
                                         </template>
                                     </v-text-field>
+                                    <span class="or-text">or</span>
+                                    <v-btn class="btn-record" depressed @click="toggleRecord">
+                                        Record
+                                    </v-btn>
+                                </template>
+
+                                <div class="w-100" v-if="currentUploadMethod == 'record'">
+                                    <div class="w-100 d-flex justify-content-center audio-recorder mt-3">
+                                        <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
+                                                        :show-upload-button="false"/>
+                                    </div>
+                                </div>
+
+                                <v-btn class="btn-new" depressed @click="uploadMedia">
+                                    {{ isEditing ? 'Update' : 'Add New'}}
+                                </v-btn>
+                                <v-btn class="btn-new ml-3"  @click="cancelEdit" v-show="isEditing">
+                                    Cancel
+                                </v-btn>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="mediaCategory === 'video'">
+                        <div style="width: 100%;">
+                            <div class="inputs-wrapper">
+                                <div class="text-inputs">
+                                    <v-text-field
+                                            class="resume-builder__input civie-input title-input"
+                                            outlined
+                                            v-model="newMedia.title"
+                                            :error="!!errors.title"
+                                            :error-messages="errors.title"
+                                            color="#001CE2"
+                                            label="Title"
+                                    >
+                                    </v-text-field>
+                                    <v-text-field
+                                            class="resume-builder__input civie-input transcript-input"
+                                            outlined
+                                            v-model="newMedia.transcript"
+                                            :error="!!errors.transcript"
+                                            :error-messages="errors.transcript"
+                                            color="#001CE2"
+                                            label="Description / Transcript"
+                                            hint="Optional"
+                                    >
+                                    </v-text-field>
+                                </div>
+                                <div class="media-inputs" :class="{ 'justify-content-end' : isEditing}">
+
+                                    <template v-if="!isEditing">
+                                        <v-input
+                                                class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
+                                                outlined
+                                                label="Upload File"
+                                                hint="(Maximum 1 files)"
+                                                height="50"
+                                                :error="!!errors.url"
+                                                :error-messages="errors.url"
+
+                                        >
+                                            <vue-dropzone
+                                                    class="civie-dropzone-input"
+                                                    ref="filesDropZone_1"
+                                                    id="dropzone_1"
+                                                    :options="dropzoneOptionsVideo"
+                                                    :useCustomSlot="true"
+                                                    v-on:vdropzone-file-added="handlingEvent"
+
+                                            >
+                                                <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
+                                                    <div class="mr-5">
+                                                        <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                    </div>
+                                                    <div class="upload-text">Browse/Drag</div>
+                                                </div>
+                                            </vue-dropzone>
+                                        </v-input>
+                                        <span class="or-text">or</span>
+                                        <v-text-field
+                                                class="resume-builder__input civie-input title-input link-input"
+                                                outlined
+                                                v-model="newMedia.url"
+                                                :error="!!errors.url"
+                                                :error-messages="errors.url"
+                                                placeholder="Link URL"
+                                                color="#001CE2"
+                                        >
+                                            <template v-slot:prepend-inner>
+                                                <img
+                                                        class="ml-3 mt-n1"
+                                                        src="/images/new_resume_builder/icons/main/link.svg"
+                                                />
+                                            </template>
+                                        </v-text-field>
+                                    </template>
+
+
                                     <v-btn class="btn-new" depressed @click="uploadMedia">
-                                        Add New
+                                        {{ isEditing ? 'Update' : 'Add New'}}
+                                    </v-btn>
+                                    <v-btn class="btn-new ml-3"  @click="cancelEdit" v-show="isEditing">
+                                        Cancel
                                     </v-btn>
                                 </div>
                             </div>
@@ -247,7 +260,7 @@
                                                     color="#F2F3FD"
                                                     depressed
                                                     @click="editMedia(media)"
-                                                    class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                                    class="btn-skill-action"
                                             >
                                                 <svg-vue icon="edit-icon" class="icon"></svg-vue>
                                             </v-btn>
@@ -294,6 +307,14 @@
                                                                 :class="{'visible' : media.is_public}"
                                                                 class="icon"
                                                         ></svg-vue>
+                                                    </v-btn>
+                                                    <v-btn
+                                                            color="#F2F3FD"
+                                                            depressed
+                                                            @click="editMedia(media)"
+                                                            class="btn-skill-action"
+                                                    >
+                                                        <svg-vue icon="edit-icon" class="icon"></svg-vue>
                                                     </v-btn>
                                                     <v-btn
                                                             class="btn-icon civie-btn"
@@ -364,6 +385,7 @@
                     addRemoveLinks: true
                 },
                 newMedia: {
+                    id: "",
                     title: "",
                     type: "audio",
                     transcript: "",
@@ -385,11 +407,15 @@
                     this.$store.commit('updateMedia', medias);
                 }
             },
+            isEditing(){
+                return (this.newMedia.id !== "")
+            }
         },
         methods: {
             changeTab(tab) {
                 this.mediaCategory = tab;
                 this.newMedia.type = tab.toLowerCase();
+                this.clearMedia();
             },
             toggleRecord(){
                 this.currentUploadMethod === 'record' ?   this.currentUploadMethod = 'upload' :   this.currentUploadMethod = 'record';
@@ -402,6 +428,9 @@
                 }, 1000);
             },
             validateMedia() {
+                if(this.isEditing){
+                   return true;
+                }
                 let url = this.newMedia.url;
 
                 let file_valid = true;
@@ -416,7 +445,16 @@
                 return file_valid || url_valid;
             },
             editMedia(media){
-
+                this.newMedia ={
+                    id: media.id,
+                    title: media.title,
+                    type: media.type,
+                    transcript: media.transcript,
+                    user_id: media.user_id
+                };
+            },
+            cancelEdit() {
+                this.clearMedia();
             },
             toggleMedia(media) {
                 media.is_public = !media.is_public;
@@ -450,7 +488,9 @@
                         formData.append(field, this.newMedia[field]);
                     }
                 });
+
                 formData.append("user_id", this.$store.state.user.id);
+
                 const config = {
                     onUploadProgress: progressEvent => {
                         let progress = (progressEvent.loaded / progressEvent.total) * 100;
@@ -463,10 +503,21 @@
                     this.errors.url = 'Not a valid url';
                     return;
                 }
+
                 axios.post("/api/user/media", formData, config)
                     .then( (response) => {
-                        response.data.data.is_public = true;
-                        this.medias.push(response.data.data);
+
+                        if (!this.isEditing) {
+                            response.data.data.is_public = true;
+                            this.medias.push(response.data.data);
+                        } else {
+                            this.medias.forEach((media, index) => {
+                                if (media.id === response.data.data.id) {
+                                    this.medias.splice(index, 1, response.data.data);
+                                }
+                            });
+                        }
+
                         this.clearMedia();
                         $("#progressBar").css("width",'0%');
                         this.$store.dispatch("flyingNotification");
@@ -487,6 +538,7 @@
             clearMedia() {
                 try {
                     this.newMedia = {
+                        id: "",
                         title: "",
                         type: this.mediaCategory,
                         transcript: "",
