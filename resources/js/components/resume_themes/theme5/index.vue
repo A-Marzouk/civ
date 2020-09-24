@@ -151,7 +151,7 @@
                         background: #fc5185;
                         box-shadow: #fc7ea4 0px 10px 30px -8px;
                       "
-                      @click="hireMeModal = true"
+                      @click.prevent="hireMeModal = !hireMeModal"
                     >
                       <img
                         style="width: 22.5px; height: 18px; margin-right: 7.5px"
@@ -1091,10 +1091,11 @@
       </v-row>
       <!-- hire modal start -->
 
-      <hire-modal
-        :hireMeModal.sync="hireMeModal"
-        :widowWidth="windowWidth"
-      ></hire-modal>
+      <!--<hire-modal-->
+        <!--:hireMeModal.sync="hireMeModal"-->
+        <!--:widowWidth="windowWidth"-->
+      <!--&gt;</hire-modal>-->
+      <updated-hire-modal :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
 
       <!-- hire modal end -->
     </v-container>
@@ -1758,7 +1759,7 @@ import Slick from "vue-slick";
 import VueSlickCarousel from "vue-slick-carousel";
 import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
-import HireModal from "./payment/HireModal";
+import UpdatedHireModal from "../includes/HireMeModal";
 import SocialLinks from "./SocialLinks";
 export default {
   name: "theme8",
@@ -1768,7 +1769,7 @@ export default {
     VueSlickCarousel,
     AudioPlayer,
     VideoPlayer,
-    HireModal,
+    'updated-hire-modal' : UpdatedHireModal,
     SocialLinks,
   },
   data() {
@@ -1896,6 +1897,9 @@ export default {
         link = "http://" + link;
       }
       window.location.href = link;
+    },
+    closeHireMeModal() {
+      this.hireMeModal = false;
     },
     availableNext() {
       if (this.available == 2) {

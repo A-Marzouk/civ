@@ -769,11 +769,12 @@
       <!-- ......................................Tab Items .........................-->
       <!-- All Modals -->
       <!-- Hire Me Modal -->
-      <hire-modal
-        :hireMeModal.sync="hireMeModal"
-        :windowWidth="windowWidth"
-        :currentUser="currentUser"
-      ></hire-modal>
+      <!--<hire-modal-->
+        <!--:hireMeModal.sync="hireMeModal"-->
+        <!--:windowWidth="windowWidth"-->
+        <!--:currentUser="currentUser"-->
+      <!--&gt;</hire-modal>-->
+      <updated-hire-modal :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
       <!-- Hire Me Modal -->
 
       <!-- Email modal -->
@@ -880,14 +881,15 @@
   </v-app>
 </template>
 <script>
-import HireModal from "./payment/HireModal";
+
+import UpdatedHireModal from "../includes/HireMeModal";
 import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
 import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
   components: {
-    HireModal,
+    'updated-hire-modal' : UpdatedHireModal,
     AudioPlayer,
     VideoPlayer,
     VueSlickCarousel,
@@ -1097,7 +1099,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    console.log(this.currentUser);
+
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
@@ -1135,6 +1137,9 @@ export default {
       return providerLink;
     },
     sendEmail() {},
+    closeHireMeModal() {
+      this.hireMeModal = false;
+    },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
