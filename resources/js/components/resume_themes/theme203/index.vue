@@ -855,18 +855,17 @@
             </v-btn>
           </v-card-subtitle>
           <div class="watermark-text-modal-video">Video</div>
-          <!-- <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
-            <template v-for="(item,index) in 6">
+          <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
+            <template v-for="item in filterVideo(currentUser.media)">
               <video-player
-
-                :key="index"
+                :key="item.id"
                 :modalOpen="videoModal"
-                :title="Test"
-                :details="'https://www.youtube.com/watch?v=yAoLSRbwxL8'"
+                :title="item.title"
+                :details="item.content"
                 :file="item.url"
               ></video-player>
             </template>
-          </VueSlickCarousel> -->
+          </VueSlickCarousel>
         </v-card>
       </v-dialog>
       <!-- Video Modal -->
@@ -1108,17 +1107,13 @@ export default {
   },
 
   methods: {
-    findAudio(audio) {
-      var url = audio.find((s) => s.type === "audio").url;
-      return url;
-    },
     filterAudio(audios) {
       var filterArray = audios.filter((a) => a.type === "audio");
       return filterArray;
     },
-    findVideo(video) {
-      var url = video.find((s) => s.type === "video").url;
-      return url;
+    filterVideo(dataArray){
+      var filterArray = dataArray.filter((a) => a.type === "video");
+      return filterArray;
     },
     goToExternalLink(link){
       if(!link.includes('http')){
