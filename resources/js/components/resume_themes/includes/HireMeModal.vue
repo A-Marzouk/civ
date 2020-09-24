@@ -19,10 +19,10 @@
                             <v-radio-group v-model="currentPaymentMethod" row class="mt-2">
                                 <v-radio v-for="paymentMethod in paymentMethods" :key="paymentMethod.name" :value="paymentMethod.name">
                                     <template v-slot:label>
-                                        <div v-show="paymentMethod.name === 'Stripe' " class="ml-2" style="margin-top: 6px;">
+                                        <div v-show="paymentMethod.name === 'Stripe' " class="ml-2" style="margin-top: 3px;">
                                             <img src="/icons/stripe-icon.svg" alt="stripe icon">
                                         </div>
-                                        <div v-show="paymentMethod.name === 'PayPal' " class="ml-2" style="margin-top: 6px;">
+                                        <div v-show="paymentMethod.name === 'PayPal' " class="ml-2" style="margin-top: 3px;">
                                             <img src="/icons/paypal-icon.svg" alt="paypal icon">
                                         </div>
                                     </template>

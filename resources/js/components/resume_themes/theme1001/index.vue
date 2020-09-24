@@ -272,7 +272,6 @@ export default {
       this.activeTab = value;
     },
     closeHireMeModal() {
-      console.log("closeHireMeModal");
       this.hireMeModal = false;
     },
     closeChat() {
