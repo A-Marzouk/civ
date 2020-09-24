@@ -826,12 +826,12 @@
           </div>
           <!-- <div class="watermark-text-modal">Audio</div> -->
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
-            <template v-for="(item,index) in 6">
+            <template v-for="item in filterAudio(currentUser.media)">
               <audio-player
-                :key="index"
+                :key="item.id"
                 :modalOpen="audioModal"
-                :file="'https://geekanddummy.com/wp-content/uploads/2014/02/ambient-noise-server-room.mp3'"
-                :audioTitle = "title"
+                :file="item.url"
+                :audioTitle = "item.title"
               ></audio-player>
             </template>
           </VueSlickCarousel>
@@ -855,7 +855,7 @@
             </v-btn>
           </v-card-subtitle>
           <div class="watermark-text-modal-video">Video</div>
-          <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
+          <!-- <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
             <template v-for="(item,index) in 6">
               <video-player
 
@@ -866,7 +866,7 @@
                 :file="item.url"
               ></video-player>
             </template>
-          </VueSlickCarousel>
+          </VueSlickCarousel> -->
         </v-card>
       </v-dialog>
       <!-- Video Modal -->
@@ -1108,6 +1108,18 @@ export default {
   },
 
   methods: {
+    findAudio(audio) {
+      var url = audio.find((s) => s.type === "audio").url;
+      return url;
+    },
+    filterAudio(audios) {
+      var filterArray = audios.filter((a) => a.type === "audio");
+      return filterArray;
+    },
+    findVideo(video) {
+      var url = video.find((s) => s.type === "video").url;
+      return url;
+    },
     goToExternalLink(link){
       if(!link.includes('http')){
         link = 'http://' + link ;
