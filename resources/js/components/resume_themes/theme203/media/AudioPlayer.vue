@@ -1,51 +1,67 @@
 <template>
-  <v-card flat class="pa-xl-0 pa-lg-5 pa-md-0 pa-0 card-audio" color="transparent">
-    <v-card-subtitle class="durationTime mb-lg-n12 mb-md-n8 mb-n12">Audio-1</v-card-subtitle>
+  <v-card flat class="card-audio" color="transparent">
+    <v-card-subtitle class="duration-time">{{ audioTitle }}</v-card-subtitle>
     <v-card-text class>
-      <v-row dense class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10 mb-xl-0 mb-lg-n12 mb-mb-0">
+      <v-row dense class="main-row">
         <v-col xl="11" lg="11" md="11" sm="11" cols="12" align="left">
           <v-list-item color="transparent">
             <v-list-item-icon class="mr-n1">
               <div>
-                <v-btn class="btn-play" depressed @click.prevent="playing ? pause() : play()">
+                <v-btn
+                  class="btn-play"
+                  depressed
+                  @click.prevent="playing ? pause() : play()"
+                >
                   <v-img
                     src="/images/resume_themes/theme203/icons/inner-play.svg"
                     v-if="!playing || paused"
                   ></v-img>
-                  <v-img src="/images/resume_themes/theme203/icons/inner-pause.svg" v-else></v-img>
+                  <v-img
+                    src="/images/resume_themes/theme203/icons/inner-pause.svg"
+                    v-else
+                  ></v-img>
                 </v-btn>
               </div>
             </v-list-item-icon>
-            <v-list-item-content class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10">
-              <v-list-item-subtitle class="mt-4">
-                <v-row no-gutters>
-                  <v-col cols="1" class="ml-lg-n12 ml-md-n7"></v-col>
-                  <v-col cols="5" class="ml-xl-n5">
-                    <span class="mb-n4">
-                      <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
-                    </span>
-                  </v-col>
-                  <v-col cols="6" align="right" class="ml-xl-9 ml-lg-7">
-                    <span class="mb-n4">
-                      <v-card
-                        flat
-                        color="transparent"
-                        class="durationTime"
-                      >{{ totalDuration | secondToMinHours }}</v-card>
-                    </span>
-                  </v-col>
-                </v-row>
+            <v-list-item-content class="time-progress-holder">
+              <v-list-item-subtitle class="">
+                <v-card flat color="transparent">
+                  <v-row no-gutters>
+                    <v-col lg="6" sm="6" cols="6" class="">
+                      <span class="mb-n4">
+                        <v-card
+                          flat
+                          color="transparent"
+                          class="duration-time custom-ml"
+                          >{{ currentTime }}</v-card
+                        >
+                      </span>
+                    </v-col>
+                    <v-col lg="6" sm="6" cols="5" align="right" class="">
+                      <span class="">
+                        <v-card
+                          flat
+                          color="transparent"
+                          class="duration-time custom-mr"
+                          >{{ totalDuration | secondToMinHours }}</v-card
+                        >
+                      </span>
+                    </v-col>
+                  </v-row>
+                </v-card>
               </v-list-item-subtitle>
               <v-list-item-subtitle>
-                <v-progress-linear
-                  rounded
-                  tile
-                  class="custom-progressbar"
-                  color="transparent"
-                  background-color="#E0E0E0"
-                  :value="percentage"
-                  height="22"
-                ></v-progress-linear>
+                <v-card flat color="transparent">
+                  <v-progress-linear
+                    rounded
+                    tile
+                    class="custom-progressbar"
+                    color="transparent"
+                    background-color="#E0E0E0"
+                    :value="percentage"
+                    height="22"
+                  ></v-progress-linear>
+                </v-card>
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -95,6 +111,10 @@ export default {
     file: {
       type: String,
       default: null,
+    },
+    audioTitle: {
+      type: String,
+      default: "",
     },
     autoPlay: {
       type: Boolean,
@@ -233,20 +253,58 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.durationTime {
+.custom-ml {
+  margin-left: 20px;
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    margin-left: 15px;
+  }
+  @media screen and (max-width: 599px) {
+    margin-left: 5px;
+  }
+}
+.custom-mr {
+  margin-right: 20px;
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    margin-right: 25px;
+  }
+  @media screen and (max-width: 599px) {
+    margin-right: 5px;
+  }
+}
+.card-audio {
+  @media screen and (min-width: 1263px) and (max-width: 1903px) {
+    padding: 20px;
+  }
+  .main-row {
+    margin-top: -26px;
+    .time-progress-holder {
+      margin-top: -20px;
+    }
+  }
+}
+.duration-time {
   font-family: "Montserrat" !important;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   color: #8b8b8b !important;
+  @media screen and (max-width: 400px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 360px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 340px) {
+    font-size: 8px;
+  }
 }
 .btn-play {
   width: 72px !important;
   height: 71.01px !important;
   background: #000000 !important;
   border: 5px solid #e0bb4c !important;
-  border-radius:50% !important;
+  border-radius: 50% !important;
   z-index: 100;
   img {
     max-width: 32px !important;
@@ -258,7 +316,7 @@ export default {
   border-radius: 15px !important;
   background: #e0e0e0 !important;
   opacity: 0.7;
-  margin-left: -5px;
+  margin-left: -4px;
 }
 </style>
 

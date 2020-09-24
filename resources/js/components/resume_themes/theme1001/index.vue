@@ -213,10 +213,12 @@
         </div>
       </div>
     </header>
-    <HireModal
-      :hireMeModal.sync="hireMeModal"
-      :closeHireMeModal="closeHireMeModal"
-    />
+    <!--<HireModal-->
+      <!--:hireMeModal.sync="hireMeModal"-->
+      <!--:closeHireMeModal="closeHireMeModal"-->
+    <!--/>-->
+
+    <updated-hire-modal :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
     <ChatModal :chatToggle="chatToggle" :closeChat="closeChat" />
     <TabsNavigation
       :currentUser="currentUser"
@@ -234,15 +236,15 @@
 <script>
 import TabsNavigation from "./components/TabsNavigation";
 import TabsContent from "./components/TabsContent";
-//useless comps
 import Avatar from "./components/header/Avatar";
 import HireModal from "./components/hireModal/HireModal";
+import UpdatedHireModal from "../includes/HireMeModal";
 import ChatModal from "./components/chatModal/ChatModal";
 
 export default {
   name: "resume-theme-1001",
 
-  components: { TabsNavigation, TabsContent, Avatar, HireModal, ChatModal },
+  components: { TabsNavigation, TabsContent, Avatar, HireModal, ChatModal, 'updated-hire-modal' : UpdatedHireModal},
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   data() {
     return {
@@ -270,7 +272,6 @@ export default {
       this.activeTab = value;
     },
     closeHireMeModal() {
-      console.log("closeHireMeModal");
       this.hireMeModal = false;
     },
     closeChat() {
