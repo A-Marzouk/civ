@@ -8,13 +8,15 @@
         >
             <div class="hire-main-wrapper" v-if="user">
 
+                <img src="/icons/close-grey.svg" alt="close btn" class="close-modal" @click="closeModal">
+
                 <div class="steps-wrapper">
                     <div class="single-step-wrapper one" :class="{'active' : isStepActive(1)}">
                         <div class="step-header">
                             Choose Payment Method
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(1)">
                         </div>
-                        <div class="step-content">
+                        <div class="step-content" v-show="isStepActive(1)">
                             <!-- specific user payment_methods -->
                             <v-radio-group v-model="currentPaymentMethod" row class="mt-2">
                                 <v-radio v-for="paymentMethod in paymentMethods" :key="paymentMethod.name" :value="paymentMethod.name">
@@ -47,7 +49,7 @@
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(2)">
                             <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep" v-show="isStepActive(2)">
                         </div>
-                        <div class="step-content">
+                        <div class="step-content" v-show="isStepActive(2)">
 
                              <!-- Payment type -->
                             <div class="payment-types">
@@ -78,7 +80,7 @@
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(3)">
                             <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep" v-show="isStepActive(3)">
                         </div>
-                        <div class="step-content">
+                        <div class="step-content" v-show="isStepActive(3)">
                            
                             <div class="hours-select">
                                 <img src="/icons/minus.svg" alt="subtract hours" @click="subtractHours">
@@ -109,7 +111,7 @@
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(4)">
                             <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep" v-show="isStepActive(4)">
                         </div>
-                        <div class="step-content">
+                        <div class="step-content" v-show="isStepActive(4)">
 
                             <!-- Payment type -->
                             <div class="payment-types">
@@ -259,7 +261,7 @@
                 this.closeModal();
             },
             closeModal(){
-                this.isModalOpened = false ;
+                this.hireMeModal = false ;
             },
 
         // step4
@@ -300,9 +302,19 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
+
+        .close-modal{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
 
         @include lt-sm{
-            padding: 20px;
+            padding: 40px 20px 20px 20px;
         }
 
         .steps-wrapper{
