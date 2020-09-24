@@ -42,7 +42,7 @@
 
                     <div class="single-step-wrapper two" :class="{'active' : isStepActive(2)}">
                         <div class="step-header">
-                            Select the Number of Hours
+                            Choose payment Type
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(2)">
                             <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep" v-show="isStepActive(2)">
                         </div>
@@ -73,12 +73,27 @@
 
                     <div class="single-step-wrapper three" :class="{'active' : isStepActive(3)}">
                         <div class="step-header">
-                            Choose Payment Method
+                            Select the Number of Hours
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(3)">
                             <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep" v-show="isStepActive(3)">
                         </div>
                         <div class="step-content">
-                            <!-- content of three-->
+                           
+                            <div class="hours-select">
+                                <img src="/icons/minus.svg" alt="subtract hours" @click="subtractHours">
+                                <div class="hours">{{currentSelectedHours}} Hours</div>
+                                <img src="/icons/plus.svg" alt="add hours" @click="addHours">
+                            </div>
+
+                            <div class="payment-types">
+                                <div class="single-payment-type" :class="{'active' : isHoursTypeActive('week')}" @click="setHoursType('week')">
+                                    Week
+                                </div>
+                                <div class="single-payment-type" :class="{'active' : isHoursTypeActive('month')}" @click="setHoursType('month')">
+                                    Month
+                                </div>
+                            </div>
+                            
                             <div class="action-btn">
                                 <a href="javascript:void(0)" @click="goToNextStep">
                                     Continue
@@ -95,9 +110,33 @@
                         </div>
                         <div class="step-content">
 
-                            <!-- content of four -->
+                            <!-- Payment type -->
+                            <div class="payment-types">
+                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('hourly')}" @click="setPaymentType('hourly')">
+                                    Hourly
+                                </div>
+                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('weekly')}" @click="setPaymentType('weekly')">
+                                    Weekly
+                                </div>
+                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('monthly')}" @click="setPaymentType('monthly')">
+                                    Monthly
+                                </div>
+                            </div>
 
-                            <div class="action-btn">
+                            <div class="percentage-select">
+                                <div class="label">
+                                    Pay %
+                                </div>
+
+                                <div class="percentage-input-wrapper">
+                                    <span class="max" v-show="percentage < 90">100%</span>
+                                    <span class="current" :style="{right: currentPosition + '%'}">{{percentage}}%</span>
+                                    <input type="range" class="range" min="0" max="100" step="10" v-model="percentage" style="width: 100%;">
+                                </div>
+                            </div>
+
+
+                            <div class="action-btn align-content-end">
                                 <a href="javascript:void(0)" @click="goToNextStep">
                                     Continue
                                 </a>
@@ -113,7 +152,7 @@
                             Your Total Payment Will Be
                         </div>
                         <div class="total-payment">
-                            $10.00
+                            ${{totalPaymentAmount}}
                         </div>
                     </div>
                     <div class="action-btn">
@@ -136,9 +175,10 @@
         data(){
             return{
                 hireMeModal: true,
-                currentStep:2,
+                currentStep:1,
                 currentPaymentMethod:'Stripe',
                 currentPaymentType: 'hourly',
+                currentHoursType: 'week',
                 paymentMethods:[
                     {
                         name:'Stripe'
@@ -146,40 +186,83 @@
                     {
                         name:'PayPal'
                     }
-                ]
+                ],
+                // payment calculations:
+                userHourlyRate: 10,
+                percentage: 10,
+                currentSelectedHours: 40,
+                finishedSteps:[]
             }
         },
         methods:{
             goToNextStep(){
+                if(this.currentStep > 4){
+                    return;
+                }
+                this.finishedSteps.push(this.currentStep);
                 this.currentStep++;
             },
             goToPreviousStep(){
+                if(this.currentStep > 2){
+                    return;
+                }
                 this.currentStep--;
             },
             isStepActive(step){
                 return step === this.currentStep ;
             },
             isStepDone(step){
-                return true;
+                return this.finishedSteps.includes(step);
             },
 
-            // step2
+            // step 2
             setPaymentType(payment_type){
                 this.currentPaymentType = payment_type;
             },
             isPaymentTypeActive(payment_type){
                 return this.currentPaymentType === payment_type;
+            },
+
+            // step 3
+            subtractHours(){
+                if(this.currentSelectedHours < 10){
+                    return;
+                }
+                this.currentSelectedHours-=5 ;
+
+            },
+            addHours(){
+                if(this.currentSelectedHours > 1000){
+                    return;
+                }
+                this.currentSelectedHours+=5 ;
+
+            },
+            isHoursTypeActive(hours_type){
+                return this.currentHoursType === hours_type;
+            },
+            setHoursType(hours_type){
+                this.currentHoursType = hours_type;
             }
+
+        // step4
+
+
         },
         computed:{
-
+            totalPaymentAmount(){
+                return this.userHourlyRate * this.percentage/100 * this.currentSelectedHours;
+            },
+            currentPosition(){
+                return  (100 - this.percentage -15)   ;
+            }
         }
     }
 </script>
 
 <style lang="scss" scoped>
     .hire-main-wrapper{
-        height: 700px;
+        height: fit-content;
         background: white;
         border-radius: 15px;
         padding: 50px;
@@ -212,6 +295,14 @@
                         background: #B4B8DE;
                         color: white;
                     }
+                }
+
+                &.active.three{
+                    height: 270px;
+                }
+
+                &.active.four{
+                    height: 270px;
                 }
 
                 .step-header{
@@ -265,6 +356,7 @@
                     }
                 }
 
+                 /*step 2*/
                 .payment-types{
                     display: flex;
                     justify-content: space-between;
@@ -302,6 +394,75 @@
                     }
                 }
 
+                /*step 3*/
+
+                .hours-select{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: 20px;
+
+                    .hours{
+                        width: 110px;
+                        height: 45px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        background: #F2F3FD;
+                        border-radius: 5px;
+                        font-weight: 600;
+                        font-size: 18px;
+                        color: #001CE2;
+                    }
+
+                    img{
+                        height: 30px;
+                        width: 30px;
+                        box-shadow: 0px 4px 15px rgba(0, 28, 226, 0.07);
+                        border-radius: 50%;
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                /* step 4 */
+                .percentage-select{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    padding-left:20px;
+                    padding-right:40px;
+
+
+                    .label{
+                        font-size: 16px;
+                        color: #888DB1;
+                        white-space: nowrap;
+                    }
+
+                    .percentage-input-wrapper{
+                        position: relative;
+                        width: 100%;
+
+                        span{
+                            position: absolute;
+                            color: #001CE2;
+                            &.max{
+                                top: -14px;
+                                right: -40px;
+                            }
+                            &.current{
+                                top: -14px;
+                            }
+                        }
+                    }
+
+                }
             }
         }
 
