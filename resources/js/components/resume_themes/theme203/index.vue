@@ -817,7 +817,7 @@
                 depressed
                 class="btn-audio-modal-close"
                 @click="audioModal = false"
-                style="z-index: 100"
+                style="z-index: 101"
               >
                 <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
               </v-btn>
@@ -1822,6 +1822,7 @@ export default {
   top: 0;
   bottom: 0;
   margin: auto;
+  z-index: 100;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
     font-size: 200px;
     top: -30%;
