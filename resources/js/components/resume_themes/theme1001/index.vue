@@ -218,7 +218,7 @@
       <!--:closeHireMeModal="closeHireMeModal"-->
     <!--/>-->
 
-    <updated-hire-modal :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
+    <updated-hire-modal @modalClosed="hireMeModal = false" :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
     <ChatModal :chatToggle="chatToggle" :closeChat="closeChat" />
     <TabsNavigation
       :currentUser="currentUser"
