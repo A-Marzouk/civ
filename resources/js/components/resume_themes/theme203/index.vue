@@ -779,8 +779,8 @@
 
       <!-- Email modal -->
       <v-dialog v-model="emailModal" persistent max-width="759" class="email-modal">
-        <v-card class="card-email pa-sm-6 pa-8">
-          <div class="d-flex flex-row justify-space-between">
+        <v-card class="card-email">
+          <div class="title-container-email">
             <div class="modal-title">Message</div>
             <div>
               <v-btn icon depressed class="btn-email-modal-close" @click="emailModal = false">
@@ -1648,6 +1648,15 @@ export default {
 // email modal
 .card-email {
   border-radius: 40px !important;
+  padding: 24px;
+  @media screen and (max-width: 599px){
+    padding: 15px;
+  }
+  .title-container-email{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .modal-title {
     font-family: "Gotham Pro" !important;
     font-style: normal;
