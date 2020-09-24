@@ -36,6 +36,7 @@ if ($("#pricing").length !== 0) {
         }
     });
 }
+
 //faq
 import faq from './components/welcome-view/faq';
 if ($("#faq").length !== 0) {
@@ -44,6 +45,18 @@ if ($("#faq").length !== 0) {
         vuetify,
         components: {
             'faq': faq
+        }
+    });
+}
+
+//hire_me_modal
+import hire_me_modal from './components/resume_themes/includes/HireMeModal';
+if ($("#hire_me_modal").length !== 0) {
+    new Vue({
+        el: '#hire_me_modal',
+        vuetify,
+        components: {
+            'hire-me-modal': hire_me_modal
         }
     });
 }
