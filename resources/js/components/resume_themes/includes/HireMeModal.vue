@@ -2,11 +2,11 @@
     <div data-app>
         <!-- dialog -->
         <v-dialog
-                v-model="hireMeModal"
+                v-model="isModalOpened"
                 max-width="550"
                 style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);border-radius: 10px; z-index:1000; overflow-y:hidden;"
         >
-            <div class="hire-main-wrapper">
+            <div class="hire-main-wrapper" v-if="user">
 
                 <div class="steps-wrapper">
                     <div class="single-step-wrapper one" :class="{'active' : isStepActive(1)}">
@@ -16,23 +16,26 @@
                         </div>
                         <div class="step-content">
                             <!-- specific user payment_methods -->
-                            <v-radio-group v-model="currentPaymentMethod" row>
+                            <v-radio-group v-model="currentPaymentMethod" row class="mt-2">
                                 <v-radio v-for="paymentMethod in paymentMethods" :key="paymentMethod.name" :value="paymentMethod.name">
                                     <template v-slot:label>
-                                        <div v-show="paymentMethod.name === 'Stripe' " class="ml-2">
+                                        <div v-show="paymentMethod.name === 'Stripe' " class="ml-2" style="margin-top: 6px;">
                                             <img src="/icons/stripe-icon.svg" alt="stripe icon">
                                         </div>
-                                        <div v-show="paymentMethod.name === 'PayPal' " class="ml-2">
+                                        <div v-show="paymentMethod.name === 'PayPal' " class="ml-2" style="margin-top: 6px;">
                                             <img src="/icons/paypal-icon.svg" alt="paypal icon">
                                         </div>
                                     </template>
                                 </v-radio>
                             </v-radio-group>
 
-                            <div class="action-btn">
+                            <div class="action-btn" v-if="paymentMethods.length > 0">
                                 <a href="javascript:void(0)" @click="goToNextStep">
                                     Continue
                                 </a>
+                            </div>
+                            <div v-else style="font-size: 18px; line-height: 24px;color: #888DB1;">
+                                Current user has no payment methods set up.
                             </div>
                         </div>
 
@@ -150,11 +153,11 @@
                             Your Total Payment Will Be
                         </div>
                         <div class="total-payment">
-                            ${{totalPaymentAmount}}
+                            ${{Math.round(totalPaymentAmount)}}
                         </div>
                     </div>
-                    <div class="action-btn">
-                        <a href="javascript:void(0)" @click="reset">
+                    <div class="action-btn" v-if="paymentMethods.length > 0">
+                        <a :href="getPayLink()" @click="reset">
                             Pay Now
                         </a>
                     </div>
@@ -176,27 +179,28 @@
             closeHireMeModal: {
                 type: Function,
             },
+            user:{
+                type: undefined
+            }
         },
         data(){
             return{
+                isModalOpened: false,
                 currentStep:1,
                 currentPaymentMethod:'Stripe',
                 currentPaymentType: 'hourly',
                 currentHoursType: 'week',
-                paymentMethods:[
-                    {
-                        name:'Stripe'
-                    },
-                    {
-                        name:'PayPal'
-                    }
-                ],
                 // payment calculations:
                 userHourlyRate: 10,
                 percentage: 10,
                 currentSelectedHours: 40,
                 finishedSteps:[]
             }
+        },
+        watch:{
+          hireMeModal: function(value){
+              this.isModalOpened = value;
+          }
         },
         methods:{
             goToNextStep(){
@@ -207,7 +211,7 @@
                 this.currentStep++;
             },
             goToPreviousStep(){
-                if(this.currentStep > 2){
+                if(this.currentStep < 2){
                     return;
                 }
                 this.currentStep--;
@@ -255,19 +259,31 @@
                 this.closeModal();
             },
             closeModal(){
-
-            }
+                this.isModalOpened = false ;
+            },
 
         // step4
+            getPayLink(){
+                let paymentMethod = this.user.payment_methods.find(
+                    i => i.name.toLowerCase() === this.currentPaymentMethod.toLowerCase()
+                );
+                if(paymentMethod){
+                    return paymentMethod.link;
+                }
+                return '#';
+            }
 
 
         },
         computed:{
             totalPaymentAmount(){
-                return this.userHourlyRate * this.percentage/100 * this.currentSelectedHours;
+                return this.user.payment_info[0].salary * this.percentage/100 * this.currentSelectedHours;
             },
             currentPosition(){
                 return  (100 - this.percentage -15)   ;
+            },
+            paymentMethods(){
+                return this.user.payment_methods;
             }
         }
     }
