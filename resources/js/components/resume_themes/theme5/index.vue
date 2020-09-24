@@ -151,7 +151,7 @@
                         background: #fc5185;
                         box-shadow: #fc7ea4 0px 10px 30px -8px;
                       "
-                      @click="hireMeModal = true"
+                      @click.prevent="hireMeModal = !hireMeModal"
                     >
                       <img
                         style="width: 22.5px; height: 18px; margin-right: 7.5px"
