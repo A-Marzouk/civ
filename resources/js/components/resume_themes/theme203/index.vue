@@ -825,13 +825,12 @@
           </div>
           <!-- <div class="watermark-text-modal">Audio</div> -->
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
-            <template v-for="item in currentUser.media">
+            <template v-for="(item,index) in 6">
               <audio-player
-                :key="item.id"
-                v-show="item.type == 'audio'"
+                :key="index"
                 :modalOpen="audioModal"
-                :file="item.url"
-                :audioTitle = "item.title"
+                :file="'https://geekanddummy.com/wp-content/uploads/2014/02/ambient-noise-server-room.mp3'"
+                :audioTitle = "title"
               ></audio-player>
             </template>
           </VueSlickCarousel>
@@ -841,7 +840,7 @@
 
       <!-- Video Modal -->
       <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
-        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+        <v-card class="card-modal-video-holder" align="center">
           <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
             <v-btn
               color="transparent"
@@ -856,13 +855,13 @@
           </v-card-subtitle>
           <div class="watermark-text-modal-video">Video</div>
           <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
-            <template v-for="item in currentUser.media">
+            <template v-for="(item,index) in 6">
               <video-player
-                v-show="item.type == 'video'"
-                :key="item.id"
+
+                :key="index"
                 :modalOpen="videoModal"
-                :title="item.title"
-                :details="item.transcript"
+                :title="Test"
+                :details="'https://www.youtube.com/watch?v=yAoLSRbwxL8'"
                 :file="item.url"
               ></video-player>
             </template>
@@ -943,7 +942,7 @@ export default {
             breakpoint: 960,
             settings: {
               slidesPerRow: 1,
-              slidesToScroll: 1,
+              slidesToScroll: 2,
               rows: 2,
             },
           },
@@ -1775,16 +1774,20 @@ export default {
 
 .card-modal-video-holder {
   border-radius: 40px !important;
-  overflow-y: hidden !important;
+  overflow: hidden !important;
   height: 850px;
+  padding: 40px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 700px;
+    padding: 40px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     height: auto;
+    padding: 20px;
   }
   @media screen and (max-width: 959px) {
     height: 1250px;
+    padding: 8px;
   }
   @media screen and (max-width: 599px) {
     height: 770px;
