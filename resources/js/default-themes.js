@@ -571,6 +571,7 @@ if ($("#resumeTheme1001").length !== 0) {
         el: "#resumeTheme1001",
         store,
         router,
+        vuetify,
         components: {
             "resume-theme-1001": resumeTheme1001
         }

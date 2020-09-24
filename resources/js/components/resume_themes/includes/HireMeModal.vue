@@ -1,7 +1,5 @@
-<template>
-    <v-app>
-        <div class="main-subscription-container"></div>
-
+<template id="hireMeModal">
+    <div data-app>
         <!-- dialog -->
         <v-dialog
                 v-model="hireMeModal"
@@ -21,10 +19,10 @@
                             <v-radio-group v-model="currentPaymentMethod" row>
                                 <v-radio v-for="paymentMethod in paymentMethods" :key="paymentMethod.name" :value="paymentMethod.name">
                                     <template v-slot:label>
-                                        <div v-show="paymentMethod.name === 'Stripe' ">
+                                        <div v-show="paymentMethod.name === 'Stripe' " class="ml-2">
                                             <img src="/icons/stripe-icon.svg" alt="stripe icon">
                                         </div>
-                                        <div v-show="paymentMethod.name === 'PayPal' ">
+                                        <div v-show="paymentMethod.name === 'PayPal' " class="ml-2">
                                             <img src="/icons/paypal-icon.svg" alt="paypal icon">
                                         </div>
                                     </template>
@@ -146,7 +144,7 @@
                     </div>
                 </div>
 
-                <div class="modal-footer">
+                <div class="hire-modal-footer">
                     <div class="total-payment-row">
                         <div class="label">
                             Your Total Payment Will Be
@@ -156,7 +154,7 @@
                         </div>
                     </div>
                     <div class="action-btn">
-                        <a href="javascript:void(0)">
+                        <a href="javascript:void(0)" @click="reset">
                             Pay Now
                         </a>
                     </div>
@@ -165,16 +163,22 @@
             </div>
         </v-dialog>
         <!-- dialog -->
-
-    </v-app>
+    </div>
 </template>
 
 <script>
     export default {
         name: "HireMeModal",
+        props: {
+            hireMeModal: {
+                type: Boolean,
+            },
+            closeHireMeModal: {
+                type: Function,
+            },
+        },
         data(){
             return{
-                hireMeModal: true,
                 currentStep:1,
                 currentPaymentMethod:'Stripe',
                 currentPaymentType: 'hourly',
@@ -243,6 +247,15 @@
             },
             setHoursType(hours_type){
                 this.currentHoursType = hours_type;
+            },
+            reset(){
+                this.currentStep = 1 ;
+                this.finishedSteps = [] ;
+                this.currentSelectedHours = 40;
+                this.closeModal();
+            },
+            closeModal(){
+
             }
 
         // step4
@@ -352,6 +365,9 @@
                            font-size: 15px;
                            line-height: 25px;
                            margin-bottom: 20px;
+                           &:hover{
+                               text-decoration: none;
+                           }
                        }
                     }
                 }
@@ -466,7 +482,7 @@
             }
         }
 
-        .modal-footer{
+        .hire-modal-footer{
             width:100%;
 
             .total-payment-row{
@@ -513,6 +529,9 @@
                     color: white;
                     font-size: 15px;
                     line-height: 25px;
+                    &:hover{
+                        text-decoration: none;
+                    }
                 }
 
             }
