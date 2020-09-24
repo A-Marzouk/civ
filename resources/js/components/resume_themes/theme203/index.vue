@@ -823,7 +823,7 @@
               </v-btn>
             </div>
           </div>
-          <div class="watermark-text-modal">Audio</div>
+          <!-- <div class="watermark-text-modal">Audio</div> -->
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
             <template v-for="item in currentUser.media">
               <audio-player
@@ -1739,16 +1739,18 @@ export default {
 .card-audio-modal {
   border-radius: 40px !important;
   overflow: hidden !important;
-  //pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5
   padding: 40px;
   @media screen and (min-width: 1264px) and (max-width: 1903px){
     padding: 24px;
   }
-  @media screen and (min-width: 600px) and (max-width: 1263px){
-    padding: 12px;
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    padding: 30px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px){
+    padding: 35px;
   }
   @media screen and (max-width: 599px){
-    padding: 10px;
+    padding: 20px;
   }
   .title-container{
     display: flex;

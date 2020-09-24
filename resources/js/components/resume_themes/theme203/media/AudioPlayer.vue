@@ -1,17 +1,8 @@
 <template>
-  <v-card
-    flat
-    class="pa-xl-0 pa-lg-5 pa-md-0 pa-0 card-audio"
-    color="transparent"
-  >
-    <v-card-subtitle class="durationTime mb-lg-n12 mb-md-n12 mb-n12 mt-2">{{
-      audioTitle
-    }}</v-card-subtitle>
+  <v-card flat class="card-audio" color="transparent">
+    <v-card-subtitle class="duration-time">{{ audioTitle }}</v-card-subtitle>
     <v-card-text class>
-      <v-row
-        dense
-        class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10 mb-xl-0 mb-lg-n12 mb-mb-0"
-      >
+      <v-row dense class="main-row">
         <v-col xl="11" lg="11" md="11" sm="11" cols="12" align="left">
           <v-list-item color="transparent">
             <v-list-item-icon class="mr-n1">
@@ -32,44 +23,45 @@
                 </v-btn>
               </div>
             </v-list-item-icon>
-            <v-list-item-content
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
-            >
-              <v-list-item-subtitle class="mt-4 ml-sm-5 ml-4">
+            <v-list-item-content class="time-progress-holder">
+              <v-list-item-subtitle class="">
                 <v-card flat color="transparent">
                   <v-row no-gutters>
-                    <v-col lg="6" cols="6" class="">
+                    <v-col lg="6" sm="6" cols="6" class="">
                       <span class="mb-n4">
-                        <v-card flat color="transparent" class="durationTime">{{
-                          currentTime
-                        }}</v-card>
+                        <v-card
+                          flat
+                          color="transparent"
+                          class="duration-time custom-ml"
+                          >{{ currentTime }}</v-card
+                        >
                       </span>
                     </v-col>
-                    <v-col
-                      lg="6"
-                      cols="5"
-                      align="right"
-                      class="ml-lg-n5 ml-md-8 ml-sm-4"
-                    >
-                      <span class="mb-n4">
-                        <v-card flat color="transparent" class="durationTime">{{
-                          totalDuration | secondToMinHours
-                        }}</v-card>
+                    <v-col lg="6" sm="6" cols="5" align="right" class="">
+                      <span class="">
+                        <v-card
+                          flat
+                          color="transparent"
+                          class="duration-time custom-mr"
+                          >{{ totalDuration | secondToMinHours }}</v-card
+                        >
                       </span>
                     </v-col>
                   </v-row>
                 </v-card>
               </v-list-item-subtitle>
               <v-list-item-subtitle>
-                <v-progress-linear
-                  rounded
-                  tile
-                  class="custom-progressbar"
-                  color="transparent"
-                  background-color="#E0E0E0"
-                  :value="percentage"
-                  height="22"
-                ></v-progress-linear>
+                <v-card flat color="transparent">
+                  <v-progress-linear
+                    rounded
+                    tile
+                    class="custom-progressbar"
+                    color="transparent"
+                    background-color="#E0E0E0"
+                    :value="percentage"
+                    height="22"
+                  ></v-progress-linear>
+                </v-card>
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -261,7 +253,36 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.durationTime {
+.custom-ml {
+  margin-left: 20px;
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    margin-left: 15px;
+  }
+  @media screen and (max-width: 599px) {
+    margin-left: 5px;
+  }
+}
+.custom-mr {
+  margin-right: 20px;
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    margin-right: 25px;
+  }
+  @media screen and (max-width: 599px) {
+    margin-right: 5px;
+  }
+}
+.card-audio {
+  @media screen and (min-width: 1263px) and (max-width: 1903px) {
+    padding: 20px;
+  }
+  .main-row {
+    margin-top: -26px;
+    .time-progress-holder {
+      margin-top: -20px;
+    }
+  }
+}
+.duration-time {
   font-family: "Montserrat" !important;
   font-style: normal;
   font-weight: normal;
@@ -271,8 +292,11 @@ export default {
   @media screen and (max-width: 400px) {
     font-size: 14px;
   }
-  @media screen and (max-width: 359px) {
-    font-size: 10px;
+  @media screen and (max-width: 360px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 340px) {
+    font-size: 8px;
   }
 }
 .btn-play {
