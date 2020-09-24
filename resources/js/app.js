@@ -36,6 +36,7 @@ if ($("#pricing").length !== 0) {
         }
     });
 }
+
 //faq
 import faq from './components/welcome-view/faq';
 if ($("#faq").length !== 0) {
@@ -47,6 +48,7 @@ if ($("#faq").length !== 0) {
         }
     });
 }
+
 
 
 

@@ -769,11 +769,12 @@
       <!-- ......................................Tab Items .........................-->
       <!-- All Modals -->
       <!-- Hire Me Modal -->
-      <hire-modal
-        :hireMeModal.sync="hireMeModal"
-        :windowWidth="windowWidth"
-        :currentUser="currentUser"
-      ></hire-modal>
+      <!--<hire-modal-->
+        <!--:hireMeModal.sync="hireMeModal"-->
+        <!--:windowWidth="windowWidth"-->
+        <!--:currentUser="currentUser"-->
+      <!--&gt;</hire-modal>-->
+      <updated-hire-modal :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
       <!-- Hire Me Modal -->
 
       <!-- Email modal -->
@@ -808,8 +809,8 @@
         persistent
         style="overflow-y: hidden !important; overflow-x: hidden !important"
       >
-        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
-          <div class="d-flex flex-row justify-space-between">
+        <v-card class="card-audio-modal">
+          <div class="title-container">
             <div class="modal-title">My Audio</div>
             <div>
               <v-btn
@@ -817,13 +818,13 @@
                 depressed
                 class="btn-audio-modal-close"
                 @click="audioModal = false"
-                style="z-index: 100"
+                style="z-index: 101"
               >
                 <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
               </v-btn>
             </div>
           </div>
-          <div class="watermark-text-modal">Audio</div>
+          <!-- <div class="watermark-text-modal">Audio</div> -->
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
             <template v-for="item in currentUser.media">
               <audio-player
@@ -831,6 +832,7 @@
                 v-show="item.type == 'audio'"
                 :modalOpen="audioModal"
                 :file="item.url"
+                :audioTitle = "item.title"
               ></audio-player>
             </template>
           </VueSlickCarousel>
@@ -880,14 +882,15 @@
   </v-app>
 </template>
 <script>
-import HireModal from "./payment/HireModal";
+
+import UpdatedHireModal from "../includes/HireMeModal";
 import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
 import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "ResumeTheme203",
   components: {
-    HireModal,
+    'updated-hire-modal' : UpdatedHireModal,
     AudioPlayer,
     VideoPlayer,
     VueSlickCarousel,
@@ -1097,7 +1100,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    console.log(this.currentUser);
+
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
@@ -1135,6 +1138,9 @@ export default {
       return providerLink;
     },
     sendEmail() {},
+    closeHireMeModal() {
+      this.hireMeModal = false;
+    },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
@@ -1737,6 +1743,25 @@ export default {
 //audio modal
 .card-audio-modal {
   border-radius: 40px !important;
+  overflow: hidden !important;
+  padding: 40px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    padding: 24px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    padding: 30px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px){
+    padding: 35px;
+  }
+  @media screen and (max-width: 599px){
+    padding: 20px;
+  }
+  .title-container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
   .modal-title {
     font-family: "Gotham Pro" !important;
     font-style: normal;
@@ -1755,6 +1780,7 @@ export default {
 
 .card-modal-video-holder {
   border-radius: 40px !important;
+  overflow-y: hidden !important;
   height: 850px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 700px;
@@ -1803,6 +1829,7 @@ export default {
   top: 0;
   bottom: 0;
   margin: auto;
+  z-index: 100;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
     font-size: 200px;
     top: -30%;

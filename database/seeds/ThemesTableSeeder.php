@@ -18,6 +18,7 @@ class ThemesTableSeeder extends Seeder
                 'category' => 'new',
                 'color'=> 'mixed',
                 'code' => 1001,
+                'is_active' => 1,
                 'image' => '/images/resume_themes/theme1001/preview.png'
             ],
             [
@@ -25,6 +26,7 @@ class ThemesTableSeeder extends Seeder
                 'category' => 'new',
                 'color'=> 'mixed',
                 'code' => 511,
+                'is_active' => 0,
                 'image' => '/images/resume_themes/theme511/preview.png'
             ],
             [
@@ -32,6 +34,7 @@ class ThemesTableSeeder extends Seeder
                 'category' => 'new',
                 'color'=> 'mixed',
                 'code' => 206,
+                'is_active' => 0,
                 'image' => '/images/resume_themes/theme206/preview.png'
             ],
             [
@@ -39,6 +42,7 @@ class ThemesTableSeeder extends Seeder
                 'category' => 'new',
                 'color'=> 'mixed',
                 'code' => 501,
+                'is_active' => 0,
                 'image' => '/images/resume_themes/theme501/preview.png'
             ],
             [
@@ -46,6 +50,7 @@ class ThemesTableSeeder extends Seeder
                 'category' => 'new',
                 'color'=> 'mixed',
                 'code' => 502,
+                'is_active' => 0,
                 'image' => '/images/resume_themes/theme502/preview.png'
             ],
             [
@@ -53,6 +58,7 @@ class ThemesTableSeeder extends Seeder
                 'category' => 'new',
                 'color'=> 'mixed',
                 'code' => 203,
+                'is_active' => 1,
                 'image' => '/images/resume_themes/theme203/preview.png'
             ],
             [
@@ -60,6 +66,7 @@ class ThemesTableSeeder extends Seeder
                 'category' => 'new',
                 'color'=> 'mixed',
                 'code' => 5,
+                'is_active' => 1,
                 'image' => '/images/resume_themes/theme5/preview.png'
             ],
             [
@@ -67,6 +74,7 @@ class ThemesTableSeeder extends Seeder
                 'category' => 'new',
                 'color'=> 'mixed',
                 'code' => 8,
+                'is_active' => 0,
                 'image' => '/images/resume_themes/theme8/preview.png'
             ],
         ]);

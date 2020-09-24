@@ -13,6 +13,6 @@ class Language extends Model
     }
 
     public static function englishLanguageID(){
-        return Language::where('name', 'english')->first()->id ?? '';
+        return Language::where('name', 'english')->first()->id ?? 4;
     }
 }
