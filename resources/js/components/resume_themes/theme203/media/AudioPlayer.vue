@@ -1,6 +1,6 @@
 <template>
   <v-card flat class="pa-xl-0 pa-lg-5 pa-md-0 pa-0 card-audio" color="transparent">
-    <v-card-subtitle class="durationTime mb-lg-n12 mb-md-n8 mb-n12">Audio-1</v-card-subtitle>
+    <v-card-subtitle class="durationTime mb-lg-n12 mb-md-n12 mb-n12 mt-2">{{audioTitle}}</v-card-subtitle>
     <v-card-text class>
       <v-row dense class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10 mb-xl-0 mb-lg-n12 mb-mb-0">
         <v-col xl="11" lg="11" md="11" sm="11" cols="12" align="left">
@@ -24,7 +24,7 @@
                       <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
                     </span>
                   </v-col>
-                  <v-col lg="6" cols="5" align="right" class="ml-lg-n5">
+                  <v-col lg="6" cols="5" align="right" class="ml-lg-n5 ml-md-8 ml-sm-4">
                     <span class="mb-n4">
                       <v-card
                         flat
@@ -94,6 +94,10 @@ export default {
     file: {
       type: String,
       default: null,
+    },
+    audioTitle:{
+      type: String,
+      default: ''
     },
     autoPlay: {
       type: Boolean,

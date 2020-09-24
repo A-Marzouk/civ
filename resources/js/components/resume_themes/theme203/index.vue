@@ -831,6 +831,7 @@
                 v-show="item.type == 'audio'"
                 :modalOpen="audioModal"
                 :file="item.url"
+                :audioTitle = "item.title"
               ></audio-player>
             </template>
           </VueSlickCarousel>
