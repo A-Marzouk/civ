@@ -808,8 +808,8 @@
         persistent
         style="overflow-y: hidden !important; overflow-x: hidden !important"
       >
-        <v-card class="card-audio-modal pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5">
-          <div class="d-flex flex-row justify-space-between">
+        <v-card class="card-audio-modal">
+          <div class="title-container">
             <div class="modal-title">My Audio</div>
             <div>
               <v-btn
@@ -1738,7 +1738,23 @@ export default {
 //audio modal
 .card-audio-modal {
   border-radius: 40px !important;
-  overflow-y: hidden !important;
+  overflow: hidden !important;
+  //pa-xl-10 pa-lg-6 pa-md-6 pa-sm-6 pa-5
+  padding: 40px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    padding: 24px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 1263px){
+    padding: 12px;
+  }
+  @media screen and (max-width: 599px){
+    padding: 10px;
+  }
+  .title-container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
   .modal-title {
     font-family: "Gotham Pro" !important;
     font-style: normal;

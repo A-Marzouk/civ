@@ -1,39 +1,64 @@
 <template>
-  <v-card flat class="pa-xl-0 pa-lg-5 pa-md-0 pa-0 card-audio" color="transparent">
-    <v-card-subtitle class="durationTime mb-lg-n12 mb-md-n12 mb-n12 mt-2">{{audioTitle}}</v-card-subtitle>
+  <v-card
+    flat
+    class="pa-xl-0 pa-lg-5 pa-md-0 pa-0 card-audio"
+    color="transparent"
+  >
+    <v-card-subtitle class="durationTime mb-lg-n12 mb-md-n12 mb-n12 mt-2">{{
+      audioTitle
+    }}</v-card-subtitle>
     <v-card-text class>
-      <v-row dense class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10 mb-xl-0 mb-lg-n12 mb-mb-0">
+      <v-row
+        dense
+        class="mt-xl-10 mt-lg-10 mt-md-10 mt-sm-12 mt-10 mb-xl-0 mb-lg-n12 mb-mb-0"
+      >
         <v-col xl="11" lg="11" md="11" sm="11" cols="12" align="left">
           <v-list-item color="transparent">
             <v-list-item-icon class="mr-n1">
               <div>
-                <v-btn class="btn-play" depressed @click.prevent="playing ? pause() : play()">
+                <v-btn
+                  class="btn-play"
+                  depressed
+                  @click.prevent="playing ? pause() : play()"
+                >
                   <v-img
                     src="/images/resume_themes/theme203/icons/inner-play.svg"
                     v-if="!playing || paused"
                   ></v-img>
-                  <v-img src="/images/resume_themes/theme203/icons/inner-pause.svg" v-else></v-img>
+                  <v-img
+                    src="/images/resume_themes/theme203/icons/inner-pause.svg"
+                    v-else
+                  ></v-img>
                 </v-btn>
               </div>
             </v-list-item-icon>
-            <v-list-item-content class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10">
+            <v-list-item-content
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
+            >
               <v-list-item-subtitle class="mt-4 ml-sm-5 ml-4">
-                <v-row no-gutters>
-                  <v-col lg="6" cols="6" class="">
-                    <span class="mb-n4">
-                      <v-card flat color="transparent" class="durationTime">{{ currentTime }}</v-card>
-                    </span>
-                  </v-col>
-                  <v-col lg="6" cols="5" align="right" class="ml-lg-n5 ml-md-8 ml-sm-4">
-                    <span class="mb-n4">
-                      <v-card
-                        flat
-                        color="transparent"
-                        class="durationTime"
-                      >{{ totalDuration | secondToMinHours }}</v-card>
-                    </span>
-                  </v-col>
-                </v-row>
+                <v-card flat color="transparent">
+                  <v-row no-gutters>
+                    <v-col lg="6" cols="6" class="">
+                      <span class="mb-n4">
+                        <v-card flat color="transparent" class="durationTime">{{
+                          currentTime
+                        }}</v-card>
+                      </span>
+                    </v-col>
+                    <v-col
+                      lg="6"
+                      cols="5"
+                      align="right"
+                      class="ml-lg-n5 ml-md-8 ml-sm-4"
+                    >
+                      <span class="mb-n4">
+                        <v-card flat color="transparent" class="durationTime">{{
+                          totalDuration | secondToMinHours
+                        }}</v-card>
+                      </span>
+                    </v-col>
+                  </v-row>
+                </v-card>
               </v-list-item-subtitle>
               <v-list-item-subtitle>
                 <v-progress-linear
@@ -95,9 +120,9 @@ export default {
       type: String,
       default: null,
     },
-    audioTitle:{
+    audioTitle: {
       type: String,
-      default: ''
+      default: "",
     },
     autoPlay: {
       type: Boolean,
@@ -243,13 +268,19 @@ export default {
   font-size: 18px;
   line-height: 22px;
   color: #8b8b8b !important;
+  @media screen and (max-width: 400px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 359px) {
+    font-size: 10px;
+  }
 }
 .btn-play {
   width: 72px !important;
   height: 71.01px !important;
   background: #000000 !important;
   border: 5px solid #e0bb4c !important;
-  border-radius:50% !important;
+  border-radius: 50% !important;
   z-index: 100;
   img {
     max-width: 32px !important;
