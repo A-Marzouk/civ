@@ -290,6 +290,8 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../../sass/media-queries";
+
     .hire-main-wrapper{
         height: fit-content;
         background: white;
@@ -298,6 +300,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @include lt-sm{
+            padding: 20px;
+        }
 
         .steps-wrapper{
             width: 100%;
@@ -347,14 +353,24 @@
                     transition: all 1.3s;
                     transition-property: background, color;
 
+                    @include lt-sm{
+                        font-size: 18px;
+                    }
+
                     position: relative;
                     img{
                         position: absolute;
                         &.tick{
                             right: 28px;
+                            @include lt-sm{
+                                right: 10px;
+                            }
                         }
                         &.back{
                             left: 28px;
+                            @include lt-sm{
+                                left: 10px;
+                            }
                             &:hover{
                                 cursor: pointer;
                             }
@@ -384,6 +400,11 @@
                            &:hover{
                                text-decoration: none;
                            }
+
+                           @include lt-sm{
+                               width: 95px;
+                               height: 40px;
+                           }
                        }
                     }
                 }
@@ -408,6 +429,13 @@
                         align-items: center;
                         justify-content: center;
                         margin-right: 20px;
+
+                        @include lt-sm{
+                            width: 80px;
+                            height: 40px;
+                            font-size: 16px;
+                            margin-right: 15px;
+                        }
 
                         &:last-child{
                             margin-right: 0;
@@ -447,6 +475,11 @@
                         font-weight: 600;
                         font-size: 18px;
                         color: #001CE2;
+
+                        @include lt-sm{
+                            width: 95px;
+                        }
+
                     }
 
                     img{
@@ -510,6 +543,9 @@
                     font-size: 18px;
                     line-height: 24px;
                     color: #888DB1;
+                    @include lt-sm{
+                        font-size: 16px;
+                    }
                 }
 
                 .total-payment{
@@ -517,7 +553,10 @@
                     height: 45px;
                     border: 2px solid #E6E8FC;
                     border-radius: 5px;
-
+                    @include lt-sm{
+                        width: 95px;
+                        height: 40px;
+                    }
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -543,10 +582,15 @@
                     border-radius: 5px;
                     justify-content: center;
                     color: white;
-                    font-size: 15px;
+                    font-size: 16px;
                     line-height: 25px;
                     &:hover{
                         text-decoration: none;
+                    }
+
+                    @include lt-sm{
+                        width: 95px;
+                        height: 40px;
                     }
                 }
 
