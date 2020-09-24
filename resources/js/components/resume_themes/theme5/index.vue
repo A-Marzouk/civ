@@ -1095,7 +1095,7 @@
         <!--:hireMeModal.sync="hireMeModal"-->
         <!--:widowWidth="windowWidth"-->
       <!--&gt;</hire-modal>-->
-      <updated-hire-modal :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
+      <updated-hire-modal @modalClosed="hireMeModal = false" :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
 
       <!-- hire modal end -->
     </v-container>
