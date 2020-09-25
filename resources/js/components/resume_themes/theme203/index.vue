@@ -244,7 +244,7 @@
       <!-- Header Row -->
 
       <!-- tab bar row -->
-      <v-container style="width: 100%">
+      <v-container style="width: 100%" class="pa-md-0 pa-sm-5 pa-5">
         <!-- main Navigation tab -->
         <v-row no-gutters align="center" justify="center">
           <v-col cols="12" md="10">
