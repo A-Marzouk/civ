@@ -296,4 +296,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $totalDuration;
     }
 
+    public function getSocialLinks() {
+        return $this->links->filter(function ($value, $key) {
+            return $value->category == 'social';
+        });
+    }
+
 }
