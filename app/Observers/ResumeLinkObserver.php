@@ -46,7 +46,10 @@ class ResumeLinkObserver
 
         // delete all user relations that has the resume_link_id of the deleted resume link.
 
-        $user = User::find($resumeLink->user_id);
+
+        $user = User::withTrashed()->where([
+            'id' => $resumeLink->user_id,
+        ])->first();
 
         foreach (User::$defaultOneToOneRelations as $relation) {
             if(in_array($relation, User::$excludedFromVersionFilter)){
@@ -79,9 +82,12 @@ class ResumeLinkObserver
             ['url',''],
             ['user_id', $user->id]
         ])->first();
-        $user->update([
-            'resume_link_id' => $defaultResumeLink->id
-        ]);
+
+        if($defaultResumeLink){
+            $user->update([
+                'resume_link_id' => $defaultResumeLink->id
+            ]);
+        }
 
     }
 
@@ -138,28 +144,28 @@ class ResumeLinkObserver
                 'user_id' => $user->id,
                 'resume_link_id' => $resumeLink->id,
                 'salary_frequency' => 'hourly',
-                'salary' => 3,
+                'salary' => 10,
                 'currency' => 'usd'
             ],
             [
                 'user_id' => $user->id,
                 'resume_link_id' => $resumeLink->id,
                 'salary_frequency' => 'weekly',
-                'salary' => 30,
+                'salary' => 100,
                 'currency' => 'usd'
             ],
             [
                 'user_id' => $user->id,
                 'resume_link_id' => $resumeLink->id,
                 'salary_frequency' => 'monthly',
-                'salary' => 300,
+                'salary' => 1000,
                 'currency' => 'usd'
             ],
             [
                 'user_id' => $user->id,
                 'resume_link_id' => $resumeLink->id,
                 'salary_frequency' => 'yearly',
-                'salary' => 3000,
+                'salary' => 10000,
                 'currency' => 'usd'
             ]
         ]);

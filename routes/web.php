@@ -21,20 +21,16 @@ Route::get('/preview-by-code/{theme_code}', 'ResumeController@themePreviewByCode
 
 Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
-//email
-Route::get('/email', function(){
-    return new PasswordResetMail();
-});
-
 
 // Download Resume routes
- Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
+Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
 
 // Test theme preview
 Route::get('/preview-theme-pdf-by-code/{themeCode}', 'ResumeController@downloadPDFResume');
 
 Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
+Route::get('/faq','HomeController@faq')->name('faq');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
@@ -69,15 +65,18 @@ Route::get('/resume-builder/import/behance/{behanceUsername}', 'ImportsControlle
 
 
 // subscription routes
-Route::get('/subscribe', 'SubscriptionController@subscribePage')->name('subscribe.page');
+Route::get('/subscribe', 'Billing\StripeController@subscribePage')->name('subscribe.page');
+Route::post('/subscribe', 'Billing\StripeController@subscribeStripe')->name('subscribe.stripe');
+Route::get('/subscription', 'Billing\StripeController@index')->name('subscription');
+Route::get('/subscription/cancel', 'Billing\StripeController@cancel')->name('subscription.cancel');
+Route::get('/subscription/success', 'Billing\StripeController@subscriptionSuccess')->name('subscription.success');
 
-Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
-Route::get('/subscription/cancel', 'SubscriptionController@cancel')->name('subscription.cancel');
-Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
-Route::post('/subscribe', 'SubscriptionController@subscribeStripe')->name('subscribe.stripe');
+// webhooks:
+Route::post('/stripe/webhooks', 'Billing\StripeWebhooksController@handle')->name('stripe.webhooks');
+
+
 
 // paypal
-
 Route::get('/subscribe/create-paypal-plan/{plan_period}', 'PaypalController@create_plan');
 Route::get('/subscribe/paypal/monthly', 'PaypalController@subscribePayPalMonthly')->name('paypal.redirect.monthly');
 Route::get('/subscribe/paypal/yearly', 'PaypalController@subscribePayPalYearly')->name('paypal.redirect.yearly');

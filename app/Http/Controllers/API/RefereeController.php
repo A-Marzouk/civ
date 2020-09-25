@@ -51,7 +51,7 @@ class RefereeController extends Controller
             'contact_email' => ['sometimes','required', 'email', 'max:255'],
             'company' => ['sometimes','required', 'string', 'max:255'],
             'address' => ['sometimes','nullable', 'string', 'max:255'],
-            'reference_text' => ['sometimes','nullable','string', 'max:2500'],
+            'reference_text' => ['sometimes','nullable','string', 'max:1000'],
             'notes' => ['sometimes','nullable','string', 'max:2500'],
         ]);
     }

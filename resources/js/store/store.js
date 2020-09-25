@@ -21,8 +21,25 @@ export const store = new Vuex.Store({
                 designation: 'User interface designer',
                 phone: '+990000000',
                 location: 'London',
+                date_of_birth: '2020-09-09',
+                quote: 'anything here is a quote',
+                overview: 'Cool overview is here',
+                nationality: 'American',
+                hometown: 'London',
                 about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.',
             },
+            languages: [
+                {
+                    id: 6,
+                    label: "Arabic",
+                    name: "arabic",
+                },
+                {
+                    id: 8,
+                    label: "English",
+                    name: "english",
+                }
+            ],
             payment_info: [
                 {
                     salary: '10',
@@ -405,10 +422,88 @@ export const store = new Vuex.Store({
                     created_at: "2020-06-23 09:34:43",
                     updated_at: "2020-07-20 09:12:51"
                 }
-            ]
+            ],
+            tabs:[
+                {
+                    'title': 'work_experience',
+                    'label': 'Work Experience',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'education',
+                    'label': 'Education',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'about_me',
+                    'label': 'About Me',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'portfolio',
+                    'label': 'Portfolio',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'skills',
+                    'label': 'Skills',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'media',
+                    'label': 'Media',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'hobbies',
+                    'label': 'Hobbies',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'references',
+                    'label': 'References',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'achievements',
+                    'label': 'Achievements',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'links',
+                    'label': 'Links',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'pay_availability',
+                    'label': 'Pay Availability',
+                    'is_public': true,
+                    'order': 1,
+                },
+            ],
         },
         themeUser: {},
-        access_token: Vue.$cookies.get('access_token') || null
+        access_token: Vue.$cookies.get('access_token') || null,
+        defaultTabs: ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements'],
+        excludedTabs:[
+            'structure',
+            'imports',
+            'manager',
+            'themes',
+            'links',
+            'pay_availability',
+            'profile', // main tab | can not be hidden
+        ]
     },
     mutations: {
         setCurrentUser: (state, data) => {
@@ -513,6 +608,14 @@ export const store = new Vuex.Store({
             state.user.skills = skills;
             axios.post('/api/user/skills/update-order', { skills: skills })
                 .then(response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updatePaymentMethods(state, paymentMethods) {
+            state.user.payment_methods = paymentMethods;
+            axios.post('/api/user/payment-methods/update-order', { paymentMethods: paymentMethods })
+                .then( () => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();

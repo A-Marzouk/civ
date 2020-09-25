@@ -186,7 +186,15 @@ button:hover {
 }
 
 .half-opacity{
-    opacity: 0.5;
+    opacity: 0.5 !important;
+}
+
+.zero-opacity{
+    opacity: 0 !important;
+}
+
+.blackAndWhite{
+    filter: grayscale(100%) !important;
 }
 
 button.v-btn{

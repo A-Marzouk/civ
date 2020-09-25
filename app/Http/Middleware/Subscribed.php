@@ -17,25 +17,12 @@ class subscribed
     public function handle($request, Closure $next)
     {
         $user = auth()->user();
-        $subscription = $user->subscription ?? null ;
 
-        if($user->can('test.builder.users') || env('APP_ENV') === 'local'){
+        if($user->can('test.builder.users') || env('APP_ENV') === 'local' || $user->isSubscribed()){
             return $next($request);
-        }
-
-        if ($subscription) {
-           if($subscription->sub_status === 'active' && !$this->isExpired($subscription)){
-               return $next($request);
-           }
         }
 
         return redirect('/subscribe');
     }
 
-    protected function isExpired($subscription){
-        $expiring_date = Carbon::parse($subscription->expires_at);
-        $todays_date   = Carbon::now();
-
-        return $todays_date->gt($expiring_date);
-    }
 }

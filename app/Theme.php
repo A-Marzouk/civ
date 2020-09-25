@@ -17,6 +17,7 @@ class Theme extends Model
         'color',
         'code',
         'developer',
+        'is_active',
         'image',
         'order',
     ];

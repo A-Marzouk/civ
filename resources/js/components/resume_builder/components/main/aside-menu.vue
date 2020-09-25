@@ -50,7 +50,7 @@ export default {
 				icon: null
 			},
 			{
-				name: "audio-video",
+				name: "media",
 				icon: null
 			},
 			{

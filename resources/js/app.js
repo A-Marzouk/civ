@@ -37,6 +37,19 @@ if ($("#pricing").length !== 0) {
     });
 }
 
+//faq
+import faq from './components/welcome-view/faq';
+if ($("#faq").length !== 0) {
+    new Vue({
+        el: '#faq',
+        vuetify,
+        components: {
+            'faq': faq
+        }
+    });
+}
+
+
 
 
 import subscriptionModal from './components/resume_builder/tabs/includes/SubscriptionModal';

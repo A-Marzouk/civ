@@ -2,6 +2,9 @@
 
 namespace App\Observers;
 
+use App\Language;
+use App\Mail\AccountDeactivated;
+use App\Mail\AccountRestored;
 use App\ResumeLink;
 use App\Tab;
 use App\User;
@@ -9,6 +12,7 @@ use App\AvailabilityInfo;
 use App\PaymentInfo;
 use App\PersonalInfo;
 use App\Summary;
+use Illuminate\Support\Facades\Mail;
 
 class UserObserver
 {
@@ -37,6 +41,50 @@ class UserObserver
     }
 
     /**
+     * Handle the user "before deleting" event.
+     *
+     * @param  \App\User $user
+     * @return void
+     *
+     */
+
+    public function deleting(User $user)
+    {
+        // delete all user relations : // TODO: subscription hold off.
+        if($user->isForceDeleting()){
+            // delete resume links:
+            $resumeLinks = $user->resumeLinks;
+            foreach ($resumeLinks as $link){
+                $link->delete();
+            }
+
+            // delete subscription:
+            $subscription = $user->subscription;
+            if($subscription){
+                $subscription->delete();
+            }
+
+
+            // delete subscription:
+            $permissions = $user->permissions;
+            if($permissions){
+                foreach ($permissions as $permission){
+                    $permission->delete();
+                }
+            }
+        }else{
+            // soft delete
+            $this->notifyUser($user);
+        }
+
+    }
+
+    protected function notifyUser($user){
+        Mail::to($user)->send(new AccountDeactivated($user));
+    }
+
+
+    /**
      * Handle the user "deleted" event.
      *
      * @param  \App\User $user
@@ -44,17 +92,7 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        // delete all user relations :
 
-        foreach (User::$defaultOneToOneRelations as $relation) {
-            $user->$relation()->delete();
-        }
-
-        foreach (User::$defaultOneToManyRelations as $relation) {
-            foreach ($user->$relation as $model) {
-                $model->delete();
-            }
-        }
 
     }
 
@@ -66,7 +104,9 @@ class UserObserver
      */
     public function restored(User $user)
     {
-        //
+        // send a notification email that he is restored.
+        Mail::to($user)->send(new AccountRestored($user));
+        // TODO: Cancel cron jobs reminders.
     }
 
     /**
@@ -92,6 +132,9 @@ class UserObserver
             'order' => 1,
             'is_public' => true
         ]);
+
+        // English by default:
+        $user->languages()->attach(Language::englishLanguageID());
 
         $user->update([
             'resume_link_id' => $resumeLink->id,

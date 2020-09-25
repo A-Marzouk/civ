@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container fluid ma-0 pa-0 style="background-color: #f1f1f1;">
+    <v-container fluid ma-0 pa-0 style="background-color: #f1f1f1">
       <v-row class="borpad pt-md-4" no-gutters justify-sm="end">
         <v-col md="6" sm="12" cols="12">
           <v-container>
@@ -30,7 +30,8 @@
                 class="text-md-left text-center text-sm-left"
               >
                 <div class="user-name font-weight-regular">
-                  {{ currentUser.personal_info.full_name }}
+                  {{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}
                 </div>
                 <div class="job-title py-2 pb-sm-2">
                   {{ currentUser.personal_info.designation }}
@@ -150,13 +151,10 @@
                         background: #fc5185;
                         box-shadow: #fc7ea4 0px 10px 30px -8px;
                       "
+                      @click.prevent="hireMeModal = !hireMeModal"
                     >
                       <img
-                        style="
-                          width: 22.5px;
-                          height: 18px;
-                          margin-right: 7.5px;
-                        "
+                        style="width: 22.5px; height: 18px; margin-right: 7.5px"
                         src="/images/resume_themes/theme5/email.svg"
                         alt
                       />
@@ -254,13 +252,10 @@
                         background: #fc5185;
                         box-shadow: rgba(252, 81, 133, 0.4) 0px 10px 30px -8px;
                       "
+                      @click.prevent="hireMeModal = !hireMeModal"
                     >
                       <img
-                        style="
-                          width: 22.5px;
-                          height: 18px;
-                          margin-right: 7.5px;
-                        "
+                        style="width: 22.5px; height: 18px; margin-right: 7.5px"
                         src="/images/resume_themes/theme5/email.svg"
                         alt
                       />
@@ -271,7 +266,6 @@
               </v-col>
               <v-col md="6">
                 <v-row no-gutters justify="center">
-
                   <v-col cols="12" class="text-center hidden-xs-only">
                     <v-btn
                       style="
@@ -281,16 +275,16 @@
                         background: #5f45ff;
                         box-shadow: #9180ff 0px 10px 30px -8px;
                       "
-                      @click.stop="audioModal=true"
+                      @click.stop="audioModal = true"
                       dark
                       class="mx-1 ct-buttom-mrg"
                     >
                       <img
                         src="/images/resume_themes/theme5/call.svg"
                         alt="voice call"
-                        style="width: 18px; height: 18px; margin-right: 7.5px;"
+                        style="width: 18px; height: 18px; margin-right: 7.5px"
                       />
-                      <div class="text-capitalize" style="font-size: 14px;">
+                      <div class="text-capitalize" style="font-size: 14px">
                         Audio
                       </div>
                     </v-btn>
@@ -304,19 +298,18 @@
                         background: #e7e5f6;
                         box-shadow: #e7e5f6 0px 10px 30px -8px;
                       "
-                      @click.stop="videoModal=true"
+                      @click.stop="videoModal = true"
                     >
                       <img
                         src="/images/resume_themes/theme5/video.svg"
                         alt="video call"
-                        style="width: 27px; height: 18px; margin-right: 7.5px;"
+                        style="width: 27px; height: 18px; margin-right: 7.5px"
                       />
 
-                      <div class="text-capitalize" 
-                        style="
-                          font-size: 14px;
-                          color: #5f45ff;
-                        ">
+                      <div
+                        class="text-capitalize"
+                        style="font-size: 14px; color: #5f45ff"
+                      >
                         Video
                       </div>
                     </v-btn>
@@ -332,16 +325,16 @@
                         background: #5f45ff;
                         box-shadow: #9180ff 0px 10px 30px -8px;
                       "
-                      @click.stop="audioModal=true"
+                      @click.stop="audioModal = true"
                       dark
                       class="mx-1 ct-buttom-mrg"
                     >
                       <img
                         src="/images/resume_themes/theme5/call.svg"
                         alt="voice call"
-                        style="width: 18px; height: 18px; margin-right: 7.5px;"
+                        style="width: 18px; height: 18px; margin-right: 7.5px"
                       />
-                      <div class="text-capitalize" style="font-size: 14px;">
+                      <div class="text-capitalize" style="font-size: 14px">
                         Audio
                       </div>
                     </v-btn>
@@ -355,19 +348,18 @@
                         background: #e7e5f6;
                         box-shadow: #e7e5f6 0px 10px 30px -8px;
                       "
-                       @click.stop="videoModal=true"
+                      @click.stop="videoModal = true"
                     >
                       <img
                         src="/images/resume_themes/theme5/video.svg"
                         alt="video call"
-                        style="width: 27px; height: 18px; margin-right: 7.5px;"
+                        style="width: 27px; height: 18px; margin-right: 7.5px"
                       />
 
-                      <div class="text-capitalize" 
-                        style="
-                          font-size: 14px;
-                          color: #5f45ff;
-                        ">
+                      <div
+                        class="text-capitalize"
+                        style="font-size: 14px; color: #5f45ff"
+                      >
                         Video
                       </div>
                     </v-btn>
@@ -375,28 +367,7 @@
                 </v-row>
                 <v-row no-gutters justify="center" class="mt-6">
                   <v-col cols="12">
-                    <div class="text-center">Follow me</div>
-                    <div class="text-center mt-2">
-                      <v-btn
-                        :href="Userlink.link"
-                        v-for="Userlink in currentUser.links"
-                        :key="Userlink.id + '_link'"
-                        target="_blank"
-                        class="mx-1"
-                        style="
-                          width: 40px;
-                          min-width: 40px;
-                          height: 40px;
-                          box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
-                        "
-                        v-show="Userlink.is_active && Userlink.is_public"
-                      >
-                        <img
-                          :src="`/images/resume_themes/theme5/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
-                          alt="social-icon"
-                        />
-                      </v-btn>
-                    </div>
+                    <SocialLinks :currentUser="currentUser"></SocialLinks>
                   </v-col>
                 </v-row>
               </v-col>
@@ -504,28 +475,7 @@
                     </div>
                   </v-col>
                   <v-col cols="11" align="center" class="mt-6 ml-2">
-                    <div class="text-center">Follow me</div>
-                    <div class="text-center mt-2">
-                      <v-btn
-                        :href="Userlink.link"
-                        v-for="Userlink in currentUser.links"
-                        :key="Userlink.id + '_link'"
-                        target="_blank"
-                        class="mx-1"
-                        style="
-                          width: 40px;
-                          min-width: 40px;
-                          height: 40px;
-                          box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
-                        "
-                        v-show="Userlink.is_active && Userlink.is_public"
-                      >
-                        <img
-                          :src="`/images/resume_themes/theme5/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
-                          alt="social-icon"
-                        />
-                      </v-btn>
-                    </div>
+                    <SocialLinks :currentUser="currentUser"></SocialLinks>
                   </v-col>
                 </v-row>
               </v-col>
@@ -541,13 +491,10 @@
                         background: #fc5185;
                         box-shadow: #fc7ea4 0px 10px 30px -8px;
                       "
+                      @click.prevent="hireMeModal = !hireMeModal"
                     >
                       <img
-                        style="
-                          width: 22.5px;
-                          height: 18px;
-                          margin-right: 7.5px;
-                        "
+                        style="width: 22.5px; height: 18px; margin-right: 7.5px"
                         src="/images/resume_themes/theme5/email.svg"
                         alt
                       />
@@ -565,14 +512,14 @@
                         background: #5f45ff;
                         box-shadow: #9180ff 0px 10px 30px -8px;
                       "
-                      @click.stop="audioModal=true"
+                      @click.stop="audioModal = true"
                       dark
                       class="mx-1"
                     >
                       <img
                         src="/images/resume_themes/theme5/call.svg"
                         alt="voice call"
-                        style="width: 18px; height: 18px; margin-right: 7.5px;"
+                        style="width: 18px; height: 18px; margin-right: 7.5px"
                       />
                     </v-btn>
 
@@ -585,12 +532,12 @@
                         background: #e7e5f6;
                         box-shadow: #e7e5f6 0px 10px 30px -8px;
                       "
-                       @click.stop="videoModal=true"
+                      @click.stop="videoModal = true"
                     >
                       <img
                         src="/images/resume_themes/theme5/video.svg"
                         alt="video call"
-                        style="width: 27px; height: 18px; margin-right: 7.5px;"
+                        style="width: 27px; height: 18px; margin-right: 7.5px"
                       />
                     </v-btn>
                   </v-col>
@@ -602,9 +549,9 @@
       </v-row>
     </v-container>
     <v-container fluid ma-0 pa-0>
-      <v-row class="borpad" no-gutters style="height: 100%;">
+      <v-row class="borpad" no-gutters style="height: 100%">
         <v-col md="12" sm="12" cols="12">
-          <v-container fluid ma-0 pa-0 style="max-width: 100%;">
+          <v-container fluid ma-0 pa-0 style="max-width: 100%">
             <v-row no-gutters justify="center">
               <v-col
                 md="10"
@@ -635,7 +582,7 @@
           </v-container>
         </v-col>
         <v-col md="12" sm="12" cols="12" class="mt-4">
-          <v-container fluid ma-0 pa-0 style="max-width: 100%;">
+          <v-container fluid ma-0 pa-0 style="max-width: 100%">
             <v-row no-gutters justify="center">
               <v-col v-if="activeTab === 'portfolio'" md="11" sm="11" cols="11">
                 <v-row no-gutters justify="center">
@@ -680,7 +627,7 @@
                         {{ work.job_title }},
                         <span
                           class="hidden-xs-only pl-sm-4 subtitle-2"
-                          style="color: rgba(0, 0, 0, 0.87);"
+                          style="color: rgba(0, 0, 0, 0.87)"
                           >{{ work.date_from }} - {{ work.date_to }}</span
                         >
                       </div>
@@ -724,11 +671,11 @@
                       <div class="edu-name font-weight-bold py-1">
                         {{ education.university_name }}
                       </div>
-                      <div class="subtitle-2 pb-1" style="color: #1f5de4;">
+                      <div class="subtitle-2 pb-1" style="color: #1f5de4">
                         {{ education.university_name }},
                         {{ education.date_from }} - {{ education.date_to }}
                       </div>
-                      <div class="subtitle-2 pb-2" style="color: #707070;">
+                      <div class="subtitle-2 pb-2" style="color: #707070">
                         {{ education.degree_title }}
                       </div>
                     </v-card>
@@ -793,50 +740,91 @@
                 cols="11"
                 class="pb-12"
               >
-                <!-- <v-row no-gutters justify="center" class="shade py-12">
-                  <v-col md="10" sm="11" cols="11" class="pb-8">
-                    <div class="headline">About Me</div>
-                  </v-col>
-                  <v-col md="10" sm="11" cols="11" class="pb-8">
-                    <div class="subtitle-1 grey--text lighten-2">
-                      {{ currentUser.personal_info.about }}
-                    </div>
-                  </v-col>
-
-                  <v-col md="10" sm="11" cols="11" class="pb-8">
-                    <div class="headline">Contact</div>
-                  </v-col>
-                  <v-col md="10" sm="11" cols="11">
-                    <div class="title">
-                      Gmail: {{ currentUser.personal_info.email }}
-                    </div>
-                  </v-col>
-                </v-row> -->
-
                 <div class="about-container">
-
                   <!-- short info -->
                   <div class="short-info">
-                    <div v-for="(about_item, index) in about_section.short_info" :key="index"
-                      class="short-info-item mb-4" >
-                      <div class="short-info-title">{{ about_item.title }}</div>
-                      <div v-for="(short_value, index) in about_item.value" :key="index"
-                        class="short-info-value">{{ short_value }}
+                    <div
+                      class="short-info-item mb-4"
+                      v-if="currentUser.personal_info.date_of_birth"
+                    >
+                      <div class="short-info-title">Date of Birth</div>
+                      <div class="short-info-value">
+                        {{ currentUser.personal_info.date_of_birth }}
+                      </div>
+                    </div>
+                    <div
+                      class="short-info-item mb-4"
+                      v-if="currentUser.personal_info.nationality"
+                    >
+                      <div class="short-info-title">Nationality</div>
+                      <div class="short-info-value">
+                        {{ currentUser.personal_info.nationality }}
+                      </div>
+                    </div>
+                    <div
+                      class="short-info-item mb-4"
+                      v-if="currentUser.personal_info.hometown"
+                    >
+                      <div class="short-info-title">Hometown</div>
+                      <div class="short-info-value">
+                        {{ currentUser.personal_info.hometown }}
+                      </div>
+                    </div>
+                    <div
+                      class="short-info-item mb-4"
+                      v-if="currentUser.languages[0]"
+                    >
+                      <div class="short-info-title">Languages</div>
+                      <div
+                        class="short-info-value"
+                        v-for="(language, i) in currentUser.languages"
+                        :key="i"
+                      >
+                        {{ language.label }}
                       </div>
                     </div>
                   </div>
 
                   <!-- summary info -->
                   <div class="summary-info">
-                    <div v-for="(summary_item, index) in about_section.summary" :key="index"
-                      class="summary-info-item mb-6">
-                      <div class="summary_title">{{ summary_item.title }}</div>
-                      <div class="summary_value">{{ summary_item.value }}</div>
+                    <div
+                      class="summary-info-item mb-6"
+                      v-if="currentUser.personal_info.overview"
+                    >
+                      <div class="summary_title">Overview Sumary</div>
+                      <div class="summary_value">
+                        {{ currentUser.personal_info.overview }}
+                      </div>
+                    </div>
+                    <div
+                      class="summary-info-item mb-6"
+                      v-if="currentUser.personal_info.about"
+                    >
+                      <div class="summary_title">About Me</div>
+                      <div class="summary_value">
+                        {{ currentUser.personal_info.about }}
+                      </div>
+                    </div>
+                    <div
+                      class="summary-info-item mb-6"
+                      v-if="currentUser.personal_info.quote"
+                    >
+                      <div class="summary_title">Quote</div>
+                      <div class="summary_value">
+                        {{ currentUser.personal_info.quote }}
+                      </div>
+                    </div>
+                    <div
+                      class="summary-info-item mb-6"
+                      v-if="currentUser.personal_info.location"
+                    >
+                      <div class="summary_title">Location</div>
+                      <div class="summary_value">
+                        {{ currentUser.personal_info.location }}
+                      </div>
                     </div>
                   </div>
-
                 </div>
-
               </v-col>
 
               <!-- about section end -->
@@ -972,8 +960,16 @@
             </v-row>
 
             <!-- video modal -->
-            <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
-              <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+            <v-dialog
+              v-model="videoModal"
+              max-width="1690"
+              max-height="740"
+              persistent
+            >
+              <v-card
+                class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0"
+                align="center"
+              >
                 <!-- <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
                   <v-btn
                     color="transparent"
@@ -989,7 +985,6 @@
                     src="/images/resume_themes/theme200/icons/close.svg" />
                   </v-btn>
                 </v-card-subtitle> -->
-
 
                 <!-- <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.length>0">
                   <template v-for="video in currentUser.media">
@@ -1012,12 +1007,17 @@
                     </div>
                   </template>
                 </slick>-->
-                <div class="audio-header video-2 d-flex justify-space-between mb-12">
+                <div
+                  class="audio-header video-2 d-flex justify-space-between mb-12"
+                >
                   <div class="my-audio">My Video</div>
-                
-                  <img style="height: 1.4rem; width: auto; cursor: pointer;" 
-                    @click.stop="videoModal=false"
-                    src="/images/resume_themes/theme5/close.png" alt="close">
+
+                  <img
+                    style="height: 1.4rem; width: auto; cursor: pointer"
+                    @click.stop="videoModal = false"
+                    src="/images/resume_themes/theme5/close.png"
+                    alt="close"
+                  />
                 </div>
 
                 <div class="video-container">
@@ -1031,13 +1031,17 @@
                 </div>
               </v-card>
             </v-dialog>
-            <!-- Video modal -->
+            <!-- Video modal end-->
 
             <!-- Audio Modal -->
-            <v-dialog v-model="audioModal" :elevation="0" max-width="1690" persistent content-class="ct-dialog">
+            <v-dialog
+              v-model="audioModal"
+              :elevation="0"
+              max-width="1690"
+              persistent
+              content-class="ct-dialog"
+            >
               <div class="audio-modal-main-card">
-                
-                
                 <!-- <v-card-subtitle align="right">
                   <v-btn
                     color="transparent"
@@ -1049,7 +1053,6 @@
                     <img src="/images/resume_themes/theme200/icons/close.svg" />
                   </v-btn>
                 </v-card-subtitle> -->
-
 
                 <!-- <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.length>0">
                   <template v-for="audio in currentUser.media">
@@ -1063,12 +1066,15 @@
 
                 <div class="audio-header d-flex justify-space-between mb-12">
                   <div class="my-audio">My Audio</div>
-                
-                  <img style="height: 1.4rem; width: auto; cursor: pointer;" 
-                    @click.stop="audioModal=false"
-                    src="/images/resume_themes/theme5/close.png" alt="close">
+
+                  <img
+                    style="height: 1.4rem; width: auto; cursor: pointer"
+                    @click.stop="audioModal = false"
+                    src="/images/resume_themes/theme5/close.png"
+                    alt="close"
+                  />
                 </div>
-                
+
                 <audio-player
                   :modalOpen="audioModal"
                   color="#FC5C8A"
@@ -1077,12 +1083,21 @@
                   :audio_num="i"
                   file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
                 ></audio-player>
-            </div>
+              </div>
             </v-dialog>
             <!-- Audio Modal -->
           </v-container>
         </v-col>
       </v-row>
+      <!-- hire modal start -->
+
+      <!--<hire-modal-->
+        <!--:hireMeModal.sync="hireMeModal"-->
+        <!--:widowWidth="windowWidth"-->
+      <!--&gt;</hire-modal>-->
+      <updated-hire-modal @modalClosed="hireMeModal = false" :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
+
+      <!-- hire modal end -->
     </v-container>
   </v-app>
 </template>
@@ -1167,7 +1182,7 @@
   .bio {
     font-size: 0.8rem;
     line-height: 23px;
-    color: #6B6B6B;
+    color: #6b6b6b;
   }
   .padrgt {
     padding-right: 8rem;
@@ -1489,17 +1504,17 @@
     padding: 2.6rem 4rem;
     display: grid;
     grid-template-columns: 15% 85%;
-    background-color: #F8F8F8;
+    background-color: #f8f8f8;
     border-radius: 8px;
   }
 
   //short info start
   .short-info-title {
-    color: #FC5185;
+    color: #fc5185;
   }
 
   .short-info-value {
-    color: #918F97;
+    color: #918f97;
     font-size: 1.2rem;
   }
   //short info end
@@ -1507,19 +1522,18 @@
   //summary info start
 
   .summary_title {
-    color: #5F45FF;
+    color: #5f45ff;
   }
 
   .summary_value {
-    color: #3C3748;
+    color: #3c3748;
     font-size: 0.9rem;
   }
 
   //summary info end
 
-
   //media queries
-  
+
   //md screen
   @media only screen and (max-width: 1060px) {
     .about-container {
@@ -1551,13 +1565,13 @@
   }
 
   //bottom margin
-  @media only screen and (max-width: 1438px) and (min-width : 435px) {
+  @media only screen and (max-width: 1438px) and (min-width: 435px) {
     .ct-buttom-mrg {
       margin-bottom: 10px;
     }
   }
 
-  @media only screen and (max-width : 365px) {
+  @media only screen and (max-width: 365px) {
     .ct-buttom-mrg {
       margin-bottom: 10px;
     }
@@ -1641,7 +1655,7 @@
   .my-audio {
     font-size: 1.6rem;
     font-weight: 700;
-    color: #5F45FF;
+    color: #5f45ff;
   }
 
   .card-modal-video-holder {
@@ -1677,14 +1691,14 @@
 
   .video-container {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 1.4rem;
   }
 
   .audio-modal-main-card {
     min-height: 500px;
     padding: 3rem 4rem;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 
     @media screen and (min-width: 960px) and (max-width: 1263px) {
       min-height: 600px;
@@ -1721,36 +1735,32 @@
 
     .video-container {
       padding: 1rem;
-      grid-template-columns: repeat(2,1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-   @media screen and (max-width: 900px) {
+  @media screen and (max-width: 900px) {
     .video-container {
-      grid-template-columns: repeat(1,1fr);
+      grid-template-columns: repeat(1, 1fr);
     }
 
     .video-2 {
       padding: 1rem;
     }
   }
-  
 
   // audio video modals end
 }
 </style>
 
-<style>
-.active-indicator {
-  border: 2px solid #66daff !important;
-}
-</style>
+
 <script>
 import Slick from "vue-slick";
 import VueSlickCarousel from "vue-slick-carousel";
 import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
-
+import UpdatedHireModal from "../includes/HireMeModal";
+import SocialLinks from "./SocialLinks";
 export default {
   name: "theme8",
   props: ["user", "is_preview", "currentTab"],
@@ -1759,222 +1769,110 @@ export default {
     VueSlickCarousel,
     AudioPlayer,
     VideoPlayer,
+    'updated-hire-modal' : UpdatedHireModal,
+    SocialLinks,
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
+      hireMeModal: false,
       videoModal: false,
       audioModal: false,
       tabs: [
         {
           text: "Portfolio",
-          value: "portfolio"
+          value: "portfolio",
         },
         {
           text: "Work Ex.",
-          value: "work-experience"
+          value: "work-experience",
         },
         {
           text: "Education",
-          value: "education"
+          value: "education",
         },
         {
           text: "Skills",
-          value: "skills"
+          value: "skills",
         },
         {
           text: "About",
-          value: "about"
+          value: "about",
         },
         {
           text: "Hobbies",
-          value: "hobbies"
+          value: "hobbies",
         },
         {
           text: "References",
-          value: "references"
+          value: "references",
         },
         {
           text: "Achievements",
-          value: 'achievements'
-        }
+          value: "achievements",
+        },
       ],
       available: 0,
       activeTab: "portfolio",
       paymentInfo: 0,
-      portfolio: [
-        {
-          id: 0,
-          src: "/images/resume_themes/theme5/portfolio-1.png"
-        },
-        {
-          id: 1,
-          src: "/images/resume_themes/theme5/portfolio-2.png"
-        },
-        {
-          id: 2,
-          src: "/images/resume_themes/theme5/portfolio-3.png"
-        },
-        {
-          id: 3,
-          src: "/images/resume_themes/theme5/portfolio-4.png"
-        },
-        {
-          id: 4,
-          src: "/images/resume_themes/theme5/portfolio-5.png"
-        },
-        {
-          id: 5,
-          src: "/images/resume_themes/theme5/portfolio-6.png"
-        }
-      ],
+
       skillColor: [
         {
-          color: "#3C327B"
+          color: "#3C327B",
         },
         {
-          color: "#FF26BE"
+          color: "#FF26BE",
         },
         {
-          color: "#D291FF"
+          color: "#D291FF",
         },
         {
-          color: "#FF7C00"
+          color: "#FF7C00",
         },
         {
-          color: "#0D47A1"
+          color: "#0D47A1",
         },
         {
-          color: "#004D40"
+          color: "#004D40",
         },
         {
-          color: "#3C327B"
+          color: "#3C327B",
         },
         {
-          color: "#FF26BE"
+          color: "#FF26BE",
         },
         {
-          color: "#D291FF"
+          color: "#D291FF",
         },
         {
-          color: "#FF7C00"
+          color: "#FF7C00",
         },
         {
-          color: "#0D47A1"
+          color: "#0D47A1",
         },
         {
-          color: "#004D40"
+          color: "#004D40",
         },
         {
-          color: "#3C327B"
+          color: "#3C327B",
         },
         {
-          color: "#FF26BE"
+          color: "#FF26BE",
         },
         {
-          color: "#D291FF"
+          color: "#D291FF",
         },
         {
-          color: "#FF7C00"
+          color: "#FF7C00",
         },
         {
-          color: "#0D47A1"
+          color: "#0D47A1",
         },
         {
-          color: "#004D40"
-        }
+          color: "#004D40",
+        },
       ],
-      hobbies: [
-        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
-        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' },
-        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
-        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' },
-        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
-        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' },
-        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
-        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' } 
-      ],
-      references: [
-        { 
-          name: "Emma Pearson",
-          position: 'UX Designer',
-          company: 'Wedevs',
-          duration: 'Oct 2018 - Nov 2019',
-          sub: 'User Interface designer',
-          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
-          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
-        },
-        { 
-          name: "Emma Pearson",
-          position: 'UX Designer',
-          company: 'Wedevs',
-          duration: 'Oct 2018 - Nov 2019',
-          sub: 'User Interface designer',
-          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
-          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
-        },
-        { 
-          name: "Emma Pearson",
-          position: 'UX Designer',
-          company: 'Wedevs',
-          duration: 'Oct 2018 - Nov 2019',
-          sub: 'User Interface designer',
-          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
-          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
-        },
-        { 
-          name: "Emma Pearson",
-          position: 'UX Designer',
-          company: 'Wedevs',
-          duration: 'Oct 2018 - Nov 2019',
-          sub: 'User Interface designer',
-          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
-          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
-        }
-      ],
-      achievements: [
-        {
-          src: '/images/resume_themes/theme5/certificate.png',
-          title: 'Award Certificate',
-          year: '2015',
-          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
-          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
-        },
-        {
-          src: '/images/resume_themes/theme5/certificate.png',
-          title: 'Award Certificate',
-          year: '2015',
-          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
-          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
-        },
-        {
-          src: '/images/resume_themes/theme5/certificate.png',
-          title: 'Award Certificate',
-          year: '2015',
-          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
-          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
-        },
-        {
-          src: '/images/resume_themes/theme5/certificate.png',
-          title: 'Award Certificate',
-          year: '2015',
-          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
-          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
-        }
-      ],
-      about_section: {
-        short_info: [
-          { title: "Date of Birth", value: ['01/14/90'] },
-          { title: "Nationality", value: ['Ukrainian'] },
-          { title: "Hometown", value: ['Kiev'] },
-          { title: "Languages", value: ['English', 'Arabic', 'Franch'] },
-        ],
-        summary: [
-          { title: 'Overview Sumary', value: 'В работе дизайнера есть много пространства для креатива, но это только на первый взгляд кажется, что такие специалисты полагаются исключительно на фантазию.'},
-          { title: 'About Me', value: 'В работе дизайнера есть много пространства для креатива но это только на первый взгляд кажется, что такие специалисты полагаются исключительно на фантазию.'},
-          { title: 'Quote', value: 'B создавать графический контент.'},
-          { title: 'Location', value: 'Ireland, Dublin'}
-        ]
-      },
+
       //audio Modal
       slickOptionsAudioModal: {
         infinite: false,
@@ -1984,16 +1882,25 @@ export default {
         slidesToScroll: 1,
         rows: 3,
       },
-      currentUser: this.user
+      currentUser: this.user,
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
+    currentTab: function (val) {
       this.activeTab = val;
-    }
+    },
   },
   methods: {
+    goToExternalLink(link) {
+      if (!link.includes("http")) {
+        link = "http://" + link;
+      }
+      window.location.href = link;
+    },
+    closeHireMeModal() {
+      this.hireMeModal = false;
+    },
     availableNext() {
       if (this.available == 2) {
         this.available = 0;
@@ -2018,7 +1925,7 @@ export default {
       let mainImage = "";
 
       let images = project.images;
-      images.forEach(image => {
+      images.forEach((image) => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -2028,7 +1935,7 @@ export default {
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-    }
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -2036,8 +1943,12 @@ export default {
       this.setDummyUser();
     }
 
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
-  }
+  },
 };
 </script>

@@ -75,7 +75,7 @@
                     <input type="checkbox" class="checkbox" v-model="newEducation.present"> <span class="present-text">Present</span>
                 </label>
                 
-                <div style="display: flex">
+                <div style="display: flex; transition: all 1.5s;" :class="{'zero-opacity': newEducation.present}">
                   <input type="date" style="flex: 1" class="pr-2"
                     :class="{'error-input' : errors.date_to}"  v-model="newEducation.date_to" :disabled="newEducation.present">
                 </div>
@@ -309,7 +309,7 @@ export default {
             }
           });
 
-          this.closeOptionsBtn();
+
         })
         .catch((error) => {
           console.log(error);

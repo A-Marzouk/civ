@@ -1,12 +1,12 @@
 <template>
-    <div class="str-main-content-container" v-if="tabs">
+    <div class="str-main-content-container resume-builder__scroll" v-if="tabs">
         <div class="str-main-content">
             <div class="title">
                 <img src="/icons/edit-cv-sidebar/structure.svg" alt="structure icon">
                 <span>Drag to order tab view</span>
             </div>
             <draggable class="str-content" v-model="tabs" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                <div class="tab-chip" v-for="tab in tabs" :key="tab.label">
+                <div class="tab-chip" v-for="tab in tabs" v-if="!excludedTabs.includes(tab.title)" :key="tab.label">
                     <img src="/icons/edit-cv-sidebar/drag-btn-icon.svg" alt="drag button icon" class="drag-handler">
                     <span>{{tab.label}}</span>
                 </div>
@@ -19,14 +19,21 @@
     import draggable from "vuedraggable";
 
     export default {
-
-        name: "Structure",
+        name: "structure",
         components: {
             draggable
         },
         data() {
             return {
-
+                excludedTabs:[
+                    'structure',
+                    'imports',
+                    'manager',
+                    'themes',
+                    'links',
+                    'pay_availability',
+                    'profile', // main tab | can not be hidden
+                ]
             }
         },
         computed: {
@@ -54,9 +61,10 @@
 
     .str-main-content-container{
         width: 100%;
-        min-height:250px;
+        height: 450px;
+        overflow: auto;
         background: #FFFFFF;
-        box-shadow: 0 5px 100px rgba(0, 16, 131, 0.1);
+        box-shadow: 0 5px 20px rgba(0, 16, 131, 0.1);
         border-radius: 0;
         padding:50px 40px;
 
@@ -90,7 +98,7 @@
 
             .str-content{
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
                 max-width: 1500px;
                 flex-wrap: wrap;
                 padding: 25px 30px;
@@ -101,6 +109,7 @@
                     display:flex;
                     align-items: center;
                     margin-top:25px;
+                    margin-left:25px;
 
                     @media screen and (max-width: 1024px){
                         width: 100%;
