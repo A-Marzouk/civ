@@ -19,12 +19,15 @@
                         <div class="step-content" v-show="isStepActive(1)">
                             <!-- specific user payment_methods -->
                             <v-radio-group v-model="currentPaymentMethod" row class="mt-2">
-                                <v-radio v-for="paymentMethod in paymentMethods" :key="paymentMethod.name" :value="paymentMethod.name">
+                                <v-radio v-for="paymentMethod in paymentMethods" :key="paymentMethod.name"
+                                         :value="paymentMethod.name">
                                     <template v-slot:label>
-                                        <div v-show="paymentMethod.name === 'Stripe' " class="ml-2" style="margin-top: 3px;">
+                                        <div v-show="paymentMethod.name === 'Stripe' " class="ml-2"
+                                             style="margin-top: 3px;">
                                             <img src="/icons/stripe-icon.svg" alt="stripe icon">
                                         </div>
-                                        <div v-show="paymentMethod.name === 'PayPal' " class="ml-2" style="margin-top: 3px;">
+                                        <div v-show="paymentMethod.name === 'PayPal' " class="ml-2"
+                                             style="margin-top: 3px;">
                                             <img src="/icons/paypal-icon.svg" alt="paypal icon">
                                         </div>
                                     </template>
@@ -47,19 +50,23 @@
                         <div class="step-header">
                             Choose payment Type
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(2)">
-                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep" v-show="isStepActive(2)">
+                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
+                                 v-show="isStepActive(2)">
                         </div>
                         <div class="step-content" v-show="isStepActive(2)">
 
-                             <!-- Payment type -->
+                            <!-- Payment type -->
                             <div class="payment-types">
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('hourly')}" @click="setPaymentType('hourly')">
+                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('hourly')}"
+                                     @click="setPaymentType('hourly')">
                                     Hourly
                                 </div>
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('weekly')}" @click="setPaymentType('weekly')">
+                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('weekly')}"
+                                     @click="setPaymentType('weekly')">
                                     Weekly
                                 </div>
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('monthly')}" @click="setPaymentType('monthly')">
+                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('monthly')}"
+                                     @click="setPaymentType('monthly')">
                                     Monthly
                                 </div>
                             </div>
@@ -78,10 +85,11 @@
                         <div class="step-header">
                             Select the Number of Hours
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(3)">
-                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep" v-show="isStepActive(3)">
+                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
+                                 v-show="isStepActive(3)">
                         </div>
                         <div class="step-content" v-show="isStepActive(3)">
-                           
+
                             <div class="hours-select">
                                 <img src="/icons/minus.svg" alt="subtract hours" @click="subtractHours">
                                 <div class="hours">{{currentSelectedHours}} Hours</div>
@@ -89,14 +97,16 @@
                             </div>
 
                             <div class="payment-types">
-                                <div class="single-payment-type" :class="{'active' : isHoursTypeActive('week')}" @click="setHoursType('week')">
+                                <div class="single-payment-type" :class="{'active' : isHoursTypeActive('week')}"
+                                     @click="setHoursType('week')">
                                     Week
                                 </div>
-                                <div class="single-payment-type" :class="{'active' : isHoursTypeActive('month')}" @click="setHoursType('month')">
+                                <div class="single-payment-type" :class="{'active' : isHoursTypeActive('month')}"
+                                     @click="setHoursType('month')">
                                     Month
                                 </div>
                             </div>
-                            
+
                             <div class="action-btn">
                                 <a href="javascript:void(0)" @click="goToNextStep">
                                     Continue
@@ -109,19 +119,23 @@
                         <div class="step-header">
                             Choose Payment Amount
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(4)">
-                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep" v-show="isStepActive(4)">
+                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
+                                 v-show="isStepActive(4)">
                         </div>
                         <div class="step-content" v-show="isStepActive(4)">
 
                             <!-- Payment type -->
                             <div class="payment-types">
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('hourly')}" @click="setPaymentType('hourly')">
+                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('hourly')}"
+                                     @click="setPaymentType('hourly')">
                                     Hourly
                                 </div>
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('weekly')}" @click="setPaymentType('weekly')">
+                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('weekly')}"
+                                     @click="setPaymentType('weekly')">
                                     Weekly
                                 </div>
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('monthly')}" @click="setPaymentType('monthly')">
+                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('monthly')}"
+                                     @click="setPaymentType('monthly')">
                                     Monthly
                                 </div>
                             </div>
@@ -134,7 +148,8 @@
                                 <div class="percentage-input-wrapper">
                                     <span class="max" v-show="percentage < 90">100%</span>
                                     <span class="current" :style="{right: currentPosition + '%'}">{{percentage}}%</span>
-                                    <input type="range" class="range" min="0" max="100" step="10" v-model="percentage" style="width: 100%;">
+                                    <input type="range" class="range" min="0" max="100" step="10" v-model="percentage"
+                                           style="width: 100%;">
                                 </div>
                             </div>
 
@@ -181,95 +196,100 @@
             closeHireMeModal: {
                 type: Function,
             },
-            user:{
+            user: {
                 type: undefined
             }
         },
-        data(){
-            return{
+        data() {
+            return {
                 isModalOpened: false,
-                currentStep:1,
-                currentPaymentMethod:'Stripe',
+                currentStep: 1,
+                currentPaymentMethod: 'Stripe',
                 currentPaymentType: 'hourly',
                 currentHoursType: 'week',
                 // payment calculations:
                 userHourlyRate: 10,
                 percentage: 10,
                 currentSelectedHours: 40,
-                finishedSteps:[]
+                finishedSteps: []
             }
         },
-        watch:{
-          hireMeModal: function(value){
-              this.isModalOpened = value;
-          }
+        watch: {
+            hireMeModal: function (value) {
+                this.isModalOpened = value;
+            },
+            isModalOpened: function (value) {
+                if(! value){
+                    this.$emit('modalClosed');
+                }
+            }
         },
-        methods:{
-            goToNextStep(){
-                if(this.currentStep > 4){
+        methods: {
+            goToNextStep() {
+                if (this.currentStep > 4) {
                     return;
                 }
                 this.finishedSteps.push(this.currentStep);
                 this.currentStep++;
             },
-            goToPreviousStep(){
-                if(this.currentStep < 2){
+            goToPreviousStep() {
+                if (this.currentStep < 2) {
                     return;
                 }
                 this.currentStep--;
             },
-            isStepActive(step){
-                return step === this.currentStep ;
+            isStepActive(step) {
+                return step === this.currentStep;
             },
-            isStepDone(step){
+            isStepDone(step) {
                 return this.finishedSteps.includes(step);
             },
 
             // step 2
-            setPaymentType(payment_type){
+            setPaymentType(payment_type) {
                 this.currentPaymentType = payment_type;
             },
-            isPaymentTypeActive(payment_type){
+            isPaymentTypeActive(payment_type) {
                 return this.currentPaymentType === payment_type;
             },
 
             // step 3
-            subtractHours(){
-                if(this.currentSelectedHours < 10){
+            subtractHours() {
+                if (this.currentSelectedHours < 10) {
                     return;
                 }
-                this.currentSelectedHours-=5 ;
+                this.currentSelectedHours -= 5;
 
             },
-            addHours(){
-                if(this.currentSelectedHours > 1000){
+            addHours() {
+                if (this.currentSelectedHours > 1000) {
                     return;
                 }
-                this.currentSelectedHours+=5 ;
+                this.currentSelectedHours += 5;
 
             },
-            isHoursTypeActive(hours_type){
+            isHoursTypeActive(hours_type) {
                 return this.currentHoursType === hours_type;
             },
-            setHoursType(hours_type){
+            setHoursType(hours_type) {
                 this.currentHoursType = hours_type;
             },
-            reset(){
-                this.currentStep = 1 ;
-                this.finishedSteps = [] ;
+            reset() {
+                this.currentStep = 1;
+                this.finishedSteps = [];
                 this.currentSelectedHours = 40;
                 this.closeModal();
             },
-            closeModal(){
-                this.hireMeModal = false ;
+            closeModal() {
+                this.hireMeModal = false;
             },
 
-        // step4
-            getPayLink(){
+            // step4
+            getPayLink() {
                 let paymentMethod = this.user.payment_methods.find(
                     i => i.name.toLowerCase() === this.currentPaymentMethod.toLowerCase()
                 );
-                if(paymentMethod){
+                if (paymentMethod) {
                     return paymentMethod.link;
                 }
                 return '#';
@@ -277,14 +297,14 @@
 
 
         },
-        computed:{
-            totalPaymentAmount(){
-                return this.user.payment_info[0].salary * this.percentage/100 * this.currentSelectedHours;
+        computed: {
+            totalPaymentAmount() {
+                return this.user.payment_info[0].salary * this.percentage / 100 * this.currentSelectedHours;
             },
-            currentPosition(){
-                return  (100 - this.percentage -15)   ;
+            currentPosition() {
+                return (100 - this.percentage - 15);
             },
-            paymentMethods(){
+            paymentMethods() {
                 return this.user.payment_methods;
             }
         }
@@ -294,7 +314,7 @@
 <style lang="scss" scoped>
     @import "../../../../sass/media-queries";
 
-    .hire-main-wrapper{
+    .hire-main-wrapper {
         height: fit-content;
         background: white;
         border-radius: 15px;
@@ -304,25 +324,26 @@
         align-items: center;
         position: relative;
 
-        .close-modal{
+        .close-modal {
             position: absolute;
             top: 10px;
             right: 10px;
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
             }
         }
 
-        @include lt-sm{
+        @include lt-sm {
             padding: 40px 20px 20px 20px;
         }
 
-        .steps-wrapper{
+        .steps-wrapper {
             width: 100%;
             border-bottom: 1.5px solid #F2F3FD;
             margin-bottom: 20px;
 
-            .single-step-wrapper{
+            .single-step-wrapper {
                 background: #FFFFFF;
                 box-shadow: none;
                 border-radius: 5px;
@@ -334,25 +355,25 @@
                 overflow: hidden;
                 transition: height 1s;
 
-                &.active{
+                &.active {
                     height: 200px;
                     box-shadow: 0px 10px 150px rgba(0, 16, 131, 0.05);
 
-                    .step-header{
+                    .step-header {
                         background: #B4B8DE;
                         color: white;
                     }
                 }
 
-                &.active.three{
+                &.active.three {
                     height: 270px;
                 }
 
-                &.active.four{
+                &.active.four {
                     height: 270px;
                 }
 
-                .step-header{
+                .step-header {
                     background: #F2F3FD;
                     display: flex;
                     justify-content: center;
@@ -365,71 +386,77 @@
                     transition: all 1.3s;
                     transition-property: background, color;
 
-                    @include lt-sm{
+                    @include lt-sm {
                         font-size: 18px;
                     }
 
                     position: relative;
-                    img{
+
+                    img {
                         position: absolute;
-                        &.tick{
+
+                        &.tick {
                             right: 28px;
-                            @include lt-sm{
+                            @include lt-sm {
                                 right: 10px;
                             }
                         }
-                        &.back{
+
+                        &.back {
                             left: 28px;
-                            @include lt-sm{
+                            @include lt-sm {
                                 left: 10px;
                             }
-                            &:hover{
+
+                            &:hover {
                                 cursor: pointer;
                             }
                         }
                     }
                 }
-                .step-content{
+
+                .step-content {
 
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
 
-                    .action-btn{
-                       a{
-                           width: 110px;
-                           height: 45px;
-                           display: flex;
-                           align-items: center;
-                           background: #001CE2;
-                           border-radius: 5px;
-                           justify-content: center;
-                           color: white;
-                           font-size: 15px;
-                           line-height: 25px;
-                           margin-bottom: 20px;
-                           &:hover{
-                               text-decoration: none;
-                           }
+                    .action-btn {
+                        a {
+                            width: 110px;
+                            height: 45px;
+                            display: flex;
+                            align-items: center;
+                            background: #001CE2;
+                            border-radius: 5px;
+                            justify-content: center;
+                            color: white;
+                            font-size: 15px;
+                            line-height: 25px;
+                            margin-bottom: 20px;
 
-                           @include lt-sm{
-                               width: 95px;
-                               height: 40px;
-                           }
-                       }
+                            &:hover {
+                                text-decoration: none;
+                            }
+
+                            @include lt-sm {
+                                width: 95px;
+                                height: 40px;
+                            }
+                        }
                     }
                 }
 
-                 /*step 2*/
-                .payment-types{
+                /*step 2*/
+                .payment-types {
                     display: flex;
                     justify-content: space-between;
                     margin-bottom: 20px;
                     margin-top: 20px;
 
 
-                    .single-payment-type{
+                    .single-payment-type {
                         width: 110px;
                         height: 45px;
                         background: white;
@@ -442,24 +469,24 @@
                         justify-content: center;
                         margin-right: 20px;
 
-                        @include lt-sm{
+                        @include lt-sm {
                             width: 80px;
                             height: 40px;
                             font-size: 16px;
                             margin-right: 15px;
                         }
 
-                        &:last-child{
+                        &:last-child {
                             margin-right: 0;
                         }
 
-                        &.active{
+                        &.active {
                             background: #888DB1;
                             color: white;
                             border: 0;
                         }
 
-                        &:hover{
+                        &:hover {
                             cursor: pointer;
                         }
 
@@ -468,14 +495,14 @@
 
                 /*step 3*/
 
-                .hours-select{
+                .hours-select {
                     width: 100%;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     margin-top: 20px;
 
-                    .hours{
+                    .hours {
                         width: 110px;
                         height: 45px;
                         display: flex;
@@ -488,52 +515,55 @@
                         font-size: 18px;
                         color: #001CE2;
 
-                        @include lt-sm{
+                        @include lt-sm {
                             width: 95px;
                         }
 
                     }
 
-                    img{
+                    img {
                         height: 30px;
                         width: 30px;
                         box-shadow: 0px 4px 15px rgba(0, 28, 226, 0.07);
                         border-radius: 50%;
-                        &:hover{
+
+                        &:hover {
                             cursor: pointer;
                         }
                     }
                 }
 
                 /* step 4 */
-                .percentage-select{
+                .percentage-select {
                     width: 100%;
                     display: flex;
                     align-items: center;
                     margin-top: 20px;
                     margin-bottom: 20px;
-                    padding-left:20px;
-                    padding-right:40px;
+                    padding-left: 20px;
+                    padding-right: 40px;
 
 
-                    .label{
+                    .label {
                         font-size: 16px;
                         color: #888DB1;
                         white-space: nowrap;
                     }
 
-                    .percentage-input-wrapper{
+                    .percentage-input-wrapper {
                         position: relative;
                         width: 100%;
 
-                        span{
+                        span {
                             position: absolute;
                             color: #001CE2;
-                            &.max{
+
+                            &.max {
                                 top: -14px;
                                 right: -40px;
                             }
-                            &.current{
+
+                            &.current {
                                 top: -14px;
                             }
                         }
@@ -543,29 +573,29 @@
             }
         }
 
-        .hire-modal-footer{
-            width:100%;
+        .hire-modal-footer {
+            width: 100%;
 
-            .total-payment-row{
+            .total-payment-row {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
 
-                .label{
+                .label {
                     font-size: 18px;
                     line-height: 24px;
                     color: #888DB1;
-                    @include lt-sm{
+                    @include lt-sm {
                         font-size: 16px;
                     }
                 }
 
-                .total-payment{
+                .total-payment {
                     width: 110px;
                     height: 45px;
                     border: 2px solid #E6E8FC;
                     border-radius: 5px;
-                    @include lt-sm{
+                    @include lt-sm {
                         width: 95px;
                         height: 40px;
                     }
@@ -579,13 +609,13 @@
                 }
             }
 
-            .action-btn{
+            .action-btn {
                 width: 100%;
                 display: flex;
                 justify-content: center;
                 margin-top: 40px;
 
-                a{
+                a {
                     width: 110px;
                     height: 45px;
                     display: flex;
@@ -596,11 +626,12 @@
                     color: white;
                     font-size: 16px;
                     line-height: 25px;
-                    &:hover{
+
+                    &:hover {
                         text-decoration: none;
                     }
 
-                    @include lt-sm{
+                    @include lt-sm {
                         width: 95px;
                         height: 40px;
                     }
