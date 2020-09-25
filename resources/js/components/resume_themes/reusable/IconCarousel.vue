@@ -225,7 +225,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./scss/variables";
 .v-btn:not(.v-btn--round).v-size--default {
   padding: 0 0px !important;
 }
@@ -336,14 +335,14 @@ export default {
   background: transparent;
 }
 
-@media (min-width: $sm) {
+@media (min-width: 475px) {
   .social-menu.social-menu--open {
     height: auto;
     padding: 5px 0px;
   }
 }
 
-@media (min-width: $md) {
+@media (min-width: 768px) {
   .social-menu.social-menu--open {
     height: auto;
     padding: 5px 0px;
@@ -355,7 +354,7 @@ export default {
   }
 }
 
-@media (min-width: $lg) {
+@media (min-width: 1240px) {
   .social-menu {
     width: auto;
     height: auto;
