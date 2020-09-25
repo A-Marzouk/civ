@@ -650,7 +650,9 @@
                 document.getElementById("video_" + media.id).play();
             },
             videoEnded(){
-                this.playingVideoId = '' ;
+                setTimeout( () => {
+                    this.playingVideoId = '' ;
+                },1000);
             }
         },
         mounted() {
