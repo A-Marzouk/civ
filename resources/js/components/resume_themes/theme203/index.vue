@@ -1515,7 +1515,7 @@ export default {
     font-size: 24px;
   }
   @media screen and(max-width: 599px) {
-    font-size: 16px;
+    font-size: 12px;
   }
 }
 .hobbies-avatar {
