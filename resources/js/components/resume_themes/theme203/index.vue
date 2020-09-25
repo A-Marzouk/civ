@@ -244,7 +244,7 @@
       <!-- Header Row -->
 
       <!-- tab bar row -->
-      <v-container style="width: 100%">
+      <v-container style="width: 100%" class="pa-md-0 pa-sm-5 pa-5">
         <!-- main Navigation tab -->
         <v-row no-gutters align="center" justify="center">
           <v-col cols="12" md="10">
@@ -779,8 +779,8 @@
 
       <!-- Email modal -->
       <v-dialog v-model="emailModal" persistent max-width="759" class="email-modal">
-        <v-card class="card-email pa-sm-6 pa-8">
-          <div class="d-flex flex-row justify-space-between">
+        <v-card class="card-email">
+          <div class="title-container-email">
             <div class="modal-title">Message</div>
             <div>
               <v-btn icon depressed class="btn-email-modal-close" @click="emailModal = false">
@@ -826,10 +826,9 @@
           </div>
           <!-- <div class="watermark-text-modal">Audio</div> -->
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
-            <template v-for="item in currentUser.media">
+            <template v-for="item in filterAudio(currentUser.media)">
               <audio-player
                 :key="item.id"
-                v-show="item.type == 'audio'"
                 :modalOpen="audioModal"
                 :file="item.url"
                 :audioTitle = "item.title"
@@ -842,7 +841,7 @@
 
       <!-- Video Modal -->
       <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
-        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+        <v-card class="card-modal-video-holder" align="center">
           <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
             <v-btn
               color="transparent"
@@ -857,13 +856,12 @@
           </v-card-subtitle>
           <div class="watermark-text-modal-video">Video</div>
           <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
-            <template v-for="item in currentUser.media">
+            <template v-for="item in filterVideo(currentUser.media)">
               <video-player
-                v-show="item.type == 'video'"
                 :key="item.id"
                 :modalOpen="videoModal"
                 :title="item.title"
-                :details="item.transcript"
+                :details="item.content"
                 :file="item.url"
               ></video-player>
             </template>
@@ -945,7 +943,7 @@ export default {
             breakpoint: 960,
             settings: {
               slidesPerRow: 1,
-              slidesToScroll: 1,
+              slidesToScroll: 2,
               rows: 2,
             },
           },
@@ -1109,6 +1107,14 @@ export default {
   },
 
   methods: {
+    filterAudio(audios) {
+      var filterArray = audios.filter((a) => a.type === "audio");
+      return filterArray;
+    },
+    filterVideo(dataArray){
+      var filterArray = dataArray.filter((a) => a.type === "video");
+      return filterArray;
+    },
     goToExternalLink(link){
       if(!link.includes('http')){
         link = 'http://' + link ;
@@ -1509,7 +1515,7 @@ export default {
     font-size: 24px;
   }
   @media screen and(max-width: 599px) {
-    font-size: 16px;
+    font-size: 12px;
   }
 }
 .hobbies-avatar {
@@ -1649,6 +1655,15 @@ export default {
 // email modal
 .card-email {
   border-radius: 40px !important;
+  padding: 24px;
+  @media screen and (max-width: 599px){
+    padding: 15px;
+  }
+  .title-container-email{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .modal-title {
     font-family: "Gotham Pro" !important;
     font-style: normal;
@@ -1780,16 +1795,20 @@ export default {
 
 .card-modal-video-holder {
   border-radius: 40px !important;
-  overflow-y: hidden !important;
+  overflow: hidden !important;
   height: 850px;
+  padding: 40px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 700px;
+    padding: 40px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     height: auto;
+    padding: 20px;
   }
   @media screen and (max-width: 959px) {
     height: 1250px;
+    padding: 8px;
   }
   @media screen and (max-width: 599px) {
     height: 770px;
