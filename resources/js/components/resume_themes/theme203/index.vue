@@ -43,82 +43,84 @@
                           ></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content class="ml-lg-0 ml-md-5">
-                          <v-list-item-title class="profile-title">
+                          <v-list-item-title
+                            class="profile-title"
+                            style="overflow: visible !important"
+                          >
                             <v-card class="pa-0" flat color="transparent" tile>
-                              {{ currentUser.personal_info.first_name }}
-                              {{ currentUser.personal_info.last_name }}
-                              <span
-                                class="mx-8 hidden-md-and-down email-icon-block"
-                              >
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  small
-                                  depressed
-                                  class="mx-md-auto mx-sm-2 btn-email"
-                                  @click="emailModal = true"
+                              <div class="d-flex flex-row">
+                                <div class="d-flex flex-column">
+                                  <span>
+                                    {{ currentUser.personal_info.first_name }}
+                                    {{
+                                      currentUser.personal_info.last_name
+                                    }}</span
+                                  >
+                                  <span class="profile-subtitle">
+                                    {{ currentUser.personal_info.designation }}
+                                  </span>
+                                </div>
+                                <div
+                                  class="mx-8 hidden-md-and-down email-icon-block"
                                 >
-                                  <v-icon class="icon-email">mdi-email</v-icon>
-                                </v-btn>
+                                  <v-btn
+                                    fab
+                                    color="#FCD259"
+                                    small
+                                    depressed
+                                    class="mx-md-auto mx-sm-2 btn-email"
+                                    @click="emailModal = true"
+                                  >
+                                    <v-icon class="icon-email"
+                                      >mdi-email</v-icon
+                                    >
+                                  </v-btn>
 
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  x-small
-                                  depressed
-                                  class="mx-md-auto mx-sm-2 btn-video-player"
-                                  @click="videoModal = true"
-                                >
-                                  <img
-                                    width="15"
-                                    src="/images/resume_themes/theme203/icons/video-player.webp"
-                                  />
-                                </v-btn>
+                                  <v-btn
+                                    fab
+                                    color="#FCD259"
+                                    x-small
+                                    depressed
+                                    class="mx-md-auto mx-sm-2 btn-video-player"
+                                    @click="videoModal = true"
+                                  >
+                                    <img
+                                      width="15"
+                                      src="/images/resume_themes/theme203/icons/video-player.webp"
+                                    />
+                                  </v-btn>
 
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  x-small
-                                  depressed
-                                  class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
-                                  align="center"
-                                  @click="audioModal = true"
+                                  <v-btn
+                                    fab
+                                    color="#FCD259"
+                                    x-small
+                                    depressed
+                                    class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
+                                    align="center"
+                                    @click="audioModal = true"
+                                  >
+                                    <img
+                                      class
+                                      width="15"
+                                      src="/images/resume_themes/theme203/icons/headphones.webp"
+                                    />
+                                  </v-btn>
+                                </div>
+                                <div
+                                  class="social-media-block hidden-md-and-down"
                                 >
-                                  <img
-                                    class
-                                    width="15"
-                                    src="/images/resume_themes/theme203/icons/headphones.webp"
-                                  />
-                                </v-btn>
-                              </span>
-                              <span
-                                class="social-media-block hidden-md-and-down"
-                              >
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  small
-                                  class="mx-md-1 mx-sm-2 social-btn"
-                                  depressed
-                                  v-for="item in currentUser.links"
-                                  @click="goToExternalLink(item.link)"
-                                  :key="item.id + '_link'"
-                                  target="_blank"
-                                  v-show="item.is_public || item.is_active"
-                                >
-                                  <img
-                                    width="15"
-                                    :src="`/images/resume_themes/theme203/social_icons/${item.link_title.toLowerCase()}.webp`"
-                                  />
-                                </v-btn>
-                              </span>
-                            </v-card>
-                          </v-list-item-title>
-                          <v-list-item-title>
-                            <v-card flat color="transparent" tile>
-                              <span class="profile-subtitle mt-n5">
-                                {{ currentUser.personal_info.designation }}
-                              </span>
+                                  <IconCarousel
+                                    :currentUser="currentUser"
+                                    themeNumber="theme203"
+                                    btnWidth="40"
+                                    btnHeight="40"
+                                    iconWidth="22"
+                                    iconHeight="22"
+                                    border="2px solid #d3d6e4"
+                                    borderRadius="100"
+                                  ></IconCarousel>
+                                </div>
+                              </div>
                             </v-card>
                           </v-list-item-title>
                         </v-list-item-content>
