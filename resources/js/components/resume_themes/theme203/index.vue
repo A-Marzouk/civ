@@ -194,7 +194,7 @@
                 >
                   <v-card flat color="tranparent">
                     <v-card-text class>
-                      <v-btn
+                      <!-- <v-btn
                         fab
                         color="#FCD259"
                         small
@@ -211,7 +211,17 @@
                           :width="item.title == 'map-markup' ? 11 : 15"
                           :src="`/images/resume_themes/theme203/social_icons/${item.link_title.toLowerCase()}.webp`"
                         />
-                      </v-btn>
+                      </v-btn> -->
+                      <IconCarousel
+                        :currentUser="currentUser"
+                        themeNumber="theme203"
+                        btnWidth="40"
+                        btnHeight="40"
+                        iconWidth="22"
+                        iconHeight="22"
+                        border="2px solid #d3d6e4"
+                        borderRadius="100"
+                      ></IconCarousel>
                     </v-card-text>
                   </v-card>
                 </v-col>
