@@ -22,6 +22,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const RESUME_BUILDER = '/resume-builder';
+    public const MY_ACCOUNT = '/resume-builder/account';
     public const ADMIN = '/workforce-admin';
 
     /**
