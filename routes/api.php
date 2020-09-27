@@ -129,6 +129,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
 // update activity
     Route::post('/update-last-activity', 'API\UsersController@updateLastActivity')->name('account.validate');
+//    Verify
+    Route::post('/request-verify', 'API\UsersController@requestVerify')->name('user.verify.request');
 // Promo code
     Route::post('/apply-promo-code', 'API\UsersController@applyPromoCode')->name('user.apply.promocode');
 
