@@ -1,5 +1,5 @@
 <template>
-  <div class="social-carousel-wrapper" :style="'background-color:' + bgColor">
+  <div class="social-carousel-wrapper">
     <div
       class="social-carousel--nav__left"
       @click="moveCarousel(-1)"
