@@ -118,6 +118,7 @@
                                     iconHeight="22"
                                     bgColor="rgba(252, 210, 89, 1)"
                                     borderRadius="100"
+                                    arrowColor="#000"
                                   ></IconCarousel>
                                 </div>
                               </div>
@@ -221,6 +222,7 @@
                         iconHeight="22"
                         bgColor="rgba(252, 210, 89, 1)"
                         borderRadius="100"
+                        arrowColor="#000"
                       ></IconCarousel>
                     </v-card-text>
                   </v-card>
