@@ -116,7 +116,8 @@
                                     btnHeight="40"
                                     iconWidth="22"
                                     iconHeight="22"
-                                    border="2px solid #d3d6e4"
+                                    bgColor="rgba(248, 171, 8, 0.8)"
+                                    color="black"
                                     borderRadius="100"
                                   ></IconCarousel>
                                 </div>
@@ -219,7 +220,7 @@
                         btnHeight="40"
                         iconWidth="22"
                         iconHeight="22"
-                        border="2px solid #d3d6e4"
+                        bgColor="FCD259"
                         borderRadius="100"
                       ></IconCarousel>
                     </v-card-text>
