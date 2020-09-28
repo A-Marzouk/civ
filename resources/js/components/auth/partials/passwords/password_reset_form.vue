@@ -7,8 +7,8 @@
                         <v-card-subtitle align="center" class="create-new-account-text">Reset Password</v-card-subtitle>
 
                         <v-card-subtitle>
-                            <v-form ref="form" :lazy-validation="lazy" class="login-form">
-                                <div class="input-div mt-md-0 mt-sm-0 mt-n3">
+                            <v-form ref="form" :lazy-validation="lazy" class="login-form" v-show="!isEmailSent">
+                                <div class="input-div reset">
                                     <label>Email Address</label>
                                     <v-text-field
                                             dark
@@ -24,10 +24,13 @@
                                     ></v-text-field>
                                 </div>
 
-                                <v-btn color="#0046FE" class="btn-signup mt-3" style="width: fit-content !important;" @click="sendPasswordRestLink">
-                                    <span>Send Password Reset Link</span>
+                                <v-btn color="#0046FE" class="btn-signup" style="width: fit-content !important;" @click="sendPasswordRestLink">
+                                    <span>{{isSending ? 'Sending...' : 'Send Password Reset Link'}}</span>
                                 </v-btn>
                             </v-form>
+                            <div v-show="isEmailSent" class="success-message">
+                                Password reset link has been successfully sent.
+                            </div>
                         </v-card-subtitle>
                         <v-card-subtitle class="account-exists NoDecor">
                             Already reset password?
@@ -52,18 +55,24 @@
                 },
                 errors: {},
                 lazy: false,
-                isEmailSent: false
+                isEmailSent: false,
+                isSending: false,
             }
         },
         methods:{
             sendPasswordRestLink() {
+                if(this.isSending){
+                    return ;
+                }
+                this.isSending = true;
                 this.errors = {};
                 axios.post('/password/email', this.formData)
                     .then(response => {
-                        console.log(response);
-                        // we should show a notification the the email has been sent succesfully.
+                        this.isEmailSent = true;
+                        this.isSending = false;
                     })
                     .catch(error => {
+                        this.isSending = false;
                         if (typeof error.response.data === 'object') {
                             this.errors = error.response.data.errors;
                         } else {
@@ -75,6 +84,23 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    .success-message{
+        font-size: 24px;
+        width: 100%;
+        display: flex;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        justify-content: center;
+        color: forestgreen;
+    }
 
+    .input-div.reset{
+        position: relative;
+        margin-top: 30px;
+        label{
+            position: absolute;
+            top: -25px;
+        }
+    }
 </style>
