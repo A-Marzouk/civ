@@ -380,7 +380,7 @@
 
             sendVerificationEmail(){
                 this.isSending = true;
-                axios.post('/api/user/request-verify', this.user)
+                axios.post('/email/resend', this.user)
                     .then( () => {
                         this.isSending = false;
                         this.isEmailSent = true;
