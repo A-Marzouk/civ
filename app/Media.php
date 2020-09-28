@@ -27,6 +27,9 @@ class Media extends Model
     }
 
     public function getMediaPreviewAttribute($value){
+        if(Str::of($value)->contains('holder')){
+            return $value;
+        }
         return asset('storage/'. $value);
     }
 }
