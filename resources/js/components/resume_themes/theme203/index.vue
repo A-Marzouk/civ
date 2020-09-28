@@ -112,12 +112,13 @@
                                   <IconCarousel
                                     :currentUser="currentUser"
                                     themeNumber="theme203"
-                                    btnWidth="40"
-                                    btnHeight="40"
-                                    iconWidth="22"
-                                    iconHeight="22"
-                                    bgColor="rgba(248, 171, 8, 0.8)"
+                                    btnWidth="39"
+                                    btnHeight="39"
+                                    iconWidth="19"
+                                    iconHeight="19"
+                                    bgColor="rgba(252, 210, 89, 1)"
                                     borderRadius="100"
+                                    arrowColor="#000"
                                   ></IconCarousel>
                                 </div>
                               </div>
@@ -219,8 +220,9 @@
                         btnHeight="40"
                         iconWidth="22"
                         iconHeight="22"
-                        bgColor="rgba(248, 171, 8, 0.8)"
+                        bgColor="rgba(252, 210, 89, 1)"
                         borderRadius="100"
+                        arrowColor="#000"
                       ></IconCarousel>
                     </v-card-text>
                   </v-card>
