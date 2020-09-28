@@ -24,8 +24,9 @@
                                     ></v-text-field>
                                 </div>
 
-                                <v-btn color="#0046FE" class="btn-signup" style="width: fit-content !important;" @click="sendPasswordRestLink">
-                                    <span>{{isSending ? 'Sending...' : 'Send Password Reset Link'}}</span>
+                                <v-btn color="#0046FE" class="btn-signup reset" style="width: fit-content !important;"
+                                       @click="sendPasswordRestLink">
+                                    <span>{{isSending ? 'Sending...' : 'Send Reset Link'}}</span>
                                 </v-btn>
                             </v-form>
                             <div v-show="isEmailSent" class="success-message">
@@ -59,10 +60,10 @@
                 isSending: false,
             }
         },
-        methods:{
+        methods: {
             sendPasswordRestLink() {
-                if(this.isSending){
-                    return ;
+                if (this.isSending) {
+                    return;
                 }
                 this.isSending = true;
                 this.errors = {};
@@ -85,7 +86,10 @@
 </script>
 
 <style lang="scss" scoped>
-    .success-message{
+
+    @import "../../../../../sass/media-queries";
+
+    .success-message {
         font-size: 24px;
         width: 100%;
         display: flex;
@@ -95,12 +99,21 @@
         color: forestgreen;
     }
 
-    .input-div.reset{
+    .input-div.reset {
         position: relative;
         margin-top: 30px;
-        label{
+
+        label {
             position: absolute;
             top: -25px;
+        }
+    }
+
+    .btn-signup.reset {
+        span {
+            @include lt-sm {
+                font-size: 12px !important;
+            }
         }
     }
 </style>
