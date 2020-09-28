@@ -1,7 +1,13 @@
 <template>
   <v-app style="width: 100%">
     <div class="triangle-top-left"></div>
-    <v-container ma-0 pa-0 fluid style="max-width: 100% !important; min-height:100vh;" v-if="currentUser">
+    <v-container
+      ma-0
+      pa-0
+      fluid
+      style="max-width: 100% !important; min-height: 100vh"
+      v-if="currentUser"
+    >
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -12,91 +18,109 @@
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
                 <v-col lg="8" md="7" sm="7" cols="12">
-                  <v-card color="transparent" tile flat style="z-index: 2" class="pa-0 ma-0">
+                  <v-card
+                    color="transparent"
+                    tile
+                    flat
+                    style="z-index: 2"
+                    class="pa-0 ma-0"
+                  >
                     <v-card-text>
                       <v-list-item two-line>
-                        <v-list-item-avatar class="hidden-xs-only custom-avatar">
-                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
+                        <v-list-item-avatar
+                          class="hidden-xs-only custom-avatar"
+                        >
+                          <v-img
+                            :src="currentUser.personal_info.profile_pic"
+                          ></v-img>
                         </v-list-item-avatar>
-                        <v-list-item-avatar size="80" class="hidden-sm-and-up mr-2">
-                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
+                        <v-list-item-avatar
+                          size="80"
+                          class="hidden-sm-and-up mr-2"
+                        >
+                          <v-img
+                            :src="currentUser.personal_info.profile_pic"
+                          ></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content class="ml-lg-0 ml-md-5">
-                          <v-list-item-title class="profile-title">
+                          <v-list-item-title
+                            class="profile-title"
+                            style="overflow: visible !important"
+                          >
                             <v-card class="pa-0" flat color="transparent" tile>
-                              {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
-                              <span
-                                class="mx-8 hidden-md-and-down email-icon-block"
-                              >
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  small
-                                  depressed
-                                  class="mx-md-auto mx-sm-2 btn-email"
-                                  @click="emailModal = true"
+                              <div class="d-flex flex-row">
+                                <div class="d-flex flex-column">
+                                  <span>
+                                    {{ currentUser.personal_info.first_name }}
+                                    {{
+                                      currentUser.personal_info.last_name
+                                    }}</span
+                                  >
+                                  <span class="profile-subtitle">
+                                    {{ currentUser.personal_info.designation }}
+                                  </span>
+                                </div>
+                                <div
+                                  class="mx-8 hidden-md-and-down email-icon-block"
                                 >
-                                  <v-icon class="icon-email">mdi-email</v-icon>
-                                </v-btn>
+                                  <v-btn
+                                    fab
+                                    color="#FCD259"
+                                    small
+                                    depressed
+                                    class="mx-md-auto mx-sm-2 btn-email"
+                                    @click="emailModal = true"
+                                  >
+                                    <v-icon class="icon-email"
+                                      >mdi-email</v-icon
+                                    >
+                                  </v-btn>
 
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  x-small
-                                  depressed
-                                  class="mx-md-auto mx-sm-2 btn-video-player"
-                                  @click="videoModal = true"
-                                >
-                                  <img
-                                    width="15"
-                                    src="/images/resume_themes/theme203/icons/video-player.webp"
-                                  />
-                                </v-btn>
+                                  <v-btn
+                                    fab
+                                    color="#FCD259"
+                                    x-small
+                                    depressed
+                                    class="mx-md-auto mx-sm-2 btn-video-player"
+                                    @click="videoModal = true"
+                                  >
+                                    <img
+                                      width="15"
+                                      src="/images/resume_themes/theme203/icons/video-player.webp"
+                                    />
+                                  </v-btn>
 
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  x-small
-                                  depressed
-                                  class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
-                                  align="center"
-                                  @click="audioModal = true"
+                                  <v-btn
+                                    fab
+                                    color="#FCD259"
+                                    x-small
+                                    depressed
+                                    class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
+                                    align="center"
+                                    @click="audioModal = true"
+                                  >
+                                    <img
+                                      class
+                                      width="15"
+                                      src="/images/resume_themes/theme203/icons/headphones.webp"
+                                    />
+                                  </v-btn>
+                                </div>
+                                <div
+                                  class="social-media-block hidden-md-and-down"
                                 >
-                                  <img
-                                    class
-                                    width="15"
-                                    src="/images/resume_themes/theme203/icons/headphones.webp"
-                                  />
-                                </v-btn>
-                              </span>
-                              <span class="social-media-block hidden-md-and-down">
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  small
-                                  class="mx-md-1 mx-sm-2 social-btn"
-                                  depressed
-                                  v-for="item in currentUser.links"
-                                  @click="goToExternalLink(item.link)"
-                                  :key="item.id + '_link'"
-                                  target="_blank"
-                                  v-show="item.is_public || item.is_active"
-                                >
-                                  <img
-                                    width="15"
-                                    :src="`/images/resume_themes/theme203/social_icons/${item.link_title.toLowerCase()}.webp`"
-                                  />
-                                </v-btn>
-                              </span>
-                            </v-card>
-                          </v-list-item-title>
-                          <v-list-item-title>
-                            <v-card flat color="transparent" tile>
-                              <span class="profile-subtitle mt-n5">
-                                {{
-                                currentUser.personal_info.designation
-                                }}
-                              </span>
+                                  <IconCarousel
+                                    :currentUser="currentUser"
+                                    themeNumber="theme203"
+                                    btnWidth="40"
+                                    btnHeight="40"
+                                    iconWidth="22"
+                                    iconHeight="22"
+                                    bgColor="rgba(248, 171, 8, 0.8)"
+                                    borderRadius="100"
+                                  ></IconCarousel>
+                                </div>
+                              </div>
                             </v-card>
                           </v-list-item-title>
                         </v-list-item-content>
@@ -134,7 +158,10 @@
                       class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
                       @click="videoModal = true"
                     >
-                      <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
+                      <img
+                        width="15"
+                        src="/images/resume_themes/theme203/icons/video-player.webp"
+                      />
                     </v-btn>
 
                     <v-btn
@@ -157,10 +184,17 @@
                 <!-- 2nd column only for tab and mobile version version -->
 
                 <!-- 2nd column social media icons -->
-                <v-col lg="3" md="12" sm="12" cols="12" class="mt-n3 pa-0 hidden-lg-and-up" align="center">
+                <v-col
+                  lg="3"
+                  md="12"
+                  sm="12"
+                  cols="12"
+                  class="mt-n3 pa-0 hidden-lg-and-up"
+                  align="center"
+                >
                   <v-card flat color="tranparent">
                     <v-card-text class>
-                      <v-btn
+                      <!-- <v-btn
                         fab
                         color="#FCD259"
                         small
@@ -177,7 +211,17 @@
                           :width="item.title == 'map-markup' ? 11 : 15"
                           :src="`/images/resume_themes/theme203/social_icons/${item.link_title.toLowerCase()}.webp`"
                         />
-                      </v-btn>
+                      </v-btn> -->
+                      <IconCarousel
+                        :currentUser="currentUser"
+                        themeNumber="theme203"
+                        btnWidth="40"
+                        btnHeight="40"
+                        iconWidth="22"
+                        iconHeight="22"
+                        bgColor="rgba(248, 171, 8, 0.8)"
+                        borderRadius="100"
+                      ></IconCarousel>
                     </v-card-text>
                   </v-card>
                 </v-col>
@@ -187,30 +231,46 @@
                   <v-card flat color="transparent" tile class="ma-0 pa-0">
                     <v-card-text class="ml-lg-n5">
                       <v-row no-gutters align="center" justify="center">
-                        <v-col xl="4" lg="4" md="4" sm="4" cols="4" align="center">
+                        <v-col
+                          xl="4"
+                          lg="4"
+                          md="4"
+                          sm="4"
+                          cols="4"
+                          align="center"
+                        >
                           <v-card flat class="text-center" color="tranparent">
                             <v-card-subtitle class="hire-me-title">
                               {{
-                              currentUser.payment_info[0].salary_frequency
-                              | capitalize
+                                currentUser.payment_info[0].salary_frequency
+                                  | capitalize
                               }}
                               rate
                             </v-card-subtitle>
                             <v-card-subtitle class="hire-me-subtitle mt-n8">
                               {{ currentUser.payment_info[0].salary }}
                               {{
-                              currentUser.payment_info[0].currency.toUpperCase()
+                                currentUser.payment_info[0].currency.toUpperCase()
                               }}
                             </v-card-subtitle>
                           </v-card>
                         </v-col>
-                        <div style="height: 41px; border: 1px solid #d7d7d7"></div>
+                        <div
+                          style="height: 41px; border: 1px solid #d7d7d7"
+                        ></div>
                         <v-col cols="4">
-                          <v-card flat class="text-center" color="transparent" tile>
-                            <v-card-subtitle class="hire-me-title">Available for</v-card-subtitle>
+                          <v-card
+                            flat
+                            class="text-center"
+                            color="transparent"
+                            tile
+                          >
+                            <v-card-subtitle class="hire-me-title"
+                              >Available for</v-card-subtitle
+                            >
                             <v-card-subtitle class="hire-me-subtitle mt-n8">
                               {{
-                              currentUser.availability_info[0].available_hours
+                                currentUser.availability_info[0].available_hours
                               }}
                               Hours
                             </v-card-subtitle>
@@ -226,7 +286,8 @@
                                 height="45"
                                 depressed
                                 @click="hireMeModal = !hireMeModal"
-                              >Hire Me</v-btn>
+                                >Hire Me</v-btn
+                              >
                             </v-card-text>
                           </v-card>
                         </v-col>
@@ -250,12 +311,20 @@
           <v-col cols="12" md="10">
             <v-card flat color="transparent" tile>
               <v-card-text>
-                <v-tabs v-model="mainDataTab" color="black" centered grow show-arrows hide-slider>
+                <v-tabs
+                  v-model="mainDataTab"
+                  color="black"
+                  centered
+                  grow
+                  show-arrows
+                  hide-slider
+                >
                   <v-tab
                     v-for="item in mainTabs"
                     :key="item.id"
                     class="text-capitalize custom-tab-text"
-                  >{{ item.title }}</v-tab>
+                    >{{ item.title }}</v-tab
+                  >
                 </v-tabs>
               </v-card-text>
             </v-card>
@@ -268,7 +337,10 @@
         <v-row class="mx-md-10 mx-sm-10 mx-1">
           <v-col cols="12">
             <v-card flat color="transparent" tile style="z-index: 1">
-              <v-tabs-items v-model="mainDataTab" style="background-color: transparent">
+              <v-tabs-items
+                v-model="mainDataTab"
+                style="background-color: transparent"
+              >
                 <!--------------------- About ------------------------------>
                 <v-tab-item>
                   <div class="watermark-text text-center">About</div>
@@ -284,7 +356,11 @@
                         order="12"
                         class="about-left-column"
                       >
-                        <v-card class="card-about-left" flat color="transparent">
+                        <v-card
+                          class="card-about-left"
+                          flat
+                          color="transparent"
+                        >
                           <v-card-subtitle
                             class="dob-text"
                             :align="windowWidth <= 599 ? 'left' : 'center'"
@@ -294,9 +370,7 @@
 
                             <div class="mt-3">
                               <span class>
-                                {{
-                                currentUser.personal_info.date_of_birth
-                                }}
+                                {{ currentUser.personal_info.date_of_birth }}
                               </span>
                             </div>
                           </v-card-subtitle>
@@ -310,9 +384,7 @@
 
                             <div class="mt-3">
                               <span class>
-                                {{
-                                currentUser.personal_info.nationality
-                                }}
+                                {{ currentUser.personal_info.nationality }}
                               </span>
                             </div>
                           </v-card-subtitle>
@@ -326,9 +398,7 @@
 
                             <div class="mt-3">
                               <span style="text-transform: uppercase">
-                                {{
-                                currentUser.personal_info.hometown
-                                }}
+                                {{ currentUser.personal_info.hometown }}
                               </span>
                             </div>
                           </v-card-subtitle>
@@ -344,26 +414,38 @@
                               <span
                                 v-for="(language, i) in currentUser.languages"
                                 :key="i"
-                              >{{ language.label }}</span>
+                                >{{ language.label }}</span
+                              >
                             </div>
                           </v-card-subtitle>
                         </v-card>
                       </v-col>
 
-                      <v-col xl="4" lg="7" md="7" sm="7" cols="12" order-sm="12" order="1">
-                        <v-card class="card-about-right" flat color="transparent">
+                      <v-col
+                        xl="4"
+                        lg="7"
+                        md="7"
+                        sm="7"
+                        cols="12"
+                        order-sm="12"
+                        order="1"
+                      >
+                        <v-card
+                          class="card-about-right"
+                          flat
+                          color="transparent"
+                        >
                           <v-card-subtitle
                             class="overview-title"
                             v-if="currentUser.personal_info.overview"
-                          >Overview summary</v-card-subtitle>
+                            >Overview summary</v-card-subtitle
+                          >
                           <!-- Overview -->
                           <v-card-text
                             class="overview-text"
                             v-if="currentUser.personal_info.overview"
                           >
-                            {{
-                            currentUser.personal_info.overview
-                            }}
+                            {{ currentUser.personal_info.overview }}
                           </v-card-text>
                           <!-- Overview -->
 
@@ -371,39 +453,48 @@
                           <v-card-subtitle
                             class="overview-title"
                             v-if="currentUser.personal_info.about"
-                          >About Me</v-card-subtitle>
-                          <hr class="custom-hr hidden-xs-only" v-show="currentUser.personal_info.about" />
+                            >About Me</v-card-subtitle
+                          >
+                          <hr
+                            class="custom-hr hidden-xs-only"
+                            v-show="currentUser.personal_info.about"
+                          />
                           <v-card-text
                             class="overview-text"
                             v-if="currentUser.personal_info.about"
-                          >{{ currentUser.personal_info.about }}</v-card-text>
+                            >{{ currentUser.personal_info.about }}</v-card-text
+                          >
                           <!-- about me -->
 
                           <!-- quote -->
                           <v-card-subtitle
                             class="overview-title"
                             v-if="currentUser.personal_info.quote"
-                          >Quote</v-card-subtitle>
+                            >Quote</v-card-subtitle
+                          >
                           <v-card-text
                             class="overview-text"
                             v-if="currentUser.personal_info.quote"
-                          >{{ currentUser.personal_info.quote }}</v-card-text>
+                            >{{ currentUser.personal_info.quote }}</v-card-text
+                          >
                           <!-- quote -->
                           <!-- location -->
                           <v-card-subtitle
                             class="overview-title"
                             v-if="currentUser.personal_info.location"
-                          >Location</v-card-subtitle>
+                            >Location</v-card-subtitle
+                          >
                           <v-card-text
                             class="overview-text"
                             v-if="currentUser.personal_info.location"
                           >
-                            {{
-                            currentUser.personal_info.location
-                            }}
+                            {{ currentUser.personal_info.location }}
                           </v-card-text>
                           <!-- location -->
-                          <hr class="custom-hr hidden-sm-and-up" v-show="currentUser.personal_info.location"/>
+                          <hr
+                            class="custom-hr hidden-sm-and-up"
+                            v-show="currentUser.personal_info.location"
+                          />
                         </v-card>
                       </v-col>
                     </v-row>
@@ -432,15 +523,17 @@
                               :key="item.id"
                               v-show="item.is_public == 1"
                             >
-                              <v-img class="custom-portfolio-img" :src="getProjectMainImage(item)"></v-img>
+                              <v-img
+                                class="custom-portfolio-img"
+                                :src="getProjectMainImage(item)"
+                              ></v-img>
                               <v-card-title class="custom-portfolio-title">
-                                {{
-                                item.name
-                                }}
+                                {{ item.name }}
                               </v-card-title>
                               <v-card-subtitle
                                 class="custom-portfolio-subtitle"
-                              >{{ item.description }}</v-card-subtitle>
+                                >{{ item.description }}</v-card-subtitle
+                              >
                             </v-card>
                           </template>
                         </masonry>
@@ -457,7 +550,9 @@
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width: 100%">
                         <v-row align="center">
-                          <template v-for="(work, index) in currentUser.work_experience">
+                          <template
+                            v-for="(work, index) in currentUser.work_experience"
+                          >
                             <v-col
                               cols="12"
                               sm="12"
@@ -475,24 +570,28 @@
                                     />
                                   </v-list-item-icon>
                                   <v-list-item-content>
-                                    <v-list-item-title class="custom-work-title">
+                                    <v-list-item-title
+                                      class="custom-work-title"
+                                    >
                                       <v-card flat color="transparent" tile>
-                                        {{
-                                        work.company_name
-                                        }}
+                                        {{ work.company_name }}
                                       </v-card>
                                     </v-list-item-title>
-                                    <v-list-item-subtitle class="custom-work-subtitle">
+                                    <v-list-item-subtitle
+                                      class="custom-work-subtitle"
+                                    >
                                       <v-card flat color="transparent" tile>
-                                        {{
-                                        work.job_title
-                                        }}
+                                        {{ work.job_title }}
                                       </v-card>
                                     </v-list-item-subtitle>
-                                    <v-list-item-subtitle class="custom-work-duration mt-6">
+                                    <v-list-item-subtitle
+                                      class="custom-work-duration mt-6"
+                                    >
                                       <v-card color="transparent" tile flat>
                                         {{ work.date_from }}-
-                                        <span v-if="work.present == 1">Present</span>
+                                        <span v-if="work.present == 1"
+                                          >Present</span
+                                        >
                                         <span v-else>{{ work.to }}</span>
                                       </v-card>
                                     </v-list-item-subtitle>
@@ -514,7 +613,9 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width: 100%">
                       <v-row align="center">
-                        <template v-for="(education, index) in currentUser.education">
+                        <template
+                          v-for="(education, index) in currentUser.education"
+                        >
                           <v-col
                             cols="12"
                             sm="12"
@@ -534,23 +635,26 @@
                                 <v-list-item-content>
                                   <v-list-item-title class="custom-work-title">
                                     <v-card flat color="transparent" tile>
-                                      {{
-                                      education.university_name
-                                      }}
+                                      {{ education.university_name }}
                                     </v-card>
                                   </v-list-item-title>
-                                  <v-list-item-subtitle class="custom-education-subtitle">
-                                    <v-card flat color="transparent" tile style="color: #fbd76d">
+                                  <v-list-item-subtitle
+                                    class="custom-education-subtitle"
+                                  >
+                                    <v-card
+                                      flat
+                                      color="transparent"
+                                      tile
+                                      style="color: #fbd76d"
+                                    >
                                       {{ education.degree_title }},
                                       <span class="ml-5">
                                         {{ education.date_from }} -
-                                        <span
-                                          v-if="education.present == true"
-                                        >Present</span>
+                                        <span v-if="education.present == true"
+                                          >Present</span
+                                        >
                                         <span v-else>
-                                          {{
-                                          education.date_to
-                                          }}
+                                          {{ education.date_to }}
                                         </span>
                                       </span>
                                     </v-card>
@@ -561,7 +665,8 @@
                                       tile
                                       flat
                                       class="custom-education-details"
-                                    >{{ education.institution_type }}</v-card>
+                                      >{{ education.institution_type }}</v-card
+                                    >
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
                               </v-list-item>
@@ -602,16 +707,15 @@
                                     <v-row no-gutters>
                                       <v-col cols="6" class="skill-title-text">
                                         <span class="ml-2">
-                                          {{
-                                          skill.title
-                                          }}
+                                          {{ skill.title }}
                                         </span>
                                       </v-col>
                                       <v-col
                                         cols="6"
                                         align="right"
                                         class="skill-title-text"
-                                      >{{ skill.percentage }}</v-col>
+                                        >{{ skill.percentage }}</v-col
+                                      >
                                     </v-row>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle>
@@ -659,9 +763,7 @@
                               <v-list-item-content>
                                 <v-list-item-title class="hobby-title ml-xl-5">
                                   <v-card flat color="transparent">
-                                    {{
-                                    hobby.title
-                                    }}
+                                    {{ hobby.title }}
                                   </v-card>
                                 </v-list-item-title>
                               </v-list-item-content>
@@ -700,7 +802,9 @@
                                   : 'd-flex achievement flex-row',
                               ]"
                             >
-                              <div :align="windowWidth <= 1263 ? 'center' : 'left'">
+                              <div
+                                :align="windowWidth <= 1263 ? 'center' : 'left'"
+                              >
                                 <img
                                   class="mt-5"
                                   :src="achievement.image_src"
@@ -709,13 +813,12 @@
                               </div>
                               <v-card flat color="transparent">
                                 <v-card-subtitle class="achievement-title">
-                                  {{ achievement.title
-                                  }}{{ windowWidth }}
+                                  {{ achievement.title }}{{ windowWidth }}
                                 </v-card-subtitle>
-                                <v-card-subtitle class="achievement-subtitle mt-xl-0 mt-n5">
-                                  {{
-                                  achievement.description
-                                  }}
+                                <v-card-subtitle
+                                  class="achievement-subtitle mt-xl-0 mt-n5"
+                                >
+                                  {{ achievement.description }}
                                 </v-card-subtitle>
                               </v-card>
                             </div>
@@ -732,25 +835,41 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width: 100%">
                       <v-row align="center" justify="space-between">
-                        <template v-for="(reference, index) in currentUser.references">
-                          <v-col xl="5" lg="5" md="12" sm="12" cols="12" class="mb-5" :key="index">
+                        <template
+                          v-for="(reference, index) in currentUser.references"
+                        >
+                          <v-col
+                            xl="5"
+                            lg="5"
+                            md="12"
+                            sm="12"
+                            cols="12"
+                            class="mb-5"
+                            :key="index"
+                          >
                             <v-card flat color="transparent">
                               <v-row>
                                 <v-col cols="7">
-                                  <div class="reference-title">{{ reference.name }}</div>
+                                  <div class="reference-title">
+                                    {{ reference.name }}
+                                  </div>
                                 </v-col>
                                 <v-col cols="5" align="right">
                                   <div class="reference-date">
                                     {{
-                                    reference.created_at | getFormattedData
+                                      reference.created_at | getFormattedData
                                     }}
                                   </div>
                                 </v-col>
                                 <v-col cols="12">
-                                  <div class="reference-email">{{ reference.email }}</div>
+                                  <div class="reference-email">
+                                    {{ reference.email }}
+                                  </div>
                                 </v-col>
                                 <v-col cols="12">
-                                  <div class="reference-desc">{{ reference.reference_text }}</div>
+                                  <div class="reference-desc">
+                                    {{ reference.reference_text }}
+                                  </div>
                                 </v-col>
                               </v-row>
                             </v-card>
@@ -770,31 +889,60 @@
       <!-- All Modals -->
       <!-- Hire Me Modal -->
       <!--<hire-modal-->
-        <!--:hireMeModal.sync="hireMeModal"-->
-        <!--:windowWidth="windowWidth"-->
-        <!--:currentUser="currentUser"-->
+      <!--:hireMeModal.sync="hireMeModal"-->
+      <!--:windowWidth="windowWidth"-->
+      <!--:currentUser="currentUser"-->
       <!--&gt;</hire-modal>-->
-      <updated-hire-modal  @modalClosed="hireMeModal = false" :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
+      <updated-hire-modal
+        @modalClosed="hireMeModal = false"
+        :hireMeModal.sync="hireMeModal"
+        :closeHireMeModal="closeHireMeModal"
+        :user="currentUser"
+      ></updated-hire-modal>
       <!-- Hire Me Modal -->
 
       <!-- Email modal -->
-      <v-dialog v-model="emailModal" persistent max-width="759" class="email-modal">
+      <v-dialog
+        v-model="emailModal"
+        persistent
+        max-width="759"
+        class="email-modal"
+      >
         <v-card class="card-email">
           <div class="title-container-email">
             <div class="modal-title">Message</div>
             <div>
-              <v-btn icon depressed class="btn-email-modal-close" @click="emailModal = false">
-                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+              <v-btn
+                icon
+                depressed
+                class="btn-email-modal-close"
+                @click="emailModal = false"
+              >
+                <img
+                  src="/images/resume_themes/theme203/icons/email-close.svg"
+                  alt="close"
+                />
               </v-btn>
             </div>
           </div>
           <v-card-text class="mt-lg-0 mt-8">
             <v-card class="pa-lg-10" flat color="transparent">
-              <v-text-field class="email-input" color="#E0BB4C" placeholder="Name"></v-text-field>
-              <v-text-field type="email" class="email-input" color="#E0BB4C" placeholder="Email"></v-text-field>
+              <v-text-field
+                class="email-input"
+                color="#E0BB4C"
+                placeholder="Name"
+              ></v-text-field>
+              <v-text-field
+                type="email"
+                class="email-input"
+                color="#E0BB4C"
+                placeholder="Email"
+              ></v-text-field>
               <v-textarea color="#E0BB4C" placeholder="Message"></v-textarea>
-              <div class="mt-5 d-flex" style="justify-content:center;">
-                <v-btn color="#FCD259" depressed class="btn-send-mail">Send</v-btn>
+              <div class="mt-5 d-flex" style="justify-content: center">
+                <v-btn color="#FCD259" depressed class="btn-send-mail"
+                  >Send</v-btn
+                >
               </div>
             </v-card>
           </v-card-text>
@@ -820,7 +968,10 @@
                 @click="audioModal = false"
                 style="z-index: 101"
               >
-                <img src="/images/resume_themes/theme203/icons/email-close.svg" alt="close" />
+                <img
+                  src="/images/resume_themes/theme203/icons/email-close.svg"
+                  alt="close"
+                />
               </v-btn>
             </div>
           </div>
@@ -831,7 +982,7 @@
                 :key="item.id"
                 :modalOpen="audioModal"
                 :file="item.url"
-                :audioTitle = "item.title"
+                :audioTitle="item.title"
               ></audio-player>
             </template>
           </VueSlickCarousel>
@@ -840,7 +991,12 @@
       <!-- Audio Modal -->
 
       <!-- Video Modal -->
-      <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+      <v-dialog
+        v-model="videoModal"
+        max-width="1690"
+        max-height="740"
+        persistent
+      >
         <v-card class="card-modal-video-holder" align="center">
           <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
             <v-btn
@@ -880,18 +1036,19 @@
   </v-app>
 </template>
 <script>
-
 import UpdatedHireModal from "../includes/HireMeModal";
 import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
 import VueSlickCarousel from "vue-slick-carousel";
+import IconCarousel from "../reusable/IconCarousel";
 export default {
   name: "ResumeTheme203",
   components: {
-    'updated-hire-modal' : UpdatedHireModal,
+    "updated-hire-modal": UpdatedHireModal,
     AudioPlayer,
     VideoPlayer,
     VueSlickCarousel,
+    IconCarousel,
   },
   props: ["user", "is_preview"],
   filters: {
@@ -1111,15 +1268,15 @@ export default {
       var filterArray = audios.filter((a) => a.type === "audio");
       return filterArray;
     },
-    filterVideo(dataArray){
+    filterVideo(dataArray) {
       var filterArray = dataArray.filter((a) => a.type === "video");
       return filterArray;
     },
-    goToExternalLink(link){
-      if(!link.includes('http')){
-        link = 'http://' + link ;
+    goToExternalLink(link) {
+      if (!link.includes("http")) {
+        link = "http://" + link;
       }
-      window.location.href = link ;
+      window.location.href = link;
     },
     skillSubString(string) {
       let result = string.substring(0, 2);
@@ -1226,7 +1383,7 @@ export default {
   position: absolute;
   background: #e6bf4e;
   width: 2rem;
-  min-height: 100vh; 
+  min-height: 100vh;
   z-index: 1;
   bottom: 0;
   top: 0;
@@ -1656,10 +1813,10 @@ export default {
 .card-email {
   border-radius: 40px !important;
   padding: 24px;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     padding: 15px;
   }
-  .title-container-email{
+  .title-container-email {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1693,7 +1850,7 @@ export default {
     box-shadow: 0px 0px 40px rgba(252, 210, 89, 0.24) !important;
     border-radius: 100px !important;
     text-transform: capitalize !important;
-    @media screen and (max-width:360px){
+    @media screen and (max-width: 360px) {
       width: 139.6px !important;
       height: 40px !important;
       font-size: 16px;
@@ -1760,19 +1917,19 @@ export default {
   border-radius: 40px !important;
   overflow: hidden !important;
   padding: 40px;
-  @media screen and (min-width: 1264px) and (max-width: 1903px){
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
     padding: 24px;
   }
-  @media screen and (min-width: 960px) and (max-width: 1263px){
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     padding: 30px;
   }
-  @media screen and (min-width: 600px) and (max-width: 959px){
+  @media screen and (min-width: 600px) and (max-width: 959px) {
     padding: 35px;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     padding: 20px;
   }
-  .title-container{
+  .title-container {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
