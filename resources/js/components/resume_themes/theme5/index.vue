@@ -970,43 +970,6 @@
                 class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0"
                 align="center"
               >
-                <!-- <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
-                  <v-btn
-                    color="transparent"
-                    class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
-                    icon
-                    @click.stop="videoModal=false"
-                    depressed
-                  >
-                    <img 
-                    style="
-                      height: 0.7rem; width: auto;
-                    " 
-                    src="/images/resume_themes/theme200/icons/close.svg" />
-                  </v-btn>
-                </v-card-subtitle> -->
-
-                <!-- <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.length>0">
-                  <template v-for="video in currentUser.media">
-                    <div
-                      :key="video.id"
-                      class
-                      align="center"
-                      v-if="video.type=='video' && video.is_public==1"
-                    >
-                      <v-card class="card-video mb-md-0 md-sm-0 mb-5">
-                        <video style="width:100%;" controls>
-                          <source :src="video.url" type="video/mp4" />
-                        </video>
-                        <v-card-title class="video-window-title">{{video.title}}</v-card-title>
-                        <v-card-subtitle
-                          class="video-window-subtitle mt-n5"
-                          align="left"
-                        >{{video.transcript}}</v-card-subtitle>
-                      </v-card>
-                    </div>
-                  </template>
-                </slick>-->
                 <div
                   class="audio-header video-2 d-flex justify-space-between mb-12"
                 >
@@ -1022,7 +985,7 @@
 
                 <div class="video-container">
                   <video-player
-                    v-for="i in 3"
+                    v-for="(video, i) in filterVideo(currentUser.media)"
                     :video_num="i"
                     :key="i"
                     :modalOpen="videoModal"
@@ -1042,28 +1005,6 @@
               content-class="ct-dialog"
             >
               <div class="audio-modal-main-card">
-                <!-- <v-card-subtitle align="right">
-                  <v-btn
-                    color="transparent"
-                    class="btn-video-close mb-xl-1 mb-lg-1 mt-xl-5 mt-lg-5 mt-md-0 mt-sm-5 mt-5"
-                    @click.stop="audioModal=false"
-                    depressed
-                    icon
-                  >
-                    <img src="/images/resume_themes/theme200/icons/close.svg" />
-                  </v-btn>
-                </v-card-subtitle> -->
-
-                <!-- <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.length>0">
-                  <template v-for="audio in currentUser.media">
-                    <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
-                      <audio controls style="width:100%;">
-                        <source :src="audio.url" type="audio/mpeg" />Your browser does not support the audio element.
-                      </audio>
-                    </div>
-                  </template>
-                </vueSlickCarousel> -->
-
                 <div class="audio-header d-flex justify-space-between mb-12">
                   <div class="my-audio">My Audio</div>
 
@@ -1078,7 +1019,7 @@
                 <audio-player
                   :modalOpen="audioModal"
                   color="#FC5C8A"
-                  v-for="i in 3"
+                  v-for="(audio, i) in filterAudio(currentUser.media)"
                   :key="i"
                   :audio_num="i"
                   file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
@@ -1092,10 +1033,13 @@
       <!-- hire modal start -->
 
       <!--<hire-modal-->
-        <!--:hireMeModal.sync="hireMeModal"-->
-        <!--:widowWidth="windowWidth"-->
-      <!--&gt;</hire-modal>-->
-      <updated-hire-modal :hireMeModal.sync="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser"></updated-hire-modal>
+
+      <updated-hire-modal
+        @modalClosed="hireMeModal = false"
+        :hireMeModal.sync="hireMeModal"
+        :closeHireMeModal="closeHireMeModal"
+        :user="currentUser"
+      ></updated-hire-modal>
 
       <!-- hire modal end -->
     </v-container>
@@ -1106,6 +1050,7 @@
   .theme--light.v-application {
     background: #f1f1f1;
     color: rgba(0, 0, 0, 0.87);
+    height: 100vh;
   }
   .borpad {
     background-color: #ffffff;
@@ -1660,19 +1605,7 @@
 
   .card-modal-video-holder {
     padding: 3rem 5.5rem;
-    // // height: 850px;
-    // @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    //   height: 700px;
-    // }
-    // @media screen and (min-width:960px) and (max-width: 1263px){
-    //   height: auto;
-    // }
-    // @media screen and (max-width: 959px) {
-    //   height: 1250px;
-    // }
-    // @media screen and (max-width: 599px) {
-    //   height: 770px;
-    // }
+
     .btn-video-close {
       img {
         width: 50px;
@@ -1700,16 +1633,7 @@
     padding: 3rem 4rem;
     background-color: #ffffff;
 
-    @media screen and (min-width: 960px) and (max-width: 1263px) {
-      min-height: 600px;
-    }
-
-    @media screen and (max-width: 959px) {
-      min-height: 670px;
-    }
-
     @media screen and (max-width: 599px) {
-      min-height: 734px;
       padding: 1.5rem;
     }
   }
@@ -1769,7 +1693,7 @@ export default {
     VueSlickCarousel,
     AudioPlayer,
     VideoPlayer,
-    'updated-hire-modal' : UpdatedHireModal,
+    "updated-hire-modal": UpdatedHireModal,
     SocialLinks,
   },
   data() {
@@ -1932,6 +1856,14 @@ export default {
       });
 
       return mainImage.src;
+    },
+    filterAudio(audios) {
+      var filterArray = audios.filter((a) => a.type === "audio");
+      return filterArray;
+    },
+    filterVideo(videos) {
+      var filterArray = videos.filter((a) => a.type === "video");
+      return filterArray;
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;

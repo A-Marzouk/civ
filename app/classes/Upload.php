@@ -348,21 +348,6 @@ class Upload
         return $data;
     }
 
-    public static function media(Request $request)
-    {
-        $file = $request->file('mediaFile');
-        $name = date(time()) . '_' . $file->getClientOriginalName();
-
-        if (strpos($name, 'blob') !== false) { // audio record
-            $name .= 'user_record.mp3';
-        }
-
-        $file->move(public_path() . '/uploads/media/', $name);
-        $path = '/uploads/media/' . $name;
-
-        return $path;
-    }
-
     public static function docFile(Request $request)
     {
         $file = $request->file('importFile');

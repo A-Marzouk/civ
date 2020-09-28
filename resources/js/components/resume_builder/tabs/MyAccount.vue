@@ -26,16 +26,26 @@
                                           :disabled="false"
                             ></v-text-field>
 
-                            <v-text-field
-                                    class="resume-builder__input input-margin input-margin-3 mt-n3 ct-fix-input"
-                                    label="Email"
-                                    v-model="accountData.email"
-                                    :outlined="true"
-                                    :class="{'resume-builder__input--disabled': false}"
-                                    :error="!!errors.email"
-                                    :error-messages="errors.email"
-                                    :disabled="canEditEmail()"
-                            ></v-text-field>
+                            <div class="email-input">
+                                <v-text-field
+                                        class="resume-builder__input input-margin input-margin-3 mt-n3 ct-fix-input"
+                                        label="Email"
+                                        v-model="accountData.email"
+                                        persistent-hint
+                                        :outlined="true"
+                                        :class="{'resume-builder__input--disabled': false}"
+                                        :error="!!errors.email"
+                                        :error-messages="errors.email"
+                                        :disabled="canEditEmail()"
+                                ></v-text-field>
+                                <div class="verify">
+                                    <span v-if="currentUser.email_verified_at" >Verified</span>
+                                    <a v-else href="javascript:void(0)"  v-show="!isEmailSent && !isSending" @click="sendVerificationEmail">Verify</a>
+                                    <span v-show="isEmailSent && !isSending">Verification email has been sent.</span>
+                                    <span v-show="isSending" style="color: #0F4CEE">Sending...</span>
+                                </div>
+                            </div>
+
 
                             <v-text-field
                                     class="resume-builder__input input-margin centered-input mt-n3 ct-fix-input"
@@ -254,6 +264,8 @@
         data() {
             return {
                 subscriptionInfoModal: false,
+                isEmailSent: false,
+                isSending: false,
                 priceTab: 0,
                 stripeInactive: "/images/pricing/icons/stripe-logo-inactive.png",
                 stripeActive: "/images/pricing/icons/stripe-logo-active.svg",
@@ -366,6 +378,22 @@
                 this.checkPoints.right.map( (point) => { if (point.id === checkPointID){ point.chosen = !point.chosen;} } );
             },
 
+            sendVerificationEmail(){
+                this.isSending = true;
+                axios.post('/email/resend', this.user)
+                    .then( () => {
+                        this.isSending = false;
+                        this.isEmailSent = true;
+                    })
+                    .catch(() => {
+                        console.log("Error while sending email.");
+                        this.isSending = false;
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    })
+            },
             //
             openDeleteDialog() {
                 this.deleteDialog = true;
@@ -1112,6 +1140,19 @@
                 }
 
                 .mar-form {
+
+                    .email-input{
+                        position: relative;
+                        .verify{
+                            span{
+                                color: green;
+                            }
+                            position: absolute;
+                            top: 0px;
+                            left: 55px;
+                        }
+                    }
+
                     .input-margin {
                         margin-bottom: 20px;
                     }
