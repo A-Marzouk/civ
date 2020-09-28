@@ -1,46 +1,6 @@
 <template>
-  <!-- <v-card flat class="pa-md-0 pa-0" color="transparent">
-    <v-card-text class="ml-xl-6 ml-lg-6">
-      <v-row justify="center" dense class="mt-xl-0 mt-lg-0 mt-md-10 mt-sm-12 mt-10">
-        <v-col xl="1" lg="1" md="1" sm="1" cols="2">
-          <span class="audio_num"  >{{ audio_num }}</span>
-          <v-btn
-            fab
-            color="#FC5C8A"
-            class="btn-play"
-            depressed
-            @click.prevent="playing ? pause() : play()"
-          >
-            <v-icon color="white" x-large v-if="!playing || paused">mdi-play</v-icon>
-            <v-icon color="white" x-large v-else>mdi-pause</v-icon>
-          </v-btn>
-        </v-col>
-        <v-col xl="11" lg="11" md="11" sm="11" cols="10" align="left" class="mt-n8">
-          <v-row>
-            <v-col xl="6" lg="6" md="6" cols="6">
-              <div class="durationTime">{{currentTime}}</div>
-            </v-col>
-            <v-col xl="5" lg="5" md="6" cols="6" align="right">
-              <div class="durationTime">{{totalDuration | secondToMinHours}}</div>
-            </v-col>
-            <v-col xl="10" lg="10" md="10" sm="10" align="left">
-              <v-progress-linear
-                rounded
-                class="custom-progressbar"
-                :value="percentage"
-                height="8"
-                :color="color"
-              ></v-progress-linear>
-            </v-col>
-          </v-row>
-          <audio id="player" ref="player" :modalOpen="modalOpen" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
-        </v-col>
-      </v-row>
-    </v-card-text>
-  </v-card> -->
-
   <div class="mb-8 audi-container">
-    <div class="info-text">Audio-{{audio_num}}</div>
+    <div class="info-text">Audio-{{ audio_num }}</div>
     <v-btn
       fab
       color="#FC5C8A"
@@ -86,9 +46,9 @@ export default {
   name: "AudioPlayer",
   components: {},
   props: {
-    modalOpen:{
+    modalOpen: {
       type: Boolean,
-      default:true,
+      default: true,
     },
     color: {
       type: String,
@@ -114,8 +74,8 @@ export default {
     },
     audio_num: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {
@@ -131,12 +91,12 @@ export default {
     };
   },
 
-  watch:{
-    modalOpen:function(val){
-      if(val== false){
+  watch: {
+    modalOpen: function (val) {
+      if (val == false) {
         this.stop();
       }
-    }
+    },
   },
   methods: {
     setPosition() {
@@ -282,7 +242,6 @@ export default {
   transform: translateY(-13px);
 }
 
-
 //md screen
 @media only screen and (max-width: 1260px) {
   .audi-container {
@@ -298,7 +257,6 @@ export default {
 
 //sm screen
 @media only screen and (max-width: 700px) {
-
   .audi-container {
     grid-gap: 0.8rem;
   }
@@ -312,7 +270,6 @@ export default {
   .progress_container {
     grid-row: 2 / 3;
     grid-column: 2 / 4;
-
   }
 
   .btn-play {
@@ -324,9 +281,7 @@ export default {
 
 @media only screen and (max-width: 500px) {
   .progress_container {
-    
     margin-left: 1.6rem;
   }
 }
-
 </style>
