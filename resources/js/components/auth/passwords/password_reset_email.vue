@@ -15,17 +15,17 @@
         </v-container>
 
         <v-container style="margin-top: 40px;">
-            <password-reset-form></password-reset-form>
+            <password-reset-email></password-reset-email>
         </v-container>
     </v-app>
 </template>
 
 <script>
-    import ResetForm from "../partials/passwords/password_reset_form";
+    import ResetForm from "../partials/passwords/password_reset_email";
     export default {
         name: "password_reset",
         components: {
-            "password-reset-form": ResetForm
+            "password-reset-email": ResetForm
         },
         data(){
             return{

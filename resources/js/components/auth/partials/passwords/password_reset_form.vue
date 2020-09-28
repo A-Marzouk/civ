@@ -7,7 +7,7 @@
                         <v-card-subtitle align="center" class="create-new-account-text">Reset Password</v-card-subtitle>
 
                         <v-card-subtitle>
-                            <v-form ref="form" :lazy-validation="lazy" class="login-form" v-show="!isEmailSent">
+                            <v-form ref="form" :lazy-validation="lazy" class="login-form" v-show="!isPasswordSet">
                                 <div class="input-div reset">
                                     <label>Email Address</label>
                                     <v-text-field
@@ -23,19 +23,45 @@
                                             :height="windowWidth<=599 ? '33.44' : '60'"
                                     ></v-text-field>
                                 </div>
+                                <div class="input-div reset">
+                                    <label>Password</label>
+                                    <v-text-field
+                                            dark
+                                            color="primary"
+                                            class="login-input"
+                                            type="password"
+                                            outlined
+                                            :error="!!errors.password"
+                                            :error-messages="errors.password"
+                                            background-color="#ffffff"
+                                            v-model="formData.password"
+                                            :height="windowWidth<=599 ? '33.44' : '60'"
+                                    ></v-text-field>
+                                </div>
+
+                                <div class="input-div reset">
+                                    <label>Confirm Password</label>
+                                    <v-text-field
+                                            dark
+                                            color="primary"
+                                            class="login-input"
+                                            type="password"
+                                            outlined
+                                            :error="!!errors.password"
+                                            background-color="#ffffff"
+                                            v-model="formData.password_confirmation"
+                                            :height="windowWidth<=599 ? '33.44' : '60'"
+                                    ></v-text-field>
+                                </div>
 
                                 <v-btn color="#0046FE" class="btn-signup reset" style="width: fit-content !important;"
-                                       @click="sendPasswordRestLink">
-                                    <span>{{isSending ? 'Sending...' : 'Send Reset Link'}}</span>
+                                       @click="resetPassword">
+                                    <span>{{isResetting ? 'Resetting...' : 'Reset Password'}}</span>
                                 </v-btn>
                             </v-form>
-                            <div v-show="isEmailSent" class="success-message">
-                                Password reset link has been successfully sent.
+                            <div v-show="isPasswordSet" class="success-message">
+                                Password has been successfully changed | <a href="/login" class="ml-1"> Login</a>
                             </div>
-                        </v-card-subtitle>
-                        <v-card-subtitle class="account-exists NoDecor">
-                            Already reset password?
-                            <a href="/login">Login</a>
                         </v-card-subtitle>
                     </v-card>
                 </v-card>
@@ -52,28 +78,30 @@
                 windowWidth: window.innerWidth,
                 agreeCheck: false,
                 formData: {
-                    email: ''
+                    token: '',
+                    email: '',
+                    password: '',
+                    password_confirmation: '',
                 },
                 errors: {},
                 lazy: false,
-                isEmailSent: false,
-                isSending: false,
+                isPasswordSet: false,
+                isResetting: false,
             }
         },
         methods: {
-            sendPasswordRestLink() {
-                if (this.isSending) {
+            resetPassword() {
+                if (this.isResetting) {
                     return;
                 }
-                this.isSending = true;
+                this.isResetting = true;
                 this.errors = {};
-                axios.post('/password/email', this.formData)
-                    .then(response => {
-                        this.isEmailSent = true;
-                        this.isSending = false;
+                axios.post('/password/reset', this.formData)
+                    .then(() => {
+                        this.logoutUser();
                     })
                     .catch(error => {
-                        this.isSending = false;
+                        this.isResetting = false;
                         if (typeof error.response.data === 'object') {
                             this.errors = error.response.data.errors;
                         } else {
@@ -81,6 +109,25 @@
                         }
                     });
             },
+            logoutUser() {
+                axios.post('/logout').then(() => {
+                        // remove access token from cookies:
+                        Vue.$cookies.remove('access_token');
+                        this.isPasswordSet = true;
+                        this.isResetting = false;
+                    }
+                )
+            },
+            getParameterByName(name) {
+                let match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+                return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+            }
+        },
+        mounted() {
+            // get data from the url:
+            this.formData.email = this.getParameterByName('email');
+            this.formData.token = window.location.pathname.split("/")[3];
+
         }
     }
 </script>

@@ -58,16 +58,29 @@ if ($("#registerForm").length !== 0) {
 }
 
 
-import resetPasswordForm from './components/auth/passwords/password_reset';
+import resetPasswordEmailForm from './components/auth/passwords/password_reset_email';
+if ($("#resetPasswordEmailForm").length !== 0) {
+    new Vue({
+        el: '#resetPasswordEmailForm',
+        vuetify,
+        components:{
+            'reset-password-email-form':resetPasswordEmailForm
+        }
+    });
+}
+
+
+import resetPasswordForm from './components/auth/passwords/password_reset_form';
 if ($("#resetPasswordForm").length !== 0) {
     new Vue({
         el: '#resetPasswordForm',
         vuetify,
         components:{
-            'password-reset-form':resetPasswordForm
+            'reset-password-form':resetPasswordForm
         }
     });
 }
+
 
 
 

@@ -2,8 +2,8 @@
 
 @section('content')
     <div>
-        <div id="resetPasswordForm">
-            <password-reset-form></password-reset-form>
+        <div id="resetPasswordEmailForm">
+            <reset-password-email-form></reset-password-email-form>
         </div>
     </div>
 @endsection
