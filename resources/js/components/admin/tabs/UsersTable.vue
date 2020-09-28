@@ -29,30 +29,38 @@
                                     <v-row>
                                         <v-col cols="12" sm="6" md="4">
                                             <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
-                                            <div  class="error" style="background-color: white !important;"  v-if="errors.name">
+                                            <div class="error" style="background-color: white !important;"
+                                                 v-if="errors.name">
                                                 {{ Array.isArray(errors.name) ? errors.name[0] : errors.name}}
                                             </div>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4">
                                             <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
-                                            <div  class="error" style="background-color: white !important;"  v-if="errors.email">
+                                            <div class="error" style="background-color: white !important;"
+                                                 v-if="errors.email">
                                                 {{ Array.isArray(errors.email) ? errors.email[0] : errors.email}}
                                             </div>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4">
                                             <v-text-field v-model="editedItem.username" label="Username"></v-text-field>
-                                            <div  class="error" style="background-color: white !important;"  v-if="errors.username">
-                                                {{ Array.isArray(errors.username) ? errors.username[0] : errors.username}}
+                                            <div class="error" style="background-color: white !important;"
+                                                 v-if="errors.username">
+                                                {{ Array.isArray(errors.username) ? errors.username[0] :
+                                                errors.username}}
                                             </div>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4" v-show="canEditPassword">
-                                            <v-text-field type="password" v-model="editedItem.password" label="Password"></v-text-field>
-                                            <div  class="error" style="background-color: white !important;"  v-if="errors.password">
-                                                {{ Array.isArray(errors.password) ? errors.password[0] : errors.password}}
+                                            <v-text-field type="password" v-model="editedItem.password"
+                                                          label="Password"></v-text-field>
+                                            <div class="error" style="background-color: white !important;"
+                                                 v-if="errors.password">
+                                                {{ Array.isArray(errors.password) ? errors.password[0] :
+                                                errors.password}}
                                             </div>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4" v-show="canEditPassword">
-                                            <v-text-field type="password" v-model="editedItem.password_confirmation" label="Password Confirmation"></v-text-field>
+                                            <v-text-field type="password" v-model="editedItem.password_confirmation"
+                                                          label="Password Confirmation"></v-text-field>
                                         </v-col>
                                     </v-row>
                                 </v-container>
@@ -87,20 +95,22 @@
                 </div>
             </template>
             <template v-slot:item.tester="{ item }">
-                <v-checkbox v-model="item.can_test_builder" label="Can open builder without subscription" @change="toggleUserPermissionToTestBuilder(item)"></v-checkbox>
+                <v-checkbox v-model="item.can_test_builder" label="Can open builder without subscription"
+                            @change="toggleUserPermissionToTestBuilder(item)"></v-checkbox>
             </template>
             <template v-slot:item.profileLink="{ item }">
                 <div class="NoDecor">
-                    <a :href="'/workforce-admin/' + item.username + '/resume-builder'" target="_blank">{{item.username}}</a>
+                    <a :href="'/workforce-admin/' + item.username + '/resume-builder'"
+                       target="_blank">{{item.username}}</a>
                 </div>
             </template>
             <template v-slot:item.lastActivity="{ item }">
-                {{getElapsedTime(item.last_activity).length > 0 ? getElapsedTime(item.last_activity) : 'a few moments'}} ago
+                {{item.last_activity}}
             </template>
             <template v-slot:no-data>
                 No available data
             </template>
-            <template  v-slot:item.subscription="{ item }">
+            <template v-slot:item.subscription="{ item }">
                 <!-- dialogs -->
 
                 <a href="javascript:void(0)" @click="setCurrentSubscription(item)">View subscription</a>
@@ -116,18 +126,23 @@
                             </v-btn>
                         </v-card-subtitle>
                         <v-card-text align="center" class="padding-sm-1">
-                            <v-row align="center" justify="center" class="p-5 d-flex flex-column" v-if="item.subscription">
+                            <v-row align="center" justify="center" class="p-5 d-flex flex-column"
+                                   v-if="item.subscription">
                                 <div>
-                                    <b style="text-transform: capitalize;">{{item.subscription.sub_frequency}}</b> subscription
+                                    <b style="text-transform: capitalize;">{{item.subscription.sub_frequency}}</b>
+                                    subscription
                                 </div>
                                 <div>
-                                    Price: <b style="text-transform: capitalize;">{{item.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}</b>
+                                    Price: <b style="text-transform: capitalize;">{{item.subscription.sub_frequency ===
+                                    'monthly' ? '5 USD/month' : '50 USD/year'}}</b>
                                 </div>
                                 <div>
-                                    Expires at: <b style="text-transform: capitalize;">{{item.subscription.expires_at}}</b>
+                                    Expires at: <b
+                                        style="text-transform: capitalize;">{{item.subscription.expires_at}}</b>
                                 </div>
                                 <div>
-                                    Payment method: <b style="text-transform: capitalize;">{{item.subscription.payment_method}} | {{item.subscription.promocode.name}}</b>
+                                    Payment method: <b style="text-transform: capitalize;">{{item.subscription.payment_method}}
+                                    | {{item.subscription.promocode.name}}</b>
                                 </div>
                             </v-row>
                             <v-row class="d-flex justify-center m-5" v-else>
@@ -161,22 +176,25 @@
             </template>
             <template v-slot:item.actions="{ item }">
                 <div class="d-flex align-items-center justify-content-between">
-                    <v-btn small class="mr-3" color="error" style="color: white !important;" @click="forceDeleteUser(item)">Permanently Delete</v-btn>
+                    <v-btn small class="mr-3" color="error" style="color: white !important;"
+                           @click="forceDeleteUser(item)">Permanently Delete
+                    </v-btn>
                     <v-btn small color="success" @click="restoreUser(item)">Restore</v-btn>
                 </div>
             </template>
             <template v-slot:item.profileLink="{ item }">
                 <div class="NoDecor">
-                    <a :href="'/workforce-admin/' + item.username + '/resume-builder'" target="_blank">{{item.username}}</a>
+                    <a :href="'/workforce-admin/' + item.username + '/resume-builder'"
+                       target="_blank">{{item.username}}</a>
                 </div>
             </template>
             <template v-slot:item.lastActivity="{ item }">
-                {{getElapsedTime(item.last_activity).length > 0 ? getElapsedTime(item.last_activity) : 'a few moments'}} ago
+                {{item.last_activity}}
             </template>
             <template v-slot:no-data>
                 No available data
             </template>
-            <template  v-slot:item.subscription="{ item }">
+            <template v-slot:item.subscription="{ item }">
                 <!-- dialogs -->
 
                 <a href="javascript:void(0)" @click="setCurrentSubscription(item)">View subscription</a>
@@ -192,18 +210,23 @@
                             </v-btn>
                         </v-card-subtitle>
                         <v-card-text align="center" class="padding-sm-1">
-                            <v-row align="center" justify="center" class="p-5 d-flex flex-column" v-if="item.subscription">
+                            <v-row align="center" justify="center" class="p-5 d-flex flex-column"
+                                   v-if="item.subscription">
                                 <div>
-                                    <b style="text-transform: capitalize;">{{item.subscription.sub_frequency}}</b> subscription
+                                    <b style="text-transform: capitalize;">{{item.subscription.sub_frequency}}</b>
+                                    subscription
                                 </div>
                                 <div>
-                                    Price: <b style="text-transform: capitalize;">{{item.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}</b>
+                                    Price: <b style="text-transform: capitalize;">{{item.subscription.sub_frequency ===
+                                    'monthly' ? '5 USD/month' : '50 USD/year'}}</b>
                                 </div>
                                 <div>
-                                    Expires at: <b style="text-transform: capitalize;">{{item.subscription.expires_at}}</b>
+                                    Expires at: <b
+                                        style="text-transform: capitalize;">{{item.subscription.expires_at}}</b>
                                 </div>
                                 <div>
-                                    Payment method: <b style="text-transform: capitalize;">{{item.subscription.payment_method}} | {{item.subscription.promocode.name}}</b>
+                                    Payment method: <b style="text-transform: capitalize;">{{item.subscription.payment_method}}
+                                    | {{item.subscription.promocode.name}}</b>
                                 </div>
                             </v-row>
                             <v-row class="d-flex justify-center m-5" v-else>
@@ -222,8 +245,8 @@
 <script>
 
     export default {
-        name:'usersTable',
-        props:['users', 'deletedUsers'],
+        name: 'usersTable',
+        props: ['users', 'deletedUsers'],
         data: () => ({
             dialog: false,
             headers: [
@@ -233,13 +256,13 @@
                     sortable: false,
                     value: 'name',
                 },
-                { text: 'Email', value: 'email' },
-                { text: 'Link to resume builder', value: 'profileLink'},
-                { text: 'Sub. Status', value: 'subscription' },
-                { text: 'Signup date', value: 'created_at' },
-                { text: 'Last activity', value: 'lastActivity' },
-                { text: 'Actions', value: 'actions', sortable: false },
-                { text: 'Tester', value: 'tester', sortable: false },
+                {text: 'Email', value: 'email'},
+                {text: 'Link to resume builder', value: 'profileLink'},
+                {text: 'Sub. Status', value: 'subscription'},
+                {text: 'Signup date', value: 'created_at'},
+                {text: 'Last activity', value: 'lastActivity'},
+                {text: 'Actions', value: 'actions', sortable: false},
+                {text: 'Tester', value: 'tester', sortable: false},
             ],
             tableUsers: [],
             tableDeletedUsers: [],
@@ -261,31 +284,31 @@
                 password: '',
                 password_confirmation: ''
             },
-            errors:[],
+            errors: [],
         }),
 
         computed: {
-            formTitle () {
+            formTitle() {
                 return this.editedIndex === -1 ? 'New User' : 'Edit User'
             },
-            canEditPassword(){
+            canEditPassword() {
                 return this.editedIndex === -1;
             }
         },
 
         watch: {
-            dialog (val) {
+            dialog(val) {
                 val || this.close()
             },
         },
 
-        created () {
+        created() {
             this.initialize()
         },
 
         methods: {
             // restore
-            restoreUser(item){
+            restoreUser(item) {
                 const index = this.tableDeletedUsers.indexOf(item);
 
                 if (!confirm('Are you sure you want to restore this deleted user?')) {
@@ -293,63 +316,62 @@
                 }
 
                 // restore item:
-                axios.post('/api/admin/restore-user', item).then( (response) => {
+                axios.post('/api/admin/restore-user', item).then((response) => {
                     this.$store.dispatch('flyingNotification');
                     this.tableDeletedUsers.splice(index, 1);
                     this.tableUsers.push(item);
                 });
             },
             // permanently  delete
-            forceDeleteUser(item){
+            forceDeleteUser(item) {
                 const index = this.tableDeletedUsers.indexOf(item);
                 if (!confirm('Are you sure you want to permanently delete this user?')) {
                     return;
                 }
 
                 // delete item:
-                axios.delete('/api/admin/force-delete-user/' + item.id).then( (response) => {
+                axios.delete('/api/admin/force-delete-user/' + item.id).then((response) => {
                     this.$store.dispatch('flyingNotificationDelete');
                     this.tableDeletedUsers.splice(index, 1);
                 });
             },
 
-            initialize () {
-                this.tableUsers = this.users ;
-                this.tableDeletedUsers = this.deletedUsers ;
+            initialize() {
+                this.tableUsers = this.users;
+                this.tableDeletedUsers = this.deletedUsers;
             },
 
-            setCurrentSubscription(user){
-                this.subscriptionModalUserID = user.id ;
+            setCurrentSubscription(user) {
+                this.subscriptionModalUserID = user.id;
             },
 
 
-
-            toggleUserPermissionToTestBuilder(user){
-                axios.post('/api/admin/give-test-permission', {user_id : user.id}).then( (response) => {
+            toggleUserPermissionToTestBuilder(user) {
+                axios.post('/api/admin/give-test-permission', {user_id: user.id}).then((response) => {
                     this.$store.dispatch('flyingNotification');
                 });
             },
-            editItem (item) {
+            editItem(item) {
                 this.editedIndex = this.tableUsers.indexOf(item);
-                this.editedItem  = Object.assign({}, item);
+                this.editedItem = Object.assign({}, item);
                 this.dialog = true;
             },
 
-            deleteItem (item) {
+            deleteItem(item) {
                 const index = this.tableUsers.indexOf(item);
                 if (!confirm('Are you sure you want to delete this user?')) {
                     return;
                 }
 
                 // delete item:
-                axios.delete('/api/admin/delete-user/' + item.id).then( (response) => {
+                axios.delete('/api/admin/delete-user/' + item.id).then((response) => {
                     this.$store.dispatch('flyingNotificationDelete');
                     this.tableUsers.splice(index, 1);
                     this.tableDeletedUsers.push(item);
                 });
             },
 
-            close () {
+            close() {
                 this.dialog = false;
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)
@@ -357,12 +379,12 @@
                 }, 300)
             },
 
-            save () {
-                this.errors = [] ;
+            save() {
+                this.errors = [];
                 if (this.editedIndex > -1) {
                     // edit item
                     axios.put('/api/admin/update-user', this.editedItem)
-                        .then( (response) => {
+                        .then((response) => {
                             Object.assign(this.tableUsers[this.editedIndex], this.editedItem);
                             this.$store.dispatch('flyingNotification');
                             this.close();
@@ -383,7 +405,7 @@
                 } else {
                     // new item
                     axios.post('/api/admin/create-user', this.editedItem)
-                        .then( (response) => {
+                        .then((response) => {
                             this.tableUsers.push(response.data.user);
                             this.$store.dispatch('flyingNotification');
                             this.close();
@@ -401,39 +423,6 @@
                             });
                         });
                 }
-            },
-
-            getElapsedTime (timeInSeconds) {
-                let days    =  Math.floor(timeInSeconds / 86400);
-                let hours   =  Math.floor((timeInSeconds % 86400) / 3600);
-                let minutes =  Math.floor(((timeInSeconds % 86400) % 3600) / 60);
-
-                let daysText = '';
-                let hoursText = '';
-                let minutesText = '';
-
-                if(days === 1 ){
-                    daysText = days + ' day '
-                }
-                if(days > 1){
-                    daysText = days + ' days '
-                }
-
-                if(hours === 1 ){
-                    hoursText = hours + ' hour '
-                }
-                if(hours > 1){
-                    hoursText = hours + ' hours '
-                }
-
-                if(minutes === 1 ){
-                    minutesText = minutes + ' minute '
-                }
-                if(minutes > 1){
-                    minutesText = minutes + ' minutes '
-                }
-
-                return daysText + hoursText + ( days >= 1 ? '' : minutesText) ;
             }
         },
 
@@ -444,11 +433,11 @@
 </script>
 
 <style lang="scss" scoped>
-    .users-table{
+    .users-table {
         margin-top: 37px;
     }
 
-    .error{
+    .error {
         color: red;
     }
 </style>
