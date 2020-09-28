@@ -74,10 +74,6 @@ class UsersController extends Controller
 
     }
 
-    public function requestVerify(Request $request){
-        $request->user()->sendEmailVerificationNotification();
-    }
-
     public function deactivateAccount($id){
         $user = User::where([
             'id' => $id,
