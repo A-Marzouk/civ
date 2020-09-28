@@ -400,6 +400,7 @@ export default {
 
 #welcomeView,
 #registerForm,
+#resetPasswordForm,
 #external_reference,
 #loginForm {
   .inner-text {

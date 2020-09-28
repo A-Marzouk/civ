@@ -32,7 +32,7 @@ if ($("#passportPersonalAccessTokens").length !== 0) {
 }
 
 
-// Auth components register
+// Auth components
 
 import loginForm from './components/auth/Login';
 if ($("#loginForm").length !== 0) {
@@ -53,6 +53,18 @@ if ($("#registerForm").length !== 0) {
         vuetify,
         components:{
             'register-form':registerForm
+        }
+    });
+}
+
+
+import resetPasswordForm from './components/auth/passwords/password_reset';
+if ($("#resetPasswordForm").length !== 0) {
+    new Vue({
+        el: '#resetPasswordForm',
+        vuetify,
+        components:{
+            'password-reset-form':resetPasswordForm
         }
     });
 }
