@@ -81,7 +81,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="mr-2">
-                                                    {{progressBar}}%
+                                                    {{Math.ceil(progressBar)}}%
                                                 </div>
                                             </div>
 
