@@ -503,7 +503,9 @@ export const store = new Vuex.Store({
             'links',
             'pay_availability',
             'profile', // main tab | can not be hidden
-        ]
+        ],
+        savingStatus: 'normal',
+        justSaved: false
     },
     mutations: {
         setCurrentUser: (state, data) => {
@@ -513,8 +515,18 @@ export const store = new Vuex.Store({
             state.themeUser = themeUser;
         },
         updateActivity(state) {
+            state.savingStatus = 'saving';
             axios.post('/api/user/update-last-activity', { user_id: state.user.id }).then((response) => {
+                state.savingStatus = 'saved';
+                setTimeout(() => {
+                    state.savingStatus = 'normal';
+                    state.justSaved = true;
+                },1500);
             }).catch((error) => {
+                state.savingStatus = 'error';
+                setTimeout(() => {
+                    state.savingStatus = 'normal';
+                },1500);
                 console.log('Error - last activity');
             });
 
@@ -636,41 +648,27 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
-        showFullScreenNotification: (state, data) => {
-            let modal = $('#fullScreenNotificationModal');
-
-            // change to needed content
-            let notificationText = $('#notificationText');
-            let notificationIconSrc = $('#notificationIconSrc');
-            data.message ? notificationText.text(data.message) : notificationText.text('Data saved successfully');
-            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
-
-            // toggle modal
-            modal.modal('show');
-            modal.css('display', 'flex');
-            setTimeout(() => {
-                modal.modal('hide')
-            }, 2000);
-
-            store.commit('updateActivity');
-        },
         showFlyingNotification: (state, data) => {
-            let notificationElement = $('#flyingNotification');
+            // let notificationElement = $('#flyingNotification');
+            //
+            // let notificationText = $('#flyingNotificationText');
+            // let notificationIconSrc = $('#flyingNotificationIconSrc');
+            // data.message ? notificationText.text(data.message) : notificationText.text('Saved');
+            // data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
+            //
+            // if (notificationElement.is(':visible')) {
+            //     return;
+            // }
+            // notificationElement.slideToggle('slow');
+            // setTimeout(() => {
+            //     notificationElement.slideToggle('slow');
+            // }, 2000);
 
-            let notificationText = $('#flyingNotificationText');
-            let notificationIconSrc = $('#flyingNotificationIconSrc');
-            data.message ? notificationText.text(data.message) : notificationText.text('Saved');
-            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
-
-            if (notificationElement.is(':visible')) {
-                return;
+            if(data.message === 'Error'){
+                state.savingStatus = 'error' ;
+            }else{
+                store.commit('updateActivity');
             }
-            notificationElement.slideToggle('slow');
-            setTimeout(() => {
-                notificationElement.slideToggle('slow');
-            }, 2000);
-
-            store.commit('updateActivity');
 
         },
         showFlyingNotificationDelete: (state, data) => {
@@ -715,9 +713,6 @@ export const store = new Vuex.Store({
                 window.location.href = '/login';
             }
             )
-        },
-        fullScreenNotification(store, payload = {}) {
-            store.commit('showFullScreenNotification', payload);
         },
         flyingNotification(store, payload = {}) {
             store.commit('showFlyingNotification', payload);

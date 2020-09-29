@@ -46,7 +46,7 @@
                                 </div>
 
                                 <div class="input-div mt-md-0 mt-sm-0 mt-n3">
-                                    <label>Password</label>
+                                    <label>Password</label> <a href="/password/reset" class="ml-2">Forgot?</a>
                                     <v-text-field
                                             dark
                                             color="primary"

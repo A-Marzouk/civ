@@ -42,7 +42,7 @@
                                     <v-input
                                             class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
                                             outlined
-                                            label="Upload File"
+                                            label="Upload Video"
                                             hint="(Maximum 1 files)"
                                             height="50"
                                             :error="!!errors.url"
@@ -130,6 +130,41 @@
                                             hint="Optional"
                                     >
                                     </v-text-field>
+                                </div>
+                                <div class="upload-preview">
+                                    <div class="input">
+                                        <v-input
+                                                class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
+                                                outlined
+                                                label="Upload Image Preview"
+                                                hint="(Maximum 1 file)"
+                                                height="50"
+                                                :error="!!errors.mediaPreviewFile"
+                                                :error-messages="errors.mediaPreviewFile"
+
+                                        >
+                                            <vue-dropzone
+                                                    class="civie-dropzone-input"
+                                                    ref="filesDropZone_image_preview"
+                                                    id="dropzone_preview"
+                                                    :options="dropzoneImagePreviewOptions"
+                                                    :useCustomSlot="true"
+                                                    v-on:vdropzone-file-added="handlingImageEvent"
+                                                    v-on:success="removePreview"
+
+                                            >
+                                                <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
+                                                    <div class="mr-5">
+                                                        <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                    </div>
+                                                    <div class="upload-text">Browse/Drag</div>
+                                                </div>
+                                            </vue-dropzone>
+                                        </v-input>
+                                    </div>
+                                    <div class="file-name">
+                                        {{newMedia.mediaPreviewFile ? 'Uploaded:' + newMedia.mediaPreviewFile.name : ''}}
+                                    </div>
                                 </div>
                                 <div class="media-inputs" :class="{ 'justify-content-end' : isEditing}">
 
@@ -331,7 +366,11 @@
                                         </div>
                                         <div class="video-frame">
                                             <v-card flat color="transparent" tile class="pa-2">
-                                                <video width="auto" height="auto" controls>
+                                                <img :src="media.media_preview" class="mediaPreview"  v-show="playingVideoId !== media.id" alt="media preview">
+                                                <v-btn fab color="#F8F8F8" :ripple="false" large class="play-btn" @click="playVideo(media)"  v-show="playingVideoId !== media.id">
+                                                    <img src="/images/welcome_landing_page/icons/play.svg"  />
+                                                </v-btn>
+                                                <video width="auto" height="auto" @ended="videoEnded" controls :id=" 'video_' + media.id" v-show="playingVideoId === media.id" class="video">
                                                     <source
                                                             :src="media.url"
                                                             type="video/mp4"
@@ -370,19 +409,28 @@
                 windowWidth: window.innerWidth,
                 dropzoneOptions: {
                     url: "https://httpbin.org/post",
-                    thumbnailWidth: 150,
+                    thumbnailWidth: 5,
                     maxFilesize: 25,
                     maxFiles: 1,
                     acceptedFiles: 'audio/*',
-                    addRemoveLinks: true
+                    addRemoveLinks: false
                 },
                 dropzoneOptionsVideo: {
                     url: "https://httpbin.org/post",
-                    thumbnailWidth: 150,
+                    thumbnailWidth: 5,
                     maxFilesize: 25,
                     maxFiles: 1,
                     acceptedFiles: 'video/*',
-                    addRemoveLinks: true
+                    addRemoveLinks: false
+                },
+                dropzoneImagePreviewOptions: {
+                    url: "https://httpbin.org/post",
+                    thumbnailWidth: 150,
+                    maxFilesize: 5,
+                    disablePreview: true,
+                    maxFiles: 1,
+                    acceptedFiles: 'image/*',
+                    addRemoveLinks: false
                 },
                 newMedia: {
                     id: "",
@@ -390,12 +438,14 @@
                     type: "audio",
                     transcript: "",
                     url: "",
+                    mediaPreviewFile: null,
                     mediaFile: null
                 },
                 currentUploadMethod: 'upload',
                 tabs: ["audio", "video"],
                 errors: {},
-                mediaCategory: 'audio'
+                mediaCategory: 'audio',
+                playingVideoId: ''
             };
         },
         computed: {
@@ -445,11 +495,12 @@
                 return file_valid || url_valid;
             },
             editMedia(media){
-                this.newMedia ={
+                this.newMedia = {
                     id: media.id,
                     title: media.title,
                     type: media.type,
                     transcript: media.transcript,
+                    mediaPreviewFile: {},
                     user_id: media.user_id
                 };
             },
@@ -478,6 +529,14 @@
             },
             handlingEvent: function (file) {
                 this.newMedia.mediaFile = file;
+            },
+            handlingImageEvent: function (file) {
+                this.newMedia.mediaPreviewFile = file;
+                file.previewElement.innerHTML = "";
+            },
+            removePreview(file){
+                console.log('here');
+                file.previewElement.innerHTML = "";
             },
             uploadMedia() {
                 this.errors = {};
@@ -543,6 +602,7 @@
                         type: this.mediaCategory,
                         transcript: "",
                         url: "",
+                        mediaPreviewFile: null,
                         mediaFile: null
                     };
                     this.currentUploadMethod = 'upload';
@@ -551,6 +611,9 @@
                     }
                     if(this.$refs.filesDropZone_1){
                         this.$refs.filesDropZone_1.removeAllFiles();
+                    }
+                    if(this.$refs.filesDropZone_image_preview){
+                        this.$refs.filesDropZone_image_preview.removeAllFiles();
                     }
 
                 }catch(error){
@@ -578,6 +641,18 @@
                             iconSrc: "/images/resume_builder/error.png"
                         });
                     });
+            },
+            playVideo(media){
+                this.playingVideoId = media.id;
+                $('.video').each(function() {
+                    $(this).get(0).pause();
+                });
+                document.getElementById("video_" + media.id).play();
+            },
+            videoEnded(){
+                setTimeout( () => {
+                    this.playingVideoId = '' ;
+                },1000);
             }
         },
         mounted() {
@@ -619,6 +694,28 @@
             margin-top:25px;
         }
 
+        .upload-preview{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            position: relative;
+
+            .input{
+                max-width: 300px;
+                width: 100%;
+            }
+
+            .file-name{
+                position: absolute;
+                font-size: 16px;
+                color: #9f9e9e;
+                margin-left: 12px;
+                margin-top: 6px;
+                max-width: 270px;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }
         .text-inputs{
             width: 100%;
             display: flex;
@@ -792,6 +889,27 @@
                     align-items: center;
                 }
                 .video-frame{
+
+                    position: relative;
+
+                    .mediaPreview{
+                        
+                    }
+
+                    .play-btn{
+                        position: absolute;
+                        margin: auto;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+
+                        img{
+                            width:30px
+                        }
+                    }
+
+
                     display: flex;
                 }
             }

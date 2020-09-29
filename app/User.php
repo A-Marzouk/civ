@@ -108,6 +108,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_activity' => 'datetime',
     ];
 
 
@@ -283,17 +284,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getLastActivityAttribute($value)
     {
-        return $this->getTimeDifferenceInSeconds($value);
-    }
-
-
-    protected function getTimeDifferenceInSeconds($value){
-        // return time difference in seconds
-        $start  = new Carbon(Carbon::now()->toDateTimeString());
-        $end    = new Carbon($value);
-        $totalDuration = $end->diffInSeconds($start);
-
-        return $totalDuration;
+        $time = new Carbon($value);
+        return $time->diffForHumans();
     }
 
 }
