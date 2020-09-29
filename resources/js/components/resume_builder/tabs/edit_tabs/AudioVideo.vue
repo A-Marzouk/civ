@@ -232,7 +232,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="mr-2">
-                                                        {{progressBar}}%
+                                                        {{Math.ceil(progressBar)}}%
                                                     </div>
                                                 </div>
 
@@ -624,7 +624,7 @@
                         this.isMediaUploading = false ;
 
                         this.clearMedia();
-                        $("#progressBar").css("width",'0%');
+                        this.progressBar = 0;
                         this.$store.dispatch("flyingNotification");
                     })
                     .catch( (error) => {
