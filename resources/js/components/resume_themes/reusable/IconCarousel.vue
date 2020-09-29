@@ -42,6 +42,7 @@
             :large="btnLarge"
             :small="btnSmall"
             v-show="userLink.is_active && userLink.is_public"
+            :depressed="depressed"
           >
             <v-img
               contain
@@ -134,6 +135,10 @@ export default {
       default: false,
     },
     btnOutlined: {
+      type: Boolean,
+      default: false,
+    },
+    depressed: {
       type: Boolean,
       default: false,
     },
