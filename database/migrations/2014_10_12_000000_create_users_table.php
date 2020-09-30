@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('facebook_id')->nullable();
             $table->string('instagram_id')->nullable();
 
-            $table->timestamp('last_activity')->default(Carbon::now()->toDateTimeString());
+            $table->timestamp('last_activity')->useCurrent();
 
 
             $table->softDeletes();

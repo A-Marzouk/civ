@@ -181,6 +181,17 @@ class UsersController extends Controller
         }
     }
 
+    public function getLastActivity($user_id){
+        if (Auth::user()->hasRole('admin')){
+            $last_activity = Auth::user()->last_activity;
+        }else{
+            $user = User::find($user_id);
+            $last_activity = $user->last_activity;
+        }
+
+        return ['last_activity' => $last_activity];
+    }
+
     public function applyPromoCode(Request $request){
         $promoCodeName = $request->promocode;
         $promCode = Promocode::where('name',$promoCodeName)->first();

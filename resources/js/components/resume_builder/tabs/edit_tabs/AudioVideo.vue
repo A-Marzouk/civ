@@ -39,33 +39,54 @@
                             </div>
                             <div class="media-inputs" :class="{ 'justify-content-end' : isEditing}">
                                 <template v-if="!isEditing">
-                                    <v-input
-                                            class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
-                                            outlined
-                                            label="Upload Video"
-                                            hint="(Maximum 1 files)"
-                                            height="50"
-                                            :error="!!errors.url"
-                                            :error-messages="errors.url"
+                                    <div class="upload-preview">
+                                        <div class="input">
+                                            <v-input
+                                                    class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
+                                                    outlined
+                                                    label="Upload Audio"
+                                                    hint="(Maximum 1 files)"
+                                                    height="50"
+                                                    :error="!!errors.url"
+                                                    :error-messages="errors.url"
 
-                                    >
-                                        <vue-dropzone
-                                                class="civie-dropzone-input"
-                                                ref="filesDropZone_0"
-                                                id="dropzone_0"
-                                                :options="dropzoneOptions"
-                                                :useCustomSlot="true"
-                                                v-on:vdropzone-file-added="handlingEvent"
+                                            >
+                                                <vue-dropzone
+                                                        class="civie-dropzone-input"
+                                                        ref="filesDropZone_0"
+                                                        id="dropzone_0"
+                                                        :options="dropzoneOptions"
+                                                        :useCustomSlot="true"
+                                                        v-on:vdropzone-file-added="handlingEvent"
 
-                                        >
-                                            <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
-                                                <div class="mr-5">
-                                                    <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                >
+                                                    <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
+                                                        <div class="mr-5">
+                                                            <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                        </div>
+                                                        <div class="upload-text">Browse/Drag</div>
+                                                    </div>
+                                                </vue-dropzone>
+                                            </v-input>
+                                        </div>
+                                        <div class="file-name" v-show="!isMediaUploading">
+                                            {{newMedia.mediaFile ? 'Uploaded:' + newMedia.mediaFile.name : ''}}
+                                        </div>
+                                        <div class="uploading" v-show="isMediaUploading" :style="{width: progressBar + '%'}">
+                                            <div class="uploading-bar-content">
+                                                <div class="ml-3 d-flex align-items-center">
+                                                    <img src="/icons/video-tape-icon.svg" alt="video icon">
+                                                    <div class="ml-2">
+                                                        Uploading...
+                                                    </div>
                                                 </div>
-                                                <div class="upload-text">Browse/Drag</div>
+                                                <div class="mr-2">
+                                                    {{Math.ceil(progressBar)}}%
+                                                </div>
                                             </div>
-                                        </vue-dropzone>
-                                    </v-input>
+
+                                        </div>
+                                    </div>
                                     <span class="or-text">or</span>
                                     <v-text-field
                                             class="resume-builder__input civie-input title-input link-input"
@@ -169,33 +190,54 @@
                                 <div class="media-inputs" :class="{ 'justify-content-end' : isEditing}">
 
                                     <template v-if="!isEditing">
-                                        <v-input
-                                                class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
-                                                outlined
-                                                label="Upload File"
-                                                hint="(Maximum 1 files)"
-                                                height="50"
-                                                :error="!!errors.url"
-                                                :error-messages="errors.url"
+                                        <div class="upload-preview">
+                                            <div class="input">
+                                                <v-input
+                                                        class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
+                                                        outlined
+                                                        label="Upload video"
+                                                        hint="(Maximum 1 files)"
+                                                        height="50"
+                                                        :error="!!errors.url"
+                                                        :error-messages="errors.url"
 
-                                        >
-                                            <vue-dropzone
-                                                    class="civie-dropzone-input"
-                                                    ref="filesDropZone_1"
-                                                    id="dropzone_1"
-                                                    :options="dropzoneOptionsVideo"
-                                                    :useCustomSlot="true"
-                                                    v-on:vdropzone-file-added="handlingEvent"
+                                                >
+                                                    <vue-dropzone
+                                                            class="civie-dropzone-input"
+                                                            ref="filesDropZone_1"
+                                                            id="dropzone_1"
+                                                            :options="dropzoneOptionsVideo"
+                                                            :useCustomSlot="true"
+                                                            v-on:vdropzone-file-added="handlingEvent"
 
-                                            >
-                                                <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
-                                                    <div class="mr-5">
-                                                        <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                    >
+                                                        <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
+                                                            <div class="mr-5">
+                                                                <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                            </div>
+                                                            <div class="upload-text">Browse/Drag</div>
+                                                        </div>
+                                                    </vue-dropzone>
+                                                </v-input>
+                                            </div>
+                                            <div class="file-name" v-show="!isMediaUploading">
+                                                {{newMedia.mediaFile ? 'Uploaded:' + newMedia.mediaFile.name : ''}}
+                                            </div>
+                                            <div class="uploading" v-show="isMediaUploading" :style="{width: progressBar + '%'}">
+                                                <div class="uploading-bar-content">
+                                                    <div class="ml-3 d-flex align-items-center">
+                                                        <img src="/icons/video-tape-icon.svg" alt="video icon">
+                                                        <div class="ml-2">
+                                                            Uploading...
+                                                        </div>
                                                     </div>
-                                                    <div class="upload-text">Browse/Drag</div>
+                                                    <div class="mr-2">
+                                                        {{progressBar}}%
+                                                    </div>
                                                 </div>
-                                            </vue-dropzone>
-                                        </v-input>
+
+                                            </div>
+                                        </div>
                                         <span class="or-text">or</span>
                                         <v-text-field
                                                 class="resume-builder__input civie-input title-input link-input"
@@ -224,7 +266,6 @@
                                     </v-btn>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <draggable v-if="medias" v-model="medias" @start="drag=true" @end="drag=false" class="mt-3" handle=".drag-handler">
@@ -445,7 +486,10 @@
                 tabs: ["audio", "video"],
                 errors: {},
                 mediaCategory: 'audio',
-                playingVideoId: ''
+                playingVideoId: '',
+                // uploading process
+                progressBar: 0,
+                isMediaUploading: false,
             };
         },
         computed: {
@@ -529,6 +573,7 @@
             },
             handlingEvent: function (file) {
                 this.newMedia.mediaFile = file;
+                file.previewElement.innerHTML = "";
             },
             handlingImageEvent: function (file) {
                 this.newMedia.mediaPreviewFile = file;
@@ -540,7 +585,7 @@
             },
             uploadMedia() {
                 this.errors = {};
-
+                this.isMediaUploading = true ;
                 let formData = new FormData();
                 $.each(this.newMedia, field => {
                     if (this.newMedia[field] !== null) {
@@ -552,8 +597,7 @@
 
                 const config = {
                     onUploadProgress: progressEvent => {
-                        let progress = (progressEvent.loaded / progressEvent.total) * 100;
-                        $("#progressBar").css("width", progress + "%");
+                        this.progressBar = (progressEvent.loaded / progressEvent.total) * 100;
                     },
                     headers: {"Content-Type": "multipart/form-data"}
                 };
@@ -577,6 +621,8 @@
                             });
                         }
 
+                        this.isMediaUploading = false ;
+
                         this.clearMedia();
                         $("#progressBar").css("width",'0%');
                         this.$store.dispatch("flyingNotification");
@@ -592,6 +638,9 @@
                             message: "Error",
                             iconSrc: "/images/resume_builder/error.png"
                         });
+
+                        this.isMediaUploading = false ;
+
                     });
             },
             clearMedia() {
@@ -699,9 +748,10 @@
             flex-wrap: wrap;
             align-items: center;
             position: relative;
+            width: 100%;
+            max-width: 300px;
 
             .input{
-                max-width: 300px;
                 width: 100%;
             }
 
@@ -711,9 +761,44 @@
                 color: #9f9e9e;
                 margin-left: 12px;
                 margin-top: 6px;
+                @include lt-sm{
+                    margin-top: 24px;
+                }
+                @include lt-md{
+                    margin-top: 24px;
+                }
                 max-width: 270px;
                 white-space: nowrap;
                 overflow: hidden;
+            }
+
+            .uploading{
+                position: absolute;
+                background: rgba(196, 201, 245, 0.5);
+                margin-top: 6px;
+                @include lt-sm{
+                    margin-top: 24px;
+                }
+                @include lt-md{
+                    margin-top: 24px;
+                }
+                width: 0;
+                border-radius: 10px;
+                height:48px;
+                display:flex;
+                align-items: center;
+                overflow: hidden;
+
+                .uploading-bar-content{
+                    width:100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-weight: 600;
+                    font-size: 15px;
+                    line-height: 20px;
+                    color: #7E85C0;
+                }
             }
         }
         .text-inputs{

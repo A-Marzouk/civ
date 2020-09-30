@@ -18,6 +18,6 @@ class UserModelTest extends TestCase
 
         $user->updateLastActivity();
 
-        $this->assertEquals($user->last_activity,'0');
+        $this->assertEquals($user->last_activity,'1 second before');
     }
 }
