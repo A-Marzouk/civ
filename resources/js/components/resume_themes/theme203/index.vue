@@ -119,7 +119,7 @@
                                     bgColor="rgba(252, 210, 89, 1)"
                                     borderRadius="100"
                                     arrowColor="#000"
-                                    depressed = "true"
+                                    :depressed = "true"
                                   ></IconCarousel>
                                 </div>
                               </div>
@@ -224,7 +224,7 @@
                         bgColor="rgba(252, 210, 89, 1)"
                         borderRadius="100"
                         arrowColor="#000"
-                        depressed = "true"
+                        :depressed = "true"
                       ></IconCarousel>
                     </v-card-text>
                   </v-card>
