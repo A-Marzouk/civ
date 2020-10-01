@@ -389,6 +389,7 @@ export default {
         })
         .then(response => {
           if (!edit) {
+            response.data.data.is_public = true ;
             this.projects.push(response.data.data);
           } else {
             this.projects.forEach((project, index) => {
