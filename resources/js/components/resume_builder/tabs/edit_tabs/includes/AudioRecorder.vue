@@ -116,6 +116,8 @@
 
                         this.mediaRecorder.addEventListener("stop", () => {
                             this.recordedFileBlob = new Blob(this.audioChunks, {'type': 'audio/ogg; codecs=opus'});
+                            this.audioChunks = [] ;
+                            this.mediaRecorder = null ;
                             this.tempAudioUrl = URL.createObjectURL(this.recordedFileBlob);
                             this.stopTimer();
                             this.setAudioRecordDuration();
