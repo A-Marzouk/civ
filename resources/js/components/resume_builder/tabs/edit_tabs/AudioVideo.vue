@@ -105,7 +105,7 @@
                                         </template>
                                     </v-text-field>
                                     <span class="or-text">or</span>
-                                    <audioRecorder @recordReady="applyRecord"></audioRecorder>
+                                    <customAudioRecorder @recordReady="applyRecord"></customAudioRecorder>
                                 </template>
 
                                 <v-btn class="btn-new" depressed @click="uploadMedia">
@@ -429,7 +429,7 @@
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
     import draggable from "vuedraggable";
-    import audioRecorder from "./includes/AudioRecorder";
+    import customAudioRecorder from "./includes/CustomAudioRecorder";
 
 
     export default {
@@ -437,7 +437,7 @@
         components: {
             vueDropzone: vue2Dropzone,
             draggable,
-            audioRecorder
+            customAudioRecorder
         },
         data() {
             return {
@@ -506,8 +506,6 @@
                 this.newMedia.type = tab.toLowerCase();
                 this.clearMedia();
             },
-
-
             validateMedia() {
                 if(this.isEditing){
                    return true;
