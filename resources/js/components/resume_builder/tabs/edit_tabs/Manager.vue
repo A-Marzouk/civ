@@ -209,9 +209,9 @@
                         <div class="mover">
                             <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
                         </div>
-                        <div class="link-text">
+                        <a :href="`https://civ.ie/${user.username}/${link.url}`" target="_blank" class="link-text">
                             <span>https://civ.ie/{{user.username}}/<b>{{link.url}}</b></span>
-                        </div>
+                        </a>
                     </div>
                     <div class="action-btns">
                         <div class="resume-builder__action-buttons-container">

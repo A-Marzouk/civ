@@ -300,7 +300,7 @@
                                                 class="hidden-xs-only"
                                                 style="margin-top:-15px;"
                                         >
-                                            <audio controls class="audio-controller ml-xl-n4">
+                                            <audio controls class="audio-controller ml-xl-n4" :id="'audio_element' + media.id" preload="auto">
                                                 <source :src="media.url"/>
                                                 <source :src="media.url" type="audio/webm">
                                             </audio>
@@ -344,8 +344,9 @@
                                             </v-btn>
                                         </v-col>
                                         <v-col cols="12" class="hidden-sm-and-up" align="center">
-                                            <audio controls class="audio-controller">
+                                            <audio controls class="audio-controller" :id="'audio_element' + media.id" preload="auto">
                                                 <source :src="media.url"/>
+                                                <source :src="media.url" type="audio/webm">
                                             </audio>
                                         </v-col>
                                     </v-row>
@@ -441,6 +442,7 @@
         data() {
             return {
                 windowWidth: window.innerWidth,
+                timer: '',
                 dropzoneOptions: {
                     url: "https://httpbin.org/post",
                     thumbnailWidth: 5,
@@ -700,12 +702,38 @@
                 },1000);
             },
 
+            setAudioRecordDuration(media_id) {
+                let aud = document.getElementById('audio_element' + media_id);
+                this.calculateMediaDuration( aud );
+            },
+
+            calculateMediaDuration(media) {
+                return new Promise((resolve, reject) => {
+                    media.onloadedmetadata = function () {
+                        // set the mediaElement.currentTime  to a high value beyond its real duration
+                        media.currentTime = Number.MAX_SAFE_INTEGER;
+                        // listen to time position change
+                        media.ontimeupdate = function () {
+                            media.ontimeupdate = function () {
+                            };
+                            // setting player currentTime back to 0 can be buggy too, set it first to .1 sec
+                            media.currentTime = 0.1;
+                            media.currentTime = 0;
+                            // media.duration should now have its correct value, return it...
+                            resolve(media.duration);
+                            console.log(media.duration);
+                            console.log(media.currentTime);
+                        }
+                    }
+                });
+            },
+
 
         },
         mounted() {
             window.onresize = () => {
                 this.windowWidth = window.innerWidth;
-            }
+            };
         }
     };
 </script>
