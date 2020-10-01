@@ -323,12 +323,20 @@
                   show-arrows
                   hide-slider
                 >
-                  <v-tab
-                    v-for="item in mainTabs"
-                    :key="item.id"
-                    class="text-capitalize custom-tab-text"
-                    >{{ item.title }}</v-tab
-                  >
+                  <template v-for="item in currentUser.tabs">
+                    <v-tab
+                      :key="item.title"
+                      class="text-capitalize custom-tab-text"
+                      @click="currentTab = item.title"
+                      :href="'#'+item.title"
+                      v-show="
+                        item.title !== 'media' &&
+                        item.title !== 'links' &&
+                        item.title !== 'pay_availability'
+                      "
+                      >{{ item.label }}</v-tab
+                    >
+                  </template>
                 </v-tabs>
               </v-card-text>
             </v-card>
@@ -346,7 +354,7 @@
                 style="background-color: transparent"
               >
                 <!--------------------- About ------------------------------>
-                <v-tab-item>
+                <v-tab-item value="about_me" key="about_me">
                   <div class="watermark-text text-center">About</div>
                   <v-container>
                     <v-row>
@@ -508,7 +516,7 @@
                 <!--------------------- About ------------------------------>
 
                 <!-- ................Portfolio............................... -->
-                <v-tab-item>
+                <v-tab-item value="portfolio" key="portfolio">
                   <div class="watermark-text text-center">Portfolio</div>
                   <v-card flat color="transparent" tile align="center">
                     <v-row align="center" justify="center">
@@ -548,7 +556,7 @@
                 <!-- .......................Portfolio.................................. -->
 
                 <!-- ...................Tab Item Work............................. -->
-                <v-tab-item>
+                <v-tab-item value="work_experience" key="work_experience">
                   <div class="watermark-text text-center">Work</div>
                   <v-card color="transparent" tile flat>
                     <v-card-text class>
@@ -612,7 +620,7 @@
                 <!--................... Tab item Work............................... -->
 
                 <!-- ...................Tab Item Education............................. -->
-                <v-tab-item>
+                <v-tab-item value="education" key="education">
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width: 100%">
@@ -684,7 +692,7 @@
                 <!--................... Tab item Education............................... -->
 
                 <!-- ...................Tab Item Skills............................. -->
-                <v-tab-item>
+                <v-tab-item value="skills" key="skills">
                   <div class="watermark-text text-center">Skills</div>
                   <v-card color="transparent" tile flat>
                     <v-row align="center">
@@ -742,7 +750,7 @@
                 <!--................... Tab item Skills............................... -->
 
                 <!-- ...... Tab item hobbies ..... -->
-                <v-tab-item>
+                <v-tab-item value="hobbies" key="hobbies">
                   <div class="watermark-text text-center">Hobbies</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width: 100%">
@@ -780,7 +788,7 @@
                 </v-tab-item>
                 <!--  tab item hobbies  -->
                 <!-- ...... Tab item achievement ..... -->
-                <v-tab-item>
+                <v-tab-item value="achievement" key="achievement">
                   <div class="watermark-text text-center">Achievement</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width: 100%">
@@ -834,8 +842,8 @@
                 </v-tab-item>
                 <!--  tab item achivement  -->
                 <!-- ...... Tab item Reference ..... -->
-                <v-tab-item>
-                  <div class="watermark-text text-center">Referenes</div>
+                <v-tab-item value="references" key="references">
+                  <div class="watermark-text text-center">References</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width: 100%">
                       <v-row align="center" justify="space-between">
@@ -1068,6 +1076,7 @@ export default {
   },
   data() {
     return {
+      currentTab: null,
       audioModal: false,
       videoModal: false,
       emailModal: false,
