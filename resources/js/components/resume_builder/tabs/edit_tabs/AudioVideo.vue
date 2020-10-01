@@ -60,7 +60,7 @@
                                                         v-on:vdropzone-file-added="handlingEvent"
 
                                                 >
-                                                    <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
+                                                    <div class="dropzone-custom-content d-flex flex-row" style="float:left;" v-if="!newMedia.mediaFile">
                                                         <div class="mr-5">
                                                             <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
                                                         </div>
@@ -70,7 +70,7 @@
                                             </v-input>
                                         </div>
                                         <div class="file-name" v-show="!isMediaUploading">
-                                            {{newMedia.mediaFile ? 'Uploaded:' + newMedia.mediaFile.name : ''}}
+                                            {{newMedia.mediaFile && newMedia.mediaFile.name ? 'Uploaded:' + newMedia.mediaFile.name : ''}}
                                         </div>
                                         <div class="uploading" v-show="isMediaUploading" :style="{width: progressBar + '%'}">
                                             <div class="uploading-bar-content">
@@ -105,17 +105,8 @@
                                         </template>
                                     </v-text-field>
                                     <span class="or-text">or</span>
-                                    <v-btn class="btn-record" depressed @click="toggleRecord">
-                                        Record
-                                    </v-btn>
+                                    <audioRecorder @recordReady="applyRecord"></audioRecorder>
                                 </template>
-
-                                <div class="w-100" v-if="currentUploadMethod == 'record'">
-                                    <div class="w-100 d-flex justify-content-center audio-recorder mt-3">
-                                        <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
-                                                        :show-upload-button="false"/>
-                                    </div>
-                                </div>
 
                                 <v-btn class="btn-new" depressed @click="uploadMedia">
                                     {{ isEditing ? 'Update' : 'Add New'}}
@@ -232,7 +223,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="mr-2">
-                                                        {{progressBar}}%
+                                                        {{Math.ceil(progressBar)}}%
                                                     </div>
                                                 </div>
 
@@ -309,8 +300,9 @@
                                                 class="hidden-xs-only"
                                                 style="margin-top:-15px;"
                                         >
-                                            <audio controls class="audio-controller ml-xl-n4">
+                                            <audio controls class="audio-controller ml-xl-n4" :id="'audio_element' + media.id" preload="auto">
                                                 <source :src="media.url"/>
+                                                <source :src="media.url" type="audio/webm">
                                             </audio>
                                         </v-col>
                                         <v-col
@@ -352,8 +344,9 @@
                                             </v-btn>
                                         </v-col>
                                         <v-col cols="12" class="hidden-sm-and-up" align="center">
-                                            <audio controls class="audio-controller">
+                                            <audio controls class="audio-controller" :id="'audio_element' + media.id" preload="auto">
                                                 <source :src="media.url"/>
+                                                <source :src="media.url" type="audio/webm">
                                             </audio>
                                         </v-col>
                                     </v-row>
@@ -409,7 +402,7 @@
                                             <v-card flat color="transparent" tile class="pa-2">
                                                 <img :src="media.media_preview" class="mediaPreview"  v-show="playingVideoId !== media.id" alt="media preview">
                                                 <v-btn fab color="#F8F8F8" :ripple="false" large class="play-btn" @click="playVideo(media)"  v-show="playingVideoId !== media.id">
-                                                    <img src="/images/welcome_landing_page/icons/play.svg"  />
+                                                    <img src="/images/welcome_landing_page/icons/play.svg" />
                                                 </v-btn>
                                                 <video width="auto" height="auto" @ended="videoEnded" controls :id=" 'video_' + media.id" v-show="playingVideoId === media.id" class="video">
                                                     <source
@@ -436,6 +429,7 @@
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
     import draggable from "vuedraggable";
+    import audioRecorder from "./includes/AudioRecorder";
 
 
     export default {
@@ -443,11 +437,12 @@
         components: {
             vueDropzone: vue2Dropzone,
             draggable,
-
+            audioRecorder
         },
         data() {
             return {
                 windowWidth: window.innerWidth,
+                timer: '',
                 dropzoneOptions: {
                     url: "https://httpbin.org/post",
                     thumbnailWidth: 5,
@@ -511,16 +506,8 @@
                 this.newMedia.type = tab.toLowerCase();
                 this.clearMedia();
             },
-            toggleRecord(){
-                this.currentUploadMethod === 'record' ?   this.currentUploadMethod = 'upload' :   this.currentUploadMethod = 'record';
-            },
-            recordingFinish(data) {
-                this.newMedia.mediaFile = data.blob;
-                // auto select the audio
-                setTimeout(() => {
-                    $('.ar-records__record').click();
-                }, 1000);
-            },
+
+
             validateMedia() {
                 if(this.isEditing){
                    return true;
@@ -580,7 +567,6 @@
                 file.previewElement.innerHTML = "";
             },
             removePreview(file){
-                console.log('here');
                 file.previewElement.innerHTML = "";
             },
             uploadMedia() {
@@ -624,7 +610,7 @@
                         this.isMediaUploading = false ;
 
                         this.clearMedia();
-                        $("#progressBar").css("width",'0%');
+                        this.progressBar = 0;
                         this.$store.dispatch("flyingNotification");
                     })
                     .catch( (error) => {
@@ -642,6 +628,18 @@
                         this.isMediaUploading = false ;
 
                     });
+            },
+            applyRecord(file){
+                file.name = "Recorded file";
+                this.newMedia = {
+                    id: "",
+                    title: "Recorded file",
+                    type: 'audio',
+                    transcript: "",
+                    url: "",
+                    mediaPreviewFile: null,
+                    mediaFile: file
+                };
             },
             clearMedia() {
                 try {
@@ -702,12 +700,40 @@
                 setTimeout( () => {
                     this.playingVideoId = '' ;
                 },1000);
-            }
+            },
+
+            setAudioRecordDuration(media_id) {
+                let aud = document.getElementById('audio_element' + media_id);
+                this.calculateMediaDuration( aud );
+            },
+
+            calculateMediaDuration(media) {
+                return new Promise((resolve, reject) => {
+                    media.onloadedmetadata = function () {
+                        // set the mediaElement.currentTime  to a high value beyond its real duration
+                        media.currentTime = Number.MAX_SAFE_INTEGER;
+                        // listen to time position change
+                        media.ontimeupdate = function () {
+                            media.ontimeupdate = function () {
+                            };
+                            // setting player currentTime back to 0 can be buggy too, set it first to .1 sec
+                            media.currentTime = 0.1;
+                            media.currentTime = 0;
+                            // media.duration should now have its correct value, return it...
+                            resolve(media.duration);
+                            console.log(media.duration);
+                            console.log(media.currentTime);
+                        }
+                    }
+                });
+            },
+
+
         },
         mounted() {
             window.onresize = () => {
                 this.windowWidth = window.innerWidth;
-            }
+            };
         }
     };
 </script>
@@ -882,26 +908,7 @@
             }
         }
 
-        .btn-record {
-            width: 120px;
-            height: 49px !important;
-            margin-top: 7px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #C4C9F5;
-            border-radius: 10px;
-            background-color: white !important;
 
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 25px;
-            color: #888DB1 !important;
-
-            @include lt-sm{
-                margin-top:10px;
-            }
-        }
 
         .btn-new {
             width: 120px;
@@ -1205,54 +1212,15 @@
             }
         }
     }
+
+
+
 </style>
 
 <style>
     @media screen and (max-width: 599px) {
         #resumeBuilder .v-input__prepend-outer {
             display: none !important;
-        }
-    }
-</style>
-<style lang="scss">
-    // recorder styles not scoped
-    @import "../../../../../sass/media-queries";
-
-    @include lt-sm {
-        .ar-player > .ar-player-bar > .ar-player__progress {
-            width: 40px !important;
-        }
-
-        .ar-content, .ar-player {
-            width: 300px !important;
-        }
-    }
-
-
-    .ar-icon {
-        border: 1px solid #001CE2 !important;
-    }
-
-    .audio-recorder {
-        .ar-recorder__records-limit {
-            display: none !important;
-        }
-
-        .ar-records {
-            height: auto !important;
-        }
-
-        .ar-recorder__duration {
-            margin-top: 10px;
-        }
-
-        #uploadRecord {
-            width: 25px;
-            height: auto;
-
-            &:hover {
-                cursor: pointer;
-            }
         }
     }
 </style>

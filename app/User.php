@@ -288,4 +288,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $time->diffForHumans();
     }
 
+    public function getSocialLinks() {
+        return $this->links->filter(function ($value, $key) {
+            return $value->category == 'social';
+        });
+    }
+
 }
