@@ -85,7 +85,7 @@
                             </v-text-field>
                             <div class="import-btn">
                                 <v-btn class="resume-builder__btn civie-btn filled" raised @click="importDataFromBehance">
-                                    Import CV
+                                    {{isBehanceImporting ? 'Importing:' : 'Import CV'}}
                                 </v-btn>
                             </div>
                         </div>
@@ -1345,7 +1345,8 @@
                     title:'',
                     url:'',
                     importFile:'',
-                }
+                },
+                isBehanceImporting: false
             }
         },
         methods: {
@@ -1508,13 +1509,19 @@
 
             // Import data from Behance:
             importDataFromBehance(){
+                if(this.isBehanceImporting){
+                    return ;
+                }
+
                 this.importURL = 'https://behance.net/' + this.behanceUsername ;
                 this.importType = 'Behance' ;
+
+                this.isBehanceImporting = true ;
                 axios.get('/resume-builder/import/behance/' + this.behanceUsername)
                     .then((response) => {
-                        console.log('Behance Data:');
-                        console.log(response.data.projects);
                         this.behanceProjects = response.data.projects;
+                        this.isBehanceImporting = false ;
+                        this.SelectAllProjects();
                     }
                 );
             },
