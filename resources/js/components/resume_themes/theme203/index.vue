@@ -119,7 +119,7 @@
                                     bgColor="rgba(252, 210, 89, 1)"
                                     borderRadius="100"
                                     arrowColor="#000"
-                                    :depressed = "true"
+                                    :depressed="true"
                                   ></IconCarousel>
                                 </div>
                               </div>
@@ -224,7 +224,7 @@
                         bgColor="rgba(252, 210, 89, 1)"
                         borderRadius="100"
                         arrowColor="#000"
-                        :depressed = "true"
+                        :depressed="true"
                       ></IconCarousel>
                     </v-card-text>
                   </v-card>
@@ -1254,11 +1254,24 @@ export default {
       ],
     };
   },
+  // watcher
+  watch: {
+    // if current tab changed, change the active tab as well.
+    builderCurrentTabTitle: function (val) {
+      if (!this.defaultTabs.includes(val)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = val;
+      }
+    },
+  },
+  //watcher
   mounted() {
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
