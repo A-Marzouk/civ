@@ -528,7 +528,6 @@ export const store = new Vuex.Store({
 
                 if(! state.updateActivityTimer ){
                     state.updateActivityTimer = setInterval( () => {
-                        console.log('called');
                         state.justSaved = false;
                         axios.get('/api/user/last-activity/' + state.user.id).then((response) => {
                             state.user.last_activity = response.data.last_activity ;
