@@ -27,7 +27,7 @@
                 <div class="time">
                     <span v-if="!this.timestamp.getSeconds()">00:00</span>
                     <div v-else>
-                        0{{timestamp.getMinutes()}}:<span v-if="timestamp.getSeconds() < 10" >0</span>{{timestamp.getSeconds()}}
+                        0{{timestamp.getMinutes()}}:<span v-if="timestamp.getSeconds() < 10">0</span>{{timestamp.getSeconds()}}
                     </div>
                 </div>
                 <div class="time-limit">
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="step-3" v-if="currentAudioStep === 3">
-                <audio controls>
+                <audio controls preload="auto" id="audioElement">
                     <source :src="tempAudioUrl" type="audio/webm">
                     Your browser does not support the audio element.
                 </audio>
@@ -70,10 +70,10 @@
                 blobs: [],
                 mediaRecorder: null,
                 audioChunks: [],
-                
+
                 // timer
                 timer: null,
-                timestamp: new Date(0,0,0,0,0,0),
+                timestamp: new Date(0, 0, 0, 0, 0, 0),
             }
         },
 
@@ -85,7 +85,7 @@
                 if (this.mediaRecorder) {
                     // resume
                     this.resumeRecording();
-                    return ;
+                    return;
                 }
                 navigator.mediaDevices.getUserMedia({audio: true})
                     .then(stream => {
@@ -93,7 +93,7 @@
                             mimeType: 'audio/webm'
                         };
 
-                        this.mediaRecorder = new MediaRecorder(stream,options);
+                        this.mediaRecorder = new MediaRecorder(stream, options);
                         this.mediaRecorder.start();
 
                         this.mediaRecorder.addEventListener("dataavailable", event => {
@@ -115,13 +115,38 @@
                         });
 
                         this.mediaRecorder.addEventListener("stop", () => {
-                            this.recordedFileBlob = new Blob(this.audioChunks, { 'type' : 'audio/ogg; codecs=opus' });
+                            this.recordedFileBlob = new Blob(this.audioChunks, {'type': 'audio/ogg; codecs=opus'});
                             this.tempAudioUrl = URL.createObjectURL(this.recordedFileBlob);
                             this.stopTimer();
+                            this.setAudioRecordDuration();
                             this.mediaRecorder = null;
                         });
 
                     });
+            },
+
+            setAudioRecordDuration() {
+                let aud = document.getElementById('audioElement');
+                this.calculateMediaDuration( aud );
+            },
+
+            calculateMediaDuration(media) {
+                return new Promise((resolve, reject) => {
+                    media.onloadedmetadata = function () {
+                        // set the mediaElement.currentTime  to a high value beyond its real duration
+                        media.currentTime = Number.MAX_SAFE_INTEGER;
+                        // listen to time position change
+                        media.ontimeupdate = function () {
+                            media.ontimeupdate = function () {
+                            };
+                            // setting player currentTime back to 0 can be buggy too, set it first to .1 sec
+                            media.currentTime = 0.1;
+                            media.currentTime = 0;
+                            // media.duration should now have its correct value, return it...
+                            resolve(media.duration);
+                        }
+                    }
+                });
             },
 
             stopRecording() {
@@ -131,7 +156,7 @@
             },
 
             resumeRecording() {
-                this.mediaRecorder.resume() ;
+                this.mediaRecorder.resume();
             },
 
             pauseRecording() {
@@ -140,6 +165,7 @@
             recordReady() {
                 this.$emit('recordReady', this.recordedFileBlob);
                 this.recordDialog = false;
+                this.removeRecording();
             },
             removeRecording() {
                 this.currentAudioStep = 1;
@@ -160,7 +186,7 @@
             },
 
             // timer
-            startTimer(){
+            startTimer() {
                 let duration = moment.duration({
                     'seconds': 0,
                     'minutes': 0
@@ -168,10 +194,10 @@
 
                 let interval = 1;
 
-                if( ! this.timer){
-                    this.timer = setInterval( () => {
-                        if(this.recording){
-                            this.timestamp = new Date(this.timestamp.getTime() + interval*1000);
+                if (!this.timer) {
+                    this.timer = setInterval(() => {
+                        if (this.recording) {
+                            this.timestamp = new Date(this.timestamp.getTime() + interval * 1000);
                             duration = moment.duration(duration.asSeconds() + interval, 'seconds');
                         }
                     }, 1000);
@@ -179,12 +205,12 @@
 
 
             },
-            stopTimer(){
-              if(this.timer){
-                  clearInterval(this.timer);
-                  this.timestamp = new Date(0,0,0,0,0,0);
-                  this.timer = null ;
-              }
+            stopTimer() {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                    this.timestamp = new Date(0, 0, 0, 0, 0, 0);
+                    this.timer = null;
+                }
             },
             moment: function () {
                 return moment();
@@ -210,6 +236,11 @@
         align-items: center;
         justify-content: center;
         border-radius: 20px;
+
+        @include lt-sm{
+            width: 100%;
+            height: 400px;
+        }
 
         .step-1 {
             display: flex;
@@ -256,12 +287,21 @@
             padding-left: 35px;
             padding-right: 35px;
 
+            @include lt-sm{
+                justify-content: space-around;
+            }
+
             audio {
                 height: 40px;
                 width: 250px;
 
                 &:focus {
                     outline: none;
+                }
+
+                @include lt-sm{
+                    width: 100%;
+                    margin-bottom: 20px;
                 }
             }
 
