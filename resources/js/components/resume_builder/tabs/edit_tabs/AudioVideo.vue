@@ -60,7 +60,7 @@
                                                         v-on:vdropzone-file-added="handlingEvent"
 
                                                 >
-                                                    <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
+                                                    <div class="dropzone-custom-content d-flex flex-row" style="float:left;" v-if="!newMedia.mediaFile">
                                                         <div class="mr-5">
                                                             <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
                                                         </div>
@@ -70,7 +70,7 @@
                                             </v-input>
                                         </div>
                                         <div class="file-name" v-show="!isMediaUploading">
-                                            {{newMedia.mediaFile ? 'Uploaded:' + newMedia.mediaFile.name : ''}}
+                                            {{newMedia.mediaFile && newMedia.mediaFile.name ? 'Uploaded:' + newMedia.mediaFile.name : ''}}
                                         </div>
                                         <div class="uploading" v-show="isMediaUploading" :style="{width: progressBar + '%'}">
                                             <div class="uploading-bar-content">
@@ -105,17 +105,8 @@
                                         </template>
                                     </v-text-field>
                                     <span class="or-text">or</span>
-                                    <v-btn class="btn-record" depressed @click="toggleRecord">
-                                        Record
-                                    </v-btn>
+                                    <audioRecorder @recordReady="applyRecord"></audioRecorder>
                                 </template>
-
-                                <div class="w-100" v-if="currentUploadMethod == 'record'">
-                                    <div class="w-100 d-flex justify-content-center audio-recorder mt-3">
-                                        <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
-                                                        :show-upload-button="false"/>
-                                    </div>
-                                </div>
 
                                 <v-btn class="btn-new" depressed @click="uploadMedia">
                                     {{ isEditing ? 'Update' : 'Add New'}}
@@ -311,6 +302,7 @@
                                         >
                                             <audio controls class="audio-controller ml-xl-n4">
                                                 <source :src="media.url"/>
+                                                <source :src="media.url" type="audio/webm">
                                             </audio>
                                         </v-col>
                                         <v-col
@@ -409,7 +401,7 @@
                                             <v-card flat color="transparent" tile class="pa-2">
                                                 <img :src="media.media_preview" class="mediaPreview"  v-show="playingVideoId !== media.id" alt="media preview">
                                                 <v-btn fab color="#F8F8F8" :ripple="false" large class="play-btn" @click="playVideo(media)"  v-show="playingVideoId !== media.id">
-                                                    <img src="/images/welcome_landing_page/icons/play.svg"  />
+                                                    <img src="/images/welcome_landing_page/icons/play.svg" />
                                                 </v-btn>
                                                 <video width="auto" height="auto" @ended="videoEnded" controls :id=" 'video_' + media.id" v-show="playingVideoId === media.id" class="video">
                                                     <source
@@ -436,6 +428,7 @@
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
     import draggable from "vuedraggable";
+    import audioRecorder from "./includes/AudioRecorder";
 
 
     export default {
@@ -443,7 +436,7 @@
         components: {
             vueDropzone: vue2Dropzone,
             draggable,
-
+            audioRecorder
         },
         data() {
             return {
@@ -511,16 +504,8 @@
                 this.newMedia.type = tab.toLowerCase();
                 this.clearMedia();
             },
-            toggleRecord(){
-                this.currentUploadMethod === 'record' ?   this.currentUploadMethod = 'upload' :   this.currentUploadMethod = 'record';
-            },
-            recordingFinish(data) {
-                this.newMedia.mediaFile = data.blob;
-                // auto select the audio
-                setTimeout(() => {
-                    $('.ar-records__record').click();
-                }, 1000);
-            },
+
+
             validateMedia() {
                 if(this.isEditing){
                    return true;
@@ -580,7 +565,6 @@
                 file.previewElement.innerHTML = "";
             },
             removePreview(file){
-                console.log('here');
                 file.previewElement.innerHTML = "";
             },
             uploadMedia() {
@@ -643,6 +627,18 @@
 
                     });
             },
+            applyRecord(file){
+                file.name = "Recorded file";
+                this.newMedia = {
+                    id: "",
+                    title: "Recorded file",
+                    type: 'audio',
+                    transcript: "",
+                    url: "",
+                    mediaPreviewFile: null,
+                    mediaFile: file
+                };
+            },
             clearMedia() {
                 try {
                     this.newMedia = {
@@ -702,7 +698,9 @@
                 setTimeout( () => {
                     this.playingVideoId = '' ;
                 },1000);
-            }
+            },
+
+
         },
         mounted() {
             window.onresize = () => {
@@ -882,26 +880,7 @@
             }
         }
 
-        .btn-record {
-            width: 120px;
-            height: 49px !important;
-            margin-top: 7px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #C4C9F5;
-            border-radius: 10px;
-            background-color: white !important;
 
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 25px;
-            color: #888DB1 !important;
-
-            @include lt-sm{
-                margin-top:10px;
-            }
-        }
 
         .btn-new {
             width: 120px;
@@ -1205,54 +1184,15 @@
             }
         }
     }
+
+
+
 </style>
 
 <style>
     @media screen and (max-width: 599px) {
         #resumeBuilder .v-input__prepend-outer {
             display: none !important;
-        }
-    }
-</style>
-<style lang="scss">
-    // recorder styles not scoped
-    @import "../../../../../sass/media-queries";
-
-    @include lt-sm {
-        .ar-player > .ar-player-bar > .ar-player__progress {
-            width: 40px !important;
-        }
-
-        .ar-content, .ar-player {
-            width: 300px !important;
-        }
-    }
-
-
-    .ar-icon {
-        border: 1px solid #001CE2 !important;
-    }
-
-    .audio-recorder {
-        .ar-recorder__records-limit {
-            display: none !important;
-        }
-
-        .ar-records {
-            height: auto !important;
-        }
-
-        .ar-recorder__duration {
-            margin-top: 10px;
-        }
-
-        #uploadRecord {
-            width: 25px;
-            height: auto;
-
-            &:hover {
-                cursor: pointer;
-            }
         }
     }
 </style>
