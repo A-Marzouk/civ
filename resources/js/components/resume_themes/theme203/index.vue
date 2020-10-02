@@ -1031,6 +1031,7 @@
                 :title="item.title"
                 :details="item.content"
                 :file="item.url"
+                :previewImg = "item.media_preview"
               ></video-player>
             </template>
           </VueSlickCarousel>

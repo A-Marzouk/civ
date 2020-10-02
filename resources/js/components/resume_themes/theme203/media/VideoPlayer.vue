@@ -6,7 +6,7 @@
           >Video-1</v-card-subtitle
         >
         <div ref="videoPoster">
-          <v-img src="/images/resume_themes/theme203/video-preview.svg">
+          <v-img :src="previewImg">
             <v-overlay
               absolute
               :value="overlay"
@@ -49,7 +49,7 @@ export default {
       type: String,
       default: null,
     },
-    img: {
+    previewImg: {
       type: String,
       default: null,
     },
