@@ -526,27 +526,29 @@
                           :gutter="{ default: '30px', 700: '15px' }"
                         >
                           <template v-for="item in currentUser.projects">
-                            <v-card
-                              class="mb-2"
-                              align="left"
-                              flat
-                              color="transparent"
-                              tile
-                              :key="item.id"
-                              v-show="item.is_public == 1"
-                            >
-                              <v-img
-                                class="custom-portfolio-img"
-                                :src="getProjectMainImage(item)"
-                              ></v-img>
-                              <v-card-title class="custom-portfolio-title">
-                                {{ item.name }}
-                              </v-card-title>
-                              <v-card-subtitle
-                                class="custom-portfolio-subtitle"
-                                >{{ item.description }}</v-card-subtitle
+                            <ImagesCarouselModal :images="item.images">
+                              <v-card
+                                      class="mb-2"
+                                      align="left"
+                                      flat
+                                      color="transparent"
+                                      tile
+                                      :key="item.id"
+                                      v-show="item.is_public == 1"
                               >
-                            </v-card>
+                                <v-img
+                                        class="custom-portfolio-img"
+                                        :src="getProjectMainImage(item)"
+                                ></v-img>
+                                <v-card-title class="custom-portfolio-title">
+                                  {{ item.name }}
+                                </v-card-title>
+                                <v-card-subtitle
+                                        class="custom-portfolio-subtitle"
+                                >{{ item.description }}</v-card-subtitle
+                                >
+                              </v-card>
+                            </ImagesCarouselModal>
                           </template>
                         </masonry>
                       </v-col>
@@ -1054,6 +1056,8 @@ import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
 import VueSlickCarousel from "vue-slick-carousel";
 import IconCarousel from "../reusable/IconCarousel";
+import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
+
 export default {
   name: "ResumeTheme203",
   components: {
@@ -1062,6 +1066,7 @@ export default {
     VideoPlayer,
     VueSlickCarousel,
     IconCarousel,
+    ImagesCarouselModal,
   },
   props: ["user", "is_preview"],
   filters: {
