@@ -515,6 +515,10 @@
                                         </div>
                                     </div>
 
+                                    <div class="errors-container" v-show="Object.keys(errors).length !== 0">
+                                        {{errors}}
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="pl-5 pr-5" v-show="showFullText">
@@ -593,6 +597,11 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="errors-container" v-show="Object.keys(errors).length !== 0">
+                                        {{errors}}
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -730,9 +739,7 @@
                 extractedText: '',
                 originalText: '',
                 arrayOfExtractedText: [],
-                errors: {
-                    linkedInUrl:''
-                },
+                errors: {},
                 freelancerData: {
                     'work_experience': '',
                     'education': '',
@@ -1352,7 +1359,7 @@
         methods: {
             getFormattedData(date) {
                 let d = new Date(date);
-                return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear() ;
+                return d.getDate() + '.' + (d.getMonth()+1) + '.' + d.getFullYear() ;
             },
             // extract
             // handle file upload
@@ -1414,7 +1421,7 @@
                 return url.match(linkedInRegex);
             },
             uploadPDFFile() {
-                this.errors = [];
+                this.errors = {};
                 let formData = new FormData();
                 formData.append('cv', this.file);
                 const config = {
@@ -1522,8 +1529,7 @@
                         this.behanceProjects = response.data.projects;
                         this.isBehanceImporting = false ;
                         this.SelectAllProjects();
-                    }
-                );
+                    }).catch( () => {this.isBehanceImporting = false ;} );
             },
             importBehanceProjects(){
                 // get only selected projects:
@@ -1670,9 +1676,10 @@
                     this.extractedText.lastIndexOf("Experience")
                 );
 
-                if(summary.length >= 2499){
-                     summary = summary.substring(0, 2499);
+                if(summary.length >= 999){
+                     summary = summary.substring(0, 999);
                 }
+
                 this.personalInfo.about = summary;
 
 
@@ -2035,6 +2042,7 @@
             addImport() {
                 let formData = new FormData();
                 this.newImport.title = 'Import ' + (this.imports.length+1) + ' | ' + this.importType ;
+                this.newImport.category = this.importType ;
                 this.newImport.url   = this.importURL;
                 this.newImport.user_id= this.$store.state.user.id;
 
@@ -2044,7 +2052,8 @@
 
                 axios.post('/api/user/imports', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                     .then((response) => {
-                        this.imports.push(response.data.data);
+                        let importedFile = response.data.data;
+                        this.imports.push(importedFile);
                         this.$store.dispatch('flyingNotification');
                         console.log('success');
                     })
@@ -2363,7 +2372,7 @@
         margin-top: 78px;
         display: flex;
         align-items: center;
-        width: 958px;
+        width: 100%;
 
         .upload-progress-bar {
             width: 1%;
@@ -2648,6 +2657,7 @@
                         padding: 30px;
                         border-radius: 15px;
                         width: 100%;
+                        overflow-x: hidden;
 
                         .import-section-title {
                             display: flex;
@@ -3006,6 +3016,10 @@
                 }
             }
         }
+    }
+
+    .errors-container{
+        color: red;
     }
 </style>
 
