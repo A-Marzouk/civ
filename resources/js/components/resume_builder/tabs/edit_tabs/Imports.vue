@@ -85,7 +85,7 @@
                             </v-text-field>
                             <div class="import-btn">
                                 <v-btn class="resume-builder__btn civie-btn filled" raised @click="importDataFromBehance">
-                                    {{isBehanceImporting ? 'Importing:' : 'Import CV'}}
+                                    {{isBehanceImporting ? 'Importing...' : 'Import CV'}}
                                 </v-btn>
                             </div>
                         </div>
