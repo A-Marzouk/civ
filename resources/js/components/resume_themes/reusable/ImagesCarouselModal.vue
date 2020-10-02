@@ -13,7 +13,7 @@
             <div class="imagesModalCarousel">
                 <slick-slides :options="slickOptions" ref="slick">
                     <div v-for="image in images" :key="image.id">
-                        <div class="w-100 d-flex align-items-center justify-content-center">
+                        <div class="image-row">
                             <img :src="image.src" alt="project image">
                         </div>
                     </div>
@@ -66,6 +66,12 @@
         width: 100%;
         background: antiquewhite;
         position: relative;
+        .image-row{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     .controllers{
