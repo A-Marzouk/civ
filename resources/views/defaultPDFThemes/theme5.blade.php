@@ -341,9 +341,7 @@
         </div>
 
         @php
-            $visibleWorks = $user->workExperience->filter(function ($value, $key) {
-                return $value->is_public;
-            });
+            $visibleWorks = $user->getPublicWorkExperience();
         @endphp
 
         @if ($visibleWorks->count() > 0)
@@ -371,9 +369,7 @@
         @endif
 
         @php
-            $visibleEducations = $user->education->filter(function ($value, $key) {
-                return $value->is_public;
-            });
+            $visibleEducations = $user->getPublicEducation();
         @endphp
 
 
@@ -433,9 +429,7 @@
         @endif
 
         @php
-            $visibleSkills = $user->skills->filter(function ($value, $key) {
-                return $value->is_public;
-            });
+            $visibleSkills = $user->getPublicSkills();
         @endphp
 
         @if ($visibleSkills->count() > 0)
@@ -483,10 +477,6 @@
                                         </table>
                                     </td>
                                     <td class="column">
-                                        <table
-                                            class="skill"
-                                            style="color: {{ "#".generateUniqueRandomColor() }}"
-                                        ></table>
                                     </td>
                                 </tr>
                             </table>

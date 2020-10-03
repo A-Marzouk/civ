@@ -301,4 +301,21 @@ class User extends Authenticatable implements MustVerifyEmail
         })[0];
     }
 
+    public function getPublicWorkExperience () {
+        return $this->workExperience->filter(function ($value, $key) {
+            return $value->is_public;
+        });
+    }
+    
+    public function getPublicEducation () {
+        return $this->education->filter(function ($value, $key) {
+            return $value->is_public;
+        });
+    }
+    
+    public function getPublicSkills () {
+        return $this->skills->filter(function ($value, $key) {
+            return $value->is_public;
+        });
+    }
 }
