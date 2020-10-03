@@ -1571,7 +1571,8 @@ export default {
 .custom-portfolio-img {
   border-radius: 10px;
   width: 100% !important;
-  height: 100% !important;
+  //height: 100% !important;
+  max-height: 400px !important;
 }
 .custom-portfolio-title {
   font-family: "Montserrat" !important;
