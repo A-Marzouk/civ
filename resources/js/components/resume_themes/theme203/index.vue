@@ -1595,6 +1595,7 @@ export default {
 // ................... Work Desktop......................................
 .work-icon {
   width: 16px;
+  height: 16px;
   margin-top: 6px;
 }
 .custom-work-title {
