@@ -596,12 +596,14 @@
                     align="center"
                     v-show="project.is_public"
                   >
-                    <v-img
-                      :src="getProjectMainImage(project)"
-                      alt="portfolio img"
-                      :aspect-ratio="1.2"
-                      cover
-                    ></v-img>
+                    <ImagesCarouselModal :images="project.images">
+                      <v-img
+                              :src="getProjectMainImage(project)"
+                              alt="portfolio img"
+                              :aspect-ratio="1.2"
+                              cover
+                      ></v-img>
+                    </ImagesCarouselModal>
                   </v-col>
                 </v-row>
               </v-col>
@@ -1685,6 +1687,8 @@ import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
 import UpdatedHireModal from "../includes/HireMeModal";
 import SocialLinks from "./SocialLinks";
+import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
+
 export default {
   name: "theme8",
   props: ["user", "is_preview", "currentTab"],
@@ -1695,6 +1699,7 @@ export default {
     VideoPlayer,
     "updated-hire-modal": UpdatedHireModal,
     SocialLinks,
+    ImagesCarouselModal
   },
   data() {
     return {

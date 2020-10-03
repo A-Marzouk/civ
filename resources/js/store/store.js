@@ -416,6 +416,7 @@ export const store = new Vuex.Store({
                     title: "John Doe",
                     resume_link_id: "4",
                     url: '"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    media_preview: '/images/video-holder.svg',
                     order: "1",
                     is_public: "1",
                     user_id: "2",
@@ -528,7 +529,6 @@ export const store = new Vuex.Store({
 
                 if(! state.updateActivityTimer ){
                     state.updateActivityTimer = setInterval( () => {
-                        console.log('called');
                         state.justSaved = false;
                         axios.get('/api/user/last-activity/' + state.user.id).then((response) => {
                             state.user.last_activity = response.data.last_activity ;
