@@ -526,7 +526,7 @@
                           :gutter="{ default: '30px', 700: '15px' }"
                         >
                           <template v-for="item in currentUser.projects">
-                            <ImagesCarouselModal :images="item.images">
+                            <ImagesCarouselModal :images="item.images" :key="item.id">
                               <v-card
                                       class="mb-2"
                                       align="left"
