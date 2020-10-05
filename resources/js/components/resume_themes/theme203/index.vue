@@ -526,7 +526,7 @@
                           :gutter="{ default: '30px', 700: '15px' }"
                         >
                           <template v-for="item in currentUser.projects">
-                            <ImagesCarouselModal :images="item.images">
+                            <ImagesCarouselModal :images="item.images" :key="item.id">
                               <v-card
                                       class="mb-2"
                                       align="left"
@@ -1571,7 +1571,8 @@ export default {
 .custom-portfolio-img {
   border-radius: 10px;
   width: 100% !important;
-  height: 100% !important;
+  //height: 100% !important;
+  max-height: 400px !important;
 }
 .custom-portfolio-title {
   font-family: "Montserrat" !important;
@@ -1594,6 +1595,7 @@ export default {
 // ................... Work Desktop......................................
 .work-icon {
   width: 16px;
+  height: 16px;
   margin-top: 6px;
 }
 .custom-work-title {

@@ -14,7 +14,10 @@
                 <slick-slides :options="slickOptions" ref="slick">
                     <div v-for="image in images" :key="image.id">
                         <div class="image-row">
-                            <img :src="image.src" alt="project image">
+                            <img :src="image.src.replace('400x300','1200x800')" alt="project image" @load="loaded(image.id)">
+                            <div class="loading-text" v-show=" ! loadedImages.includes(image.id)">
+                                Loading Image...
+                            </div>
                         </div>
                     </div>
                 </slick-slides>
@@ -46,7 +49,8 @@
                 slickOptions: {
                     dots: false,
                     arrows: false
-                }
+                },
+                loadedImages:[]
             }
         },
         methods:{
@@ -57,6 +61,9 @@
             prev() {
                 this.$refs.slick.prev();
             },
+            loaded(image_id){
+                this.loadedImages.push(image_id);
+            }
         }
     }
 </script>
@@ -71,6 +78,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
         }
     }
 
@@ -87,5 +95,12 @@
             width: 20px;
             height: 20px;
         }
+    }
+
+    .loading-text{
+        padding: 50px;
+        color: black;
+        font-weight: 500;
+        font-size: 20px;
     }
 </style>
