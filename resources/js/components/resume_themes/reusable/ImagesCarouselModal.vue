@@ -14,7 +14,7 @@
                 <slick-slides :options="slickOptions" ref="slick">
                     <div v-for="image in images" :key="image.id">
                         <div class="image-row">
-                            <img :src="image.src" alt="project image">
+                            <img :src="image.src.replace('400x300','1200x800')" alt="project image" @load="loaded">
                         </div>
                     </div>
                 </slick-slides>
@@ -57,6 +57,9 @@
             prev() {
                 this.$refs.slick.prev();
             },
+            loaded(){
+                console.log('Image loaded successfully')
+            }
         }
     }
 </script>
