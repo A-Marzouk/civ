@@ -235,6 +235,8 @@
                   <v-card flat color="transparent" tile class="ma-0 pa-0">
                     <v-card-text class="ml-lg-n5">
                       <v-row no-gutters align="center" justify="center">
+                        <!-- availability slider zone -->
+
                         <v-col
                           xl="4"
                           lg="4"
@@ -243,43 +245,68 @@
                           cols="4"
                           align="center"
                         >
-                          <v-card flat class="text-center" color="tranparent">
-                            <v-card-subtitle class="hire-me-title">
-                              {{
-                                currentUser.payment_info[0].salary_frequency
-                                  | capitalize
-                              }}
-                              rate
-                            </v-card-subtitle>
-                            <v-card-subtitle class="hire-me-subtitle mt-n8">
-                              {{ currentUser.payment_info[0].salary }}
-                              {{
-                                currentUser.payment_info[0].currency.toUpperCase()
-                              }}
-                            </v-card-subtitle>
-                          </v-card>
+                          <VueSlickCarousel
+                            v-bind="slickOptionsAvailability"
+                            ref="availabilityCarousel"
+                          >
+                            <v-card
+                              flat
+                              class="text-center"
+                              color="tranparent"
+                              v-for="i in rateOptions"
+                              :key="i.id"
+                              @click="changeAvailability"
+                            >
+                              <v-card-subtitle class="hire-me-title">
+                                <!-- {{
+                                  currentUser.payment_info[0].salary_frequency
+                                    | capitalize
+                                }}
+                                rate -->
+                                {{ i.title | capitalize }}
+                              </v-card-subtitle>
+                              <v-card-subtitle class="hire-me-subtitle mt-n8">
+                                {{ currentUser.payment_info[0].salary }}
+                                {{
+                                  currentUser.payment_info[0].currency.toUpperCase()
+                                }}
+                              </v-card-subtitle>
+                            </v-card>
+                          </VueSlickCarousel>
                         </v-col>
+
                         <div
                           style="height: 41px; border: 1px solid #d7d7d7"
                         ></div>
-                        <v-col cols="4">
-                          <v-card
-                            flat
-                            class="text-center"
-                            color="transparent"
-                            tile
+                        <v-col lg="4" md="4" sm="4" cols="4">
+                          <VueSlickCarousel
+                            v-bind="slickOptionsAvailability"
+                            ref="availabilityCarousel2"
                           >
-                            <v-card-subtitle class="hire-me-title"
-                              >Available for</v-card-subtitle
+                            <v-card
+                              flat
+                              class="text-center"
+                              color="transparent"
+                              tile
+                              v-for="i in availabilityOptions"
+                              :key="i.id"
+                              @click="changeAvailability"
                             >
-                            <v-card-subtitle class="hire-me-subtitle mt-n8">
-                              {{
-                                currentUser.availability_info[0].available_hours
-                              }}
-                              Hours
-                            </v-card-subtitle>
-                          </v-card>
+                              <v-card-subtitle class="hire-me-title">{{
+                                i.title | capitalize
+                              }}</v-card-subtitle>
+                              <v-card-subtitle class="hire-me-subtitle mt-n8">
+                                {{
+                                  currentUser.availability_info[0]
+                                    .available_hours
+                                }}
+                                Hours
+                              </v-card-subtitle>
+                            </v-card>
+                          </VueSlickCarousel>
                         </v-col>
+
+                        <!-- Availablity slider zone -->
 
                         <v-col cols="3">
                           <v-card flat color="transparent" tile>
@@ -328,7 +355,7 @@
                       :key="item.title"
                       class="text-capitalize custom-tab-text"
                       @click="currentTab = item.title"
-                      :href="'#'+item.title"
+                      :href="'#' + item.title"
                       v-show="
                         item.title !== 'media' &&
                         item.title !== 'links' &&
@@ -526,26 +553,29 @@
                           :gutter="{ default: '30px', 700: '15px' }"
                         >
                           <template v-for="item in currentUser.projects">
-                            <ImagesCarouselModal :images="item.images" :key="item.id">
+                            <ImagesCarouselModal
+                              :images="item.images"
+                              :key="item.id"
+                            >
                               <v-card
-                                      class="mb-2"
-                                      align="left"
-                                      flat
-                                      color="transparent"
-                                      tile
-                                      :key="item.id"
-                                      v-show="item.is_public == 1"
+                                class="mb-2"
+                                align="left"
+                                flat
+                                color="transparent"
+                                tile
+                                :key="item.id"
+                                v-show="item.is_public == 1"
                               >
                                 <v-img
-                                        class="custom-portfolio-img"
-                                        :src="getProjectMainImage(item)"
+                                  class="custom-portfolio-img"
+                                  :src="getProjectMainImage(item)"
                                 ></v-img>
                                 <v-card-title class="custom-portfolio-title">
                                   {{ item.name }}
                                 </v-card-title>
                                 <v-card-subtitle
-                                        class="custom-portfolio-subtitle"
-                                >{{ item.description }}</v-card-subtitle
+                                  class="custom-portfolio-subtitle"
+                                  >{{ item.description }}</v-card-subtitle
                                 >
                               </v-card>
                             </ImagesCarouselModal>
@@ -1033,7 +1063,7 @@
                 :title="item.title"
                 :details="item.content"
                 :file="item.url"
-                :previewImg = "item.media_preview"
+                :previewImg="item.media_preview"
               ></video-player>
             </template>
           </VueSlickCarousel>
@@ -1096,9 +1126,31 @@ export default {
         { id: 4, title: "linkedin" },
         { id: 5, title: "google-plus" },
       ],
+
+      rateOptions: [
+        { id: 1, title: "Hourly rate " },
+        { id: 2, title: "Weekly rate " },
+        { id: 3, title: "Monthly rate " },
+      ],
+      availabilityOptions: [
+        { id: 1, title: "Weekly availability" },
+        { id: 2, title: "Weekly availability" },
+        { id: 3, title: "Monthly availability" },
+      ],
+
       mainDataTab: null,
 
       progressBarColor: "yellow",
+
+      slickOptionsAvailability: {
+        infinite: true,
+        dots: false,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 1,
+      },
+
       slickOptionsVideoModal: {
         infinite: false,
         dots: true,
@@ -1350,6 +1402,10 @@ export default {
       return mainImage.src;
     },
     //audio Modal
+    changeAvailability() {
+      this.$refs.availabilityCarousel.next();
+      this.$refs.availabilityCarousel2.next();
+    },
   },
 };
 </script>
