@@ -39,33 +39,54 @@
                             </div>
                             <div class="media-inputs" :class="{ 'justify-content-end' : isEditing}">
                                 <template v-if="!isEditing">
-                                    <v-input
-                                            class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
-                                            outlined
-                                            label="Upload Video"
-                                            hint="(Maximum 1 files)"
-                                            height="50"
-                                            :error="!!errors.url"
-                                            :error-messages="errors.url"
+                                    <div class="upload-preview">
+                                        <div class="input">
+                                            <v-input
+                                                    class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
+                                                    outlined
+                                                    label="Upload Audio"
+                                                    hint="(Maximum 1 files)"
+                                                    height="50"
+                                                    :error="!!errors.url"
+                                                    :error-messages="errors.url"
 
-                                    >
-                                        <vue-dropzone
-                                                class="civie-dropzone-input"
-                                                ref="filesDropZone_0"
-                                                id="dropzone_0"
-                                                :options="dropzoneOptions"
-                                                :useCustomSlot="true"
-                                                v-on:vdropzone-file-added="handlingEvent"
+                                            >
+                                                <vue-dropzone
+                                                        class="civie-dropzone-input"
+                                                        ref="filesDropZone_0"
+                                                        id="dropzone_0"
+                                                        :options="dropzoneOptions"
+                                                        :useCustomSlot="true"
+                                                        v-on:vdropzone-file-added="handlingEvent"
 
-                                        >
-                                            <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
-                                                <div class="mr-5">
-                                                    <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                >
+                                                    <div class="dropzone-custom-content d-flex flex-row" style="float:left;" v-if="!newMedia.mediaFile">
+                                                        <div class="mr-5">
+                                                            <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                        </div>
+                                                        <div class="upload-text">Browse/Drag</div>
+                                                    </div>
+                                                </vue-dropzone>
+                                            </v-input>
+                                        </div>
+                                        <div class="file-name" v-show="!isMediaUploading">
+                                            {{newMedia.mediaFile && newMedia.mediaFile.name ? 'Uploaded:' + newMedia.mediaFile.name : ''}}
+                                        </div>
+                                        <div class="uploading" v-show="isMediaUploading" :style="{width: progressBar + '%'}">
+                                            <div class="uploading-bar-content">
+                                                <div class="ml-3 d-flex align-items-center">
+                                                    <img src="/icons/video-tape-icon.svg" alt="video icon">
+                                                    <div class="ml-2">
+                                                        Uploading...
+                                                    </div>
                                                 </div>
-                                                <div class="upload-text">Browse/Drag</div>
+                                                <div class="mr-2">
+                                                    {{Math.ceil(progressBar)}}%
+                                                </div>
                                             </div>
-                                        </vue-dropzone>
-                                    </v-input>
+
+                                        </div>
+                                    </div>
                                     <span class="or-text">or</span>
                                     <v-text-field
                                             class="resume-builder__input civie-input title-input link-input"
@@ -84,17 +105,8 @@
                                         </template>
                                     </v-text-field>
                                     <span class="or-text">or</span>
-                                    <v-btn class="btn-record" depressed @click="toggleRecord">
-                                        Record
-                                    </v-btn>
+                                    <customAudioRecorder @recordReady="applyRecord"></customAudioRecorder>
                                 </template>
-
-                                <div class="w-100" v-if="currentUploadMethod == 'record'">
-                                    <div class="w-100 d-flex justify-content-center audio-recorder mt-3">
-                                        <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
-                                                        :show-upload-button="false"/>
-                                    </div>
-                                </div>
 
                                 <v-btn class="btn-new" depressed @click="uploadMedia">
                                     {{ isEditing ? 'Update' : 'Add New'}}
@@ -169,33 +181,54 @@
                                 <div class="media-inputs" :class="{ 'justify-content-end' : isEditing}">
 
                                     <template v-if="!isEditing">
-                                        <v-input
-                                                class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
-                                                outlined
-                                                label="Upload File"
-                                                hint="(Maximum 1 files)"
-                                                height="50"
-                                                :error="!!errors.url"
-                                                :error-messages="errors.url"
+                                        <div class="upload-preview">
+                                            <div class="input">
+                                                <v-input
+                                                        class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
+                                                        outlined
+                                                        label="Upload video"
+                                                        hint="(Maximum 1 files)"
+                                                        height="50"
+                                                        :error="!!errors.url"
+                                                        :error-messages="errors.url"
 
-                                        >
-                                            <vue-dropzone
-                                                    class="civie-dropzone-input"
-                                                    ref="filesDropZone_1"
-                                                    id="dropzone_1"
-                                                    :options="dropzoneOptionsVideo"
-                                                    :useCustomSlot="true"
-                                                    v-on:vdropzone-file-added="handlingEvent"
+                                                >
+                                                    <vue-dropzone
+                                                            class="civie-dropzone-input"
+                                                            ref="filesDropZone_1"
+                                                            id="dropzone_1"
+                                                            :options="dropzoneOptionsVideo"
+                                                            :useCustomSlot="true"
+                                                            v-on:vdropzone-file-added="handlingEvent"
 
-                                            >
-                                                <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
-                                                    <div class="mr-5">
-                                                        <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                    >
+                                                        <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
+                                                            <div class="mr-5">
+                                                                <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                            </div>
+                                                            <div class="upload-text">Browse/Drag</div>
+                                                        </div>
+                                                    </vue-dropzone>
+                                                </v-input>
+                                            </div>
+                                            <div class="file-name" v-show="!isMediaUploading">
+                                                {{newMedia.mediaFile ? 'Uploaded:' + newMedia.mediaFile.name : ''}}
+                                            </div>
+                                            <div class="uploading" v-show="isMediaUploading" :style="{width: progressBar + '%'}">
+                                                <div class="uploading-bar-content">
+                                                    <div class="ml-3 d-flex align-items-center">
+                                                        <img src="/icons/video-tape-icon.svg" alt="video icon">
+                                                        <div class="ml-2">
+                                                            Uploading...
+                                                        </div>
                                                     </div>
-                                                    <div class="upload-text">Browse/Drag</div>
+                                                    <div class="mr-2">
+                                                        {{Math.ceil(progressBar)}}%
+                                                    </div>
                                                 </div>
-                                            </vue-dropzone>
-                                        </v-input>
+
+                                            </div>
+                                        </div>
                                         <span class="or-text">or</span>
                                         <v-text-field
                                                 class="resume-builder__input civie-input title-input link-input"
@@ -224,7 +257,6 @@
                                     </v-btn>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <draggable v-if="medias" v-model="medias" @start="drag=true" @end="drag=false" class="mt-3" handle=".drag-handler">
@@ -268,8 +300,9 @@
                                                 class="hidden-xs-only"
                                                 style="margin-top:-15px;"
                                         >
-                                            <audio controls class="audio-controller ml-xl-n4">
+                                            <audio controls class="audio-controller ml-xl-n4" :id="'audio_element' + media.id" preload="auto">
                                                 <source :src="media.url"/>
+                                                <source :src="media.url" type="audio/webm">
                                             </audio>
                                         </v-col>
                                         <v-col
@@ -311,8 +344,9 @@
                                             </v-btn>
                                         </v-col>
                                         <v-col cols="12" class="hidden-sm-and-up" align="center">
-                                            <audio controls class="audio-controller">
+                                            <audio controls class="audio-controller" :id="'audio_element' + media.id" preload="auto">
                                                 <source :src="media.url"/>
+                                                <source :src="media.url" type="audio/webm">
                                             </audio>
                                         </v-col>
                                     </v-row>
@@ -368,7 +402,7 @@
                                             <v-card flat color="transparent" tile class="pa-2">
                                                 <img :src="media.media_preview" class="mediaPreview"  v-show="playingVideoId !== media.id" alt="media preview">
                                                 <v-btn fab color="#F8F8F8" :ripple="false" large class="play-btn" @click="playVideo(media)"  v-show="playingVideoId !== media.id">
-                                                    <img src="/images/welcome_landing_page/icons/play.svg"  />
+                                                    <img src="/images/welcome_landing_page/icons/play.svg" />
                                                 </v-btn>
                                                 <video width="auto" height="auto" @ended="videoEnded" controls :id=" 'video_' + media.id" v-show="playingVideoId === media.id" class="video">
                                                     <source
@@ -395,6 +429,7 @@
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
     import draggable from "vuedraggable";
+    import customAudioRecorder from "./includes/CustomAudioRecorder";
 
 
     export default {
@@ -402,11 +437,12 @@
         components: {
             vueDropzone: vue2Dropzone,
             draggable,
-
+            customAudioRecorder
         },
         data() {
             return {
                 windowWidth: window.innerWidth,
+                timer: '',
                 dropzoneOptions: {
                     url: "https://httpbin.org/post",
                     thumbnailWidth: 5,
@@ -445,7 +481,10 @@
                 tabs: ["audio", "video"],
                 errors: {},
                 mediaCategory: 'audio',
-                playingVideoId: ''
+                playingVideoId: '',
+                // uploading process
+                progressBar: 0,
+                isMediaUploading: false,
             };
         },
         computed: {
@@ -466,16 +505,6 @@
                 this.mediaCategory = tab;
                 this.newMedia.type = tab.toLowerCase();
                 this.clearMedia();
-            },
-            toggleRecord(){
-                this.currentUploadMethod === 'record' ?   this.currentUploadMethod = 'upload' :   this.currentUploadMethod = 'record';
-            },
-            recordingFinish(data) {
-                this.newMedia.mediaFile = data.blob;
-                // auto select the audio
-                setTimeout(() => {
-                    $('.ar-records__record').click();
-                }, 1000);
             },
             validateMedia() {
                 if(this.isEditing){
@@ -529,18 +558,18 @@
             },
             handlingEvent: function (file) {
                 this.newMedia.mediaFile = file;
+                file.previewElement.innerHTML = "";
             },
             handlingImageEvent: function (file) {
                 this.newMedia.mediaPreviewFile = file;
                 file.previewElement.innerHTML = "";
             },
             removePreview(file){
-                console.log('here');
                 file.previewElement.innerHTML = "";
             },
             uploadMedia() {
                 this.errors = {};
-
+                this.isMediaUploading = true ;
                 let formData = new FormData();
                 $.each(this.newMedia, field => {
                     if (this.newMedia[field] !== null) {
@@ -552,8 +581,7 @@
 
                 const config = {
                     onUploadProgress: progressEvent => {
-                        let progress = (progressEvent.loaded / progressEvent.total) * 100;
-                        $("#progressBar").css("width", progress + "%");
+                        this.progressBar = (progressEvent.loaded / progressEvent.total) * 100;
                     },
                     headers: {"Content-Type": "multipart/form-data"}
                 };
@@ -577,8 +605,10 @@
                             });
                         }
 
+                        this.isMediaUploading = false ;
+
                         this.clearMedia();
-                        $("#progressBar").css("width",'0%');
+                        this.progressBar = 0;
                         this.$store.dispatch("flyingNotification");
                     })
                     .catch( (error) => {
@@ -592,7 +622,22 @@
                             message: "Error",
                             iconSrc: "/images/resume_builder/error.png"
                         });
+
+                        this.isMediaUploading = false ;
+
                     });
+            },
+            applyRecord(file){
+                file.name = "Recorded file";
+                this.newMedia = {
+                    id: "",
+                    title: "Recorded file",
+                    type: 'audio',
+                    transcript: "",
+                    url: "",
+                    mediaPreviewFile: null,
+                    mediaFile: file
+                };
             },
             clearMedia() {
                 try {
@@ -653,12 +698,40 @@
                 setTimeout( () => {
                     this.playingVideoId = '' ;
                 },1000);
-            }
+            },
+
+            setAudioRecordDuration(media_id) {
+                let aud = document.getElementById('audio_element' + media_id);
+                this.calculateMediaDuration( aud );
+            },
+
+            calculateMediaDuration(media) {
+                return new Promise((resolve, reject) => {
+                    media.onloadedmetadata = function () {
+                        // set the mediaElement.currentTime  to a high value beyond its real duration
+                        media.currentTime = Number.MAX_SAFE_INTEGER;
+                        // listen to time position change
+                        media.ontimeupdate = function () {
+                            media.ontimeupdate = function () {
+                            };
+                            // setting player currentTime back to 0 can be buggy too, set it first to .1 sec
+                            media.currentTime = 0.1;
+                            media.currentTime = 0;
+                            // media.duration should now have its correct value, return it...
+                            resolve(media.duration);
+                            console.log(media.duration);
+                            console.log(media.currentTime);
+                        }
+                    }
+                });
+            },
+
+
         },
         mounted() {
             window.onresize = () => {
                 this.windowWidth = window.innerWidth;
-            }
+            };
         }
     };
 </script>
@@ -699,9 +772,10 @@
             flex-wrap: wrap;
             align-items: center;
             position: relative;
+            width: 100%;
+            max-width: 300px;
 
             .input{
-                max-width: 300px;
                 width: 100%;
             }
 
@@ -711,9 +785,44 @@
                 color: #9f9e9e;
                 margin-left: 12px;
                 margin-top: 6px;
+                @include lt-sm{
+                    margin-top: 24px;
+                }
+                @include lt-md{
+                    margin-top: 24px;
+                }
                 max-width: 270px;
                 white-space: nowrap;
                 overflow: hidden;
+            }
+
+            .uploading{
+                position: absolute;
+                background: rgba(196, 201, 245, 0.5);
+                margin-top: 6px;
+                @include lt-sm{
+                    margin-top: 24px;
+                }
+                @include lt-md{
+                    margin-top: 24px;
+                }
+                width: 0;
+                border-radius: 10px;
+                height:48px;
+                display:flex;
+                align-items: center;
+                overflow: hidden;
+
+                .uploading-bar-content{
+                    width:100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-weight: 600;
+                    font-size: 15px;
+                    line-height: 20px;
+                    color: #7E85C0;
+                }
             }
         }
         .text-inputs{
@@ -797,26 +906,7 @@
             }
         }
 
-        .btn-record {
-            width: 120px;
-            height: 49px !important;
-            margin-top: 7px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #C4C9F5;
-            border-radius: 10px;
-            background-color: white !important;
 
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 25px;
-            color: #888DB1 !important;
-
-            @include lt-sm{
-                margin-top:10px;
-            }
-        }
 
         .btn-new {
             width: 120px;
@@ -1120,54 +1210,15 @@
             }
         }
     }
+
+
+
 </style>
 
 <style>
     @media screen and (max-width: 599px) {
         #resumeBuilder .v-input__prepend-outer {
             display: none !important;
-        }
-    }
-</style>
-<style lang="scss">
-    // recorder styles not scoped
-    @import "../../../../../sass/media-queries";
-
-    @include lt-sm {
-        .ar-player > .ar-player-bar > .ar-player__progress {
-            width: 40px !important;
-        }
-
-        .ar-content, .ar-player {
-            width: 300px !important;
-        }
-    }
-
-
-    .ar-icon {
-        border: 1px solid #001CE2 !important;
-    }
-
-    .audio-recorder {
-        .ar-recorder__records-limit {
-            display: none !important;
-        }
-
-        .ar-records {
-            height: auto !important;
-        }
-
-        .ar-recorder__duration {
-            margin-top: 10px;
-        }
-
-        #uploadRecord {
-            width: 25px;
-            height: auto;
-
-            &:hover {
-                cursor: pointer;
-            }
         }
     }
 </style>

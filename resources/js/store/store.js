@@ -416,6 +416,7 @@ export const store = new Vuex.Store({
                     title: "John Doe",
                     resume_link_id: "4",
                     url: '"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    media_preview: '/images/video-holder.svg',
                     order: "1",
                     is_public: "1",
                     user_id: "2",
@@ -505,7 +506,8 @@ export const store = new Vuex.Store({
             'profile', // main tab | can not be hidden
         ],
         savingStatus: 'normal',
-        justSaved: false
+        justSaved: false,
+        updateActivityTimer: false
     },
     mutations: {
         setCurrentUser: (state, data) => {
@@ -514,6 +516,8 @@ export const store = new Vuex.Store({
         updateThemeUser(state, themeUser) {
             state.themeUser = themeUser;
         },
+
+        // activity
         updateActivity(state) {
             state.savingStatus = 'saving';
             axios.post('/api/user/update-last-activity', { user_id: state.user.id }).then((response) => {
@@ -521,7 +525,18 @@ export const store = new Vuex.Store({
                 setTimeout(() => {
                     state.savingStatus = 'normal';
                     state.justSaved = true;
-                },1500);
+                },2000);
+
+                if(! state.updateActivityTimer ){
+                    state.updateActivityTimer = setInterval( () => {
+                        state.justSaved = false;
+                        axios.get('/api/user/last-activity/' + state.user.id).then((response) => {
+                            state.user.last_activity = response.data.last_activity ;
+                        });
+                    }, 60000);
+                }
+
+
             }).catch((error) => {
                 state.savingStatus = 'error';
                 setTimeout(() => {
@@ -536,6 +551,8 @@ export const store = new Vuex.Store({
                 updateIframeHolder.click();
             }
         },
+
+        // updating order
         updateLinks(state, links) {
             state.user.links = links;
             axios.post('/api/user/links/update-order', { links: links })
@@ -648,6 +665,7 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+
         showFlyingNotification: (state, data) => {
             // let notificationElement = $('#flyingNotification');
             //
