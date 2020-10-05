@@ -352,14 +352,14 @@
 <body>
 
     <div class="theme-header">
-        <img src="{{public_path('images/resume_builder/default-user.jpg')}}" alt="" class="user-img" />
+        <img src="{{$user->personalInfo->profile_pic}}" alt="" class="user-img" />
         <table class="user-data">
             <tr>
                 <td class="user-personal">
                     <div class="user-name">{{ $user->personalInfo->first_name.' '.$user->personalInfo->last_name }}</div>
                     <div class="user-profession">{{ $user->personalInfo->designation }}</div>
                     <div class="user-info">
-                        <a href="#">{{ $user->personalInfo->hometown }}, {{ $user->personalInfo->location }}</a>
+                        <a href="#">{{ $user->personalInfo->location }}</a>
                         <a href="#">{{ $user->personalInfo->phone }}</a>
                         <a href="#">{{ $user->personalInfo->email }}</a>
                     </div>
@@ -402,8 +402,8 @@
             
             @foreach ($user->workExperience->toArray() as $item)
                 @php
-                    $dateFrom = strtotime($item['date_from'])    ;
-                    $dateTo = strtotime($item['date_to'])
+                    $dateFrom = strtotime($item['date_from']);
+                    $dateTo = strtotime($item['date_to']);
                 @endphp
 
                 @if ($loop->last && $loop->index % 2 == 0)
@@ -492,6 +492,7 @@
                 @php
                     $dateFrom = strtotime($item['date_from'])    ;
                     $dateTo = strtotime($item['date_to'])
+                    
                 @endphp
 
                 @if ($loop->last && $loop->index % 2 == 0)
