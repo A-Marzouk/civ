@@ -494,6 +494,7 @@ export const store = new Vuex.Store({
             ],
         },
         themeUser: {},
+        currentGlobalTab:'',
         access_token: Vue.$cookies.get('access_token') || null,
         defaultTabs: ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements'],
         excludedTabs:[
@@ -550,6 +551,11 @@ export const store = new Vuex.Store({
             if (updateIframeHolder.length) {
                 updateIframeHolder.click();
             }
+        },
+        // theme tab globally
+        updateThemeTabGlobally(state, tab_title){
+            console.log(tab_title);
+            state.currentGlobalTab = tab_title ;
         },
 
         // updating order
@@ -666,22 +672,8 @@ export const store = new Vuex.Store({
                 .catch();
         },
 
+        // system notifications
         showFlyingNotification: (state, data) => {
-            // let notificationElement = $('#flyingNotification');
-            //
-            // let notificationText = $('#flyingNotificationText');
-            // let notificationIconSrc = $('#flyingNotificationIconSrc');
-            // data.message ? notificationText.text(data.message) : notificationText.text('Saved');
-            // data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
-            //
-            // if (notificationElement.is(':visible')) {
-            //     return;
-            // }
-            // notificationElement.slideToggle('slow');
-            // setTimeout(() => {
-            //     notificationElement.slideToggle('slow');
-            // }, 2000);
-
             if(data.message === 'Error'){
                 state.savingStatus = 'error' ;
             }else{
@@ -732,17 +724,26 @@ export const store = new Vuex.Store({
             }
             )
         },
+
+        // notifications action
         flyingNotification(store, payload = {}) {
             store.commit('showFlyingNotification', payload);
         },
         flyingNotificationDelete(store, payload = {}) {
             store.commit('showFlyingNotificationDelete', payload);
         },
+
+        // updates
         updateThemeUser(store, themeUser) {
             store.commit('updateThemeUser', themeUser);
         },
         updateLastActivity(store) {
             store.commit('updateActivity');
+        },
+
+        // update global theme tab:
+        updateThemeTabGlobally(store, tab_title) {
+            store.commit('updateThemeTabGlobally', tab_title);
         },
     }
 });
