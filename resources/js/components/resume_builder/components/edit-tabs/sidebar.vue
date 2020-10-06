@@ -262,7 +262,9 @@
         watch:{
           activeTab: function (val) {
               let link = this.sidebarLinks.find( (link) => {return link.title === val} );
-              this.$router.push(link.url);
+              if(this.$router.currentRoute.fullPath !== link.url){
+                  this.$router.push(link.url);
+              }
           }
         },
         mounted() {
