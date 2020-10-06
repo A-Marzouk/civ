@@ -83,7 +83,15 @@
             },
             lastActivity(){
                 return this.$store.state.user.last_activity;
+            },
+            globalTab(){
+                return this.$store.state.currentGlobalTab;
             }
+        },
+        watch: {
+            globalTab: function (val) {
+                this.activeTab = val;
+            },
         },
         methods: {
             getThemesList() {
