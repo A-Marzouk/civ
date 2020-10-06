@@ -326,13 +326,9 @@ class Upload
     public static function projectImages(Request $request)
     {
         $data = [];
-
         foreach ($request->file('images') as $file) {
-            $name = date(time()) . '_' . $file->getClientOriginalName();
-            $file->move(public_path() . '/uploads/projectImages/', $name);
-            $data[] = '/uploads/projectImages/' . $name;
+            $data[]  = $file->store('projects_media');
         }
-
         return $data;
     }
 

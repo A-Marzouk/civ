@@ -143,7 +143,7 @@
                           >
                             <a
                               class="hire-rate-button"
-                              @click="paymentInfoNext()"
+                              @click="availableNext()"
                               v-if="paymentInfo == index"
                               href="javascript:void(0)"
                             >
@@ -312,9 +312,21 @@ export default {
       this.isOpen = false;
     },
     availableNext() {
-      if (this.available == 2) {
+      this.available++;
+      this.paymentInfo++;
+      if (this.paymentInfo == 4 && this.available == 3) {
         this.available = 0;
-      } else this.available++;
+        this.paymentInfo = 0;
+      } else if (this.paymentInfo == 1) {
+        this.available = 0;
+      } else if (this.paymentInfo == 2) {
+        this.available = 1;
+      } else if (this.paymentInfo == 3) {
+        this.available = 2;
+      } else {
+        this.available = 0;
+        this.paymentInfo = 0;
+      }
     },
     availablePrev() {
       if (this.available == 0) {
