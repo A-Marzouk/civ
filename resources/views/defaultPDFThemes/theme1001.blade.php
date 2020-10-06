@@ -393,14 +393,19 @@
         </div>
     </section>
 
-    @if ($user->workExperience->count() > 0)
+    @php
+        $visibleWorks = $user->getPublicWorkExperience();
+    @endphp
+
+
+    @if ($visibleWorks->count() > 0)
         <section class="work-experience">
             <h1 class="section-title">
                 Experience
                 {{-- <div class="title-decorator"></div> --}}
             </h1>
             
-            @foreach ($user->workExperience->toArray() as $item)
+            @foreach ($visibleWorks->toArray() as $item)
                 @php
                     $dateFrom = strtotime($item['date_from']);
                     $dateTo = strtotime($item['date_to']);
