@@ -143,9 +143,9 @@
                         title: "education",
                     },
                     {
-                        url: "/resume-builder/edit/achievement",
+                        url: "/resume-builder/edit/achievements",
                         icon: "achievement",
-                        label: "Achievement",
+                        label: "Achievements",
                         title: "achievements",
                     },
 
@@ -259,6 +259,12 @@
             }
         },
 
+        watch:{
+          activeTab: function (val) {
+              let link = this.sidebarLinks.find( (link) => {return link.title === val} );
+              this.$router.push(link.url);
+          }
+        },
         mounted() {
             // Set the correct activeTab on refresh, and on changing the view
             const pathSplit = this.$route.path.split("/"),
