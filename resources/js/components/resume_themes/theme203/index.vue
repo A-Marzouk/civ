@@ -196,24 +196,6 @@
                 >
                   <v-card flat color="tranparent">
                     <v-card-text class>
-                      <!-- <v-btn
-                        fab
-                        color="#FCD259"
-                        small
-                        class="mx-md-1 mx-sm-2 mx-1 social-btn"
-                        depressed
-                        :href="item.link"
-                        v-for="item in currentUser.links"
-                        :key="item.id + '_link'"
-                        @click="goToExternalLink(item.link)"
-                        target="_blank"
-                        v-show="item.is_public || item.is_active"
-                      >
-                        <img
-                          :width="item.title == 'map-markup' ? 11 : 15"
-                          :src="`/images/resume_themes/theme203/social_icons/${item.link_title.toLowerCase()}.webp`"
-                        />
-                      </v-btn> -->
                       <IconCarousel
                         :currentUser="currentUser"
                         themeNumber="theme203"
@@ -327,7 +309,8 @@
                     <v-tab
                       :key="item.title"
                       class="text-capitalize custom-tab-text"
-                      @click="currentTab = item.title"
+                      @click="changeTab(item.title)"
+                      :id="item.title"
                       :href="'#'+item.title"
                       v-show="
                         item.title !== 'media' &&
@@ -1068,7 +1051,7 @@ export default {
     IconCarousel,
     ImagesCarouselModal,
   },
-  props: ["user", "is_preview"],
+  props: ["user", "is_preview", "builderCurrentTabTitle"],
   filters: {
     capitalize: function (value) {
       if (!value) return "";
@@ -1082,7 +1065,6 @@ export default {
   },
   data() {
     return {
-      currentTab: null,
       audioModal: false,
       videoModal: false,
       emailModal: false,
@@ -1274,11 +1256,19 @@ export default {
     // if current tab changed, change the active tab as well.
     builderCurrentTabTitle: function (val) {
       if (!this.defaultTabs.includes(val)) {
-        this.activeTab = this.getFirstActiveTabTitle();
+        this.mainDataTab = this.getFirstActiveTabTitle();
       } else {
-        this.activeTab = val;
+        this.mainDataTab = val;
       }
     },
+  },
+  computed:{
+    defaultTabs(){
+      return this.$store.state.defaultTabs ;
+    },
+    excludedTabs(){
+      return this.$store.state.excludedTabs ;
+    }
   },
   //watcher
   mounted() {
@@ -1291,11 +1281,39 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
+
+    // set active tab
+    this.setActiveTabByURL();
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
 
   methods: {
+    changeTab(tab_title){
+      this.mainDataTab = tab_title;
+      this.$store.dispatch("updateThemeTabGlobally", tab_title);
+    },
+    getFirstActiveTabTitle(){
+      let title = '';
+      this.currentUser.tabs.forEach( (tab) => {
+        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
+          if(title === ''){
+            title = tab.title ;
+          }
+        }
+      });
+
+      return title ;
+    },
+    setActiveTabByURL() {
+      const pathSplit = this.$route.path.split("/");
+      let currentActiveTab = pathSplit[pathSplit.length - 1];
+      if (!this.defaultTabs.includes(currentActiveTab)) {
+        this.mainDataTab = this.getFirstActiveTabTitle();
+      } else {
+        this.mainDataTab = currentActiveTab;
+      }
+    },
     filterAudio(audios) {
       var filterArray = audios.filter((a) => a.type === "audio");
       return filterArray;
