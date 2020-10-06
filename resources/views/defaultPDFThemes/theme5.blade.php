@@ -330,7 +330,7 @@
                                 href="{{ $item['link'] }}"
                             >
                                 <div class="img-wrapper">
-                                    <img src="{{ public_path('images/resume_themes/theme5/behance-icon.png') }}" alt="">
+                                    <img src="{{ public_path('images/resume_themes/theme5/'.strtolower($item['link_title']).'-icon.png') }}" alt="">
                                 </div>
                                 {{ $item['link_title'] }} username
                             </a>
@@ -359,7 +359,7 @@
                             <div class="work-header">
                                 <div class="decorator"></div>
                                 <div class="job-title">{{ $item->job_title }}</div>
-                                <div class="company-name">{{ $item->company_name }} <span class="date">{{ date('M Y', $dateFrom) }} - {{ ($item['present'] == 1) ? 'Present' : date('M Y', $dateTo) }}</span></div>
+                                <div class="company-name">{{ $item->company_name }} <span class="date">{{ date('M Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Present' : date('M Y', $dateTo) }}</span></div>
                                 <div class="description">{{ $item->description }}</div>
                             </div>
                         </div>

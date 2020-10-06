@@ -45,7 +45,7 @@
         }
 
         body {
-            padding-bottom: 200px;
+            padding: 80px 0px 200px;
             position: relative;
         }
 
@@ -80,6 +80,7 @@
             position: relative;
             z-index: 2;
             width: 100%;
+            margin-top: -80px;
         }
 
         .user-img-wrapper {
@@ -135,7 +136,7 @@
         }
 
         .user-social .social-icon-wrapper:last-child {
-            border-right: 0;
+            border-right: 0 solid transparent;
         }
         
         .user-social .social-icon-wrapper .social-nickname {
@@ -205,8 +206,8 @@
 
         .work:last-child,
         .education:last-child {
-            border-right: 0;
-            border-left: 60px;
+            border-right: 0 solid transparent;
+            border-left: 60px solid transparent;
         }
 
         .work-header {
@@ -347,28 +348,30 @@
             </td>
             <td class="user-data-wrapper">
                 <div class="user-data">
-                    <div class="user-name">José Daniel Quintero</div>
-                    <div class="user-profession">Fullstack Developer</div>
+                    <div class="user-name">{{ $user->personalInfo->first_name.' '.$user->personalInfo->last_name }}</div>
+                    <div class="user-profession">{{ $user->personalInfo->designation }}</div>
                     <table class="user-social">
-                        <tr>
-                            <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme203/social_icons/behance-icon.png') }}" alt=""><span class="social-nickname">Username</span>
-                            </td>
-                            <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme203/social_icons/linkedin-icon.png') }}" alt=""><span class="social-nickname">Username</span>
-                            </td>
-                            <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme203/social_icons/google-icon.png') }}" alt=""><span class="social-nickname">Username</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme203/social_icons/dribbble-icon.png') }}" alt=""><span class="social-nickname">Username</span>
-                            </td>
-                            <td class="social-icon-wrapper">
-                                <img src="{{ public_path('/images/resume_themes/theme203/social_icons/instagram-icon.png') }}" alt=""><span class="social-nickname">Username</span>
-                            </td>
-                        </tr>
+                        @foreach ($user->getSocialLinks() as $item)
+                            @if ($loop->index % 3 == 0)
+                                <tr>
+                                    <td class="social-icon-wrapper">
+                                        <img src="{{ public_path('/images/resume_themes/theme203/social_icons/'.strtolower($item->link_title).'-icon.png') }}" alt=""><span class="social-nickname">{{ $item->link_title }} Username</span>
+                                    </td>
+                            @elseif ($loop->index % 3 == 2)
+                                    <td class="social-icon-wrapper">
+                                        <img src="{{ public_path('/images/resume_themes/theme203/social_icons/'.strtolower($item->link_title).'-icon.png') }}" alt=""><span class="social-nickname">{{ $item->link_title }} Username</span>
+                                    </td>
+                                </tr>
+                            @else
+                                <td class="social-icon-wrapper">
+                                    <img src="{{ public_path('/images/resume_themes/theme203/social_icons/'.strtolower($item->link_title).'-icon.png') }}" alt=""><span class="social-nickname">{{ $item->link_title }} Username</span>
+                                </td>
+                            @endif
+
+                            @if ($loop->index != 2 && $loop->last)
+                                </tr>
+                            @endif
+                        @endforeach
                     </table>
                 </div>
             </td>
@@ -383,155 +386,174 @@
         <div class="section-title">About</div>
         <div class="text-decoration">ABOUT</div>
         <div class="content">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus voluptas, adipisci minus, quod, unde distinctio accusantium laudantium autem aperiam quia ipsa! Quia ratione unde velit voluptatibus qui officia praesentium doloremque.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quasi nobis quo laudantium dolores praesentium, reiciendis architecto sapiente ipsam, maiores eum et odit ut? Repellendus laborum ipsam laboriosam deleniti id! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea delectus assumenda magni architecto, sequi laborum possimus! Provident eaque omnis inventore incidunt quam eum, sit odio. Id quis assumenda magnam similique!</p>
+            {{ $user->personalInfo->overview }}
         </div>
     </section>
 
-    <section class="work-experience">
-        <div class="section-title">Work</div>
-        <div class="text-decoration">WORK</div>
-        <table>
-            <tr>
-                <td class="work">
-                    <div class="work-header">
-                        <div class="company-name"><div class="circle-decorator"></div>Civie</div>
-                        <div class="date">Dec 19 - Present</div>
-                    </div>
-                    <div class="job-title">Fullstack Developer</div>
-                    <div class="description">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo atque error quisquam distinctio libero voluptatem odit reprehenderit voluptas cumque accusantium.</p>
-                        <p>Officiis, deleniti? Assumenda quibusdam praesentium delectus cupiditate, corrupti.</p>
-                    </div>
-                </td>
-                <td class="work">
-                    <div class="work-header">
-                        <div class="company-name"><div class="circle-decorator"></div>Civie</div>
-                        <div class="date">Dec 19 - Present</div>
-                    </div>
-                    <div class="job-title">Fullstack Developer</div>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ullam aut praesentium, odit inventore consequatur nemo soluta assumenda nam error?</p>
-                        <p>Aspernatur earum possimus incidunt. Excepturi asperiores tenetur illo, blanditiis esse alias.</p>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </section>
+    @php
+        $visibleWorks = $user->getPublicWorkExperience();
+    @endphp
 
-    <section class="educations">
-        <div class="section-title">Education</div>
-        <div class="text-decoration">EDUCATION</div>
-        <table>
-            <tr>
-                <td class="education">
-                    <div class="school-name">
-                        <div class="circle-decorator"></div>Simon Bolivar University
-                    </div>
-                    <div class="education-header">
-                        <div class="date">Dec 19 - Present</div>
-                        <div class="grade-title">Computing Maths</div>
-                    </div>
-                    <div class="description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid quibusdam voluptatem iste, minus accusamus velit adipisci dignissimos nostrum magni rem.
-                    </div>
-                </td>
-                <td class="education">
-                    <div class="school-name">
-                        <div class="circle-decorator"></div>Simon Bolivar University
-                    </div>
-                    <div class="education-header">
-                        <div class="date">Dec 19 - Present</div>
-                        <div class="grade-title">Computing Maths</div>
-                    </div>
-                    <div class="description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid quibusdam voluptatem iste, minus accusamus velit adipisci dignissimos nostrum magni rem.
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td class="education">
-                    <div class="school-name">
-                        <div class="circle-decorator"></div>Simon Bolivar University
-                    </div>
-                    <div class="education-header">
-                        <div class="date">Dec 19 - Present</div>
-                        <div class="grade-title">Computing Maths</div>
-                    </div>
-                    <div class="description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid quibusdam voluptatem iste, minus accusamus velit adipisci dignissimos nostrum magni rem.
-                    </div>
-                </td>
-                <td class="education">
-                    <div class="school-name">
-                        <div class="circle-decorator"></div>Simon Bolivar University
-                    </div>
-                    <div class="education-header">
-                        <div class="date">Dec 19 - Present</div>
-                        <div class="grade-title">Computing Maths</div>
-                    </div>
-                    <div class="description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid quibusdam voluptatem iste, minus accusamus velit adipisci dignissimos nostrum magni rem.
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </section>
+    @if ($visibleWorks->count() > 0)
+        <section class="work-experience">
+            <div class="section-title">Work</div>
+            <div class="text-decoration">WORK</div>
 
-    <section class="skills">
-        <div class="section-title">Skills</div>
-        <div class="text-decoration">SKILLS</div>
+            @foreach($visibleWorks as $work)
+                @php
+                    $dateFrom = strtotime($work->date_from);
+                    $dateTo = strtotime($work->date_to);
+                @endphp
+                @if ($loop->last && $loop->index % 2 == 0)
 
-        <table class="skill">
-            <tr>
-                <td class="skill-name">Photoshop</td>
-                <td class="skill-percentage">90%</td>
-            </tr>
-            <tr>
-                <td class="skill-bar-container">
-                    <div class="skill-icon">
-                        <img src="{{ public_path('/images/resume_themes/theme203/photoshop-icon.png') }}" alt="">
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-value" style="width: 90%"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="skill">
-            <tr>
-                <td class="skill-name">Figma</td>
-                <td class="skill-percentage">80%</td>
-            </tr>
-            <tr>
-                <td class="skill-bar-container">
-                    <div class="skill-icon">
-                        <img src="{{ public_path('/images/resume_themes/theme203/figma-icon.png') }}" alt="">
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-value" style="width: 80%"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="skill">
-            <tr>
-                <td class="skill-name">IIllustrator</td>
-                <td class="skill-percentage">50%</td>
-            </tr>
-            <tr>
-                <td class="skill-bar-container">
-                    <div class="skill-icon">
-                        <img src="{{ public_path('/images/resume_themes/theme203/illustrator-icon.png') }}" alt="">
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-value" style="width: 50%"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </section>
+                    <table>
+                        <tr>
+                            <td class="work">
+                                <div class="work-header">
+                                    <div class="company-name"><div class="circle-decorator"></div>{{ $work->company_name }}</div>
+                                    <div class="date">{{ date('M Y', $dateFrom) }} - {{ ($work->present == 1) ? 'Present' : date('M Y', $dateTo) }}</div>
+                                </div>
+                                <div class="job-title">{{ $work->job_title }}</div>
+                                <div class="description">
+                                    {{ $work->description }}
+                                </div>
+                            </td>
+                    
+                            <td class="work">
+                            </td>
+                        </tr>
+                    </table>
+                @elseif($loop->index % 2 == 0)
+                    <table>
+                        <tr>
+                            <td class="work">
+                                <div class="work-header">
+                                    <div class="company-name"><div class="circle-decorator"></div>{{ $work->company_name }}</div>
+                                    <div class="date">{{ date('M Y', $dateFrom) }} - {{ ($work->present == 1) ? 'Present' : date('M Y', $dateTo) }}</div>
+                                </div>
+                                <div class="job-title">{{ $work->job_title }}</div>
+                                <div class="description">
+                                    {{ $work->description }}
+                                </div>
+                            </td>
+                @else
+                            <td class="work">
+                                <div class="work-header">
+                                    <div class="company-name"><div class="circle-decorator"></div>{{ $work->company_name }}</div>
+                                    <div class="date">{{ date('M Y', $dateFrom) }} - {{ ($work->present == 1) ? 'Present' : date('M Y', $dateTo) }}</div>
+                                </div>
+                                <div class="job-title">{{ $work->job_title }}</div>
+                                <div class="description">
+                                    {{ $work->description }}
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                @endif
+            @endforeach
+        </section>
+    @endif
+
+    @php
+        $visibleEducations = $user->getPublicEducation();
+    @endphp
+
+    @if ($visibleEducations->count() > 0)
+        <section class="educations">
+            <div class="section-title">Education</div>
+            <div class="text-decoration">EDUCATION</div>
+
+            @foreach ($visibleEducations as $education)
+
+                @php
+                    $dateFrom = strtotime($education->date_from);
+                    $dateTo = strtotime($education->date_to);
+                    
+                @endphp
+
+                @if ($loop->last && $loop->index % 2 == 0)
+                    <table>
+                        <tr>
+                            <td class="education">
+                                <div class="school-name">
+                                    <div class="circle-decorator"></div>{{ $education->university_name }}
+                                </div>
+                                <div class="education-header">
+                                    <div class="date">{{ $education->university_name }} <span class="date">{{ date('M Y', $dateFrom) }} - {{ ($education->present == 1) ? 'Present' : date('M Y', $dateTo) }}</div>
+                                    <div class="grade-title">{{ $education->degree_title }}</div>
+                                </div>
+                                <div class="description">
+                                    {{ $education->description }}
+                                </div>
+                            </td>
+                            <td class="education">
+                            </td>
+                        </tr>
+                    </table>
+
+                @elseif ($loop->index % 2 == 0)
+                    <table>
+                        <tr>
+                            <td class="education">
+                                <div class="school-name">
+                                    <div class="circle-decorator"></div>{{ $education->university_name }}
+                                </div>
+                                <div class="education-header">
+                                    <div class="date">{{ $education->university_name }} <span class="date">{{ date('M Y', $dateFrom) }} - {{ ($education->present == 1) ? 'Present' : date('M Y', $dateTo) }}</div>
+                                    <div class="grade-title">{{ $education->degree_title }}</div>
+                                </div>
+                                <div class="description">
+                                    {{ $education->description }}
+                                </div>
+                            </td>
+                @else
+                            <td class="education">
+                                <div class="school-name">
+                                    <div class="circle-decorator"></div>{{ $education->university_name }}
+                                </div>
+                                <div class="education-header">
+                                    <div class="date">{{ $education->university_name }} <span class="date">{{ date('M Y', $dateFrom) }} - {{ ($education->present == 1) ? 'Present' : date('M Y', $dateTo) }}</div>
+                                    <div class="grade-title">{{ $education->degree_title }}</div>
+                                </div>
+                                <div class="description">
+                                    {{ $education->description }}
+                                </div>
+                            </td>
+                        </tr>
+                    </table>    
+                @endif
+            @endforeach
+        </section>
+    @endif
+
+    @php
+        $visibleSkills = $user->getPublicSkills();
+    @endphp
+
+    @if ($visibleSkills->count() > 0)
+        <section class="skills">
+            <div class="section-title">Skills</div>
+            <div class="text-decoration">SKILLS</div>
+
+            @foreach ($visibleSkills as $skill)
+                <table class="skill">
+                    <tr>
+                        <td class="skill-name">{{ $skill->title }}</td>
+                        <td class="skill-percentage">{{ $skill->percentage }}%</td>
+                    </tr>
+                    <tr>
+                        <td class="skill-bar-container">
+                            <div class="skill-icon">
+                                <img src="{{ public_path('/images/resume_themes/theme203/'.strtolower($skill->title).'-icon.png') }}" alt="">
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-value" style="{{'width: '.$skill->percentage.'%'}}"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            @endforeach
+        </section>
+    @endif
 </body>
 </html>
