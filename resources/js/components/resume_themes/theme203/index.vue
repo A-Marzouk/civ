@@ -542,7 +542,7 @@
                               :key="item.id"
                             >
                               <v-card
-                                class="mb-2"
+                                class="mb-2 card-portfolio"
                                 align="left"
                                 flat
                                 color="transparent"
@@ -553,6 +553,7 @@
                                 <v-img
                                   class="custom-portfolio-img"
                                   :src="getProjectMainImage(item)"
+                                  style="border-radius: 10px !important;"
                                 ></v-img>
                                 <v-card-title class="custom-portfolio-title">
                                   {{ item.name }}
@@ -1644,7 +1645,6 @@ export default {
 // ............................ Main Navigation Tab ...........................//
 // ..........................Desktop Portfolio.........................
 .custom-portfolio-img {
-  border-radius: 10px;
   width: 100% !important;
   //height: 100% !important;
   max-height: 400px !important;
