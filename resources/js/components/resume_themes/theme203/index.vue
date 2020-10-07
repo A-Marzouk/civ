@@ -5,7 +5,7 @@
       ma-0
       pa-0
       fluid
-      style="max-width: 100% !important; min-height: 100vh"
+      style="max-width: 100% !important; min-height: 100vh !important;"
       v-if="currentUser"
     >
       <!-- Header Row -->
@@ -336,10 +336,9 @@
                     <v-tab
                       :key="item.title"
                       class="text-capitalize custom-tab-text"
-
                       @click="changeTab(item.title)"
                       :id="item.title"
-                      :href="'#'+item.title"
+                      :href="'#' + item.title"
                       v-show="
                         item.title !== 'media' &&
                         item.title !== 'links' &&
@@ -553,7 +552,7 @@
                                 <v-img
                                   class="custom-portfolio-img"
                                   :src="getProjectMainImage(item)"
-                                  style="border-radius: 10px !important;"
+                                  style="border-radius: 10px !important"
                                 ></v-img>
                                 <v-card-title class="custom-portfolio-title">
                                   {{ item.name }}
@@ -1316,13 +1315,13 @@ export default {
       }
     },
   },
-  computed:{
-    defaultTabs(){
-      return this.$store.state.defaultTabs ;
+  computed: {
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
     },
-    excludedTabs(){
-      return this.$store.state.excludedTabs ;
-    }
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
+    },
   },
   //watcher
   mounted() {
@@ -1343,21 +1342,21 @@ export default {
   },
 
   methods: {
-    changeTab(tab_title){
+    changeTab(tab_title) {
       this.mainDataTab = tab_title;
       this.$store.dispatch("updateThemeTabGlobally", tab_title);
     },
-    getFirstActiveTabTitle(){
-      let title = '';
-      this.currentUser.tabs.forEach( (tab) => {
-        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
-          if(title === ''){
-            title = tab.title ;
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
           }
         }
       });
 
-      return title ;
+      return title;
     },
     setActiveTabByURL() {
       const pathSplit = this.$route.path.split("/");
@@ -1777,7 +1776,7 @@ export default {
     font-size: 30px;
   }
 
-  @media screen and (min-width: 600px) and (max-width: 960px) {
+  @media screen and (min-width: 600px) and (max-width: 1263px) {
     font-size: 24px;
   }
   @media screen and(max-width: 599px) {
@@ -1944,8 +1943,8 @@ export default {
     }
   }
   .btn-email-modal-close {
-    width: 41px;
-    height: 41px;
+    width: 40px;
+    height: 40px;
   }
   .btn-send-mail {
     font-family: "Open Sans" !important;
