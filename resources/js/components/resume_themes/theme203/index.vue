@@ -804,7 +804,7 @@
                 </v-tab-item>
                 <!--  tab item hobbies  -->
                 <!-- ...... Tab item achievement ..... -->
-                <v-tab-item value="achievement" key="achievement">
+                <v-tab-item value="achievements" key="achievements">
                   <div class="watermark-text text-center">Achievement</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width: 100%">
@@ -841,7 +841,7 @@
                               </div>
                               <v-card flat color="transparent">
                                 <v-card-subtitle class="achievement-title">
-                                  {{ achievement.title }}{{ windowWidth }}
+                                  {{ achievement.title }}
                                 </v-card-subtitle>
                                 <v-card-subtitle
                                   class="achievement-subtitle mt-xl-0 mt-n5"
