@@ -1761,9 +1761,12 @@ export default {
   white-space: nowrap;
   display: inline-block;
   // margin-top: 200px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // top: 50%;
+  // left: 50%;
+  // margin-right: -50%;
+  // transform: translate(-50%, -50%);
+  margin: auto;
+
 }
 //hobby tab
 .hobby-title {
