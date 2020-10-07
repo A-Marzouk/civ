@@ -5,7 +5,7 @@
       ma-0
       pa-0
       fluid
-      style="max-width: 100% !important; min-height: 100vh !important;"
+      style="max-width: 100% !important; min-height: 100vh !important"
       v-if="currentUser"
     >
       <!-- Header Row -->
@@ -1760,7 +1760,8 @@ export default {
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
-  margin-top: 200px;
+  // margin-top: 200px;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
