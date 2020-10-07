@@ -1768,7 +1768,7 @@ export default {
 .hobby-title {
   font-family: "Gotham Pro" !important;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 36px;
   line-height: 38px;
   color: #000000 !important;
   letter-spacing: 0.05em;
