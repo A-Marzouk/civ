@@ -805,7 +805,7 @@
                 <!--  tab item hobbies  -->
                 <!-- ...... Tab item achievement ..... -->
                 <v-tab-item value="achievements" key="achievements">
-                  <div class="watermark-text text-center">Achievement</div>
+                  <div class="watermark-text text-center">Achievements</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width: 100%">
                       <v-row align="center" justify="space-between">
