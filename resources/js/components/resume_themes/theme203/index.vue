@@ -1116,9 +1116,9 @@ export default {
         { id: 3, title: "Monthly rate " },
       ],
       availabilityOptions: [
-        { id: 1, title: "Weekly availability" },
-        { id: 2, title: "Weekly availability" },
-        { id: 3, title: "Monthly availability" },
+        { id: 1, title: "Weekly" },
+        { id: 2, title: "Weekly" },
+        { id: 3, title: "Monthly" },
       ],
 
       mainDataTab: null,
