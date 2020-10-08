@@ -52,22 +52,25 @@ class ResumeController extends Controller
     }
 
 
-    public function downloadPDFResume ($themeCode) {
+    public function downloadPDFResume ($themeCode, $username, Request $request) {
         // search the userdata using userName
 
-        // if ($userName) {
-            // $view = \View::make('resume_pdf_themes.' . $themeCode, compact('freelancer'))->render();
-            $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Muli', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.' . $themeCode);
+        // if ($username) {
+            $user = User::withAllRelations($username);
+            $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Muli', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.' . $themeCode, compact('user'));
+
+            // dd($user->workExperience);
+            // dd($socialLinks);
 
             if (ob_get_contents()) {
                 ob_end_clean();
             }
 
             // return $pdf->stream($freelancer->userData['first_name'] . ' ' . $freelancer->userData['last_name'] . '.pdf');
-            return $pdf->stream('resume-'.$themeCode.'.pdf');
+            return $pdf->stream('resume-'.$username.'.pdf');
         // }
 
-        // return view('defaultPDFThemes.' . $themeCode);
+        // return view('defaultPDFThemes.' . $themeCode, compact('user'));
     }
 
     public function userResume ($username, $version = '') {

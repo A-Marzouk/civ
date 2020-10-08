@@ -4,6 +4,22 @@
             <sidebar :activeTab="activeTab" class="sidebar-component" @onChange="activeTab=$event"/>
 
             <main class="edit-cv-content">
+
+                <div class="save-bar">
+                    <div v-if="savingStatus === 'normal'" class="status">
+                        Last save <img src="/icons/clock-icon.svg" alt="clock icon"> {{justSaved ? 'a few moments ago' : lastActivity}}
+                    </div>
+                    <div v-else-if="savingStatus === 'saving'" class="saving">
+                        Saving...
+                    </div>
+                    <div v-else-if="savingStatus === 'saved'" class="saved">
+                        Saved <img src="/icons/saved-icon.svg" alt="saved icon">
+                    </div>
+                    <div v-else class="error">
+                        Error
+                    </div>
+                </div>
+
                 <transition name="fade" mode="out-in" class="d-flex flex-column">
                     <router-view></router-view>
                 </transition>
@@ -46,7 +62,7 @@
             baseUrl: '',
             cvAutoUpdate: true,
             isFrameLoaded: false,
-            availableThemes: []
+            availableThemes: [],
         }),
 
         computed: {
@@ -58,7 +74,24 @@
                 if (id) {
                     return this.importComponent(id);
                 }
+            },
+            savingStatus(){
+                return this.$store.state.savingStatus;
+            },
+            justSaved(){
+                return this.$store.state.justSaved;
+            },
+            lastActivity(){
+                return this.$store.state.user.last_activity;
+            },
+            globalTab(){
+                return this.$store.state.currentGlobalTab;
             }
+        },
+        watch: {
+            globalTab: function (val) {
+                this.activeTab = val;
+            },
         },
         methods: {
             getThemesList() {
@@ -329,6 +362,43 @@
         /* .fade-leave-active below version 2.1.8 */
     {
         opacity: 0;
+    }
+
+    .save-bar{
+
+        font-size: 18px;
+        margin-bottom: 8px;
+
+        .status{
+            color: #888DB1;
+            display: flex;
+            align-items: center;
+
+            img{
+                width: 21px;
+                margin-left: 7px;
+                margin-right: 6px;
+            }
+        }
+
+        .saving{
+            color: #888DB1;
+        }
+
+        .saved{
+            color: #3fe23f;
+            display: flex;
+            align-items: center;
+
+            img{
+                width: 21px;
+                margin-left: 7px;
+            }
+        }
+
+        .error{
+            color: red;
+        }
     }
 </style>
 

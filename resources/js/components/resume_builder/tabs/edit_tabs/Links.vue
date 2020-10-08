@@ -11,7 +11,7 @@
     </v-tabs>
 
     <!-- Content -->
-    <div class="resume-builder__scroll " style="padding-right: 20px;">
+    <div class="resume-builder__scroll links-container" style="padding-right: 20px;">
       <div class="links-content" v-if="links">
         <div class="link-inputs-row">
           <v-select
@@ -360,15 +360,16 @@ $mainBlue: #001ce2;
     margin: 3%;
   }
 
+  .links-container{
+    height: 425px;
+  }
+
   .links-content {
-    height: 450px;
     background: #fff;
     box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
     padding: 50px;
-    margin-bottom: 70px;
 
     @include lt-sm {
-      height: 450px;
       padding: 20px;
     }
   }

@@ -88,7 +88,7 @@ if ($("#adminResumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVPortfolio
                 },
                 {
-                    path: '/resume-builder/edit/achievement',
+                    path: '/resume-builder/edit/achievements',
                     component: ResumeBuilderEditCVAchievement
                 },
                 {

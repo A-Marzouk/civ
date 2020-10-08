@@ -85,6 +85,7 @@
       </div>
     </div>
 
+
     <div class="portfolio-items">
       <div
         v-for="portfolio in currentUser.projects"
@@ -93,7 +94,9 @@
         class="portfolio-item"
       >
         <div class="item-wrapper">
-          <Thumbnail v-if="portfolio.images[0]" :src="portfolio.images[0].src" />
+          <ImagesCarouselModal :images="portfolio.images">
+            <Thumbnail v-if="portfolio.images[0]" :src="portfolio.images[0].src" />
+          </ImagesCarouselModal>
 
           <div v-show="displayMode === 'detail'" class="item-detail">
             <h3 class="item-detail__title" v-text="portfolio.name"></h3>
@@ -110,11 +113,12 @@
 
 <script>
 import Thumbnail from "../components/Thumbnail";
+import ImagesCarouselModal from "../../reusable/ImagesCarouselModal";
 
 export default {
   name: "portfolio",
 
-  components: { Thumbnail },
+  components: { Thumbnail, ImagesCarouselModal },
   props: ["currentUser"],
   data: () => {
     return {

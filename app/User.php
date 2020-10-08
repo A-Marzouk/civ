@@ -108,6 +108,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_activity' => 'datetime',
     ];
 
 
@@ -283,17 +284,38 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getLastActivityAttribute($value)
     {
-        return $this->getTimeDifferenceInSeconds($value);
+        $time = new Carbon($value);
+        return $time->diffForHumans();
     }
 
-
-    protected function getTimeDifferenceInSeconds($value){
-        // return time difference in seconds
-        $start  = new Carbon(Carbon::now()->toDateTimeString());
-        $end    = new Carbon($value);
-        $totalDuration = $end->diffInSeconds($start);
-
-        return $totalDuration;
+    // Get user links where category == 'social'
+    public function getSocialLinks() {
+        return $this->links->filter(function ($value, $key) {
+            return $value->category == 'social';
+        });
     }
 
+    public function getPersonalWebsite() {
+        return $this->links->filter(function ($value, $key) {
+            return $value->category == 'professional' && $value->link_title == 'Website';
+        })[0];
+    }
+
+    public function getPublicWorkExperience () {
+        return $this->workExperience->filter(function ($value, $key) {
+            return $value->is_public;
+        });
+    }
+    
+    public function getPublicEducation () {
+        return $this->education->filter(function ($value, $key) {
+            return $value->is_public;
+        });
+    }
+    
+    public function getPublicSkills () {
+        return $this->skills->filter(function ($value, $key) {
+            return $value->is_public;
+        });
+    }
 }

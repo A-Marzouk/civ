@@ -8,20 +8,6 @@
 
 		<!-- Notifications and progress bar | to be moved to component-->
 
-		<div class="modal fade" id="fullScreenNotificationModal" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content border-0" style="border:none !important;">
-					<div class="modal-body">
-						<!-- image and notification text are set on stor.js (while sending the event) - default value is for success-->
-						<div class="thank-you-pop d-flex">
-							<img src="" id="notificationIconSrc" alt="notification modal">
-							<div class="success-message-text" id="notificationText"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<div class="flying-notification" id="flyingNotification">
 			<div class="d-flex align-items-center justify-content-center w-100">
 				<img src="" id="flyingNotificationIconSrc" alt="notification modal">
@@ -272,39 +258,13 @@ body.modal-open {
 	}
 }
 
-#fullScreenNotificationModal .modal-header {
-	border: 0px;
-}
+
 
 .success-message-text {
 	font-weight: 600;
 	font-size: 33px;
 	text-align: left;
 	color: #505050;
-}
-
-#fullScreenNotificationModal {
-	align-items: center;
-	background: rgba(255, 255, 255, 0.9);
-	overflow-y: hidden;
-	.modal-dialog {
-		max-width: 736px !important;
-		height: 100vh !important;
-		display: flex;
-	}
-
-	.modal-content {
-		border: none;
-		border-radius: 45px;
-		margin: auto !important;
-		height: fit-content !important;
-	}
-	.modal-body {
-		height: 303px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
 }
 
 .progressBar {

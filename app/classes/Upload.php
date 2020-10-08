@@ -326,13 +326,9 @@ class Upload
     public static function projectImages(Request $request)
     {
         $data = [];
-
         foreach ($request->file('images') as $file) {
-            $name = date(time()) . '_' . $file->getClientOriginalName();
-            $file->move(public_path() . '/uploads/projectImages/', $name);
-            $data[] = '/uploads/projectImages/' . $name;
+            $data[]  = $file->store('projects_media');
         }
-
         return $data;
     }
 
@@ -346,21 +342,6 @@ class Upload
         $data['path'] = '/uploads/referenceImages/' . $name;
 
         return $data;
-    }
-
-    public static function media(Request $request)
-    {
-        $file = $request->file('mediaFile');
-        $name = date(time()) . '_' . $file->getClientOriginalName();
-
-        if (strpos($name, 'blob') !== false) { // audio record
-            $name .= 'user_record.mp3';
-        }
-
-        $file->move(public_path() . '/uploads/media/', $name);
-        $path = '/uploads/media/' . $name;
-
-        return $path;
     }
 
     public static function docFile(Request $request)

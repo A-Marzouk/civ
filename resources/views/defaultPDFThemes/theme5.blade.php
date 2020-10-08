@@ -28,10 +28,13 @@
             background-color: #F1F1F1;
         }
 
+        body {
+            padding: 40px 50px;
+        }
+
         main {
             color: #707070;
             font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
-            padding: 40px 50px;
         }
 
         .theme-header {
@@ -223,6 +226,10 @@
             padding: 30px;
         }
 
+        .educations table td {
+            width: 50%;
+        }
+
         .educations table td:first-child {
             border-right: 10px solid transparent;
         }
@@ -248,11 +255,11 @@
             padding: 40px 50px;
         }
 
-        .skills-container > table {
+        .skills-container .skills-row {
             width: 100%;
         }
 
-        .skills-row > tr > table {
+        .skills-row  .column {
             width: 50%;
         }
 
@@ -261,6 +268,7 @@
         }
 
         .skill {
+            width: 100%;
             font-size: 25px;
             font-family: 'Noto Sans Bold', Arial, Helvetica, sans-serif;
         }
@@ -290,219 +298,239 @@
         <div class="theme-header">
             <table>
                 <td class="user-img">
-                    <img src="{{ public_path('images/resume_builder/default-user.jpg') }}" alt="">
+                    <img src="{{$user->personalInfo->profile_pic}}" alt="">
                 </td>
                 <td class="user-info">
-                    <div class="user-name">José Quintero</div>
-                    <div class="user-profession">Fullstack Developer</div>
+                    <div class="user-name">{{ $user->personalInfo->first_name.' '.$user->personalInfo->last_name }}</div>
+                    <div class="user-profession">{{ $user->personalInfo->designation }}</div>
 
                     <div class="user-contact">
                         <div class="contact">
-                            <a href="" class='no-decoration'>
-                                Av. Panteon, Caracas. Venezuela.
+                            <a href="#" class='no-decoration'>
+                                {{ $user->personalInfo->location }}
                             </a>
                         </div>
                         <div class="contact">
-                            <a href="" class='no-decoration'>
-                                +584241714022
+                            <a href="#" class='no-decoration'>
+                                {{ $user->personalInfo->phone }}
                             </a>
                         </div>
                         <div class="contact">
-                            <a href="https://civ.ie/josedan10" >
-                                civ.ie/josedan10
+                            <a href="{{ $user->getPersonalWebsite()->link }}" >
+                                {{ $user->getPersonalWebsite()->link }}
                             </a>
                         </div>
                     </div>
                 </td>
 
                 <td class="user-social">
-                    <div class="social">
-                        <a data-icon="behance" href="https://behance.net">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme5/behance-icon.png') }}" alt="">
-                            </div>
-                            Behance username
-                        </a>
-                    </div>
-                    <div class="social">
-                        <a data-icon="dribble" href="https://dribbble.com">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme5/dribbble-icon.png') }}" alt="">
-                            </div>
-                            Dribbble username
-                        </a>
-                    </div>
-                    <div class="social">
-                        <a data-icon="isntagram" href="https://instagram.com">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme5/instagram-icon.png') }}" alt="">
-                            </div>
-                            Instagram username
-                        </a>
-                    </div>
-                    <div class="social">
-                        <a data-icon="linkedin" href="https://linkedin.com">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme5/linkedin-icon.png') }}" alt="">
-                            </div>
-                            LinkedIn username
-                        </a>
-                    </div>
+                    @foreach ($user->getSocialLinks()->toArray() as $item)
+                        <div class="social">
+                            <a data-icon="{{strtolower($item['link_title'])}}"
+                                href="{{ $item['link'] }}"
+                            >
+                                <div class="img-wrapper">
+                                    <img src="{{ public_path('images/resume_themes/theme5/'.strtolower($item['link_title']).'-icon.png') }}" alt="">
+                                </div>
+                                {{ $item['link_title'] }} username
+                            </a>
+                        </div>
+                    @endforeach
                 </td>
             </table>
         </div>
 
-        <section class="work-experience">
-            <div class="section-title">[ Work Experience ]</div>
-            <div class="works">
-                <div class="work">
-                    <div class="work-header">
-                        <div class="decorator"></div>
-                        <div class="job-title">Fullstack Developer</div>
-                        <div class="company-name">Google <span class="date">Dec 2019 - Present</span></div>
-                        <div class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe ab exercitationem voluptates incidunt excepturi esse quis itaque? Animi modi magni repudiandae porro?</div>
-                    </div>
-                </div>
-                <div class="work">
-                    <div class="work-header">
-                        <div class="decorator"></div>
-                        <div class="job-title">Fullstack Developer</div>
-                        <div class="company-name">Google <span class="date">Dec 2019 - Present</span></div>
-                        <div class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe ab exercitationem voluptates incidunt excepturi esse quis itaque? Animi modi magni repudiandae porro?</div>
-                    </div>
-                </div>
-                <div class="work">
-                    <div class="work-header">
-                        <div class="decorator"></div>
-                        <div class="job-title">Fullstack Developer</div>
-                        <div class="company-name">Google <span class="date">Dec 2019 - Present</span></div>
-                        <div class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe ab exercitationem voluptates incidunt excepturi esse quis itaque? Animi modi magni repudiandae porro?</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="education-experience">
-            <div class="section-title">[ Education ]</div>
-            <div class="educations">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="education">
-                                <div class="education-header">
-                                    <div class="decorator"></div>
-                                    <div class="grade-title">Fullstack Developer</div>
-                                    <div class="school-name">Google <span class="date">Dec 2019 - Present</span></div>
-                                    <div class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="education">
-                                <div class="education-header">
-                                    <div class="decorator"></div>
-                                    <div class="grade-title">Fullstack Developer</div>
-                                    <div class="school-name">Google <span class="date">Dec 2019 - Present</span></div>
-                                    <div class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-        
         @php
-            function random_color_part() {
-                return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
-            }
-
-            function random_color() {
-                return random_color_part() . random_color_part() . random_color_part();
-            }
-
-            function generateUniqueRandomColor() {
-                $rnd_color = random_color();
-
-                if ($rnd_color != "F8F8F8") {
-                    return $rnd_color;
-                } else {
-                    return generateUniqueRandomColor();
-                }
-            }
+            $visibleWorks = $user->getPublicWorkExperience();
         @endphp
 
-        <section class="skills">
-            <div class="section-title">[ Skills ]</div>
-            <div class="skills-container">
-                <table class="skills-row">
-                    <tr>
-                        <td>
-                            <table class="skill" style="color: {{ "#".generateUniqueRandomColor() }}">
+        @if ($visibleWorks->count() > 0)
+            <section class="work-experience">
+                <div class="section-title">[ Work Experience ]</div>
+
+                <div class="works">
+                    @foreach ($visibleWorks as $item)
+                        @php
+                            $dateFrom = strtotime($item->date_from);
+                            $dateTo = strtotime($item->date_to);
+                        @endphp
+                    
+                        <div class="work">
+                            <div class="work-header">
+                                <div class="decorator"></div>
+                                <div class="job-title">{{ $item->job_title }}</div>
+                                <div class="company-name">{{ $item->company_name }} <span class="date">{{ date('M Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Present' : date('M Y', $dateTo) }}</span></div>
+                                <div class="description">{{ $item->description }}</div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        @php
+            $visibleEducations = $user->getPublicEducation();
+        @endphp
+
+
+        @if ($visibleEducations->count() > 0)
+            <section class="education-experience">
+                <div class="section-title">[ Education ]</div>
+                <div class="educations">
+                    @foreach ($visibleEducations as $education)
+                        @if ($loop->last && $loop->index % 2 == 0)
+                            <table>
                                 <tr>
-                                    <td class="skill-name">
-                                        Php
+                                    <td>
+                                        <div class="education">
+                                            <div class="education-header">
+                                                <div class="decorator"></div>
+                                                <div class="grade-title">{{ $education->degree_title }}</div>
+                                                <div class="school-name">{{ $education->university_name }} <span class="date">{{ date('M Y', $dateFrom) }} - {{ ($education['present'] == 1) ? 'Present' : date('M Y', $dateTo) }}</span></div>
+                                                <div class="description">{{ $education->description }}</div>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td class="skill-percentage">
-                                        80%
+                                    <td>
+                                        <div class="education"></div>
                                     </td>
                                 </tr>
                             </table>
-                        </td>
-                        <td>
-                            <table class="skill" style="color: {{ "#".generateUniqueRandomColor() }}">
+                        @elseif ($loop->index % 2 == 0)
+                            <table>
                                 <tr>
-                                    <td class="skill-name">
-                                        Php
+                                    <td>
+                                        <div class="education">
+                                            <div class="education-header">
+                                                <div class="decorator"></div>
+                                                <div class="grade-title">{{ $education->degree_title }}</div>
+                                                <div class="school-name">{{ $education->university_name }} <span class="date">{{ date('M Y', $dateFrom) }} - {{ ($education->present == 1) ? 'Present' : date('M Y', $dateTo) }}</span></div>
+                                                <div class="description">{{ $education->description }}</div>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td class="skill-percentage">
-                                        80%
+                        @else
+                                    <td>
+                                        <div class="education">
+                                            <div class="education-header">
+                                                <div class="decorator"></div>
+                                                <div class="grade-title">{{ $education->degree_title }}</div>
+                                                <div class="school-name">{{ $education->university_name }} <span class="date">{{ date('M Y', $dateFrom) }} - {{ ($education->present == 1) ? 'Present' : date('M Y', $dateTo) }}</span></div>
+                                                <div class="description">{{ $education->description }}</div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
-                        </td>
-                    </tr>
-                </table>
-                <table class="skills-row">
-                    <tr>
-                        <td>
-                            <table class="skill" style="color: {{ "#".generateUniqueRandomColor() }}">
+                        @endif
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        @php
+            $visibleSkills = $user->getPublicSkills();
+        @endphp
+
+        @if ($visibleSkills->count() > 0)
+
+            @php
+                function random_color_part() {
+                    return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+                }
+
+                function random_color() {
+                    return random_color_part() . random_color_part() . random_color_part();
+                }
+
+                function generateUniqueRandomColor() {
+                    $rnd_color = random_color();
+
+                    if ($rnd_color != "F8F8F8") {
+                        return $rnd_color;
+                    } else {
+                        return generateUniqueRandomColor();
+                    }
+                }
+            @endphp
+
+            <section class="skills">
+                <div class="section-title">[ Skills ]</div>
+                <div class="skills-container">
+                    @foreach ($visibleSkills as $skill)
+                        @if ($loop->last && $loop->index % 2 == 0)
+                            <table class="skills-row">
                                 <tr>
-                                    <td class="skill-name">
-                                        Php
+                                    <td class="column">
+                                        <table
+                                            class="skill"
+                                            style="color: {{ "#".generateUniqueRandomColor() }}"
+                                        >
+                                            <tr>
+                                                <td class="skill-name">
+                                                    {{ $skill->title }}
+                                                </td>
+                                                <td class="skill-percentage">
+                                                    {{ $skill->percentage }}%
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
-                                    <td class="skill-percentage">
-                                        80%
+                                    <td class="column">
                                     </td>
                                 </tr>
                             </table>
-                        </td>
-                        <td>
-                            <table class="skill" style="color: {{ "#".generateUniqueRandomColor() }}">
+                        @elseif ($loop->index % 2 == 0)
+                            <table class="skills-row">
                                 <tr>
-                                    <td class="skill-name">
-                                        Php
+                                    <td class="column">
+                                        <table
+                                            class="skill"
+                                            style="color: {{ "#".generateUniqueRandomColor() }}"
+                                        >
+                                            <tr>
+                                                <td class="skill-name">
+                                                    {{ $skill->title }}
+                                                </td>
+                                                <td class="skill-percentage">
+                                                    {{ $skill->percentage }}%
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
-                                    <td class="skill-percentage">
-                                        80%
+                        @else
+                                    <td class="column">
+                                        <table
+                                            class="skill"
+                                            style="color: {{ "#".generateUniqueRandomColor() }}"
+                                        >
+                                            <tr>
+                                                <td class="skill-name">
+                                                    {{ $skill->title }}
+                                                </td>
+                                                <td class="skill-percentage">
+                                                    {{ $skill->percentage }}%
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                             </table>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </section>
+                        @endif
+                    @endforeach
+                </div>
+            </section>
+        @endif
 
         <section class="about">
             <div class="section-title">[ About ]</div>
             <div class="content">
                 <h2>About Me</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae incidunt inventore beatae pariatur. Nemo, sequi iste molestias, sint impedit, iusto consectetur cupiditate provident vel quasi incidunt nobis quisquam sunt ipsum!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum a expedita eveniet! Modi, corporis necessitatibus. Autem blanditiis, vel magni in neque commodi enim harum quasi, tempora at rerum adipisci velit.</p>
+                {{ $user->personalInfo->overview }}
 
                 <div class="contact">
                     <h2>Contact</h2>
-                    <div class="contact-item"><b>Gmail:</b> josedanq100@gmail.com</div>
+                    <div class="contact-item"><b>Email:</b> {{ $user->personalInfo->email }}</div>
                 </div>
             </div>
         </section>

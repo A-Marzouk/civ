@@ -1,5 +1,5 @@
 <template>
-  <div class="social-carousel-wrapper" :style="'background-color:' + bgColor">
+  <div class="social-carousel-wrapper">
     <div
       class="social-carousel--nav__left"
       @click="moveCarousel(-1)"
@@ -10,7 +10,10 @@
         >mdi-chevron-left</v-icon
       >
     </div>
-    <div class="social-carousel" :style="'width:' + carouselWidth + 'px'">
+    <div
+      class="social-carousel"
+      :style="{ width: carouselWidth + 'px', height: carouselHeight + 'px' }"
+    >
       <div class="social-carousel--overflow-container">
         <div
           class="social-carousel-group"
@@ -42,6 +45,7 @@
             :large="btnLarge"
             :small="btnSmall"
             v-show="userLink.is_active && userLink.is_public"
+            :depressed="depressed"
           >
             <v-img
               contain
@@ -80,6 +84,10 @@ export default {
     carouselWidth: {
       type: String,
       default: "190",
+    },
+    carouselHeight: {
+      type: String,
+      default: "45",
     },
     btnWidth: {
       type: String,
@@ -134,6 +142,10 @@ export default {
       default: false,
     },
     btnOutlined: {
+      type: Boolean,
+      default: false,
+    },
+    depressed: {
       type: Boolean,
       default: false,
     },
@@ -233,7 +245,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 5px 0 5px;
 }
 .social-carousel {
   display: flex;

@@ -19,13 +19,13 @@
                         <label for="objective" class="d-flex justify-content-between">
                             <span class="label-text">Add Objective</span>
                         </label>
-                        <textarea name="about" id="objective" v-model="summary.objective" @blur="updateSummary('auto')">></textarea>
+                        <textarea name="about" id="objective" v-model="summary.objective" @blur="updateSummary">></textarea>
                         <div class="error" v-if="errors.objective">
                             {{ Array.isArray(errors.objective) ? errors.objective[0] : errors.objective}}
                         </div>
                     </div>
                     <div class="action-btns">
-                        <a class='btn btn-outfilled short btn-filled-md btn-fullWidth--md' href="javascript:void(0)" @click="updateSummary('manual')">
+                        <a class='btn btn-outfilled short btn-filled-md btn-fullWidth--md' href="javascript:void(0)" @click="updateSummary">
                             <svg-vue class='icon' :icon="'add-icon'"></svg-vue>
                             Save
                         </a>
@@ -42,13 +42,13 @@
                         <label for="overview" class="d-flex justify-content-between">
                             <span class="label-text">Add Overview</span>
                         </label>
-                        <textarea name="about" id="overview" v-model="summary.overview" @blur="updateSummary('auto')"></textarea>
+                        <textarea name="about" id="overview" v-model="summary.overview" @blur="updateSummary"></textarea>
                         <div class="error" v-if="errors.overview">
                             {{ Array.isArray(errors.overview) ? errors.overview[0] : errors.overview}}
                         </div>
                     </div>
                     <div class="action-btns">
-                        <a class='btn btn-outfilled short btn-filled-md btn-fullWidth--md' href="javascript:void(0)"  @click="updateSummary('manual')">
+                        <a class='btn btn-outfilled short btn-filled-md btn-fullWidth--md' href="javascript:void(0)"  @click="updateSummary">
                             <svg-vue class='icon' :icon="'add-icon'"></svg-vue>
                             Save
                         </a>
@@ -93,11 +93,11 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
             changeTab (e) {
                 moveTabsHelper(e, 'summaryLinksWrapper', this)
             },
-            updateSummary(savingType){
+            updateSummary(){
                 this.errors = {};
                 axios.put('/api/user/summary', this.summary)
                     .then((response) => {
-                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
+                        this.$store.dispatch('flyingNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
