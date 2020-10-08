@@ -486,14 +486,18 @@
         </section>
     @endif
 
-    @if ($user->education->count() > 0)
+    @php
+        $visibleEducations = $user->getPublicEducationExperience();
+    @endphp
+
+    @if ($visibleEducations->count() > 0)
         <section class="educations">
             <h1 class="section-title">
                 Education
                 {{-- <div class="title-decorator"></div> --}}
             </h1>
 
-            @foreach ($user->education->toArray() as $item)
+            @foreach ($visibleEducations->toArray() as $item)
                 @php
                     $dateFrom = strtotime($item['date_from'])    ;
                     $dateTo = strtotime($item['date_to'])
