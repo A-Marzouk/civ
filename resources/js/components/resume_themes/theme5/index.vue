@@ -7,7 +7,6 @@
             <v-row
               no-gutters
               justify="center"
-              :class="{ 'active-indicator': currentTab === 'profile' }"
             >
               <v-col
                 md="3"
@@ -48,7 +47,6 @@
           sm="10"
           cols="12"
           class="hidden-sm-only"
-          :class="{ 'active-indicator': currentTab === 'pay-availability' }"
         >
           <v-container>
             <v-row>
@@ -377,7 +375,6 @@
         <v-col
           sm="10"
           class="d-none d-sm-flex d-md-none"
-          :class="{ 'active-indicator': currentTab === 'pay-availability' }"
         >
           <v-container>
             <v-row>
@@ -567,14 +564,16 @@
               >
                 <v-tabs background-color="transparent" hide-slider centered>
                   <v-tab
-                    v-for="tab in tabs"
-                    :key="tab.value"
-                    @click="activeTab = tab.value"
-                    :class="{ 'active-indicator': currentTab === tab.value }"
+                    v-for="tab in currentUser.tabs"
+                    :class="{'blue-text' : tab.title === activeTab }"
+                    v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                    :key="tab.title"
+                    :id="tab.title"
+                    @click="changeTab(tab.title)"
                   >
-                    <span v-if="tab.value === activeTab" class="left">[</span>
-                    {{ tab.text }}
-                    <span v-if="tab.value === activeTab" class="right">]</span>
+                    <span v-if="tab.title === activeTab" class="left">[</span>
+                    {{ tab.label }}
+                    <span v-if="tab.title === activeTab" class="right">]</span>
                   </v-tab>
                 </v-tabs>
               </v-col>
@@ -607,8 +606,9 @@
                   </v-col>
                 </v-row>
               </v-col>
+
               <v-col
-                v-if="activeTab === 'work-experience'"
+                v-if="activeTab === 'work_experience'"
                 md="6"
                 sm="12"
                 cols="12"
@@ -684,6 +684,7 @@
                   </v-col>
                 </v-row>
               </v-col>
+
               <v-col v-if="activeTab === 'skills'" md="11" sm="11" cols="11">
                 <v-row no-gutters justify="center">
                   <v-col
@@ -736,7 +737,7 @@
 
               <!-- about section start -->
               <v-col
-                v-if="activeTab === 'about'"
+                v-if="activeTab === 'about_me'"
                 md="10"
                 sm="11"
                 cols="11"
@@ -1211,6 +1212,13 @@
   }
   .txtcol {
     color: #5f45ff;
+  }
+
+  .no-decoration{
+    color:rgba(0,0,0,.54) !important;
+  }
+  .blue-text{
+    color: #5f45ff  !important;
   }
 
   // Tablet Version
@@ -1690,8 +1698,8 @@ import SocialLinks from "./SocialLinks";
 import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
 
 export default {
-  name: "theme8",
-  props: ["user", "is_preview", "currentTab"],
+  name: "theme5",
+  props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
     Slick,
     VueSlickCarousel,
@@ -1707,40 +1715,6 @@ export default {
       hireMeModal: false,
       videoModal: false,
       audioModal: false,
-      tabs: [
-        {
-          text: "Portfolio",
-          value: "portfolio",
-        },
-        {
-          text: "Work Ex.",
-          value: "work-experience",
-        },
-        {
-          text: "Education",
-          value: "education",
-        },
-        {
-          text: "Skills",
-          value: "skills",
-        },
-        {
-          text: "About",
-          value: "about",
-        },
-        {
-          text: "Hobbies",
-          value: "hobbies",
-        },
-        {
-          text: "References",
-          value: "references",
-        },
-        {
-          text: "Achievements",
-          value: "achievements",
-        },
-      ],
       available: 0,
       activeTab: "portfolio",
       paymentInfo: 0,
@@ -1816,11 +1790,53 @@ export default {
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function (val) {
-      this.activeTab = val;
+    builderCurrentTabTitle: function (val) {
+      if (!this.defaultTabs.includes(val)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = val;
+      }
+      $('#' + val).click();
+    },
+  },
+  computed: {
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
+    },
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
     },
   },
   methods: {
+    // dynamic tabs
+    changeTab(tab_title) {
+      this.activeTab = tab_title;
+      this.$store.dispatch("updateThemeTabGlobally", tab_title);
+    },
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
+          }
+        }
+      });
+
+      return title;
+    },
+    setActiveTabByURL() {
+      const pathSplit = this.$route.path.split("/");
+      let currentActiveTab = pathSplit[pathSplit.length - 1];
+      if (!this.defaultTabs.includes(currentActiveTab)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = currentActiveTab;
+      }
+      $('#' + this.activeTab).click();
+    },
+    // dynamic tabs end
+
     goToExternalLink(link) {
       if (!link.includes("http")) {
         link = "http://" + link;
@@ -1884,6 +1900,8 @@ export default {
       this.windowWidth = window.innerWidth;
     };
 
+    // set active tab
+    this.setActiveTabByURL();
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
   },
