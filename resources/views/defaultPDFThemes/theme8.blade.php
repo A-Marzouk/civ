@@ -270,245 +270,243 @@
         <div class="theme-header">
             <table>
                 <td class="user-img">
-                    <img src="{{ public_path('images/resume_builder/default-user.jpg') }}" alt="">
+                    <img src="{{$user->personalInfo->profile_pic}}" alt="">
                 </td>
                 <td class="user-info">
-                    <div class="user-name">José Quintero</div>
-                    <div class="user-profession">Fullstack Developer</div>
+                    <div class="user-name">{{ $user->personalInfo->first_name.' '.$user->personalInfo->last_name }}</div>
+                    <div class="user-profession">{{ $user->personalInfo->designation }}</div>
 
                     <div class="user-contact">
                         <div class="contact">
                             <a href="" class='no-decoration'>
-                                Av. Panteon, Caracas. Venezuela.
+                                {{ $user->personalInfo->location }}
                             </a>
                         </div>
                         <div class="contact">
                             <a href="" class='no-decoration'>
-                                +584241714022
+                                {{ $user->personalInfo->phone }}
                             </a>
                         </div>
                         <div class="contact">
-                            <a href="https://civ.ie/josedan10" >
-                                civ.ie/josedan10
+                            <a href="{{ $user->getPersonalWebsite()->link }}" >
+                                {{ $user->getPersonalWebsite()->link }}
                             </a>
                         </div>
                     </div>
                 </td>
 
                 <td class="user-social">
-                    <div class="social">
-                        <a href="https://behance.net">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme8/behance-icon.png') }}" alt="">
-                            </div>
-                            Behance username
-                        </a>
-                    </div>
-                    <div class="social">
-                        <a href="https://dribbble.com">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme8/dribbble-icon.png') }}" alt="">
-                            </div>
-                            Dribbble username
-                        </a>
-                    </div>
-                    <div class="social">
-                        <a href="https://instagram.com">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme8/instagram-icon.png') }}" alt="">
-                            </div>
-                            Instagram username
-                        </a>
-                    </div>
-                    <div class="social">
-                        <a href="https://behance.net">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme8/linkedin-icon.png') }}" alt="">
-                            </div>
-                            LinkedIn username
-                        </a>
-                    </div>
+                    @foreach ($user->getSocialLinks()->toArray() as $item)
+                        <div class="social">
+                            <a data-icon="{{strtolower($item['link_title'])}}"
+                                href="{{ $item['link'] }}"
+                            >
+                                <div class="img-wrapper">
+                                    <img src="{{ public_path('images/resume_themes/theme5/'.strtolower($item['link_title']).'-icon.png') }}" alt="">
+                                </div>
+                                {{ $item['link_title'] }} username
+                            </a>
+                        </div>
+                    @endforeach
                 </td>
             </table>
         </div>
         <section class="about">
             <h1 class="section-title">About Me</h1>
             <div class="container">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore, obcaecati. Minima blanditiis animi quia distinctio illo asperiores officiis, iste culpa ullam nostrum neque? Molestias eaque et natus, tempora a quasi.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde repudiandae voluptatem reiciendis velit nulla autem veniam voluptates quo earum deleniti ipsum itaque, obcaecati facere neque nihil, consequuntur id dolores labore!</p>
+                {{ $user->personalInfo->overview }}</p>
             </div>
         </section>
-        <section class="work-experience">
-            <h1 class="section-title">Work Experience</h1>
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="work">
-                                <div class="company-name">Civie</div>
-                                <div class="job-title">Fullstack Developer</div>
-                                <div class="date">2019 - Now</div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis.
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="work">
-                                <div class="company-name">Civie</div>
-                                <div class="job-title">Fullstack Developer</div>
-                                <div class="date">2019 - Now</div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis.
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
-                            <div class="work">
-                                <div class="company-name">Civie</div>
-                                <div class="job-title">Fullstack Developer</div>
-                                <div class="date">2019 - Now</div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis.
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="work">
-                                <div class="company-name">Civie</div>
-                                <div class="job-title">Fullstack Developer</div>
-                                <div class="date">2019 - Now</div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis.
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-        <section class="education">
-            <h1 class="section-title">Education</h1>
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="school">
-                                <div class="school-name">Simon Bolivar University</div>
-                                <div class="grade-title">Computing Mathematics</div>
-                                <div class="date">2014 - 2019</div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit.
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="school">
-                                <div class="school-name">Simon Bolivar University</div>
-                                <div class="grade-title">Computing Mathematics</div>
-                                <div class="date">2014 - 2019</div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit.
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
-                            <div class="school">
-                                <div class="school-name">Simon Bolivar University</div>
-                                <div class="grade-title">Computing Mathematics</div>
-                                <div class="date">2014 - 2019</div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit.
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="school">
-                                <div class="school-name">Simon Bolivar University</div>
-                                <div class="grade-title">Computing Mathematics</div>
-                                <div class="date">2014 - 2019</div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit.
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-        <section class="skills">
-            <div class="section-title">Skills</div>
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="skill">
-                                <table class="skill-data">
-                                    <tr>
-                                        <td class="skill-name">Node.js</td>
-                                        <td class="percentage">84%</td>
-                                    </tr>
-                                </table>
-                                <div class="skill-bar">
-                                    <div class="fill" style="width: 84%"></div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <table class="skill-data">
-                                    <tr>
-                                        <td class="skill-name">Laravel</td>
-                                        <td class="percentage">70%</td>
-                                    </tr>
-                                </table>
-                                <div class="skill-bar">
-                                    <div class="fill" style="width: 70%"></div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
-                            <div class="skill">
-                                <table class="skill-data">
-                                    <tr>
-                                        <td class="skill-name">Node.js</td>
-                                        <td class="percentage">84%</td>
-                                    </tr>
-                                </table>
-                                <div class="skill-bar">
-                                    <div class="fill" style="width: 84%"></div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <table class="skill-data">
-                                    <tr>
-                                        <td class="skill-name">Laravel</td>
-                                        <td class="percentage">70%</td>
-                                    </tr>
-                                </table>
-                                <div class="skill-bar">
-                                    <div class="fill" style="width: 70%"></div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </section>
+
+        @php
+            $visibleWorks = $user->getPublicWorkExperience();
+        @endphp
+
+        @if ($visibleWorks->count() > 0)
+            <section class="work-experience">
+                <h1 class="section-title">Work Experience</h1>
+                <div class="container">
+                    @foreach ($visibleWorks as $item)
+                        @php
+                            $dateFrom = strtotime($item->date_from);
+                            $dateTo = strtotime($item->date_to);
+                            
+                        @endphp
+                        @if ($loop->last && $loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="work">
+                                            <div class="company-name">{{ $item->company_name }}</div>
+                                            <div class="job-title">{{ $item->job_title }}</div>
+                                            <div class="date">{{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? date('Y') : date('Y', $dateTo) }}</div>
+                                            <div class="description">
+                                                {{ $item->description }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="work">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        @elseif ($loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="work">
+                                            <div class="company-name">{{ $item->company_name }}</div>
+                                            <div class="job-title">{{ $item->job_title }}</div>
+                                            <div class="date">{{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? date('Y') : date('Y', $dateTo) }}</div>
+                                            <div class="description">
+                                                {{ $item->description }}
+                                            </div>
+                                        </div>
+                                    </td>
+                        @else
+                                    <td>
+                                        <div class="work">
+                                            <div class="company-name">{{ $item->company_name }}</div>
+                                            <div class="job-title">{{ $item->job_title }}</div>
+                                            <div class="date">{{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? date('Y') : date('Y', $dateTo) }}</div>
+                                            <div class="description">
+                                                {{ $item->description }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        @endif
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        @php
+            $visibleEducations = $user->getPublicEducationExperience();
+        @endphp
+
+        @if ($visibleEducations->count() > 0)
+            <section class="education">
+                <h1 class="section-title">Education</h1>
+                <div class="container">
+                    @foreach ($visibleEducations as $item)
+                        @php
+                            $dateFrom = strtotime($item->date_from);
+                            $dateTo = strtotime($item->date_to);
+                            
+                        @endphp
+
+                        @if ($loop->last && $loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="school">
+                                            <div class="school-name">{{ $item->university_name }}</div>
+                                            <div class="grade-title">{{ $item->degree_title }}</div>
+                                            <div class="date">{{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? date('Y') : date('Y', $dateTo) }}</div>
+                                            <div class="description">{{ $item->description }}</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="school"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        @elseif ($loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="school">
+                                            <div class="school-name">{{ $item->university_name }}</div>
+                                            <div class="grade-title">{{ $item->degree_title }}</div>
+                                            <div class="date">{{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? date('Y') : date('Y', $dateTo) }}</div>
+                                            <div class="description">{{ $item->description }}</div>
+                                        </div>
+                                    </td>
+                        @else
+                                    <td>
+                                        <div class="school">
+                                            <div class="school-name">{{ $item->university_name }}</div>
+                                            <div class="grade-title">{{ $item->degree_title }}</div>
+                                            <div class="date">{{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? date('Y') : date('Y', $dateTo) }}</div>
+                                            <div class="description">{{ $item->description }}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        @endif
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        @php
+            $visibleSkills = $user->getPublicSkills();    
+        @endphp
+
+        @if ($visbleSkills->count() > 0)
+            <section class="skills">
+                <div class="section-title">Skills</div>
+                <div class="container">
+                    @foreach ($user->skills as $skill)
+                        @if ($loop->last && $loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="skill">
+                                            <table class="skill-data">
+                                                <tr>
+                                                    <td class="skill-name">{{ $skill->title }}</td>
+                                                    <td class="percentage">{{ $skill->percentage }}%</td>
+                                                </tr>
+                                            </table>
+                                            <div class="skill-bar">
+                                                <div class="fill" style="{{'width: '.$skill->percentage.'%'}}"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        @elseif($loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="skill">
+                                            <table class="skill-data">
+                                                <tr>
+                                                    <td class="skill-name">{{ $skill->title }}</td>
+                                                    <td class="percentage">{{ $skill->percentage }}%</td>
+                                                </tr>
+                                            </table>
+                                            <div class="skill-bar">
+                                                <div class="fill" style="{{'width: '.$skill->percentage.'%'}}"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                        @else
+                                    <td>
+                                        <div class="skill">
+                                            <table class="skill-data">
+                                                <tr>
+                                                    <td class="skill-name">{{ $skill->title }}</td>
+                                                    <td class="percentage">{{ $skill->percentage }}%</td>
+                                                </tr>
+                                            </table>
+                                            <div class="skill-bar">
+                                                <div class="fill" style="{{'width: '.$skill->percentage.'%'}}"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        @endif
+                    @endforeach
+                </div>
+            </section>
+        @endif
     </main>
 </body>
 </html>
