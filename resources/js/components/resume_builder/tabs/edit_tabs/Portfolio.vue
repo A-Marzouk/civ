@@ -1,12 +1,8 @@
 <template>
   <div class="portfolio-contents" id="portfolio-tab">
-    <div class="d-flex justify-content-end w-100">
-      <tab-switcher currentTabTitle="portfolio"></tab-switcher>
-    </div>
-
-    <div class="data-container">
+    <div class="data-container view-container resume-builder__scroll">
       <v-card
-        class="view-container resume-builder__scroll"
+        class=""
         style="overflow-x: hidden !important;"
       >
         <v-form class="grid-form" ref="form">
@@ -36,6 +32,8 @@
             class="resume-builder__input civie-textarea"
             outlined
             label="Description"
+            counter
+            maxlength="1000"
             color="#001CE2"
             v-model="editedProject.description"
             :error="!!errors.description"
@@ -243,14 +241,12 @@
 <script>
 import vue2Dropzone from "vue2-dropzone";
 import draggable from "vuedraggable";
-import tabSwitcher from "./includes/TabSwitcher";
 
 export default {
   name: "Portfolio",
   components: {
     vueDropzone: vue2Dropzone,
-    draggable,
-    'tab-switcher' : tabSwitcher
+    draggable
   },
   data: () => ({
     editedProject: {
@@ -393,6 +389,7 @@ export default {
         })
         .then(response => {
           if (!edit) {
+            response.data.data.is_public = true ;
             this.projects.push(response.data.data);
           } else {
             this.projects.forEach((project, index) => {
@@ -463,9 +460,9 @@ export default {
 
 #portfolio-tab {
   .view-container {
-    max-height: 678px;
+    max-height: 450px;
     overflow: auto;
-    box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
+    box-shadow: 0 5px 20px rgba($color: #001083, $alpha: 0.1);
     margin: 0 auto;
 
     .grid-form {

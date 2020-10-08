@@ -38,6 +38,14 @@ Route::group(['prefix' => 'user/'], function () {
     //delete skill
     Route::delete('skills/{id}', 'API\SkillsController@destroy');
 
+// payment methods api routes:
+    Route::get('/payment-methods', 'API\PaymentMethodsController@index');
+    Route::get('/payment-methods/{id}', 'API\PaymentMethodsController@show');
+    Route::post('/payment-methods', 'API\PaymentMethodsController@store');
+    Route::post('/payment-methods/make-primary', 'API\PaymentMethodsController@makePrimary');
+    Route::post('/payment-methods/update-order', 'API\PaymentMethodsController@updatePaymentMethodsOrder');
+    Route::delete('payment-methods/{id}', 'API\PaymentMethodsController@destroy');
+
 
 // Hobbies api routes:
     //list skills
@@ -120,9 +128,13 @@ Route::group(['prefix' => 'user/'], function () {
 //  Account user data:
     Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
 // update activity
-    Route::post('/update-last-activity', 'API\UsersController@updateLastActivity')->name('account.validate');
+    Route::post('/update-last-activity', 'API\UsersController@updateLastActivity');
+// get last activity
+    Route::get('/last-activity/{user_id}', 'API\UsersController@getLastActivity');
 // Promo code
     Route::post('/apply-promo-code', 'API\UsersController@applyPromoCode')->name('user.apply.promocode');
+
+    Route::delete('/deactivate-account/{id}', 'API\UsersController@deactivateAccount')->name('deactivate.account');
 
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
@@ -237,7 +249,9 @@ Route::group(['prefix' => 'admin/'], function () {
     Route::post('create-user', 'API\Admin\UsersController@createUser');
     Route::put('update-user', 'API\Admin\UsersController@updateUser');
     Route::post('/give-test-permission', 'API\Admin\UsersController@giveTestPermission');
+    Route::post('/restore-user', 'API\Admin\UsersController@restoreUser');
     Route::delete('delete-user/{id}', 'API\Admin\UsersController@deleteUser');
+    Route::delete('force-delete-user/{id}', 'API\Admin\UsersController@forceDeleteUser');
 
     // Promocodes routes:
     Route::get('promocodes', 'API\Admin\PromocodesController@index');

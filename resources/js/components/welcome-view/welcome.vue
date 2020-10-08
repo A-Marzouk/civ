@@ -2,13 +2,9 @@
   <v-app style="width:100%; background-color: #ffffff;" class="app-container">
     <!-- main container -->
     <v-container class="main-container">
-      <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
-        <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
-        <v-spacer></v-spacer>
-        <a class="btn-appbar-login" href="/login">
-          Login
-        </a>
-      </v-app-bar>
+      <!-- main navigation bar -->
+      <home-navbar :windowWidth="windowWidth"></home-navbar>
+      <!-- main navigation bar -->
       <!-- 1st inner container -->
 
       <!-- 1st inner container -->
@@ -48,11 +44,7 @@
                         height="60"
                       >
                         <template slot="append">
-                          <a
-                            class="inner-link"
-                            href="/register"
-                            v-show="is_username_valid"
-                          >Sign up</a>
+                          <a class="inner-link" href="/register" v-show="is_username_valid">Sign up</a>
                         </template>
 
                         <template slot="append">
@@ -112,9 +104,12 @@
                 Build a resume that you
                 <br />can be proud of
               </v-card-subtitle>
-              <v-card-subtitle
-                class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-4 mt-n4"
-              >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
+              <v-card-subtitle class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-4 mt-n4">
+                With
+                <a href="https://civ.ie">civ.ie</a> you can create design-perfect, beautiful , interactive Resume's .. in less than 5 minutes.
+                <br />Your Digital Resume
+                <span style="color: #0046fe;">www.civ.ie/yourname</span> can be easily shared and updated.
+              </v-card-subtitle>
             </v-card>
             <!-- 1st card -->
             <!-- 2nd card -->
@@ -126,24 +121,25 @@
               align="center"
             >
               <video id="introVideo" width="95%" height="100%" controls v-show="videoOn">
-                <source src="/videos/civ_intro_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
+                <source src="/videos/civ_intro_video.mp4" type="video/mp4" />Your browser does not support the video tag.
               </video>
 
-              <v-img v-show="!videoOn"
+              <v-img
+                v-show="!videoOn"
                 src="/images/welcome_landing_page/icons/poster-video.png"
                 class="align-center hidden-sm-and-down"
               >
                 <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false" x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png" @click="playIntroVideo"/>
+                  <img src="/images/welcome_landing_page/icons/play.png" @click="playIntroVideo" />
                 </v-btn>
               </v-img>
-              <v-img v-show="!videoOn"
+              <v-img
+                v-show="!videoOn"
                 src="/images/welcome_landing_page/icons/poster-video-tablet.png"
                 class="align-center hidden-md-and-up"
               >
-                <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false"  x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png"  @click="playIntroVideo" />
+                <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false" x-large>
+                  <img src="/images/welcome_landing_page/icons/play.png" @click="playIntroVideo" />
                 </v-btn>
               </v-img>
             </v-card>
@@ -228,103 +224,7 @@
     </v-container>
     <!-- main container -->
     <!-- Footer -->
-    <v-footer color="#0F4CEE" class="custom-footer">
-      <v-container class="footer-container">
-        <v-row justify="center" align="center" class="justify-space-around">
-          <v-col md="2" cols="12" :align="windowWidth <=959 ?'center':'left' ">
-            <v-card flat color="transparent" tile>
-              <img
-                class="logo-footer hidden-sm-and-down"
-                src="/images/welcome_landing_page/logo/civie_logo-01.png"
-              />
-              <img
-                class="logo-footer hidden-md-and-up"
-                src="/images/welcome_landing_page/logo/civie_logo-01.png"
-              />
-            </v-card>
-          </v-col>
-          <v-col md="6" cols="6" align="right" class="hidden-sm-and-down">
-            <v-card flat tile color="transparent">
-              <v-card-text class="follow-us-text">
-                <label>Follow Us:</label>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-2 ml-sm-0 ml-0" href="https://www.facebook.com/civieapp">
-                  <img
-                    src="/images/welcome_landing_page/icons/social_icons/facebook.png"
-                    alt="facebook"
-                  />
-                </v-btn>
-                <span class="followers">14,044 Followers</span>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-1 ml-sm-0 ml-0" href="https://www.instagram.com/civ.ie_/">
-                  <img
-                    src="/images/welcome_landing_page/icons/social_icons/instagram.png"
-                    alt="instagram"
-                  />
-                </v-btn>
-                <span>733 Followers</span>
-              </v-card-text>
-            </v-card>
-          </v-col>
-
-          <v-col md="4" cols="12" align="right" class="hidden-sm-and-down">
-            <v-card color="transparent" flat tile>
-              <v-card-text class="follow-us-text">
-                <label>Contact Us:</label>
-                <v-btn
-                  fab
-                  x-small
-                  color="#ffffff"
-                  class="footer-social-icon mx-1"
-                  v-for="icon in contactIcons"
-                  :key="icon.title"
-                  :href="icon.url"
-                >
-                  <img :src="getContactIcons(icon.title)" />
-                </v-btn>
-              </v-card-text>
-            </v-card>
-          </v-col>
-
-          <v-col sm="4" cols="4" class="hidden-md-and-up mt-n12">
-            <v-card flat tile color="transparent" align="center" class>
-              <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
-              <v-card-subtitle>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1 mt-n2">
-                  <img
-                    src="/images/welcome_landing_page/icons/social_icons/facebook.png"
-                    alt="facebook"
-                  />
-                </v-btn>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-auto mt-n2"  href="https://www.instagram.com/civ.ie_/">
-                  <img
-                    src="/images/welcome_landing_page/icons/social_icons/instagram.png"
-                    alt="instagram"
-                  />
-                </v-btn>
-              </v-card-subtitle>
-            </v-card>
-          </v-col>
-
-          <v-col sm="8" cols="8" class="hidden-md-and-up mt-n12" align="right">
-            <v-card flat tile color="transparent" class="ml-md-0 ml-sm-0 ml-8">
-              <v-card-subtitle class="follow-us-text" align="center">Contact Us</v-card-subtitle>
-              <v-card-subtitle align="center">
-                <v-btn
-                  fab
-                  x-small
-                  color="#ffffff"
-                  class="footer-social-icon mx-sm-2 mx-1 mt-n2"
-                  v-for="icon in contactIcons"
-                  :key="icon.title"
-                  :href="icon.url"
-                >
-                  <img :src="getContactIcons(icon.title)" />
-                </v-btn>
-              </v-card-subtitle>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-footer>
+    <home-footer :windowWidth="windowWidth"></home-footer>
     <!-- footer -->
   </v-app>
 </template>
@@ -332,10 +232,14 @@
 <script>
 import Slick from "vue-slick";
 import RegisterForm from "../auth/partials/RegisterForm";
+import HomeFooter from "../auth/partials/HomeFooter";
+import HomeNavbar from "../auth/partials/HomeNavbar";
 export default {
   components: {
     Slick,
-    "register-form": RegisterForm
+    "register-form": RegisterForm,
+    "home-footer": HomeFooter,
+    "home-navbar": HomeNavbar,
   },
   data() {
     return {
@@ -350,7 +254,7 @@ export default {
         name: "",
         email: "",
         password: "",
-        password_confirmation: ""
+        password_confirmation: "",
       },
       socialMediaIcons: [
         {
@@ -358,54 +262,48 @@ export default {
           title: "instagram",
           width: 18,
           tablet_width: 18,
-          link: "/register/instagram"
+          link: "/register/instagram",
         },
         {
           id: 2,
           title: "linkedin",
           width: 16,
           tablet_width: 16,
-          link: "/register/linkedin"
+          link: "/register/linkedin",
         },
         {
           id: 3,
           title: "google",
           width: 14,
           tablet_width: 14,
-          link: "/register/google"
+          link: "/register/google",
         },
         {
           id: 4,
           title: "facebook",
           width: 18,
           tablet_width: 18,
-          link: "/register/facebook"
+          link: "/register/facebook",
         },
         {
           id: 5,
           title: "github",
           width: 22,
           tablet_width: 22,
-          link: "/register/github"
-        }
+          link: "/register/github",
+        },
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
         { id: 2, title: "Integrate your social account" },
         {
           id: 3,
-          title: "Allow potential employers to <br /> contact you easly"
+          title: "Allow potential employers to <br /> contact you easly",
         },
         { id: 4, title: "Import your data/Export to PDF" },
-        { id: 5, title: "Easy acception line payments" }
+        { id: 5, title: "Easy acception line payments" },
       ],
-      contactIcons: [
-        { id: 1, title: "email", url:'mailto:hi@civ.ie' },
-        { id: 2, title: "messenger", url: "https://www.facebook.com/civieapp" },
-        { id: 3, title: "skype", url:'skype:magictime.uk'},
-        { id: 4, title: "whatsapp", url: 'https://wa.me/353868447832'},
-        { id: 4, title: "telegram", url: 'https://t.me/conormarjoram'},
-      ],
+
       users: ["nishad", "ahmed", "anton", "gladwin"],
 
       //agile options
@@ -414,7 +312,7 @@ export default {
         fade: true,
         autoplay: true,
         navButtons: false,
-        pauseOnHover: true
+        pauseOnHover: true,
       },
       //agile options
 
@@ -435,29 +333,29 @@ export default {
               centerPadding: "75px",
               slidesPerRow: 1,
               slidesToShow: 1,
-              slidesToScroll: 1
-            }
+              slidesToScroll: 1,
+            },
           },
           {
             breakpoint: 599,
             settings: {
               centerPadding: "75px",
               slidesToShow: 1,
-              slidesToScroll: 1
-            }
+              slidesToScroll: 1,
+            },
           },
           {
             breakpoint: 400,
             settings: {
               centerPadding: "50px",
               slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
+              slidesToScroll: 1,
+            },
+          },
+        ],
       },
       validUserName: "",
-      is_username_valid: null
+      is_username_valid: null,
     };
   },
   //mounted
@@ -470,11 +368,11 @@ export default {
     validateUsername() {
       axios
         .post("/validate-username", { username: this.username })
-        .then(response => {
+        .then((response) => {
           this.validUserName = this.username;
           this.is_username_valid = true;
         })
-        .catch(response => {
+        .catch((response) => {
           this.validUserName = "";
           this.is_username_valid = false;
         });
@@ -485,14 +383,12 @@ export default {
     getGalleryImages(id) {
       return `/images/welcome_landing_page/imgs/gallery/${id}.png`;
     },
-    getContactIcons(title) {
-      return `/images/welcome_landing_page/icons/contact_icons/${title}.png`;
-    },
-    playIntroVideo(){
+
+    playIntroVideo() {
       this.videoOn = true;
-      document.getElementById('introVideo').play();
+      document.getElementById("introVideo").play();
     },
-  }
+  },
 };
 </script>
 
@@ -504,6 +400,8 @@ export default {
 
 #welcomeView,
 #registerForm,
+#resetPasswordForm,
+#resetPasswordEmailForm,
 #external_reference,
 #loginForm {
   .inner-text {
@@ -560,15 +458,10 @@ export default {
   //input
 
   //input
-  .footer-container {
-    @media screen and (max-width: 599px) {
-      width: 100%;
-      padding: 0px !important;
-      margin: 0px !important;
-    }
-  }
+
   .main-container {
     width: 100%;
+    min-height: 10vh;
     @media screen and (max-width: 599px) {
       overflow-x: hidden !important;
       margin: 0 !important;
@@ -618,20 +511,8 @@ export default {
       margin-top: 0px !important;
     }
   }
-  //logo
-  .logo {
-    width: 163px;
-    height: 69px;
-    @media screen and (min-width: 1600px) {
-      margin-left: 78px;
-    }
-    @media screen and (max-width: 599px) {
-      width: 126px;
-      height: 53px;
-    }
-  }
 
-  //form
+  //login form
   .login-form {
     label {
       font-family: "Montserrat" !important;
@@ -659,7 +540,7 @@ export default {
     border-radius: 7px;
     box-shadow: 0 10px 15px -3px rgba(0, 72, 254, 0.335);
     letter-spacing: 2px;
-    background-color: rgb(0,70,254);
+    background-color: rgb(0, 70, 254);
     font-size: 12px !important;
     font-weight: bold !important;
     text-transform: uppercase !important;
@@ -865,7 +746,7 @@ export default {
     min-width: 39px !important;
     border: 1px solid #ebebeb !important;
     border-radius: 10px !important;
-    @media screen and (max-width: 330px){
+    @media screen and (max-width: 330px) {
       margin-left: 5px !important;
     }
   }
@@ -1033,17 +914,17 @@ export default {
   }
 
   .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
-    border: 2px solid #C4C9F5;
+    > .v-input__control
+    > .v-input__slot
+    fieldset {
+    border: 2px solid #c4c9f5;
   }
 
   .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
-    border: 2px solid #C4C9F5;
+    > .v-input__control
+    > .v-input__slot
+    fieldset {
+    border: 2px solid #c4c9f5;
   }
 
   .build-resume-title {
@@ -1140,6 +1021,13 @@ export default {
   // build resume section
 
   //footer
+  .footer-container {
+    @media screen and (max-width: 599px) {
+      width: 100%;
+      padding: 0px !important;
+      margin: 0px !important;
+    }
+  }
   .follow-us-text {
     font-family: "Montserrat" !important;
     font-weight: bold;
@@ -1342,6 +1230,7 @@ export default {
       height: 125px;
     }
   }
+  //footer
   .v-text-field {
     border-radius: 10px !important;
   }
@@ -1415,24 +1304,23 @@ export default {
   }
 }
 
-#welcomeView{
+#welcomeView {
   .v-text-field input {
     color: #aeaeae !important;
   }
 
   .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
+    > .v-input__control
+    > .v-input__slot
+    fieldset {
     border: 2px solid #ffffff !important;
   }
 
   .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
+    > .v-input__control
+    > .v-input__slot
+    fieldset {
     border: 2px solid #ebebeb !important;
   }
-
 }
 </style>

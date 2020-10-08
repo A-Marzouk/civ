@@ -2,18 +2,22 @@
 
 namespace App;
 
+use App\Traits\Billable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use phpDocumentor\Reflection\Types\Self_;
+use PayPal\Api\Payment;
 use Spatie\Permission\Traits\HasRoles;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasRoles, HasApiTokens;
+    use SoftDeletes;
+    use Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity','resume_link_id'
+        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity','resume_link_id', 'deleted_at'
     ];
 
     /**
@@ -33,11 +37,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public static $defaultRelations =
-        [
+    public static $defaultRelations = [
             'permissions',
             'tabs',
             'skills',
+            'paymentMethods',
             'hobbies',
             'education',
             'workExperience',
@@ -59,17 +63,16 @@ class User extends Authenticatable implements MustVerifyEmail
             'theme',
             'subscription'
         ];
-
     public static $excludedFromVersionFilter = [
         'permissions',
         'projects.images',
         'testimonials',
+        'languages',
         'resumeLinks',
         'defaultResumeLink',
         'subscription',
         'theme',
     ];
-
     public static $defaultOneToOneRelations = [
         'personalInfo',
         'availabilityInfo',
@@ -82,6 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static $defaultOneToManyRelations = [
         'tabs',
         'skills',
+        'paymentMethods',
         'references',
         'hobbies',
         'education',
@@ -104,6 +108,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_activity' => 'datetime',
     ];
 
 
@@ -210,6 +215,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Testimonial::class);
     }
 
+    public function paymentMethods()
+    {
+        return $this->hasMany(PaymentMethod::class);
+    }
 
     // many to many relationships:
     public function languages()
@@ -275,17 +284,38 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getLastActivityAttribute($value)
     {
-        return $this->getTimeDifferenceInSeconds($value);
+        $time = new Carbon($value);
+        return $time->diffForHumans();
     }
 
-
-    protected function getTimeDifferenceInSeconds($value){
-        // return time difference in seconds
-        $start  = new Carbon(Carbon::now()->toDateTimeString());
-        $end    = new Carbon($value);
-        $totalDuration = $end->diffInSeconds($start);
-
-        return $totalDuration;
+    // Get user links where category == 'social'
+    public function getSocialLinks() {
+        return $this->links->filter(function ($value, $key) {
+            return $value->category == 'social';
+        });
     }
 
+    public function getPersonalWebsite() {
+        return $this->links->filter(function ($value, $key) {
+            return $value->category == 'professional' && $value->link_title == 'Website';
+        })[0];
+    }
+
+    public function getPublicWorkExperience () {
+        return $this->workExperience->filter(function ($value, $key) {
+            return $value->is_public;
+        });
+    }
+    
+    public function getPublicEducation () {
+        return $this->education->filter(function ($value, $key) {
+            return $value->is_public;
+        });
+    }
+    
+    public function getPublicSkills () {
+        return $this->skills->filter(function ($value, $key) {
+            return $value->is_public;
+        });
+    }
 }

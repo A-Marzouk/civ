@@ -21,8 +21,25 @@ export const store = new Vuex.Store({
                 designation: 'User interface designer',
                 phone: '+990000000',
                 location: 'London',
+                date_of_birth: '2020-09-09',
+                quote: 'anything here is a quote',
+                overview: 'Cool overview is here',
+                nationality: 'American',
+                hometown: 'London',
                 about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.',
             },
+            languages: [
+                {
+                    id: 6,
+                    label: "Arabic",
+                    name: "arabic",
+                },
+                {
+                    id: 8,
+                    label: "English",
+                    name: "english",
+                }
+            ],
             payment_info: [
                 {
                     salary: '10',
@@ -399,16 +416,99 @@ export const store = new Vuex.Store({
                     title: "John Doe",
                     resume_link_id: "4",
                     url: '"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    media_preview: '/images/video-holder.svg',
                     order: "1",
                     is_public: "1",
                     user_id: "2",
                     created_at: "2020-06-23 09:34:43",
                     updated_at: "2020-07-20 09:12:51"
                 }
-            ]
+            ],
+            tabs:[
+                {
+                    'title': 'work_experience',
+                    'label': 'Work Experience',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'education',
+                    'label': 'Education',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'about_me',
+                    'label': 'About Me',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'portfolio',
+                    'label': 'Portfolio',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'skills',
+                    'label': 'Skills',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'media',
+                    'label': 'Media',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'hobbies',
+                    'label': 'Hobbies',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'references',
+                    'label': 'References',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'achievements',
+                    'label': 'Achievements',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'links',
+                    'label': 'Links',
+                    'is_public': true,
+                    'order': 1,
+                },
+                {
+                    'title': 'pay_availability',
+                    'label': 'Pay Availability',
+                    'is_public': true,
+                    'order': 1,
+                },
+            ],
         },
         themeUser: {},
-        access_token: Vue.$cookies.get('access_token') || null
+        currentGlobalTab:'',
+        access_token: Vue.$cookies.get('access_token') || null,
+        defaultTabs: ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements'],
+        excludedTabs:[
+            'structure',
+            'imports',
+            'manager',
+            'themes',
+            'links',
+            'pay_availability',
+            'profile', // main tab | can not be hidden
+        ],
+        savingStatus: 'normal',
+        justSaved: false,
+        updateActivityTimer: false
     },
     mutations: {
         setCurrentUser: (state, data) => {
@@ -417,9 +517,32 @@ export const store = new Vuex.Store({
         updateThemeUser(state, themeUser) {
             state.themeUser = themeUser;
         },
+
+        // activity
         updateActivity(state) {
+            state.savingStatus = 'saving';
             axios.post('/api/user/update-last-activity', { user_id: state.user.id }).then((response) => {
+                state.savingStatus = 'saved';
+                setTimeout(() => {
+                    state.savingStatus = 'normal';
+                    state.justSaved = true;
+                },2000);
+
+                if(! state.updateActivityTimer ){
+                    state.updateActivityTimer = setInterval( () => {
+                        state.justSaved = false;
+                        axios.get('/api/user/last-activity/' + state.user.id).then((response) => {
+                            state.user.last_activity = response.data.last_activity ;
+                        });
+                    }, 60000);
+                }
+
+
             }).catch((error) => {
+                state.savingStatus = 'error';
+                setTimeout(() => {
+                    state.savingStatus = 'normal';
+                },1500);
                 console.log('Error - last activity');
             });
 
@@ -429,6 +552,13 @@ export const store = new Vuex.Store({
                 updateIframeHolder.click();
             }
         },
+        // theme tab globally
+        updateThemeTabGlobally(state, tab_title){
+            console.log(tab_title);
+            state.currentGlobalTab = tab_title ;
+        },
+
+        // updating order
         updateLinks(state, links) {
             state.user.links = links;
             axios.post('/api/user/links/update-order', { links: links })
@@ -517,6 +647,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updatePaymentMethods(state, paymentMethods) {
+            state.user.payment_methods = paymentMethods;
+            axios.post('/api/user/payment-methods/update-order', { paymentMethods: paymentMethods })
+                .then( () => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         updateHobbies(state, hobbies) {
             state.user.hobbies = hobbies;
             axios.post('/api/user/hobbies/update-order', { hobbies: hobbies })
@@ -533,41 +671,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
-        showFullScreenNotification: (state, data) => {
-            let modal = $('#fullScreenNotificationModal');
 
-            // change to needed content
-            let notificationText = $('#notificationText');
-            let notificationIconSrc = $('#notificationIconSrc');
-            data.message ? notificationText.text(data.message) : notificationText.text('Data saved successfully');
-            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
-
-            // toggle modal
-            modal.modal('show');
-            modal.css('display', 'flex');
-            setTimeout(() => {
-                modal.modal('hide')
-            }, 2000);
-
-            store.commit('updateActivity');
-        },
+        // system notifications
         showFlyingNotification: (state, data) => {
-            let notificationElement = $('#flyingNotification');
-
-            let notificationText = $('#flyingNotificationText');
-            let notificationIconSrc = $('#flyingNotificationIconSrc');
-            data.message ? notificationText.text(data.message) : notificationText.text('Saved');
-            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
-
-            if (notificationElement.is(':visible')) {
-                return;
+            if(data.message === 'Error'){
+                state.savingStatus = 'error' ;
+            }else{
+                store.commit('updateActivity');
             }
-            notificationElement.slideToggle('slow');
-            setTimeout(() => {
-                notificationElement.slideToggle('slow');
-            }, 2000);
-
-            store.commit('updateActivity');
 
         },
         showFlyingNotificationDelete: (state, data) => {
@@ -613,20 +724,26 @@ export const store = new Vuex.Store({
             }
             )
         },
-        fullScreenNotification(store, payload = {}) {
-            store.commit('showFullScreenNotification', payload);
-        },
+
+        // notifications action
         flyingNotification(store, payload = {}) {
             store.commit('showFlyingNotification', payload);
         },
         flyingNotificationDelete(store, payload = {}) {
             store.commit('showFlyingNotificationDelete', payload);
         },
+
+        // updates
         updateThemeUser(store, themeUser) {
             store.commit('updateThemeUser', themeUser);
         },
         updateLastActivity(store) {
             store.commit('updateActivity');
+        },
+
+        // update global theme tab:
+        updateThemeTabGlobally(store, tab_title) {
+            store.commit('updateThemeTabGlobally', tab_title);
         },
     }
 });

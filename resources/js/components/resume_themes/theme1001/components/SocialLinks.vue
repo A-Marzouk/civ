@@ -1,45 +1,90 @@
 <template>
   <div class="social-menu" :class="{ 'social-menu--open': isOpen }">
     <div class="social-label">Follow Me On :</div>
-    <div class="social_groups">
-      <v-btn
-        v-for="Userlink in currentUser.links"
-        :key="Userlink.id + '_link'"
-        v-show="Userlink.is_active && Userlink.is_public"
-        :href="Userlink.link"
-        target="_blank"
-        class="social mx-2"
-        fab
-        outlined
-        color="#fff"
-        elevation="0"
-        small
-      >
-        <v-icon dark>mdi-{{ Userlink.link_title.toLowerCase() }} </v-icon>
-      </v-btn>
-    </div>
+    <IconCarousel
+      :currentUser="currentUser"
+      themeNumber="theme1001"
+      btnWidth="40"
+      btnHeight="40"
+      iconWidth="22"
+      iconHeight="22"
+      border="2px solid #d3d6e4"
+      borderRadius="100"
+    ></IconCarousel>
   </div>
 </template>
 
 <script>
+import IconCarousel from "./../../reusable/IconCarousel";
 export default {
   name: "social-links",
+  components: {
+    IconCarousel,
+  },
 
   props: {
     isOpen: {
       type: Boolean,
-      default: false
+      default: false,
     },
     currentUser: {
       type: undefined,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "./../scss/variables";
+
+//social_carousel
+.social-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0 5px;
+}
+.social-carousel {
+  display: flex;
+  justify-content: center;
+  width: 220px;
+
+  &--overflow-container {
+    overflow: hidden;
+  }
+
+  &--nav__left,
+  &--nav__right {
+    display: inline-block;
+
+    cursor: pointer;
+
+    transition: transform 150ms linear;
+    &[disabled] {
+      opacity: 0.2;
+    }
+  }
+}
+
+.social-carousel-group {
+  display: flex;
+  transition: transform 150ms ease-out;
+  transform: translatex(0px);
+
+  .social-carousel--btn {
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+//social_carousel
+
 .social {
   background: transparent;
   border: 2px solid #fff;
@@ -64,7 +109,13 @@ export default {
 
   &.social-menu--open {
     border-top-width: 1px;
-    height: 48px;
+    height: auto;
+    padding: 5px 0px;
+    .v-btn--fab.v-size--small {
+      height: 40px;
+      width: 40px;
+      margin: 5px;
+    }
   }
 }
 
@@ -73,7 +124,9 @@ export default {
   white-space: nowrap;
   color: rgba(255, 255, 255, 0.67);
 }
-
+.social_groups {
+  max-width: 260px;
+}
 .social-links {
   display: flex;
   padding-left: 10px;
@@ -93,13 +146,20 @@ export default {
 
 @media (min-width: $sm) {
   .social-menu.social-menu--open {
-    height: 60px;
+    height: auto;
+    padding: 5px 0px;
   }
 }
 
 @media (min-width: $md) {
   .social-menu.social-menu--open {
-    height: 62px;
+    height: auto;
+    padding: 5px 0px;
+  }
+  .v-btn--fab.v-size--small {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
   }
 }
 

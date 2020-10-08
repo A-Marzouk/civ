@@ -66,15 +66,17 @@ class PersonalInfoController extends Controller
         return Validator::make($data, [
             'first_name' => ['sometimes', 'string', 'max:255','min:3'],
             'last_name' => ['sometimes', 'string', 'max:255','min:3'],
+            'date_of_birth' => ['sometimes', 'string', 'max:255','min:3'],
             'email' => ['email','max:255','unique:users'],
             'designation' => ['sometimes', 'string','max:255','min:3'],
             'profile_pic' => ['sometimes'],
             'phone' => ['sometimes', 'numeric','min:7'],
             'location' => ['sometimes', 'string', 'max:255','min:3'],
             'hometown' => ['sometimes', 'string', 'max:255','min:3'],
-            'about' => ['sometimes','string','max:2500'],
-            'overview' => ['sometimes','string','max:2500'],
-            'quote' => ['sometimes','string','max:2500'],
+            'nationality' => ['sometimes', 'string', 'max:255','min:3'],
+            'about' => ['sometimes','string','max:1000'],
+            'overview' => ['sometimes','string','max:1000'],
+            'quote' => ['sometimes','string','max:1000'],
         ]);
     }
 

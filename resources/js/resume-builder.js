@@ -90,7 +90,7 @@ if ($("#resumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVPortfolio
                 },
                 {
-                    path: '/resume-builder/edit/achievement',
+                    path: '/resume-builder/edit/achievements',
                     component: ResumeBuilderEditCVAchievement
                 },
                 {
@@ -98,7 +98,7 @@ if ($("#resumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVHobbies
                 },
                 {
-                    path: '/resume-builder/edit/audio-video',
+                    path: '/resume-builder/edit/media',
                     component: ResumeBuilderEditCVAudioVideo
                 },
                 {

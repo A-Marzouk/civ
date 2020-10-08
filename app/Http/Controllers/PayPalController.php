@@ -137,7 +137,7 @@ class PaypalController extends Controller
         Session::put('plan', 'monthly');
 
         $agreement = new Agreement();
-        $agreement->setName('CIV Monthly Subscription Agreement')
+        $agreement->setName('civ.ie Monthly Subscription Agreement')
             ->setDescription('Monthly Subscription - 5$ | 7 days free trial')
             ->setStartDate(\Carbon\Carbon::now()->addMinutes(5)->toIso8601String());
 
@@ -173,7 +173,7 @@ class PaypalController extends Controller
         Session::put('plan', 'yearly');
         // Create new agreement
         $agreement = new Agreement();
-        $agreement->setName('CIV Yearly Subscription Agreement')
+        $agreement->setName('civ.ie Yearly Subscription Agreement')
             ->setDescription('Yearly Subscription - 50$ | 7 days free trial')
             ->setStartDate(\Carbon\Carbon::now()->addMinutes(5)->toIso8601String());
 

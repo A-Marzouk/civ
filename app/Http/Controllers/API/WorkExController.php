@@ -104,7 +104,7 @@ class WorkExController extends Controller
         return Validator::make($data, [
             'company_name' => ['sometimes','required','string','max:255'],
             'job_title' => ['sometimes','string','max:255'],
-            'description' => ['sometimes','string','max:2500'],
+            'description' => ['sometimes','string','max:1000'],
             'website' => ['sometimes','nullable','string','max:255'],
             'date_from' => ['sometimes','date','max:255'],
             'date_to' => ['sometimes','nullable','date','max:255'],

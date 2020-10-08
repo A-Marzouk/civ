@@ -26,6 +26,7 @@ class CreateThemesTable extends Migration
             $table->string('image')->nullable();
             $table->integer('order')->default(1);
             $table->string('developer')->nullable();
+            $table->smallInteger('is_active')->nullable();
 
             $table->timestamps();
         });

@@ -1,90 +1,60 @@
 <template>
-    <v-app>
-        <v-container fluid>
-            <v-row>
-                <!-- side menu -->
-                <v-col xl="12" lg="12" md="12" sm="12" cols="12" align="left" class>
-                    <!-- tab bar -->
-                    <v-card class="card-themes-wrapper main-content resume-builder__scroll">
-                        <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
-                        <div v-if="user.default_resume_link"  class="theme-container-wrapper">
-                            <div v-for="theme in availableThemes" :key="theme.id" class="theme-container">
-                                <v-hover>
-                                    <template v-slot:default="{ hover }">
-                                        <v-card class="card-theme-holder pa-0 ma-0":style="{ backgroundImage: `url(${theme.image})` }" flat color="transparent">
-                                            <div>
-                                                <div class="theme-image holder" :class="theme.id == user.default_resume_link.theme_id? 'active': 'inactive'"></div>
-                                                <v-fade-transition>
-                                                    <v-overlay
-                                                            v-if="hover"
+    <div>
+        <v-row>
+            <v-col xl="12" lg="12" md="12" sm="12" cols="12" align="left" class>
+                <!-- tab bar -->
+                <v-card class="card-themes-wrapper main-content resume-builder__scroll">
+                    <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
+                    <div v-if="user.default_resume_link"  class="theme-container-wrapper">
+                        <div v-for="theme in availableThemes" :key="theme.id" class="theme-container">
+                            <v-hover>
+                                <template v-slot:default="{ hover }">
+                                    <v-card class="card-theme-holder pa-0 ma-0" :style="{ backgroundImage: `url(${theme.image})` }" flat color="transparent">
+                                        <div>
+                                            <div class="theme-image holder" :class="theme.id == user.default_resume_link.theme_id? 'active': 'inactive'"></div>
+                                            <v-fade-transition>
+                                                <v-overlay
+                                                        v-if="hover || theme.id === user.default_resume_link.theme_id"
+                                                        absolute
+                                                        color="#ffffff"
+                                                        opacity="0.5"
+                                                        class="custom-overlay"
+                                                        :class="{ 'notActive' : !theme.is_active || theme.id !== user.default_resume_link.theme_id}"
+                                                >
+                                                    <v-btn
+                                                            color="#001CE2"
                                                             absolute
-                                                            color="#ffffff"
-                                                            opacity="0.5"
-                                                            class="custom-overlay"
+                                                            class="btn-activate"
+                                                            :class="{active : theme.id === user.default_resume_link.theme_id}"
+                                                            depressed
+                                                            v-if="theme.id === user.default_resume_link.theme_id"
                                                     >
-                                                        <v-btn
-                                                                color="#001CE2"
-                                                                absolute
-                                                                class="btn-activate"
-                                                                :class="{active : theme.id === user.default_resume_link.theme_id}"
-                                                                depressed
-                                                                @click="activateTheme(theme.id)"
-                                                        >
-                                                            {{theme.id === user.default_resume_link.theme_id ? 'Active' : 'Activate'}}
-                                                            <img
-                                                                    src="/icons/check.svg"
-                                                            />
-                                                        </v-btn>
-                                                        <v-row>
-                                                            <v-col cols="12" align="center">
-                                                                <v-btn
-                                                                        color="#001CE2"
-                                                                        class="btn-my-data mb-xl-n4 mb-lg-n6 mb-md-n6 mb-sm-n12 mb-n5"
-                                                                        outlined
-                                                                        depressed
-                                                                >
-                                                                    Play Video
-                                                                    <img src="/icons/youtube.svg" />
-                                                                </v-btn>
-                                                            </v-col>
-                                                            <v-col cols="12" align="center">
-                                                                <v-btn
-                                                                        color="#001CE2"
-                                                                        class="btn-my-data mb-xl-n4 mb-lg-n5 mb-md-n5 mb-sm-n6 mb-n5"
-                                                                        outlined
-                                                                        depressed
-                                                                        @click="openTheme(theme.id, 'true')"
-                                                                >
-                                                                    My Data
-                                                                    <img src="/icons/eye-icon-blue.svg" />
-                                                                </v-btn>
-                                                            </v-col>
-                                                            <v-col cols="12" align="center">
-                                                                <v-btn
-                                                                        color="#001CE2"
-                                                                        class="btn-preview-data"
-                                                                        depressed
-                                                                        @click="openTheme(theme.id, 'false')"
-                                                                >
-                                                                    Preview Data
-                                                                    <img src="/icons/eye-icon-white.svg" />
-                                                                </v-btn>
-                                                            </v-col>
-                                                        </v-row>
-                                                    </v-overlay>
-                                                </v-fade-transition>
-                                            </div>
-                                        </v-card>
-                                    </template>
-                                </v-hover>
-                            </div>
+                                                         Active
+                                                        <img src="/icons/check.svg"/>
+                                                    </v-btn>
+
+                                                    <div class="coming-soon-label"  v-if="!theme.is_active">
+                                                        Coming soon
+                                                    </div>
+
+
+                                                    <div class="coming-soon-label activate"  @click="activateTheme(theme.id)"  v-if="theme.is_active && (theme.id !== user.default_resume_link.theme_id)">
+                                                        Activate
+                                                    </div>
+
+                                                </v-overlay>
+                                            </v-fade-transition>
+                                        </div>
+                                    </v-card>
+                                </template>
+                            </v-hover>
                         </div>
-                    </v-card>
-                    <v-card flat tile color="transparent"></v-card>
-                </v-col>
-            </v-row>
-        </v-container>
-    </v-app>
+                    </div>
+                </v-card>
+                <v-card flat tile color="transparent"></v-card>
+            </v-col>
+        </v-row>
+    </div>
 </template>
 
 <script>
@@ -304,7 +274,7 @@
     }
 
     .main-content {
-        height: 525px;
+        height: 450px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         padding: 50px;
@@ -315,6 +285,7 @@
         }
         @include lt-sm{
             padding: 25px;
+            max-width: 94%;
         }
         @media screen and (min-width: 1904px) {
             max-width: 1480px !important;
@@ -433,6 +404,7 @@
                     background-size: cover;
                     width: 417px;
                     height: 300px;
+                    border-radius: 26px;
 
                     @include lt-lg{
                         width: 300px;
@@ -452,7 +424,7 @@
                     .holder {
                         width: 100%;
                         height: 300px;
-                        border-radius: 5px;
+                        border-radius: 26px;
 
                         @include lt-lg{
                             height:217px;
@@ -470,9 +442,12 @@
 
 
                     .custom-overlay {
-                        background: rgba(255, 255, 255, 0.95);
+                        background: none;
                         border: 1px solid #888db1 !important;
-                        border-radius: 5px !important;
+                        border-radius: 26px !important;
+                        &.notActive{
+                            background: rgb(255,255,255,0.95);
+                        }
                     }
                     .btn-preview-data {
                         width: 120px;
@@ -537,20 +512,20 @@
                     }
                     .btn-activate {
                         &.active {
-                            background: greenyellow !important;
                             border: none;
                         }
 
-                        top: -1px;
-                        right: -2px;
+                        top: 0;
+                        right: 0;
                         width: 120px;
                         height: 35px;
-                        border-radius: 5px;
+                        border-radius: 5px 26px 5px 5px;
                         font-family: "Noto Sans", sans-serif !important;
                         font-style: normal;
                         font-weight: 500;
                         font-size: 12px;
                         line-height: 12px;
+                        background: #53B71F !important;
                         text-transform: capitalize !important;
 
                         img {
@@ -560,9 +535,40 @@
                         }
                     }
 
+                    .coming-soon-label{
+                        position: absolute;
+                        margin-left: auto;
+                        margin-right: auto;
+                        left: 0;
+                        right: 0;
+                        width: 150px;
+                        height: 55px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 5px;
+                        border: 1.5px solid #001ce2;
+                        background: white;
+                        color: #001ce2;
+                        font-family: "Noto Sans", sans-serif !important;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 12px;
+                        text-transform: capitalize !important;
+
+                        &.activate{
+                            border-radius: 40px;
+                            border: 2px solid #70707034;
+                            &:hover{
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
 
                     .active {
-                        border: 3px solid #001ce2;
+                        border: 3px solid #53B71F;
                     }
 
                     .inactive {
@@ -574,7 +580,7 @@
         }
 
         .selected-theme {
-            border: 3px solid #001ce2;
+            border: 3px solid #53B71F;
         }
     }
 
@@ -690,8 +696,12 @@
     }
 
     .custom-overlay{
+        .v-overlay__scrim{
+            opacity: 0 !important;
+        }
         .v-overlay__content{
             height: 100%;
+            width: 100%;
             display: flex;
             align-items: center;
         }

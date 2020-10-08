@@ -60,7 +60,7 @@ if ($("#adminResumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVProfile
                 },
                 {
-                    path: '/resume-builder/edit/bout',
+                    path: '/resume-builder/edit/about',
                     component: ResumeBuilderEditCVAbout
                 },
                 {
@@ -88,7 +88,7 @@ if ($("#adminResumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVPortfolio
                 },
                 {
-                    path: '/resume-builder/edit/achievement',
+                    path: '/resume-builder/edit/achievements',
                     component: ResumeBuilderEditCVAchievement
                 },
                 {
@@ -96,7 +96,7 @@ if ($("#adminResumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVHobbies
                 },
                 {
-                    path: '/resume-builder/edit/audio-video',
+                    path: '/resume-builder/edit/media',
                     component: ResumeBuilderEditCVAudioVideo
                 },
                 {

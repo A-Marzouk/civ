@@ -1,11 +1,10 @@
 <template>
     <div class="main-content">
         <div class="d-flex justify-content-end w-100">
-            <tab-switcher currentTabTitle="references"></tab-switcher>
         </div>
-        <div style="width:100%;">
-            <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
-                <v-container class>
+        <div style="width:100%;" class="resume-builder__scroll reference-content">
+            <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5" flat>
+                <div>
 
                     <div class="reference-external-link-wrapper">
                         <div class="reference-external-link-input">
@@ -335,7 +334,7 @@
                             </div>
                         </div>
                     </draggable>
-                </v-container>
+                </div>
             </v-card>
         </div>
     </div>
@@ -344,13 +343,13 @@
 <script>
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
-    import tabSwitcher from "./includes/TabSwitcher";
+
 
     export default {
         name: "References",
         components: {
             vueDropzone: vue2Dropzone,
-            'tab-switcher' : tabSwitcher
+
         },
         data() {
             return {
@@ -586,14 +585,15 @@
     .reference-content {
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-        height: 573px;
-        padding: 50px;
+        height: 450px;
         margin-bottom: 70px;
         scroll-behavior: smooth;
+        padding-right: 20px;
     }
 
     .card-ref {
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
+        padding: 50px;
         @media screen and (min-width: 1264px) and (max-width: 1903px) {
             width: auto;
         }

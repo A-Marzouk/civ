@@ -10,6 +10,8 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\Project as ProjectResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
@@ -80,7 +82,7 @@ class ProjectsController extends Controller
             $newProject = Project::create($project);
             if(isset($project['image'])){
                 $newProject->images()->create([
-                    'src' => $project['image'],
+                    'src' => $this->uploadImageFromURL($project['image'], $newProject->id),
                     'is_main' => true
                 ]);
             }
@@ -89,6 +91,16 @@ class ProjectsController extends Controller
         }
 
         return $addedProjects;
+    }
+
+    public function uploadImageFromURL($url, $id){
+        $contents  = file_get_contents($url);
+        $extension = File::extension(strtok($url, '?'));
+        $name = 'projects_media/' . $id . '_' . date(time()) . '_.' . $extension;
+        if(Storage::put($name, $contents)){
+            return $name ;
+        }
+        return false ;
     }
 
     public function show($id)
@@ -141,7 +153,7 @@ class ProjectsController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255','min:3'],
-            'description' => ['required', 'string', 'max:2500','min:3'],
+            'description' => ['required', 'string', 'max:1000','min:3'],
             'link' => ['required', 'string','max:255','min:3'],
             'skills' => ['required', 'string','max:255','min:3'],
             'software' => ['required', 'string','max:255','min:3']

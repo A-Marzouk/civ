@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Subscription extends Model
@@ -9,25 +10,30 @@ class Subscription extends Model
 
     protected $table = 'subscriptions';
 
-    protected $fillable= [
-        'payment_method',
-        'sub_frequency',
-        'sub_status',
-        'expires_at',
-        'customer_id',
-        'paypal_agreement_id',
-        'user_id',
-        'promocode_id',
-    ];
+    protected $guarded = [] ;
 
-    // relations belongs to
     public function user(){
         return $this->belongsTo(User::class);
     }
 
-    // relations has one:
     public function promocode(){
         return $this->belongsTo(Promocode::class);
+    }
+
+    public function isExpired(){
+
+        if($this->expires_at === null){
+            return false;
+        }
+
+        $expiring_date = Carbon::parse($this->expires_at);
+        $now           = Carbon::now();
+
+        return $now->gt($expiring_date);
+    }
+
+    public function isActive(){
+        return $this->sub_status === 'active' ;
     }
 
 

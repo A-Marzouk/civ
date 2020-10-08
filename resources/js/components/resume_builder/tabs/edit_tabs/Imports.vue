@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pr-md-5">
         <div class="pa-md-0 pa-sm-0 pa-3 content-container">
             <v-tabs class="resume-builder__tab-bar" hide-slider v-model="importTab" height="51">
                 <v-tab
@@ -9,8 +9,9 @@
                 >{{tabName.replace('_',' ')}}
                 </v-tab>
             </v-tabs>
-            <v-card class="card-main pa-10 resume-builder__scroll pay-content" :class="{'shortened' : extractedText.length > 1 || behanceProjects.length > 0}" flat id="payContent">
+            <v-card class="card-main pa-10 resume-builder__scroll pay-content" :class="{'shortened' : extractedText.length > 1 || behanceProjects.length > 0 || dribbbleData.projects.length > 0}" flat id="payContent">
                 <v-tabs-items v-model="importTab">
+                    <!-- PDF/Docx import-->
                     <v-tab-item class="import-tab-item">
                         <div class="title">
                             <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
@@ -60,7 +61,7 @@
                                style="opacity:0; position: absolute; left:-500px;">
 
                     </v-tab-item>
-
+                    <!-- Behance import -->
                     <v-tab-item class="import-tab-item">
 
                         <div class="title">
@@ -80,19 +81,19 @@
                                     v-model="behanceUsername"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;">behance.com/</span>
+                                    <span class="inner-text" style="margin-top:-3px;">behance.net/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
                                 <v-btn class="resume-builder__btn civie-btn filled" raised @click="importDataFromBehance">
-                                    Import CV
+                                    {{isBehanceImporting ? 'Importing...' : 'Import CV'}}
                                 </v-btn>
                             </div>
                         </div>
 
 
                     </v-tab-item>
-
+                    <!-- LinkedIn import -->
                     <v-tab-item class="import-tab-item">
 
                         <div class="title">
@@ -124,9 +125,41 @@
                         </div>
 
                     </v-tab-item>
-
+                    <!-- Civ.ie Import -->
                     <v-tab-item class="import-tab-item">
                         <import-from-civ></import-from-civ>
+                    </v-tab-item>
+                    <!-- Dribbble import -->
+                    <v-tab-item class="import-tab-item">
+
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Import from Dribbble</span>
+                        </div>
+
+                        <div class="dropzone-area">
+                            <span class="v-label v-label--active theme--light" style="color: #888DB1;">
+                            <!-- Added a label here due to prepend-inner slot change -->
+                             URL
+                            </span>
+                            <v-text-field
+                                    style="margin-top: -15px;"
+                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    :outlined="true"
+                                    v-model="dribbbleUsername"
+                            >
+                                <template slot="prepend-inner">
+                                    <span class="inner-text" style="margin-top:-3px;">dribbble.com/</span>
+                                </template>
+                            </v-text-field>
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised @click="importDataFromDribbble">
+                                    {{isDribbbleImporting ? 'Importing...' : 'Import'}}
+                                </v-btn>
+                            </div>
+                        </div>
+
+
                     </v-tab-item>
                 </v-tabs-items>
             </v-card>
@@ -515,6 +548,10 @@
                                         </div>
                                     </div>
 
+                                    <div class="errors-container" v-show="Object.keys(errors).length !== 0">
+                                        {{errors}}
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="pl-5 pr-5" v-show="showFullText">
@@ -551,7 +588,7 @@
                                             <div class="project ml-md-4" v-for="project in behanceProjects">
                                                 <div class="project__header">
                                                     <div class="resume-builder__action-buttons-container">
-                                                        <div class="checkbox" @click="toggleSelectionOfBehanceProject(project)">
+                                                        <div class="checkbox pointer-hover" @click="toggleSelectionOfBehanceProject(project)">
                                                             <img v-show="project.selected" src="/images/resume_builder/imports/checkbox-on.svg"
                                                                  alt="checkbox">
                                                             <img v-show="!project.selected" src="/images/resume_builder/imports/checkbox-off.svg"
@@ -593,6 +630,82 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="errors-container" v-show="Object.keys(errors).length !== 0">
+                                        {{errors}}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="outer-container information-container"  v-if="dribbbleData.projects.length > 0" >
+            <div class="title">
+                <img src="/icons/edit-cv-sidebar/information-icon.svg" alt="info icon">
+                <span>Please pick your projects</span>
+            </div>
+            <div class="dns-main-content-container resume-builder__scroll">
+                <div class="dns-main-content">
+                    <div class="import-cv-wrapper">
+                        <div>
+                            <div class="import-results">
+                                <div class="sections">
+                                    <div>
+                                        <div class="projects-list">
+                                            <div class="project ml-md-4" v-for="project in dribbbleData.projects">
+                                                <div class="project__header">
+                                                    <div class="resume-builder__action-buttons-container">
+                                                        <div class="checkbox pointer-hover" @click="toggleSelectionOfDribbbleProject(project)">
+                                                            <img v-show="project.selected" src="/images/resume_builder/imports/checkbox-on.svg"
+                                                                 alt="checkbox">
+                                                            <img v-show="!project.selected" src="/images/resume_builder/imports/checkbox-off.svg"
+                                                                 alt="checkbox">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="project__body">
+                                                    <div class="project__img">
+                                                        <div class="project__name">{{project.title}}</div>
+                                                        <img :src="project.image" alt="portfolio img" />
+                                                    </div>
+                                                    <div class="project__info">
+                                                        <div class="project__name">{{project.title}}</div>
+                                                        <div class="project__url">
+                                                            <b>URL:</b>
+                                                            <a :href="project.url">{{project.url}}</a>
+                                                        </div>
+                                                        <div class="project__description">
+                                                            <b>Description:</b>
+                                                            {{project.description}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="import-action-btns no-background mb-5">
+                                        <div class="d-flex justify-space-between">
+                                            <div class="d-flex">
+                                                <div class="import-btn">
+                                                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importDribbbleProjects" :class="{disabled : isDribbbleImporting}">
+                                                        {{isDribbbleImporting ? 'Importing.. ' : 'Import'}}
+                                                    </v-btn>
+                                                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAllDribbbleProjects">
+                                                        {{ isAllDribbbleProjectsSelected ? 'Deselect' : 'Select'}} all
+                                                    </v-btn>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="errors-container" v-show="Object.keys(errors).length !== 0">
+                                        {{errors}}
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -715,7 +828,7 @@
         },
         data() {
             return {
-                tabs: ["PDF/DOC", "Behance", "LinkedIn", "civ.ie"],
+                tabs: ["PDF/DOC", "Behance", "LinkedIn", "civ.ie", "Dribbble"],
                 importTab: 0,
                 dropzoneOptions: {
                     url: "https://httpbin.org/post",
@@ -730,9 +843,7 @@
                 extractedText: '',
                 originalText: '',
                 arrayOfExtractedText: [],
-                errors: {
-                    linkedInUrl:''
-                },
+                errors: {},
                 freelancerData: {
                     'work_experience': '',
                     'education': '',
@@ -1345,13 +1456,24 @@
                     title:'',
                     url:'',
                     importFile:'',
-                }
+                },
+                isBehanceImporting: false,
+
+                // Dribbble import:
+                dribbbleUsername:'',
+                isDribbbleImporting:false,
+                isAllDribbbleProjectsSelected:false,
+                dribbbleData:{
+                    user:{},
+                    projects:[]
+                },
+
             }
         },
         methods: {
             getFormattedData(date) {
                 let d = new Date(date);
-                return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear() ;
+                return d.getDate() + '.' + (d.getMonth()+1) + '.' + d.getFullYear() ;
             },
             // extract
             // handle file upload
@@ -1368,6 +1490,7 @@
 
             },
 
+            // linkedin import:
             importLinkedInProfile() {
                 this.importURL =  this.linkedInProfile ;
                 this.importType = 'LinkedIn' ;
@@ -1412,8 +1535,9 @@
                 let linkedInRegex = /(https?)?:?(\/\/)?(([w]{3}||\w\w)\.)?linkedin.com(\w+:{0,1}\w*@)?(\S+)(:([0-9])+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ;
                 return url.match(linkedInRegex);
             },
+
             uploadPDFFile() {
-                this.errors = [];
+                this.errors = {};
                 let formData = new FormData();
                 formData.append('cv', this.file);
                 const config = {
@@ -1468,6 +1592,8 @@
                         });
                 }
             },
+
+            // clear:
             clearFreelancerData() {
                 this.freelancerData = {
                     'education': [],
@@ -1508,15 +1634,20 @@
 
             // Import data from Behance:
             importDataFromBehance(){
-                this.importURL = 'https://behance.com/' + this.behanceUsername ;
+                if(this.isBehanceImporting){
+                    return ;
+                }
+
+                this.importURL = 'https://behance.net/' + this.behanceUsername ;
                 this.importType = 'Behance' ;
+
+                this.isBehanceImporting = true ;
                 axios.get('/resume-builder/import/behance/' + this.behanceUsername)
                     .then((response) => {
-                        console.log('Behance Data:');
-                        console.log(response.data.projects);
                         this.behanceProjects = response.data.projects;
-                    }
-                );
+                        this.isBehanceImporting = false ;
+                        this.SelectAllProjects();
+                    }).catch( () => {this.isBehanceImporting = false ;} );
             },
             importBehanceProjects(){
                 // get only selected projects:
@@ -1547,16 +1678,17 @@
                     });
 
             },
-
             clearBehanceImport(){
               this.behanceProjects = [] ;
               this.behanceUsername = '';
             },
+
             // dropzone funcions
             handlingEvent: function (file) {
                 this.file = file;
                 this.newImport.importFile   = file;
             },
+
             // document extracting text funtions:
             extractDocText(sections) {
                 sections.forEach(section => {
@@ -1620,7 +1752,44 @@
                     project.selected = false;
                 })
             },
+            isSectionSelected(section_title){
+                let selectedSections = this.sections.filter( (item) => { return item.selected});
+                let selected = false;
+                selectedSections.forEach( (section) => {
+                    if(section.title === section_title){
+                        selected =  true;
+                    }
+                });
 
+                return selected;
+            },
+
+            // dribble:
+            SelectAllDribbbleProjects(){
+                this.isAllDribbbleProjectsSelected = true;
+                this.dribbbleData.projects.forEach( (project) => {
+                    project.selected = true;
+                })
+            },
+            DeSelectAllDribbbleProjects(){
+                this.isAllDribbbleProjectsSelected = false;
+                this.dribbbleData.projects.forEach( (project) => {
+                    project.selected = false;
+                })
+            },
+            toggleSelectionOfDribbbleProject(project){
+                project.selected = !project.selected;
+            },
+            isProjectSelected(project){
+                return  project.selected;
+            },
+            toggleSelectAllDribbbleProjects(){
+                if(this.isAllDribbbleProjectsSelected){
+                    this.DeSelectAllDribbbleProjects();
+                    return;
+                }
+                this.SelectAllDribbbleProjects();
+            },
 
             // search functions
             searchForData() {
@@ -1663,9 +1832,10 @@
                     this.extractedText.lastIndexOf("Experience")
                 );
 
-                if(summary.length >= 2499){
-                     summary = summary.substring(0, 2499);
+                if(summary.length >= 999){
+                     summary = summary.substring(0, 999);
                 }
+
                 this.personalInfo.about = summary;
 
 
@@ -1997,17 +2167,6 @@
                     });
             },
 
-            isSectionSelected(section_title){
-                let selectedSections = this.sections.filter( (item) => { return item.selected});
-                let selected = false;
-                selectedSections.forEach( (section) => {
-                    if(section.title === section_title){
-                        selected =  true;
-                    }
-                });
-
-                return selected;
-            },
             updateUserInfo(){
                 if(Object.keys(this.errors).length === 0){
                     this.$store.dispatch('setCurrentUser',{});
@@ -2028,6 +2187,7 @@
             addImport() {
                 let formData = new FormData();
                 this.newImport.title = 'Import ' + (this.imports.length+1) + ' | ' + this.importType ;
+                this.newImport.category = this.importType ;
                 this.newImport.url   = this.importURL;
                 this.newImport.user_id= this.$store.state.user.id;
 
@@ -2037,7 +2197,8 @@
 
                 axios.post('/api/user/imports', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                     .then((response) => {
-                        this.imports.push(response.data.data);
+                        let importedFile = response.data.data;
+                        this.imports.push(importedFile);
                         this.$store.dispatch('flyingNotification');
                         console.log('success');
                     })
@@ -2075,6 +2236,64 @@
                         console.log(error);
                     });
             },
+
+            // dribbble import
+            importDataFromDribbble(){
+                if(this.isDribbbleImporting){
+                    return ;
+                }
+
+                this.importType = 'Dribbble' ;
+                this.isDribbbleImporting = true ;
+
+                axios.get('https://civ-api.herokuapp.com/api/dribbble/projects/' + this.dribbbleUsername)
+                    .then((response) => {
+                        let dribbleData =  response.data.data
+                        dribbleData.projects.forEach((project) => {
+                            project.selected = true ;
+                        });
+                        this.dribbbleData = dribbleData;
+                        this.isDribbbleImporting = false ;
+
+                    }).catch( () => {this.isDribbbleImporting = false ;} );
+            },
+            importDribbbleProjects(){
+                // get only selected projects:
+                let selectedProjects = this.dribbbleData.projects.filter( project => project.selected);
+                let toImportProjects = [] ;
+
+
+                selectedProjects.forEach((project) => {
+                    toImportProjects.push({
+                        name: project.title,
+                        link: project.url,
+                        image: project.image,
+                        description: project.description,
+                        user_id: this.$store.state.user.id,
+                        is_public: 1
+                    })
+                });
+
+                axios.post('/api/user/projects/many', {projects: toImportProjects, user_id: this.$store.state.user.id})
+                    .then( (response) => {
+                        this.clearDribbbleImport();
+                        let savedProjects = response.data;
+                        savedProjects.forEach( (project) => {
+                            this.projects.push(project);
+                        });
+                        this.$store.dispatch('flyingNotification');
+                        this.addImport();
+                    });
+
+            },
+            clearDribbbleImport(){
+                this.dribbbleData = {
+                    projects:[],
+                    user: {}
+                } ;
+                this.dribbbleUsername = '';
+            },
+
         },
         computed:{
             projects: {
@@ -2114,10 +2333,10 @@
         &.shortened{
             height: 220px;
         }
-        height: 420px;
+        height: 460px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-        padding: 50px;
+        padding: 50px 50px 0 50px;
         margin-bottom: 70px;
         scroll-behavior: smooth;
         -webkit-transition: all 1s;
@@ -2356,7 +2575,7 @@
         margin-top: 78px;
         display: flex;
         align-items: center;
-        width: 958px;
+        width: 100%;
 
         .upload-progress-bar {
             width: 1%;
@@ -2641,6 +2860,7 @@
                         padding: 30px;
                         border-radius: 15px;
                         width: 100%;
+                        overflow-x: hidden;
 
                         .import-section-title {
                             display: flex;
@@ -2663,6 +2883,9 @@
                             }
 
                             .checkbox {
+                                &:hover{
+                                    cursor: pointer;
+                                }
                                 img {
                                     width: 30px;
                                     height: 30px;
@@ -2998,6 +3221,16 @@
                     flex-wrap: wrap;
                 }
             }
+        }
+    }
+
+    .errors-container{
+        color: red;
+    }
+
+    .pointer-hover{
+        &:hover{
+            cursor: pointer;
         }
     }
 </style>

@@ -1,26 +1,36 @@
 <template>
-  <v-app style="width: 100%;" v-if="currentUser">
-    <v-container fluid ma-0 pa-0 style="width: 100%;">
+  <v-app style="width: 100%" v-if="currentUser">
+    <v-container fluid ma-0 pa-0 style="width: 100%">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#fafafa" height="250" class="hidden-xs-only">
         <v-avatar size="120" class="mr-5">
           <v-img :src="currentUser.personal_info.profile_pic"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
-        <v-container fluid pa-0 ma-0 style="width: 100%;">
+        <v-container
+          fluid
+          pa-0
+          ma-lg-0
+          ma-md-2
+          ma-sm-4
+          ma-0
+          style="width: 100%"
+        >
           <v-row class align="center" justify="center" dense>
             <v-col
-              md="4"
+              xl="4"
+              lg="3"
+              md="8"
               sm="7"
-              :class="{ 'active-indicator': currentTab === 'profile' }"
             >
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">
-                  {{ currentUser.personal_info.full_name }}
-                </v-card-title>
-                <v-card-subtitle class="custom-profile-subtitle">{{
-                  currentUser.personal_info.designation
-                }}</v-card-subtitle>
+                <v-card-title class="custom-profile-title"
+                  >{{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}</v-card-title
+                >
+                <v-card-subtitle class="custom-profile-subtitle">
+                  {{ currentUser.personal_info.designation }}
+                </v-card-subtitle>
                 <v-card-text
                   class="custom-profile-text hidden-sm-and-down"
                   v-if="currentUser.personal_info.overview"
@@ -30,30 +40,40 @@
             </v-col>
 
             <!-- Social Buttons for tablet only -->
-            <v-col sm="5" class="d-none d-sm-flex d-md-none">
-              <v-card flat color="transparent" class="pa-0 hire-me-card">
+            <v-col
+              md="4"
+              sm="5"
+              class="d-none d-sm-flex d-md-flex d-lg-none mt-md-8 mt-sm-0"
+            >
+              <v-card
+                flat
+                color="transparent"
+                class="pa-0 hire-me-card mt-md-2 mt-sm-0"
+              >
                 <v-btn
                   color="#FAFAFA"
-                  class="btn-hire-me hidden-sm-and-down"
+                  class="btn-hire-me hidden-md-and-down"
                   x-large
+                  @click="hireMeModal = !hireMeModal"
                 >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
                 <!-- social buttons -->
                 <v-btn
-                  class="custom-social-btn mx-2"
-                  :href="Userlink.link"
-                  v-for="Userlink in currentUser.links"
-                  :key="Userlink.id + '_link'"
+                  class="custom-social-btn mx-md-3 mx-sm-3 mx-2"
+                  href="javascript:void(0)"
+                  @click="goToExternalLink(userLink.link)"
+                  v-for="userLink in currentUser.links"
+                  :key="userLink.id + '_link'"
                   target="_blank"
-                  v-show="Userlink.is_active && Userlink.is_public"
+                  v-show="userLink.is_active && userLink.is_public"
                   color="#FAFAFA"
                 >
                   <img
-                    :width="Userlink.link_title == 'facebook' ? '12' : '20'"
+                    :width="userLink.link_title == 'facebook' ? '12' : '20'"
                     x-large
-                    :src="getSocialIcon(Userlink.link_title)"
+                    :src="getSocialIcon(userLink.link_title)"
                   />
                 </v-btn>
                 <!-- social buttons -->
@@ -62,41 +82,46 @@
             <!-- Social Button for tablet only -->
 
             <!-- Availibility -->
-            <v-col md="3" sm="6">
+            <v-col xl="3" lg="4" md="5" sm="7" class>
               <!-- Hour rate -->
               <v-card
-                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10"
+                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-lg-12 ml-md-0"
                 color="transparent"
                 flat
                 tile
               >
-                <v-list-item two-line class>
-                  <v-list-item-avatar size="18">
-                    <img
-                      width="18"
-                      src="/images/resume_themes/theme206/icons/usd.png"
-                    />
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-subtitle>
-                      <v-card color="transparent" flat class="pa-0 ma-0" tile>
-                        <span class="hour-rate">Hour Rate</span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                    <v-list-item-subtitle v-if="currentUser.payment_info">
-                      <v-card color="transparent" flat tile>
-                        <span class="rate">
-                          {{ currentUser.payment_info[0].salary }}
-                        </span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
+                <v-card-text class="ml-xl-0 ml-lg-12 ml-md-0">
+                  <v-list-item two-line class>
+                    <v-list-item-avatar size="18">
+                      <img
+                        width="18"
+                        src="/images/resume_themes/theme206/icons/usd.png"
+                      />
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-subtitle>
+                        <v-card color="transparent" flat class="pa-0 ma-0" tile>
+                          <span class="hour-rate">Hour Rate</span>
+                        </v-card>
+                      </v-list-item-subtitle>
+                      <v-list-item-subtitle v-if="currentUser.payment_info">
+                        <v-card color="transparent" flat tile>
+                          <span class="rate">{{
+                            currentUser.payment_info[0].salary
+                          }}</span>
+                        </v-card>
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card-text>
 
                 <!-- Hour Rate -->
                 <!-- Weekly availibility -->
 
-                <v-list-item two-line class="availibilty-col">
+                <v-list-item
+                  two-line
+                  class="availibilty-col ml-lg-0 ml-md-n10 ml-sm-n12 ml-0"
+                >
                   <v-list-item-avatar size="16">
                     <img
                       width="16"
@@ -111,9 +136,9 @@
                     </v-list-item-subtitle>
                     <v-list-item-subtitle v-if="currentUser.availability_info">
                       <v-card color="transparent" class="pa-0 ma-0" flat tile>
-                        <span class="rate">
-                          {{ currentUser.availability_info[0].available_hours }}
-                        </span>
+                        <span class="rate">{{
+                          currentUser.availability_info[0].available_hours
+                        }}</span>
                       </v-card>
                     </v-list-item-subtitle>
                   </v-list-item-content>
@@ -124,12 +149,18 @@
             <!-- Availibility  -->
 
             <!-- 3rd column -->
-            <v-col md="5" class="hidden-sm-and-down" align="right">
+            <v-col
+              lg="5"
+              md="5"
+              class="hidden-md-and-down mt-lg-0"
+              align="right"
+            >
               <v-card flat color="transparent" class="pa-0 hire-me-card">
                 <v-btn
                   color="#FAFAFA"
                   class="btn-hire-me hidden-sm-and-down"
                   x-large
+                  @click="hireMeModal = !hireMeModal"
                 >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
@@ -137,17 +168,18 @@
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-2"
-                  :href="Userlink.link"
-                  v-for="Userlink in currentUser.links"
-                  :key="Userlink.id + '_link'"
+                  href="javascript:void(0)"
+                  @click="goToExternalLink(userLink.link)"
+                  v-for="userLink in currentUser.links"
+                  :key="userLink.id + '_link'"
                   target="_blank"
-                  v-show="Userlink.is_active && Userlink.is_public"
+                  v-show="userLink.is_active && userLink.is_public"
                   color="#FAFAFA"
                 >
                   <img
-                    :width="Userlink.link_title == 'facebook' ? '12' : '20'"
+                    :width="userLink.link_title == 'facebook' ? '12' : '20'"
                     x-large
-                    :src="getSocialIcon(Userlink.link_title)"
+                    :src="getSocialIcon(userLink.link_title)"
                   />
                 </v-btn>
                 <!-- social buttons -->
@@ -156,10 +188,19 @@
             <!-- 3rd column -->
 
             <!-- 4th column for tablet only -->
-            <v-col sm="1" class="d-none d-sm-flex d-md-none"></v-col>
-            <v-col sm="5" class="d-none d-sm-flex d-md-none">
+            <v-col
+              md="3"
+              sm="1"
+              class="d-none d-sm-none d-md-flex d-lg-none"
+            ></v-col>
+            <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none">
               <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
-                <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
+                <v-btn
+                  color="#FAFAFA"
+                  class="btn-hire-me"
+                  x-large
+                  @click="hireMeModal = !hireMeModal"
+                >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
               </v-card>
@@ -175,9 +216,10 @@
         <v-btn icon color="#333333" @click.stop="drawer = !drawer">
           <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
         </v-btn>
-        <v-toolbar-title class="custom-toolbar-title-mobile">
-          {{ currentUser.personal_info.full_name }}
-        </v-toolbar-title>
+        <v-toolbar-title class="custom-toolbar-title-mobile"
+          >{{ currentUser.personal_info.first_name }}
+          {{ currentUser.personal_info.last_name }}</v-toolbar-title
+        >
       </v-app-bar>
       <v-navigation-drawer
         app
@@ -190,7 +232,6 @@
         <v-card
           flat
           color="transparent"
-          :class="{ 'active-indicator': currentTab === 'profile' }"
         >
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
           <v-list-item class="mt-n12">
@@ -201,16 +242,17 @@
             <v-list-item-content class="mt-12">
               <v-list-item-title>
                 <v-card color="transparent" class="pa-2" flat>
-                  <span class="profile-title-mobile">
-                    {{ currentUser.personal_info.full_name }}
-                  </span>
+                  <span class="profile-title-mobile"
+                    >{{ currentUser.personal_info.first_name }}
+                    {{ currentUser.personal_info.last_name }}</span
+                  >
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
                 <v-card flat color="transparent" class="pa-2 mt-n5">
-                  <span class="profile-subtitle-mobile">
-                    {{ currentUser.personal_info.designation }}
-                  </span>
+                  <span class="profile-subtitle-mobile">{{
+                    currentUser.personal_info.designation
+                  }}</span>
                 </v-card>
               </v-list-item-subtitle>
               <v-list-item-title>
@@ -218,17 +260,18 @@
                   <v-btn
                     x-small
                     class="custom-social-btn mx-2"
-                    :href="Userlink.link"
-                    v-for="Userlink in currentUser.links"
-                    :key="Userlink.id + '_link'"
+                    href="javascript:void(0)"
+                    @click="goToExternalLink(userLink.link)"
+                    v-for="userLink in currentUser.links"
+                    :key="userLink.id + '_link'"
                     target="_blank"
-                    v-show="Userlink.is_active && Userlink.is_public"
+                    v-show="userLink.is_active && userLink.is_public"
                     color="#FAFAFA"
                     height="40"
                   >
                     <img
-                      :width="Userlink.link_title == 'facebook' ? '8' : '14'"
-                      :src="getSocialIcon(Userlink.link_title)"
+                      :width="userLink.link_title == 'facebook' ? '8' : '14'"
+                      :src="getSocialIcon(userLink.link_title)"
                     />
                   </v-btn>
                 </v-card>
@@ -236,69 +279,77 @@
             </v-list-item-content>
           </v-list-item>
           <v-card-text>
-            <v-btn color="#FAFAFA" class="btn-hire-me" block>
+            <v-btn
+              color="#FAFAFA"
+              class="btn-hire-me"
+              block
+              @click="hireMeModal = !hireMeModal"
+            >
               <v-icon color="#5843BE" left>mdi-email-outline</v-icon>Hire Me
             </v-btn>
           </v-card-text>
         </v-card>
         <v-card flat color="transparent">
           <v-card-title class="about-me-title-mobile">About Me</v-card-title>
-          <v-card-text class="about-me-text-mobile">
-            {{ currentUser.personal_info.about }}
-          </v-card-text>
+          <v-card-text class="about-me-text-mobile">{{
+            currentUser.personal_info.about
+          }}</v-card-text>
         </v-card>
       </v-navigation-drawer>
       <!-- For mobile version only -->
       <!-- ....................................................................................................... -->
 
       <!-- Tab Container -->
-      <v-container fluid style="width: 100%;">
+      <v-container fluid style="width: 100%">
         <v-row justify="center" align="center">
-          <v-col cols="12" md="11">
+          <v-col cols="12" md="11" lg="12">
             <!-- for mobile version  -->
             <v-tabs
-              v-model="mainDataTab"
-              fixed-tabs
+              v-model="indexOfActiveTab"
+              centered
+              center-active
               hide-slider
               class="hidden-sm-and-up my-10"
             >
               <v-tab
-                v-for="tab in tabItems"
-                :key="tab.id"
-                @click="activeTab = tab.value"
-                :class="[activeTab == tab.value ? 'active-mobile-tab' : '']"
+                v-for="tab in currentUser.tabs"
+                :key="tab.title"
+                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                @click="activeTab = tab.title"
+                :class="[activeTab === tab.title ? 'active-mobile-tab' : '']"
               >
                 <v-avatar tile size="16">
-                  <img :src="getTabIcon(tab.id)" width="16" />
+                  <img :src="getTabIcon(tab.title)" width="16" />
                 </v-avatar>
-                <span class="ml-2" v-if="activeTab == tab.value">
-                  {{ tab.title }}
-                </span>
+                <span class="ml-2" v-if="activeTab === tab.title">{{
+                  tab.label
+                }}</span>
               </v-tab>
             </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
             <v-tabs
-              v-model="mainDataTab"
               centered
+              v-model="indexOfActiveTab"
+              center-active
               hide-slider
-              grow
               class="hidden-xs-only mt-md-10 my-md-0 my-sm-3"
             >
               <v-tab
-                v-for="tab in tabItems"
-                :key="tab.id"
-                @click="activeTab = tab.value"
+                v-for="tab in currentUser.tabs"
+                :key="tab.title"
+                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                @click="activeTab = tab.title"
                 class="mx-md-2 mx-sm-2 text-capitalize"
                 :class="[
-                  activeTab == tab.value ? 'custom-active-tab' : '',
+                  activeTab === tab.title ? 'custom-active-tab' : '',
                   'ct-tab',
                 ]"
               >
                 <v-avatar tile>
-                  <img :src="getTabIcon(tab.id)" class="mr-md-4" />
+                  <img :src="getTabIcon(tab.title)" class="mr-md-4" />
                 </v-avatar>
-                <span>{{ tab.title }}</span>
+                <span>{{ tab.label }}</span>
               </v-tab>
             </v-tabs>
             <!-- Tab for desktop and tablet -->
@@ -308,13 +359,13 @@
       </v-container>
       <!--Tab Container  -->
       <!-- tab items container -->
-      <v-container fluid pa-md-10 mt-n12 style="width: 100%;">
+      <v-container fluid pa-md-10 mt-n12 style="width: 100%">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent">
-              <v-tabs-items v-model="mainDataTab">
+              <v-tabs-items v-model="indexOfActiveTab">
                 <!-- Portfolio -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('portfolio')">
                   <v-card color="transparent" flat>
                     <v-card-text>
                       <v-row>
@@ -339,30 +390,34 @@
                 </v-tab-item>
                 <!-- Portfolio -->
                 <!-- Education -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('education')">
                   <v-row>
                     <v-col
                       cols="12"
                       sm="6"
-                      md="4"
+                      md="6"
+                      lg="4"
                       v-for="education in currentUser.education"
                       :key="education.id"
                       v-show="education.is_public"
                     >
                       <v-card class="card-education pa-5" hover>
                         <v-card-title class="education-title">
-                          {{ education.university_name }}
-                          <v-spacer></v-spacer>
-                          <span class="ml-12">
-                            <img
-                              src="/images/resume_themes/theme206/tabs/2.png"
-                              alt
-                            />
-                          </span>
+                          <v-row>
+                            <v-col cols="10">{{
+                              education.university_name
+                            }}</v-col>
+                            <v-col cols="2" align="right">
+                              <img
+                                src="/images/resume_themes/theme206/tabs/2.png"
+                                alt
+                              />
+                            </v-col>
+                          </v-row>
                         </v-card-title>
-                        <v-card-text class="education-subtitle">
-                          {{ education.description }}
-                        </v-card-text>
+                        <v-card-text class="education-subtitle">{{
+                          education.description
+                        }}</v-card-text>
                         <v-card-actions class="education-session pl-4">
                           {{ getFullYear(education.date_from) }} -
                           {{ getFullYear(education.date_to) }}
@@ -374,30 +429,32 @@
                 <!-- Education -->
 
                 <!-- Experience -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('work_experience')">
                   <v-row>
                     <v-col
                       cols="12"
                       sm="6"
-                      md="4"
+                      md="6"
+                      lg="4"
                       v-for="work in currentUser.work_experience"
                       :key="work.id"
                       v-show="work.is_public"
                     >
                       <v-card class="card-education pa-5" hover>
-                        <v-card-title class="experience-title">
-                          {{ work.job_title }}
-                          <v-spacer></v-spacer>
-                          <span class="ml-12">
-                            <img
-                              src="/images/resume_themes/theme206/tabs/3.png"
-                              alt
-                            />
-                          </span>
+                        <v-card-title class="education-title">
+                          <v-row>
+                            <v-col cols="10">{{ work.job_title }}</v-col>
+                            <v-col cols="2" align="right">
+                              <img
+                                src="/images/resume_themes/theme206/tabs/2.png"
+                                alt
+                              />
+                            </v-col>
+                          </v-row>
                         </v-card-title>
-                        <v-card-text class="education-subtitle">
-                          {{ work.company_name }}
-                        </v-card-text>
+                        <v-card-text class="education-subtitle">{{
+                          work.company_name
+                        }}</v-card-text>
                         <v-card-actions class="education-session pl-4">
                           {{ getFullYear(work.date_from) }} -
                           {{ getFullYear(work.date_to) }}
@@ -409,7 +466,7 @@
                 <!-- Experience -->
 
                 <!-- Skills -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('skills')">
                   <v-row>
                     <v-col cols="12">
                       <v-card color="transparent" flat>
@@ -466,9 +523,9 @@
                                   <v-card color="#FAFAFA">
                                     <v-card-text>
                                       <v-row>
-                                        <v-col cols="6" class="skill-title">
-                                          {{ s.title }}
-                                        </v-col>
+                                        <v-col cols="6" class="skill-title">{{
+                                          s.title
+                                        }}</v-col>
                                         <v-col
                                           cols="6"
                                           align="right"
@@ -505,7 +562,7 @@
                 </v-tab-item>
                 <!-- Skills -->
                 <!-- Media -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('media')">
                   <v-card flat color="transparent" v-if="currentUser.media">
                     <v-card-text>
                       <v-row>
@@ -525,20 +582,174 @@
                 </v-tab-item>
                 <!-- Media -->
                 <!-- About Me -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('about_me')">
                   <v-card flat color="transparent">
                     <v-card-title class="about-me-title">About Me</v-card-title>
-                    <v-card-text
+                    <!-- <v-card-text
                       class="about-me-text"
                       v-if="currentUser.personal_info.about"
-                      >{{ currentUser.personal_info.about }}</v-card-text
-                    >
+                    >{{ currentUser.personal_info.about }}</v-card-text>-->
+                    <v-card class="about-me-child">
+                      <v-row>
+                        <v-col
+                          xl="3"
+                          lg="3"
+                          md="3"
+                          sm="4"
+                          cols="12"
+                          order-sm="1"
+                          order="12"
+                          class="about-left-column"
+                        >
+                          <v-card
+                            class="card-about-left"
+                            flat
+                            color="transparent"
+                          >
+                            <v-card-subtitle
+                              class="dob-text"
+                              :align="windowWidth <= 599 ? 'left' : 'center'"
+                              v-if="currentUser.personal_info.date_of_birth"
+                            >
+                              <div>Date Of Birth</div>
+
+                              <div class>
+                                <span class>{{
+                                  currentUser.personal_info.date_of_birth
+                                }}</span>
+                              </div>
+                            </v-card-subtitle>
+
+                            <v-card-subtitle
+                              class="dob-text"
+                              :align="windowWidth <= 599 ? 'left' : 'center'"
+                              v-if="currentUser.personal_info.nationality"
+                            >
+                              <div>Nationality</div>
+
+                              <div class>
+                                <span class>
+                                  {{
+                                    currentUser.personal_info.nationality
+                                  }}</span
+                                >
+                              </div>
+                            </v-card-subtitle>
+
+                            <v-card-subtitle
+                              class="dob-text"
+                              :align="windowWidth <= 599 ? 'left' : 'center'"
+                              v-if="currentUser.personal_info.hometown"
+                            >
+                              <div>Hometown</div>
+
+                              <div class>
+                                <span style="text-transform: uppercase">{{
+                                  currentUser.personal_info.hometown
+                                }}</span>
+                              </div>
+                            </v-card-subtitle>
+
+                            <v-card-subtitle
+                              class="dob-text"
+                              :align="windowWidth <= 599 ? 'left' : 'center'"
+                              v-if="currentUser.languages[0]"
+                            >
+                              <div>Languages</div>
+
+                              <div class="d-flex flex-column">
+                                <span
+                                  v-for="(language, i) in currentUser.languages"
+                                  :key="i"
+                                  >{{ language.label }}</span
+                                >
+                              </div>
+                            </v-card-subtitle>
+                          </v-card>
+                        </v-col>
+
+                        <v-col
+                          xl="6"
+                          lg="9"
+                          md="9"
+                          sm="7"
+                          cols="12"
+                          order-sm="12"
+                          order="1"
+                        >
+                          <v-card
+                            class="card-about-right"
+                            flat
+                            color="transparent"
+                          >
+                            <v-card-subtitle
+                              v-if="currentUser.personal_info.overview"
+                              class="overview-title"
+                              >Overview summary</v-card-subtitle
+                            >
+                            <!-- Overview -->
+                            <v-card-text
+                              v-if="currentUser.personal_info.overview"
+                              class="overview-text mt-n4"
+                              >{{
+                                currentUser.personal_info.overview
+                              }}</v-card-text
+                            >
+                            <!-- Overview -->
+
+                            <!-- about me -->
+                            <v-card-subtitle
+                              class="overview-title"
+                              v-if="currentUser.personal_info.about"
+                              >About Me</v-card-subtitle
+                            >
+                            <v-card-text
+                              class="overview-text mt-n4"
+                              v-if="currentUser.personal_info.about"
+                              >{{
+                                currentUser.personal_info.about
+                              }}</v-card-text
+                            >
+                            <!-- about me -->
+
+                            <!-- quote -->
+                            <v-card-subtitle
+                              class="overview-title"
+                              v-if="currentUser.personal_info.quote"
+                              >Quote</v-card-subtitle
+                            >
+                            <v-card-text
+                              class="overview-text mt-n4"
+                              v-if="currentUser.personal_info.quote"
+                              >{{
+                                currentUser.personal_info.quote
+                              }}</v-card-text
+                            >
+                            <!-- quote -->
+                            <!-- location -->
+                            <v-card-subtitle
+                              class="overview-title"
+                              v-if="currentUser.personal_info.location"
+                              >Location</v-card-subtitle
+                            >
+                            <v-card-text
+                              class="overview-text mt-n4"
+                              v-if="currentUser.personal_info.location"
+                              >{{
+                                currentUser.personal_info.location
+                              }}</v-card-text
+                            >
+                            <!-- location -->
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card>
                   </v-card>
                 </v-tab-item>
                 <!-- About Me -->
 
                 <!-- Hobbies tab -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('hobbies')">
                   <v-container>
                     <v-row align="center" class="mx-auto">
                       <v-col
@@ -576,7 +787,7 @@
                 </v-tab-item>
                 <!-- Hobbies tab -->
                 <!-- References tab -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('references')">
                   <v-container>
                     <v-row align="center" class="mx-auto">
                       <v-col
@@ -647,7 +858,7 @@
                 </v-tab-item>
                 <!-- References tab -->
                 <!-- Achievements tab -->
-                <v-tab-item>
+                <v-tab-item :value="getTabIndex('achievements')">
                   <v-container
                     :fluid="windowWidth <= 959 ? true : false"
                     class="achievement-container"
@@ -670,7 +881,7 @@
                             <img
                               class="mt-sm-0 mt-3"
                               :src="achievement.image_src"
-                              style="max-width: 300px;"
+                              style="max-width: 300px"
                               alt="certificate"
                             />
                             <div class="ml-md-6 ml-sm-3 ml-1">
@@ -715,6 +926,13 @@
         </v-row>
       </v-container>
       <!-- Tab items container -->
+      <!-- All Modals -->
+      <hire-modal
+        :hireMeModal.sync="hireMeModal"
+        :widowWidth="windowWidth"
+        :currentUser="currentUser"
+      ></hire-modal>
+      <!-- All Modals -->
     </v-container>
     <!-- Main container -->
   </v-app>
@@ -722,75 +940,23 @@
 
 <script>
 import audioMedia from "./media/audioMedia";
+import HireModal from "../theme203/payment/HireModal";
 export default {
-  props: ["user", "is_preview", "currentTab"],
+  props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
     audioMedia,
+    HireModal,
   },
   data() {
     return {
       windowWidth: window.innerWidth,
       drawer: false,
-      mainDataTab: "",
       skillTab: "",
       activeTab: "portfolio",
       currentUser: this.user,
+      indexOfActiveTab: 0,
       currentSkillTab: 1,
-      personalData: {
-        name: "Hean Prinsloo",
-        designation: "Graphic Designer",
-        detail:
-          "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices...",
-      },
-      socialIcons: [
-        { id: 1, title: "twitter" },
-        { id: 2, title: "facebook" },
-        { id: 3, title: "instagram" },
-      ],
-      tabItems: [
-        { id: 1, title: "Portfolio", value: "portfolio" },
-        { id: 2, title: "Education", value: "education" },
-        { id: 3, title: "Experience", value: "work-experience" },
-        { id: 4, title: "Skills", value: "skills" },
-        { id: 5, title: "Media", value: "media" },
-        { id: 6, title: "About Me", value: "about" },
-        { id: 7, title: "Hobbies", value: "hobby" },
-        { id: 8, title: "References", value: "reference" },
-        { id: 9, title: "Achievements", value: "achievement" },
-      ],
-      portfolioItems: [
-        { id: 1, image: 1 },
-        { id: 2, image: 2 },
-        { id: 3, image: 3 },
-        { id: 4, image: 4 },
-        { id: 5, image: 1 },
-        { id: 6, image: 2 },
-        { id: 7, image: 3 },
-        { id: 8, image: 4 },
-      ],
-      experienceItems: [
-        {
-          id: 1,
-          title: "Front End Developer",
-          detail:
-            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
-          session: "2010-2013",
-        },
-        {
-          id: 2,
-          title: "UX/UI Designer",
-          detail:
-            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
-          session: "2010-2013",
-        },
-        {
-          id: 2,
-          title: "Graphic Design",
-          detail:
-            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
-          session: "2010-2013",
-        },
-      ],
+      hireMeModal: false,
       skills: [
         {
           id: 1,
@@ -805,11 +971,50 @@ export default {
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function (val) {
-      this.activeTab = val;
+    builderCurrentTabTitle: function(val) {
+      if(!this.defaultTabs.includes(val)){
+        this.activeTab = this.getFirstActiveTabTitle() ;
+      }else {
+        this.activeTab = val ;
+      }
+
+      this.setTabIndex();
+    }
+  },
+  computed:{
+    defaultTabs(){
+      return this.$store.state.defaultTabs ;
     },
+    excludedTabs(){
+      return this.$store.state.excludedTabs ;
+    }
   },
   methods: {
+    getFirstActiveTabTitle(){
+      let title = '';
+      this.currentUser.tabs.forEach( (tab) => {
+        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
+          if(title === ''){
+            title = tab.title ;
+          }
+        }
+      });
+
+      return title ;
+    },
+    setTabIndex(){
+      this.indexOfActiveTab = this.currentUser.tabs.findIndex(tab => tab.title === this.activeTab);
+    },
+    getTabIndex(tabTitle){
+      let index =  this.currentUser.tabs.findIndex(tab => tab.title === tabTitle);
+      return index;
+    },
+    goToExternalLink(link){
+      if(!link.includes('http')){
+        link = 'http://' + link ;
+      }
+      window.location.href = link ;
+    },
     skillCategory(skillName) {
       var filteredSkill = this.currentUser.skills.filter(
         (s) => s.category === skillName
@@ -860,12 +1065,24 @@ export default {
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
+    setActiveTabByURL(){
+      const pathSplit = this.$route.path.split("/");
+      let currentActiveTab = pathSplit[pathSplit.length - 1];
+      if(!this.defaultTabs.includes(currentActiveTab)){
+        this.activeTab = this.getFirstActiveTabTitle() ;
+      }else {
+        this.activeTab = currentActiveTab ;
+      }
+    }
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+
+    // set active tab
+    this.setActiveTabByURL();
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
@@ -889,7 +1106,7 @@ export default {
   border-left: 5px solid #5843be;
   border-right: 5px solid #5843be;
   border-top: 5px solid #5843be;
-  margin-top: 18px;
+  margin-top: 37px;
   margin-left: 22px;
   transform: rotate(122deg);
   z-index: 1;
@@ -936,9 +1153,9 @@ export default {
 .custom-profile-subtitle {
   font-family: "Poppins", sans-serif !important;
   color: #333333 !important;
-  font-size: 1.25rem !important;
-  font-weight: bold;
-  line-height: 1.875rem;
+  font-size: 18px !important;
+  font-weight: normal;
+  line-height: 27px;
   @media screen and(max-width:959px) {
     font-size: 1rem !important;
   }
@@ -970,12 +1187,6 @@ export default {
   font-size: 0.625rem;
   line-height: 1.313rem;
   text-transform: uppercase;
-  @media screen and (max-width: 1280px) {
-    font-size: 0.45rem;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    font-size: 0.3rem;
-  }
 }
 .rate {
   font-family: "Poppins", sans-serif !important;
@@ -983,40 +1194,31 @@ export default {
   font-size: 2.5rem;
   line-height: 3rem;
   font-weight: bold;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    font-size: 2rem;
-  }
 }
 .btn-hire-me {
-  width: 200px;
+  width: 230px;
+  height: 60px !important;
+  @media screen and (max-width: 1263px) {
+    width: 240px;
+  }
   text-transform: capitalize !important;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    width: 130px;
-  }
-  @media screen and (max-width: 959px) {
-    width: 225px;
-  }
-  @media screen and (min-width: 600px) and (max-width: 759px) {
-    width: 185px;
-  }
   @media screen and (max-width: 599px) {
+    width: 299px;
     color: #5843be !important;
   }
 }
 .custom-social-btn {
-  max-width: 36px !important;
-  height: 51px !important;
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    min-width: 51px !important;
-  }
-  @media screen and (min-width: 600px) and (max-width: 759px) {
-    min-width: 51px !important;
+  width: 60px;
+  height: 60px !important;
+  @media screen and (min-width: 600px) and (max-width: 1263px) {
+    width: 60px;
+    height: 60px !important;
   }
 
   @media screen and (max-width: 599px) {
     height: 30px !important;
     width: 30px !important;
-    border-radius: 5px;
+    border-radius: 5px !important;
     box-shadow: 1.5px 1.5px 3px rgba(35, 35, 35, 0.4),
       -1px -1px 3px rgba(206, 206, 206, 0.24) !important;
   }
@@ -1028,13 +1230,14 @@ export default {
   box-shadow: 1.5px 1.5px 3px rgba(174, 174, 192, 0.4), -1px -1px 3px #ffffff;
   border-radius: 5px;
   color: #5843be !important;
+  font-size: 20px;
   line-height: 30px;
   img {
     width: 20px;
     height: 20px;
   }
-  @media screen and (min-width: 960px) and (max-width: 1200px) {
-    margin-left: -2px !important;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    font-size: 14px;
   }
   @media screen and (max-width: 959px) {
     span {
@@ -1083,6 +1286,7 @@ export default {
   color: #333333 !important;
   font-weight: bold !important;
   line-height: 30px !important;
+  font-size: 26px;
   img {
     width: 40px;
   }
@@ -1143,9 +1347,65 @@ export default {
   color: #5843be !important;
   font-weight: bold !important;
 }
-.about-me-text {
-  font-family: "Poppins", sans-serif !important;
-  color: #000000 !important;
+// .about-me-text {
+//   font-family: "Poppins", sans-serif !important;
+//   color: #000000 !important;
+// }
+//about section
+.about-me-child {
+  background: linear-gradient(0deg, #fafafa, #fafafa) !important;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 30px !important;
+  .card-about-left {
+    .dob-text {
+      font-family: "Open Sans" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 25px;
+      color: #5843be !important;
+      @media screen and (max-width: 667px) {
+        font-size: 17px;
+        line-height: 16px;
+      }
+      span {
+        font-family: "Poppins" !important;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 30px;
+        color: #333333 !important;
+        @media screen and (max-width: 667px) {
+          font-size: 17px;
+          line-height: 35px;
+        }
+      }
+    }
+  }
+  .card-about-right {
+    .overview-title {
+      font-family: "Open Sans" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 25px;
+      color: #5843be !important;
+      @media screen and (max-width: 667px) {
+        font-size: 20px;
+        line-height: 19px;
+      }
+    }
+    .overview-text {
+      font-family: "Open Sans" !important;
+      font-size: 18px;
+      line-height: 25px;
+      color: #333333 !important;
+      @media screen and (max-width: 667px) {
+        font-size: 13px;
+        line-height: 23px;
+      }
+    }
+  }
 }
 // about me
 //media
@@ -1252,14 +1512,14 @@ export default {
   }
 }
 
-.availibilty-col {
-  @media screen and (min-width: 1025px) {
-    margin-left: -52px;
-  }
-  @media screen and (max-width: 1024px) {
-    margin-left: -20px;
-  }
-}
+// .availibilty-col {
+//   @media screen and (min-width: 1025px) {
+//     margin-left: -52px;
+//   }
+//   @media screen and (max-width: 1024px) {
+//     margin-left: -20px;
+//   }
+// }
 //hobbies tab
 .card-hobby {
   background: linear-gradient(0deg, #fafafa, #fafafa) !important;

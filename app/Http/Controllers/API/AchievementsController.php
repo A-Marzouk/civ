@@ -124,7 +124,7 @@ class AchievementsController extends Controller
             'title' => ['required', 'string', 'max:255','min:3'],
             'type' => ['required', 'string', 'max:255','min:3'],
             'year' => ['required', 'string', 'max:255','min:3'],
-            'description' => ['required','string','min:3', 'max:2500','min:3'],
+            'description' => ['required','string','min:3', 'max:1000','min:3'],
             'file' => ['sometimes','file'],
             'image_src' => ['required','max:255','min:3'],
             'url' => ['required','max:255','min:3', "regex:".$url_regex]

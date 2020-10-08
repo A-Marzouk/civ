@@ -209,9 +209,9 @@
                         <div class="mover">
                             <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
                         </div>
-                        <div class="link-text">
+                        <a :href="`https://civ.ie/${user.username}/${link.url}`" target="_blank" class="link-text">
                             <span>https://civ.ie/{{user.username}}/<b>{{link.url}}</b></span>
-                        </div>
+                        </a>
                     </div>
                     <div class="action-btns">
                         <div class="resume-builder__action-buttons-container">
@@ -606,7 +606,7 @@
 
 
     .links-content {
-        height: 323px;
+        height: 450px;
         background: #fff;
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
         padding: 50px;
@@ -614,7 +614,7 @@
 
 
         @include lt-sm {
-            height: 400px;
+            height: 450px;
             padding: 20px;
         }
     }

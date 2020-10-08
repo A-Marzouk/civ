@@ -13,6 +13,10 @@ $.ajaxSetup({
     }
 });
 
+// moment:
+import moment from 'moment'
+Vue.prototype.moment = moment;
+
 // welcome page view component registration:
 import welcomeView from './components/welcome-view/welcome';
 if ($("#welcomeView").length !== 0) {
@@ -36,6 +40,19 @@ if ($("#pricing").length !== 0) {
         }
     });
 }
+
+//faq
+import faq from './components/welcome-view/faq';
+if ($("#faq").length !== 0) {
+    new Vue({
+        el: '#faq',
+        vuetify,
+        components: {
+            'faq': faq
+        }
+    });
+}
+
 
 
 

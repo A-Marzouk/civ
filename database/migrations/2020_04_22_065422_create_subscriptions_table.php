@@ -17,7 +17,8 @@ class CreateSubscriptionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('payment_method')->nullable();
             $table->string('sub_frequency')->nullable();
-            $table->string('customer_id')->nullable();
+            $table->string('stripe_subscription_id')->nullable();
+            $table->string('stripe_customer_id')->nullable();
             $table->string('paypal_agreement_id')->nullable();
             $table->string('sub_status')->nullable();
             $table->date('expires_at')->nullable();

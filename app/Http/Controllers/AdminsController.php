@@ -31,7 +31,10 @@ class AdminsController extends Controller
                 $user['subscription']['promocode'] = $user->subscription->promocode;
             }
         }
-        return view('admin.dashboard', compact('users'));
+
+        // get deleted users:
+        $deletedUsers = User::onlyTrashed()->get();
+        return view('admin.dashboard', compact('users','deletedUsers'));
     }
 
     public function userFullEdit($username){

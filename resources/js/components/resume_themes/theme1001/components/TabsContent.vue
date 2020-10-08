@@ -1,39 +1,38 @@
 <template>
   <div class="tabs-content">
-    <component v-bind:is="activeTab" :currentUser="currentUser"></component>
+    <component v-bind:is="builderCurrentTabTitle.toLowerCase()" :currentUser="currentUser"></component>
   </div>
 </template>
 
 <script>
-import AboutMe from "./../views/AboutMe";
-import Media from "./../views/Media";
-import Portfolio from "./../views/Portfolio";
-import Skills from "./../views/Skills";
-import Hobbies from "./../views/Hobbies";
-import References from "./../views/References";
-import Achievement from "./../views/Achievement";
-import Experience from "./ExperienceEducation/Experience";
-import Education from "./ExperienceEducation/Education";
+import about_me from "./../views/AboutMe";
+import media from "./../views/Media";
+import portfolio from "./../views/Portfolio";
+import skills from "./../views/Skills";
+import hobbies from "./../views/Hobbies";
+import references from "./../views/References";
+import achievements from "./../views/Achievement";
+import work_experience from "./ExperienceEducation/Experience";
+import education from "./ExperienceEducation/Education";
 
 
 export default {
   name: "TabsContent",
 
   components: {
-    Media,
-    AboutMe,
-    Portfolio,
-    Experience,
-    Skills,
-    Hobbies,
-    References,
-    Achievement,
-    Education
+    about_me,
+    media,
+    portfolio,
+    work_experience,
+    skills,
+    hobbies,
+    references,
+    achievements,
+    education
   },
 
   props: {
-    activeTab: {
-      type: String,
+    builderCurrentTabTitle: {
       required: true
     },
     currentUser: {

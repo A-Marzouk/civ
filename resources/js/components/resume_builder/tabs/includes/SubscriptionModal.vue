@@ -121,7 +121,7 @@
                                         <div class="rate-text">
                                             <span class="old-price mr-5">$100</span>
                                             <span class="new-price">$50</span>
-                                            <sub>/month</sub>
+                                            <sub>/year</sub>
                                         </div>
                                     </v-col>
                                     <v-col cols="12">
@@ -203,7 +203,6 @@
         <!-- dialog -->
 
     </v-app>
-
 </template>
 
 <script>
