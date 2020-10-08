@@ -5,7 +5,7 @@
       ma-0
       pa-0
       fluid
-      style="max-width: 100% !important; min-height: 100vh"
+      style="max-width: 100% !important; min-height: 100vh !important"
       v-if="currentUser"
     >
       <!-- Header Row -->
@@ -336,10 +336,9 @@
                     <v-tab
                       :key="item.title"
                       class="text-capitalize custom-tab-text"
-
                       @click="changeTab(item.title)"
                       :id="item.title"
-                      :href="'#'+item.title"
+                      :href="'#' + item.title"
                       v-show="
                         item.title !== 'media' &&
                         item.title !== 'links' &&
@@ -542,7 +541,7 @@
                               :key="item.id"
                             >
                               <v-card
-                                class="mb-2"
+                                class="mb-2 card-portfolio"
                                 align="left"
                                 flat
                                 color="transparent"
@@ -553,6 +552,7 @@
                                 <v-img
                                   class="custom-portfolio-img"
                                   :src="getProjectMainImage(item)"
+                                  style="border-radius: 10px !important"
                                 ></v-img>
                                 <v-card-title class="custom-portfolio-title">
                                   {{ item.name }}
@@ -804,8 +804,8 @@
                 </v-tab-item>
                 <!--  tab item hobbies  -->
                 <!-- ...... Tab item achievement ..... -->
-                <v-tab-item value="achievement" key="achievement">
-                  <div class="watermark-text text-center">Achievement</div>
+                <v-tab-item value="achievements" key="achievements">
+                  <div class="watermark-text text-center">Achievements</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width: 100%">
                       <v-row align="center" justify="space-between">
@@ -841,7 +841,7 @@
                               </div>
                               <v-card flat color="transparent">
                                 <v-card-subtitle class="achievement-title">
-                                  {{ achievement.title }}{{ windowWidth }}
+                                  {{ achievement.title }}
                                 </v-card-subtitle>
                                 <v-card-subtitle
                                   class="achievement-subtitle mt-xl-0 mt-n5"
@@ -1116,9 +1116,9 @@ export default {
         { id: 3, title: "Monthly rate " },
       ],
       availabilityOptions: [
-        { id: 1, title: "Weekly availability" },
-        { id: 2, title: "Weekly availability" },
-        { id: 3, title: "Monthly availability" },
+        { id: 1, title: "Weekly" },
+        { id: 2, title: "Weekly" },
+        { id: 3, title: "Monthly" },
       ],
 
       mainDataTab: null,
@@ -1315,13 +1315,13 @@ export default {
       }
     },
   },
-  computed:{
-    defaultTabs(){
-      return this.$store.state.defaultTabs ;
+  computed: {
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
     },
-    excludedTabs(){
-      return this.$store.state.excludedTabs ;
-    }
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
+    },
   },
   //watcher
   mounted() {
@@ -1342,21 +1342,21 @@ export default {
   },
 
   methods: {
-    changeTab(tab_title){
+    changeTab(tab_title) {
       this.mainDataTab = tab_title;
       this.$store.dispatch("updateThemeTabGlobally", tab_title);
     },
-    getFirstActiveTabTitle(){
-      let title = '';
-      this.currentUser.tabs.forEach( (tab) => {
-        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
-          if(title === ''){
-            title = tab.title ;
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
           }
         }
       });
 
-      return title ;
+      return title;
     },
     setActiveTabByURL() {
       const pathSplit = this.$route.path.split("/");
@@ -1644,7 +1644,6 @@ export default {
 // ............................ Main Navigation Tab ...........................//
 // ..........................Desktop Portfolio.........................
 .custom-portfolio-img {
-  border-radius: 10px;
   width: 100% !important;
   //height: 100% !important;
   max-height: 400px !important;
@@ -1761,15 +1760,19 @@ export default {
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
-  margin-top: 200px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // margin-top: 200px;
+  // top: 50%;
+  // left: 50%;
+  // margin-right: -50%;
+  // transform: translate(-50%, -50%);
+  margin: auto;
+
 }
 //hobby tab
 .hobby-title {
   font-family: "Gotham Pro" !important;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 36px;
   line-height: 38px;
   color: #000000 !important;
   letter-spacing: 0.05em;
@@ -1777,7 +1780,7 @@ export default {
     font-size: 30px;
   }
 
-  @media screen and (min-width: 600px) and (max-width: 960px) {
+  @media screen and (min-width: 600px) and (max-width: 1263px) {
     font-size: 24px;
   }
   @media screen and(max-width: 599px) {
@@ -1944,8 +1947,8 @@ export default {
     }
   }
   .btn-email-modal-close {
-    width: 41px;
-    height: 41px;
+    width: 40px;
+    height: 40px;
   }
   .btn-send-mail {
     font-family: "Open Sans" !important;

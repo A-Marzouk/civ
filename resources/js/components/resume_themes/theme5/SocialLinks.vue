@@ -26,6 +26,7 @@
               :key="userLink.id + '_link'"
               target="_blank"
               class="mx-1"
+              color="#E6E8FC"
               style="
                 width: 40px;
                 min-width: 40px;
@@ -36,8 +37,8 @@
             >
               <v-img
                 contain
-                width="40"
-                height="40"
+                width="18"
+                height="18"
                 :src="`/images/resume_themes/theme5/social_icons/${userLink.link_title.toLowerCase()}.svg`"
                 alt="social-icon"
               ></v-img>
