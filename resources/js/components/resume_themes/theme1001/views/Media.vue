@@ -11,9 +11,9 @@
                 v-for="(m, mediaIndex) in currentUser.media"
                 :key="mediaIndex"
                 v-show="m.is_public"
-                class=" margBottom"
+                class="margBottom"
               >
-                <v-row no-gutters justify="center" align="center">
+                <v-row no-gutters justify="center" align="center" class="mb-8">
                   <v-col
                     cols="2"
                     sm="2"
@@ -61,48 +61,48 @@ export default {
       {
         id: "01",
         audio: "/images/resume_themes/theme511/audio-1.mp3",
-        img: "/images/resume_themes/theme1001/media/audio-1.png"
+        img: "/images/resume_themes/theme1001/media/audio-1.png",
       },
       {
         id: "02",
         audio: "/images/resume_themes/theme511/audio-1.mp3",
-        img: "/images/resume_themes/theme1001/media/audio-2.png"
+        img: "/images/resume_themes/theme1001/media/audio-2.png",
       },
       {
         id: "03",
         video: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme1001/media/video-1.png"
+        img: "/images/resume_themes/theme1001/media/video-1.png",
       },
       {
         id: "04",
         video: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme1001/media/video-2.png"
-      }
+        img: "/images/resume_themes/theme1001/media/video-2.png",
+      },
     ],
     audio_lists: [
       {
         file: "/images/resume_themes/theme511/audio-1.mp3",
-        img: "/images/resume_themes/theme511/audio_thumb-1.png"
+        img: "/images/resume_themes/theme511/audio_thumb-1.png",
       },
       {
         file: "/images/resume_themes/theme511/audio-2.mp3",
-        img: "/images/resume_themes/theme511/audio_thumb-2.png"
-      }
+        img: "/images/resume_themes/theme511/audio_thumb-2.png",
+      },
     ],
     video_lists: [
       {
         link: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme903/video1.png"
+        img: "/images/resume_themes/theme903/video1.png",
       },
       {
         link: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme903/video2.png"
+        img: "/images/resume_themes/theme903/video2.png",
       },
       {
         link: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme903/video3.png"
-      }
-    ]
+        img: "/images/resume_themes/theme903/video3.png",
+      },
+    ],
   }),
   methods: {
     setPosition() {
@@ -113,8 +113,8 @@ export default {
     getFormattedData(date) {
       let d = new Date(date);
       return d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -134,10 +134,12 @@ export default {
 }
 .margTop {
   margin-top: 1rem;
+  margin-bottom: 10rem;
 }
 @media screen and (max-width: 475px) {
   .margTop {
     margin-top: 2rem;
+    margin-bottom: 12rem;
   }
   .hidden-xs-only {
     display: none;

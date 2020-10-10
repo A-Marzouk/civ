@@ -4,7 +4,7 @@
       <div class="title">Message</div>
       <div class="input">
         <div class="label">Name</div>
-        <input class="input-field" placeholder="Amber Sal" />
+        <input class="input-field" placeholder="Name" />
       </div>
       <div class="input">
         <div class="label">Email</div>
@@ -54,8 +54,8 @@
 </template>
 <script>
 export default {
-     props:["chatToggle","closeChat"],
-}
+  props: ["chatToggle", "closeChat"],
+};
 </script>
 <style lang="scss" scoped>
 @import "./../../scss/variables";
