@@ -47,6 +47,8 @@
                   <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/time.svg"
                       alt
                     ></v-img>
@@ -95,6 +97,8 @@
                   <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/payment.svg"
                       alt
                     ></v-img>
@@ -372,6 +376,8 @@
                   <v-col sm="5" align="center" class="mt-4">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/time.svg"
                       alt
                     ></v-img>
@@ -423,6 +429,8 @@
                   <v-col sm="5" align="center" class="mt-4">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/payment.svg"
                       alt
                     ></v-img>
@@ -1132,6 +1140,7 @@
   }
   .info-img {
     width: 40px;
+    max-width: 40px;
     height: 32px;
   }
   .v-tabs .v-tab {
