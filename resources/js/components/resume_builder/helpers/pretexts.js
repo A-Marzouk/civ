@@ -675,6 +675,8 @@ export const skills = {
         'Project Launch',
         'Lean Manufacturing',
         'Workflow Development',
-        'SolidWorks'
+        'SolidWorks',
+        'Magento',
+        'WooCommerce'
     ]
 }
