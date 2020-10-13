@@ -22,20 +22,20 @@
                   >
                     <div class="mediaSerial">0{{ mediaIndex + 1 }}</div>
                   </v-col>
-                  <v-col cols="12" sm="10">
+                  <v-col cols="12" sm="10" v-if="currentUser">
                     <Audio
                       v-if="m.type == 'audio'"
                       :title="getFormattedData(m.created_at)"
                       :file="m.url"
                       :user_name="currentUser.name"
-                      img="/images/resume_themes/theme1001/media/audio-1.png"
+                      :img="currentUser.personal_info.profile_pic"
                     ></Audio>
                     <Video
                       v-if="m.type == 'video'"
                       :title="getFormattedData(m.created_at)"
                       :link="m.url"
                       :user_name="currentUser.name"
-                      img="/images/resume_themes/theme1001/media/video-1.png"
+                      :img="currentUser.personal_info.profile_pic"
                     ></Video>
                   </v-col>
                 </v-row>
@@ -57,52 +57,6 @@ export default {
     playing: true,
     loaded: false,
     percentage: 0,
-    mediaFiles: [
-      {
-        id: "01",
-        audio: "/images/resume_themes/theme511/audio-1.mp3",
-        img: "/images/resume_themes/theme1001/media/audio-1.png"
-      },
-      {
-        id: "02",
-        audio: "/images/resume_themes/theme511/audio-1.mp3",
-        img: "/images/resume_themes/theme1001/media/audio-2.png"
-      },
-      {
-        id: "03",
-        video: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme1001/media/video-1.png"
-      },
-      {
-        id: "04",
-        video: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme1001/media/video-2.png"
-      }
-    ],
-    audio_lists: [
-      {
-        file: "/images/resume_themes/theme511/audio-1.mp3",
-        img: "/images/resume_themes/theme511/audio_thumb-1.png"
-      },
-      {
-        file: "/images/resume_themes/theme511/audio-2.mp3",
-        img: "/images/resume_themes/theme511/audio_thumb-2.png"
-      }
-    ],
-    video_lists: [
-      {
-        link: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme903/video1.png"
-      },
-      {
-        link: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme903/video2.png"
-      },
-      {
-        link: "/images/resume_themes/theme903/video.mp4",
-        img: "/images/resume_themes/theme903/video3.png"
-      }
-    ]
   }),
   methods: {
     setPosition() {
@@ -114,6 +68,9 @@ export default {
       let d = new Date(date);
       return d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
     }
+  },
+  mounted() {
+    console.log(this.currentUser);
   }
 };
 </script>
