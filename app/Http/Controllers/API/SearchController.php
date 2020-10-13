@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\ResumeLink;
 use App\User;
+use Illuminate\Support\Facades\URL;
 
 class SearchController extends Controller
 {
@@ -37,12 +38,16 @@ class SearchController extends Controller
 
         foreach ($profiles as $profile){
             $user = User::withAllRelations('123workforce', $profile->id);
+            $baseURL = URL::to('/');
 
             $formattedUser = [
+                'id'=> $profile->id,
                 'name' => $user->personalInfo->first_name . ' ' . $user->personalInfo->last_name,
                 'job_title' => $user->personalInfo->designation,
                 'location' => $user->personalInfo->location,
                 'skills' => $user->skills,
+                'preview' => 'resumeApp/public/images/theme-holder.svg',
+                'url' => $baseURL . '/' . $user->username . '/' . $profile->url,
             ];
 
             $users[] = $formattedUser;
