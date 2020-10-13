@@ -36,7 +36,16 @@ class SearchController extends Controller
         $users=[];
 
         foreach ($profiles as $profile){
-            $users[] = User::withAllRelations('123workforce', $profile->id);
+            $user = User::withAllRelations('123workforce', $profile->id);
+
+            $formattedUser = [
+                'name' => $user->personalInfo->first_name . ' ' . $user->personalInfo->last_name,
+                'job_title' => $user->personalInfo->designation,
+                'location' => $user->personalInfo->location,
+                'skills' => $user->skills,
+            ];
+
+            $users[] = $formattedUser;
         }
 
         return $users;
