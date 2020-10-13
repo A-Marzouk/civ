@@ -26,12 +26,12 @@ export default {
   props: {
     link: {
       type: String,
-      default: null
+      default: null,
     },
     img: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   methods: {
     playVideo() {
@@ -43,8 +43,8 @@ export default {
       this.$refs.videotm903.style.display = "none";
       this.$refs.videoPoster.style.display = "block";
       this.$refs.videoElem.pause();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -53,8 +53,6 @@ export default {
   box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 
-  .img-video-tm903 {
-  }
   .b-play-tm903 {
     left: 40%;
     top: 40%;
