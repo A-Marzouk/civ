@@ -11,9 +11,9 @@
                 v-for="(m, mediaIndex) in currentUser.media"
                 :key="mediaIndex"
                 v-show="m.is_public"
-                class=" margBottom"
+                class="margBottom"
               >
-                <v-row no-gutters justify="center" align="center">
+                <v-row no-gutters justify="center" align="center" class="mb-8">
                   <v-col
                     cols="2"
                     sm="2"
@@ -67,11 +67,8 @@ export default {
     getFormattedData(date) {
       let d = new Date(date);
       return d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
-    }
+    },
   },
-  mounted() {
-    console.log(this.currentUser);
-  }
 };
 </script>
 <style lang="scss" scoped>
