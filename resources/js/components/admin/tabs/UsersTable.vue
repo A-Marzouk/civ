@@ -140,9 +140,9 @@
                                     Expires at: <b
                                         style="text-transform: capitalize;">{{item.subscription.expires_at}}</b>
                                 </div>
-                                <div>
+                                <div v-if="item.subscription">
                                     Payment method: <b style="text-transform: capitalize;">{{item.subscription.payment_method}}
-                                    | {{item.subscription.promocode.name}}</b>
+                                    | <span v-if="item.subscription.promocode">{{item.subscription.promocode.name}}</span>   </b>
                                 </div>
                             </v-row>
                             <v-row class="d-flex justify-center m-5" v-else>
@@ -226,7 +226,7 @@
                                 </div>
                                 <div>
                                     Payment method: <b style="text-transform: capitalize;">{{item.subscription.payment_method}}
-                                    | {{item.subscription.promocode.name}}</b>
+                                    | <span v-if="item.subscription.promocode">{{item.subscription.promocode.name}}</span>   </b>
                                 </div>
                             </v-row>
                             <v-row class="d-flex justify-center m-5" v-else>

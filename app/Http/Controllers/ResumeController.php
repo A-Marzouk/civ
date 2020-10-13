@@ -51,7 +51,6 @@ class ResumeController extends Controller
         return view('defaultThemes.' . $themeCode,compact('is_preview'));
     }
 
-
     public function downloadPDFResume ($themeCode, $username, Request $request) {
         // search the userdata using userName
 
@@ -120,7 +119,6 @@ class ResumeController extends Controller
 
         return '' ;
     }
-
 
     public function externalReferencePage($username){
         $user = User::where('username', $username)->first();
