@@ -4,10 +4,7 @@
       <v-row class="borpad pt-md-4" no-gutters justify-sm="end">
         <v-col md="6" sm="12" cols="12">
           <v-container>
-            <v-row
-              no-gutters
-              justify="center"
-            >
+            <v-row no-gutters justify="center">
               <v-col
                 md="3"
                 sm="2"
@@ -42,12 +39,7 @@
             </v-row>
           </v-container>
         </v-col>
-        <v-col
-          md="6"
-          sm="10"
-          cols="12"
-          class="hidden-sm-only"
-        >
+        <v-col md="6" sm="10" cols="12" class="hidden-sm-only">
           <v-container>
             <v-row>
               <v-col md="6">
@@ -55,6 +47,8 @@
                   <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/time.svg"
                       alt
                     ></v-img>
@@ -103,12 +97,14 @@
                   <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/payment.svg"
                       alt
                     ></v-img>
 
                     <div>
-                      <v-icon small @click="paymentInfoPrev()"
+                      <v-icon small @click="availablePrev()"
                         >navigate_before</v-icon
                       >
                       <div
@@ -122,7 +118,7 @@
                           {{ payment_Info.salary_frequency }}
                         </span>
                       </div>
-                      <v-icon small @click="paymentInfoNext()"
+                      <v-icon small @click="availableNext()"
                         >navigate_next</v-icon
                       >
                     </div>
@@ -372,10 +368,7 @@
             </v-row>
           </v-container>
         </v-col>
-        <v-col
-          sm="10"
-          class="d-none d-sm-flex d-md-none"
-        >
+        <v-col sm="10" class="d-none d-sm-flex d-md-none">
           <v-container>
             <v-row>
               <v-col md="6">
@@ -383,6 +376,8 @@
                   <v-col sm="5" align="center" class="mt-4">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/time.svg"
                       alt
                     ></v-img>
@@ -434,6 +429,8 @@
                   <v-col sm="5" align="center" class="mt-4">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/payment.svg"
                       alt
                     ></v-img>
@@ -565,8 +562,9 @@
                 <v-tabs background-color="transparent" hide-slider centered>
                   <v-tab
                     v-for="tab in currentUser.tabs"
-                    :class="{'blue-text' : tab.title === activeTab }"
-                    v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                    :class="{ 'blue-text': tab.title === activeTab }"
+                    v-if="!excludedTabs.includes(tab.title)"
+                    v-show="tab.is_public"
                     :key="tab.title"
                     :id="tab.title"
                     @click="changeTab(tab.title)"
@@ -597,10 +595,10 @@
                   >
                     <ImagesCarouselModal :images="project.images">
                       <v-img
-                              :src="getProjectMainImage(project)"
-                              alt="portfolio img"
-                              :aspect-ratio="1.2"
-                              cover
+                        :src="getProjectMainImage(project)"
+                        alt="portfolio img"
+                        :aspect-ratio="1.2"
+                        cover
                       ></v-img>
                     </ImagesCarouselModal>
                   </v-col>
@@ -1142,6 +1140,7 @@
   }
   .info-img {
     width: 40px;
+    max-width: 40px;
     height: 32px;
   }
   .v-tabs .v-tab {
@@ -1214,11 +1213,11 @@
     color: #5f45ff;
   }
 
-  .no-decoration{
-    color:rgba(0,0,0,.54) !important;
+  .no-decoration {
+    color: rgba(0, 0, 0, 0.54) !important;
   }
-  .blue-text{
-    color: #5f45ff  !important;
+  .blue-text {
+    color: #5f45ff !important;
   }
 
   // Tablet Version
@@ -1707,7 +1706,7 @@ export default {
     VideoPlayer,
     "updated-hire-modal": UpdatedHireModal,
     SocialLinks,
-    ImagesCarouselModal
+    ImagesCarouselModal,
   },
   data() {
     return {
@@ -1796,7 +1795,7 @@ export default {
       } else {
         this.activeTab = val;
       }
-      $('#' + val).click();
+      $("#" + val).click();
     },
   },
   computed: {
@@ -1833,7 +1832,7 @@ export default {
       } else {
         this.activeTab = currentActiveTab;
       }
-      $('#' + this.activeTab).click();
+      $("#" + this.activeTab).click();
     },
     // dynamic tabs end
 
@@ -1847,14 +1846,38 @@ export default {
       this.hireMeModal = false;
     },
     availableNext() {
-      if (this.available == 2) {
+      this.available++;
+      this.paymentInfo++;
+      if (this.paymentInfo == 4 && this.available == 3) {
         this.available = 0;
-      } else this.available++;
+        this.paymentInfo = 0;
+      } else if (this.paymentInfo == 1) {
+        this.available = 0;
+      } else if (this.paymentInfo == 2) {
+        this.available = 1;
+      } else if (this.paymentInfo == 3) {
+        this.available = 2;
+      } else {
+        this.available = 0;
+        this.paymentInfo = 0;
+      }
     },
     availablePrev() {
-      if (this.available == 0) {
+      this.available--;
+      this.paymentInfo--;
+      if (this.paymentInfo == 4 && this.available == 3) {
         this.available = 0;
-      } else this.available--;
+        this.paymentInfo = 0;
+      } else if (this.paymentInfo == 1) {
+        this.available = 0;
+      } else if (this.paymentInfo == 2) {
+        this.available = 1;
+      } else if (this.paymentInfo == 3) {
+        this.available = 2;
+      } else {
+        this.available = 0;
+        this.paymentInfo = 0;
+      }
     },
     paymentInfoNext() {
       if (this.paymentInfo == 2) {
