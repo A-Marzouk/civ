@@ -270,17 +270,16 @@
                               class="text-center"
                               color="transparent"
                               tile
-                              v-for="i in availabilityOptions"
+                              v-for="i in currentUser.availability_info"
                               :key="i.id"
                               @click="changeAvailability"
                             >
                               <v-card-subtitle class="hire-me-title">{{
-                                i.title | capitalize
+                                i.available_hours_frequency | capitalize
                               }}</v-card-subtitle>
                               <v-card-subtitle class="hire-me-subtitle mt-n8">
                                 {{
-                                  currentUser.availability_info[0]
-                                    .available_hours
+                                  i.available_hours
                                 }}
                                 Hours
                               </v-card-subtitle>
