@@ -333,7 +333,6 @@ export const skills = {
     development: [
         'STEM Skills',
         'CAD',
-        'Design',
         'Prototyping',
         'Testing',
         'Troubleshooting',
@@ -351,6 +350,7 @@ export const skills = {
         'Photoshop',
         'Illustrator',
         'InDesign',
+        'Product Design',
         'Figma',
         'InVision',
         'Sketch',
