@@ -145,6 +145,9 @@
             },
             updateUsername(){
                 this.errors = {};
+                if( this.updatedUsername === ''){
+                    return;
+                }
                 axios.post("/api/user/account/submit", {username: this.updatedUsername, id: this.user.id})
                     .then(() => {
                         this.user.username = this.updatedUsername ;
