@@ -51,11 +51,13 @@ class ResumeController extends Controller
         return view('defaultThemes.' . $themeCode,compact('is_preview'));
     }
 
-    public function downloadPDFResume ($themeCode, $username, Request $request) {
+
+    public function downloadPDFResume ($themeCode, $username, $version = '', Request $request) {
         // search the userdata using userName
 
         // if ($username) {
-            $user = User::withAllRelations($username);
+            $user = User::where('username', $username)->first();
+            $user = User::withAllRelations($username, $this->getVersionID($version, $user->id));
             $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Muli', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.' . $themeCode, compact('user'));
 
             // dd($user->workExperience);
