@@ -235,7 +235,7 @@
                               flat
                               class="text-center"
                               color="tranparent"
-                              v-for="i in rateOptions"
+                              v-for="i in currentUser.payment_info"
                               :key="i.id"
                               @click="changeAvailability"
                             >
@@ -245,13 +245,11 @@
                                     | capitalize
                                 }}
                                 rate -->
-                                {{ i.title | capitalize }}
+                                {{ i.salary_frequency | capitalize }}
                               </v-card-subtitle>
                               <v-card-subtitle class="hire-me-subtitle mt-n8">
-                                {{ currentUser.payment_info[0].salary }}
-                                {{
-                                  currentUser.payment_info[0].currency.toUpperCase()
-                                }}
+                                {{ i.salary }}
+                                {{ i.currency.toUpperCase() }}
                               </v-card-subtitle>
                             </v-card>
                           </VueSlickCarousel>
@@ -278,9 +276,7 @@
                                 i.available_hours_frequency | capitalize
                               }}</v-card-subtitle>
                               <v-card-subtitle class="hire-me-subtitle mt-n8">
-                                {{
-                                  i.available_hours
-                                }}
+                                {{ i.available_hours }}
                                 Hours
                               </v-card-subtitle>
                             </v-card>
@@ -1765,7 +1761,6 @@ export default {
   // margin-right: -50%;
   // transform: translate(-50%, -50%);
   margin: auto;
-
 }
 //hobby tab
 .hobby-title {
