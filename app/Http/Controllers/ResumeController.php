@@ -122,7 +122,6 @@ class ResumeController extends Controller
         return '' ;
     }
 
-
     public function externalReferencePage($username){
         $user = User::where('username', $username)->first();
         if(!$user){

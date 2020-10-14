@@ -5,7 +5,7 @@
       ma-0
       pa-0
       fluid
-      style="max-width: 100% !important; min-height: 100vh"
+      style="max-width: 100% !important; min-height: 100vh !important"
       v-if="currentUser"
     >
       <!-- Header Row -->
@@ -196,24 +196,6 @@
                 >
                   <v-card flat color="tranparent">
                     <v-card-text class>
-                      <!-- <v-btn
-                        fab
-                        color="#FCD259"
-                        small
-                        class="mx-md-1 mx-sm-2 mx-1 social-btn"
-                        depressed
-                        :href="item.link"
-                        v-for="item in currentUser.links"
-                        :key="item.id + '_link'"
-                        @click="goToExternalLink(item.link)"
-                        target="_blank"
-                        v-show="item.is_public || item.is_active"
-                      >
-                        <img
-                          :width="item.title == 'map-markup' ? 11 : 15"
-                          :src="`/images/resume_themes/theme203/social_icons/${item.link_title.toLowerCase()}.webp`"
-                        />
-                      </v-btn> -->
                       <IconCarousel
                         :currentUser="currentUser"
                         themeNumber="theme203"
@@ -235,6 +217,8 @@
                   <v-card flat color="transparent" tile class="ma-0 pa-0">
                     <v-card-text class="ml-lg-n5">
                       <v-row no-gutters align="center" justify="center">
+                        <!-- availability slider zone -->
+
                         <v-col
                           xl="4"
                           lg="4"
@@ -243,43 +227,63 @@
                           cols="4"
                           align="center"
                         >
-                          <v-card flat class="text-center" color="tranparent">
-                            <v-card-subtitle class="hire-me-title">
-                              {{
-                                currentUser.payment_info[0].salary_frequency
-                                  | capitalize
-                              }}
-                              rate
-                            </v-card-subtitle>
-                            <v-card-subtitle class="hire-me-subtitle mt-n8">
-                              {{ currentUser.payment_info[0].salary }}
-                              {{
-                                currentUser.payment_info[0].currency.toUpperCase()
-                              }}
-                            </v-card-subtitle>
-                          </v-card>
+                          <VueSlickCarousel
+                            v-bind="slickOptionsAvailability"
+                            ref="availabilityCarousel"
+                          >
+                            <v-card
+                              flat
+                              class="text-center"
+                              color="tranparent"
+                              v-for="i in currentUser.payment_info"
+                              :key="i.id"
+                              @click="changeAvailability"
+                            >
+                              <v-card-subtitle class="hire-me-title">
+                                <!-- {{
+                                  currentUser.payment_info[0].salary_frequency
+                                    | capitalize
+                                }}
+                                rate -->
+                                {{ i.salary_frequency | capitalize }}
+                              </v-card-subtitle>
+                              <v-card-subtitle class="hire-me-subtitle mt-n8">
+                                {{ i.salary }}
+                                {{ i.currency.toUpperCase() }}
+                              </v-card-subtitle>
+                            </v-card>
+                          </VueSlickCarousel>
                         </v-col>
+
                         <div
                           style="height: 41px; border: 1px solid #d7d7d7"
                         ></div>
-                        <v-col cols="4">
-                          <v-card
-                            flat
-                            class="text-center"
-                            color="transparent"
-                            tile
+                        <v-col lg="4" md="4" sm="4" cols="4">
+                          <VueSlickCarousel
+                            v-bind="slickOptionsAvailability"
+                            ref="availabilityCarousel2"
                           >
-                            <v-card-subtitle class="hire-me-title"
-                              >Available for</v-card-subtitle
+                            <v-card
+                              flat
+                              class="text-center"
+                              color="transparent"
+                              tile
+                              v-for="i in currentUser.availability_info"
+                              :key="i.id"
+                              @click="changeAvailability"
                             >
-                            <v-card-subtitle class="hire-me-subtitle mt-n8">
-                              {{
-                                currentUser.availability_info[0].available_hours
-                              }}
-                              Hours
-                            </v-card-subtitle>
-                          </v-card>
+                              <v-card-subtitle class="hire-me-title">{{
+                                i.available_hours_frequency | capitalize
+                              }}</v-card-subtitle>
+                              <v-card-subtitle class="hire-me-subtitle mt-n8">
+                                {{ i.available_hours }}
+                                Hours
+                              </v-card-subtitle>
+                            </v-card>
+                          </VueSlickCarousel>
                         </v-col>
+
+                        <!-- Availablity slider zone -->
 
                         <v-col cols="3">
                           <v-card flat color="transparent" tile>
@@ -327,8 +331,9 @@
                     <v-tab
                       :key="item.title"
                       class="text-capitalize custom-tab-text"
-                      @click="currentTab = item.title"
-                      :href="'#'+item.title"
+                      @click="changeTab(item.title)"
+                      :id="item.title"
+                      :href="'#' + item.title"
                       v-show="
                         item.title !== 'media' &&
                         item.title !== 'links' &&
@@ -526,26 +531,30 @@
                           :gutter="{ default: '30px', 700: '15px' }"
                         >
                           <template v-for="item in currentUser.projects">
-                            <ImagesCarouselModal :images="item.images" :key="item.id">
+                            <ImagesCarouselModal
+                              :images="item.images"
+                              :key="item.id"
+                            >
                               <v-card
-                                      class="mb-2"
-                                      align="left"
-                                      flat
-                                      color="transparent"
-                                      tile
-                                      :key="item.id"
-                                      v-show="item.is_public == 1"
+                                class="mb-2 card-portfolio"
+                                align="left"
+                                flat
+                                color="transparent"
+                                tile
+                                :key="item.id"
+                                v-show="item.is_public == 1"
                               >
                                 <v-img
-                                        class="custom-portfolio-img"
-                                        :src="getProjectMainImage(item)"
+                                  class="custom-portfolio-img"
+                                  :src="getProjectMainImage(item)"
+                                  style="border-radius: 10px !important"
                                 ></v-img>
                                 <v-card-title class="custom-portfolio-title">
                                   {{ item.name }}
                                 </v-card-title>
                                 <v-card-subtitle
-                                        class="custom-portfolio-subtitle"
-                                >{{ item.description }}</v-card-subtitle
+                                  class="custom-portfolio-subtitle"
+                                  >{{ item.description }}</v-card-subtitle
                                 >
                               </v-card>
                             </ImagesCarouselModal>
@@ -790,8 +799,8 @@
                 </v-tab-item>
                 <!--  tab item hobbies  -->
                 <!-- ...... Tab item achievement ..... -->
-                <v-tab-item value="achievement" key="achievement">
-                  <div class="watermark-text text-center">Achievement</div>
+                <v-tab-item value="achievements" key="achievements">
+                  <div class="watermark-text text-center">Achievements</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width: 100%">
                       <v-row align="center" justify="space-between">
@@ -827,7 +836,7 @@
                               </div>
                               <v-card flat color="transparent">
                                 <v-card-subtitle class="achievement-title">
-                                  {{ achievement.title }}{{ windowWidth }}
+                                  {{ achievement.title }}
                                 </v-card-subtitle>
                                 <v-card-subtitle
                                   class="achievement-subtitle mt-xl-0 mt-n5"
@@ -1033,7 +1042,7 @@
                 :title="item.title"
                 :details="item.content"
                 :file="item.url"
-                :previewImg = "item.media_preview"
+                :previewImg="item.media_preview"
               ></video-player>
             </template>
           </VueSlickCarousel>
@@ -1068,7 +1077,7 @@ export default {
     IconCarousel,
     ImagesCarouselModal,
   },
-  props: ["user", "is_preview"],
+  props: ["user", "is_preview", "builderCurrentTabTitle"],
   filters: {
     capitalize: function (value) {
       if (!value) return "";
@@ -1082,7 +1091,6 @@ export default {
   },
   data() {
     return {
-      currentTab: null,
       audioModal: false,
       videoModal: false,
       emailModal: false,
@@ -1096,9 +1104,31 @@ export default {
         { id: 4, title: "linkedin" },
         { id: 5, title: "google-plus" },
       ],
+
+      rateOptions: [
+        { id: 1, title: "Hourly rate " },
+        { id: 2, title: "Weekly rate " },
+        { id: 3, title: "Monthly rate " },
+      ],
+      availabilityOptions: [
+        { id: 1, title: "Weekly" },
+        { id: 2, title: "Weekly" },
+        { id: 3, title: "Monthly" },
+      ],
+
       mainDataTab: null,
 
       progressBarColor: "yellow",
+
+      slickOptionsAvailability: {
+        infinite: true,
+        dots: false,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 1,
+      },
+
       slickOptionsVideoModal: {
         infinite: false,
         dots: true,
@@ -1274,10 +1304,18 @@ export default {
     // if current tab changed, change the active tab as well.
     builderCurrentTabTitle: function (val) {
       if (!this.defaultTabs.includes(val)) {
-        this.activeTab = this.getFirstActiveTabTitle();
+        this.mainDataTab = this.getFirstActiveTabTitle();
       } else {
-        this.activeTab = val;
+        this.mainDataTab = val;
       }
+    },
+  },
+  computed: {
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
+    },
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
     },
   },
   //watcher
@@ -1291,11 +1329,39 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
+
+    // set active tab
+    this.setActiveTabByURL();
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
 
   methods: {
+    changeTab(tab_title) {
+      this.mainDataTab = tab_title;
+      this.$store.dispatch("updateThemeTabGlobally", tab_title);
+    },
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
+          }
+        }
+      });
+
+      return title;
+    },
+    setActiveTabByURL() {
+      const pathSplit = this.$route.path.split("/");
+      let currentActiveTab = pathSplit[pathSplit.length - 1];
+      if (!this.defaultTabs.includes(currentActiveTab)) {
+        this.mainDataTab = this.getFirstActiveTabTitle();
+      } else {
+        this.mainDataTab = currentActiveTab;
+      }
+    },
     filterAudio(audios) {
       var filterArray = audios.filter((a) => a.type === "audio");
       return filterArray;
@@ -1350,6 +1416,10 @@ export default {
       return mainImage.src;
     },
     //audio Modal
+    changeAvailability() {
+      this.$refs.availabilityCarousel.next();
+      this.$refs.availabilityCarousel2.next();
+    },
   },
 };
 </script>
@@ -1569,7 +1639,6 @@ export default {
 // ............................ Main Navigation Tab ...........................//
 // ..........................Desktop Portfolio.........................
 .custom-portfolio-img {
-  border-radius: 10px;
   width: 100% !important;
   //height: 100% !important;
   max-height: 400px !important;
@@ -1686,15 +1755,18 @@ export default {
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
-  margin-top: 200px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // margin-top: 200px;
+  // top: 50%;
+  // left: 50%;
+  // margin-right: -50%;
+  // transform: translate(-50%, -50%);
+  margin: auto;
 }
 //hobby tab
 .hobby-title {
   font-family: "Gotham Pro" !important;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 36px;
   line-height: 38px;
   color: #000000 !important;
   letter-spacing: 0.05em;
@@ -1702,7 +1774,7 @@ export default {
     font-size: 30px;
   }
 
-  @media screen and (min-width: 600px) and (max-width: 960px) {
+  @media screen and (min-width: 600px) and (max-width: 1263px) {
     font-size: 24px;
   }
   @media screen and(max-width: 599px) {
@@ -1869,8 +1941,8 @@ export default {
     }
   }
   .btn-email-modal-close {
-    width: 41px;
-    height: 41px;
+    width: 40px;
+    height: 40px;
   }
   .btn-send-mail {
     font-family: "Open Sans" !important;

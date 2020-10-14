@@ -9,7 +9,7 @@
               { active: builderCurrentTabTitle === tab.title},
             ]"
           >
-            <a href="#" @click.prevent="$emit('tab-changed', tab.title)"
+            <a href="#" @click.prevent="tabChanged(tab.title)"
               >{{tab.label}}</a
             >
           </li>
@@ -60,7 +60,10 @@ export default {
     }
   },
   methods:{
-
+    tabChanged(tab_title){
+      this.$emit('tab-changed', tab_title); // for component parent
+      this.$store.dispatch('updateThemeTabGlobally', tab_title);
+    }
   },
 
   components: { SocialLinks },

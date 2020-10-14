@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -259,7 +260,10 @@ Route::group(['prefix' => 'admin/'], function () {
     Route::delete('delete-promocode/{id}', 'API\Admin\PromocodesController@destroy');
 });
 
-
+// API search routes
+Route::group(['prefix' => 'search/'], function(){
+    Route::get('/workforce-profiles', 'API\SearchController@getWorkForceVisibleProfiles');
+});
 // API users routes
 Route::get('user', 'API\UsersController@user');
 

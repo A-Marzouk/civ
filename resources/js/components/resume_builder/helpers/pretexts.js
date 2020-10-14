@@ -567,8 +567,12 @@ export const skills = {
         'Photoshop',
         'Illustrator',
         'InDesign',
+        'Figma',
+        'InVision',
+        'Sketch',
+        'Adobe XD',
         'Adobe Creative Suite',
-        'HTML', 
+        'HTML',
         'UI/UX',
         'Typography', 
         'Print Design',
@@ -671,6 +675,8 @@ export const skills = {
         'Project Launch',
         'Lean Manufacturing',
         'Workflow Development',
-        'SolidWorks'
+        'SolidWorks',
+        'Magento',
+        'WooCommerce'
     ]
 }

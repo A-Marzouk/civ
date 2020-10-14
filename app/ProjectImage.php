@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class ProjectImage extends Model
 {
@@ -13,5 +14,13 @@ class ProjectImage extends Model
     public function project(){
         return $this->belongsTo(Project::class);
     }
+
+    public function getSrcAttribute($value){
+        if(Str::of($value)->contains('http') || Str::of($value)->contains('projectImages')){
+            return $value;
+        }
+        return asset('storage/'. $value);
+    }
+
 
 }

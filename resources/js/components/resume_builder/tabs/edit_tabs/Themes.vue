@@ -19,7 +19,7 @@
                                                         color="#ffffff"
                                                         opacity="0.5"
                                                         class="custom-overlay"
-                                                        :class="{ 'notActive' : !theme.is_active}"
+                                                        :class="{ 'notActive' : !theme.is_active || theme.id !== user.default_resume_link.theme_id}"
                                                 >
                                                     <v-btn
                                                             color="#001CE2"
@@ -27,15 +27,19 @@
                                                             class="btn-activate"
                                                             :class="{active : theme.id === user.default_resume_link.theme_id}"
                                                             depressed
-                                                            v-if="theme.is_active"
-                                                            @click="activateTheme(theme.id)"
+                                                            v-if="theme.id === user.default_resume_link.theme_id"
                                                     >
-                                                        {{theme.id === user.default_resume_link.theme_id ? 'Active' : 'Activate'}}
+                                                         Active
                                                         <img src="/icons/check.svg"/>
                                                     </v-btn>
 
                                                     <div class="coming-soon-label"  v-if="!theme.is_active">
                                                         Coming soon
+                                                    </div>
+
+
+                                                    <div class="coming-soon-label activate"  @click="activateTheme(theme.id)"  v-if="theme.is_active && (theme.id !== user.default_resume_link.theme_id)">
+                                                        Activate
                                                     </div>
 
                                                 </v-overlay>
@@ -537,8 +541,8 @@
                         margin-right: auto;
                         left: 0;
                         right: 0;
-                        width: 130px;
-                        height: 45px;
+                        width: 150px;
+                        height: 55px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -549,9 +553,17 @@
                         font-family: "Noto Sans", sans-serif !important;
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 13px;
+                        font-size: 16px;
                         line-height: 12px;
                         text-transform: capitalize !important;
+
+                        &.activate{
+                            border-radius: 40px;
+                            border: 2px solid #70707034;
+                            &:hover{
+                                cursor: pointer;
+                            }
+                        }
                     }
 
 

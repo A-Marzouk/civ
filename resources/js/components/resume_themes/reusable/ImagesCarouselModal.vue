@@ -14,7 +14,7 @@
                 <slick-slides :options="slickOptions" ref="slick">
                     <div v-for="image in images" :key="image.id">
                         <div class="image-row">
-                            <img :src="image.src.replace('400x300','1200x800')" alt="project image" @load="loaded(image.id)">
+                            <img :src="image.src" alt="project image" @load="loaded(image.id)">
                             <div class="loading-text" v-show=" ! loadedImages.includes(image.id)">
                                 Loading Image...
                             </div>
