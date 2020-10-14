@@ -250,7 +250,7 @@ export default {
       typeItems: ["Programming Language"],
       activeTab: 0,
       skillCategory:'Leadership',
-      tabs: ["Leadership", "Professionalism", "Organizational", "Team Building", "Personal Life", "Analytical", "Sports", "Business related", "Technical", "Design", "Communication", "Creativity", "Nursing and Healthcare", "Engineering"],
+      tabs: ["Development", "Design", "Leadership", "Professionalism", "Organizational", "Team Building", "Personal Life", "Analytical", "Sports", "Business related", "Technical","Communication", "Creativity", "Nursing and Healthcare"],
       addNewSkill: false,
       optionSkillId: 0,
       skillItems: skills,
