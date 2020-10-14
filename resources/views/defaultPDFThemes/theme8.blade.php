@@ -314,7 +314,7 @@
         <section class="about">
             <h1 class="section-title">About Me</h1>
             <div class="container">
-                {{ $user->personalInfo->overview }}</p>
+                {{ $user->personalInfo->overview }}
             </div>
         </section>
 
