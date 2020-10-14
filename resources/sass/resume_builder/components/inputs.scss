@@ -30,6 +30,50 @@
         }
     }
 
+    &.flat-civ-input{
+        .v-input__control{
+            .v-input__slot{
+                fieldset{
+                    border: none;
+                    border-bottom: 1.95px solid #C4C9F5;
+                    border-radius: 0;
+                }
+                .v-text-field__slot{
+                    label{
+                        font-weight: 600;
+                        font-size: 16px;
+                    }
+                    input{
+                        padding-left: 0;
+                        margin-left: -10px;
+                    }
+                }
+            }
+        }
+        &.with-inner{
+            .v-input__control{
+                .v-input__slot{
+                    .v-text-field__slot{
+                        input{
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.flat-civ-input.v-input--is-focused {
+        .v-input__control{
+            .v-input__slot{
+                fieldset{
+                    border: none;
+                    border-bottom: 1.95px solid $mainColor;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+
     &.civie-select {
         &.icon-prepended { // Select with prepend icon
             .v-input__slot {
