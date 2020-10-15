@@ -75,6 +75,9 @@
                             <v-textarea
                                     class="ml-lg-custom3 resume-builder__input profile-input civie-textarea"
                                     outlined
+                                    rows="1"
+                                    auto-grow
+                                    row-height="13"
                                     color="#001CE2"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :disabled="false"

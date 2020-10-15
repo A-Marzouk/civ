@@ -237,6 +237,9 @@
                                         class="resume-builder__input civie-textarea"
                                         outlined
                                         color="#001CE2"
+                                        rows="1"
+                                        auto-grow
+                                        row-height="13"
                                         label="Reference Text"
                                         placeholder="Reference"
                                         v-model="editedReference.reference_text"

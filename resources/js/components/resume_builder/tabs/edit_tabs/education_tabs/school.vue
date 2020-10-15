@@ -41,6 +41,9 @@
 
         <v-textarea
           id="description"
+          rows="1"
+          auto-grow
+          row-height="13"
           v-model="newEducation.description"
           placeholder="Describe your education"
           class="resume-builder__input civie-textarea"

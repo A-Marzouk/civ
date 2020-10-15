@@ -140,6 +140,9 @@
                             v-model="personalInfo.about"
                             label="About Me"
                             hide-details="auto"
+                            rows="1"
+                            auto-grow
+                            row-height="13"
                             outlined
                             @blur="applyEdit"
                     >
@@ -160,6 +163,9 @@
                             v-model="personalInfo.overview"
                             label="Overview Summary"
                             hide-details="auto"
+                            rows="1"
+                            auto-grow
+                            row-height="15"
                             outlined
                             @blur="applyEdit"
                     >
@@ -181,6 +187,9 @@
                             v-model="personalInfo.quote"
                             hide-details="auto"
                             outlined
+                            rows="1"
+                            auto-grow
+                            row-height="15"
                             @blur="applyEdit"
                     >
                         <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
@@ -840,11 +849,11 @@
 
 <style lang="scss">
     .resume-builder__input.civie-textarea.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
-        bottom: 162px;
+        bottom: 20px;
     }
 
     .resume-builder__input.civie-input.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
-        bottom: 62px;
+        bottom: 20px;
     }
 
 

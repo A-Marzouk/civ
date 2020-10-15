@@ -30,6 +30,9 @@
             id="description"
             class="resume-builder__input civie-textarea"
             outlined
+            rows="1"
+            auto-grow
+            row-height="13"
             label="Description"
             color="#001CE2"
             placeholder="Describe your achievement"

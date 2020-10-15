@@ -31,6 +31,9 @@
           ></v-text-field>
           <v-textarea
             id="description"
+            rows="1"
+            auto-grow
+            row-height="13"
             class="resume-builder__input civie-textarea"
             outlined
             label="Description"

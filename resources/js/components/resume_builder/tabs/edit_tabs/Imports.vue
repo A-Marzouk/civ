@@ -263,6 +263,9 @@
                                                     <v-textarea
                                                             class="resume-builder__input  civie-textarea"
                                                             outlined
+                                                            rows="1"
+                                                            auto-grow
+                                                            row-height="13"
                                                             color="#001CE2"
                                                             :error="!!errors.about"
                                                             :error-messages="errors.about"
@@ -346,6 +349,9 @@
                                                             <v-textarea
                                                                     class="resume-builder__input  civie-textarea"
                                                                     outlined
+                                                                    rows="1"
+                                                                    auto-grow
+                                                                    row-height="13"
                                                                     color="#001CE2"
                                                                     :error="!!errors.description"
                                                                     :error-messages="errors.description"

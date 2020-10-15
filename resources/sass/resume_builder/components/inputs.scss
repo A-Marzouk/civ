@@ -98,10 +98,7 @@
     // Textarea
     &.civie-textarea {
         .v-input__slot, textarea {
-            // input height is different to textarea
-            height: 147px; //adjusted | 160px
-            resize: none;
-            
+
         }
     }
     
@@ -118,7 +115,7 @@
                }
                overflow: visible;
                textarea{
-                   height: 95%;
+                   max-height: 147px !important;
                    margin-top: 3px !important;
                    padding: 7px 0 0 0;
                    margin-left: -9px;
