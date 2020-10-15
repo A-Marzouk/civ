@@ -47,13 +47,12 @@
   </v-container>
 </template>
 <script>
-import EllipseTab1 from "../../../../../public/images/resume_themes/theme700/ellipse-tab1.svg";
 import Portfolio from "./tabs/Portfolio";
 import Work from "./tabs/Work";
 import Education from "./tabs/Education";
 import Skills from "./tabs/Skills";
 export default {
-  components: { EllipseTab1, Portfolio, Work, Education, Skills },
+  components: {Portfolio, Work, Education, Skills },
   data() {
     return {
       currentTab: 1,

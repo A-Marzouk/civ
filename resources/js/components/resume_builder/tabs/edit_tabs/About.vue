@@ -862,6 +862,7 @@
             label {
                 color: #888DB1;
                 font-size: 16px;
+                font-weight: 600;
                 margin-bottom: 10px;
 
                 &.focused {
@@ -877,16 +878,14 @@
 
         .custom-predict-input {
             height: 45px;
-            border: 1.9px solid #C4C9F5;
-            border-radius: 10px;
+            border-bottom: 1.95px solid #C4C9F5;
             width: 100%;
             margin-top: -4px;
-            padding-left: 12px;
             color: #888DB1;
 
             &:focus {
                 outline: none;
-                border: 1.9px solid blue;
+                border-bottom: 1.9px solid blue;
             }
         }
 

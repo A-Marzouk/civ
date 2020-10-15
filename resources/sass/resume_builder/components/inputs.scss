@@ -30,6 +30,18 @@
         }
     }
 
+    &.with-inner{
+        .v-input__control{
+            .v-input__slot{
+                .v-text-field__slot{
+                    input{
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+
     &.flat-civ-input{
         .v-input__control{
             .v-input__slot{
@@ -46,17 +58,6 @@
                     input{
                         padding-left: 0;
                         margin-left: -10px;
-                    }
-                }
-            }
-        }
-        &.with-inner{
-            .v-input__control{
-                .v-input__slot{
-                    .v-text-field__slot{
-                        input{
-                            margin-left: 0;
-                        }
                     }
                 }
             }
@@ -83,7 +84,7 @@
 
                 .v-select__selections{
                     .v-select__selection{
-                        padding: 16px 21px 16px 24px !important;
+                        padding: 16px 21px 16px 34px !important;
                     }
                 }
             }
@@ -107,11 +108,20 @@
     &.civie-textarea {
         .v-input__slot {
            .v-text-field__slot{
+               label{
+                   font-weight: 600;
+                   font-size: 16px;
+               }
+               input{
+                   padding-left: 0;
+                   margin-left: -10px;
+               }
                overflow: visible;
                textarea{
                    height: 95%;
                    margin-top: 3px !important;
-                   padding: 7px; //added
+                   padding: 7px 0 0 0;
+                   margin-left: -9px;
 
                    // scroll hidden
                    overflow: auto;
@@ -185,6 +195,7 @@
 
             & > .v-input__control > .v-input__slot .v-select__selection {
                 padding: 0 0 0 10px;
+                margin-left: 0;
             }
         }
     }
@@ -205,9 +216,14 @@
         font-family: 'Noto Sans', Arial, Helvetica, sans-serif !important;
 
         .v-input__slot {
-            border: 1.95px solid $inputBorderColor--enabled; //2px
-            border-radius: 10px;
+            border: none;
+            border-bottom: 1.95px solid #C4C9F5;
+            border-radius: 0;
             position: relative;
+            label{
+                font-weight: 600;
+                font-size: 16px;
+            }
             
             .civie-dropzone-input {
                 border: none !important;
@@ -234,7 +250,7 @@
                 
                     .icon {
                         fill: transparent;
-                        width: 30px;
+                        width: 25px;
                     }
                 }
             }
@@ -278,7 +294,9 @@
     // focused input:
     &.v-input--is-focused > .v-input__control > .v-input__slot {
         fieldset {
-            border: 1.95px solid $mainColor;
+            border: none;
+            border-bottom: 1.95px solid $mainColor;
+            border-radius: 0;
         }
 
         .v-label {
@@ -291,8 +309,9 @@
 
         fieldset {
             // Border fieldset
-            border: 1.95px solid $inputBorderColor--enabled; // Default state of inputs | 2px
-            border-radius: 10px;
+            border: none;
+            border-bottom: 1.95px solid $inputBorderColor--enabled;
+            border-radius: 0;
             transition: border 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
 
             legend {
@@ -388,7 +407,8 @@
         .v-select__selection {
             color: $inputTextColor;
             font-size: 16px;
-            padding: 16px 21px 16px 13px;
+            padding: 16px 21px 16px 0;
+            margin-left:-9px;
         }
     }
 
@@ -474,6 +494,11 @@
                 font-size: 12.5px;
                 height: 1.6rem;
             }
+
+            label{
+                font-size: 16px;
+                font-weight: 600;
+            }
         }
     }
 
@@ -489,9 +514,21 @@
             }
 
             .v-text-field__slot {
-                input {
+                label{
+                    font-weight: 600;
                     font-size: 16px;
-                    padding: 6px 3px 8px 6px;
+                }
+                input{
+                    font-size: 16px;
+                    padding-left: 0;
+                    margin-left: -10px;
+                }
+            }
+
+            .v-select__slot{
+                label{
+                    font-weight: 600;
+                    font-size: 16px;
                 }
             }
         }

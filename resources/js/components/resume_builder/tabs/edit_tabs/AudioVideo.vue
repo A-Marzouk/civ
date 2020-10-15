@@ -18,6 +18,7 @@
                                         class="resume-builder__input civie-input title-input"
                                         outlined
                                         v-model="newMedia.title"
+                                        placeholder="Media title"
                                         :error="!!errors.title"
                                         :error-messages="errors.title"
                                         color="#001CE2"
@@ -29,6 +30,7 @@
                                         outlined
                                         v-model="newMedia.transcript"
                                         :error="!!errors.transcript"
+                                        placeholder="Media description"
                                         :error-messages="errors.transcript"
                                         color="#001CE2"
                                         label="Description / Transcript"
@@ -89,7 +91,7 @@
                                     </div>
                                     <span class="or-text">or</span>
                                     <v-text-field
-                                            class="resume-builder__input civie-input title-input link-input"
+                                            class="resume-builder__input with-inner civie-input title-input link-input"
                                             outlined
                                             v-model="newMedia.url"
                                             :error="!!errors.url"
@@ -99,7 +101,7 @@
                                     >
                                         <template v-slot:prepend-inner>
                                             <img
-                                                    class="ml-3 mt-n1"
+                                                    class="mt-n1"
                                                     src="/images/new_resume_builder/icons/main/link.svg"
                                             />
                                         </template>
@@ -125,6 +127,7 @@
                                             class="resume-builder__input civie-input title-input"
                                             outlined
                                             v-model="newMedia.title"
+                                            placeholder="Media title"
                                             :error="!!errors.title"
                                             :error-messages="errors.title"
                                             color="#001CE2"
@@ -134,6 +137,7 @@
                                     <v-text-field
                                             class="resume-builder__input civie-input transcript-input"
                                             outlined
+                                            placeholder="Media description"
                                             v-model="newMedia.transcript"
                                             :error="!!errors.transcript"
                                             :error-messages="errors.transcript"
@@ -231,7 +235,7 @@
                                         </div>
                                         <span class="or-text">or</span>
                                         <v-text-field
-                                                class="resume-builder__input civie-input title-input link-input"
+                                                class="resume-builder__input civie-input with-inner title-input link-input"
                                                 outlined
                                                 v-model="newMedia.url"
                                                 :error="!!errors.url"
@@ -241,7 +245,7 @@
                                         >
                                             <template v-slot:prepend-inner>
                                                 <img
-                                                        class="ml-3 mt-n1"
+                                                        class="mt-n1"
                                                         src="/images/new_resume_builder/icons/main/link.svg"
                                                 />
                                             </template>
@@ -1157,7 +1161,6 @@
         border: 2px solid #c4c9f5 !important;
         min-height: 48px !important;
         height: 48px !important;
-        border: 2px solid #c4c9f5;
         border-radius: 10px;
         overflow: hidden !important;
     }

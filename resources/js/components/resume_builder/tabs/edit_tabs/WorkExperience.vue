@@ -79,6 +79,7 @@
                                     :class="{'resume-builder__input--disabled': false}"
                                     :disabled="false"
                                     :error="!!errors.description"
+                                    placeholder="Describe your experience"
                                     :error-messages="errors.description"
                                     counter
                                     maxlength="1000"
@@ -492,11 +493,11 @@
 
                             input {
                                 height: 48px; // adjusted | 50px
-                                border: 1.95px solid #C4C9F5 !important; // adjusted | 2px
-                                border-radius: 10px;
+                                border: none;
+                                border-bottom: 1.95px solid #C4C9F5 !important;
+                                border-radius: 0;
                                 opacity: 1;
                                 color: #c4c9f5;
-                                padding-left: 12px;
 
                                 @include lt-lg {
 

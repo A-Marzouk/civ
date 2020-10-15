@@ -7,6 +7,7 @@
           id="collegeName"
           v-model="newEducation.university_name"
           class="resume-builder__input civie-input"
+          placeholder="University Of The People"
           outlined
           label="Institution Name"
           color="#001CE2"
@@ -18,6 +19,7 @@
           id="gradeTitle"
           v-model="newEducation.degree_title"
           class="resume-builder__input civie-input"
+          placeholder="Bachelor"
           outlined
           label="Title"
           color="#001CE2"
@@ -28,6 +30,7 @@
         <v-text-field
           id="location"
           v-model="newEducation.location"
+          placeholder="Remote"
           class="resume-builder__input civie-input"
           outlined
           label="Location"
@@ -39,6 +42,7 @@
         <v-textarea
           id="description"
           v-model="newEducation.description"
+          placeholder="Describe your education"
           class="resume-builder__input civie-textarea"
           outlined
           label="Description"
@@ -50,6 +54,7 @@
         <v-text-field
           id="website"
           v-model="newEducation.website"
+          placeholder="https://website.com"
           class="resume-builder__input civie-input"
           outlined
           label="Website"
@@ -731,11 +736,11 @@ export default {
 
     input {
       height: 48px; // adjusted | 50px
-      border: 1.95px solid #c4c9f5 !important; // adjusted | 2px
-      border-radius: 10px;
+      border: none;
+      border-bottom: 1.95px solid #C4C9F5 !important;
+      border-radius: 0;
       opacity: 1;
       color: #c4c9f5;
-      padding-left: 12px;
 
       @include lt-lg {
       }
