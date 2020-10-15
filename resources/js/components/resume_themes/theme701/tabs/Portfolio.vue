@@ -6,7 +6,7 @@
           <div>
             <img
               class="tw-mb-36px tw-w-494px tw-h-603px"
-              src="../../../../../../public/images/resume_themes/theme701/portfolio1.png"
+              src="/images/resume_themes/theme701/portfolio1.png"
             />
             <div class="tw-w-2/3">
               <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
@@ -22,7 +22,7 @@
             <div class="tw-mb-135px">
               <img
                 class="tw-mb-36px tw-w-494px tw-h-279px"
-                src="../../../../../../public/images/resume_themes/theme701/portfolio2.png"
+                src="/images/resume_themes/theme701/portfolio2.png"
               />
               <div class="tw-w-2/3">
                 <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
@@ -37,7 +37,7 @@
             <div>
               <img
                 class="tw-mb-36px tw-w-494px tw-h-286px"
-                src="../../../../../../public/images/resume_themes/theme701/portfolio3.png"
+                src="/images/resume_themes/theme701/portfolio3.png"
               />
               <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
                 Strategic vision and execution of a newly
@@ -52,7 +52,7 @@
             <div class="tw-mb-135px">
               <img
                 class="tw-mb-36px tw-w-494px tw-h-440px"
-                src="../../../../../../public/images/resume_themes/theme701/portfolio4.png"
+                src="/images/resume_themes/theme701/portfolio4.png"
               />
               <div class="tw-w-2/3">
                 <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
@@ -68,7 +68,7 @@
             <div>
               <img
                 class="tw-mb-36px tw-w-494px tw-h-286px"
-                src="../../../../../../public/images/resume_themes/theme701/portfolio5.png"
+                src="/images/resume_themes/theme701/portfolio5.png"
               />
               <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
                 Strategic vision and execution of a newly

@@ -25,7 +25,7 @@
                         My URL
                     </span>
                     <v-text-field
-                            class="resume-builder__input flat-civ-input with-inner top-input-margin url min-height"  style="margin-top: -21px;"
+                            class="resume-builder__input  with-inner top-input-margin url min-height"  style="margin-top: -21px;"
                             v-model="usernameCurrentValue"
                             @blur="updateUsername"
                             :outlined="true"
@@ -41,7 +41,7 @@
 
                 <div class="profile-input-field input-field--firstname input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input civie-input flat-civ-input"
+                            class="resume-builder__input civie-input "
                             :class="{'resume-builder__input--disabled': false}"
                             label="First Name"
                             v-model="personalInfo.first_name"
@@ -55,7 +55,7 @@
 
                 <div class="profile-input-field input-field--lastname input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input civie-input flat-civ-input"
+                            class="resume-builder__input civie-input "
                             label="Last Name"
                             v-model="personalInfo.last_name"
                             :class="{'resume-builder__input--disabled': false}"
@@ -69,7 +69,7 @@
 
                 <div class="profile-input-field input-field--job-title input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input civie-input flat-civ-input"
+                            class="resume-builder__input civie-input "
                             label="Job Title"
                             v-model="personalInfo.designation"
                             :class="{'resume-builder__input--disabled': false}"

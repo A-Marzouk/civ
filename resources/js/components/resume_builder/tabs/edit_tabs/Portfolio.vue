@@ -12,6 +12,7 @@
             outlined
             label="Project Name"
             color="#001CE2"
+            placeholder="Project 1"
             v-model="editedProject.name"
             :error="!!errors.name"
             :error-messages="errors.name"
@@ -24,17 +25,22 @@
             hint="(Active link of the project)"
             color="#001CE2"
             v-model="editedProject.link"
+            placeholder="https://website.com"
             :error="!!errors.link"
             :error-messages="errors.link"
           ></v-text-field>
           <v-textarea
             id="description"
+            rows="1"
+            auto-grow
+            row-height="13"
             class="resume-builder__input civie-textarea"
             outlined
             label="Description"
             counter
             maxlength="1000"
             color="#001CE2"
+            placeholder="Describe your project"
             v-model="editedProject.description"
             :error="!!errors.description"
             :error-messages="errors.description"
@@ -66,7 +72,7 @@
             class="resume-builder__input civie-input"
             outlined
             label="Skills"
-            hint="(Skills you use in the project)"
+            placeholder="Skills used in the project"
             color="#001CE2"
             v-model="editedProject.skills"
             :error="!!errors.skills"
@@ -77,7 +83,7 @@
             class="resume-builder__input civie-input"
             outlined
             label="Software"
-            hint="(Software used for this project)"
+            placeholder="Software used for the project"
             color="#001CE2"
             v-model="editedProject.software"
             :error="!!errors.software"
