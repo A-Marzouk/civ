@@ -477,9 +477,9 @@
 
         @if ($visibleSkills->count() > 0)
 
-        @php
-            $skillCategories = \App\Skill::filterCategories($visibleSkills);
-        @endphp
+            @php
+                $skillCategories = \App\Skill::filterCategories($visibleSkills);
+            @endphp
             <section>
                 <div class="section-title">
                     Skills
@@ -506,7 +506,7 @@
                                                 <div class="percentage">{{ $skill->percentage }}</div>
                                             </div>
                                             <div class="skill-bar">
-                                                <div class="skill-total" style="{{ 'width: '.$skill->percentage }}"></div>
+                                                <div class="skill-total" style="{{ 'width: '.$skill->percentage }}.'%'"></div>
                                                 <div class="skill-rest"></div>
                                             </div>
                                         </div>
