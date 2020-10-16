@@ -389,8 +389,8 @@
                                                 <div class="decorator"></div>
                                                 {{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Now' : date('Y', $dateTo) }}
                                             </div>
-                                            <div class="job-title">{{ $item->company_name }}</div>
-                                            <div class="company-name">{{ $item->job_title }}</div>
+                                            <div class="job-title">{{ $item->job_title }}</div>
+                                            <div class="company-name">{{ $item->company_name }}</div>
                                             <div class="description">
                                                 {{ $item->description }}
                                             </div>
@@ -409,8 +409,8 @@
                                                 <div class="decorator"></div>
                                                 {{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Now' : date('Y', $dateTo) }}
                                             </div>
-                                            <div class="job-title">{{ $item->company_name }}</div>
-                                            <div class="company-name">{{ $item->job_title }}</div>
+                                            <div class="job-title">{{ $item->job_title }}</div>
+                                            <div class="company-name">{{ $item->company_name }}</div>
                                             <div class="description">
                                                 {{ $item->description }}
                                             </div>
@@ -424,8 +424,8 @@
                                                 <div class="decorator"></div>
                                                 {{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Now' : date('Y', $dateTo) }}
                                             </div>
-                                            <div class="job-title">{{ $item->company_name }}</div>
-                                            <div class="company-name">{{ $item->job_title }}</div>
+                                            <div class="job-title">{{ $item->job_title }}</div>
+                                            <div class="company-name">{{ $item->company_name }}</div>
                                             <div class="description">
                                                 {{ $item->description }}
                                             </div>
@@ -441,7 +441,7 @@
         @endif
 
         @php
-            $visibleEducations = $user->getPublicEducationExperience();
+            $visibleEducations = $user->getPublicEducation();
         @endphp
 
         @if ($visibleEducations->count() > 0)
@@ -516,7 +516,7 @@
             <section class="skills">
                 <div class="section-title">Skills</div>
                 <div class="container">
-                    @foreach ($publicSkills as $item)
+                    @foreach ($publicSkills as $skill)
                         @if ($loop->last && $loop->index % 8 != 7)
                             <table>
                                 <tr>
