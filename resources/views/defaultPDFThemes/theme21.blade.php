@@ -517,7 +517,7 @@
                 <div class="section-title">Skills</div>
                 <div class="container">
                     @foreach ($publicSkills as $skill)
-                        @if ($loop->last && $loop->index % 8 != 7)
+                        @if ($loop->last && $loop->index % 8 == 0)
                             <table>
                                 <tr>
                                     <td>
@@ -528,7 +528,23 @@
                                         </div>
                                     </td>
                             
-                                    @for ($i = 0; $i < $loop->index - 7; $i++)
+                                    @for ($i = 0; $i < 7; $i++)
+                                        <td>
+                                            <div class="skill"></div>
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            </table>
+                        @elseif ($loop->last && $loop->index % 8 != 7)
+                                    <td>
+                                        <div class="skill">
+                                            <div class="inner-box">
+                                                <img src="{{ public_path('/images/resume_themes/theme21/'.{{ strtolower($skill->title) }}.'-icon.png') }}" alt="">
+                                            </div>
+                                        </div>
+                                    </td>
+                            
+                                    @for ($i = 0; $i < 7 - $loop->index % 8; $i++)
                                         <td>
                                             <div class="skill"></div>
                                         </td>
@@ -545,7 +561,7 @@
                                             </div>
                                         </div>
                                     </td>
-                        @elseif ($loop->index % ==7)
+                        @elseif ($loop->index % == 7)
                                     <td>
                                         <div class="skill">
                                             <div class="inner-box">
