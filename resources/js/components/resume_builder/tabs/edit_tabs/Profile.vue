@@ -21,11 +21,11 @@
                 </div>
 
                 <div class="profile-input-field input-field--username input-field--group-1">
-                    <span class="v-label v-label--active theme--light" style="color: #888DB1; font-size:16px;">
+                    <span class="v-label v-label--active theme--light" style="color: #888DB1; font-size:16px; font-weight: 600">
                         My URL
                     </span>
                     <v-text-field
-                            class="resume-builder__input top-input-margin url min-height"  style="margin-top: -21px;"
+                            class="resume-builder__input  with-inner top-input-margin url min-height"  style="margin-top: -21px;"
                             v-model="usernameCurrentValue"
                             @blur="updateUsername"
                             :outlined="true"
@@ -34,14 +34,14 @@
                             :error-messages="errors.username"
                     >
                         <template slot="prepend-inner">
-                            <span class="inner-text" style="margin-top:-4.8px;">www.civ.ie/</span>
+                            <span class="inner-text" style="margin-top:-4.8px; margin-left: -10px;">www.civ.ie/</span>
                         </template>
                     </v-text-field>
                 </div>
 
                 <div class="profile-input-field input-field--firstname input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input civie-input"
+                            class="resume-builder__input civie-input "
                             :class="{'resume-builder__input--disabled': false}"
                             label="First Name"
                             v-model="personalInfo.first_name"
@@ -55,7 +55,7 @@
 
                 <div class="profile-input-field input-field--lastname input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input civie-input"
+                            class="resume-builder__input civie-input "
                             label="Last Name"
                             v-model="personalInfo.last_name"
                             :class="{'resume-builder__input--disabled': false}"
@@ -69,7 +69,7 @@
 
                 <div class="profile-input-field input-field--job-title input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input civie-input"
+                            class="resume-builder__input civie-input "
                             label="Job Title"
                             v-model="personalInfo.designation"
                             :class="{'resume-builder__input--disabled': false}"
@@ -145,6 +145,9 @@
             },
             updateUsername(){
                 this.errors = {};
+                if( this.updatedUsername === ''){
+                    return;
+                }
                 axios.post("/api/user/account/submit", {username: this.updatedUsername, id: this.user.id})
                     .then(() => {
                         this.user.username = this.updatedUsername ;

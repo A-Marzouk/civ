@@ -11,14 +11,14 @@
                             </span>
             <v-text-field
                     style="margin-top: -15px;"
-                    class="resume-builder__input top-input-margin url mt-n6"
+                    class="resume-builder__input with-inner top-input-margin url mt-n6"
                     :outlined="true"
                     :error="!!errors.civResumeURL"
                     :error-messages="errors.civResumeURL"
                     v-model="civResumeURL"
             >
                 <template slot="prepend-inner">
-                    <span class="inner-text" style="margin-top:-3px;">civ.ie/</span>
+                    <span class="inner-text" style="margin-left:-10px; margin-top:-3px;">civ.ie/</span>
                 </template>
             </v-text-field>
             <div class="import-btn mt-3">

@@ -29,5 +29,14 @@ class PersonalInfo extends Model
     public function getFullNameAttribute(){
         return "{$this->first_name} {$this->last_name}";
     }
+    public function setFullNameAttribute($value){
+        $nameArray = explode(trim($value)," ");
+        if(isset($nameArray[0])){
+            $this->attributes['first_name'] = $nameArray[0];
+        }
+        if(isset($nameArray[1])){
+            $this->attributes['last_name']  = $nameArray[1];
+        }
+    }
 
 }

@@ -102,11 +102,11 @@
 
             <div class="d-flex flex-wrap align-items-center justify-content-between" style="max-width: 450px; margin-bottom: 30px;">
                 <div>
-                    <span class="v-label v-label--active theme--light" style="color: #888DB1; font-size: 16px;">
+                    <span class="v-label v-label--active theme--light" style="color: #888DB1; font-size: 16px; font-weight: 600;">
                     URL
                 </span>
                     <v-text-field
-                            class="resume-builder__input top-input-margin url" style="margin-top: -25px; max-width: 310px;"
+                            class="resume-builder__input with-inner top-input-margin url" style="margin-top: -25px; max-width: 310px;"
                             :outlined="true"
                             :class="{'resume-builder__input--disabled': false}"
                             :error="!!errors.url"
@@ -114,7 +114,7 @@
                             v-model="editedResumeLink.url"
                     >
                         <template slot="prepend-inner">
-                            <span class="inner-text" style="margin-top:-4.8px;">civ.ie/{{user.username}}/</span>
+                            <span class="inner-text" style="margin-top: -3.8px;margin-left: -10px;">civ.ie/{{user.username}}/</span>
                         </template>
                     </v-text-field>
                 </div>

@@ -43,6 +43,7 @@
             :class="{'resume-builder__input--disabled': false}"
             :disabled="false"
             :label="getLabel()"
+            :placeholder="getLabel()"
             :error="!!errors.link"
             :error-messages="errors.link"
             v-model="editedLink.link"

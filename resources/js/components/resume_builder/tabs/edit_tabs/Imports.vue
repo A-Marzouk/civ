@@ -76,12 +76,12 @@
                             </span>
                             <v-text-field
                                     style="margin-top: -15px;"
-                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    class="resume-builder__input with-inner top-input-margin url mt-n6"
                                     :outlined="true"
                                     v-model="behanceUsername"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;">behance.net/</span>
+                                    <span class="inner-text" style="margin-left:-10px;margin-top:-3px;">behance.net/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -144,12 +144,12 @@
                             </span>
                             <v-text-field
                                     style="margin-top: -15px;"
-                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    class="resume-builder__input with-inner top-input-margin url mt-n6"
                                     :outlined="true"
                                     v-model="dribbbleUsername"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;">dribbble.com/</span>
+                                    <span class="inner-text" style="margin-left:-10px; margin-top:-3px;">dribbble.com/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -263,6 +263,9 @@
                                                     <v-textarea
                                                             class="resume-builder__input  civie-textarea"
                                                             outlined
+                                                            rows="1"
+                                                            auto-grow
+                                                            row-height="13"
                                                             color="#001CE2"
                                                             :error="!!errors.about"
                                                             :error-messages="errors.about"
@@ -346,6 +349,9 @@
                                                             <v-textarea
                                                                     class="resume-builder__input  civie-textarea"
                                                                     outlined
+                                                                    rows="1"
+                                                                    auto-grow
+                                                                    row-height="13"
                                                                     color="#001CE2"
                                                                     :error="!!errors.description"
                                                                     :error-messages="errors.description"
