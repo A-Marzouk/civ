@@ -98,129 +98,251 @@
           </div>
         </div>
 
-        <Avatar :src="currentUser.personal_info.profile_pic" />
+        <v-row no-gutters>
+          <v-col cols="2">
+            <Avatar :src="currentUser.personal_info.profile_pic"
+          /></v-col>
+          <v-col cols="10">
+            <div class="profile-detail">
+              <h3 class="title">
+                {{ currentUser.personal_info.first_name }}
+                {{ currentUser.personal_info.last_name }}
+              </h3>
+              <h4
+                class="sub-title"
+                v-text="currentUser.personal_info.designation"
+              ></h4>
 
-        <div class="profile-detail">
-          <h3 class="title">
-            {{ currentUser.personal_info.first_name }}
-            {{ currentUser.personal_info.last_name }}
-          </h3>
-          <h4
-            class="sub-title"
-            v-text="currentUser.personal_info.designation"
-          ></h4>
-
-          <div
-            class="profile__hireme"
-            v-if="currentUser.payment_info && currentUser.availability_info"
-          ></div>
-          <v-row no-gutters>
-            <v-col cols="12" sm="12" lg="5">
-              <v-row no-gutters>
-                <v-col cols="7">
+              <div
+                class="profile__hireme"
+                v-if="currentUser.payment_info && currentUser.availability_info"
+              ></div>
+              <!-- rate frequency for tablet & pc -->
+              <v-row no-gutters class="hidden-xs-only">
+                <v-col cols="12" sm="12" lg="5">
                   <v-row no-gutters>
-                    <!-- Pay Rate -->
-                    <v-col cols="12" sm="6" class="hireme-rate pb-3 pb-sm-0">
+                    <v-col cols="7">
                       <v-row no-gutters>
-                        <v-col cols="12" class="pb-2">
-                          <div
-                            v-for="(payment_Info,
-                            index) in currentUser.payment_info"
-                            :key="index"
-                            v-show="payment_Info.is_public"
-                          >
-                            <strong v-if="paymentInfo == index"
-                              >${{ payment_Info.salary }}</strong
-                            >
-                          </div>
+                        <!-- Pay Rate -->
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          class="hireme-rate pb-3 pb-sm-0"
+                        >
+                          <v-row no-gutters>
+                            <v-col cols="12" class="pb-2">
+                              <div
+                                v-for="(payment_Info,
+                                index) in currentUser.payment_info"
+                                :key="index"
+                                v-show="payment_Info.is_public"
+                              >
+                                <strong v-if="paymentInfo == index"
+                                  >${{ payment_Info.salary }}</strong
+                                >
+                              </div>
+                            </v-col>
+                            <v-col cols="12">
+                              <div
+                                v-for="(payment_Info,
+                                index) in currentUser.payment_info"
+                                :key="index"
+                                v-show="payment_Info.is_public"
+                              >
+                                <a
+                                  class="hire-rate-button"
+                                  @click="paymentInfoNext()"
+                                  v-if="paymentInfo == index"
+                                  href="javascript:void(0)"
+                                >
+                                  {{ payment_Info.salary_frequency }}
+                                  Rate
+                                </a>
+                              </div>
+                            </v-col>
+                          </v-row>
                         </v-col>
-                        <v-col cols="12">
-                          <div
-                            v-for="(payment_Info,
-                            index) in currentUser.payment_info"
-                            :key="index"
-                            v-show="payment_Info.is_public"
-                          >
-                            <a
-                              class="hire-rate-button"
-                              @click="availableNext()"
-                              v-if="paymentInfo == index"
-                              href="javascript:void(0)"
-                            >
-                              {{ payment_Info.salary_frequency }}
-                              Rate
-                            </a>
-                          </div>
+                        <!-- Pay Rate -->
+                        <!-- Availability -->
+                        <v-col cols="12" sm="6" class="hireme-rate">
+                          <v-row no-gutters>
+                            <v-col cols="12" class="pb-2">
+                              <div
+                                v-for="(availability_info,
+                                index) in currentUser.availability_info"
+                                :key="index"
+                                v-show="availability_info.is_public"
+                              >
+                                <strong v-if="available == index">
+                                  {{ availability_info.available_hours }} hrs
+                                </strong>
+                              </div>
+                            </v-col>
+                            <v-col cols="12">
+                              <div
+                                v-for="(availability_info,
+                                index) in currentUser.availability_info"
+                                :key="index"
+                                v-show="availability_info.is_public"
+                              >
+                                <a
+                                  class="hire-rate-button"
+                                  @click="availableNext()"
+                                  v-if="available == index"
+                                  href="javascript:void(0)"
+                                >
+                                  {{
+                                    availability_info.available_hours_frequency
+                                  }}
+                                  Availability
+                                </a>
+                              </div>
+                            </v-col>
+                          </v-row>
                         </v-col>
+                        <!-- Availability -->
                       </v-row>
                     </v-col>
-                    <!-- Pay Rate -->
-                    <!-- Availability -->
-                    <v-col cols="12" sm="6" class="hireme-rate">
-                      <v-row no-gutters>
-                        <v-col cols="12" class="pb-2">
-                          <div
-                            v-for="(availability_info,
-                            index) in currentUser.availability_info"
-                            :key="index"
-                            v-show="availability_info.is_public"
+                    <!-- Hire Me Button -->
+                    <v-col cols="5">
+                      <div class="text-center">
+                        <a
+                          class="hireme-button"
+                          href="#"
+                          @click.prevent="hireMeModal = !hireMeModal"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 10.969 12.124"
                           >
-                            <strong v-if="available == index">
-                              {{ availability_info.available_hours }} hrs
-                            </strong>
-                          </div>
-                        </v-col>
-                        <v-col cols="12">
-                          <div
-                            v-for="(availability_info,
-                            index) in currentUser.availability_info"
-                            :key="index"
-                            v-show="availability_info.is_public"
-                          >
-                            <a
-                              class="hire-rate-button"
-                              @click="availableNext()"
-                              v-if="available == index"
-                              href="javascript:void(0)"
-                            >
-                              {{ availability_info.available_hours_frequency }}
-                              Availability
-                            </a>
-                          </div>
-                        </v-col>
-                      </v-row>
+                            <path
+                              d="M7.969,12.124H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H7.969a3,3,0,0,1,3,3V9.123A3,3,0,0,1,7.969,12.124ZM5.479,6.062a3.17,3.17,0,0,0-2.071.686,2.848,2.848,0,0,0-.97,2.042.376.376,0,0,0,.114.217.229.229,0,0,0,.132.086H8.276a.246.246,0,0,0,.186-.068.319.319,0,0,0,.068-.235,2.764,2.764,0,0,0-.956-2.061A3.254,3.254,0,0,0,5.479,6.062Zm.005-3.03A1.212,1.212,0,1,0,6.7,4.244,1.217,1.217,0,0,0,5.485,3.031Z"
+                              transform="translate(0 0)"
+                              fill="#fff"
+                            />
+                          </svg>
+
+                          <span>Hire Me</span>
+                        </a>
+                      </div>
                     </v-col>
-                    <!-- Availability -->
+                    <!-- Hire Me Button -->
                   </v-row>
                 </v-col>
-                <!-- Hire Me Button -->
-                <v-col cols="5">
-                  <div class="text-center">
-                    <a
-                      class="hireme-button"
-                      href="#"
-                      @click.prevent="hireMeModal = !hireMeModal"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 10.969 12.124"
-                      >
-                        <path
-                          d="M7.969,12.124H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H7.969a3,3,0,0,1,3,3V9.123A3,3,0,0,1,7.969,12.124ZM5.479,6.062a3.17,3.17,0,0,0-2.071.686,2.848,2.848,0,0,0-.97,2.042.376.376,0,0,0,.114.217.229.229,0,0,0,.132.086H8.276a.246.246,0,0,0,.186-.068.319.319,0,0,0,.068-.235,2.764,2.764,0,0,0-.956-2.061A3.254,3.254,0,0,0,5.479,6.062Zm.005-3.03A1.212,1.212,0,1,0,6.7,4.244,1.217,1.217,0,0,0,5.485,3.031Z"
-                          transform="translate(0 0)"
-                          fill="#fff"
-                        />
-                      </svg>
-
-                      <span>Hire Me</span>
-                    </a>
-                  </div>
-                </v-col>
-                <!-- Hire Me Button -->
               </v-row>
-            </v-col>
-          </v-row>
-        </div>
+              <!-- rate frequency for tablet & pc -->
+            </div>
+          </v-col>
+        </v-row>
+
+        <!-- rate frequency for mobile -->
+        <v-row no-gutters class="hidden-sm-and-up">
+          <v-col cols="12" sm="12" lg="5">
+            <v-row no-gutters>
+              <v-col cols="12">
+                <v-row no-gutters>
+                  <!-- Pay Rate -->
+                  <v-col cols="4" class="hireme-rate pb-3 pb-sm-0">
+                    <v-row no-gutters>
+                      <v-col cols="12" class="pb-2">
+                        <div
+                          v-for="(payment_Info,
+                          index) in currentUser.payment_info"
+                          :key="index"
+                          v-show="payment_Info.is_public"
+                        >
+                          <strong v-if="paymentInfo == index"
+                            >${{ payment_Info.salary }}</strong
+                          >
+                        </div>
+                      </v-col>
+                      <v-col cols="12">
+                        <div
+                          v-for="(payment_Info,
+                          index) in currentUser.payment_info"
+                          :key="index"
+                          v-show="payment_Info.is_public"
+                        >
+                          <a
+                            class="hire-rate-button"
+                            @click="paymentInfoNext()"
+                            v-if="paymentInfo == index"
+                            href="javascript:void(0)"
+                          >
+                            {{ payment_Info.salary_frequency }}
+                            Rate
+                          </a>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <!-- Pay Rate -->
+                  <!-- Availability -->
+                  <v-col cols="8" class="hireme-rate">
+                    <v-row no-gutters>
+                      <v-col cols="12" class="pb-2">
+                        <div
+                          v-for="(availability_info,
+                          index) in currentUser.availability_info"
+                          :key="index"
+                          v-show="availability_info.is_public"
+                        >
+                          <strong v-if="available == index">
+                            {{ availability_info.available_hours }} hrs
+                          </strong>
+                        </div>
+                      </v-col>
+                      <v-col cols="12">
+                        <div
+                          v-for="(availability_info,
+                          index) in currentUser.availability_info"
+                          :key="index"
+                          v-show="availability_info.is_public"
+                        >
+                          <a
+                            class="hire-rate-button"
+                            @click="availableNext()"
+                            v-if="available == index"
+                            href="javascript:void(0)"
+                          >
+                            {{ availability_info.available_hours_frequency }}
+                            Availability
+                          </a>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <!-- Availability -->
+                </v-row>
+              </v-col>
+              <!-- Hire Me Button -->
+              <v-col cols="6" class="ml-auto">
+                <div class="text-center">
+                  <a
+                    class="hireme-button"
+                    href="#"
+                    @click.prevent="hireMeModal = !hireMeModal"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 10.969 12.124"
+                    >
+                      <path
+                        d="M7.969,12.124H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H7.969a3,3,0,0,1,3,3V9.123A3,3,0,0,1,7.969,12.124ZM5.479,6.062a3.17,3.17,0,0,0-2.071.686,2.848,2.848,0,0,0-.97,2.042.376.376,0,0,0,.114.217.229.229,0,0,0,.132.086H8.276a.246.246,0,0,0,.186-.068.319.319,0,0,0,.068-.235,2.764,2.764,0,0,0-.956-2.061A3.254,3.254,0,0,0,5.479,6.062Zm.005-3.03A1.212,1.212,0,1,0,6.7,4.244,1.217,1.217,0,0,0,5.485,3.031Z"
+                        transform="translate(0 0)"
+                        fill="#fff"
+                      />
+                    </svg>
+
+                    <span>Hire Me</span>
+                  </a>
+                </div>
+              </v-col>
+              <!-- Hire Me Button -->
+            </v-row>
+          </v-col>
+        </v-row>
+        <!-- rate frequency for mobile -->
       </div>
     </header>
     <!--<HireModal-->
@@ -311,22 +433,27 @@ export default {
     close() {
       this.isOpen = false;
     },
+    // availableNext() {
+    //   this.available++;
+    //   this.paymentInfo++;
+    //   if (this.paymentInfo == 4 && this.available == 3) {
+    //     this.available = 0;
+    //     this.paymentInfo = 0;
+    //   } else if (this.paymentInfo == 1) {
+    //     this.available = 0;
+    //   } else if (this.paymentInfo == 2) {
+    //     this.available = 1;
+    //   } else if (this.paymentInfo == 3) {
+    //     this.available = 2;
+    //   } else {
+    //     this.available = 0;
+    //     this.paymentInfo = 0;
+    //   }
+    // },
     availableNext() {
-      this.available++;
-      this.paymentInfo++;
-      if (this.paymentInfo == 4 && this.available == 3) {
+      if (this.available == 2) {
         this.available = 0;
-        this.paymentInfo = 0;
-      } else if (this.paymentInfo == 1) {
-        this.available = 0;
-      } else if (this.paymentInfo == 2) {
-        this.available = 1;
-      } else if (this.paymentInfo == 3) {
-        this.available = 2;
-      } else {
-        this.available = 0;
-        this.paymentInfo = 0;
-      }
+      } else this.available++;
     },
     availablePrev() {
       if (this.available == 0) {
@@ -418,7 +545,7 @@ export default {
 
 .header-profile {
   position: relative;
-  display: flex;
+  // display: flex;
   font-family: inherit;
 }
 .hourly-title {
@@ -475,7 +602,16 @@ export default {
   }
 }
 //header
-
+@media (max-width: 475px) {
+  .hidden-xs-only {
+    display: none;
+  }
+}
+@media (min-width: 500px) {
+  .hidden-sm-and-up {
+    display: none;
+  }
+}
 //profile-actions
 .profile-actions .actions-toggle-button {
   display: block;
@@ -761,7 +897,7 @@ export default {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  margin-top: 5px;
+  margin-top: 1em;
   margin-left: auto;
   width: 74px;
   height: 32px;
