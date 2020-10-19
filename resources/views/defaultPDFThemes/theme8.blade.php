@@ -384,7 +384,7 @@
         @endif
 
         @php
-            $visibleEducations = $user->getPublicEducationExperience();
+            $visibleEducations = $user->getPublicEducation();
         @endphp
 
         @if ($visibleEducations->count() > 0)
