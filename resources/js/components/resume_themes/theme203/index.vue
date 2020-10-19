@@ -1645,13 +1645,16 @@ export default {
 }
 .custom-portfolio-title {
   font-family: "Montserrat" !important;
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: bold;
-  margin-bottom: -20px;
-  margin-top: -20px;
+  // margin-bottom: -15px;
+  // margin-top: -15px;
+  line-height: normal;
+  vertical-align: initial;
+  letter-spacing: normal;
 
   @media screen and (max-width: 959px) {
-    font-size: 16px !important;
+    font-size: 14px !important;
   }
 }
 .custom-portfolio-subtitle {
