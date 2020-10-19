@@ -32,8 +32,19 @@
                 <div class="job-title py-2 pb-sm-2">
                   {{ currentUser.personal_info.designation }}
                 </div>
-                <div class="bio padrgt">
+
+                <div
+                  class="bio padrgt"
+                  @click="collapsed = !collapsed"
+                  :class="[collapsed == true ? 'collapsed' : '']"
+                >
                   {{ currentUser.personal_info.about }}
+                  <span class="collasped-icon">
+                    <v-icon color="#5F45FF" v-if="!collapsed"
+                      >mdi-menu-up</v-icon
+                    >
+                    <v-icon color="#5F45FF" v-else>mdi-menu-down</v-icon>
+                  </span>
                 </div>
               </v-col>
             </v-row>
@@ -266,9 +277,12 @@
                         height: 50px;
                         width: 150px;
                         border-radius: 6px;
-                        background: #5f45ff;
+
                         box-shadow: #9180ff 0px 10px 30px -8px;
                       "
+                      :disabled="disableAudio"
+                      color="#5f45ff"
+                      id="audioBtn"
                       @click.stop="audioModal = true"
                       dark
                       class="mx-1 ct-buttom-mrg"
@@ -292,6 +306,9 @@
                         background: #e7e5f6;
                         box-shadow: #e7e5f6 0px 10px 30px -8px;
                       "
+                      :disabled="disableVideo"
+                      id="videoBtn"
+                      color="#e7e5f6"
                       @click.stop="videoModal = true"
                     >
                       <img
@@ -316,11 +333,14 @@
                         height: 50px;
                         width: 150px;
                         border-radius: 6px;
-                        background: #5f45ff;
-                        box-shadow: #9180ff 0px 10px 30px -8px;
+
+                        box-shadow: #9180ff 0px 10px 20px -8px;
                       "
-                      @click.stop="audioModal = true"
+                      :disabled="disableAudio"
+                      color="#5f45ff"
+                      id="audioBtn"
                       dark
+                      @click.stop="audioModal = true"
                       class="mx-1 ct-buttom-mrg"
                     >
                       <img
@@ -328,7 +348,10 @@
                         alt="voice call"
                         style="width: 18px; height: 18px; margin-right: 7.5px"
                       />
-                      <div class="text-capitalize" style="font-size: 14px">
+                      <div
+                        class="text-capitalize"
+                        style="font-size: 14px; color: #e7e5f6"
+                      >
                         Audio
                       </div>
                     </v-btn>
@@ -339,9 +362,11 @@
                         height: 50px;
                         width: 150px;
                         border-radius: 6px;
-                        background: #e7e5f6;
-                        box-shadow: #e7e5f6 0px 10px 30px -8px;
+                        box-shadow: #e7e5f6 0px 10px 20px -8px;
                       "
+                      :disabled="disableVideo"
+                      id="videoBtn"
+                      color="#e7e5f6"
                       @click.stop="videoModal = true"
                     >
                       <img
@@ -503,9 +528,12 @@
                         height: 60px;
                         width: 93px;
                         border-radius: 6px;
-                        background: #5f45ff;
+
                         box-shadow: #9180ff 0px 10px 30px -8px;
                       "
+                      :disabled="disableAudio"
+                      color="#5f45ff"
+                      id="audioBtn"
                       @click.stop="audioModal = true"
                       dark
                       class="mx-1"
@@ -523,9 +551,12 @@
                         height: 60px;
                         width: 93px;
                         border-radius: 6px;
-                        background: #e7e5f6;
+
                         box-shadow: #e7e5f6 0px 10px 30px -8px;
                       "
+                      :disabled="disableVideo"
+                      id="videoBtn"
+                      color="#e7e5f6"
                       @click.stop="videoModal = true"
                     >
                       <img
@@ -628,12 +659,13 @@
                         <span
                           class="hidden-xs-only pl-sm-4 subtitle-2"
                           style="color: rgba(0, 0, 0, 0.87)"
-                          >{{ work.date_from }} - {{ work.date_to }}</span
+                          >{{ getFullYear(work.date_from) }} -
+                          {{ getFullYear(work.date_to) }}</span
                         >
                       </div>
                       <div class="hidden-sm-and-up subtitle-2 pb-4">
-                        {{ work.date_from }} -
-                        {{ work.date_to }}
+                        {{ getFullYear(work.date_from) }} -
+                        {{ getFullYear(work.date_to) }}
                       </div>
                       <div class="subtitle-2 grey--text lighten-2">
                         {{ work.description }}
@@ -673,7 +705,8 @@
                       </div>
                       <div class="subtitle-2 pb-1" style="color: #1f5de4">
                         {{ education.university_name }},
-                        {{ education.date_from }} - {{ education.date_to }}
+                        {{ getFullYear(education.date_from) }} -
+                        {{ getFullYear(education.date_to) }}
                       </div>
                       <div class="subtitle-2 pb-2" style="color: #707070">
                         {{ education.degree_title }}
@@ -855,11 +888,6 @@
                     ></div>
 
                     <div class="hobby__content">
-                      <img
-                        src="/images/resume_themes/theme5/ball.png"
-                        class="hobby_img"
-                        alt="hobby_img"
-                      />
                       <div class="text-capitalize">{{ hobby.title }}</div>
                     </div>
                   </div>
@@ -1058,6 +1086,14 @@
     margin: 1.5rem 1.5rem 0 2.5rem;
     border-radius: 10px;
   }
+  #audioBtn.v-btn--disabled {
+    background-color: #5f45ff !important;
+    opacity: 0.4 !important;
+  }
+  #videoBtn.v-btn--disabled {
+    background-color: #e7e5f6 !important;
+    opacity: 0.4 !important;
+  }
   .imgradius {
     width: 184px;
     height: auto;
@@ -1088,7 +1124,9 @@
       transition: all 0.5s ease;
     }
   }
-
+  .v-tabs:not(.v-tabs--vertical) .v-tab {
+    white-space: nowrap;
+  }
   .v-tab:hover {
     cursor: pointer;
 
@@ -1127,8 +1165,45 @@
 
   .bio {
     font-size: 0.8rem;
-    line-height: 23px;
+    max-height: 100%;
     color: #6b6b6b;
+    line-height: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+  .collapsed {
+    // word-break: break-word;
+    overflow: hidden;
+    max-height: 6rem;
+
+    // display: -webkit-box;
+    // //  line-height: 16px;
+    // //  max-height: 32px;
+    // text-overflow: "-";
+    // -webkit-line-clamp: 4; /* number of lines to show */
+    // -webkit-box-orient: vertical;
+  }
+  .collasped-icon {
+    position: absolute;
+    bottom: 2px;
+    right: 105px;
+  }
+  @media (max-width: 1024px) {
+    .collasped-icon {
+      bottom: 0;
+      right: 0;
+    }
+  }
+  @media (max-width: 475px) {
+    .collasped-icon {
+      bottom: -4px;
+      right: -7px;
+    }
   }
   .padrgt {
     padding-right: 8rem;
@@ -1714,7 +1789,10 @@ export default {
       hireMeModal: false,
       videoModal: false,
       audioModal: false,
+      collapsed: true,
       available: 0,
+      disableAudio: false,
+      disableVideo: false,
       activeTab: "portfolio",
       paymentInfo: 0,
 
@@ -1807,6 +1885,12 @@ export default {
     },
   },
   methods: {
+    //get year of the date
+    getFullYear(date) {
+      let newDate = new Date(date);
+      let yyyy = newDate.getUTCFullYear();
+      return yyyy;
+    },
     // dynamic tabs
     changeTab(tab_title) {
       this.activeTab = tab_title;
@@ -1846,38 +1930,14 @@ export default {
       this.hireMeModal = false;
     },
     availableNext() {
-      this.available++;
-      this.paymentInfo++;
-      if (this.paymentInfo == 4 && this.available == 3) {
+      if (this.available == 2) {
         this.available = 0;
-        this.paymentInfo = 0;
-      } else if (this.paymentInfo == 1) {
-        this.available = 0;
-      } else if (this.paymentInfo == 2) {
-        this.available = 1;
-      } else if (this.paymentInfo == 3) {
-        this.available = 2;
-      } else {
-        this.available = 0;
-        this.paymentInfo = 0;
-      }
+      } else this.available++;
     },
     availablePrev() {
-      this.available--;
-      this.paymentInfo--;
-      if (this.paymentInfo == 4 && this.available == 3) {
+      if (this.available == 0) {
         this.available = 0;
-        this.paymentInfo = 0;
-      } else if (this.paymentInfo == 1) {
-        this.available = 0;
-      } else if (this.paymentInfo == 2) {
-        this.available = 1;
-      } else if (this.paymentInfo == 3) {
-        this.available = 2;
-      } else {
-        this.available = 0;
-        this.paymentInfo = 0;
-      }
+      } else this.available--;
     },
     paymentInfoNext() {
       if (this.paymentInfo == 2) {
@@ -1903,10 +1963,16 @@ export default {
     },
     filterAudio(audios) {
       var filterArray = audios.filter((a) => a.type === "audio");
+      if (!Array.isArray(filterArray) || !filterArray.length) {
+        this.disableAudio = true;
+      }
       return filterArray;
     },
     filterVideo(videos) {
       var filterArray = videos.filter((a) => a.type === "video");
+      if (!Array.isArray(filterArray) || !filterArray.length) {
+        this.disableVideo = true;
+      }
       return filterArray;
     },
     setDummyUser() {

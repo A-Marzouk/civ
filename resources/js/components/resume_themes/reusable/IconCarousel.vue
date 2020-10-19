@@ -35,6 +35,9 @@
               'px;' +
               'border:' +
               border +
+              ';' +
+              'box-shadow:' +
+              boxShadow +
               ';'
             "
             :width="btnWidth"
@@ -152,12 +155,15 @@ export default {
     border: {
       type: String,
     },
+    boxShadow: {
+      type: String,
+    },
   },
   data() {
     return {
       currentOffset: 0,
       windowSize: 3,
-      paginationFactor: 60,
+      paginationFactor: 50,
       dragDistance: 0,
       dragStartX: 0,
       dragStartY: 0,
