@@ -90,6 +90,12 @@ class ResumeController extends Controller
         }
     }
 
+    public function hireModalTest(){
+        $user = User::where('username', '123workforce')->first();
+        $user = User::withAllRelations('123workforce', $this->getVersionID('ahmed', $user->id));
+        return view('hire_me_updated', compact('user'));
+    }
+
     protected function getVersionThemeID($version, $user_id){
 
         // check if this version exists:

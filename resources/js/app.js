@@ -29,6 +29,18 @@ if ($("#welcomeView").length !== 0) {
     });
 }
 
+// for tesging HireMeModalUpdated
+import HireMeModalUpdated from './components/resume_themes/includes/HireMeModalUpdated';
+if ($("#HireMeModalUpdated").length !== 0) {
+    new Vue({
+        el: '#HireMeModalUpdated',
+        vuetify,
+        components: {
+            'hire-me-updated': HireMeModalUpdated
+        }
+    });
+}
+
 
 import pricing from './components/welcome-view/pricing';
 if ($("#pricing").length !== 0) {
