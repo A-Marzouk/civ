@@ -27,11 +27,7 @@
                                 </template>
                             </div>
 
-                            <div class="step-footer">
-
-                                <div class="total-payment">
-                                    ${{Math.round(totalPaymentAmount)}}
-                                </div>
+                            <div class="step-footer" style="justify-content: flex-end">
 
                                 <div class="action-btn">
                                     <a href="javascript:void(0)" @click="goToNextStep">
@@ -50,8 +46,8 @@
 
                     <div class="single-step-wrapper two" v-if="isStepActive(2)">
                         <div class="step-header">
-                            <div class="back">
-                                <img src="/icons/hire-modal/back.svg" alt="back icon" @click="goToPreviousStep"
+                            <div class="back"  @click="goToPreviousStep">
+                                <img src="/icons/hire-modal/back.svg" alt="back icon"
                                      v-show="isStepActive(2)">
                             </div>
 
@@ -130,8 +126,8 @@
 
                     <div class="single-step-wrapper three"  v-if="isStepActive(3)" >
                         <div class="step-header">
-                            <div class="back">
-                                <img src="/icons/hire-modal/back.svg" alt="back icon" @click="goToPreviousStep"
+                            <div class="back" @click="goToPreviousStep">
+                                <img src="/icons/hire-modal/back.svg" alt="back icon"
                                      v-show="isStepActive(3)">
                             </div>
                             Total Payment
@@ -158,14 +154,25 @@
                                 Auto pay balance of (${{Math.round(totalPaymentAmount)}})
                             </div>
                             <div class="payment-types">
-                                <div class="single-payment-type sub" :class="{'active-blue' : isPaymentTypeActive('hourly')}" @click="setPaymentType('hourly')">
+                                <div class="single-payment-type sub" :class="{'active-blue' : isAutoPaymentTypeActive('7-days')}" @click="setAutoPaymentType('7-days')">
                                     7 Days
                                 </div>
-                                <div class="single-payment-type sub" :class="{'active-blue' : isPaymentTypeActive('weekly')}" @click="setPaymentType('weekly')">
+                                <div class="single-payment-type sub" :class="{'active-blue' : isAutoPaymentTypeActive('14-days')}" @click="setAutoPaymentType('14-days')">
                                     14 Days
                                 </div>
-                                <div class="single-payment-type sub date" :class="{'active-blue': isPaymentTypeActive('monthly')}" @click="setPaymentType('monthly')">
-                                    Pick a date
+                                <div class="single-payment-type sub date" :class="{'active-blue': isAutoPaymentTypeActive('custom-date')}" @click="pickDateSelected">
+                                    <span v-if="isDateChanged">
+                                        {{datePicker}}
+                                    </span>
+
+                                    <template v-else>
+                                        <img src="/icons/hire-modal/date.svg" alt="date">
+                                        Pick a date
+                                    </template>
+                                </div>
+
+                                <div class="date-picker" v-show="isDatePickerOpened">
+                                    <v-date-picker  full-width v-model="datePicker" color="green lighten-1" header-color="primary" @change="dateChanged"></v-date-picker>
                                 </div>
                             </div>
 
@@ -178,53 +185,6 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="single-step-wrapper four" v-if="isStepActive(4)">
-                        <div class="step-header">
-                            Choose Payment Amount
-                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
-                                 v-show="isStepActive(4)">
-                        </div>
-                        <div class="step-content" v-show="isStepActive(4)">
-
-                            <!-- Payment type -->
-                            <div class="payment-types">
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('hourly')}"
-                                     @click="setPaymentType('hourly')">
-                                    Hourly
-                                </div>
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('weekly')}"
-                                     @click="setPaymentType('weekly')">
-                                    Weekly
-                                </div>
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('monthly')}"
-                                     @click="setPaymentType('monthly')">
-                                    Monthly
-                                </div>
-                            </div>
-
-                            <div class="percentage-select">
-                                <div class="label">
-                                    Percentage
-                                </div>
-
-                                <div class="percentage-input-wrapper">
-                                    <span class="max" v-show="percentage < 90">100%</span>
-                                    <span class="current" :style="{right: currentPosition + '%'}">{{percentage}}%</span>
-                                    <input type="range" class="range" min="0" max="100" step="10" v-model="percentage"
-                                           style="width: 100%;">
-                                </div>
-                            </div>
-
-
-                            <div class="action-btn align-content-end">
-                                <a href="javascript:void(0)" @click="goToNextStep">
-                                    Confirm
-                                </a>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -271,12 +231,16 @@
                 currentStep: 1,
                 currentPaymentMethod: 'paypal',
                 currentPaymentType: '',
+                currentAutoPaymentType: '',
                 currentHoursType: 'week',
                 // payment calculations:
                 userHourlyRate: 10,
                 percentage: 100,
                 currentSelectedHours: 25,
-                finishedSteps: []
+                finishedSteps: [],
+                datePicker: new Date().toISOString().substr(0, 10),
+                isDatePickerOpened: false,
+                isDateChanged: false
             }
         },
         watch: {
@@ -290,6 +254,11 @@
             }
         },
         methods: {
+            dateChanged(){
+                // close the date picker
+              this.isDatePickerOpened = false;
+              this.isDateChanged = true;
+            },
             getHoursLabel(){
                 if(this.currentPaymentType === 'weekly'){
                     return 'Weekly';
@@ -326,6 +295,17 @@
             },
             isPaymentTypeActive(payment_type) {
                 return this.currentPaymentType === payment_type;
+            },
+            // step 3-
+            setAutoPaymentType(payment_type) {
+                this.currentAutoPaymentType = payment_type;
+            },
+            isAutoPaymentTypeActive(payment_type) {
+                return this.currentAutoPaymentType === payment_type;
+            },
+            pickDateSelected(){
+                this.currentAutoPaymentType = 'custom-date';
+                this.isDatePickerOpened = true;
             },
 
             // step 3
@@ -570,7 +550,7 @@
                 .payment-types {
                     display: flex;
                     justify-content: space-between;
-
+                    position: relative;
 
                     .single-payment-type {
                         width: 196px;
@@ -594,6 +574,9 @@
                             font-size: 22px;
                             &.date{
                                 width: 196px;
+                                img{
+                                    margin-right:10px;
+                                }
                             }
                         }
 
@@ -807,6 +790,25 @@
                 }
 
             }
+        }
+    }
+</style>
+
+<style lang="scss">
+    .date-picker{
+        position: absolute;
+        top: -90px;
+        left: -6px;
+        right: -6px;
+    }
+
+    .v-picker{
+        .v-picker__title.primary{
+            background: #001CE2 !important;
+        }
+
+        .v-btn.v-btn--active.v-btn--rounded.theme--light.green.lighten-1{
+            background: #001CE2 !important;
         }
     }
 </style>
