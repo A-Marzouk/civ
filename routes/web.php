@@ -27,6 +27,9 @@ Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
 
 
+Route::get('/hire-me/updated','ResumeController@hireModalTest');
+
+
 // Test theme preview
 Route::get('/preview-theme-pdf-by-code/{themeCode}/{username}/{version?}', 'ResumeController@downloadPDFResume');
 
