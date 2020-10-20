@@ -414,6 +414,10 @@
                     &.sub{
                         font-size: 28px;
                         margin-bottom: 25px;
+
+                        @include lt-sm {
+                            font-size: 20px;
+                        }
                     }
 
                     @include lt-sm {
@@ -476,8 +480,8 @@
                             border: 2px solid #E6E8FC;
                             border-radius: 5px;
                             @include lt-sm {
-                                width: 95px;
-                                height: 40px;
+                                width: 125px;
+                                height: 50px;
                             }
                             display: flex;
                             align-items: center;
@@ -511,8 +515,14 @@
                                 }
 
                                 @include lt-sm {
-                                    width: 95px;
-                                    height: 40px;
+                                    width: 125px;
+                                    height: 50px;
+                                    font-size: 21px;
+
+                                    img{
+                                        margin-left:10px;
+                                        width: 22px;
+                                    }
                                 }
                             }
                         }
@@ -522,6 +532,8 @@
 
                 .payment-methods-wrapper{
                     display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
 
                     .payment-method{
                         width: 196px;
@@ -533,6 +545,10 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+
+                        @include lt-sm {
+                            margin-bottom: 20px;
+                        }
 
                         &:hover{
                             cursor: pointer;
@@ -549,9 +565,12 @@
                 /*step 2*/
                 .payment-types {
                     display: flex;
+                    flex-wrap: wrap;
                     justify-content: space-between;
                     position: relative;
-
+                    @include lt-sm {
+                        justify-content: center;
+                    }
                     .single-payment-type {
                         width: 196px;
                         height: 109px;
@@ -577,6 +596,17 @@
                                 img{
                                     margin-right:10px;
                                 }
+                                @include lt-sm{
+                                    width: 175px;
+                                    margin-top: 15px;
+                                }
+                            }
+
+                            @include lt-sm {
+                                width: 80px;
+                                height: 40px;
+                                font-size: 16px;
+                                margin-right: 15px;
                             }
                         }
 
@@ -665,6 +695,10 @@
                         color: #616588;
                         opacity: 1;
                         margin-top:25px;
+
+                        @include lt-sm{
+                            font-size: 20px;
+                        }
                     }
                 }
                 /* step 4 */
@@ -713,8 +747,8 @@
             border: 2px solid #E6E8FC;
             border-radius: 5px;
             @include lt-sm {
-                width: 95px;
-                height: 40px;
+                width: 125px;
+                height: 50px;
             }
             display: flex;
             align-items: center;
@@ -748,8 +782,8 @@
                     border: 2px solid #E6E8FC;
                     border-radius: 5px;
                     @include lt-sm {
-                        width: 95px;
-                        height: 40px;
+                        width: 125px;
+                        height: 50px;
                     }
                     display: flex;
                     align-items: center;
@@ -784,24 +818,32 @@
                     }
 
                     @include lt-sm {
-                        width: 95px;
-                        height: 40px;
+                        width: 125px;
+                        height: 50px;
+
+                        img{
+
+                        }
                     }
                 }
 
             }
         }
     }
-</style>
 
-<style lang="scss">
     .date-picker{
         position: absolute;
         top: -90px;
         left: -6px;
         right: -6px;
-    }
 
+        @include lt-sm{
+            top: -160px;
+        }
+    }
+</style>
+
+<style lang="scss">
     .v-picker{
         .v-picker__title.primary{
             background: #001CE2 !important;
