@@ -1324,7 +1324,6 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
