@@ -75,7 +75,7 @@
                                 </div>
                             </div>
 
-                            <div class="select-hours" v-if="currentPaymentType !== '' ">
+                            <div class="select-hours" :class="{'full-height' : currentPaymentType !== '' }">
                                 <div class="percentage-select">
                                     <div class="label">
                                         {{getHoursLabel()}}
@@ -112,7 +112,7 @@
                                     ${{Math.round(totalPaymentAmount)}}
                                 </div>
 
-                                <div class="action-btn">
+                                <div class="action-btn" v-if="currentPaymentType !== '' ">
                                     <a href="javascript:void(0)" @click="goToNextStep">
                                         Confirm
                                         <img src="/icons/hire-modal/whitr-arrow.svg" alt="arrow right">
@@ -687,7 +687,13 @@
                     align-items: center;
                     justify-content: center;
                     flex-direction: column;
+                    height:0;
+                    overflow: hidden;
+                    transition: height 1s;
 
+                    &.full-height{
+                        height: 250px;
+                    }
 
                     .payment-details{
                         font-size: 22px;
