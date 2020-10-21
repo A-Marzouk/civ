@@ -978,7 +978,11 @@
         v-model="audioModal"
         max-width="1710"
         persistent
-        style="overflow-y: hidden !important; overflow-x: hidden !important"
+        style="
+          overflow-y: hidden !important;
+          overflow-x: hidden !important;
+          min-height: 300px;
+        "
       >
         <v-card class="card-audio-modal">
           <div class="title-container">
@@ -998,7 +1002,7 @@
               </v-btn>
             </div>
           </div>
-          <!-- <div class="watermark-text-modal">Audio</div> -->
+          <div class="watermark-text-modal">Audio</div>
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
             <template v-for="item in filterAudio(currentUser.media)">
               <audio-player
@@ -2134,7 +2138,7 @@ export default {
   font-family: "Gotham Pro" !important;
   font-style: normal;
   font-weight: bold;
-  font-size: 400px;
+  font-size: 25rem !important;
   line-height: 383px;
   letter-spacing: 0.05em;
   color: rgba(0, 0, 0, 0.03) !important;
