@@ -92,7 +92,13 @@ class ResumeController extends Controller
 
     public function hireModalTest(){
         $user = User::where('username', '123workforce')->first();
-        $user = User::withAllRelations('123workforce', $this->getVersionID('ahmed', $user->id));
+        $user = User::withAllRelations('123workforce', $this->getVersionID('anton', $user->id));
+        return view('hire_me_updated', compact('user'));
+    }
+
+    public function hireModalTestNoPayment(){
+        $user = User::where('username', '123workforce')->first();
+        $user = User::withAllRelations('123workforce', $this->getVersionID('find-ahmed-marzouk', $user->id));
         return view('hire_me_updated', compact('user'));
     }
 
