@@ -8,40 +8,88 @@
         >
             <div class="hire-main-wrapper" v-if="user">
                 <div class="steps-wrapper">
-                    <div class="single-step-wrapper one" v-if=" isStepActive(1)">
-                        <div class="step-header">
-                            Choose Payment Method
+                    <div class="single-step-wrapper one" v-if="isStepActive(1)">
+                        <template v-if="paymentMethods.length > 0">
+                            <div class="step-header">
+                                Choose Payment Method
 
-                            <img src="/icons/hire-modal/close.svg" alt="close btn" class="close-modal" @click="closeModal">
-                        </div>
-                        <div class="step-content" v-show="isStepActive(1)">
+                                <img src="/icons/hire-modal/close.svg" alt="close btn" class="close-modal" @click="closeModal">
+                            </div>
+                            <div class="step-content">
 
-                            <div class="payment-methods-wrapper" v-if="paymentMethods.length > 0">
-                                <template v-for="paymentMethod in paymentMethods">
-                                    <div v-show="paymentMethod.name === 'Stripe' " class="payment-method" @click="currentPaymentMethod = 'stripe'" :class="{active : currentPaymentMethod === 'stripe'}">
-                                        <img src="/icons/hire-modal/stripe-logo.svg" alt="stripe icon">
+                                <template v-if="paymentMethods.length > 0">
+                                    <div class="payment-methods-wrapper" >
+                                        <template v-for="paymentMethod in paymentMethods">
+                                            <div v-show="paymentMethod.name === 'Stripe' " class="payment-method" @click="currentPaymentMethod = 'stripe'" :class="{active : currentPaymentMethod === 'stripe'}">
+                                                <img src="/icons/hire-modal/stripe-logo.svg" alt="stripe icon">
+                                            </div>
+                                            <div v-show="paymentMethod.name === 'PayPal' " class="payment-method" @click="currentPaymentMethod = 'paypal'" :class="{active : currentPaymentMethod === 'paypal'}">
+                                                <img src="/icons/hire-modal/paypal-logo.svg" alt="paypal icon">
+                                            </div>
+                                        </template>
                                     </div>
-                                    <div v-show="paymentMethod.name === 'PayPal' " class="payment-method" @click="currentPaymentMethod = 'paypal'" :class="{active : currentPaymentMethod === 'paypal'}">
-                                        <img src="/icons/hire-modal/paypal-logo.svg" alt="paypal icon">
+
+                                    <div class="step-footer" style="justify-content: flex-end">
+
+                                        <div class="action-btn">
+                                            <a href="javascript:void(0)" @click="goToNextStep">
+                                                Confirm
+                                                <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
+                                            </a>
+                                        </div>
                                     </div>
                                 </template>
                             </div>
+                        </template>
 
-                            <div class="step-footer" style="justify-content: flex-end">
+                        <div v-else class="no-payment-methods">
+                            <img src="/icons/hire-modal/close.svg" alt="close btn" class="close-modal" @click="closeModal">
 
-                                <div class="action-btn">
-                                    <a href="javascript:void(0)" @click="goToNextStep">
-                                        Confirm
-                                        <img src="/icons/hire-modal/whitr-arrow.svg" alt="arrow right">
+                            <div class="message" :class="{'full-height' : !isContactFormOpened && !isMessageSent}">
+                                <div class="text">
+                                    Current user has no payment<br/>methods set up
+                                    <img src="/icons/hire-modal/sad-emoj.svg" alt="sad icon"> .
+                                </div>
+                                <div class="hire-modal-footer">
+                                    <div class="action-btn contact">
+                                        <a href="javascript:void(0)" @click="showContactForm">
+                                            Contact Freelancer
+                                            <img src="/icons/hire-modal/arrow-up.svg" alt="arrow right">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contact-form" :class="{'full-height' : isContactFormOpened}">
+                                <div class="contact-form-header">
+                                    <div class="text">
+                                        Message
+                                    </div>
+                                    <div class="avatar">
+                                        Send to <img :src="user.personal_info.profile_pic" alt="user avatar">
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <textarea v-model="messageBody">
+                                    </textarea>
+                                </div>
+                                <div class="send-btn">
+                                    <a href="javascript:void(0)" @click="sendMessage">
+                                        Send <img src="/icons/hire-modal/arrow-up.svg" alt="arrow">
                                     </a>
                                 </div>
                             </div>
 
-                            <div v-if="paymentMethods.length < 1" style="font-size: 18px; line-height: 24px;color: #888DB1;">
-                                Current user has no payment methods set up.
+                            <div class="success-message"  :class="{'full-height' : !isContactFormOpened && isMessageSent}">
+                                <div class="message-content">
+                                    <img src="/icons/hire-modal/verified.svg" alt="verified icon">
+                                    <div class="text">
+                                        Successfully Sent!
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
 
                     <div class="single-step-wrapper two" v-if="isStepActive(2)">
@@ -75,7 +123,7 @@
                                 </div>
                             </div>
 
-                            <div class="select-hours" v-if="currentPaymentType !== '' ">
+                            <div class="select-hours" :class="{'full-height' : currentPaymentType !== '' }">
                                 <div class="percentage-select">
                                     <div class="label">
                                         {{getHoursLabel()}}
@@ -112,10 +160,10 @@
                                     ${{Math.round(totalPaymentAmount)}}
                                 </div>
 
-                                <div class="action-btn">
+                                <div class="action-btn" v-if="currentPaymentType !== '' ">
                                     <a href="javascript:void(0)" @click="goToNextStep">
                                         Confirm
-                                        <img src="/icons/hire-modal/whitr-arrow.svg" alt="arrow right">
+                                        <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
                                     </a>
                                 </div>
                             </div>
@@ -181,7 +229,7 @@
                                 <div class="action-btn">
                                     <a href="javascript:void(0)" :href="getPayLink()" @click="reset">
                                         Pay Now
-                                        <img src="/icons/hire-modal/whitr-arrow.svg" alt="arrow right">
+                                        <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
                                     </a>
                                 </div>
                             </div>
@@ -240,7 +288,10 @@
                 finishedSteps: [],
                 datePicker: new Date().toISOString().substr(0, 10),
                 isDatePickerOpened: false,
-                isDateChanged: false
+                isDateChanged: false,
+                isContactFormOpened: false,
+                isMessageSent: false,
+                messageBody:'Hi, can you please setup your payment details to start working with you.'
             }
         },
         watch: {
@@ -254,6 +305,13 @@
             }
         },
         methods: {
+            showContactForm(){
+              this.isContactFormOpened = true;
+            },
+            sendMessage(){
+                this.isContactFormOpened = false;
+                this.isMessageSent = true;
+            },
             dateChanged(){
                 // close the date picker
               this.isDatePickerOpened = false;
@@ -505,6 +563,10 @@
                                 font-size: 26px;
                                 line-height: 25px;
 
+                                &.contact{
+                                    width:320px;
+                                }
+
                                 img{
                                     margin-left:25px;
                                     margin-top:5px;
@@ -687,7 +749,13 @@
                     align-items: center;
                     justify-content: center;
                     flex-direction: column;
+                    height:0;
+                    overflow: hidden;
+                    transition: height 1s;
 
+                    &.full-height{
+                        height: 250px;
+                    }
 
                     .payment-details{
                         font-size: 22px;
@@ -801,34 +869,207 @@
                 justify-content: center;
                 margin-top: 40px;
 
+                &.contact{
+                    a{
+                        width:320px;
+                        img{
+                            margin-left: 12px;
+                            margin-top: 7px;
+                        }
+                        @include lt-sm {
+                            width: 196px;
+                            height: 50px;
+                            font-size: 17px;
+                            font-weight: 600;
+                            img{
+                                margin-left: 6px;
+                                width: 22px;
+                            }
+                        }
+                    }
+                }
+
                 a {
-                    width: 110px;
-                    height: 45px;
+                    width: 196px;
+                    height: 80px;
                     display: flex;
                     align-items: center;
                     background: #001CE2;
                     border-radius: 5px;
                     justify-content: center;
                     color: white;
-                    font-size: 16px;
-                    line-height: 25px;
+                    font-size: 22px;
+
 
                     &:hover {
                         text-decoration: none;
                     }
 
-                    @include lt-sm {
-                        width: 125px;
-                        height: 50px;
-
-                        img{
-
-                        }
-                    }
                 }
 
             }
         }
+    }
+
+    .no-payment-methods{
+        position: relative;
+        .close-modal{
+            position: absolute;
+            box-shadow: 0px 13px 16px #0000000A;
+            border-radius: 50%;
+            top: -50px;
+            right: -100px;
+
+            @include lt-sm{
+                top: -33px;
+                right: -6px;
+                width: 35px;
+            }
+
+        }
+        .message{
+            height: 0;
+            overflow: hidden;
+            transition: height 1s;
+            &.full-height{
+                height: 220px;
+                @include lt-sm{
+                    height: 250px;
+                }
+            }
+            .text{
+                font-size:32px;
+                font-family: Poppins, sans-serif;
+                text-align: center;
+                color: #5C6291;
+                font-weight: 600;
+
+                img{
+                    display: inline-block;
+                    margin-top: -7px;
+                }
+
+                @include lt-sm{
+                    font-size: 26px;
+                }
+            }
+        }
+        .contact-form{
+            height: 0;
+            overflow: hidden;
+            transition: height 1s;
+            &.full-height{
+                height: 330px;
+            }
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .contact-form-header{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .text{
+                    color: #5C6291;
+                    font-size: 26px;
+                    font-weight: 500;
+                    font-family: Poppins, sans-serif;
+                }
+                .avatar{
+                    display: flex;
+                    align-items: center;
+                    color: #5C6291;
+                    font-size: 18px;
+
+                    img{
+                        width:36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        margin-left: 10px;
+                    }
+                }
+            }
+
+            .input-row{
+                width: 100%;
+                margin-top:24px;
+                textarea{
+                    width: 100%;
+                    height: 220px;
+                    border: 2px solid #8488AB34;
+                    border-radius: 17px;
+                    padding: 30px 20px 20px 25px;
+                    resize: none;
+                    color: #8488AB;
+                    font-size: 19px;
+
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+
+            .send-btn{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                margin-top: -35px;
+                margin-right: 25px;
+
+                a{
+                    width: 130px;
+                    height: 47px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size:22px;
+                    background: blue;
+                    color: white;
+                    box-shadow: 0px 6px 13px #081EE033;
+                    border-radius: 5px;
+                    img{
+                        width: 18px;
+                        margin-left:10px;
+                        margin-top: 8px;
+                    }
+                }
+            }
+
+        }
+        .success-message{
+            height: 0;
+            overflow: hidden;
+            transition: height 1s;
+            &.full-height{
+                height: 200px;
+            }
+
+            .message-content{
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+
+                img{
+                    margin-bottom: 25px;
+                }
+
+                .text{
+                    font-family: Poppins, sans-serif;
+                    font-size: 36px;
+                    font-weight: 500;
+                    color: #2BAD03;
+                }
+            }
+
+
+        }
+
     }
 
     .date-picker{

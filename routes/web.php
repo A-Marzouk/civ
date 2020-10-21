@@ -28,6 +28,7 @@ Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
 
 
 Route::get('/hire-me/updated','ResumeController@hireModalTest');
+Route::get('/hire-me/updated/no-payment','ResumeController@hireModalTestNoPayment');
 
 
 // Test theme preview
