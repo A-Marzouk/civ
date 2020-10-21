@@ -978,7 +978,11 @@
         v-model="audioModal"
         max-width="1710"
         persistent
-        style="overflow-y: hidden !important; overflow-x: hidden !important"
+        style="
+          overflow-y: hidden !important;
+          overflow-x: hidden !important;
+          min-height: 300px;
+        "
       >
         <v-card class="card-audio-modal">
           <div class="title-container">
@@ -998,7 +1002,7 @@
               </v-btn>
             </div>
           </div>
-          <!-- <div class="watermark-text-modal">Audio</div> -->
+          <div class="watermark-text-modal">Audio</div>
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
             <template v-for="item in filterAudio(currentUser.media)">
               <audio-player
@@ -1779,8 +1783,15 @@ export default {
   @media screen and (min-width: 600px) and (max-width: 1263px) {
     font-size: 24px;
   }
-  @media screen and(max-width: 599px) {
+  @media screen and (max-width: 599px) {
     font-size: 12px;
+  }
+  @media screen and (max-width: 374px) {
+    font-size: 10px;
+  }
+
+  @media screen and (max-width: 359px) {
+    font-size: 8px;
   }
 }
 .hobbies-avatar {
@@ -1805,6 +1816,12 @@ export default {
     min-height: 45px !important;
     height: 45px !important;
     width: 45px !important;
+  }
+  @media screen and (max-width: 375px) {
+    min-width: 30px !important;
+    min-height: 30px !important;
+    height: 30px !important;
+    width: 30px !important;
   }
 }
 // hobbies tab
@@ -2133,7 +2150,7 @@ export default {
   font-family: "Gotham Pro" !important;
   font-style: normal;
   font-weight: bold;
-  font-size: 400px;
+  font-size: 25rem !important;
   line-height: 383px;
   letter-spacing: 0.05em;
   color: rgba(0, 0, 0, 0.03) !important;
