@@ -137,7 +137,7 @@
                                     </div>
                                 </div>
                                 <div class="payment-details">
-                                    {{currentSelectedHours}} hours x {{userHourlyRate}} Hourly rate  x Percentage {{percentage}}% = {{totalPaymentAmount}}
+                                    {{currentSelectedHours}} hours x {{userHourlyRate}} Hourly rate  x Percentage {{percentage}}% = {{Math.round(totalPaymentAmount)}}
                                 </div>
 
                                 <div class="percentage-select">
@@ -283,7 +283,7 @@
                 currentHoursType: 'week',
                 // payment calculations:
                 userHourlyRate: 10,
-                percentage: 100,
+                percentage: 50,
                 currentSelectedHours: 25,
                 finishedSteps: [],
                 datePicker: new Date().toISOString().substr(0, 10),
