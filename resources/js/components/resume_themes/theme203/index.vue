@@ -1783,8 +1783,15 @@ export default {
   @media screen and (min-width: 600px) and (max-width: 1263px) {
     font-size: 24px;
   }
-  @media screen and(max-width: 599px) {
+  @media screen and (max-width: 599px) {
     font-size: 12px;
+  }
+  @media screen and (max-width: 374px) {
+    font-size: 10px;
+  }
+
+  @media screen and (max-width: 359px) {
+    font-size: 8px;
   }
 }
 .hobbies-avatar {
@@ -1809,6 +1816,12 @@ export default {
     min-height: 45px !important;
     height: 45px !important;
     width: 45px !important;
+  }
+  @media screen and (max-width: 375px) {
+    min-width: 30px !important;
+    min-height: 30px !important;
+    height: 30px !important;
+    width: 30px !important;
   }
 }
 // hobbies tab
