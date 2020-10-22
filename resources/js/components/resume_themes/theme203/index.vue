@@ -1333,7 +1333,6 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
-    console.log(this.currentUser);
 
     // set active tab
     this.setActiveTabByURL();
