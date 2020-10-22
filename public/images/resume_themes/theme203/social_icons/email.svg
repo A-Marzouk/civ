@@ -11,12 +11,12 @@
 	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
 ]>
 <svg version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 45 45"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50px" y="50px" viewBox="0 0 45 45"
 	 style="enable-background:new 0 0 45 45;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;}
+	.st0{fill:#000;}
 	.st1{clip-path:url(#SVGID_2_);}
-	.st2{fill:#000000;}
+	.st2{fill:#ffff;}
 </style>
 <switch>
 	<foreignObject requiredExtensions="&ns_ai;" x="0" y="0" width="1" height="1">
