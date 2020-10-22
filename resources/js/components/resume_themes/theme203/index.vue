@@ -337,7 +337,8 @@
                       v-show="
                         item.title !== 'media' &&
                         item.title !== 'links' &&
-                        item.title !== 'pay_availability'
+                        item.title !== 'pay_availability' &&
+                        item.is_public == true
                       "
                       >{{ item.label }}</v-tab
                     >
