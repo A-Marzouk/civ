@@ -57,13 +57,6 @@
                         <span style="flex:2;" @click="setActive(sidebarLink)">
                             {{ sidebarLink.label }}
                         </span>
-                        <div class="resume-builder__action-buttons-container">
-                            <v-btn class="btn-icon civie-btn" depressed v-if="!structureTabs.includes(sidebarLink.title)"
-                                   style="border-radius: 50%;" @click.prevent="toggleTab(sidebarLink.title)">
-                                <svg-vue icon="eye-icon" class="icon"
-                                         :class="{'visible' : isTabActive(sidebarLink.title)}"></svg-vue>
-                            </v-btn>
-                        </div>
                     </router-link>
 
                     <hr v-if="sidebarLink.title === 'references'"
