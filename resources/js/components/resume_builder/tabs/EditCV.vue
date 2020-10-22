@@ -7,7 +7,7 @@
 
                 <div class="save-bar">
                     <div v-if="savingStatus === 'normal'" class="status">
-                        Last save <img src="/icons/clock-icon.svg" alt="clock icon"> {{justSaved ? 'a few moments ago' : lastActivity}} | {{user.default_resume_link.url}}
+                        Last save <img src="/icons/clock-icon.svg" alt="clock icon"> {{justSaved ? 'a few moments ago' : lastActivity}} | <span v-if="user.username">{{user.default_resume_link.url}}</span>
                     </div>
                     <div v-else-if="savingStatus === 'saving'" class="saving">
                         Saving...
