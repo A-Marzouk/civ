@@ -2044,6 +2044,7 @@ export default {
   border-radius: 40px !important;
   overflow: hidden !important;
   padding: 40px;
+  min-height: 400px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     padding: 24px;
   }
