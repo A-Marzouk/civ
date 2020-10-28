@@ -1,7 +1,5 @@
 <template>
   <div class="social-menu">
-    <div class="social-label">Follow Me</div>
-
     <IconCarousel
       :currentUser="currentUser"
       themeNumber="theme5"

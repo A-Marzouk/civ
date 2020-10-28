@@ -1,6 +1,6 @@
 <template>
   <div class="mb-8 audi-container">
-    <div class="info-text mb-3">Audio-{{audio_num}}</div>
+    <div class="info-text mb-3">Audio-{{ audio_num }}</div>
 
     <div class="d-flex align-center">
       <v-btn
@@ -10,7 +10,9 @@
         depressed
         @click.prevent="playing ? pause() : play()"
       >
-        <v-icon color="white" x-large v-if="!playing || paused">mdi-play</v-icon>
+        <v-icon color="white" x-large v-if="!playing || paused"
+          >mdi-play</v-icon
+        >
         <v-icon color="white" x-large v-else>mdi-pause</v-icon>
       </v-btn>
       <div class="progress_container ml-4 flex-grow-1">
@@ -25,7 +27,14 @@
           color="#623CEA"
         ></v-progress-linear>
       </div>
-      <audio id="player" ref="player" :modalOpen="modalOpen" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
+      <audio
+        id="player"
+        ref="player"
+        :modalOpen="modalOpen"
+        v-on:ended="ended"
+        v-on:canplay="canPlay"
+        :src="file"
+      ></audio>
     </div>
   </div>
 </template>
@@ -49,9 +58,9 @@ export default {
   name: "AudioPlayer",
   components: {},
   props: {
-    modalOpen:{
+    modalOpen: {
       type: Boolean,
-      default:true,
+      default: true,
     },
     color: {
       type: String,
@@ -77,8 +86,8 @@ export default {
     },
     audio_num: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {
@@ -94,12 +103,12 @@ export default {
     };
   },
 
-  watch:{
-    modalOpen:function(val){
-      if(val== false){
+  watch: {
+    modalOpen: function (val) {
+      if (val == false) {
         this.stop();
       }
-    }
+    },
   },
   methods: {
     setPosition() {
@@ -114,7 +123,7 @@ export default {
       this.audio.currentTime = 0;
     },
     play() {
-      console.log("playing....")
+      console.log("playing....");
       if (this.playing) return;
       this.audio.play().then((_) => (this.playing = true));
       this.paused = false;
@@ -191,7 +200,7 @@ export default {
     },
   },
   mounted() {
-    console.log("mounting...", this.$refs)
+    console.log("mounting...", this.$refs);
     this.audio = this.$refs.player;
     this.init();
   },
@@ -233,7 +242,7 @@ export default {
 }
 
 .audi-container {
-  background-color: #E9F6FF;
+  background-color: #e9f6ff;
   padding: 1.2rem 6rem;
 }
 
@@ -245,15 +254,8 @@ export default {
   transform: translateY(-13px);
 }
 
-
 //md screen
 @media only screen and (max-width: 1260px) {
-  .audi-container {
-    // display: grid;
-    // grid-template-columns: 12% 8% 70%;
-    // align-items: center;
-  }
-
   .progress_container {
     margin-left: 0.6rem;
   }
@@ -261,7 +263,6 @@ export default {
 
 //sm screen
 @media only screen and (max-width: 700px) {
-
   .audi-container {
     padding: 1.2rem 6rem;
   }
@@ -271,22 +272,8 @@ export default {
   }
 
   .info-text {
-    // grid-row: 1 / 2;
-    // grid-column: 1 / 3;
     margin-bottom: 0.3rem;
   }
-
-  .progress_container {
-    // grid-row: 2 / 3;
-    // grid-column: 2 / 4;
-
-  }
-
-  .btn-play {
-  //   background-color: red;
-  //   grid-column: 1 / 1.3;
-  //   grid-row: 2 / 3;
-   }
 }
 
 @media only screen and (max-width: 500px) {
@@ -298,6 +285,4 @@ export default {
     padding: 1.2rem 0.8rem;
   }
 }
-
-
 </style>
