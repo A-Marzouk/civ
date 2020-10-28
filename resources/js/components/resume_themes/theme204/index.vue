@@ -337,7 +337,8 @@
                       v-show="
                         item.title !== 'media' &&
                         item.title !== 'links' &&
-                        item.title !== 'pay_availability'
+                        item.title !== 'pay_availability' &&
+                        item.is_public == true
                       "
                       >{{ item.label }}</v-tab
                     >
@@ -2183,6 +2184,8 @@ export default {
   border: 1px solid #000000;
   transform: rotate(90deg);
   margin-left: -198px;
+  margin-top: 12rem;
+  position: absolute;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     margin-left: -158px;
   }

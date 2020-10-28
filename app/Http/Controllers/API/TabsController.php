@@ -7,7 +7,6 @@ use App\Http\Resources\Tab as TabResource;
 use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class TabsController extends Controller
 {

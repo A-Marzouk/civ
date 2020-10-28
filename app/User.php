@@ -41,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'permissions',
             'tabs',
             'skills',
+            'preferences',
             'paymentMethods',
             'hobbies',
             'education',
@@ -75,8 +76,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     public static $defaultOneToOneRelations = [
         'personalInfo',
-        'availabilityInfo',
-        'paymentInfo',
         'defaultResumeLink',
         'summary',
         'theme',
@@ -85,6 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static $defaultOneToManyRelations = [
         'tabs',
         'skills',
+        'preferences',
         'paymentMethods',
         'references',
         'hobbies',
@@ -158,6 +158,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function skills()
     {
         return $this->hasMany(Skill::class)->orderBy('order');
+    }
+
+    public function preferences()
+    {
+        return $this->hasMany(Preference::class);
     }
 
     public function downloads()

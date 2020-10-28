@@ -5,6 +5,14 @@
                 <img src="/icons/edit-cv-sidebar/structure.svg" alt="structure icon">
                 <span>Drag to order tab view</span>
             </div>
+
+            <div class="str-content" >
+                <div class="tab-chip" v-for="preference in preferences" :key="preference.title" :class="{ 'half-opacity' : !isPreferenceActive(preference.title)}">
+                    <span>{{preference.label}}</span>
+                    <img class="eye-icon-btn" src="/icons/eye-blue.svg" alt="eye-icon" :class="{'blackAndWhite' : !isPreferenceActive(preference.title)}" @click.prevent="togglePreference(preference.title)">
+                </div>
+            </div>
+
             <draggable class="str-content" v-model="tabs" @start="drag=true" @end="drag=false"  handle=".drag-handler">
                 <div class="tab-chip" v-for="tab in tabs" v-if="!excludedTabs.includes(tab.title)" :key="tab.label" :class="{ 'half-opacity' : !isTabActive(tab.title)}">
                     <img src="/icons/drag-dots.svg" alt="drag button icon" class="drag-handler">
@@ -45,6 +53,11 @@
                 set(tabs) {
                     this.$store.commit("updateTabs", tabs);
                 }
+            },
+            preferences: {
+                get() {
+                    return this.$store.state.user.preferences;
+                }
             }
         },
         methods: {
@@ -66,10 +79,37 @@
                 }
 
             },
+            togglePreference(preferenceTitle) {
+                let currentPreference = {};
+
+                this.preferences.forEach((preference) => {
+                    if (preference.title === preferenceTitle) {
+                        currentPreference = preference;
+                        currentPreference.is_public = !currentPreference.is_public;
+                    }
+                });
+
+                if (currentPreference.id) {
+                    axios.put('/api/user/preferences/toggle-visibility', currentPreference)
+                        .then((response) => {
+                            this.$store.dispatch('flyingNotification');
+                        });
+                }
+
+            },
             isTabActive(tabTitle) {
                 let active = false;
                 this.tabs.forEach((tab) => {
                     if (tab.title === tabTitle && tab.is_public) {
+                        active = true;
+                    }
+                });
+                return active;
+            },
+            isPreferenceActive(preferenceTitle) {
+                let active = false;
+                this.preferences.forEach((preference) => {
+                    if (preference.title === preferenceTitle && preference.is_public) {
                         active = true;
                     }
                 });
