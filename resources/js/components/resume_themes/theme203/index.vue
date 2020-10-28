@@ -978,6 +978,7 @@
       <v-dialog
         v-model="audioModal"
         max-width="1710"
+        max-height= "740"
         persistent
         style="
           overflow-y: hidden !important;
@@ -2088,10 +2089,12 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     height: auto;
     padding: 20px;
+    min-height: 500px;
   }
   @media screen and (max-width: 959px) {
     height: 1250px;
     padding: 8px;
+    max-height: 500px;
   }
   @media screen and (max-width: 599px) {
     height: 770px;
@@ -2166,16 +2169,19 @@ export default {
   bottom: 0;
   margin: auto;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
-    font-size: 200px;
-    top: -60%;
+    font-size: 300px !important;
+    top: -40%;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    font-size: 150px;
-    top: -84%;
+    font-size: 150px !important;
+    top: -68%;
   }
   @media screen and (max-width: 599px) {
-    font-size: 100px;
-    top: -80%;
+    font-size: 100px !important;
+    top: -60%;
+  }
+  @media screen and (max-width: 400px){
+    font-size: 60px !important;
   }
 }
 .custom-hr {
