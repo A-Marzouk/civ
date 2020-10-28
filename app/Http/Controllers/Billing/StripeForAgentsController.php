@@ -7,12 +7,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Stripe\Checkout\Session as StripeSession;
-class StripeController extends Controller
+
+
+class StripeForAgentsController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth'])->except('customStripePayments');
     }
 
     public function index(){

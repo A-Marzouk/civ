@@ -71,11 +71,21 @@ Route::get('/resume-builder/import/behance/{behanceUsername}', 'ImportsControlle
 
 
 // subscription routes
-Route::get('/subscribe', 'Billing\StripeController@subscribePage')->name('subscribe.page');
-Route::post('/subscribe', 'Billing\StripeController@subscribeStripe')->name('subscribe.stripe');
-Route::get('/subscription', 'Billing\StripeController@index')->name('subscription');
-Route::get('/subscription/cancel', 'Billing\StripeController@cancel')->name('subscription.cancel');
-Route::get('/subscription/success', 'Billing\StripeController@subscriptionSuccess')->name('subscription.success');
+Route::get('/subscribe', 'Billing\StripeForAgentsController@subscribePage')->name('subscribe.page');
+Route::post('/subscribe', 'Billing\StripeForAgentsController@subscribeStripe')->name('subscribe.stripe');
+Route::get('/subscription', 'Billing\StripeForAgentsController@index')->name('subscription');
+Route::get('/subscription/cancel', 'Billing\StripeForAgentsController@cancel')->name('subscription.cancel');
+Route::get('/subscription/success', 'Billing\StripeForAgentsController@subscriptionSuccess')->name('subscription.success');
+
+// Stripe for clients:
+Route::post('/custom-stripe-payment', 'Billing\StripeForClientsController@customStripePayments')->name('custom.stripe.payments');
+Route::get('/hire-freelancer/success', function (){
+    echo 'Thank you, your payment was successfully made';
+});
+Route::get('/hire-freelancer/cancel', function (){
+    echo 'Sorry! your payment did not go through';
+});
+
 
 // webhooks:
 Route::post('/stripe/webhooks', 'Billing\StripeWebhooksController@handle')->name('stripe.webhooks');
