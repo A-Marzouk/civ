@@ -106,6 +106,10 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/tabs/toggle-tab', 'API\TabsController@toggleVisibility');
     Route::put('/tabs', 'API\TabsController@toggleVisibility');
 
+    // preferences:
+    Route::put('/preferences/toggle-visibility', 'API\PreferenceController@toggleVisibility');
+
+
     //list workExperience
     Route::get('/work-experience', 'API\WorkExController@index');
     //list single workExperience
