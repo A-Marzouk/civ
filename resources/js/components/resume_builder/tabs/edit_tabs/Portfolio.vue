@@ -17,6 +17,16 @@
             :error="!!errors.name"
             :error-messages="errors.name"
           ></v-text-field>
+          <v-combobox
+                  class="resume-builder__input civie-input eye-up-position"
+                  v-model="editedProject.category"
+                  :items="projectCategories"
+                  outlined
+                  dense
+                  :error="!!errors.category"
+                  :error-messages="errors.category"
+                  label="Project Category">
+          </v-combobox>
           <v-text-field
             id="url"
             class="resume-builder__input civie-input"
@@ -33,7 +43,7 @@
             id="description"
             rows="1"
             auto-grow
-            row-height="13"
+            row-height="7"
             class="resume-builder__input civie-textarea"
             outlined
             label="Description"
@@ -45,11 +55,11 @@
             :error="!!errors.description"
             :error-messages="errors.description"
           ></v-textarea>
-          <!-- Using v-input classes -->
           <v-input
             class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
             outlined
             label="Upload Images"
+            persistent-hint
             hint="(Maximum 5 files)"
           >
             <vue-dropzone
@@ -89,7 +99,6 @@
             :error="!!errors.software"
             :error-messages="errors.software"
           ></v-text-field>
-
           <div class="col-12 d-flex flex-column">
             <div
               class="uploadedImagesList"
@@ -107,26 +116,26 @@
                 </div>
               </div>
             </div>
-
-            <div class="d-flex mb-4" style="transform: translateX(-9px)">
-              <v-btn
-                class="resume-builder__btn civie-btn filled"
-                raised depressed
-                @click="saveProject"
-                >{{ editedProject.id !== "" ? "Update" : "Add New" }}</v-btn
-              >
-
-              <v-btn
-                class="resume-builder__btn civie-btn cancel-btn"
-                depressed
-                raised
-                @click="clearProject"
-                v-show="editedProject.id !== ''"
-                >Cancel</v-btn
-              >
-            </div>
           </div>
         </v-form>
+
+        <div class="d-flex mb-4" style="padding-left: 46px;">
+          <v-btn
+                  class="resume-builder__btn civie-btn filled"
+                  raised depressed
+                  @click="saveProject"
+          >{{ editedProject.id !== "" ? "Update" : "Add New" }}</v-btn
+          >
+
+          <v-btn
+                  class="resume-builder__btn civie-btn cancel-btn"
+                  depressed
+                  raised
+                  @click="clearProject"
+                  v-show="editedProject.id !== ''"
+          >Cancel</v-btn
+          >
+        </div>
 
         <draggable
           class="projects-list"
@@ -178,33 +187,6 @@
                 </v-btn>
               </div>
             </div>
-            <!-- <div class="project__body">
-              <div class="project__img">
-                <div class="project__name">{{ project.name }}</div>
-                <img :src="getMainImage(project)" alt="portfolio img" />
-              </div>
-              <div class="project__info text-wrap">
-                <div class="project__name">
-                  {{ project.name }}
-                </div>
-                <div class="project__url">
-                  <b>URL:</b>
-                  <a :href="project.link">{{ project.link }}</a>
-                </div>
-                <div class="project__skills">
-                  <b>Skills:</b>
-                  {{ project.skills }}
-                </div>
-                <div class="project__softwares">
-                  <b>Software:</b>
-                  {{ project.software }}
-                </div>
-                <div class="project__description">
-                  <b>Description:</b>
-                  {{ project.description }}
-                </div>
-              </div>
-            </div> -->
 
             <v-row class="project_body" no-gutters>
               <v-col cols="12" sm="4" lg="4" class="project_img">
@@ -247,6 +229,7 @@
 <script>
 import vue2Dropzone from "vue2-dropzone";
 import draggable from "vuedraggable";
+import {categories} from '../../helpers/categories'
 
 export default {
   name: "Portfolio",
@@ -258,6 +241,7 @@ export default {
     editedProject: {
       id: "",
       name: "",
+      category: "",
       description: "",
       link: "",
       skills: "",
@@ -272,7 +256,8 @@ export default {
       acceptedFiles: "image/*",
       addRemoveLinks: true
     },
-    errors: {}
+    errors: {},
+    projectCategories: categories
   }),
   computed: {
     projects: {
@@ -425,6 +410,7 @@ export default {
       this.editedProject = {
         id: "",
         name: "",
+        category: "",
         description: "",
         link: "",
         skills: "",
@@ -466,7 +452,7 @@ export default {
 
 #portfolio-tab {
   .view-container {
-    max-height: 450px;
+    max-height: 470px;
     overflow: auto;
     box-shadow: 0 5px 20px rgba($color: #001083, $alpha: 0.1);
     margin: 0 auto;
@@ -476,7 +462,7 @@ export default {
       grid-template-columns: repeat(4, 1fr);
       grid-auto-rows: 104px;
       grid-gap: 15px;
-      padding: 50px 46px;
+      padding: 50px 46px 10px;
 
       .resume-builder__input {
         grid-column: span 1;
@@ -485,7 +471,7 @@ export default {
         &.civie-dropzone {
           grid-row-start: 1;
           grid-row-end: 3;
-          height: 100%;
+          height: 97.5%;
 
           .v-input__control,
           .v-input__slot {

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-content" id="portfolio-tab">
+  <div class="main-content" id="achievements-tab">
     <div class="data-container pa-md-0 pa-sm-0 pa-10 view-container resume-builder__scroll">
       <v-card class>
         <v-form class="grid-form" ref="form">
@@ -362,7 +362,7 @@ export default {
     margin-left: auto;
   }
 }
-#portfolio-tab {
+#achievements-tab {
   .view-container {
     max-height: 450px;
     overflow: auto;
@@ -385,7 +385,7 @@ export default {
         &.civie-dropzone {
           grid-row-start: 1;
           grid-row-end: 3;
-          height: 98%;
+          height: 97.5%;
 
           .v-input__control,
           .v-input__slot {

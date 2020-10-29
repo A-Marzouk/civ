@@ -153,6 +153,7 @@ class ProjectsController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255','min:3'],
+            'category' => ['required', 'string', 'max:255','min:3'],
             'description' => ['required', 'string', 'max:1000','min:3'],
             'link' => ['required', 'string','max:255','min:3'],
             'skills' => ['required', 'string','max:255','min:3'],
