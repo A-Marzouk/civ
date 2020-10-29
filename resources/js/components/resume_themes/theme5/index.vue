@@ -594,8 +594,7 @@
                   <v-tab
                     v-for="tab in currentUser.tabs"
                     :class="{ 'blue-text': tab.title === activeTab }"
-                    v-if="!excludedTabs.includes(tab.title)"
-                    v-show="tab.is_public"
+                    v-show="tab.is_public && !excludedTabs.includes(tab.title)"
                     :key="tab.title"
                     :id="tab.title"
                     @click="changeTab(tab.title)"

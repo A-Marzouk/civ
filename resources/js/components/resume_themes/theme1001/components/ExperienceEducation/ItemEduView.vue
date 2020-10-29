@@ -8,7 +8,7 @@
         <div class="header__title" v-text="item.university_name"></div>
         <div class="header__duration">
           {{ getFullYear(item.date_from) }} -
-          {{ getFullYear(item.date_to) }}
+          {{ item.present ? "Present" : getFullYear(item.date_to) }}
         </div>
       </div>
       <div class="content-body">
@@ -38,8 +38,8 @@ export default {
   props: {
     item: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
 
   methods: {
@@ -47,8 +47,8 @@ export default {
       let newDate = new Date(date);
       let yyyy = newDate.getUTCFullYear();
       return yyyy;
-    }
-  }
+    },
+  },
 };
 </script>
 

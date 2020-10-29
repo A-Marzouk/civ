@@ -48,6 +48,7 @@
                 class="action__button"
                 href="#"
                 @click.prevent="chatToggle = !chatToggle"
+                v-if="findPreference('chat')"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13">
                   <g transform="translate(0.347 0.201)">
@@ -71,7 +72,11 @@
                 </svg>
                 <span>Start A Chat!</span>
               </a>
-              <a class="action__button" href="#">
+              <a
+                class="action__button"
+                href="#"
+                v-if="findPreference('pdf_download')"
+              >
                 <svg
                   width="18"
                   height="19"
@@ -118,7 +123,7 @@
               ></div>
               <!-- rate frequency for tablet & pc -->
               <v-row no-gutters class="hidden-xs-only">
-                <v-col cols="12" sm="12" lg="5">
+                <v-col cols="12" sm="12" lg="6">
                   <v-row no-gutters>
                     <v-col cols="7">
                       <v-row no-gutters>
@@ -127,6 +132,7 @@
                           cols="12"
                           sm="6"
                           class="hireme-rate pb-3 pb-sm-0"
+                          v-if="findPreference('hourly_rate')"
                         >
                           <v-row no-gutters>
                             <v-col cols="12" class="pb-2">
@@ -163,7 +169,12 @@
                         </v-col>
                         <!-- Pay Rate -->
                         <!-- Availability -->
-                        <v-col cols="12" sm="6" class="hireme-rate">
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          class="hireme-rate"
+                          v-if="findPreference('weekly_availability')"
+                        >
                           <v-row no-gutters>
                             <v-col cols="12" class="pb-2">
                               <div
@@ -203,7 +214,7 @@
                       </v-row>
                     </v-col>
                     <!-- Hire Me Button -->
-                    <v-col cols="5">
+                    <v-col cols="5" v-if="findPreference('hire_me')">
                       <div class="text-center">
                         <a
                           class="hireme-button"
@@ -411,6 +422,15 @@ export default {
     },
   },
   methods: {
+    findPreference(title) {
+      let currentPrefer = null;
+      this.currentUser.preferences.forEach((prefer) => {
+        if (prefer.title === title) {
+          currentPrefer = prefer;
+        }
+      });
+      return currentPrefer.is_public;
+    },
     tabChanged(value) {
       this.activeTab = value;
     },
