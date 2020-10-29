@@ -978,7 +978,7 @@
       <v-dialog
         v-model="audioModal"
         max-width="1710"
-        max-height= "740"
+        max-height="740"
         persistent
         style="
           overflow-y: hidden !important;
@@ -1330,6 +1330,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
@@ -2181,7 +2182,7 @@ export default {
     font-size: 100px !important;
     top: -60%;
   }
-  @media screen and (max-width: 400px){
+  @media screen and (max-width: 400px) {
     font-size: 60px !important;
   }
 }
@@ -2225,9 +2226,9 @@ export default {
   ) !important;
 }
 #resumeTheme203 {
-  .v-slide-group__prev.v-slide-group__prev--disabled {
-    display: none !important;
-  }
+  // .v-slide-group__prev.v-slide-group__prev--disabled {
+  //   display: none !important;
+  // }
 
   .card-email {
     .v-text-field input {
