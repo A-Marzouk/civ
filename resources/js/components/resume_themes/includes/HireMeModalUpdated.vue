@@ -51,7 +51,7 @@
                             <img src="/icons/hire-modal/close.svg" alt="close btn" class="close-modal"
                                  @click="closeModal">
 
-                            <div class="message" :class="{'full-height' : !isContactFormOpened && !isMessageSent}">
+                            <div class="message" :class="{'full-height' : isNoPaymentStepActive(1)}">
                                 <div class="text">
                                     Current user has no payment<br/>methods set up
                                     <img src="/icons/hire-modal/sad-emoj.svg" alt="sad icon"> .
@@ -66,7 +66,49 @@
                                 </div>
                             </div>
 
-                            <div class="contact-form" :class="{'full-height' : isContactFormOpened}">
+                            <div class="single-step-wrapper required-information" :class="{'full-height' : isNoPaymentStepActive(2)}">
+                                <div class="step-header" style="margin-bottom: 20px;">
+                                    Required Information
+
+                                    <img src="/icons/hire-modal/close.svg" alt="close btn" class="close-modal"
+                                         @click="closeModal">
+                                </div>
+                                <div class="step-content">
+                                    <div class="client-inputs" style="width: 100%;">
+                                        <div class="client-input-group">
+                                            <label>Name</label>
+                                            <input type="text" placeholder="John Doe" v-model="client.name" required>
+                                            <span v-if="errors.name" class="error">
+                                        {{errors.name}}
+                                    </span>
+                                        </div>
+                                        <div class="client-input-group">
+                                            <label>Email</label>
+                                            <input type="email" placeholder="John@Doe.com" v-model="client.email" required>
+                                            <span v-if="errors.email" class="error">
+                                        {{errors.email}}
+                                    </span>
+                                        </div>
+                                        <div class="client-input-group">
+                                            <label>Phone Number</label>
+                                            <input type="tel" placeholder="+123 00 0000 000" v-model="client.phone" required>
+                                            <span v-if="errors.phone" class="error">
+                                        {{errors.phone}}
+                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="step-footer" style="justify-content: center; margin-top: 40px;">
+                                        <div class="action-btn">
+                                            <a href="javascript:void(0)" @click="continueToSend" >
+                                                Continue
+                                                <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contact-form" :class="{'full-height' : isNoPaymentStepActive(3)}">
                                 <div class="contact-form-header">
                                     <div class="text">
                                         Message
@@ -87,7 +129,7 @@
                             </div>
 
                             <div class="success-message"
-                                 :class="{'full-height' : !isContactFormOpened && isMessageSent}">
+                                 :class="{'full-height' : isNoPaymentStepActive(4)}">
                                 <div class="message-content">
                                     <img src="/icons/hire-modal/verified.svg" alt="verified icon">
                                     <div class="text">
@@ -341,6 +383,7 @@
             return {
                 isModalOpened: true,
                 currentStep: 1,
+                currentNoPaymentStep: 1,
                 iterations: '',
                 typeOfRecurringInterval: 'week',
                 currentPaymentMethod: 'paypal',
@@ -355,8 +398,6 @@
                 datePicker: this.currentDate,
                 isDatePickerOpened: false,
                 isDateChanged: false,
-                isContactFormOpened: false,
-                isMessageSent: false,
                 client: {
                     email: '',
                     name: '',
@@ -382,11 +423,10 @@
         },
         methods: {
             showContactForm() {
-                this.isContactFormOpened = true;
+                this.currentNoPaymentStep = 2 ;
             },
             sendMessage() {
-                this.isContactFormOpened = false;
-                this.isMessageSent = true;
+                this.currentNoPaymentStep = 4 ;
             },
             dateChanged() {
                 // close the date picker
@@ -424,6 +464,9 @@
             },
             isStepDone(step) {
                 return this.finishedSteps.includes(step);
+            },
+            isNoPaymentStepActive(step){
+                return step === this.currentNoPaymentStep;
             },
 
             // step 2
@@ -471,6 +514,11 @@
                 this.finishedSteps = [];
                 this.currentSelectedHours = 40;
                 this.closeModal();
+            },
+            continueToSend(){
+                if (this.validateInputs()){
+                    this.currentNoPaymentStep = 3 ;
+                }
             },
             pay() {
                 if (this.validateInputs()) {
@@ -1183,6 +1231,16 @@
                 @include lt-sm {
                     font-size: 26px;
                 }
+            }
+        }
+
+        .required-information{
+            height: 0;
+            overflow: hidden;
+            transition: height 1s;
+
+            &.full-height {
+                height: 550px;
             }
         }
 
