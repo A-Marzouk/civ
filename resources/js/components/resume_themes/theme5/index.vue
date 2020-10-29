@@ -115,7 +115,7 @@
                     ></v-img>
 
                     <div>
-                      <v-icon small @click="availablePrev()"
+                      <v-icon small @click="paymentInfoPrev()"
                         >navigate_before</v-icon
                       >
                       <div
@@ -129,7 +129,7 @@
                           {{ payment_Info.salary_frequency }}
                         </span>
                       </div>
-                      <v-icon small @click="availableNext()"
+                      <v-icon small @click="paymentInfoNext()"
                         >navigate_next</v-icon
                       >
                     </div>
@@ -1940,7 +1940,7 @@ export default {
       } else this.available--;
     },
     paymentInfoNext() {
-      if (this.paymentInfo == 2) {
+      if (this.paymentInfo == 3) {
         this.paymentInfo = 0;
       } else this.paymentInfo++;
     },

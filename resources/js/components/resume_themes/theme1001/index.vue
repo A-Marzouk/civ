@@ -2,107 +2,106 @@
   <div id="wrapper_theme1001">
     <header id="header">
       <div class="header-profile">
-        <div class="profile-actions">
-          <a href="#" class="actions-toggle-button" @click.prevent="open">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
-              <g transform="translate(-318.538 -40)">
-                <circle
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  transform="translate(318.538 40)"
-                  fill="#f8ab29"
-                />
-                <circle
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  transform="translate(332.538 40)"
-                  fill="#f8ab29"
-                />
-                <circle
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  transform="translate(332.538 52)"
-                  fill="#f8ab29"
-                />
-                <circle
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  transform="translate(318.538 52)"
-                  fill="#f8ab29"
-                />
-              </g>
-            </svg>
-          </a>
-
-          <div
-            class="profile-actions__links"
-            :class="{ open: isOpen }"
-            @click="stopProp"
-          >
-            <a
-              class="action__button"
-              href="#"
-              @click.prevent="chatToggle = !chatToggle"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13">
-                <g transform="translate(0.347 0.201)">
-                  <rect
-                    width="13"
-                    height="13"
-                    transform="translate(-0.347 -0.201)"
-                    fill="none"
+        <v-row no-gutters>
+          <div class="profile-actions">
+            <a href="#" class="actions-toggle-button" @click.prevent="open">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                <g transform="translate(-318.538 -40)">
+                  <circle
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    transform="translate(318.538 40)"
+                    fill="#f8ab29"
                   />
-                  <path
-                    d="M1.535,3.07a.505.505,0,0,1-.358-.154L.154,1.893a.5.5,0,0,1,0-.716.494.494,0,0,1,.716,0l.665.665L3.224.154a.5.5,0,0,1,.716,0,.5.5,0,0,1,0,.716L1.893,2.917A.505.505,0,0,1,1.535,3.07Z"
-                    transform="translate(1.068 8.009)"
-                    fill="#fff"
+                  <circle
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    transform="translate(332.538 40)"
+                    fill="#f8ab29"
                   />
-                  <path
-                    d="M8,7H4.991A4.122,4.122,0,0,0,.833,3.231,4.327,4.327,0,0,0,0,3.312V2A2,2,0,0,1,2,0H8a2,2,0,0,1,2,2V5A2,2,0,0,1,8,7ZM1.389.942a.418.418,0,0,0-.367.212.389.389,0,0,0-.034.3.405.405,0,0,0,.2.244L4.8,3.587a.433.433,0,0,0,.4,0L8.808,1.7a.4.4,0,0,0,.2-.243.39.39,0,0,0-.033-.3A.42.42,0,0,0,8.611.942a.429.429,0,0,0-.2.049L5,2.772,1.587.991A.426.426,0,0,0,1.389.942Z"
-                    transform="translate(1.653 2.799)"
-                    fill="#fff"
+                  <circle
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    transform="translate(332.538 52)"
+                    fill="#f8ab29"
+                  />
+                  <circle
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    transform="translate(318.538 52)"
+                    fill="#f8ab29"
                   />
                 </g>
               </svg>
-              <span>Start A Chat!</span>
             </a>
-            <a class="action__button" href="#">
-              <svg
-                width="18"
-                height="19"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:svgjs="http://svgjs.com/svgjs"
-                viewBox="0 0.5 20 20"
-                fill="#fff"
+
+            <div
+              class="profile-actions__links"
+              :class="{ open: isOpen }"
+              @click="stopProp"
+            >
+              <a
+                class="action__button"
+                href="#"
+                @click.prevent="chatToggle = !chatToggle"
               >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13">
+                  <g transform="translate(0.347 0.201)">
+                    <rect
+                      width="13"
+                      height="13"
+                      transform="translate(-0.347 -0.201)"
+                      fill="none"
+                    />
+                    <path
+                      d="M1.535,3.07a.505.505,0,0,1-.358-.154L.154,1.893a.5.5,0,0,1,0-.716.494.494,0,0,1,.716,0l.665.665L3.224.154a.5.5,0,0,1,.716,0,.5.5,0,0,1,0,.716L1.893,2.917A.505.505,0,0,1,1.535,3.07Z"
+                      transform="translate(1.068 8.009)"
+                      fill="#fff"
+                    />
+                    <path
+                      d="M8,7H4.991A4.122,4.122,0,0,0,.833,3.231,4.327,4.327,0,0,0,0,3.312V2A2,2,0,0,1,2,0H8a2,2,0,0,1,2,2V5A2,2,0,0,1,8,7ZM1.389.942a.418.418,0,0,0-.367.212.389.389,0,0,0-.034.3.405.405,0,0,0,.2.244L4.8,3.587a.433.433,0,0,0,.4,0L8.808,1.7a.4.4,0,0,0,.2-.243.39.39,0,0,0-.033-.3A.42.42,0,0,0,8.611.942a.429.429,0,0,0-.2.049L5,2.772,1.587.991A.426.426,0,0,0,1.389.942Z"
+                      transform="translate(1.653 2.799)"
+                      fill="#fff"
+                    />
+                  </g>
+                </svg>
+                <span>Start A Chat!</span>
+              </a>
+              <a class="action__button" href="#">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
                   width="18"
                   height="19"
-                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns:svgjs="http://svgjs.com/svgjs"
+                  viewBox="0 0.5 20 20"
+                  fill="#fff"
                 >
-                  <path
-                    paint-order="stroke fill markers"
-                    fill-rule="evenodd"
-                    d="M18.91 1.09A3.7 3.7 0 0 0 16.275 0H3.723A3.728 3.728 0 0 0 0 3.724v12.552A3.728 3.728 0 0 0 3.723 20h12.553a3.728 3.728 0 0 0 3.723-3.724V3.724a3.7 3.7 0 0 0-1.09-2.633zM6.478 8.497a.586.586 0 0 1 .829 0l2.106 2.106v-6.25a.586.586 0 0 1 1.171 0v6.25l2.107-2.106a.586.586 0 1 1 .828.828l-3.107 3.107a.584.584 0 0 1-.828 0L6.479 9.324a.585.585 0 0 1 0-.828zm9.17 7.738H4.35a.586.586 0 1 1 0-1.172h11.297a.586.586 0 1 1 0 1.172z"
-                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="19"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      paint-order="stroke fill markers"
+                      fill-rule="evenodd"
+                      d="M18.91 1.09A3.7 3.7 0 0 0 16.275 0H3.723A3.728 3.728 0 0 0 0 3.724v12.552A3.728 3.728 0 0 0 3.723 20h12.553a3.728 3.728 0 0 0 3.723-3.724V3.724a3.7 3.7 0 0 0-1.09-2.633zM6.478 8.497a.586.586 0 0 1 .829 0l2.106 2.106v-6.25a.586.586 0 0 1 1.171 0v6.25l2.107-2.106a.586.586 0 1 1 .828.828l-3.107 3.107a.584.584 0 0 1-.828 0L6.479 9.324a.585.585 0 0 1 0-.828zm9.17 7.738H4.35a.586.586 0 1 1 0-1.172h11.297a.586.586 0 1 1 0 1.172z"
+                    />
+                  </svg>
                 </svg>
-              </svg>
-              <span>Download PDF </span>
-            </a>
+                <span>Download PDF </span>
+              </a>
+            </div>
           </div>
-        </div>
-
-        <v-row no-gutters>
-          <v-col cols="2">
+          <v-col cols="2" sm="2" md="2">
             <Avatar :src="currentUser.personal_info.profile_pic"
           /></v-col>
-          <v-col cols="10">
+          <v-col cols="9" sm="9" md="10">
             <div class="profile-detail">
               <h3 class="title">
                 {{ currentUser.personal_info.first_name }}
