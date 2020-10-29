@@ -429,7 +429,10 @@ export default {
           currentPrefer = prefer;
         }
       });
-      return currentPrefer.is_public;
+      if(currentPrefer){
+        return currentPrefer.is_public;
+      }
+      return '' ;
     },
     tabChanged(value) {
       this.activeTab = value;
