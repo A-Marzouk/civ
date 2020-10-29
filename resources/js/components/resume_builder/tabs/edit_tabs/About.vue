@@ -854,6 +854,7 @@
 
     .resume-builder__input.civie-input.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
         bottom: 20px;
+        right: 5px;
     }
 
 
@@ -867,6 +868,7 @@
         .custom-predict-input-label {
             display: flex;
             justify-content: space-between;
+            position: relative;
 
             label {
                 color: #888DB1;
@@ -881,6 +883,9 @@
 
             .eye {
                 margin-right: 14px;
+                position: absolute;
+                right: 0;
+                top: 40px;
             }
 
         }

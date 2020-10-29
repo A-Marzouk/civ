@@ -337,7 +337,8 @@
                       v-show="
                         item.title !== 'media' &&
                         item.title !== 'links' &&
-                        item.title !== 'pay_availability'
+                        item.title !== 'pay_availability' &&
+                        item.is_public == true
                       "
                       >{{ item.label }}</v-tab
                     >
@@ -977,8 +978,13 @@
       <v-dialog
         v-model="audioModal"
         max-width="1710"
+        max-height= "740"
         persistent
-        style="overflow-y: hidden !important; overflow-x: hidden !important"
+        style="
+          overflow-y: hidden !important;
+          overflow-x: hidden !important;
+          min-height: 300px;
+        "
       >
         <v-card class="card-audio-modal">
           <div class="title-container">
@@ -998,7 +1004,7 @@
               </v-btn>
             </div>
           </div>
-          <!-- <div class="watermark-text-modal">Audio</div> -->
+          <div class="watermark-text-modal">Audio</div>
           <VueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
             <template v-for="item in filterAudio(currentUser.media)">
               <audio-player
@@ -1779,8 +1785,15 @@ export default {
   @media screen and (min-width: 600px) and (max-width: 1263px) {
     font-size: 24px;
   }
-  @media screen and(max-width: 599px) {
+  @media screen and (max-width: 599px) {
     font-size: 12px;
+  }
+  @media screen and (max-width: 374px) {
+    font-size: 10px;
+  }
+
+  @media screen and (max-width: 359px) {
+    font-size: 8px;
   }
 }
 .hobbies-avatar {
@@ -1805,6 +1818,12 @@ export default {
     min-height: 45px !important;
     height: 45px !important;
     width: 45px !important;
+  }
+  @media screen and (max-width: 375px) {
+    min-width: 30px !important;
+    min-height: 30px !important;
+    height: 30px !important;
+    width: 30px !important;
   }
 }
 // hobbies tab
@@ -2025,6 +2044,7 @@ export default {
   border-radius: 40px !important;
   overflow: hidden !important;
   padding: 40px;
+  min-height: 400px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     padding: 24px;
   }
@@ -2070,10 +2090,12 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     height: auto;
     padding: 20px;
+    min-height: 500px;
   }
   @media screen and (max-width: 959px) {
     height: 1250px;
     padding: 8px;
+    max-height: 500px;
   }
   @media screen and (max-width: 599px) {
     height: 770px;
@@ -2133,7 +2155,7 @@ export default {
   font-family: "Gotham Pro" !important;
   font-style: normal;
   font-weight: bold;
-  font-size: 400px;
+  font-size: 25rem !important;
   line-height: 383px;
   letter-spacing: 0.05em;
   color: rgba(0, 0, 0, 0.03) !important;
@@ -2148,16 +2170,19 @@ export default {
   bottom: 0;
   margin: auto;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
-    font-size: 200px;
-    top: -60%;
+    font-size: 300px !important;
+    top: -40%;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    font-size: 150px;
-    top: -84%;
+    font-size: 150px !important;
+    top: -68%;
   }
   @media screen and (max-width: 599px) {
-    font-size: 100px;
-    top: -80%;
+    font-size: 100px !important;
+    top: -60%;
+  }
+  @media screen and (max-width: 400px){
+    font-size: 60px !important;
   }
 }
 .custom-hr {
@@ -2166,6 +2191,8 @@ export default {
   border: 1px solid #000000;
   transform: rotate(90deg);
   margin-left: -198px;
+  margin-top: 12rem;
+  position: absolute;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     margin-left: -158px;
   }

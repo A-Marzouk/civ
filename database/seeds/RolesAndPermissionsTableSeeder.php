@@ -56,6 +56,13 @@ class RolesAndPermissionsTableSeeder extends Seeder
                     'label' => 'Agent',
                 ],
                 'permissions' => [],
+            ],
+            [
+                'role' => [
+                    'name' => 'client',
+                    'label' => 'Client',
+                ],
+                'permissions' => [],
             ]
         ])->each(function ($item) {
             $role = Role::create($item['role']);

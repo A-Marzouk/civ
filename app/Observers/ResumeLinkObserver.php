@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\AvailabilityInfo;
 use App\PaymentInfo;
 use App\PersonalInfo;
+use App\Preference;
 use App\ResumeLink;
 use App\Summary;
 use App\Tab;
@@ -114,9 +115,10 @@ class ResumeLinkObserver
     }
 
     protected function assignDefaultValuesForNewResumeLink($resumeLink){
-        // Main default tabs
-        
+
         $user = User::find($resumeLink->user_id);
+
+        // Main default tabs
         $defaultTabs = [];
         foreach (Tab::$defaultTabs as $index => $tabTitle){
             $defaultTabs[] = [
@@ -128,8 +130,20 @@ class ResumeLinkObserver
                 'label' => ucwords(str_replace('_',' ', $tabTitle))
             ];
         }
-
         Tab::insert($defaultTabs);
+
+        //main default preferences
+        $defaultPreferences = [] ;
+        foreach (Preference::$defaultPreferences as $preference){
+            $defaultPreferences[] = [
+                'user_id' => $user->id,
+                'resume_link_id' => $resumeLink->id,
+                'title' => $preference['title'],
+                'label' => $preference['label'],
+                'is_public' => true
+            ];
+        }
+        Preference::insert($defaultPreferences);
 
         // personal info
         PersonalInfo::create([
