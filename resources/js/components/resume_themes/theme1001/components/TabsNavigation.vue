@@ -3,15 +3,16 @@
     <div class="tabs-navigation-inner">
       <div class="navigation-wrapper">
         <ul class="navigation">
-          <li v-for="tab in currentUser.tabs" v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public" :key="tab.id"
+          <li
+            v-for="tab in currentUser.tabs"
+            v-show="tab.is_public && !excludedTabs.includes(tab.title)"
+            :key="tab.id"
             class="navigation__link"
-            :class="[
-              { active: builderCurrentTabTitle === tab.title},
-            ]"
+            :class="[{ active: builderCurrentTabTitle === tab.title }]"
           >
-            <a href="#" @click.prevent="tabChanged(tab.title)"
-              >{{tab.label}}</a
-            >
+            <a href="#" @click.prevent="tabChanged(tab.title)">{{
+              tab.label
+            }}</a>
           </li>
         </ul>
 
@@ -55,15 +56,15 @@ export default {
       type: undefined,
       required: true,
     },
-    builderCurrentTabTitle:{
+    builderCurrentTabTitle: {
       type: undefined,
-    }
+    },
   },
-  methods:{
-    tabChanged(tab_title){
-      this.$emit('tab-changed', tab_title); // for component parent
-      this.$store.dispatch('updateThemeTabGlobally', tab_title);
-    }
+  methods: {
+    tabChanged(tab_title) {
+      this.$emit("tab-changed", tab_title); // for component parent
+      this.$store.dispatch("updateThemeTabGlobally", tab_title);
+    },
   },
 
   components: { SocialLinks },
@@ -71,20 +72,18 @@ export default {
   data: () => {
     return {
       isOpen: false,
-      excludedTabs:[
-        'structure',
-        'imports',
-        'manager',
-        'themes',
-        'links',
-        'pay_availability',
-        'profile', // main tab | can not be hidden
-      ]
+      excludedTabs: [
+        "structure",
+        "imports",
+        "manager",
+        "themes",
+        "links",
+        "pay_availability",
+        "profile", // main tab | can not be hidden
+      ],
     };
   },
-  watch: {
-
-  },
+  watch: {},
 };
 </script>
 
