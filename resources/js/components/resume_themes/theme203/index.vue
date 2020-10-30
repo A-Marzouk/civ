@@ -522,49 +522,8 @@
                 <!--------------------- About ------------------------------>
 
                 <!-- ................Portfolio............................... -->
-                <v-tab-item value="portfolio" key="portfolio">
-                  <div class="watermark-text text-center">Portfolio</div>
-                  <v-card flat color="transparent" tile align="center">
-                    <v-row align="center" justify="center">
-                      <v-col cols="12">
-                        <masonry
-                          :cols="{ default: 4, 959: 1, 599: 1 }"
-                          :gutter="{ default: '30px', 700: '15px' }"
-                        >
-                          <template v-for="item in currentUser.projects">
-                            <ImagesCarouselModal
-                              :images="item.images"
-                              :key="item.id"
-                            >
-                              <v-card
-                                class="mb-2 card-portfolio"
-                                align="left"
-                                flat
-                                color="transparent"
-                                tile
-                                :key="item.id"
-                                v-show="item.is_public == 1"
-                              >
-                                <v-img
-                                  class="custom-portfolio-img"
-                                  :src="getProjectMainImage(item)"
-                                  style="border-radius: 10px !important"
-                                ></v-img>
-                                <v-card-title class="custom-portfolio-title">
-                                  {{ item.name }}
-                                </v-card-title>
-                                <v-card-subtitle
-                                  class="custom-portfolio-subtitle"
-                                  >{{ item.description }}</v-card-subtitle
-                                >
-                              </v-card>
-                            </ImagesCarouselModal>
-                          </template>
-                        </masonry>
-                      </v-col>
-                    </v-row>
-                  </v-card>
-                </v-tab-item>
+                
+                <Portfolio :currentUser = "currentUser" />
                 <!-- .......................Portfolio.................................. -->
 
                 <!-- ...................Tab Item Work............................. -->
@@ -1071,7 +1030,8 @@ import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
 import VueSlickCarousel from "vue-slick-carousel";
 import IconCarousel from "../reusable/IconCarousel";
-import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
+//import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
+import Portfolio from './tabs/Portfolio'
 
 export default {
   name: "ResumeTheme203",
@@ -1081,7 +1041,8 @@ export default {
     VideoPlayer,
     VueSlickCarousel,
     IconCarousel,
-    ImagesCarouselModal,
+    Portfolio,
+   // ImagesCarouselModal,
   },
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   filters: {
