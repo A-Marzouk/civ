@@ -659,12 +659,16 @@
                           class="hidden-xs-only pl-sm-4 subtitle-2"
                           style="color: rgba(0, 0, 0, 0.87)"
                           >{{ getFullYear(work.date_from) }} -
-                          {{ getFullYear(work.date_to) }}</span
+                          {{
+                            work.present ? "Present" : getFullYear(work.date_to)
+                          }}</span
                         >
                       </div>
                       <div class="hidden-sm-and-up subtitle-2 pb-4">
                         {{ getFullYear(work.date_from) }} -
-                        {{ getFullYear(work.date_to) }}
+                        {{
+                          work.present ? "Present" : getFullYear(work.date_to)
+                        }}
                       </div>
                       <div class="subtitle-2 grey--text lighten-2">
                         {{ work.description }}
@@ -705,7 +709,11 @@
                       <div class="subtitle-2 pb-1" style="color: #1f5de4">
                         {{ education.university_name }},
                         {{ getFullYear(education.date_from) }} -
-                        {{ getFullYear(education.date_to) }}
+                        {{
+                          education.present
+                            ? "Present"
+                            : getFullYear(education.date_to)
+                        }}
                       </div>
                       <div class="subtitle-2 pb-2" style="color: #707070">
                         {{ education.degree_title }}

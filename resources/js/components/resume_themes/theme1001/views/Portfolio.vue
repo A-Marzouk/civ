@@ -5,10 +5,10 @@
         <a
           v-for="categ in categories"
           class="portfolio-category"
-          :class="{ active: categ.slug === category }"
+          :class="{ active: categ.name === category }"
           :key="categ.slug"
           href="#"
-          @click.prevent="changeCategory(categ.slug)"
+          @click.prevent="changeCategory(categ.name)"
           v-text="categ.name"
         ></a>
       </div>
@@ -85,17 +85,19 @@
       </div>
     </div>
 
-
     <div class="portfolio-items">
       <div
-        v-for="portfolio in currentUser.projects"
+        v-for="portfolio in filterCategory(category)"
         :key="portfolio.id"
         v-show="portfolio.is_public"
         class="portfolio-item"
       >
         <div class="item-wrapper">
           <ImagesCarouselModal :images="portfolio.images">
-            <Thumbnail v-if="portfolio.images[0]" :src="portfolio.images[0].src" />
+            <Thumbnail
+              v-if="portfolio.images[0]"
+              :src="portfolio.images[0].src"
+            />
           </ImagesCarouselModal>
 
           <div v-show="displayMode === 'detail'" class="item-detail">
@@ -124,33 +126,33 @@ export default {
     return {
       displayMode: "detail",
 
-      category: "all",
+      category: "All",
 
       categories: [
         {
           slug: "all",
-          name: "All"
+          name: "All",
         },
         {
           slug: "development",
-          name: "Development"
+          name: "Development",
         },
         {
           slug: "ui-ux-design",
-          name: "UI/UX Design"
+          name: "UI/UX Design",
         },
         {
           slug: "branding",
-          name: "Branding"
+          name: "Branding",
         },
         {
           slug: "product-design",
-          name: "Product design"
+          name: "Product design",
         },
         {
           slug: "experimental",
-          name: "Experimental"
-        }
+          name: "Experimental",
+        },
       ],
 
       portfolios: [
@@ -160,7 +162,7 @@ export default {
           categories: ["all", "development", "branding"],
           excerpt:
             "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/1.png"
+          url: "/images/resume_themes/theme1001/portfolio/1.png",
         },
         {
           id: 2,
@@ -168,7 +170,7 @@ export default {
           categories: ["all", "development", "branding"],
           excerpt:
             "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/2.png"
+          url: "/images/resume_themes/theme1001/portfolio/2.png",
         },
         {
           id: 3,
@@ -176,7 +178,7 @@ export default {
           categories: ["all", "development", "branding"],
           excerpt:
             "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/3.png"
+          url: "/images/resume_themes/theme1001/portfolio/3.png",
         },
         {
           id: 4,
@@ -184,7 +186,7 @@ export default {
           categories: ["all", "ui-ux-design", "experimental"],
           excerpt:
             "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/4.png"
+          url: "/images/resume_themes/theme1001/portfolio/4.png",
         },
         {
           id: 5,
@@ -192,7 +194,7 @@ export default {
           categories: ["all", "ui-ux-design", "product-design", "experimental"],
           excerpt:
             "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/5.png"
+          url: "/images/resume_themes/theme1001/portfolio/5.png",
         },
         {
           id: 6,
@@ -200,25 +202,34 @@ export default {
           categories: ["all", "development", "ui-ux-design", "product-design"],
           excerpt:
             "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/6.png"
-        }
-      ]
+          url: "/images/resume_themes/theme1001/portfolio/6.png",
+        },
+      ],
     };
   },
 
   computed: {
     filtredPortfolios() {
-      return this.portfolios.filter(portfolio =>
+      return this.portfolios.filter((portfolio) =>
         portfolio.categories.includes(this.category)
       );
-    }
+    },
   },
 
   methods: {
+    filterCategory(category) {
+      if (category == "All") {
+        return this.currentUser.projects;
+      }
+      var filterArray = this.currentUser.projects.filter(
+        (a) => a.category === category
+      );
+      return filterArray;
+    },
     changeCategory(category) {
       this.category = category;
-    }
-  }
+    },
+  },
 };
 </script>
 
