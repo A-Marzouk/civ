@@ -196,6 +196,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
@@ -211,6 +212,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/dribbble_fitness_2x_2x 1.png',
@@ -226,6 +228,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness2_2x_2x 1.png',
@@ -241,6 +244,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
@@ -256,6 +260,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness2_2x_2x 1.png',
@@ -271,6 +276,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
