@@ -1398,6 +1398,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 /* Shapes */
 .triangle-top-left {
@@ -1725,6 +1726,7 @@ export default {
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
+  font-family: "Poppins" !important;
   // margin-top: 200px;
   // top: 50%;
   // left: 50%;

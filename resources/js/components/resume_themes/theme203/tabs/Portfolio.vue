@@ -1,6 +1,19 @@
 <template>
-  <div>
+  <div class="portfolio">
     <v-tab-item value="portfolio" key="portfolio">
+      <div class="child-tabs" style="z-index: 2000">
+        <!-- child tabs -->
+        <v-tabs hide-slider>
+          <v-tab
+            v-for="tab in childTabs"
+            :key="tab.id"
+            active-class=""
+            class="child-tab-text"
+            >{{ tab.title }}</v-tab
+          >
+        </v-tabs>
+        <!-- child tabs -->
+      </div>
       <div class="watermark-text text-center">Portfolio</div>
       <v-card flat color="transparent" tile align="center">
         <v-row align="center" justify="center">
@@ -53,6 +66,17 @@ export default {
       type: Object,
     },
   },
+  data() {
+    return {
+      childTabs: [
+        { id: 1, title: "All" },
+        { id: 2, title: "Development" },
+        { id: 3, title: "UI/Ux Design" },
+        { id: 4, title: "Branding" },
+        { id: 5, title: "Product Design" },
+      ],
+    };
+  },
   methods: {
     getProjectMainImage(project) {
       let mainImage = "";
@@ -69,6 +93,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 .watermark-text {
   position: absolute;
   font-size: 10vw;
@@ -76,11 +102,22 @@ export default {
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
+  font-family: "Poppins" !important;
   // margin-top: 200px;
   // top: 50%;
   // left: 50%;
   // margin-right: -50%;
   // transform: translate(-50%, -50%);
   margin: auto;
+}
+.child-tabs {
+  .child-tab-text {
+    font-family: "Montserrat", sans-serif !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #dddddd !important;
+  }
 }
 </style>
