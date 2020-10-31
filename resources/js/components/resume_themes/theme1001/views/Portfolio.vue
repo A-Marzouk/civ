@@ -3,13 +3,13 @@
     <div class="portfolio-topbar">
       <div class="portfolio-categories">
         <a
-          v-for="categ in categories"
+          v-for="(categ, i) in categories"
           class="portfolio-category"
-          :class="{ active: categ.name === category }"
-          :key="categ.slug"
+          :class="{ active: categ === category }"
+          :key="i"
           href="#"
-          @click.prevent="changeCategory(categ.name)"
-          v-text="categ.name"
+          @click.prevent="changeCategory(categ)"
+          v-text="categ"
         ></a>
       </div>
 
@@ -128,86 +128,15 @@ export default {
 
       category: "All",
 
-      categories: [
-        {
-          slug: "all",
-          name: "All",
-        },
-        {
-          slug: "development",
-          name: "Development",
-        },
-        {
-          slug: "ui-ux-design",
-          name: "UI/UX Design",
-        },
-        {
-          slug: "branding",
-          name: "Branding",
-        },
-        {
-          slug: "product-design",
-          name: "Product design",
-        },
-        {
-          slug: "experimental",
-          name: "Experimental",
-        },
-      ],
-
-      portfolios: [
-        {
-          id: 1,
-          title: "Product design",
-          categories: ["all", "development", "branding"],
-          excerpt:
-            "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/1.png",
-        },
-        {
-          id: 2,
-          title: "Beats by dry mobile app",
-          categories: ["all", "development", "branding"],
-          excerpt:
-            "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/2.png",
-        },
-        {
-          id: 3,
-          title: "Scooty mobile app",
-          categories: ["all", "development", "branding"],
-          excerpt:
-            "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/3.png",
-        },
-        {
-          id: 4,
-          title: "Product design",
-          categories: ["all", "ui-ux-design", "experimental"],
-          excerpt:
-            "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/4.png",
-        },
-        {
-          id: 5,
-          title: "Beats by dry mobile app",
-          categories: ["all", "ui-ux-design", "product-design", "experimental"],
-          excerpt:
-            "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/5.png",
-        },
-        {
-          id: 6,
-          title: "Scooty mobile app",
-          categories: ["all", "development", "ui-ux-design", "product-design"],
-          excerpt:
-            "BeatsByDre.com - Leading a digital transformation & ecomm redesign",
-          url: "/images/resume_themes/theme1001/portfolio/6.png",
-        },
-      ],
+      categories: ["All"],
     };
   },
-
+  created() {
+    let uniqueCategories = [
+      ...new Set(this.currentUser.projects.map((project) => project.category)),
+    ];
+    this.categories = this.categories.concat(uniqueCategories);
+  },
   computed: {
     filtredPortfolios() {
       return this.portfolios.filter((portfolio) =>
