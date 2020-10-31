@@ -5,6 +5,12 @@
         <!-- child tabs -->
         <v-tabs hide-slider centered v-model="category">
           <v-tab
+            active-class="child-tab-text-active"
+            class="child-tab-text"
+            href="#All"
+            >All</v-tab
+          >
+          <v-tab
             v-for="(tab, index) in categories"
             :key="index"
             active-class="child-tab-text-active"
@@ -20,7 +26,7 @@
       <v-card flat color="transparent" tile align="center">
         <v-row align="center" justify="center">
           <v-tabs-items v-model="category">
-            <!-- <v-tab-item key="All" value="All">
+            <v-tab-item key="All" value="All">
               <v-col cols="12">
                 <masonry
                   :cols="{ default: 4, 959: 1, 599: 1 }"
@@ -53,17 +59,21 @@
                   </template>
                 </masonry>
               </v-col>
-            </v-tab-item> -->
+            </v-tab-item>
             <!-- All Categories -->
-            <template v-for="item in categories">
-              <v-tab-item :key="item" :value="item">
+            <template v-for="category in categories">
+              <v-tab-item :key="category" :value="category">
                 <v-col cols="12">
                   <masonry
                     :cols="{ default: 4, 959: 1, 599: 1 }"
                     :gutter="{ default: '30px', 700: '15px' }"
                   >
                     <template v-for="item in currentUser.projects">
-                      <ImagesCarouselModal :images="item.images" :key="item.id">
+                      <ImagesCarouselModal
+                        :images="item.images"
+                        :key="item.id"
+                        v-show="item.category == category"
+                      >
                         <v-card
                           class="mb-2 card-portfolio"
                           align="left"
@@ -113,14 +123,15 @@ export default {
   data() {
     return {
       category: 0,
-      categories: ["All"],
+      categories: [],
     };
   },
+  computed: {},
   created() {
     let uniqueCategories = [
       ...new Set(this.currentUser.projects.map((project) => project.category)),
     ];
-    this.categories = this.categories.concat(uniqueCategories);
+    this.categories = uniqueCategories;
   },
   methods: {
     getProjectMainImage(project) {
