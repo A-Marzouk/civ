@@ -3,13 +3,15 @@
     <v-tab-item value="portfolio" key="portfolio">
       <div class="child-tabs" style="z-index: 2000">
         <!-- child tabs -->
-        <v-tabs hide-slider centered>
+        <v-tabs hide-slider centered v-model="category">
           <v-tab
-            v-for="tab in childTabs"
-            :key="tab.id"
+            v-for="(tab, index) in categories"
+            :key="index"
             active-class="child-tab-text-active"
             class="child-tab-text"
-            >{{ tab.title }}</v-tab
+            :id="tab"
+            :href="'#' + tab"
+            >{{ tab }}</v-tab
           >
         </v-tabs>
         <!-- child tabs -->
@@ -17,38 +19,80 @@
       <div class="watermark-text text-center">Portfolio</div>
       <v-card flat color="transparent" tile align="center">
         <v-row align="center" justify="center">
-          <v-col cols="12">
-            <masonry
-              :cols="{ default: 4, 959: 1, 599: 1 }"
-              :gutter="{ default: '30px', 700: '15px' }"
-            >
-              <template v-for="item in currentUser.projects">
-                <ImagesCarouselModal :images="item.images" :key="item.id">
-                  <v-card
-                    class="mb-2 card-portfolio"
-                    align="left"
-                    flat
-                    color="transparent"
-                    tile
-                    :key="item.id"
-                    v-show="item.is_public == 1"
+          <v-tabs-items v-model="category">
+            <!-- <v-tab-item key="All" value="All">
+              <v-col cols="12">
+                <masonry
+                  :cols="{ default: 4, 959: 1, 599: 1 }"
+                  :gutter="{ default: '30px', 700: '15px' }"
+                >
+                  <template v-for="item in currentUser.projects">
+                    <ImagesCarouselModal :images="item.images" :key="item.id">
+                      <v-card
+                        class="mb-2 card-portfolio"
+                        align="left"
+                        flat
+                        color="transparent"
+                        tile
+                        :key="item.id"
+                        v-show="item.is_public == 1"
+                      >
+                        <v-img
+                          class="custom-portfolio-img"
+                          :src="getProjectMainImage(item)"
+                          style="border-radius: 10px !important"
+                        ></v-img>
+                        <v-card-title class="custom-portfolio-title">
+                          {{ item.name }}
+                        </v-card-title>
+                        <v-card-subtitle class="custom-portfolio-subtitle">{{
+                          item.description
+                        }}</v-card-subtitle>
+                      </v-card>
+                    </ImagesCarouselModal>
+                  </template>
+                </masonry>
+              </v-col>
+            </v-tab-item> -->
+            <!-- All Categories -->
+            <template v-for="item in categories">
+              <v-tab-item :key="item" :value="item">
+                <v-col cols="12">
+                  <masonry
+                    :cols="{ default: 4, 959: 1, 599: 1 }"
+                    :gutter="{ default: '30px', 700: '15px' }"
                   >
-                    <v-img
-                      class="custom-portfolio-img"
-                      :src="getProjectMainImage(item)"
-                      style="border-radius: 10px !important"
-                    ></v-img>
-                    <v-card-title class="custom-portfolio-title">
-                      {{ item.name }}
-                    </v-card-title>
-                    <v-card-subtitle class="custom-portfolio-subtitle">{{
-                      item.description
-                    }}</v-card-subtitle>
-                  </v-card>
-                </ImagesCarouselModal>
-              </template>
-            </masonry>
-          </v-col>
+                    <template v-for="item in currentUser.projects">
+                      <ImagesCarouselModal :images="item.images" :key="item.id">
+                        <v-card
+                          class="mb-2 card-portfolio"
+                          align="left"
+                          flat
+                          color="transparent"
+                          tile
+                          :key="item.id"
+                          v-show="item.is_public == 1"
+                        >
+                          <v-img
+                            class="custom-portfolio-img"
+                            :src="getProjectMainImage(item)"
+                            style="border-radius: 10px !important"
+                          ></v-img>
+                          <v-card-title class="custom-portfolio-title">
+                            {{ item.name }}
+                          </v-card-title>
+                          <v-card-subtitle class="custom-portfolio-subtitle">{{
+                            item.description
+                          }}</v-card-subtitle>
+                        </v-card>
+                      </ImagesCarouselModal>
+                    </template>
+                  </masonry>
+                </v-col>
+              </v-tab-item>
+            </template>
+            <!-- All Categories -->
+          </v-tabs-items>
         </v-row>
       </v-card>
     </v-tab-item>
@@ -68,14 +112,15 @@ export default {
   },
   data() {
     return {
-      childTabs: [
-        { id: 1, title: "All" },
-        { id: 2, title: "Development" },
-        { id: 3, title: "UI/Ux Design" },
-        { id: 4, title: "Branding" },
-        { id: 5, title: "Product Design" },
-      ],
+      category: 0,
+      categories: ["All"],
     };
+  },
+  created() {
+    let uniqueCategories = [
+      ...new Set(this.currentUser.projects.map((project) => project.category)),
+    ];
+    this.categories = this.categories.concat(uniqueCategories);
   },
   methods: {
     getProjectMainImage(project) {
@@ -111,6 +156,7 @@ export default {
   margin: auto;
 }
 .child-tabs {
+  margin-bottom: 20px;
   .child-tab-text {
     font-family: "Montserrat", sans-serif !important;
     font-style: normal;
