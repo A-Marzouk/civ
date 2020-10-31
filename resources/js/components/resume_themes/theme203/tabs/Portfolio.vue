@@ -3,11 +3,11 @@
     <v-tab-item value="portfolio" key="portfolio">
       <div class="child-tabs" style="z-index: 2000">
         <!-- child tabs -->
-        <v-tabs hide-slider>
+        <v-tabs hide-slider centered>
           <v-tab
             v-for="tab in childTabs"
             :key="tab.id"
-            active-class=""
+            active-class="child-tab-text-active"
             class="child-tab-text"
             >{{ tab.title }}</v-tab
           >
@@ -94,7 +94,7 @@ export default {
 
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 .watermark-text {
   position: absolute;
   font-size: 10vw;
@@ -118,6 +118,13 @@ export default {
     font-size: 18px;
     line-height: 22px;
     color: #dddddd !important;
+    text-transform: capitalize !important;
+  }
+
+  .child-tab-text-active {
+    background: #fcd259;
+    border-radius: 50px;
+    color: #ffffff !important;
   }
 }
 </style>
