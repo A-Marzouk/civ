@@ -1,6 +1,6 @@
 <template>
-  <div class="portfolio-contents" id="portfolio-tab">
-    <div class="data-container view-container resume-builder__scroll">
+  <v-app style="width: 100%" class="portfolio-contents" id="portfolio-tab">
+    <div class="data-container view-container resume-builder__scroll" style="width: 100%">
       <v-card
         class=""
         style="overflow-x: hidden !important;"
@@ -20,12 +20,24 @@
           <v-combobox
                   class="resume-builder__input civie-input eye-up-position"
                   v-model="editedProject.category"
+                  :search-input.sync="search"
                   :items="projectCategories"
                   outlined
                   dense
                   :error="!!errors.category"
                   :error-messages="errors.category"
                   label="Project Category">
+
+            <template v-slot:no-data>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    No results matching "<strong>{{ search }}</strong>". Press <kbd>enter</kbd> to create a new one
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+
           </v-combobox>
           <v-text-field
             id="url"
@@ -213,6 +225,10 @@
                   <b>Skills:</b>
                   {{ project.skills }}
                 </div>
+                <div class="project_skills">
+                  <b>Category:</b>
+                  {{ project.category }}
+                </div>
                 <div class="project_description">
                   <b>Description:</b>
                   {{ project.description }}
@@ -223,7 +239,7 @@
         </draggable>
       </v-card>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -248,6 +264,7 @@ export default {
       software: "",
       images: []
     },
+    search:'',
     dropzoneOptions: {
       url: "https://httpbin.org/post",
       thumbnailWidth: 150,
@@ -268,6 +285,13 @@ export default {
         this.$store.commit("updateProjects", projects);
       }
     }
+  },
+  watch: {
+    'editedProject.category': function (val) {
+      if (val.length > 5) {
+        this.$nextTick(() => this.model.pop())
+      }
+    },
   },
   methods: {
     // projects list functions:
