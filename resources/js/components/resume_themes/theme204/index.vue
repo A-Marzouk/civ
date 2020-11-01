@@ -2217,7 +2217,7 @@ export default {
     #ffde81 89.88%
   ) !important;
 }
-#resumeTheme203 {
+#resumeTheme204 {
   .v-slide-group__prev.v-slide-group__prev--disabled {
     display: none !important;
   }
