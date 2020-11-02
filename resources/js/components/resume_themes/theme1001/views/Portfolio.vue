@@ -94,10 +94,7 @@
       >
         <div class="item-wrapper">
           <ImagesCarouselModal :images="portfolio.images">
-            <Thumbnail
-              v-if="portfolio.is_public"
-              :src="portfolio.images[0].src"
-            />
+            <Thumbnail :src="getProjectMainImage(portfolio)" />
           </ImagesCarouselModal>
 
           <div v-show="displayMode === 'detail'" class="item-detail">
@@ -146,6 +143,16 @@ export default {
   },
 
   methods: {
+    getProjectMainImage(project) {
+      let mainImage = "";
+      let images = project.images;
+      images.forEach((image) => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+      return mainImage.src;
+    },
     filterCategory(category) {
       if (category == "All") {
         return this.currentUser.projects;
