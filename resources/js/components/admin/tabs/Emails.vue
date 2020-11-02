@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="receivers-list">
-                    <div class="email-chip" v-for="receiver in receivers" :key="receiver.email">
+                    <div class="email-chip" v-for="receiver in email.receivers" :key="receiver.email">
                         {{receiver.name}} ({{receiver.email}})
                     </div>
                 </div>
@@ -117,14 +117,14 @@
                         actionURL: '',
                         footer: ''
                     },
-                    subject: 'Hello from civ.ie'
+                    subject: 'Hello from civ.ie',
+                    receivers: []
                 },
                 newReceiver: {
                     name: '',
                     email: ''
                 },
                 errors: {},
-                receivers: [],
                 addReceiverOpened: false
             }
         },
@@ -132,8 +132,8 @@
             sendMail() {
                 if (this.validateEmailData() && this.receiversExist()) {
                     axios.post('/workforce-admin/send-mail', this.email)
-                        .then((res) => {
-                            console.log(res.data);
+                        .then(() => {
+                            alert('Email sent successfully!');
                             this.resetEmailData();
                         })
                         .catch((error) => {
@@ -143,7 +143,7 @@
             },
             addReceiver() {
                 if (this.validateReceiver()) {
-                    this.receivers.push(this.newReceiver);
+                    this.email.receivers.push(this.newReceiver);
                     this.resetReceiver();
                 }
             },
@@ -223,7 +223,7 @@
                 return valid;
             },
             receiversExist() {
-                if (this.receivers.length > 0) {
+                if (this.email.receivers.length > 0) {
                     return true;
                 }
 

@@ -54,13 +54,15 @@ class AdminsController extends Controller
     }
 
     public function sendCustomEmail(Request $request){
-        $to = [
-            [
-                'email' => 'ahmedmarzouk266@gmail.com',
-                'name' => 'Ahmed Marzouk',
-            ]
-        ];
+        $toEmails = $request->receivers ;
+        $to = [];
 
+        foreach ($toEmails as $emailInfo){
+            $to[] = [
+              'name' => $emailInfo['name'],
+              'email' => $emailInfo['email'],
+            ];
+        }
         $emailData    = $request->data ?? [] ;
         $emailSubject = $request->subject ?? [] ;
 
