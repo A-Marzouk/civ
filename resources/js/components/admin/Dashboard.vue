@@ -41,7 +41,7 @@
                         <v-divider></v-divider>
 
                         <v-list-item
-                                v-for="item in items"
+                                v-for="item in tabs"
                                 :key="item.title"
                                 @click="setActiveTab(item)"
                                 link
@@ -107,11 +107,12 @@
 
                 //   navigation data
                 drawer: true,
-                items: [
+                tabs: [
                     {title: 'General', icon: '/images/admin/general.svg', value:'general',url:'/'},
                     {title: 'Account Settings', icon: '/images/admin/settings.svg',value:'acc_settings',url:'account-settings'},
                     {title: 'Users', icon: '/images/admin/users.svg',value:'users',url:'users'},
                     {title: 'Themes', icon: '/images/admin/themes.png',value:'themes',url:'themes'},
+                    {title: 'Emails', icon: '/images/admin/emails.png',value:'emails',url:'emails'},
                 ],
                 color: 'primary',
                 right: false,
