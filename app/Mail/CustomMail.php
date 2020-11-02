@@ -2,27 +2,28 @@
 
 namespace App\Mail;
 
-use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AccountDeleted extends Mailable
+class CustomMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user ; // public to be accessed in the view.
+    public $emailData;
+    public $emailSubject;
 
     /**
      * Create a new message instance.
-     * @param \App\User $user
+     * @param $emailData
+     * @param $emailSubject
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($emailSubject, $emailData)
     {
-        $this->user = $user;
+        $this->emailSubject = $emailSubject ;
+        $this->emailData = $emailData ;
     }
-
 
     /**
      * Build the message.
@@ -31,8 +32,8 @@ class AccountDeleted extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from civ.ie | Account Deleted')
+        return $this->subject( $this->emailSubject )
             ->from('info@civ.ie')
-            ->markdown('emails.user.account_deleted');
+            ->markdown('emails.admin.custom_mail');
     }
 }

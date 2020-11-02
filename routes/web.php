@@ -113,6 +113,8 @@ Route::group(['prefix' => 'workforce-admin'], function () {
     Route::get('/{username}/resume-builder/edit/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
     Route::get('/{username}/resume-builder/edit/projects/new', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
     Route::get('/developer/api', 'APIController@APIClients')->name('create.api.client');
+    Route::post('/send-mail', 'AdminsController@sendCustomEmail')->name('admin.custom.email');
+    Route::get('/mail/preview', 'AdminsController@mailPreview')->name('admin.preview.email');
 });
 
 // public cv url

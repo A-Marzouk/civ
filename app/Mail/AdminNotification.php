@@ -34,6 +34,6 @@ class AdminNotification extends Mailable
     {
         return $this->subject('Mail from civ.ie | Notification')
             ->from('info@civ.ie')
-            ->markdown('emails.admin_notification');
+            ->markdown('emails.admin.admin_notification');
     }
 }

@@ -9,10 +9,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Mail\CustomMail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminsController extends Controller
 {
@@ -50,5 +51,33 @@ class AdminsController extends Controller
         }
 
         return view('admin.resume-builder',compact('tempUser','is_admin'));
+    }
+
+    public function sendCustomEmail(Request $request){
+        $to = [
+            [
+                'email' => 'ahmedmarzouk266@gmail.com',
+                'name' => 'Ahmed Marzouk',
+            ]
+        ];
+
+        $emailData    = $request->data ?? [] ;
+        $emailSubject = $request->subject ?? [] ;
+
+        Mail::to($to)->send(new CustomMail($emailSubject, $emailData));
+    }
+
+    public function mailPreview(){
+        $emailData = [
+            'header'=>'Hi, I\'am a civ freelancer!',
+            'body'=>'I would like to apply to your job.',
+            "actionText"=>'View My Profile',
+            "actionURL"=>'https://civ.ie/user',
+            "footer"=>'Civ freelancer.'
+        ];
+
+        return (new CustomMail('Hi', $emailData))
+            ->subject('Test')
+            ->markdown('emails.admin.custom_mail');
     }
 }
