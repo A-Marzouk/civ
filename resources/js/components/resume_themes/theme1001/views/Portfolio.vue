@@ -95,7 +95,7 @@
         <div class="item-wrapper">
           <ImagesCarouselModal :images="portfolio.images">
             <Thumbnail
-              v-if="portfolio.images[0]"
+              v-if="portfolio.is_public"
               :src="portfolio.images[0].src"
             />
           </ImagesCarouselModal>
