@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper_theme1001">
+  <div id="wrapper_theme1001" v-if="currentUser">
     <header id="header">
       <div class="header-profile">
         <v-row no-gutters>
@@ -423,6 +423,9 @@ export default {
   },
   methods: {
     findPreference(title) {
+      if(!this.currentUser){
+        return ;
+      }
       let currentPrefer = null;
       this.currentUser.preferences.forEach((prefer) => {
         if (prefer.title === title) {
