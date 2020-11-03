@@ -1298,7 +1298,7 @@ export default {
     };
 
     // set active tab
-    this.setActiveTabByURL();
+    //this.setActiveTabByURL();
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
@@ -1320,15 +1320,15 @@ export default {
 
       return title;
     },
-    setActiveTabByURL() {
-      const pathSplit = this.$route.path.split("/");
-      let currentActiveTab = pathSplit[pathSplit.length - 1];
-      if (!this.defaultTabs.includes(currentActiveTab)) {
-        this.mainDataTab = this.getFirstActiveTabTitle();
-      } else {
-        this.mainDataTab = currentActiveTab;
-      }
-    },
+    // setActiveTabByURL() {
+    //   const pathSplit = this.$route.path.split("/");
+    //   let currentActiveTab = pathSplit[pathSplit.length - 1];
+    //   if (!this.defaultTabs.includes(currentActiveTab)) {
+    //     this.mainDataTab = this.getFirstActiveTabTitle();
+    //   } else {
+    //     this.mainDataTab = currentActiveTab;
+    //   }
+    // },
     filterAudio(audios) {
       var filterArray = audios.filter((a) => a.type === "audio");
       return filterArray;
