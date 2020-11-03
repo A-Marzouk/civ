@@ -7,6 +7,8 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 
+import VueFriendlyIframe from 'vue-friendly-iframe';
+Vue.use(VueFriendlyIframe);
 
 import adminDashboard from './components/admin/Dashboard';
 

@@ -497,14 +497,6 @@
         }
     }
 
-    /* I frame styling */
-    .vue-friendly-iframe {
-        iframe {
-            width: 100%;
-            min-height: 1300px;
-        }
-    }
-
     .theme-preview-loader {
         width: 100%;
         min-height: 1300px;

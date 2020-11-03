@@ -45,7 +45,15 @@
             <h1>Email data</h1>
 
             <div class="mail-inputs">
+                <div class="mail-input-group mb-4">
+                    <label>Subject</label>
+                    <input type="text" v-model="email.subject" placeholder="Job application | From civ">
+                    <span v-if="errors.subject" class="rec-error">
+                        {{errors.subject}}
+                    </span>
+                </div>
 
+                <hr>
 
                 <div class="mail-input-group">
                     <label>Header</label>
@@ -88,9 +96,8 @@
 
 
         <div class="email-review">
-            <h1>Email preview</h1>
-
-            here should be the email review!
+            <h1 class="mb-3">Email preview</h1>
+            <vue-friendly-iframe :src=" baseUrl() + `workforce-admin/mail/preview?${encodeQueryData()}` "  @load="onLoad" class="vue-iframe"></vue-friendly-iframe>
         </div>
 
         <div class="my-btn-primary">
@@ -117,7 +124,7 @@
                         actionURL: '',
                         footer: ''
                     },
-                    subject: 'Hello from civ.ie',
+                    subject: '',
                     receivers: []
                 },
                 newReceiver: {
@@ -129,6 +136,19 @@
             }
         },
         methods: {
+            encodeQueryData() {
+                const ret = [];
+                for (let d in this.email.data)
+                    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(this.email.data[d]));
+                return ret.join('&');
+            },
+            baseUrl() {
+                let getUrl = window.location;
+                return getUrl.protocol + "//" + getUrl.host + "/";
+            },
+            onLoad(){
+                console.log('Loaded.')
+            },
             sendMail() {
                 if (this.validateEmailData() && this.receiversExist()) {
                     axios.post('/workforce-admin/send-mail', this.email)
@@ -187,7 +207,7 @@
                         actionURL: '',
                         footer: ''
                     },
-                    subject: 'Hello from civ.ie'
+                    subject: ''
                 };
             },
 
@@ -198,6 +218,11 @@
                 if (this.email.data.header < 10) {
                     valid = false;
                     this.errors.header = 'Name should be at least 10 characters';
+                }
+
+                if (this.email.subject < 10) {
+                    valid = false;
+                    this.errors.subject = 'Subject should be at least 10 characters';
                 }
 
                 if (this.email.data.body < 40) {
@@ -244,6 +269,10 @@
         border-radius: 5px;
         border: solid 1px lightgray;
         padding-left: 15px;
+    }
+
+    textarea{
+        padding-top:10px;
     }
 
     .emails-list {
@@ -336,4 +365,14 @@
 
     }
 
+</style>
+
+<style lang="scss">
+    /* I frame styling */
+    .vue-friendly-iframe{
+        iframe{
+            width:100%;
+            min-height:605px;
+        }
+    }
 </style>
