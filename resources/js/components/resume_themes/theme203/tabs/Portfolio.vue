@@ -184,4 +184,9 @@ export default {
     color: #ffffff !important;
   }
 }
+.custom-portfolio-img {
+  width: 100% !important;
+  //height: 100% !important;
+  max-height: 400px !important;
+}
 </style>
