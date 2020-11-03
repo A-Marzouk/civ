@@ -3,7 +3,7 @@
         <!-- dialog -->
         <v-dialog
                 v-model="isModalOpened"
-                max-width="550"
+                max-width="600"
                 style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);border-radius: 10px; z-index:1000; overflow-y:hidden;"
         >
             <div class="hire-main-wrapper" v-if="user">
@@ -17,28 +17,33 @@
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(1)">
                         </div>
                         <div class="step-content" v-show="isStepActive(1)">
-                            <!-- specific user payment_methods -->
-                            <v-radio-group v-model="currentPaymentMethod" row class="mt-2">
-                                <v-radio v-for="paymentMethod in paymentMethods" :key="paymentMethod.name"
-                                         :value="paymentMethod.name">
-                                    <template v-slot:label>
-                                        <div v-show="paymentMethod.name === 'Stripe' " class="ml-2"
-                                             style="margin-top: 3px;">
-                                            <img src="/icons/stripe-icon.svg" alt="stripe icon">
+                            <template v-if="paymentMethods.length > 0">
+                                <div class="payment-methods-wrapper">
+                                    <template v-for="paymentMethod in paymentMethods">
+                                        <div v-show="paymentMethod.name === 'Stripe' " class="payment-method"
+                                             @click="currentPaymentMethod = 'stripe'"
+                                             :class="{active : currentPaymentMethod === 'stripe'}">
+                                            <img src="/icons/hire-modal/stripe-logo.svg" alt="stripe icon">
                                         </div>
-                                        <div v-show="paymentMethod.name === 'PayPal' " class="ml-2"
-                                             style="margin-top: 3px;">
-                                            <img src="/icons/paypal-icon.svg" alt="paypal icon">
+                                        <div v-show="paymentMethod.name === 'PayPal' " class="payment-method"
+                                             @click="currentPaymentMethod = 'paypal'"
+                                             :class="{active : currentPaymentMethod === 'paypal'}">
+                                            <img src="/icons/hire-modal/paypal-logo.svg" alt="paypal icon" class="paypal">
                                         </div>
                                     </template>
-                                </v-radio>
-                            </v-radio-group>
+                                </div>
 
-                            <div class="action-btn" v-if="paymentMethods.length > 0">
-                                <a href="javascript:void(0)" @click="goToNextStep">
-                                    Continue
-                                </a>
-                            </div>
+                                <div class="step-footer" style="justify-content: flex-end">
+
+                                    <div class="action-btn">
+                                        <a href="javascript:void(0)" @click="goToNextStep">
+                                            Confirm
+                                            <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
+                                        </a>
+                                    </div>
+                                </div>
+                            </template>
+
                             <div v-else style="font-size: 18px; line-height: 24px;color: #888DB1;">
                                 Current user has no payment methods set up.
                             </div>
@@ -48,7 +53,7 @@
 
                     <div class="single-step-wrapper two" :class="{'active' : isStepActive(2)}">
                         <div class="step-header">
-                            Choose payment Type
+                            payment Type
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(2)">
                             <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
                                  v-show="isStepActive(2)">
@@ -70,79 +75,34 @@
                                     Monthly
                                 </div>
                             </div>
-
-                            <div class="action-btn">
-                                <a href="javascript:void(0)" @click="goToNextStep">
-                                    Continue
-                                </a>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="single-step-wrapper three" :class="{'active' : isStepActive(3)}">
-                        <div class="step-header">
-                            Select the Number of Hours
-                            <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(3)">
-                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
-                                 v-show="isStepActive(3)">
-                        </div>
-                        <div class="step-content" v-show="isStepActive(3)">
-
-                            <div class="hours-select">
-                                <img src="/icons/minus.svg" alt="subtract hours" @click="subtractHours">
-                                <div class="hours">{{currentSelectedHours}} Hours</div>
-                                <img src="/icons/plus.svg" alt="add hours" @click="addHours">
-                            </div>
-
-                            <div class="payment-types">
-                                <div class="single-payment-type" :class="{'active' : isHoursTypeActive('week')}"
-                                     @click="setHoursType('week')">
-                                    Week
-                                </div>
-                                <div class="single-payment-type" :class="{'active' : isHoursTypeActive('month')}"
-                                     @click="setHoursType('month')">
-                                    Month
-                                </div>
-                            </div>
-
-                            <div class="action-btn">
-                                <a href="javascript:void(0)" @click="goToNextStep">
-                                    Continue
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="single-step-wrapper four" :class="{'active' : isStepActive(4) }">
-                        <div class="step-header">
-                            Choose Payment Amount
-                            <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(4)">
-                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
-                                 v-show="isStepActive(4)">
-                        </div>
-                        <div class="step-content" v-show="isStepActive(4)">
-
-                            <!-- Payment type -->
-                            <div class="payment-types">
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('hourly')}"
-                                     @click="setPaymentType('hourly')">
-                                    Hourly
-                                </div>
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('weekly')}"
-                                     @click="setPaymentType('weekly')">
-                                    Weekly
-                                </div>
-                                <div class="single-payment-type" :class="{'active' : isPaymentTypeActive('monthly')}"
-                                     @click="setPaymentType('monthly')">
-                                    Monthly
-                                </div>
+                            <!-- if recurring payment -->
+                            <div class="interval-input">
+                                <input type="number" :disabled="currentPaymentType === 'hourly'" :class="{'low-opacity' : currentPaymentType === 'hourly'}"
+                                       :placeholder="intervalNumberPlaceHolder()" min="2"
+                                       max="12" v-model="iterations">
                             </div>
 
                             <div class="percentage-select">
                                 <div class="label">
-                                    Pay %
+                                    {{getHoursLabel()}}
+                                </div>
+
+                                <div class="percentage-input-wrapper">
+                                    <span class="max" v-show="currentSelectedHours < 40">50</span>
+                                    <span class="current" :style="{right: currentHoursPosition + '%'}">{{currentSelectedHours}}</span>
+                                    <input type="range" class="range" min="0" max="50" step="1" v-model="currentSelectedHours"
+                                           style="width: 100%;">
+                                </div>
+                            </div>
+
+                            <div class="payment-details">
+                                {{currentSelectedHours}} hours x {{userHourlyRate}} Hourly rate x Percentage
+                                {{percentage}}% = {{Math.round(currentPaymentAmount)}}
+                            </div>
+
+                            <div class="percentage-select">
+                                <div class="label">
+                                    Percentage
                                 </div>
 
                                 <div class="percentage-input-wrapper">
@@ -153,30 +113,94 @@
                                 </div>
                             </div>
 
+                            <div class="total-payment-row">
+                                <div class="total-payment">
+                                    ${{Math.round(currentPaymentAmount)}}
+                                </div>
+
+                                <div class="action-btn">
+                                    <a href="javascript:void(0)" @click="goToNextStep">
+                                        Confirm
+                                        <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="single-step-wrapper three" :class="{'active' : isStepActive(3)}">
+                        <div class="step-header">
+                            Total Payment
+                            <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(3)">
+                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
+                                 v-show="isStepActive(3)">
+                        </div>
+                        <div class="step-content" v-show="isStepActive(3)">
+
+                            <div class="header">
+                                Your Current Payment Will Be
+                            </div>
+
+                            <div class="total-payment-row" style="border-bottom: 1px solid lightgray; padding-bottom: 30px; margin-bottom: 50px; justify-content: center;">
+                                <div class="total-payment">
+                                    ${{Math.round(currentPaymentAmount)}}
+                                </div>
+                            </div>
+
+
+                            <div class="action-btn">
+                                <a href="javascript:void(0)" @click="goToNextStep">
+                                    Confirm
+                                    <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="single-step-wrapper four" :class="{'active' : isStepActive(4) }">
+                        <div class="step-header">
+                            Required Information
+                            <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(4)">
+                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
+                                 v-show="isStepActive(4)">
+                        </div>
+                        <div class="step-content" v-show="isStepActive(4)">
+
+                            <div class="client-inputs">
+                                <div class="client-input-group">
+                                    <label>Name</label>
+                                    <input type="text" placeholder="John Doe" v-model="client.name" required>
+                                    <span v-if="errors.name" class="client-input-error">
+                                        {{errors.name}}
+                                    </span>
+                                </div>
+                                <div class="client-input-group">
+                                    <label>Email</label>
+                                    <input type="email" placeholder="John@Doe.com" v-model="client.email" required>
+                                    <span v-if="errors.email" class="client-input-error">
+                                        {{errors.email}}
+                                    </span>
+                                </div>
+                                <div class="client-input-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" placeholder="+123 00 0000 000" v-model="client.phone" required>
+                                    <span v-if="errors.phone" class="client-input-error">
+                                        {{errors.phone}}
+                                    </span>
+                                </div>
+                            </div>
 
                             <div class="action-btn align-content-end">
-                                <a href="javascript:void(0)" @click="goToNextStep">
-                                    Continue
+                                <a href="javascript:void(0)" @click="pay">
+                                    Pay Now
+                                    <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
                                 </a>
                             </div>
 
                         </div>
-                    </div>
-                </div>
-
-                <div class="hire-modal-footer">
-                    <div class="total-payment-row">
-                        <div class="label">
-                            Your Total Payment Will Be
-                        </div>
-                        <div class="total-payment">
-                            ${{Math.round(totalPaymentAmount)}}
-                        </div>
-                    </div>
-                    <div class="action-btn" v-if="paymentMethods.length > 0">
-                        <a :href="getPayLink()" @click="reset">
-                            Pay Now
-                        </a>
                     </div>
                 </div>
 
@@ -204,14 +228,29 @@
             return {
                 isModalOpened: false,
                 currentStep: 1,
-                currentPaymentMethod: 'Stripe',
+                currentNoPaymentStep: 1,
+                iterations: 2,
+                typeOfRecurringInterval: 'week',
+                currentPaymentMethod: 'stripe',
                 currentPaymentType: 'hourly',
+                currentAutoPaymentType: '7-days',
                 currentHoursType: 'week',
                 // payment calculations:
                 userHourlyRate: 10,
-                percentage: 10,
-                currentSelectedHours: 40,
-                finishedSteps: []
+                percentage: 100,
+                currentSelectedHours: 25,
+                finishedSteps: [],
+                datePicker: this.currentDate,
+                isDatePickerOpened: false,
+                isDateChanged: false,
+                client: {
+                    email: '',
+                    name: '',
+                    phone: '',
+                },
+                paymentData: {},
+                errors: {},
+                messageBody: 'Hi, can you please setup your payment details to start working with you.'
             }
         },
         watch: {
@@ -222,6 +261,9 @@
                 if(! value){
                     this.$emit('modalClosed');
                 }
+            },
+            currentPaymentType: function (value) {
+                this.typeOfRecurringInterval = value.replace('ly', '');
             }
         },
         methods: {
@@ -231,6 +273,22 @@
                 }
                 this.finishedSteps.push(this.currentStep);
                 this.currentStep++;
+            },
+            intervalNumberPlaceHolder(){
+                if(this.currentPaymentType === 'hourly'){
+                    return '';
+                }
+                return 'Number of ' + this.typeOfRecurringInterval + 's';
+            },
+            getHoursLabel() {
+                if (this.currentPaymentType === 'weekly') {
+                    return 'Weekly';
+
+                }
+                if (this.currentPaymentType === 'monthly') {
+                    return 'Monthly';
+                }
+                return 'Hours';
             },
             goToPreviousStep() {
                 if (this.currentStep < 2) {
@@ -280,6 +338,71 @@
                 this.currentSelectedHours = 40;
                 this.closeModal();
             },
+            continueToSend(){
+                if (this.validateInputs()){
+                    this.currentNoPaymentStep = 3 ;
+                }
+            },
+            pay() {
+                if (this.validateInputs()) {
+                    this.paymentData = {
+                        client: this.client,
+                        freelancer: this.user,
+                        payment_info: {
+                            numberOfHours: this.currentSelectedHours,
+                            totalAmount: this.totalPaymentAmount,
+                            percentage: this.percentage,
+                            toPayNowAmount: this.currentPaymentAmount,
+                            toPayLaterAmount: this.totalPaymentAmount - this.currentPaymentAmount,
+                            toPayLaterDate: this.payLaterDate,
+                            iterations: this.iterations,
+                            isRecurring: this.currentPaymentType === 'weekly' || this.currentPaymentType === 'monthly',
+                            interval: this.currentPaymentType === 'weekly' ? 'week' : 'month',
+                        }
+                    };
+
+                    axios.post('/custom-stripe-payment', this.paymentData)
+                        .then( (response) => {
+                            let session_id = response.data ;
+                            window.location = '/subscription?session_id=' + session_id ;
+                        })
+                        .catch( (error) => {
+                            console.log(error)
+                        });
+                }
+
+
+            },
+            validateInputs() {
+                let isValid = true;
+                this.errors = {};
+
+                if (this.client.name.length < 2 || this.client.name.length > 200) {
+                    isValid = false;
+                    this.errors.name = 'Name should be at least 2 characters';
+                }
+                if (!this.validateEmail(this.client.email)) {
+                    isValid = false;
+                    this.errors.email = 'Email should be a valid format';
+                }
+
+                if (!this.validatePhone(this.client.phone)) {
+                    isValid = false;
+                    this.errors.phone = 'Phone should be a valid format';
+                }
+
+                return isValid;
+
+            },
+            validateEmail(email) {
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            },
+
+            validatePhone(phone) {
+                const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+                return re.test(String(phone));
+            },
             closeModal() {
                 this.hireMeModal = false;
             },
@@ -293,19 +416,46 @@
                     return paymentMethod.link;
                 }
                 return '#';
-            }
+            },
+            moment: function () {
+                return moment();
+            },
 
 
         },
         computed: {
-            totalPaymentAmount() {
+            currentPaymentAmount() {
                 return this.user.payment_info[0].salary * this.percentage / 100 * this.currentSelectedHours;
             },
+            totalPaymentAmount() {
+                return this.user.payment_info[0].salary * this.currentSelectedHours;
+            },
+            payLaterDate() {
+                if (this.currentAutoPaymentType === '7-days') {
+                    return moment().add(7, 'days').format('YYYY-MM-DD');
+                } else if (this.currentAutoPaymentType === '14-days') {
+                    return moment().add(14, 'days').format('YYYY-MM-DD');
+                }
+
+                return this.datePicker;
+            },
             currentPosition() {
-                return (100 - this.percentage - 15);
+                return (100 - this.percentage - 10);
+            },
+            currentHoursPosition() {
+                return (100 - this.currentSelectedHours * 2 - 10);
             },
             paymentMethods() {
                 return this.user.payment_methods;
+            },
+            currentDate() {
+                return moment().add(1, 'days').format('YYYY-MM-DD');
+            },
+            futureDate() {
+                if (this.currentPaymentType === 'monthly') {
+                    return moment().add(31, 'days').format('YYYY-MM-DD');
+                }
+                return moment().add(7, 'days').format('YYYY-MM-DD');
             }
         }
     }
@@ -317,7 +467,7 @@
     .hire-main-wrapper {
         height: fit-content;
         background: white;
-        border-radius: 15px;
+        border-radius: 5px;
         padding: 50px;
         display: flex;
         flex-direction: column;
@@ -356,7 +506,7 @@
                 transition: height 1s;
 
                 &.active {
-                    height: 200px;
+                    height: 220px;
                     box-shadow: 0px 10px 150px rgba(0, 16, 131, 0.05);
 
                     .step-header {
@@ -366,11 +516,15 @@
                 }
 
                 &.active.three {
-                    height: 270px;
+                    height: 360px;
+                }
+
+                &.active.two {
+                    height: 480px;
                 }
 
                 &.active.four {
-                    height: 270px;
+                    height: 520px;
                 }
 
                 .step-header {
@@ -421,6 +575,16 @@
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+                    width: 100%;
+                    max-width: 360px;
+
+                    .header{
+                        font-weight: 500;
+                        font-size: 24px;
+                        margin-top: 40px;
+                        margin-bottom: 30px;
+                        color: #888DB1;
+                    }
 
                     .action-btn {
                         a {
@@ -434,7 +598,6 @@
                             color: white;
                             font-size: 15px;
                             line-height: 25px;
-                            margin-bottom: 20px;
 
                             &:hover {
                                 text-decoration: none;
@@ -443,6 +606,11 @@
                             @include lt-sm {
                                 width: 95px;
                                 height: 40px;
+                            }
+
+                            img{
+                                width: 22px;
+                                margin-left: 5px;
                             }
                         }
                     }
@@ -458,7 +626,7 @@
 
                     .single-payment-type {
                         width: 110px;
-                        height: 45px;
+                        height: 50px;
                         background: white;
                         border: 2px solid #E6E8FC;
                         border-radius: 5px;
@@ -539,7 +707,7 @@
                     display: flex;
                     align-items: center;
                     margin-top: 20px;
-                    margin-bottom: 20px;
+                    margin-bottom: 32px;
                     padding-left: 20px;
                     padding-right: 40px;
 
@@ -570,74 +738,142 @@
                     }
 
                 }
+
+                .client-inputs {
+                    margin-bottom: 40px;
+                    width: 100%;
+
+                    .client-input-group {
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 15px;
+
+                        label {
+                            font-size: 16px;
+                            color: #888DB1;
+                            margin-bottom: 3px;
+                        }
+
+                        input {
+                            width: 100%;
+                            height: 50px;
+                            border: 2px solid #E6E8FC;
+                            border-radius: 5px;
+                            color: #E6E8FC;
+                            padding-left: 15px;
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+                    }
+
+                }
             }
         }
 
-        .hire-modal-footer {
+        .total-payment-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             width: 100%;
+        }
 
-            .total-payment-row {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+        .total-payment {
+            width: 110px;
+            height: 45px;
+            border: 2px solid #E6E8FC;
+            border-radius: 5px;
+            @include lt-sm {
+                width: 95px;
+                height: 40px;
+            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-                .label {
-                    font-size: 18px;
-                    line-height: 24px;
-                    color: #888DB1;
-                    @include lt-sm {
-                        font-size: 16px;
-                    }
-                }
+            color: #001CE2;
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
 
-                .total-payment {
-                    width: 110px;
-                    height: 45px;
-                    border: 2px solid #E6E8FC;
-                    border-radius: 5px;
-                    @include lt-sm {
-                        width: 95px;
-                        height: 40px;
-                    }
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+    /* Updated design styles */
 
-                    color: #001CE2;
-                    font-size: 18px;
-                    font-weight: 600;
+    .interval-input {
+        width: 100%;
+        margin-bottom: 20px;
+
+        input {
+            width: 100%;
+            height: 50px;
+            border: 2px solid #E6E8FC;
+            color: #676B8B;
+            padding-left: 15px;
+
+            &:focus {
+                outline: none;
+            }
+
+            border-radius: 5px;
+        }
+    }
+
+    .payment-methods-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+
+        .payment-method {
+            width: 150px;
+            height: 65px;
+            margin-right: 12.5px;
+            margin-left: 12.5px;
+            border: 2px solid #E6E8FC;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img{
+                width: 65px;
+                &.paypal{
+                    width: 85px;
                 }
             }
 
-            .action-btn {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                margin-top: 40px;
+            @include lt-sm {
+                margin-bottom: 20px;
+            }
 
-                a {
-                    width: 110px;
-                    height: 45px;
-                    display: flex;
-                    align-items: center;
-                    background: #001CE2;
-                    border-radius: 5px;
-                    justify-content: center;
-                    color: white;
-                    font-size: 16px;
-                    line-height: 25px;
+            &:hover {
+                cursor: pointer;
+            }
 
-                    &:hover {
-                        text-decoration: none;
-                    }
-
-                    @include lt-sm {
-                        width: 95px;
-                        height: 40px;
-                    }
-                }
-
+            &.active {
+                border: 2px solid #888DB1;
             }
         }
     }
+
+    .low-opacity{
+        opacity: 0.3;
+    }
+
+    .payment-details{
+        font-size: 15px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #888DB1;
+    }
+
+    .client-input-error{
+        color: red;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
 </style>
