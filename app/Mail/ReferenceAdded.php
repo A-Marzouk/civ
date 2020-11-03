@@ -31,6 +31,6 @@ class ReferenceAdded extends Mailable
     {
         return $this->subject('Mail from civ.ie | Reference added')
             ->from('info@civ.ie')
-            ->markdown('emails.ReferenceAdded');
+            ->markdown('emails.user.ReferenceAdded');
     }
 }

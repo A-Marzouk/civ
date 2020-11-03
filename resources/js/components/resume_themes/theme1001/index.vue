@@ -123,7 +123,7 @@
               ></div>
               <!-- rate frequency for tablet & pc -->
               <v-row no-gutters class="hidden-xs-only">
-                <v-col cols="12" sm="12" lg="6">
+                <v-col cols="12" sm="12" lg="6" xl="5">
                   <v-row no-gutters>
                     <v-col cols="7">
                       <v-row no-gutters>
@@ -246,13 +246,13 @@
         </v-row>
 
         <!-- rate frequency for mobile -->
-        <v-row no-gutters class="hidden-sm-and-up">
+        <v-row no-gutters class="hidden-sm-and-up mt-4">
           <v-col cols="12" sm="12" lg="5">
             <v-row no-gutters>
-              <v-col cols="12">
+              <v-col cols="9" sm="12">
                 <v-row no-gutters>
                   <!-- Pay Rate -->
-                  <v-col cols="4" class="hireme-rate pb-3 pb-sm-0">
+                  <v-col cols="5" sm="4" class="hireme-rate pb-3 pb-sm-0">
                     <v-row no-gutters>
                       <v-col cols="12" class="pb-2">
                         <div
@@ -288,7 +288,7 @@
                   </v-col>
                   <!-- Pay Rate -->
                   <!-- Availability -->
-                  <v-col cols="8" class="hireme-rate">
+                  <v-col cols="7" sm="8" class="hireme-rate">
                     <v-row no-gutters>
                       <v-col cols="12" class="pb-2">
                         <div
@@ -326,7 +326,7 @@
                 </v-row>
               </v-col>
               <!-- Hire Me Button -->
-              <v-col cols="6" class="ml-auto">
+              <v-col cols="3" sm="6" class="ml-auto">
                 <div class="text-center">
                   <a
                     class="hireme-button"
@@ -429,10 +429,10 @@ export default {
           currentPrefer = prefer;
         }
       });
-      if(currentPrefer){
+      if (currentPrefer) {
         return currentPrefer.is_public;
       }
-      return '' ;
+      return "";
     },
     tabChanged(value) {
       this.activeTab = value;

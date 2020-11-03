@@ -32,6 +32,6 @@ class AccountDeactivated extends Mailable
     {
         return $this->subject('Mail from civ.ie | Account deactivated')
             ->from('info@civ.ie')
-            ->markdown('emails.account_deactivated');
+            ->markdown('emails.user.account_deactivated');
     }
 }

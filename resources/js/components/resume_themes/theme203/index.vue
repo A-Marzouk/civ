@@ -522,49 +522,8 @@
                 <!--------------------- About ------------------------------>
 
                 <!-- ................Portfolio............................... -->
-                <v-tab-item value="portfolio" key="portfolio">
-                  <div class="watermark-text text-center">Portfolio</div>
-                  <v-card flat color="transparent" tile align="center">
-                    <v-row align="center" justify="center">
-                      <v-col cols="12">
-                        <masonry
-                          :cols="{ default: 4, 959: 1, 599: 1 }"
-                          :gutter="{ default: '30px', 700: '15px' }"
-                        >
-                          <template v-for="item in currentUser.projects">
-                            <ImagesCarouselModal
-                              :images="item.images"
-                              :key="item.id"
-                            >
-                              <v-card
-                                class="mb-2 card-portfolio"
-                                align="left"
-                                flat
-                                color="transparent"
-                                tile
-                                :key="item.id"
-                                v-show="item.is_public == 1"
-                              >
-                                <v-img
-                                  class="custom-portfolio-img"
-                                  :src="getProjectMainImage(item)"
-                                  style="border-radius: 10px !important"
-                                ></v-img>
-                                <v-card-title class="custom-portfolio-title">
-                                  {{ item.name }}
-                                </v-card-title>
-                                <v-card-subtitle
-                                  class="custom-portfolio-subtitle"
-                                  >{{ item.description }}</v-card-subtitle
-                                >
-                              </v-card>
-                            </ImagesCarouselModal>
-                          </template>
-                        </masonry>
-                      </v-col>
-                    </v-row>
-                  </v-card>
-                </v-tab-item>
+                
+                <Portfolio :currentUser = "currentUser" />
                 <!-- .......................Portfolio.................................. -->
 
                 <!-- ...................Tab Item Work............................. -->
@@ -978,7 +937,7 @@
       <v-dialog
         v-model="audioModal"
         max-width="1710"
-        max-height= "740"
+        max-height="740"
         persistent
         style="
           overflow-y: hidden !important;
@@ -1071,7 +1030,8 @@ import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
 import VueSlickCarousel from "vue-slick-carousel";
 import IconCarousel from "../reusable/IconCarousel";
-import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
+//import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
+import Portfolio from './tabs/Portfolio'
 
 export default {
   name: "ResumeTheme203",
@@ -1081,7 +1041,8 @@ export default {
     VideoPlayer,
     VueSlickCarousel,
     IconCarousel,
-    ImagesCarouselModal,
+    Portfolio,
+   // ImagesCarouselModal,
   },
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   filters: {
@@ -1330,6 +1291,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
@@ -1436,6 +1398,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 /* Shapes */
 .triangle-top-left {
@@ -1763,6 +1726,7 @@ export default {
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
+  font-family: "Poppins" !important;
   // margin-top: 200px;
   // top: 50%;
   // left: 50%;
@@ -2181,7 +2145,7 @@ export default {
     font-size: 100px !important;
     top: -60%;
   }
-  @media screen and (max-width: 400px){
+  @media screen and (max-width: 400px) {
     font-size: 60px !important;
   }
 }
@@ -2225,9 +2189,9 @@ export default {
   ) !important;
 }
 #resumeTheme203 {
-  .v-slide-group__prev.v-slide-group__prev--disabled {
-    display: none !important;
-  }
+  // .v-slide-group__prev.v-slide-group__prev--disabled {
+  //   display: none !important;
+  // }
 
   .card-email {
     .v-text-field input {

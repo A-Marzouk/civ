@@ -366,27 +366,7 @@
               <v-tabs-items v-model="indexOfActiveTab">
                 <!-- Portfolio -->
                 <v-tab-item :value="getTabIndex('portfolio')">
-                  <v-card color="transparent" flat>
-                    <v-card-text>
-                      <v-row>
-                        <v-col
-                          cols="12"
-                          sm="6"
-                          md="3"
-                          v-for="project in currentUser.projects"
-                          :key="project.id"
-                          v-show="project.is_public"
-                        >
-                          <v-card class="card-portfolio" hover>
-                            <v-img
-                              :aspect-ratio="1.2"
-                              :src="getProjectMainImage(project)"
-                            ></v-img>
-                          </v-card>
-                        </v-col>
-                      </v-row>
-                    </v-card-text>
-                  </v-card>
+                  <Portfolio :currentUser = "currentUser" />
                 </v-tab-item>
                 <!-- Portfolio -->
                 <!-- Education -->
@@ -941,11 +921,13 @@
 <script>
 import audioMedia from "./media/audioMedia";
 import HireModal from "../theme203/payment/HireModal";
+import Portfolio from './tabs/Portfolio'
 export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
     audioMedia,
     HireModal,
+    Portfolio,
   },
   data() {
     return {

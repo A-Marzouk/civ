@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Mail\AccountDeleted;
 use App\Mail\ActivationReminder;
 use App\Mail\AdminNotification;
-use App\Mail\WelcomeUserMail;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
