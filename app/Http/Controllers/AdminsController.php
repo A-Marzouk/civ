@@ -71,15 +71,15 @@ class AdminsController extends Controller
 
     public function mailPreview(){
         $emailData = [
-            'header'=>'Hi, I\'am a civ freelancer!',
-            'body'=>'I would like to apply to your job.',
-            "actionText"=>'View My Profile',
-            "actionURL"=>'https://civ.ie/user',
-            "footer"=>'Civ freelancer.'
+            'header'     => request('header') ?? 'Header placeholder',
+            'body'       => request('body') ?? 'Email body placeholder | Email body placeholder | Email body placeholder',
+            "actionText" => request('actionText') ?? 'Placeholder',
+            "actionURL"  => request('actionURL') ?? '#',
+            "footer"     => request('footer') ?? 'Footer placeholder'
         ];
 
-        return (new CustomMail('Hi', $emailData))
-            ->subject('Test')
+        return (new CustomMail('Hi, Email preview', $emailData))
+            ->subject('Hi, Email preview')
             ->markdown('emails.admin.custom_mail');
     }
 }

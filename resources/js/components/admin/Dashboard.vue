@@ -51,7 +51,7 @@
 
                         >
                             <v-list-item-icon class="icon">
-                                <img :src="item.icon" alt="">
+                                <img :src="item.icon" alt="" style="width:24px;">
                             </v-list-item-icon>
 
                             <v-list-item-content>

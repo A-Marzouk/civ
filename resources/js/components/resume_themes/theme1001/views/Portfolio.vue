@@ -94,10 +94,9 @@
       >
         <div class="item-wrapper">
           <ImagesCarouselModal :images="portfolio.images">
-            <Thumbnail
-              v-if="portfolio.images[0]"
-              :src="portfolio.images[0].src"
-            />
+            <div class="portfolio-image">
+              <img :src="getProjectMainImage(portfolio)">
+            </div>
           </ImagesCarouselModal>
 
           <div v-show="displayMode === 'detail'" class="item-detail">
@@ -146,6 +145,16 @@ export default {
   },
 
   methods: {
+    getProjectMainImage(project) {
+      let mainImage = "";
+      let images = project.images;
+      images.forEach((image) => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+      return mainImage.src;
+    },
     filterCategory(category) {
       if (category == "All") {
         return this.currentUser.projects;
@@ -164,6 +173,19 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../scss/variables";
+
+
+.portfolio-image{
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  img{
+
+  }
+}
+
 
 .portfolio-topbar {
   display: none;
