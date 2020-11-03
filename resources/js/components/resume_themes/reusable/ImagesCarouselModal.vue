@@ -81,6 +81,7 @@ export default {
   position: relative;
   .image-row {
     width: 100%;
+    min-height:350px;
     display: flex;
     align-items: center;
     justify-content: center;
