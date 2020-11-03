@@ -336,6 +336,7 @@ if ($("#resumeTheme203").length !== 0) {
         el: "#resumeTheme203",
         vuetify,
         store,
+        router,
         iconfont: "fa4",
         components: {
             "resume-theme-203": resumeTheme203

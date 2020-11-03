@@ -12,17 +12,20 @@ class CustomMail extends Mailable
     use Queueable, SerializesModels;
     public $emailData;
     public $emailSubject;
+    public $senderEmail;
 
     /**
      * Create a new message instance.
      * @param $emailData
      * @param $emailSubject
+     * @param $senderEmail
      * @return void
      */
-    public function __construct($emailSubject, $emailData)
+    public function __construct($emailSubject, $emailData, $senderEmail)
     {
         $this->emailSubject = $emailSubject ;
         $this->emailData = $emailData ;
+        $this->senderEmail = $senderEmail ;
     }
 
     /**
@@ -33,7 +36,7 @@ class CustomMail extends Mailable
     public function build()
     {
         return $this->subject( $this->emailSubject )
-            ->from('info@civ.ie')
+            ->from($this->senderEmail)
             ->markdown('emails.admin.custom_mail');
     }
 }

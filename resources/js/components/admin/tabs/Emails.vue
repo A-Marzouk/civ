@@ -1,6 +1,13 @@
 <template>
     <div class="container">
 
+        <h1>
+            Sender email:
+        </h1>
+
+        <div class="d-flex mt-2 mb-4" style="align-items: center;">
+            <input style="height: 50px; border-radius: 5px;" type="text" v-model="email.sender"> @civ.ie
+        </div>
 
         <div class="emails-list">
             <h1>Send to:</h1>
@@ -108,6 +115,10 @@
             {{errors.receivers}}
         </div>
 
+        <div v-if="errors.sender" class="rec-error mt-2">
+            {{errors.sender}}
+        </div>
+
     </div>
 </template>
 
@@ -117,6 +128,7 @@
         data() {
             return {
                 email: {
+                    sender:'',
                     data: {
                         header: '',
                         body: '',
@@ -243,6 +255,11 @@
                 if (!this.isValidURL(this.email.data.actionURL)) {
                     valid = false;
                     this.errors.actionURL = 'URL should be a valid format';
+                }
+
+                if (!this.validateEmail(this.email.sender + '@civ.ie')) {
+                    valid = false;
+                    this.errors.sender = 'Sender email should be a valid format';
                 }
 
                 return valid;

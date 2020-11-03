@@ -54,6 +54,7 @@ class AdminsController extends Controller
     }
 
     public function sendCustomEmail(Request $request){
+        $senderEmail = $request->sender . '@civ.ie' ?? 'hi@civ.ie' ;
         $toEmails = $request->receivers ;
         $to = [];
 
@@ -66,7 +67,7 @@ class AdminsController extends Controller
         $emailData    = $request->data ?? [] ;
         $emailSubject = $request->subject ?? [] ;
 
-        Mail::to($to)->send(new CustomMail($emailSubject, $emailData));
+        Mail::to($to)->send(new CustomMail($emailSubject, $emailData, $senderEmail));
     }
 
     public function mailPreview(){
@@ -78,7 +79,7 @@ class AdminsController extends Controller
             "footer"     => request('footer') ?? 'Footer placeholder'
         ];
 
-        return (new CustomMail('Hi, Email preview', $emailData))
+        return (new CustomMail('Hi, Email preview', $emailData, 'info@civ.ie'))
             ->subject('Hi, Email preview')
             ->markdown('emails.admin.custom_mail');
     }
