@@ -10,14 +10,13 @@
 
                 <img src="/icons/close-grey.svg" alt="close btn" class="close-modal" @click="closeModal">
 
-                <div class="steps-wrapper">
+                <div class="steps-wrapper" v-if="paymentMethods.length > 0">
                     <div class="single-step-wrapper one" :class="{'active' : isStepActive(1)}">
                         <div class="step-header">
                             Choose Payment Method
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(1)">
                         </div>
                         <div class="step-content" v-show="isStepActive(1)">
-                            <template v-if="paymentMethods.length > 0">
                                 <div class="payment-methods-wrapper">
                                     <template v-for="paymentMethod in paymentMethods">
                                         <div v-show="paymentMethod.name === 'Stripe' " class="payment-method"
@@ -32,7 +31,6 @@
                                         </div>
                                     </template>
                                 </div>
-
                                 <div class="step-footer" style="justify-content: flex-end">
 
                                     <div class="action-btn">
@@ -42,13 +40,7 @@
                                         </a>
                                     </div>
                                 </div>
-                            </template>
-
-                            <div v-else style="font-size: 18px; line-height: 24px;color: #888DB1;">
-                                Current user has no payment methods set up.
-                            </div>
                         </div>
-
                     </div>
 
                     <div class="single-step-wrapper two" :class="{'active' : isStepActive(2)}">
@@ -189,8 +181,6 @@
                                 </div>
                             </template>
 
-
-
                             <div class="action-btn mt-5">
                                 <a href="javascript:void(0)" @click="goToNextStep">
                                     Confirm
@@ -243,6 +233,123 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="steps-wrapper" v-else>
+
+                    <div class="single-step-wrapper one no-payment-method" :class="{'active' : isStepActive(1)}">
+                        <div class="step-header">
+                            No Payment Method
+                        </div>
+                        <div class="step-content" v-show="isStepActive(1)">
+                            <div class="header">
+                                Current user has no payment methods set up!
+                            </div>
+
+                            <div class="step-footer" style="justify-content: flex-end">
+                                <div class="action-btn">
+                                    <a href="javascript:void(0)" @click="goToNextStep" class="contact">
+                                        Contact Freelancer
+                                        <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="single-step-wrapper two no-payment-method" :class="{'active' : isStepActive(2) }">
+                        <div class="step-header">
+                            Required Information
+                            <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(2)">
+                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
+                                 v-show="isStepActive(2)">
+                        </div>
+                        <div class="step-content" v-show="isStepActive(2)">
+
+                            <div class="client-inputs">
+                                <div class="client-input-group">
+                                    <label>Name</label>
+                                    <input type="text" placeholder="John Doe" v-model="client.name" required>
+                                    <span v-if="errors.name" class="client-input-error">
+                                        {{errors.name}}
+                                    </span>
+                                </div>
+                                <div class="client-input-group">
+                                    <label>Email</label>
+                                    <input type="email" placeholder="John@Doe.com" v-model="client.email" required>
+                                    <span v-if="errors.email" class="client-input-error">
+                                        {{errors.email}}
+                                    </span>
+                                </div>
+                                <div class="client-input-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" placeholder="+123 00 0000 000" v-model="client.phone" required>
+                                    <span v-if="errors.phone" class="client-input-error">
+                                        {{errors.phone}}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="action-btn align-content-end">
+                                <a href="javascript:void(0)" @click="validateAndGoToNextStep">
+                                    Continue
+                                    <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="single-step-wrapper three no-payment-method" :class="{'active' : isStepActive(3)}">
+                        <div class="step-header">
+                            Contact Freelancer
+                            <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(3)">
+                            <img src="/icons/back.svg" class="back" alt="back icon" @click="goToPreviousStep"
+                                 v-show="isStepActive(3)">
+                        </div>
+                        <div class="step-content" v-show="isStepActive(3)">
+
+                            <div class="contact-form">
+                                <div class="contact-form-header">
+                                    <div class="text">
+                                        Message
+                                    </div>
+                                    <div class="avatar">
+                                        Send to <img :src="user.personal_info.profile_pic" alt="user avatar">
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <textarea v-model="messageBody">
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="step-footer" style="justify-content: flex-end">
+                                <div class="action-btn">
+                                    <a href="javascript:void(0)" @click="goToNextStep">
+                                        Send
+                                        <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="single-step-wrapper four no-payment-method" :class="{'active' : isStepActive(4)}">
+                        <div class="step-content" v-show="isStepActive(4)">
+                            <div class="success-message">
+                                <div class="message-content">
+                                    <img src="/icons/hire-modal/check-circle.svg" alt="verified icon">
+                                    <div class="text">
+                                        Successfully Sent!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
 
             </div>
         </v-dialog>
@@ -477,6 +584,11 @@
                 this.isDatePickerOpened = false;
                 this.isDateChanged = true;
             },
+            validateAndGoToNextStep(){
+                if(this.validateInputs()){
+                    this.goToNextStep();
+                }
+            }
 
         },
         computed: {
@@ -571,6 +683,11 @@
                     }
                 }
 
+
+                &.active.two {
+                    height: 480px;
+                }
+
                 &.active.three {
                     height: 455px;
                 }
@@ -579,14 +696,24 @@
                     height: 280px;
                 }
 
-
-
-                &.active.two {
-                    height: 480px;
-                }
-
                 &.active.four {
                     height: 520px;
+                }
+
+                &.active.one.no-payment-method {
+                    height: 235px;
+                }
+
+                &.active.two.no-payment-method{
+                    height: 520px;
+                }
+
+                &.active.three.no-payment-method {
+                    height: 370px;
+                }
+
+                &.active.four.no-payment-method {
+                    height: 250px;
                 }
 
                 .step-header {
@@ -644,6 +771,7 @@
                         font-weight: 500;
                         font-size: 24px;
                         margin-top: 20px;
+                        text-align: center;
                         margin-bottom: 20px;
                         color: #888DB1;
                     }
@@ -673,6 +801,10 @@
                             img{
                                 width: 22px;
                                 margin-left: 5px;
+                            }
+
+                            &.contact{
+                                width: 180px;
                             }
                         }
                     }
@@ -972,6 +1104,116 @@
             right: -15px;
             top: -200px;
         }
+    }
+
+    .contact-form {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .contact-form-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .text {
+                color: #5C6291;
+                font-size: 18px;
+                font-weight: 500;
+                font-family: Poppins, sans-serif;
+            }
+
+            .avatar {
+                display: flex;
+                align-items: center;
+                color: #5C6291;
+                font-size: 18px;
+
+                img {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        .input-row {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 25px;
+
+            textarea {
+                width: 100%;
+                height: 140px;
+                border: 2px solid #E6E8FC;
+                border-radius: 5px;
+                padding: 10px;
+                resize: none;
+                color: #8488AB;
+                font-size: 15px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        .send-btn {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -35px;
+            margin-right: 25px;
+
+            a {
+                width: 130px;
+                height: 47px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 22px;
+                background: blue;
+                color: white;
+                box-shadow: 0px 6px 13px #081EE033;
+                border-radius: 5px;
+
+                img {
+                    width: 18px;
+                    margin-left: 10px;
+                    margin-top: 8px;
+                }
+            }
+        }
+
+    }
+
+    .success-message {
+        margin-top: 30px;
+
+        .message-content {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+
+            img {
+                margin-bottom: 25px;
+            }
+
+            .text {
+                font-family: Poppins, sans-serif;
+                font-size: 32px;
+                font-weight: 500;
+                color: #2BAD03;
+            }
+        }
+
+
     }
 
 </style>
