@@ -131,7 +131,7 @@
 
                     </div>
 
-                    <div class="single-step-wrapper three" :class="{'active' : isStepActive(3)}">
+                    <div class="single-step-wrapper three" :class="{'active' : isStepActive(3) , 'short' : percentage == 100}">
                         <div class="step-header">
                             Total Payment
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(3)">
@@ -144,14 +144,54 @@
                                 Your Current Payment Will Be
                             </div>
 
-                            <div class="total-payment-row" style="border-bottom: 1px solid lightgray; padding-bottom: 30px; margin-bottom: 50px; justify-content: center;">
+                            <div class="total-payment-row" style="border-bottom: 1px solid lightgray; padding-bottom: 20px; justify-content: center;">
                                 <div class="total-payment">
                                     ${{Math.round(currentPaymentAmount)}}
                                 </div>
                             </div>
 
+                            <template v-if="percentage < 100">
+                                <div class="header mb-0">
+                                    Auto pay balance of (${{Math.round(totalPaymentAmount - currentPaymentAmount)}})
+                                </div>
 
-                            <div class="action-btn">
+                                <div class="payment-types">
+                                    <div class="single-payment-type"
+                                         :class="{'active-blue' : isAutoPaymentTypeActive('7-days')}"
+                                         @click="setAutoPaymentType('7-days')">
+                                        7 Days
+                                    </div>
+                                    <div class="single-payment-type"
+                                         v-if="currentPaymentType === 'monthly' "
+                                         :class="{'active-blue' : isAutoPaymentTypeActive('14-days')}"
+                                         @click="setAutoPaymentType('14-days')">
+                                        14 Days
+                                    </div>
+                                    <div class="single-payment-type date"
+                                         :class="{'active-blue': isAutoPaymentTypeActive('custom-date')}"
+                                         @click="pickDateSelected">
+                                    <span v-if="isDateChanged">
+                                        {{datePicker}}
+                                    </span>
+
+                                        <template v-else>
+                                            <img src="/icons/hire-modal/date.svg" alt="date">
+                                            Pick a date
+                                        </template>
+                                    </div>
+
+                                    <div class="date-picker" v-show="isDatePickerOpened">
+                                        <v-date-picker full-width v-model="datePicker" :show-current="false"
+                                                       :min="currentDate"
+                                                       :max="futureDate" color="green lighten-1" header-color="primary"
+                                                       @change="dateChanged"></v-date-picker>
+                                    </div>
+                                </div>
+                            </template>
+
+
+
+                            <div class="action-btn mt-5">
                                 <a href="javascript:void(0)" @click="goToNextStep">
                                     Confirm
                                     <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
@@ -211,6 +251,8 @@
 </template>
 
 <script>
+    import moment from 'moment'
+
     export default {
         name: "HireMeModal",
         props: {
@@ -420,7 +462,21 @@
             moment: function () {
                 return moment();
             },
-
+            isAutoPaymentTypeActive(payment_type) {
+                return this.currentAutoPaymentType === payment_type;
+            },
+            setAutoPaymentType(payment_type) {
+                this.currentAutoPaymentType = payment_type;
+            },
+            pickDateSelected() {
+                this.currentAutoPaymentType = 'custom-date';
+                this.isDatePickerOpened = true;
+            },
+            dateChanged() {
+                // close the date picker
+                this.isDatePickerOpened = false;
+                this.isDateChanged = true;
+            },
 
         },
         computed: {
@@ -516,8 +572,14 @@
                 }
 
                 &.active.three {
-                    height: 360px;
+                    height: 455px;
                 }
+
+                &.active.three.short {
+                    height: 280px;
+                }
+
+
 
                 &.active.two {
                     height: 480px;
@@ -581,8 +643,8 @@
                     .header{
                         font-weight: 500;
                         font-size: 24px;
-                        margin-top: 40px;
-                        margin-bottom: 30px;
+                        margin-top: 20px;
+                        margin-bottom: 20px;
                         color: #888DB1;
                     }
 
@@ -622,7 +684,7 @@
                     justify-content: space-between;
                     margin-bottom: 20px;
                     margin-top: 20px;
-
+                    position: relative;
 
                     .single-payment-type {
                         width: 110px;
@@ -635,7 +697,8 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        margin-right: 20px;
+                        margin-right: 10px;
+                        margin-left: 10px;
 
                         @include lt-sm {
                             width: 80px;
@@ -648,6 +711,10 @@
                             margin-right: 0;
                         }
 
+                        &:first-child {
+                            margin-left: 0;
+                        }
+
                         &.active {
                             background: #888DB1;
                             color: white;
@@ -656,6 +723,24 @@
 
                         &:hover {
                             cursor: pointer;
+                        }
+
+                        &.active-blue {
+                            border: none;
+                            color: white;
+                            background: #021DE2;
+                        }
+
+                        &.date {
+                            width: 160px;
+
+                            img {
+                                margin-right: 10px;
+                            }
+
+                            @include lt-sm {
+                                width: 120px;
+                            }
                         }
 
                     }
@@ -876,4 +961,29 @@
         font-weight: 500;
     }
 
+    .date-picker {
+        position: absolute;
+        top: -205px;
+        left: -30px;
+        right: -30px;
+
+        @include lt-sm {
+            left: -15px;
+            right: -15px;
+            top: -200px;
+        }
+    }
+
+</style>
+
+<style lang="scss">
+    .v-picker {
+        .v-picker__title.primary {
+            background: #001CE2 !important;
+        }
+
+        .v-btn.v-btn--active.v-btn--rounded.theme--light.green.lighten-1 {
+            background: #001CE2 !important;
+        }
+    }
 </style>
