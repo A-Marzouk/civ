@@ -185,8 +185,9 @@ export default {
   }
 }
 .custom-portfolio-img {
-  width: 100% !important;
-  //height: 100% !important;
-  max-height: 400px !important;
+  width: 420px;
+  height: 339px;
+  max-width: 420px !important;
+  max-height: 339px !important;
 }
 </style>
