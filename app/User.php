@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Billing\paymentGatewayInfo;
 use App\Traits\Billable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity','resume_link_id', 'deleted_at'
+        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id', 'last_activity', 'resume_link_id', 'deleted_at'
     ];
 
     /**
@@ -38,32 +39,34 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public static $defaultRelations = [
-            'permissions',
-            'tabs',
-            'skills',
-            'preferences',
-            'paymentMethods',
-            'hobbies',
-            'education',
-            'workExperience',
-            'links',
-            'projects.images',
-            'achievements',
-            'media',
-            'references',
-            'testimonials',
-            'imports',
-            'downloads',
-            'languages',
-            'personalInfo',
-            'availabilityInfo',
-            'paymentInfo',
-            'resumeLinks',
-            'defaultResumeLink',
-            'summary',
-            'theme',
-            'subscription'
-        ];
+        'permissions',
+        'tabs',
+        'skills',
+        'preferences',
+        'paymentMethods',
+        'hobbies',
+        'education',
+        'workExperience',
+        'links',
+        'projects.images',
+        'achievements',
+        'media',
+        'references',
+        'testimonials',
+        'imports',
+        'downloads',
+        'languages',
+        'personalInfo',
+        'availabilityInfo',
+        'paymentInfo',
+        'resumeLinks',
+        'defaultResumeLink',
+        'summary',
+        'theme',
+        'subscription',
+        'payments',
+        'paymentGatewayInfo',
+    ];
     public static $excludedFromVersionFilter = [
         'permissions',
         'projects.images',
@@ -72,6 +75,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'resumeLinks',
         'defaultResumeLink',
         'subscription',
+        'payments',
+        'paymentGatewayInfo',
         'theme',
     ];
     public static $defaultOneToOneRelations = [
@@ -122,30 +127,27 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasRole('agent');
     }
 
-    //user with all relations
-
     public static function withAllRelations($username, $resume_link_id = '')
     {
         $defaultRelations = self::$defaultRelations;
 
-        if($resume_link_id !== ''){
-            $defaultRelations = [] ;
-            foreach (self::$defaultRelations as $relation){
-                if(in_array($relation, self::$excludedFromVersionFilter)){
-                    $defaultRelations[] = $relation ;
+        if ($resume_link_id !== '') {
+            $defaultRelations = [];
+            foreach (self::$defaultRelations as $relation) {
+                if (in_array($relation, self::$excludedFromVersionFilter)) {
+                    $defaultRelations[] = $relation;
                     continue;
                 }
-                $defaultRelations[$relation] = function($q) use($resume_link_id) {$q->where('resume_link_id', $resume_link_id);} ;
+                $defaultRelations[$relation] = function ($q) use ($resume_link_id) {
+                    $q->where('resume_link_id', $resume_link_id);
+                };
             }
-            $defaultRelations['projects'] = function($q) use($resume_link_id) {$q->where('resume_link_id', $resume_link_id);} ;
+            $defaultRelations['projects'] = function ($q) use ($resume_link_id) {
+                $q->where('resume_link_id', $resume_link_id);
+            };
         }
 
         return User::where('username', $username)->with($defaultRelations)->first();
-    }
-
-    public function testName()
-    {
-        return $this->name;
     }
 
 
@@ -158,6 +160,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function skills()
     {
         return $this->hasMany(Skill::class)->orderBy('order');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Billing\Payment::class);
     }
 
     public function preferences()
@@ -238,6 +245,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(PersonalInfo::class);
     }
 
+    public function paymentGatewayInfo()
+    {
+        return $this->hasOne(paymentGatewayInfo::class);
+    }
+
     public function subscription()
     {
         return $this->hasOne(Subscription::class);
@@ -269,17 +281,20 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Referee::class);
     }
 
-    public function theme(){
+    public function theme()
+    {
         return $this->belongsTo(Theme::class);
     }
 
-    public function defaultResumeLink(){
-        return $this->belongsTo(ResumeLink::class,'resume_link_id');
+    public function defaultResumeLink()
+    {
+        return $this->belongsTo(ResumeLink::class, 'resume_link_id');
     }
 
 
     // user helper functions :
-    public function updateLastActivity(){
+    public function updateLastActivity()
+    {
         $this->update([
             'last_activity' => Carbon::now()->toDateTimeString()
         ]);
@@ -294,31 +309,36 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     // Get user links where category == 'social'
-    public function getSocialLinks() {
+    public function getSocialLinks()
+    {
         return $this->links->filter(function ($value, $key) {
             return $value->category == 'social';
         });
     }
 
-    public function getPersonalWebsite() {
+    public function getPersonalWebsite()
+    {
         return $this->links->filter(function ($value, $key) {
             return $value->category == 'professional' && $value->link_title == 'Website';
         })[0];
     }
 
-    public function getPublicWorkExperience () {
+    public function getPublicWorkExperience()
+    {
         return $this->workExperience->filter(function ($value, $key) {
             return $value->is_public;
         });
     }
-    
-    public function getPublicEducation () {
+
+    public function getPublicEducation()
+    {
         return $this->education->filter(function ($value, $key) {
             return $value->is_public;
         });
     }
-    
-    public function getPublicSkills () {
+
+    public function getPublicSkills()
+    {
         return $this->skills->filter(function ($value, $key) {
             return $value->is_public;
         });

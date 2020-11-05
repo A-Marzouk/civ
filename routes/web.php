@@ -79,9 +79,8 @@ Route::get('/subscription/success', 'Billing\StripeForAgentsController@subscript
 
 // Stripe for clients:
 Route::post('/custom-stripe-payment', 'Billing\StripeForClientsController@customStripePayments')->name('custom.stripe.payments');
-Route::get('/hire-freelancer/success', function (){
-    echo 'Thank you, your payment was successfully made';
-});
+Route::get('/hire-freelancer/success', 'Billing\StripeForClientsController@firstPaymentSuccess');
+Route::get('/client-subscription', 'Billing\StripeForClientsController@clientSubscription')->name('subscription');
 Route::get('/hire-freelancer/cancel', function (){
     echo 'Sorry! your payment did not go through';
 });
