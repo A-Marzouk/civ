@@ -551,14 +551,24 @@
                           <audioMedia :audioMedia="audio"></audioMedia>
                         </v-col>
                         <v-col cols="12">
-                          <v-row>
-                            <v-col xl="4" lg="4">1</v-col>
-                            <v-col xl="4" lg="4">1</v-col>
-                            <v-col xl="4" lg="4">
-                              <div class="d-flex flex-column">
-                                <div>1</div>
-                                <div>2</div>
-                              </div>
+                          <v-row justify="start">
+                            <v-col
+                              xl="4"
+                              lg="4"
+                              md="6"
+                              sm="6"
+                              cols="12"
+                              v-for="item in filterVideo(currentUser.media)"
+                              :key="item.id"
+                            >
+                              <v-card style="border-radius: 9px;">
+                                <video-player
+                                  :title="item.title"
+                                  :details="item.content"
+                                  :file="item.url"
+                                  :previewImg="item.media_preview"
+                                ></video-player>
+                              </v-card>
                             </v-col>
                           </v-row>
                         </v-col>
@@ -926,6 +936,7 @@
 
 <script>
 import audioMedia from "./media/audioMedia";
+import VideoPlayer from "./media/VideoPlayer";
 import HireModal from "../theme203/payment/HireModal";
 import Portfolio from "./tabs/Portfolio";
 export default {
@@ -934,6 +945,7 @@ export default {
     audioMedia,
     HireModal,
     Portfolio,
+    VideoPlayer,
   },
   data() {
     return {
@@ -989,6 +1001,10 @@ export default {
       });
 
       return title;
+    },
+    filterVideo(dataArray) {
+      var filterArray = dataArray.filter((a) => a.type === "video");
+      return filterArray;
     },
     setTabIndex() {
       this.indexOfActiveTab = this.currentUser.tabs.findIndex(
