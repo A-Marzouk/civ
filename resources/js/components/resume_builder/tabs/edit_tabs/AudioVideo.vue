@@ -49,8 +49,8 @@
                                                     label="Upload Audio"
                                                     hint="(Maximum 1 files)"
                                                     height="50"
-                                                    :error="!!errors.url"
-                                                    :error-messages="errors.url"
+                                                    :error="!!errors.mediaFile"
+                                                    :error-messages="errors.mediaFile"
 
                                             >
                                                 <vue-dropzone
@@ -193,8 +193,8 @@
                                                         label="Upload video"
                                                         hint="(Maximum 1 files)"
                                                         height="50"
-                                                        :error="!!errors.url"
-                                                        :error-messages="errors.url"
+                                                        :error="!!errors.mediaFile"
+                                                        :error-messages="errors.mediaFile"
 
                                                 >
                                                     <vue-dropzone
@@ -230,7 +230,6 @@
                                                         {{Math.ceil(progressBar)}}%
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <span class="or-text">or</span>
