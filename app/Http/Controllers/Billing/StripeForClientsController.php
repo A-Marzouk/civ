@@ -172,9 +172,13 @@ class StripeForClientsController extends Controller
 
 
 
-    // success:
+    // notifications:
     public function firstPaymentSuccess(){
         dd('Thank you! your payment went through');
+    }
+
+    public function firstPaymentFail(){
+        dd('Sorry! your payment did not go through');
     }
 
 
