@@ -17,9 +17,8 @@
                 // using `result.error.message`.
                 console.log(result.error.message);
             });
-            console.log(param);
         }else{
-            console.log('coming');
+
         }
     </script>
 @endsection

@@ -693,7 +693,7 @@
                 }
 
                 &.active.three.short {
-                    height: 280px;
+                    height: 310px;
                 }
 
                 &.active.four {
