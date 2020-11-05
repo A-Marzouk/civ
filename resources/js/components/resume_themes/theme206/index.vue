@@ -228,7 +228,7 @@
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
           <v-list-item class="mt-n12">
             <v-list-item-avatar size="80">
-              <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
+              <v-img :src="currentUser.personal_info.profile_pic"></v-img>
             </v-list-item-avatar>
             <div class="half-circle-mobile"></div>
             <v-list-item-content class="mt-12">
