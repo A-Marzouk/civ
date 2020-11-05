@@ -375,12 +375,14 @@
                       :key="education.id"
                       v-show="education.is_public"
                     >
-                      <v-card class="card-education pa-5" hover>
+                      <v-card class="card-education pa-xl-5 pa-lg-3 pa-5" hover>
                         <v-card-title class="education-title">
                           <v-row>
-                            <v-col cols="10">{{
-                              education.university_name
-                            }}</v-col>
+                            <v-col cols="10">
+                              <div class="education-title">
+                                {{ education.university_name }}
+                              </div>
+                            </v-col>
                             <v-col cols="2" align="right">
                               <img
                                 src="/images/resume_themes/theme206/tabs/2.png"
@@ -414,7 +416,7 @@
                       :key="work.id"
                       v-show="work.is_public"
                     >
-                      <v-card class="card-education pa-5" hover>
+                      <v-card class="card-education pa-xl-5 pa-lg-2 pa-5" hover>
                         <v-card-title class="education-title">
                           <v-row>
                             <v-col cols="10">{{ work.job_title }}</v-col>
@@ -561,7 +563,7 @@
                               v-for="item in filterVideo(currentUser.media)"
                               :key="item.id"
                             >
-                              <v-card style="border-radius: 9px;">
+                              <v-card style="border-radius: 9px">
                                 <video-player
                                   :title="item.title"
                                   :details="item.content"
