@@ -771,7 +771,7 @@
                               <img
                                 src="/images/resume_themes/theme206/football.svg"
                                 alt="football"
-                                class="mx-auto"
+                                class="mx-auto mr-lg-3 mr-md-3 mr-sm-2 mr-2"
                               />
                               <div class="hobby-title mx-auto my-auto">
                                 {{ hobby.title }}
