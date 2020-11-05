@@ -976,7 +976,7 @@
                             height: 50px;
                             border: 2px solid #E6E8FC;
                             border-radius: 5px;
-                            color: #E6E8FC;
+                            color: grey;
                             padding-left: 15px;
 
                             &:focus {

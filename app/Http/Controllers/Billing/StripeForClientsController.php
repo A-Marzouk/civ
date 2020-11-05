@@ -27,7 +27,7 @@ class StripeForClientsController extends Controller
 
         $customer = $this->createOrFetchCustomer($request->client['email']);
 
-        if (!$request->isRecurring) {
+        if ( ! $request->isRecurring) {
             return $this->makeOneTimePayment($request, $customer);
         }
 
