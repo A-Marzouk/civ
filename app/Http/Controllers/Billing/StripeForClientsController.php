@@ -34,11 +34,6 @@ class StripeForClientsController extends Controller
             return $this->makeOneTimePayment($request, $customer);
         }
 
-        // BILLING THE CUSTOMER
-
-        // one time payment
-
-        // recurring payment
     }
 
     protected function createOrFetchCustomer($request)
@@ -175,9 +170,7 @@ class StripeForClientsController extends Controller
         return view('subscription');
     }
 
-    protected function createPayment(){
 
-    }
 
     // success:
     public function firstPaymentSuccess(){

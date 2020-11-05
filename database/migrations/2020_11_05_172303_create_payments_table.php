@@ -17,8 +17,6 @@ class CreatePaymentsTable extends Migration
             $table->id();
 
             $table->string('payment_method')->nullable();
-            $table->string('away_payment_id')->nullable();
-            $table->string('away_invoice_id')->nullable();
             $table->string('status')->nullable();
             $table->string('amount')->nullable();
             $table->text('notes')->nullable();
