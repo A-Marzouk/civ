@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Billing;
 use App\Billing\paymentGatewayInfo;
 use App\Http\Controllers\Controller;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Stripe\Product as StripeProduct;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Session;
 use Stripe\Checkout\Session as StripeSession;
 use Stripe\InvoiceItem as StripeInvoiceItem;
 use Stripe\Invoice as StripeInvoice;
+use Stripe\SubscriptionSchedule as StripeSubscriptionSchedule;
 
 class StripeForClientsController extends Controller
 {
@@ -130,7 +132,28 @@ class StripeForClientsController extends Controller
         Session::put('hire_sub_session_id',  $session->id);
 
         if($request->percentage < 100){
-            // scheduled subscription
+
+            $laterSubscriptionPrice = $this->createPriceForSubscriptionLaterPayment($product->id, $request);
+
+            $startDate = new Carbon($request->payment_info['toPayLaterDate']);
+
+            StripeSubscriptionSchedule::create([
+                'customer' =>  $customer->id,
+                'start_date' => $startDate->timestamp,
+                'end_behavior' => 'cancel',
+                'phases' => [
+                    [
+                        'items' => [
+                            [
+                                'price' => $laterSubscriptionPrice->id,
+                                'quantity' => 1,
+                            ],
+                        ],
+                        'iterations' => $request->payment_info['iterations'],
+                    ],
+                ],
+            ]);
+
         }
 
         return $session->id ;
@@ -141,6 +164,19 @@ class StripeForClientsController extends Controller
         return StripePrice::create([
             'product' => $product_id,
             'unit_amount' => $request->payment_info['toPayNowAmount'] * 100, // USD in cents
+            'currency' => 'usd',
+            // pass interval only if recurring payment.
+            'recurring' => [
+                'interval' => $request->payment_info['interval'],
+            ],
+        ]);
+    }
+
+    protected function createPriceForSubscriptionLaterPayment($product_id, $request)
+    {
+        return StripePrice::create([
+            'product' => $product_id,
+            'unit_amount' => $request->payment_info['toPayLaterAmount'] * 100, // USD in cents
             'currency' => 'usd',
             // pass interval only if recurring payment.
             'recurring' => [
