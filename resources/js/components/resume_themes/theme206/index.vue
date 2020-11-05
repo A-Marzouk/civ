@@ -17,12 +17,7 @@
           style="width: 100%"
         >
           <v-row class align="center" justify="center" dense>
-            <v-col
-              xl="4"
-              lg="3"
-              md="8"
-              sm="7"
-            >
+            <v-col xl="4" lg="3" md="8" sm="7">
               <v-card flat color="transparent" class="pa-0">
                 <v-card-title class="custom-profile-title"
                   >{{ currentUser.personal_info.first_name }}
@@ -229,10 +224,7 @@
         absolute
         width="350"
       >
-        <v-card
-          flat
-          color="transparent"
-        >
+        <v-card flat color="transparent">
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
           <v-list-item class="mt-n12">
             <v-list-item-avatar size="80">
@@ -314,7 +306,8 @@
               <v-tab
                 v-for="tab in currentUser.tabs"
                 :key="tab.title"
-                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                v-if="!excludedTabs.includes(tab.title)"
+                v-show="tab.is_public"
                 @click="activeTab = tab.title"
                 :class="[activeTab === tab.title ? 'active-mobile-tab' : '']"
               >
@@ -338,7 +331,8 @@
               <v-tab
                 v-for="tab in currentUser.tabs"
                 :key="tab.title"
-                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                v-if="!excludedTabs.includes(tab.title)"
+                v-show="tab.is_public"
                 @click="activeTab = tab.title"
                 class="mx-md-2 mx-sm-2 text-capitalize"
                 :class="[
@@ -366,7 +360,7 @@
               <v-tabs-items v-model="indexOfActiveTab">
                 <!-- Portfolio -->
                 <v-tab-item :value="getTabIndex('portfolio')">
-                  <Portfolio :currentUser = "currentUser" />
+                  <Portfolio :currentUser="currentUser" />
                 </v-tab-item>
                 <!-- Portfolio -->
                 <!-- Education -->
@@ -555,6 +549,18 @@
                           v-show="audio.is_public"
                         >
                           <audioMedia :audioMedia="audio"></audioMedia>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-row>
+                            <v-col xl="4" lg="4">1</v-col>
+                            <v-col xl="4" lg="4">1</v-col>
+                            <v-col xl="4" lg="4">
+                              <div class="d-flex flex-column">
+                                <div>1</div>
+                                <div>2</div>
+                              </div>
+                            </v-col>
+                          </v-row>
                         </v-col>
                       </v-row>
                     </v-card-text>
@@ -921,7 +927,7 @@
 <script>
 import audioMedia from "./media/audioMedia";
 import HireModal from "../theme203/payment/HireModal";
-import Portfolio from './tabs/Portfolio'
+import Portfolio from "./tabs/Portfolio";
 export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
@@ -953,49 +959,53 @@ export default {
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    builderCurrentTabTitle: function(val) {
-      if(!this.defaultTabs.includes(val)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = val ;
+    builderCurrentTabTitle: function (val) {
+      if (!this.defaultTabs.includes(val)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = val;
       }
 
       this.setTabIndex();
-    }
-  },
-  computed:{
-    defaultTabs(){
-      return this.$store.state.defaultTabs ;
     },
-    excludedTabs(){
-      return this.$store.state.excludedTabs ;
-    }
+  },
+  computed: {
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
+    },
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
+    },
   },
   methods: {
-    getFirstActiveTabTitle(){
-      let title = '';
-      this.currentUser.tabs.forEach( (tab) => {
-        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
-          if(title === ''){
-            title = tab.title ;
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
           }
         }
       });
 
-      return title ;
+      return title;
     },
-    setTabIndex(){
-      this.indexOfActiveTab = this.currentUser.tabs.findIndex(tab => tab.title === this.activeTab);
+    setTabIndex() {
+      this.indexOfActiveTab = this.currentUser.tabs.findIndex(
+        (tab) => tab.title === this.activeTab
+      );
     },
-    getTabIndex(tabTitle){
-      let index =  this.currentUser.tabs.findIndex(tab => tab.title === tabTitle);
+    getTabIndex(tabTitle) {
+      let index = this.currentUser.tabs.findIndex(
+        (tab) => tab.title === tabTitle
+      );
       return index;
     },
-    goToExternalLink(link){
-      if(!link.includes('http')){
-        link = 'http://' + link ;
+    goToExternalLink(link) {
+      if (!link.includes("http")) {
+        link = "http://" + link;
       }
-      window.location.href = link ;
+      window.location.href = link;
     },
     skillCategory(skillName) {
       var filteredSkill = this.currentUser.skills.filter(
@@ -1047,15 +1057,15 @@ export default {
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
-    setActiveTabByURL(){
+    setActiveTabByURL() {
       const pathSplit = this.$route.path.split("/");
       let currentActiveTab = pathSplit[pathSplit.length - 1];
-      if(!this.defaultTabs.includes(currentActiveTab)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = currentActiveTab ;
+      if (!this.defaultTabs.includes(currentActiveTab)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = currentActiveTab;
       }
-    }
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
