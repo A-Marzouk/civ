@@ -190,4 +190,7 @@ export default {
   max-width: 420px !important;
   max-height: 339px !important;
 }
+.custom-portfolio-title{
+  word-break: break-word;
+}
 </style>

@@ -233,7 +233,7 @@
             <div class="half-circle-mobile"></div>
             <v-list-item-content class="mt-12">
               <v-list-item-title>
-                <v-card color="transparent" class="pa-2" flat>
+                <v-card color="transparent" class="pa-5" flat>
                   <span class="profile-title-mobile"
                     >{{ currentUser.personal_info.first_name }}
                     {{ currentUser.personal_info.last_name }}</span
@@ -241,7 +241,7 @@
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
-                <v-card flat color="transparent" class="pa-2 mt-n5">
+                <v-card flat color="transparent" class="pa-5 mt-n5">
                   <span class="profile-subtitle-mobile">{{
                     currentUser.personal_info.designation
                   }}</span>
@@ -416,7 +416,7 @@
                       :key="work.id"
                       v-show="work.is_public"
                     >
-                      <v-card class="card-education pa-xl-5 pa-lg-2 pa-2" hover>
+                      <v-card class="card-education pa-xl-5 pa-lg-2 pa-5" hover>
                         <v-card-title class="education-title">
                           <v-row>
                             <v-col cols="10">{{ work.job_title }}</v-col>
@@ -872,7 +872,7 @@
                         v-show="achievement.is_public"
                       >
                         <v-card
-                          class="card-achievement pa-xl-10 pa-lg-6 pa-md-12 pa-sm-9 pa-2 mb-6"
+                          class="card-achievement pa-xl-10 pa-lg-6 pa-md-12 pa-sm-9 pa-5 mb-6"
                           hover
                         >
                           <div class="d-flex flex-row my-auto">
@@ -1297,6 +1297,7 @@ export default {
   font-weight: bold !important;
   line-height: 30px !important;
   font-size: 26px;
+  word-break: break-word;
   @media screen and (max-width: 411px){
     font-size: 20px;
   }
