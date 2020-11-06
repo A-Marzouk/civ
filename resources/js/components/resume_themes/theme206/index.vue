@@ -416,7 +416,7 @@
                       :key="work.id"
                       v-show="work.is_public"
                     >
-                      <v-card class="card-education pa-xl-5 pa-lg-2 pa-5" hover>
+                      <v-card class="card-education pa-xl-5 pa-lg-2 pa-2" hover>
                         <v-card-title class="education-title">
                           <v-row>
                             <v-col cols="10">{{ work.job_title }}</v-col>
@@ -1297,6 +1297,12 @@ export default {
   font-weight: bold !important;
   line-height: 30px !important;
   font-size: 26px;
+  @media screen and (max-width: 411px){
+    font-size: 20px;
+  }
+  @media screen and (max-width: 374px){
+    font-size: 16px;
+  }
   img {
     width: 40px;
   }
@@ -1315,11 +1321,21 @@ export default {
   color: #333333 !important;
   line-height: 23px;
   font-size: 1.125rem !important;
+  @media screen and (max-width: 411px){
+    font-size: 1rem !important;
+  }
+  @media screen and (max-width: 374px){
+    font-size: 14px !important;
+  }
 }
 .education-session {
   font-family: "Roboto", sans-serif !important;
   color: rgba(51, 51, 51, 0.5) !important;
-}
+  font-size: 20px !important;
+  @media screen and (max-width: 374px){
+    font-size: 12px !important;
+  }
+} 
 //education
 // Skill tab
 .skill-child-tab {
