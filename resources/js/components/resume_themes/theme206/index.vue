@@ -1570,6 +1570,7 @@ export default {
   line-height: 27px;
   text-transform: uppercase;
   color: #000000;
+  word-break: break-word;
   @media screen and (max-width: 599px) {
     font-size: 14px;
     line-height: 21px;
