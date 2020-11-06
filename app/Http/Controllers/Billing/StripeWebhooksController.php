@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Billing;
 
 
+use App\Billing\Payment;
 use App\Http\Controllers\Controller;
 use App\User;
 
@@ -36,6 +37,18 @@ class StripeWebhooksController extends Controller
 
     public function onCustomerSubscriptionDeleted($payload){
         User::byStripeCustomerId($payload['data']['object']['customer'])->deactivate();
+    }
+
+    public function onChargeSucceeded($payload){
+        $client =  User::byStripeCustomerId($payload['data']['object']['customer']);
+        // add success payment history.
+        Payment::create([
+            'user_id' => $client->id,
+            'amount' => $payload['data']['object']['amount'],
+            'payment_method' => 'stripe',
+            'status' => 'paid',
+            'notes' => 'Successfully paid.',
+        ]);
     }
 
 }

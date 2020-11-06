@@ -9,8 +9,11 @@
 namespace App\Http\Controllers\Billing;
 
 
+use App\Billing\paymentGatewayInfo;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Stripe\Product as StripeProduct;
 use Stripe\Price as StripePrice;
 use Stripe\Customer as StripeCustomer;
@@ -25,43 +28,45 @@ class StripeForClientsController extends Controller
     public function customStripePayments(Request $request)
     {
 
-        $customer = $this->createOrFetchCustomer($request->client['email']);
+        $customer = $this->createOrFetchCustomer($request);
 
-        if (!$request->isRecurring) {
+        if ( ! $request->isRecurring) {
             return $this->makeOneTimePayment($request, $customer);
         }
 
-        // BILLING THE CUSTOMER
-
-        // one time payment
-
-        // recurring payment
     }
 
-    protected function createOrFetchCustomer($clientEmail)
+    protected function createOrFetchCustomer($request)
     {
-        // customer email check if existing
+        $client   = User::where('email', $request->client['email'])->first();
+        $stripeID = $client->paymentGatewayInfo->stripe_customer_id ?? '' ;
 
+        if($stripeID){
+            return StripeCustomer::retrieve($stripeID);
+        }
 
-        // else create new:
-        return StripeCustomer::create([
-            'email' => $clientEmail,
+        $newStripeCustomer = StripeCustomer::create([
+            'email' => $request->client['email'],
             'payment_method' => 'pm_card_visa',
             'invoice_settings' => [
                 'default_payment_method' => 'pm_card_visa',
             ],
         ]);
+
+        $this->createClient($request, $newStripeCustomer->id);
+
+        return $newStripeCustomer ;
     }
 
+
+
+    // one time payments
     protected function makeOneTimePayment($request, $customer)
     {
-        // create product
         $product = $this->createNewProduct('hire ' . $request->freelancer['default_resume_link']['title'] . ' For ' . $request->payment_info['numberOfHours'] . ' Hours.');
 
-        // create price for one time payment.
         $nowPrice = $this->createOneTimePriceForNowPayment($product->id, $request);
 
-        // make checkout session
         $session = StripeSession::create([
             'customer' => $customer->id,
             'mode' => 'payment',
@@ -78,7 +83,6 @@ class StripeForClientsController extends Controller
 
         Session::put('hire_session_id',  $session->id);
 
-        // if the totalAmount is more than the pay now amount  make an invoice for the customer
         if($request->percentage < 100){
             $laterPrice = $this->createOneTimePriceForLaterPayment($product->id, $request);
 
@@ -96,17 +100,8 @@ class StripeForClientsController extends Controller
             ]);
         }
 
-        // after the success of a payment, we need to create a client, save the stripe customer id, add the payment to the client. add the pending payments
-        // handle webhooks of paying any invoices or canceling or due of an invoice.
-
         return $session->id ;
     }
-
-    protected function makeSubscriptionPayment()
-    {
-
-    }
-
 
     protected function createOneTimePriceForNowPayment($product_id, $request)
     {
@@ -126,14 +121,14 @@ class StripeForClientsController extends Controller
         ]);
     }
 
-    protected function createNewProduct($productName)
-    {
-        return StripeProduct::create([
-            'name' => $productName
-        ]);
+
+
+    // subscriptions :
+    protected function makeSubscription($request, $customer){
+
     }
 
-    protected function createNewPrice($product_id, $request)
+    protected function createNewPriceForSubscription($product_id, $request)
     {
         return StripePrice::create([
             'product' => $product_id,
@@ -147,12 +142,44 @@ class StripeForClientsController extends Controller
     }
 
 
-    protected function createClient()
+    // general:
+    protected function createNewProduct($productName)
     {
+        return StripeProduct::create([
+            'name' => $productName
+        ]);
+    }
+
+    protected function createClient($request, $stripe_customer_id)
+    {
+        $newClient =  User::create([
+            'name' => $request->client['name'],
+            'email' => $request->client['email'],
+            'username' => strstr($request->client['email'], '@', true),
+            'password' => Hash::make($request->client['email'] . '_civie_client'),
+        ])->assignRole('client');
+
+        paymentGatewayInfo::create([
+            'user_id' => $newClient->id,
+            'stripe_customer_id' => $stripe_customer_id
+        ]);
 
     }
 
+    public function clientSubscription(){
+        return view('subscription');
+    }
 
+
+
+    // notifications:
+    public function firstPaymentSuccess(){
+        dd('Thank you! your payment went through');
+    }
+
+    public function firstPaymentFail(){
+        dd('Sorry! your payment did not go through');
+    }
 
 
 }

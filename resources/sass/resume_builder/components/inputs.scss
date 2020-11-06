@@ -428,7 +428,7 @@
         fieldset {
             // Change fieldset border on error input
 
-            border: 2px solid $errorColor !important;
+            border-bottom: 2px solid $errorColor !important;
         }
     }
 

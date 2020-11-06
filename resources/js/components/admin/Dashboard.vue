@@ -111,6 +111,7 @@
                     {title: 'General', icon: '/images/admin/general.svg', value:'general',url:'/'},
                     {title: 'Account Settings', icon: '/images/admin/settings.svg',value:'acc_settings',url:'account-settings'},
                     {title: 'Users', icon: '/images/admin/users.svg',value:'users',url:'users'},
+                    {title: 'Clients', icon: '/images/admin/clients.svg',value:'clients',url:'clients'},
                     {title: 'Themes', icon: '/images/admin/themes.png',value:'themes',url:'themes'},
                     {title: 'Emails', icon: '/images/admin/emails.png',value:'emails',url:'emails'},
                 ],

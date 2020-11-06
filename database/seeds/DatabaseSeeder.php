@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemesTableSeeder::class);
         $this->call(TestimonialsTableSeeder::class);
         $this->call(PromocodesTableSeeder::class);
+        $this->call(PaymentMethodSeeder::class);
     }
 
     private function cleanDatabase()
