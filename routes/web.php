@@ -86,11 +86,12 @@ Route::get('/hire-freelancer/cancel', 'Billing\StripeForClientsController@firstP
 // PayPal for clients:
 Route::post('/custom-paypal-payment', 'Billing\PayPalForClientsController@customPayPalPayments')->name('custom.stripe.payments');
 Route::get('/paypal/hire-freelancer/success', 'Billing\PayPalForClientsController@success')->name('paypal.clients.success');
+Route::get('/paypal/hire-freelancer-regular/success', 'Billing\PayPalForClientsController@successRegular')->name('paypal..regular.clients.success');
 Route::get('/paypal/hire-freelancer/cancel','Billing\PayPalForClientsController@cancel')->name('paypal.clients.cancel');
-
 
 // webhooks:
 Route::post('/stripe/webhooks', 'Billing\StripeWebhooksController@handle')->name('stripe.webhooks');
+Route::post('/paypal/webhooks', 'Billing\PayPalWebhooksController@handle')->name('paypal.webhooks');
 
 
 

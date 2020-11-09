@@ -13,6 +13,7 @@ use App\Billing\paymentGatewayInfo;
 use App\Http\Controllers\Controller;
 use App\Subscription;
 use App\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,13 +23,21 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use PayPal\Api\BillingInfo;
+use PayPal\Api\ChargeModel;
 use PayPal\Api\Currency;
 use PayPal\Api\InvoiceItem;
 use PayPal\Api\MerchantInfo;
+use PayPal\Api\MerchantPreferences;
+use PayPal\Api\Patch;
+use PayPal\Api\PatchRequest;
 use PayPal\Api\Payer;
 use PayPal\Api\Invoice;
 use PayPal\Api\Agreement as Agreement;
+use PayPal\Api\PaymentDefinition;
 use PayPal\Api\PaymentExecution;
+use PayPal\Api\Plan;
+use PayPal\Api\ShippingAddress;
+use PayPal\Common\PayPalModel;
 use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
@@ -73,12 +82,12 @@ class PayPalForClientsController extends Controller
     {
         if (!$request->payment_info['isRecurring']) {
             $url = $this->makeOneTimePayment($request);
-            return [
-                'url' => $url
-            ];
+        } else {
+            $url = $this->makeSubscriptionPayment($request);
         }
-
-        return $this->makeSubscriptionPayment($request);
+        return [
+            'url' => $url
+        ];
     }
 
 
@@ -129,8 +138,109 @@ class PayPalForClientsController extends Controller
     }
 
 
-    protected function makeSubscriptionPayment($request){
+    // create recurring payment
+    protected function makeSubscriptionPayment($request)
+    {
+        return $this->createPayPalPlan($request);
+    }
 
+    protected function createPayPalPlan($request)
+    {
+        // Create a new billing plan
+        $plan = new Plan();
+        $plan->setName('Hire Freelancer with civ.ie')
+            ->setDescription('Hire Freelancer with civ.ie.')
+            ->setType('fixed');
+
+        // Set billing plan definitions
+        $paymentDefinition = new PaymentDefinition();
+        $paymentDefinition->setName('Regular Payments')
+            ->setType('REGULAR')
+            ->setFrequency($request->payment_info['interval'])
+            ->setFrequencyInterval('1')
+            ->setCycles($request->payment_info['iterations'])
+            ->setAmount(new Currency(array('value' => $request->payment_info['toPayNowAmount'], 'currency' => 'USD')));
+
+
+        // Set merchant preferences
+        $merchantPreferences = new MerchantPreferences();
+        $merchantPreferences->setReturnUrl(URL::to('/') . '/paypal/hire-freelancer-regular/success')
+            ->setCancelUrl(URL::to('/') . '/paypal/hire-freelancer/cancel')
+            ->setAutoBillAmount('yes')
+            ->setInitialFailAmountAction('CONTINUE')
+            ->setMaxFailAttempts('0');
+
+        $plan->setPaymentDefinitions(array($paymentDefinition));
+        $plan->setMerchantPreferences($merchantPreferences);
+
+        $planID = $this->createAndActivatePlan($plan);
+        return $this->createSubscription($planID);
+    }
+
+    protected function createAndActivatePlan($plan)
+    {
+        try {
+            $createdPlan = $plan->create($this->apiContext);
+
+            try {
+                $patch = new Patch();
+                $value = new PayPalModel('{"state":"ACTIVE"}');
+                $patch->setOp('replace')
+                    ->setPath('/')
+                    ->setValue($value);
+                $patchRequest = new PatchRequest();
+                $patchRequest->addPatch($patch);
+                $createdPlan->update($patchRequest, $this->apiContext);
+                $plan = Plan::get($createdPlan->getId(), $this->apiContext);
+
+                // Output plan id
+                return $plan->getId();
+
+            } catch (PayPalConnectionException $ex) {
+                echo $ex->getCode();
+                echo $ex->getData();
+                die($ex);
+            } catch (Exception $ex) {
+                die($ex);
+            }
+        } catch (PayPalConnectionException $ex) {
+            echo $ex->getCode();
+            echo $ex->getData();
+            die($ex);
+        } catch (Exception $ex) {
+            die($ex);
+        }
+    }
+
+    protected function createSubscription($planID)
+    {
+        // Create new agreement
+        $agreement = new Agreement();
+        $agreement->setName('Hire freelancer with civ.ie')
+            ->setDescription('Hire freelancer with civ.ie | subscription')
+            ->setStartDate(Carbon::now()->addMinutes(5)->toIso8601String());
+
+        // Set plan id
+        $plan = new Plan();
+        $plan->setId($planID);
+        $agreement->setPlan($plan);
+
+        // Add payer type
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+        $agreement->setPayer($payer);
+
+        try {
+            // Create agreement
+            $agreement = $agreement->create($this->apiContext);
+            return $agreement->getApprovalLink();
+        } catch (PayPalConnectionException $ex) {
+            echo $ex->getCode();
+            echo $ex->getData();
+            die($ex);
+        } catch (Exception $ex) {
+            die($ex);
+        }
     }
 
     // return urls:
@@ -157,6 +267,26 @@ class PayPalForClientsController extends Controller
         } catch (Exception $ex) {
             return view('billing.fail');
         }
+    }
+
+    public function successRegular(Request $request)
+    {
+        $token = $_GET['token'];
+        $agreement = new Agreement();
+        try {
+            // Execute agreement
+            $result = $agreement->execute($token, $this->apiContext);
+            $client = $this->createClient($result->payer->payer_info);
+            $this->createSubscriptionHistory($client, $result);
+            $this->createPaymentHistory($client, $result->id , $result);
+
+            return view('billing.success');
+        } catch (PayPalConnectionException $ex) {
+            return view('billing.cancel');
+        } catch (Exception $ex) {
+            return view('billing.cancel');
+        }
+
     }
 
     public function cancel()
@@ -187,7 +317,6 @@ class PayPalForClientsController extends Controller
         ]);
 
         return $newClient;
-
     }
 
     protected function createPaymentHistory($client, $paymentId, $result)
@@ -198,13 +327,39 @@ class PayPalForClientsController extends Controller
             return false;
         }
 
+        $amount = 0 ;
+        $notes  = '';
+
+        if(isset($result->transactions)){
+            $amount =  $result->transactions[0]->amount->total;
+        }
+        if(isset($result->plan->payment_definitions)){
+            $amount = $result->plan->payment_definitions[0]->amount->value;
+            $notes = 'Subscription payment.';
+        }
+
         \App\Billing\Payment::create([
             'away_payment_id' => $paymentId,
             'user_id' => $client->id,
-            'amount' => $result->transactions[0]->amount->total,
+            'amount' => $amount,
             'payment_method' => 'paypal',
             'status' => 'paid',
-            'notes' => 'Successfully paid.',
+            'notes' => 'Successfully paid.' . $notes,
+        ]);
+    }
+
+    protected function createSubscriptionHistory($client, $result){
+        $sub = Subscription::where('paypal_agreement_id', $result->id)->first();
+        if ($sub) {
+            return false;
+        }
+
+        return Subscription::create([
+            'payment_method' => 'paypal',
+            'sub_frequency' => $result->plan->payment_definitions[0]->frequency,
+            'sub_status' => 'active',
+            'paypal_agreement_id' => $result->id,
+            'user_id' => $client->id
         ]);
     }
 
@@ -241,9 +396,9 @@ class PayPalForClientsController extends Controller
         $invoice->setItems(array($invoice_item));
         $invoice_item->setDescription('Hire Freelancer with civ.ie | later payment');
 
-        try{
+        try {
             $invoice->create($this->apiContext);
-        }catch(PayPalConnectionException $ex){
+        } catch (PayPalConnectionException $ex) {
             return $ex->getData();
         }
     }

@@ -34,16 +34,14 @@ class StripeForClientsController extends Controller
 
         if ( ! $request->payment_info['isRecurring']) {
             $session_id =  $this->makeOneTimePayment($request, $customer);
-            return [
-                'url' => config('url') . '/client-subscription?session_id=' . $session_id
-            ];
+
+        }else{
+            $session_id = $this->makeSubscriptionPayment($request, $customer);
         }
 
-        $session_id = $this->makeSubscriptionPayment($request, $customer);
         return [
             'url' => config('url') . '/client-subscription?session_id=' . $session_id
         ];
-
     }
 
 
