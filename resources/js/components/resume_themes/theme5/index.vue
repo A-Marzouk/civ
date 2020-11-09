@@ -753,13 +753,13 @@
                         >
                           <v-progress-linear
                             :background-opacity="0.2"
-                            :color="skillColor[index].color"
+                            :color="randomColor()"
                             :value="s.percentage"
                             class="pro"
                           ></v-progress-linear>
                         </v-col>
                         <v-col cols="2" sm="2">
-                          <v-btn text :color="skillColor[index].color">
+                          <v-btn text :color="randomColor()">
                             <div
                               class="skillname font-weight-bold mr-0 mr-md-n12 mr-sm-n12"
                             >
@@ -1892,6 +1892,11 @@ export default {
     },
   },
   methods: {
+    randomColor() {
+      let colors = this.skillColor;
+      let color = colors[Math.floor(Math.random() * colors.length)];
+      return color.color;
+    },
     //get year of the date
     getFullYear(date) {
       let newDate = new Date(date);

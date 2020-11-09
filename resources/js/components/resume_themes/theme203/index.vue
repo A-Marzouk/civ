@@ -226,6 +226,7 @@
                           sm="4"
                           cols="4"
                           align="center"
+                          v-if="findPreference('hourly_rate')"
                         >
                           <VueSlickCarousel
                             v-bind="slickOptionsAvailability"
@@ -257,8 +258,15 @@
 
                         <div
                           style="height: 41px; border: 1px solid #d7d7d7"
+                          v-if="findPreference('weekly_availability') || findPreference('hourly_rate')"
                         ></div>
-                        <v-col lg="4" md="4" sm="4" cols="4">
+                        <v-col
+                          lg="4"
+                          md="4"
+                          sm="4"
+                          cols="4"
+                          v-if="findPreference('weekly_availability')"
+                        >
                           <VueSlickCarousel
                             v-bind="slickOptionsAvailability"
                             ref="availabilityCarousel2"
@@ -270,7 +278,7 @@
                               tile
                               v-for="i in currentUser.availability_info"
                               :key="i.id"
-                              @click="changeAvailability"
+                              @click="changeAvailability2"
                             >
                               <v-card-subtitle class="hire-me-title">{{
                                 i.available_hours_frequency | capitalize
@@ -294,6 +302,7 @@
                                 height="45"
                                 depressed
                                 @click="hireMeModal = !hireMeModal"
+                                v-if="findPreference('hire_me')"
                                 >Hire Me</v-btn
                               >
                             </v-card-text>
@@ -522,8 +531,8 @@
                 <!--------------------- About ------------------------------>
 
                 <!-- ................Portfolio............................... -->
-                
-                <Portfolio :currentUser = "currentUser" />
+
+                <Portfolio :currentUser="currentUser" />
                 <!-- .......................Portfolio.................................. -->
 
                 <!-- ...................Tab Item Work............................. -->
@@ -1031,7 +1040,7 @@ import VideoPlayer from "./media/VideoPlayer";
 import VueSlickCarousel from "vue-slick-carousel";
 import IconCarousel from "../reusable/IconCarousel";
 //import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
-import Portfolio from './tabs/Portfolio'
+import Portfolio from "./tabs/Portfolio";
 
 export default {
   name: "ResumeTheme203",
@@ -1042,7 +1051,7 @@ export default {
     VueSlickCarousel,
     IconCarousel,
     Portfolio,
-   // ImagesCarouselModal,
+    // ImagesCarouselModal,
   },
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   filters: {
@@ -1291,6 +1300,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    // console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
@@ -1303,6 +1313,21 @@ export default {
   },
 
   methods: {
+    findPreference(title) {
+      if (!this.currentUser) {
+        return;
+      }
+      let currentPrefer = null;
+      this.currentUser.preferences.forEach((prefer) => {
+        if (prefer.title === title) {
+          currentPrefer = prefer;
+        }
+      });
+      if (currentPrefer) {
+        return currentPrefer.is_public;
+      }
+      return "";
+    },
     changeTab(tab_title) {
       this.mainDataTab = tab_title;
       this.$store.dispatch("updateThemeTabGlobally", tab_title);
@@ -1384,6 +1409,8 @@ export default {
     //audio Modal
     changeAvailability() {
       this.$refs.availabilityCarousel.next();
+    },
+    changeAvailability2(){
       this.$refs.availabilityCarousel2.next();
     },
   },
@@ -1397,7 +1424,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 /* Shapes */
 .triangle-top-left {
