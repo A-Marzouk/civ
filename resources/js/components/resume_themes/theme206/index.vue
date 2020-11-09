@@ -27,7 +27,7 @@
                   {{ currentUser.personal_info.designation }}
                 </v-card-subtitle>
                 <v-card-text
-                  class="custom-profile-text hidden-sm-and-down"
+                  class="custom-profile-text hidden-md-and-down"
                   v-if="currentUser.personal_info.overview"
                   >{{ currentUser.personal_info.overview }}</v-card-text
                 >
@@ -80,7 +80,7 @@
             <v-col xl="3" lg="4" md="5" sm="7" class>
               <!-- Hour rate -->
               <v-card
-                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-lg-12 ml-md-0"
+                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-md-0"
                 color="transparent"
                 flat
                 tile
