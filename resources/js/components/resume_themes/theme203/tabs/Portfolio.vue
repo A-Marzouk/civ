@@ -25,56 +25,16 @@
       <div class="watermark-text text-center">Portfolio</div>
       <v-card flat color="transparent" tile align="center">
         <v-row align="center" justify="center">
-          <v-tabs-items v-model="category">
-            <v-tab-item key="All" value="All">
-              <v-col cols="12">
-                <masonry
-                  :cols="{ default: 4, 959: 1, 599: 1 }"
-                  :gutter="{ default: '30px', 700: '15px' }"
-                >
-                  <template v-for="item in currentUser.projects">
-                    <ImagesCarouselModal :images="item.images" :key="item.id">
-                      <v-card
-                        class="mb-2 card-portfolio"
-                        align="left"
-                        flat
-                        color="transparent"
-                        tile
-                        :key="item.id"
-                        v-show="item.is_public == 1"
-                      >
-                        <v-img
-                          class="custom-portfolio-img"
-                          :src="getProjectMainImage(item)"
-                          style="border-radius: 10px !important"
-                          aspect-ratio="0.94"
-                        ></v-img>
-                        <v-card-title class="custom-portfolio-title">
-                          {{ item.name }}
-                        </v-card-title>
-                        <v-card-subtitle class="custom-portfolio-subtitle">{{
-                          item.description
-                        }}</v-card-subtitle>
-                      </v-card>
-                    </ImagesCarouselModal>
-                  </template>
-                </masonry>
-              </v-col>
-            </v-tab-item>
-            <!-- All Categories -->
-            <template v-for="category in categories">
-              <v-tab-item :key="category" :value="category">
+          <v-col cols="12">
+            <v-tabs-items v-model="category">
+              <v-tab-item key="All" value="All">
                 <v-col cols="12">
                   <masonry
                     :cols="{ default: 4, 959: 1, 599: 1 }"
                     :gutter="{ default: '30px', 700: '15px' }"
                   >
                     <template v-for="item in currentUser.projects">
-                      <ImagesCarouselModal
-                        :images="item.images"
-                        :key="item.id"
-                        v-show="item.category == category"
-                      >
+                      <ImagesCarouselModal :images="item.images" :key="item.id">
                         <v-card
                           class="mb-2 card-portfolio"
                           align="left"
@@ -102,9 +62,52 @@
                   </masonry>
                 </v-col>
               </v-tab-item>
-            </template>
-            <!-- All Categories -->
-          </v-tabs-items>
+              <!-- All Categories -->
+              <template v-for="category in categories">
+                <v-tab-item :key="category" :value="category">
+                  <v-col cols="12">
+                    <masonry
+                      :cols="{ default: 4, 959: 1, 599: 1 }"
+                      :gutter="{ default: '30px', 700: '15px' }"
+                    >
+                      <template v-for="item in currentUser.projects">
+                        <ImagesCarouselModal
+                          :images="item.images"
+                          :key="item.id"
+                          v-show="item.category == category"
+                        >
+                          <v-card
+                            class="mb-2 card-portfolio"
+                            align="left"
+                            flat
+                            color="transparent"
+                            tile
+                            :key="item.id"
+                            v-show="item.is_public == 1"
+                          >
+                            <v-img
+                              class="custom-portfolio-img"
+                              :src="getProjectMainImage(item)"
+                              style="border-radius: 10px !important"
+                              aspect-ratio="0.94"
+                            ></v-img>
+                            <v-card-title class="custom-portfolio-title">
+                              {{ item.name }}
+                            </v-card-title>
+                            <v-card-subtitle
+                              class="custom-portfolio-subtitle"
+                              >{{ item.description }}</v-card-subtitle
+                            >
+                          </v-card>
+                        </ImagesCarouselModal>
+                      </template>
+                    </masonry>
+                  </v-col>
+                </v-tab-item>
+              </template>
+              <!-- All Categories -->
+            </v-tabs-items>
+          </v-col>
         </v-row>
       </v-card>
     </v-tab-item>
@@ -189,5 +192,8 @@ export default {
 .custom-portfolio-img {
   max-width: 420px !important;
   max-height: 339px !important;
+}
+.custom-portfolio-title {
+  word-break: break-word;
 }
 </style>

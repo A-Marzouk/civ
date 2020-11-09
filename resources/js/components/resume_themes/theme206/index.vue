@@ -17,12 +17,7 @@
           style="width: 100%"
         >
           <v-row class align="center" justify="center" dense>
-            <v-col
-              xl="4"
-              lg="3"
-              md="8"
-              sm="7"
-            >
+            <v-col xl="4" lg="3" md="8" sm="7">
               <v-card flat color="transparent" class="pa-0">
                 <v-card-title class="custom-profile-title"
                   >{{ currentUser.personal_info.first_name }}
@@ -32,7 +27,7 @@
                   {{ currentUser.personal_info.designation }}
                 </v-card-subtitle>
                 <v-card-text
-                  class="custom-profile-text hidden-sm-and-down"
+                  class="custom-profile-text hidden-md-and-down"
                   v-if="currentUser.personal_info.overview"
                   >{{ currentUser.personal_info.overview }}</v-card-text
                 >
@@ -85,7 +80,7 @@
             <v-col xl="3" lg="4" md="5" sm="7" class>
               <!-- Hour rate -->
               <v-card
-                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-lg-12 ml-md-0"
+                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-md-0"
                 color="transparent"
                 flat
                 tile
@@ -229,19 +224,16 @@
         absolute
         width="350"
       >
-        <v-card
-          flat
-          color="transparent"
-        >
+        <v-card flat color="transparent">
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
           <v-list-item class="mt-n12">
             <v-list-item-avatar size="80">
-              <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
+              <v-img :src="currentUser.personal_info.profile_pic"></v-img>
             </v-list-item-avatar>
             <div class="half-circle-mobile"></div>
             <v-list-item-content class="mt-12">
               <v-list-item-title>
-                <v-card color="transparent" class="pa-2" flat>
+                <v-card color="transparent" class="pa-5" flat>
                   <span class="profile-title-mobile"
                     >{{ currentUser.personal_info.first_name }}
                     {{ currentUser.personal_info.last_name }}</span
@@ -249,7 +241,7 @@
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
-                <v-card flat color="transparent" class="pa-2 mt-n5">
+                <v-card flat color="transparent" class="pa-5 mt-n5">
                   <span class="profile-subtitle-mobile">{{
                     currentUser.personal_info.designation
                   }}</span>
@@ -314,7 +306,8 @@
               <v-tab
                 v-for="tab in currentUser.tabs"
                 :key="tab.title"
-                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                v-if="!excludedTabs.includes(tab.title)"
+                v-show="tab.is_public"
                 @click="activeTab = tab.title"
                 :class="[activeTab === tab.title ? 'active-mobile-tab' : '']"
               >
@@ -333,12 +326,14 @@
               v-model="indexOfActiveTab"
               center-active
               hide-slider
+              show-arrows
               class="hidden-xs-only mt-md-10 my-md-0 my-sm-3"
             >
               <v-tab
                 v-for="tab in currentUser.tabs"
                 :key="tab.title"
-                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                v-if="!excludedTabs.includes(tab.title)"
+                v-show="tab.is_public"
                 @click="activeTab = tab.title"
                 class="mx-md-2 mx-sm-2 text-capitalize"
                 :class="[
@@ -366,7 +361,7 @@
               <v-tabs-items v-model="indexOfActiveTab">
                 <!-- Portfolio -->
                 <v-tab-item :value="getTabIndex('portfolio')">
-                  <Portfolio :currentUser = "currentUser" />
+                  <Portfolio :currentUser="currentUser" />
                 </v-tab-item>
                 <!-- Portfolio -->
                 <!-- Education -->
@@ -381,12 +376,14 @@
                       :key="education.id"
                       v-show="education.is_public"
                     >
-                      <v-card class="card-education pa-5" hover>
+                      <v-card class="card-education pa-xl-5 pa-lg-3 pa-5" hover>
                         <v-card-title class="education-title">
                           <v-row>
-                            <v-col cols="10">{{
-                              education.university_name
-                            }}</v-col>
+                            <v-col cols="10">
+                              <div class="education-title">
+                                {{ education.university_name }}
+                              </div>
+                            </v-col>
                             <v-col cols="2" align="right">
                               <img
                                 src="/images/resume_themes/theme206/tabs/2.png"
@@ -420,7 +417,7 @@
                       :key="work.id"
                       v-show="work.is_public"
                     >
-                      <v-card class="card-education pa-5" hover>
+                      <v-card class="card-education pa-xl-5 pa-lg-2 pa-5" hover>
                         <v-card-title class="education-title">
                           <v-row>
                             <v-col cols="10">{{ work.job_title }}</v-col>
@@ -555,6 +552,28 @@
                           v-show="audio.is_public"
                         >
                           <audioMedia :audioMedia="audio"></audioMedia>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-row justify="start">
+                            <v-col
+                              xl="4"
+                              lg="4"
+                              md="6"
+                              sm="6"
+                              cols="12"
+                              v-for="item in filterVideo(currentUser.media)"
+                              :key="item.id"
+                            >
+                              <v-card style="border-radius: 9px">
+                                <video-player
+                                  :title="item.title"
+                                  :details="item.content"
+                                  :file="item.url"
+                                  :previewImg="item.media_preview"
+                                ></video-player>
+                              </v-card>
+                            </v-col>
+                          </v-row>
                         </v-col>
                       </v-row>
                     </v-card-text>
@@ -753,7 +772,7 @@
                               <img
                                 src="/images/resume_themes/theme206/football.svg"
                                 alt="football"
-                                class="mx-auto"
+                                class="mx-auto mr-lg-3 mr-md-3 mr-sm-2 mr-2"
                               />
                               <div class="hobby-title mx-auto my-auto">
                                 {{ hobby.title }}
@@ -854,7 +873,7 @@
                         v-show="achievement.is_public"
                       >
                         <v-card
-                          class="card-achievement pa-xl-10 pa-lg-6 pa-md-12 pa-sm-9 pa-2 mb-6"
+                          class="card-achievement pa-xl-10 pa-lg-6 pa-md-12 pa-sm-9 pa-5 mb-6"
                           hover
                         >
                           <div class="d-flex flex-row my-auto">
@@ -920,14 +939,16 @@
 
 <script>
 import audioMedia from "./media/audioMedia";
+import VideoPlayer from "./media/VideoPlayer";
 import HireModal from "../theme203/payment/HireModal";
-import Portfolio from './tabs/Portfolio'
+import Portfolio from "./tabs/Portfolio";
 export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
     audioMedia,
     HireModal,
     Portfolio,
+    VideoPlayer,
   },
   data() {
     return {
@@ -953,49 +974,57 @@ export default {
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    builderCurrentTabTitle: function(val) {
-      if(!this.defaultTabs.includes(val)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = val ;
+    builderCurrentTabTitle: function (val) {
+      if (!this.defaultTabs.includes(val)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = val;
       }
 
       this.setTabIndex();
-    }
-  },
-  computed:{
-    defaultTabs(){
-      return this.$store.state.defaultTabs ;
     },
-    excludedTabs(){
-      return this.$store.state.excludedTabs ;
-    }
+  },
+  computed: {
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
+    },
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
+    },
   },
   methods: {
-    getFirstActiveTabTitle(){
-      let title = '';
-      this.currentUser.tabs.forEach( (tab) => {
-        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
-          if(title === ''){
-            title = tab.title ;
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
           }
         }
       });
 
-      return title ;
+      return title;
     },
-    setTabIndex(){
-      this.indexOfActiveTab = this.currentUser.tabs.findIndex(tab => tab.title === this.activeTab);
+    filterVideo(dataArray) {
+      var filterArray = dataArray.filter((a) => a.type === "video");
+      return filterArray;
     },
-    getTabIndex(tabTitle){
-      let index =  this.currentUser.tabs.findIndex(tab => tab.title === tabTitle);
+    setTabIndex() {
+      this.indexOfActiveTab = this.currentUser.tabs.findIndex(
+        (tab) => tab.title === this.activeTab
+      );
+    },
+    getTabIndex(tabTitle) {
+      let index = this.currentUser.tabs.findIndex(
+        (tab) => tab.title === tabTitle
+      );
       return index;
     },
-    goToExternalLink(link){
-      if(!link.includes('http')){
-        link = 'http://' + link ;
+    goToExternalLink(link) {
+      if (!link.includes("http")) {
+        link = "http://" + link;
       }
-      window.location.href = link ;
+      window.location.href = link;
     },
     skillCategory(skillName) {
       var filteredSkill = this.currentUser.skills.filter(
@@ -1047,15 +1076,15 @@ export default {
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
-    setActiveTabByURL(){
+    setActiveTabByURL() {
       const pathSplit = this.$route.path.split("/");
       let currentActiveTab = pathSplit[pathSplit.length - 1];
-      if(!this.defaultTabs.includes(currentActiveTab)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = currentActiveTab ;
+      if (!this.defaultTabs.includes(currentActiveTab)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = currentActiveTab;
       }
-    }
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -1269,6 +1298,13 @@ export default {
   font-weight: bold !important;
   line-height: 30px !important;
   font-size: 26px;
+  word-break: break-word;
+  @media screen and (max-width: 411px){
+    font-size: 20px;
+  }
+  @media screen and (max-width: 374px){
+    font-size: 16px;
+  }
   img {
     width: 40px;
   }
@@ -1287,11 +1323,21 @@ export default {
   color: #333333 !important;
   line-height: 23px;
   font-size: 1.125rem !important;
+  @media screen and (max-width: 411px){
+    font-size: 1rem !important;
+  }
+  @media screen and (max-width: 374px){
+    font-size: 14px !important;
+  }
 }
 .education-session {
   font-family: "Roboto", sans-serif !important;
   color: rgba(51, 51, 51, 0.5) !important;
-}
+  font-size: 20px !important;
+  @media screen and (max-width: 374px){
+    font-size: 12px !important;
+  }
+} 
 //education
 // Skill tab
 .skill-child-tab {
@@ -1525,6 +1571,7 @@ export default {
   line-height: 27px;
   text-transform: uppercase;
   color: #000000;
+  word-break: break-word;
   @media screen and (max-width: 599px) {
     font-size: 14px;
     line-height: 21px;
@@ -1674,7 +1721,7 @@ export default {
     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
 }
 
-#resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled {
+/* #resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
-}
+} */
 </style>

@@ -1,42 +1,30 @@
 <template>
-  <v-container>
-    <v-row align="center" justify="center">
-      <v-card class="card-video mb-md-0 mb-sm-5 mb-5 mt-sm-0 mt-n12" flat color="transparent">
-        <v-card-subtitle class="video-title" align="left"
-          >Video-1</v-card-subtitle
+  <div>
+    <div ref="videoPoster">
+      <v-img :src="previewImg" contain style="border-radius:9px;">
+        <v-overlay
+          absolute
+          :value="overlay"
+          color="transparent"
+          class="video-overlay"
         >
-        <div ref="videoPoster">
-          <v-img :src="previewImg">
-            <v-overlay
-              absolute
-              :value="overlay"
-              color="transparent"
-              class="video-overlay"
-            >
-              <v-btn class="btn-play" @click.prevent="playVideo()">
-                <v-img
-                  src="/images/resume_themes/theme203/icons/inner-play.svg"
-                ></v-img>
-              </v-btn>
-              </v-overlay></v-img>
-        </div>
-        <div ref="videotm903" class="videotm903">
-          <video
-            width="100%"
-            ref="videoElem"
-            controls
-            :src="file"
-            :modalOpen="modalOpen"
-          ></video>
-        </div>
-        <!-- <v-card-title class="video-window-title">{{title}}</v-card-title>
-      <v-card-subtitle
-        class="video-window-subtitle mt-xl-0 mt-lg-n3 mt-sm-0 mt-n6"
-        align="left"
-      >{{details}}</v-card-subtitle> -->
-      </v-card>
-    </v-row>
-  </v-container>
+          <v-btn class="btn-play" color="transparent"  @click.prevent="playVideo()">
+            <v-img
+              src="/images/resume_themes/theme206/icons/play.svg"
+            ></v-img>
+          </v-btn> </v-overlay
+      ></v-img>
+    </div>
+    <div ref="videotm903" class="videotm903">
+      <video
+        width="100%"
+        ref="videoElem"
+        controls
+        :src="file"
+        :modalOpen="modalOpen"
+      ></video>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -95,10 +83,8 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 .btn-play {
-  width: 72px !important;
-  height: 71.01px !important;
-  background: #000000;
-  border: 5px solid #e0bb4c !important;
+  width: 65px !important;
+  height: 65px !important;
   border-radius: 50% !important;
   z-index: 100;
   img {
@@ -168,4 +154,3 @@ export default {
   display: none;
 }
 </style>
-
