@@ -278,7 +278,7 @@
                               tile
                               v-for="i in currentUser.availability_info"
                               :key="i.id"
-                              @click="changeAvailability"
+                              @click="changeAvailability2"
                             >
                               <v-card-subtitle class="hire-me-title">{{
                                 i.available_hours_frequency | capitalize
@@ -1409,6 +1409,8 @@ export default {
     //audio Modal
     changeAvailability() {
       this.$refs.availabilityCarousel.next();
+    },
+    changeAvailability2(){
       this.$refs.availabilityCarousel2.next();
     },
   },
