@@ -184,13 +184,13 @@ class PayPalForClientsController extends Controller
 
     protected function createPaymentHistory($client,$paymentId, $result){
 
-        $payment = \App\Billing\Payment::where('payment_away_id', $paymentId)->first();
+        $payment = \App\Billing\Payment::where('away_payment_id', $paymentId)->first();
         if($payment){
             return false;
         }
 
         \App\Billing\Payment::create([
-            'payment_away_id' => $paymentId,
+            'away_payment_id' => $paymentId,
             'user_id' => $client->id,
             'amount' => $result->transactions[0]->amount->total,
             'payment_method' => 'paypal',
