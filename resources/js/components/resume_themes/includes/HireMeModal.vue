@@ -518,7 +518,6 @@
                     axios.post( paymentUrl , this.paymentData)
                         .then( (response) => {
                             let url = response.data.url ;
-                            console.log(url);
                             window.location = url;
                         })
                         .catch( (error) => {

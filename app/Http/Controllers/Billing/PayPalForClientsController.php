@@ -20,7 +20,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
+use PayPal\Api\BillingInfo;
+use PayPal\Api\Currency;
+use PayPal\Api\InvoiceItem;
+use PayPal\Api\MerchantInfo;
 use PayPal\Api\Payer;
+use PayPal\Api\Invoice;
 use PayPal\Api\Agreement as Agreement;
 use PayPal\Api\PaymentExecution;
 use PayPal\Exception\PayPalConnectionException;
@@ -77,7 +83,7 @@ class PayPalForClientsController extends Controller
 
 
     // make one time payment:
-    public function makeOneTimePayment($request)
+    protected function makeOneTimePayment($request)
     {
         // Create new payer and method
         $payer = new Payer();
@@ -108,10 +114,7 @@ class PayPalForClientsController extends Controller
         // Create payment with valid API context
         try {
             $payment->create($this->apiContext);
-
-            // Get PayPal redirect URL and redirect the customer
             $approvalUrl = $payment->getApprovalLink();
-
             return $approvalUrl;
 
         } catch (PayPalConnectionException $ex) {
@@ -121,9 +124,14 @@ class PayPalForClientsController extends Controller
         } catch (Exception $ex) {
             dd($ex);
         }
+
+
     }
 
 
+    protected function makeSubscriptionPayment($request){
+
+    }
 
     // return urls:
     public function success(Request $request)
@@ -161,12 +169,12 @@ class PayPalForClientsController extends Controller
     protected function createClient($payerData)
     {
 
-        $client = User::where('email' , $payerData->email)->first();
-        if($client){
+        $client = User::where('email', $payerData->email)->first();
+        if ($client) {
             return $client;
         }
 
-        $newClient =  User::create([
+        $newClient = User::create([
             'name' => $payerData->first_name . ' ' . $payerData->last_name,
             'email' => $payerData->email,
             'username' => strstr($payerData->email, '@', true),
@@ -182,10 +190,11 @@ class PayPalForClientsController extends Controller
 
     }
 
-    protected function createPaymentHistory($client,$paymentId, $result){
+    protected function createPaymentHistory($client, $paymentId, $result)
+    {
 
         $payment = \App\Billing\Payment::where('away_payment_id', $paymentId)->first();
-        if($payment){
+        if ($payment) {
             return false;
         }
 
@@ -199,4 +208,43 @@ class PayPalForClientsController extends Controller
         ]);
     }
 
+    protected function createInvoice($request)
+    {
+        $invoice = new Invoice();
+
+        $merchant = new MerchantInfo();
+        $merchant->setEmail('AhmedMarzouk266-buyer@gmail.com')
+            ->setFirstName('mechant')
+            ->setLastName('example');
+
+        $invoice->setMerchantInfo($merchant);
+
+        $billing_info = new BillingInfo();
+        $billing_info->setEmail('AhmedMarzouk266-buyer@gmail.com')
+            ->setFirstName('buyer')
+            ->setLastName('test');
+
+        $invoice->setBillingInfo(array($billing_info));
+
+        $invoice_item = new InvoiceItem();
+
+        $unit_price = new Currency();
+        $unit_price->setCurrency('USD');
+        $unit_price->setValue($request->payment_info['toPayLaterAmount']);
+
+
+        $invoice_item->setName('Hire Freelancer with civ.ie | later payment')
+            ->setQuantity(1)
+            ->setUnitPrice($unit_price);
+
+
+        $invoice->setItems(array($invoice_item));
+        $invoice_item->setDescription('Hire Freelancer with civ.ie | later payment');
+
+        try{
+            $invoice->create($this->apiContext);
+        }catch(PayPalConnectionException $ex){
+            return $ex->getData();
+        }
+    }
 }
