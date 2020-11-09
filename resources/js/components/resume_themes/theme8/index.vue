@@ -494,7 +494,7 @@ export default {
                     }
 
                     .title {
-                        font-family: "Thabit", "Courier New", Courier, monospace;
+                        font-family: "Thabit", "Courier New", Courier, monospace !important;
                         font-weight: bold;
                         font-size: 32px;
                         line-height: 42px;
@@ -515,6 +515,7 @@ export default {
                         font-size: 20px;
                         line-height: 26px;
                         color: #ffffff;
+                        word-break: break-word;
                     }
                 }
             }
@@ -743,6 +744,7 @@ export default {
                             font-size: 14px;
                             line-height: 18px;
                             color: #ffffff;
+                            word-break: break-word;
                         }
                     }
                 }
@@ -966,6 +968,7 @@ export default {
                             font-size: 20px;
                             line-height: 26px;
                             color: #ffffff;
+                            word-break: break-word;
                         }
                     }
                 }

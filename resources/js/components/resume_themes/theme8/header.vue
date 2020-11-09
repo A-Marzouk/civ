@@ -30,7 +30,7 @@
                     </div>
 
                     <!-- addition buttons -->
-                    <div class="hide__sm-screen mb-3">
+                    <div class="hide__sm-screen mb-4">
                         <div class="interviews">
                             <div class="text hideMeOnPhone pr-2">
                                 Interview:
