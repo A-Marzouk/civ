@@ -326,6 +326,7 @@
               v-model="indexOfActiveTab"
               center-active
               hide-slider
+              show-arrows
               class="hidden-xs-only mt-md-10 my-md-0 my-sm-3"
             >
               <v-tab
@@ -1720,7 +1721,7 @@ export default {
     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
 }
 
-#resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled {
+/* #resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
-}
+} */
 </style>
