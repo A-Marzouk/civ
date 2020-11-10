@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use App\Subscription;
 use Illuminate\Http\Request;
 
@@ -9,7 +8,6 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use PayPal\Api\ChargeModel;
 use PayPal\Api\Currency;
 use PayPal\Api\MerchantPreferences;
 use PayPal\Api\PaymentDefinition;
@@ -22,16 +20,14 @@ use PayPal\Common\PayPalModel;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 
-class PaypalController extends Controller
+class PayPalForAgentsController extends Controller
 {
     private $apiContext;
-    private $mode;
     private $client_id;
     private $secret;
     private $monthly_plan_id;
     private $yearly_plan_id;
 
-    // Create a new instance with our paypal credentials
     public function __construct()
     {
 
@@ -229,6 +225,5 @@ class PaypalController extends Controller
             return redirect(url('/') . '/resume-builder?redirect_from=paypal&status=fail');
         }
     }
-
 
 }
