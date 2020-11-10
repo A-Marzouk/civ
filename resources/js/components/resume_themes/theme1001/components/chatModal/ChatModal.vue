@@ -1,62 +1,74 @@
 <template>
     <div class="chat" v-show="chatToggle">
         <div class="chat__content">
-            <div class="title">Message</div>
-            <div class="input">
-                <div class="label">Name</div>
-                <input class="chat-input-field" v-model="postData.message.name" placeholder="Name"/>
-                <span v-if="errors.name" class="client-input-error">
+            <template v-if=" ! isMessageSent">
+                <div class="title">Message</div>
+                <div class="input">
+                    <div class="label">Name</div>
+                    <input class="chat-input-field" v-model="postData.message.name" placeholder="Name"/>
+                    <span v-if="errors.name" class="client-input-error">
                     {{errors.name}}
                 </span>
-            </div>
-            <div class="input">
-                <div class="label">Email</div>
-                <input class="chat-input-field" v-model="postData.message.email" placeholder="Email"/>
-                <span v-if="errors.email" class="client-input-error">
+                </div>
+                <div class="input">
+                    <div class="label">Email</div>
+                    <input class="chat-input-field" v-model="postData.message.email" placeholder="Email"/>
+                    <span v-if="errors.email" class="client-input-error">
                     {{errors.email}}
                 </span>
-            </div>
-            <div class="input">
-                <div class="label">Message</div>
-                <textarea placeholder="Message" v-model="postData.message.body" class="message"></textarea>
-                <span v-if="errors.body" class="client-input-error">
+                </div>
+                <div class="input">
+                    <div class="label">Message</div>
+                    <textarea placeholder="Message" v-model="postData.message.body" class="message"></textarea>
+                    <span v-if="errors.body" class="client-input-error">
                     {{errors.body}}
                 </span>
-            </div>
-
-            <div class="button-section">
-                <div class="left">
-                    <a href="javascript:void(0)" @click="sendMessage" class="send-button">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                focusable="false"
-                                width=".9em"
-                                height=".6em"
-                                style="
+                </div>
+                <div class="button-section">
+                    <div class="left">
+                        <a href="javascript:void(0)" @click="sendMessage" class="send-button">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    focusable="false"
+                                    width=".9em"
+                                    height=".6em"
+                                    style="
                 -ms-transform: rotate(360deg);
                 -webkit-transform: rotate(360deg);
                 transform: rotate(360deg);
                 margin-right: 5px;
               "
-                                preserveAspectRatio="xMidYMid meet"
-                                viewBox="0 0 1792 1408"
-                        >
-                            <path
-                                    d="M1792 454v794q0 66-47 113t-113 47H160q-66 0-113-47T0 1248V454q44 49 101 87q362 246 497 345q57 42 92.5 65.5t94.5 48t110 24.5h2q51 0 110-24.5t94.5-48T1194 886q170-123 498-345q57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325q-10 7-42.5 30.5t-54 38t-52 32.5t-57.5 27t-50 9h-2q-23 0-50-9t-57.5-27t-52-32.5t-54-38T639 759q-91-64-262-182.5T172 434q-62-42-117-115.5T0 182q0-78 41.5-130T160 0h1472q65 0 112.5 47t47.5 113z"
-                                    fill="#fff"
-                            />
-                        </svg>
+                                    preserveAspectRatio="xMidYMid meet"
+                                    viewBox="0 0 1792 1408"
+                            >
+                                <path
+                                        d="M1792 454v794q0 66-47 113t-113 47H160q-66 0-113-47T0 1248V454q44 49 101 87q362 246 497 345q57 42 92.5 65.5t94.5 48t110 24.5h2q51 0 110-24.5t94.5-48T1194 886q170-123 498-345q57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325q-10 7-42.5 30.5t-54 38t-52 32.5t-57.5 27t-50 9h-2q-23 0-50-9t-57.5-27t-52-32.5t-54-38T639 759q-91-64-262-182.5T172 434q-62-42-117-115.5T0 182q0-78 41.5-130T160 0h1472q65 0 112.5 47t47.5 113z"
+                                        fill="#fff"
+                                />
+                            </svg>
 
-                        Send message
+                            Send message
+                        </a>
+                    </div>
+                    <div class="right">
+                        <a href="javascript:void(0)" class="close-button" @click.prevent="closeChat()">
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+            </template>
+            <template v-else="isMessageSent">
+                <div class="success-message">
+                    Your message has been sent successfully!
+                </div>
+                <div class="message-cancel-btn">
+                    <a href="javascript:void(0)" class="close-button" @click.prevent="closeChat()">
+                        Close
                     </a>
                 </div>
-                <div class="right">
-                    <a href="#" class="close-button" @click.prevent="closeChat()">
-                        Cancel
-                    </a>
-                </div>
-            </div>
+            </template>
         </div>
+
     </div>
 </template>
 <script>
@@ -77,7 +89,8 @@
                     name: 'Civ.ie Admin',
                     email: 'conor@123workforce.com'
                 },
-                errors: {}
+                errors: {},
+                isMessageSent: false
             }
         },
         methods: {
@@ -92,7 +105,7 @@
                 // send message from public theme.
                 axios.post('/resume/send-message', this.postData)
                     .then((response) => {
-                        console.log(response.data);
+                        this.isMessageSent = true ;
                     })
                     .catch((error) => {
                         console.log(error);
@@ -261,5 +274,33 @@
         color: red;
         font-size: 14px;
         font-weight: 500;
+    }
+
+
+    .success-message{
+        display: flex;
+        justify-content: center;
+        color: lawngreen;
+        font-size: 23px;
+        font-weight: 600;
+    }
+
+    .message-cancel-btn{
+        display: flex;
+        justify-content: center;
+        margin: 25px;
+        background: #d4ddff;
+        padding: 10px;
+        border-radius: 25px;
+
+        a{
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: #3d5ed4;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
     }
 </style>
