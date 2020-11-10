@@ -77,6 +77,7 @@
 
             <!-- 3rd column -->
             <v-col
+              xl="5"
               lg="5"
               md="5"
               class="hidden-md-and-down mt-lg-0"
@@ -89,6 +90,7 @@
                   color="#FAFAFA"
                   class="btn-hire-me hidden-sm-and-down"
                   x-large
+                  v-if="findPreference('hire_me')"
                   @click="hireMeModal = !hireMeModal"
                 >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
@@ -111,6 +113,7 @@
                   color="#FAFAFA"
                   width="212px"
                   x-large
+                  v-if="findPreference('hire_me')"
                   @click="hireMeModal = !hireMeModal"
                 >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
@@ -858,6 +861,13 @@ export default {
     SalaryRate,
     AvailabilityHours,
   },
+  filters: {
+    capitalize: function (value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
+  },
   data() {
     return {
       windowWidth: window.innerWidth,
@@ -868,6 +878,8 @@ export default {
       indexOfActiveTab: 0,
       currentSkillTab: 1,
       hireMeModal: false,
+      availability: 0,
+      paymentInfo: 0,
       skills: [
         {
           id: 1,
@@ -901,6 +913,31 @@ export default {
     },
   },
   methods: {
+    findPreference(title) {
+      if (!this.currentUser) {
+        return;
+      }
+      let currentPrefer = null;
+      this.currentUser.preferences.forEach((prefer) => {
+        if (prefer.title === title) {
+          currentPrefer = prefer;
+        }
+      });
+      if (currentPrefer) {
+        return currentPrefer.is_public;
+      }
+      return "";
+    },
+    availabilityNext() {
+      if (this.availability == 2) {
+        this.availability = 0;
+      } else this.availability++;
+    },
+    paymentInfoNext() {
+      if (this.paymentInfo == 3) {
+        this.paymentInfo = 0;
+      } else this.paymentInfo++;
+    },
     getFirstActiveTabTitle() {
       let title = "";
       this.currentUser.tabs.forEach((tab) => {
@@ -999,6 +1036,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
 
     // set active tab
     this.setActiveTabByURL();
@@ -1179,10 +1217,10 @@ export default {
   line-height: 30px !important;
   font-size: 26px;
   word-break: break-word;
-  @media screen and (max-width: 411px){
+  @media screen and (max-width: 411px) {
     font-size: 20px;
   }
-  @media screen and (max-width: 374px){
+  @media screen and (max-width: 374px) {
     font-size: 16px;
   }
   img {
@@ -1203,10 +1241,10 @@ export default {
   color: #333333 !important;
   line-height: 23px;
   font-size: 1.125rem !important;
-  @media screen and (max-width: 411px){
+  @media screen and (max-width: 411px) {
     font-size: 1rem !important;
   }
-  @media screen and (max-width: 374px){
+  @media screen and (max-width: 374px) {
     font-size: 14px !important;
   }
 }
@@ -1214,7 +1252,7 @@ export default {
   font-family: "Roboto", sans-serif !important;
   color: rgba(51, 51, 51, 0.5) !important;
   font-size: 20px !important;
-  @media screen and (max-width: 374px){
+  @media screen and (max-width: 374px) {
     font-size: 12px !important;
   }
 }
