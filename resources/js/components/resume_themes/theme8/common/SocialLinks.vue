@@ -38,7 +38,7 @@ export default {
     props: {
         links: { type: Array },
         screen: {
-            type: Array,
+            type: String,
             validator: value => ["desktop", "mobile"].includes(value)
         }
     },

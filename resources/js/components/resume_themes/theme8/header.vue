@@ -107,8 +107,9 @@
                                             small
                                             dark
                                             @click="paymentInfoPrev()"
-                                            >navigate_before</v-icon
                                         >
+                                            navigate_before
+                                        </v-icon>
                                         <div
                                             v-for="(payment_Info,
                                             index) in currentUser.payment_info"
@@ -130,8 +131,9 @@
                                             small
                                             dark
                                             @click="paymentInfoNext()"
-                                            >navigate_next</v-icon
                                         >
+                                            navigate_next
+                                        </v-icon>
                                     </div>
 
                                     <!-- second value -->
@@ -167,8 +169,9 @@
                                             small
                                             dark
                                             @click="availablePrev()"
-                                            >navigate_before</v-icon
                                         >
+                                            navigate_before
+                                        </v-icon>
                                         <div
                                             v-for="(availability_info,
                                             index) in currentUser.availability_info"
@@ -189,7 +192,8 @@
                                             small
                                             dark
                                             @click="availableNext()"
-                                            >navigate_next</v-icon
+                                        >
+                                            navigate_next </v-icon
                                         >)
                                     </div>
 
@@ -225,8 +229,9 @@
                                     <a
                                         href="javascript:void(0)"
                                         @click.prevent="openHireModal"
-                                        >Hire Me</a
                                     >
+                                        Hire Me
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -320,7 +325,7 @@
                 </div>
 
                 <!-- divider -->
-                <div class="horizontal-divider"></div>
+                <div class="horizontal-divider --desktop"></div>
 
                 <!-- Available info -->
                 <div class="rate text-center">
@@ -697,6 +702,15 @@ export default {
     height: 41px;
     width: 1px;
     background: rgba(255, 255, 255, 0.38);
+
+    &.--desktop {
+        width: 0;
+    }
+    @media screen and (min-width: 928px) {
+        &.--desktop {
+            width: 1px;
+        }
+    }
 }
 
 .grey-box {

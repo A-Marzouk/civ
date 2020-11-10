@@ -310,6 +310,10 @@ export default {
         }
         // let user accessible in included components.
         this.$store.dispatch("updateThemeUser", this.currentUser);
+
+        if (this.currentUser.tabs && this.currentUser.tabs.length) {
+            this.activeTab = this.currentUser.tabs[0].title;
+        }
     }
 };
 </script>
@@ -610,7 +614,7 @@ export default {
 }
 
 @media only screen and (max-width: 1200px) {
-    .theme-container {
+    #theme-container {
         .tabs-wrapper {
             padding: 0 80px 67px 80px;
         }
@@ -621,7 +625,7 @@ export default {
     /* CSS that should be displayed if width is equal to or less than 1600px and larger
           than 760px goes here */
 
-    .theme-container {
+    #theme-container {
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -842,7 +846,7 @@ export default {
 }
 
 @media only screen and (max-width: 610px) {
-    .theme-container {
+    #theme-container {
         display: flex;
         position: relative;
         justify-content: center;
