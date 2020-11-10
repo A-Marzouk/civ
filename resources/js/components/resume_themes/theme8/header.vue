@@ -85,8 +85,10 @@
                                     </a>
                                 </div>
                             </div>
-
-                            <SocialLinks :links="currentUser.links" />
+                            <SocialLinks
+                                screen="desktop"
+                                :links="currentUser.links"
+                            />
                         </div>
                     </div>
 
@@ -233,6 +235,8 @@
             </div>
         </div>
 
+        <SocialLinks screen="mobile" :links="currentUser.links" />
+
         <!-- audio/video for sm screen -->
         <div class="show__sm-screen">
             <div class="interviews mt-8">
@@ -270,9 +274,9 @@
                 <div class="hours text-center">
                     <!-- first value -->
                     <div class="text" style="text-transform: capitalize">
-                        <v-icon small dark @click="paymentInfoPrev()"
-                            >navigate_before</v-icon
-                        >
+                        <v-icon small dark @click="paymentInfoPrev()">
+                            navigate_before
+                        </v-icon>
                         <div
                             v-for="(payment_Info,
                             index) in currentUser.payment_info"
@@ -287,9 +291,9 @@
                                 {{ payment_Info.salary_frequency }} rate
                             </span>
                         </div>
-                        <v-icon small dark @click="paymentInfoNext()"
-                            >navigate_next</v-icon
-                        >
+                        <v-icon small dark @click="paymentInfoNext()">
+                            navigate_next
+                        </v-icon>
                     </div>
 
                     <!-- second value -->
@@ -321,9 +325,10 @@
                 <!-- Available info -->
                 <div class="rate text-center">
                     <div class="text">
-                        Available (<v-icon small dark @click="availablePrev()"
-                            >navigate_before</v-icon
-                        >
+                        Available (
+                        <v-icon small dark @click="availablePrev()">
+                            navigate_before
+                        </v-icon>
                         <div
                             v-for="(availability_info,
                             index) in currentUser.availability_info"
@@ -337,9 +342,10 @@
                                 }}
                             </span>
                         </div>
-                        <v-icon small dark @click="availableNext()"
-                            >navigate_next</v-icon
-                        >)
+                        <v-icon small dark @click="availableNext()">
+                            navigate_next
+                        </v-icon>
+                        )
                     </div>
 
                     <div class="number" style="text-transform: capitalize">
@@ -360,14 +366,86 @@
             <!-- buttom -->
             <div class="prof-right">
                 <div class="hire-me-btn d-flex justify-content-center">
-                    <a href="javascript:void(0)" @click.prevent="openHireModal"
-                        >Hire Me</a
-                    >
+                    <a href="javascript:void(0)" @click.prevent="openHireModal">
+                        Hire Me
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+import SocialLinks from "./common/SocialLinks";
+
+export default {
+    props: [
+        "currentUser",
+        "chatToggle",
+        "hireToggle",
+        "audioToggle",
+        "videoToggle"
+    ],
+    components: { SocialLinks },
+    data() {
+        return {
+            available: 0,
+            paymentInfo: 0,
+            currentChat: !this.chatToggle,
+            currentHire: !this.hireToggle,
+            currentAudio: !this.audioToggle,
+            currentVideo: !this.videoToggle
+        };
+    },
+
+    methods: {
+        openChatModal() {
+            this.$emit("updateChatToggle", this.currentChat);
+        },
+        openHireModal() {
+            this.$emit("updateHireToggle", this.currentHire);
+        },
+        openAudioModal() {
+            this.$emit("updateAudioToggle", this.currentAudio);
+        },
+        openVideoModal() {
+            this.$emit("updateVideoToggle", this.currentVideo);
+        },
+        availableNext() {
+            if (this.available == 2) {
+                this.available = 0;
+            } else this.available++;
+        },
+        availablePrev() {
+            if (this.available == 0) {
+                this.available = 0;
+            } else this.available--;
+        },
+        paymentInfoNext() {
+            if (this.paymentInfo == 2) {
+                this.paymentInfo = 0;
+            } else this.paymentInfo++;
+        },
+        paymentInfoPrev() {
+            if (this.paymentInfo == 0) {
+                this.paymentInfo = 0;
+            } else this.paymentInfo--;
+        },
+        formatSalary(salary, currency) {
+            return new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 0
+            }).format(salary);
+        }
+    },
+
+    created() {
+        console.log(this.currentUser);
+    }
+};
+</script>
 
 <style lang="scss" scoped>
 .main-container {
@@ -446,6 +524,7 @@
 
         .social {
             display: flex;
+            flex-direction: column;
             margin-top: 54px;
             padding-bottom: 5px;
 
@@ -487,6 +566,10 @@
                         line-height: 16px;
                     }
                 }
+            }
+
+            @media screen and (min-width: 425px) {
+                flex-direction: row;
             }
 
             @media (max-width: 1400px) {
@@ -727,75 +810,3 @@ hide__sm-screen {
     }
 }
 </style>
-
-<script>
-import SocialLinks from "./common/SocialLinks";
-
-export default {
-    props: [
-        "currentUser",
-        "chatToggle",
-        "hireToggle",
-        "audioToggle",
-        "videoToggle"
-    ],
-    components: { SocialLinks },
-    data() {
-        return {
-            available: 0,
-            paymentInfo: 0,
-            currentChat: !this.chatToggle,
-            currentHire: !this.hireToggle,
-            currentAudio: !this.audioToggle,
-            currentVideo: !this.videoToggle
-        };
-    },
-
-    methods: {
-        openChatModal() {
-            this.$emit("updateChatToggle", this.currentChat);
-        },
-        openHireModal() {
-            this.$emit("updateHireToggle", this.currentHire);
-        },
-        openAudioModal() {
-            this.$emit("updateAudioToggle", this.currentAudio);
-        },
-        openVideoModal() {
-            this.$emit("updateVideoToggle", this.currentVideo);
-        },
-        availableNext() {
-            if (this.available == 2) {
-                this.available = 0;
-            } else this.available++;
-        },
-        availablePrev() {
-            if (this.available == 0) {
-                this.available = 0;
-            } else this.available--;
-        },
-        paymentInfoNext() {
-            if (this.paymentInfo == 2) {
-                this.paymentInfo = 0;
-            } else this.paymentInfo++;
-        },
-        paymentInfoPrev() {
-            if (this.paymentInfo == 0) {
-                this.paymentInfo = 0;
-            } else this.paymentInfo--;
-        },
-        formatSalary(salary, currency) {
-            return new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 0
-            }).format(salary);
-        }
-    },
-
-    created() {
-        console.log(this.currentUser);
-    }
-};
-</script>

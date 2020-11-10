@@ -34,12 +34,12 @@
 
                 <v-tab
                     class="v-tab"
-                    v-for="tab in tabs"
-                    :key="tab.value"
-                    @click="activeTab = tab.value"
+                    v-for="tab in currentUser.tabs.filter(tab => tab.is_public)"
+                    :key="tab.title"
+                    @click="activeTab = tab.title"
                     :ripple="false"
                 >
-                    {{ tab.text }}
+                    {{ tab.label }}
                 </v-tab>
             </v-tabs>
         </div>
@@ -53,8 +53,8 @@
                 ></Portfolio>
                 <div
                     class="work-experience"
-                    v-show="activeTab === 'work-experience'"
-                    :class="{ active: activeTab === 'work-experience' }"
+                    v-show="activeTab === 'work_experience'"
+                    :class="{ active: activeTab === 'work_experience' }"
                 >
                     <div
                         class="work-item"
@@ -136,8 +136,8 @@
                 </div>
 
                 <About
-                    v-show="activeTab === 'about'"
-                    :class="{ active: activeTab === 'about' }"
+                    v-show="activeTab === 'about_me'"
+                    :class="{ active: activeTab === 'about_me' }"
                     :currentUser="currentUser"
                 ></About>
                 <Hobbies
@@ -193,40 +193,6 @@ export default {
     },
     data() {
         return {
-            tabs: [
-                {
-                    text: "Portfolio",
-                    value: "portfolio"
-                },
-                {
-                    text: "Work",
-                    value: "work-experience"
-                },
-                {
-                    text: "Education",
-                    value: "education"
-                },
-                {
-                    text: "Skills",
-                    value: "skills"
-                },
-                {
-                    text: "Hobbies",
-                    value: "hobbies"
-                },
-                {
-                    text: "References",
-                    value: "references"
-                },
-                {
-                    text: "Achievements",
-                    value: "achievements"
-                },
-                {
-                    text: "About",
-                    value: "about"
-                }
-            ],
             Randomcolors: [
                 { color: "#217BFF" },
                 { color: "#EE588A" },

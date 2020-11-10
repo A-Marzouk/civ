@@ -1,7 +1,7 @@
 <template>
-    <div class="social-links">
+    <div class="social-links" :class="`--${screen}`">
         <button
-            v-if="visibleLinks.length > activeRange.to"
+            v-if="activeLinks.length > maxVisible"
             class="social-links__prev-btn"
             @click="prevLinks"
         >
@@ -21,7 +21,7 @@
             </a>
         </div>
         <button
-            v-if="visibleLinks.length > activeRange.to"
+            v-if="activeLinks.length > maxVisible"
             class="social-links__next-btn"
             @click="nextLinks"
         >
@@ -35,10 +35,19 @@
 <script>
 export default {
     name: "SocialLinks",
-    props: { links: { type: Array } },
+    props: {
+        links: { type: Array },
+        screen: {
+            type: Array,
+            validator: value => ["desktop", "mobile"].includes(value)
+        }
+    },
     data() {
+        const maxVisible = 4;
+
         return {
-            activeRange: { from: 0, to: 4 }
+            maxVisible: maxVisible,
+            activeRange: { from: 0, to: maxVisible }
         };
     },
     computed: {
@@ -130,6 +139,12 @@ export default {
 .social-links {
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+    &.--desktop {
+        display: none;
+    }
 
     .social-links__wrapper {
         display: flex;
@@ -161,6 +176,21 @@ export default {
 
         @media screen and (max-width: 500px) {
             margin-right: 20px;
+        }
+    }
+
+    @media screen and (min-width: 425px) {
+    }
+
+    @media screen and (min-width: 768px) {
+        margin-top: unset;
+
+        &.--mobile {
+            display: none;
+        }
+
+        &.--desktop {
+            display: flex;
         }
     }
 }
