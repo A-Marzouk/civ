@@ -69,60 +69,8 @@
                 flat
                 tile
               >
-                <v-card-text class="ml-xl-0 ml-lg-12 ml-md-0">
-                  <v-list-item two-line class>
-                    <v-list-item-avatar size="18">
-                      <img
-                        width="18"
-                        src="/images/resume_themes/theme206/icons/usd.png"
-                      />
-                    </v-list-item-avatar>
-                    <v-list-item-content>
-                      <v-list-item-subtitle>
-                        <v-card color="transparent" flat class="pa-0 ma-0" tile>
-                          <span class="hour-rate">Hour Rate</span>
-                        </v-card>
-                      </v-list-item-subtitle>
-                      <v-list-item-subtitle v-if="currentUser.payment_info">
-                        <v-card color="transparent" flat tile>
-                          <span class="rate">{{
-                            currentUser.payment_info[0].salary
-                          }}</span>
-                        </v-card>
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card-text>
-
-                <!-- Hour Rate -->
-                <!-- Weekly availibility -->
-
-                <v-list-item
-                  two-line
-                  class="availibilty-col ml-lg-0 ml-md-n10 ml-sm-n12 ml-0"
-                >
-                  <v-list-item-avatar size="16">
-                    <img
-                      width="16"
-                      src="/images/resume_themes/theme206/icons/watch.png"
-                    />
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-subtitle>
-                      <v-card color="transparent" flat tile>
-                        <span class="hour-rate">Weekly availibility</span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                    <v-list-item-subtitle v-if="currentUser.availability_info">
-                      <v-card color="transparent" class="pa-0 ma-0" flat tile>
-                        <span class="rate">{{
-                          currentUser.availability_info[0].available_hours
-                        }}</span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-                <!-- Weekly availibility -->
+                <HourRate :paymentInfo="currentUser.payment_info" />
+                <WeeklyAvailability :availabilityInfo="currentUser.availability_info" />
               </v-card>
             </v-col>
             <!-- Availibility  -->
@@ -896,6 +844,9 @@ import VideoPlayer from "./media/VideoPlayer";
 import HireModal from "../theme203/payment/HireModal";
 import Portfolio from "./tabs/Portfolio";
 import SocialButtons from "./common/SocialButtons";
+import HourRate from "./common/HourRate";
+import WeeklyAvailability from "./common/WeeklyAvailability";
+
 export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
@@ -904,6 +855,8 @@ export default {
     Portfolio,
     VideoPlayer,
     SocialButtons,
+    HourRate,
+    WeeklyAvailability,
   },
   data() {
     return {
@@ -1148,20 +1101,6 @@ export default {
   }
 }
 
-.hour-rate {
-  font-family: "Poppins", sans-serif !important;
-  color: rgba(88, 67, 190, 0.5) !important;
-  font-size: 0.625rem;
-  line-height: 1.313rem;
-  text-transform: uppercase;
-}
-.rate {
-  font-family: "Poppins", sans-serif !important;
-  color: #5843be !important;
-  font-size: 2.5rem;
-  line-height: 3rem;
-  font-weight: bold;
-}
 .btn-hire-me {
   width: 180px;
   height: 50px !important;
@@ -1481,14 +1420,6 @@ export default {
   }
 }
 
-// .availibilty-col {
-//   @media screen and (min-width: 1025px) {
-//     margin-left: -52px;
-//   }
-//   @media screen and (max-width: 1024px) {
-//     margin-left: -20px;
-//   }
-// }
 //hobbies tab
 .card-hobby {
   background: linear-gradient(0deg, #fafafa, #fafafa) !important;
