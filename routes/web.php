@@ -22,6 +22,7 @@ Auth::routes(['verify' => true]);
 // public routes
 Route::get('/preview/{theme_id}/{slug?}', 'ResumeController@themePreview'); // resume preview
 Route::get('/preview-by-code/{theme_code}', 'ResumeController@themePreviewByCode'); // resume preview by code
+Route::post('/resume/send-message','ResumeController@sendResumeMessage')->name('send,resume.message');
 
 Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs

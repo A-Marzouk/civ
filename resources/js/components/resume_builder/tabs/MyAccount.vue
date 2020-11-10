@@ -945,7 +945,7 @@
 
 </style>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "../../../../sass/media-queries";
 
     $text-color: #4374de;

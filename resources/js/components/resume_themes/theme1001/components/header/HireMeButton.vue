@@ -38,7 +38,6 @@ export default {
 	},
 	methods:{
 		closeHireMeModal(){
-        console.log('closeHireMeModal');
         this.hireMeModal = false;
       },
 	}
