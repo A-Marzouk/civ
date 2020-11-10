@@ -195,6 +195,7 @@
                   color="#FAFAFA"
                   class="btn-hire-me hidden-sm-and-down"
                   x-large
+                  v-if="findPreference('hire_me')"
                   @click="hireMeModal = !hireMeModal"
                 >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
@@ -234,6 +235,7 @@
                   color="#FAFAFA"
                   class="btn-hire-me"
                   x-large
+                  v-if="findPreference('hire_me')"
                   @click="hireMeModal = !hireMeModal"
                 >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
