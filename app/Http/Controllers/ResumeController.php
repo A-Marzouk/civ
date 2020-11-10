@@ -156,11 +156,12 @@ class ResumeController extends Controller
     public function sendResumeMessage(Request $request)
     {
         $emailData = [
-            'header' => 'New message from your resume | ' . $request->resumeURL,
+            'header' => 'New message from your resume.',
             'body' => $request->message['body'],
             'actionText' => 'Open resume',
             'actionURL' => $request->resumeURL,
-            'footer' => 'Civ.ie team.',
+            'footer' => 'Civ.ie team.'
+
         ];
 
         $from = [
