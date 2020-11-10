@@ -22,6 +22,7 @@ Auth::routes(['verify' => true]);
 // public routes
 Route::get('/preview/{theme_id}/{slug?}', 'ResumeController@themePreview'); // resume preview
 Route::get('/preview-by-code/{theme_code}', 'ResumeController@themePreviewByCode'); // resume preview by code
+Route::post('/resume/send-message','ResumeController@sendResumeMessage')->name('send,resume.message');
 
 Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
@@ -82,19 +83,25 @@ Route::post('/custom-stripe-payment', 'Billing\StripeForClientsController@custom
 Route::get('/client-subscription', 'Billing\StripeForClientsController@clientSubscription')->name('subscription');
 Route::get('/hire-freelancer/success', 'Billing\StripeForClientsController@firstPaymentSuccess')->name('payment.success');
 Route::get('/hire-freelancer/cancel', 'Billing\StripeForClientsController@firstPaymentFail')->name('payment.fail');
-;
 
+// PayPal for clients:
+Route::post('/custom-paypal-payment', 'Billing\PayPalForClientsController@customPayPalPayments')->name('custom.stripe.payments');
+Route::get('/paypal/hire-freelancer/success', 'Billing\PayPalForClientsController@success')->name('paypal.clients.success');
+Route::get('/paypal/hire-freelancer-regular/success', 'Billing\PayPalForClientsController@successRegular')->name('paypal..regular.clients.success');
+Route::get('/paypal/hire-freelancer/cancel','Billing\PayPalForClientsController@cancel')->name('paypal.clients.cancel');
+Route::get('/paypal/create-webhooks','Billing\PayPalForClientsController@createWebhooks')->name('paypal.create.webhooks');
 
 // webhooks:
 Route::post('/stripe/webhooks', 'Billing\StripeWebhooksController@handle')->name('stripe.webhooks');
+Route::post('/paypal/webhooks', 'Billing\PayPalWebhooksController@handle')->name('paypal.webhooks');
 
 
 
 // paypal
-Route::get('/subscribe/create-paypal-plan/{plan_period}', 'PaypalController@create_plan');
-Route::get('/subscribe/paypal/monthly', 'PaypalController@subscribePayPalMonthly')->name('paypal.redirect.monthly');
-Route::get('/subscribe/paypal/yearly', 'PaypalController@subscribePayPalYearly')->name('paypal.redirect.yearly');
-Route::get('/subscribe/paypal/return', 'PaypalController@paypalReturn')->name('paypal.return');
+Route::get('/subscribe/create-paypal-plan/{plan_period}', 'PayPalForAgentsController@create_plan');
+Route::get('/subscribe/paypal/monthly', 'PayPalForAgentsController@subscribePayPalMonthly')->name('paypal.redirect.monthly');
+Route::get('/subscribe/paypal/yearly', 'PayPalForAgentsController@subscribePayPalYearly')->name('paypal.redirect.yearly');
+Route::get('/subscribe/paypal/return', 'PayPalForAgentsController@paypalReturn')->name('paypal.return');
 
 
 

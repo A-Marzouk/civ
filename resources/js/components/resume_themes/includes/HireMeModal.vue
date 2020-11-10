@@ -510,10 +510,14 @@
                         }
                     };
 
-                    axios.post('/custom-stripe-payment', this.paymentData)
+                    let paymentUrl = '/custom-stripe-payment';
+                    if(this.currentPaymentMethod === 'paypal'){
+                        paymentUrl = '/custom-paypal-payment';
+                    }
+
+                    axios.post( paymentUrl , this.paymentData)
                         .then( (response) => {
-                            let session_id = response.data ;
-                            window.location = '/client-subscription?session_id=' + session_id ;
+                            window.location = response.data.url ;
                         })
                         .catch( (error) => {
                             console.log(error)

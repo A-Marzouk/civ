@@ -47,6 +47,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned()->index();
             $table->string('stripe_customer_id')->nullable();
+            $table->string('paypal_payer_id')->nullable();
             $table->timestamps();
         });
 

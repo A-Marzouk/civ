@@ -366,7 +366,7 @@
       :closeHireMeModal="closeHireMeModal"
       :user="currentUser"
     ></updated-hire-modal>
-    <ChatModal :chatToggle="chatToggle" :closeChat="closeChat" />
+    <ChatModal :chatToggle="chatToggle" :user="user" :closeChat="closeChat" />
     <TabsNavigation
       :currentUser="currentUser"
       @tab-changed="tabChanged"
