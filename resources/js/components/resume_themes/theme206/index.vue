@@ -185,6 +185,7 @@
 
             <!-- 3rd column -->
             <v-col
+              xl="5"
               lg="5"
               md="5"
               class="hidden-md-and-down mt-lg-0"
