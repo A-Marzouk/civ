@@ -116,6 +116,7 @@
                 <v-list-item
                   two-line
                   class="availibilty-col ml-lg-0 ml-md-n10 ml-sm-n12 ml-0"
+                  v-if="findPreference('weekly_availability')"
                 >
                   <v-list-item-avatar size="16">
                     <img
@@ -1017,6 +1018,21 @@ export default {
     },
   },
   methods: {
+    findPreference(title) {
+      if (!this.currentUser) {
+        return;
+      }
+      let currentPrefer = null;
+      this.currentUser.preferences.forEach((prefer) => {
+        if (prefer.title === title) {
+          currentPrefer = prefer;
+        }
+      });
+      if (currentPrefer) {
+        return currentPrefer.is_public;
+      }
+      return "";
+    },
     paymentInfoNext() {
       if (this.paymentInfo == 2) {
         this.paymentInfo = 0;
