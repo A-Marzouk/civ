@@ -1,6 +1,6 @@
 <template>
 <div class="social-buttons" :class="`--${screen}`">
-    <v-icon v-if="activeLinks.length > maxVisible" class="social-links__prev-btn mr-1" size="40" color="#5843BE" @click="prevLinks">mdi-chevron-left</v-icon>
+    <v-icon v-if="activeLinks.length > maxVisible" class="social-buttons__prev mr-1" size="40" color="#5843BE" @click="prevLinks">mdi-chevron-left</v-icon>
     <v-btn
         class="custom-social-btn mx-1 px-0"
         href="javascript:void(0)"
@@ -16,7 +16,7 @@
             :src="getSocialIcon(userLink.link_title)"
         />
     </v-btn>
-    <v-icon v-if="activeLinks.length > maxVisible" class="social-links__next-btn ml-1" size="40" color="#5843BE" @click="nextLinks">mdi-chevron-right</v-icon>
+    <v-icon v-if="activeLinks.length > maxVisible" class="social-buttons__next ml-1" size="40" color="#5843BE" @click="nextLinks">mdi-chevron-right</v-icon>
 </div>
 </template>
 
@@ -71,14 +71,18 @@
 
 <style lang="scss" scoped>
 .social-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     &.--desktop {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         margin-right: 16px;
 
-        .social-links__prev-btn,
-        .social-links__next-btn {
+        .social-buttons__prev {margin-right: 12px;}
+        .social-buttons__next {margin-left: 12px;}
+
+        .social-buttons__prev,
+        .social-buttons__next {
             width: 30px;
             height: 30px;
         }
@@ -86,6 +90,23 @@
         .custom-social-btn {
             width: 50px;
             height: 50px !important;
+            min-width: 40px !important;
+        }
+    }
+
+    &.--tablet {
+        .social-buttons__prev {margin-right: 16px;}
+        .social-buttons__next {margin-left: 16px;}
+
+        .social-buttons__prev,
+        .social-buttons__next {
+            width: 30px;
+            height: 30px;
+        }
+
+        .custom-social-btn {
+            width: 40px;
+            height: 40px !important;
             min-width: 40px !important;
         }
     }
