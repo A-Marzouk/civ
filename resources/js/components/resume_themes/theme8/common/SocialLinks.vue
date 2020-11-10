@@ -52,58 +52,7 @@ export default {
     },
     computed: {
         activeLinks() {
-            return this.links.filter(l => l.is_active);
-
-            return [
-                {
-                    id: 0.8467649448718326,
-                    category: "social_link",
-                    link: "https://instagram.com",
-                    link_title: "Instagram",
-                    is_active: true,
-                    is_public: 1
-                },
-                {
-                    id: 0.9437630189864001,
-                    category: "social_link",
-                    link: "https://instagram.com",
-                    link_title: "Behance",
-                    is_active: false,
-                    is_public: 1
-                },
-                {
-                    id: 0.9970980687615405,
-                    category: "social_link",
-                    link: "https://instagram.com",
-                    link_title: "Linkedin",
-                    is_active: true,
-                    is_public: 1
-                },
-                {
-                    id: 0.9970980687615406,
-                    category: "social_link",
-                    link: "https://instagram.com",
-                    link_title: "Linkedin",
-                    is_active: true,
-                    is_public: 1
-                },
-                {
-                    id: 0.8467649448714326,
-                    category: "social_link",
-                    link: "https://instagram.com",
-                    link_title: "Instagram",
-                    is_active: true,
-                    is_public: 1
-                },
-                {
-                    id: 0.9437630183864001,
-                    category: "social_link",
-                    link: "https://instagram.com",
-                    link_title: "Behance",
-                    is_active: false,
-                    is_public: 1
-                }
-            ];
+            return this.links.filter(l => l.is_active && l.is_public);
         },
         visibleLinks() {
             return this.activeLinks.slice(

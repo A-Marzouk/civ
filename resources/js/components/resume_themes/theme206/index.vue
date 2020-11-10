@@ -19,18 +19,19 @@
           <v-row class align="center" justify="center" dense>
             <v-col xl="4" lg="3" md="8" sm="7">
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title"
-                  >{{ currentUser.personal_info.first_name }}
-                  {{ currentUser.personal_info.last_name }}</v-card-title
-                >
+                <v-card-title class="custom-profile-title">
+                  {{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}
+                </v-card-title>
                 <v-card-subtitle class="custom-profile-subtitle">
                   {{ currentUser.personal_info.designation }}
                 </v-card-subtitle>
                 <v-card-text
                   class="custom-profile-text hidden-md-and-down"
                   v-if="currentUser.personal_info.overview"
-                  >{{ currentUser.personal_info.overview }}</v-card-text
                 >
+                  {{ currentUser.personal_info.overview }}
+                </v-card-text>
               </v-card>
             </v-col>
 
@@ -45,7 +46,7 @@
                 color="transparent"
                 class="pa-0 hire-me-card mt-md-2 mt-sm-0"
               >
-                <v-btn
+              <v-btn
                   color="#FAFAFA"
                   class="btn-hire-me hidden-md-and-down"
                   x-large
@@ -150,7 +151,9 @@
               class="hidden-md-and-down mt-lg-0"
               align="right"
             >
-              <v-card flat color="transparent" class="pa-0 hire-me-card">
+              <v-card flat color="transparent" class="pa-0 hire-me-card d-flex align-items-center">
+                <SocialButtons :links="currentUser.links" screen="desktop" />
+
                 <v-btn
                   color="#FAFAFA"
                   class="btn-hire-me hidden-sm-and-down"
@@ -158,24 +161,6 @@
                   @click="hireMeModal = !hireMeModal"
                 >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
-                </v-btn>
-
-                <!-- social buttons -->
-                <v-btn
-                  class="custom-social-btn mx-2"
-                  href="javascript:void(0)"
-                  @click="goToExternalLink(userLink.link)"
-                  v-for="userLink in currentUser.links"
-                  :key="userLink.id + '_link'"
-                  target="_blank"
-                  v-show="userLink.is_active && userLink.is_public"
-                  color="#FAFAFA"
-                >
-                  <img
-                    :width="userLink.link_title == 'facebook' ? '12' : '20'"
-                    x-large
-                    :src="getSocialIcon(userLink.link_title)"
-                  />
                 </v-btn>
                 <!-- social buttons -->
               </v-card>
@@ -942,6 +927,7 @@ import audioMedia from "./media/audioMedia";
 import VideoPlayer from "./media/VideoPlayer";
 import HireModal from "../theme203/payment/HireModal";
 import Portfolio from "./tabs/Portfolio";
+import SocialButtons from "./common/SocialButtons";
 export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
@@ -949,6 +935,7 @@ export default {
     HireModal,
     Portfolio,
     VideoPlayer,
+    SocialButtons,
   },
   data() {
     return {
@@ -1187,6 +1174,7 @@ export default {
 }
 .hire-me-card {
   margin-top: -70px;
+
   @media screen and (max-width: 959px) {
     margin-top: 0px;
   }
@@ -1207,8 +1195,9 @@ export default {
   font-weight: bold;
 }
 .btn-hire-me {
-  width: 230px;
-  height: 60px !important;
+  width: 180px;
+  height: 50px !important;
+
   @media screen and (max-width: 1263px) {
     width: 240px;
   }
@@ -1219,11 +1208,13 @@ export default {
   }
 }
 .custom-social-btn {
-  width: 60px;
-  height: 60px !important;
+  width: 50px;
+  height: 50px !important;
+  min-width: unset !important;
+
   @media screen and (min-width: 600px) and (max-width: 1263px) {
-    width: 60px;
-    height: 60px !important;
+    width: 40px;
+    height: 40px !important;
   }
 
   @media screen and (max-width: 599px) {
@@ -1337,7 +1328,7 @@ export default {
   @media screen and (max-width: 374px){
     font-size: 12px !important;
   }
-} 
+}
 //education
 // Skill tab
 .skill-child-tab {
