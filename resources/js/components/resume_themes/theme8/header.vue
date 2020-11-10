@@ -454,6 +454,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-container {
+    z-index: 1;
     padding: 78px;
 
     .header-panel {
