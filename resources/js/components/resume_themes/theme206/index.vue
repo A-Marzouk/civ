@@ -69,8 +69,8 @@
                 flat
                 tile
               >
-                <HourRate :paymentInfo="currentUser.payment_info" />
-                <WeeklyAvailability :availabilityInfo="currentUser.availability_info" />
+                <SalaryRate :paymentInfo="currentUser.payment_info" />
+                <AvailabilityHours :availabilityInfo="currentUser.availability_info" />
               </v-card>
             </v-col>
             <!-- Availibility  -->
@@ -844,8 +844,8 @@ import VideoPlayer from "./media/VideoPlayer";
 import HireModal from "../theme203/payment/HireModal";
 import Portfolio from "./tabs/Portfolio";
 import SocialButtons from "./common/SocialButtons";
-import HourRate from "./common/HourRate";
-import WeeklyAvailability from "./common/WeeklyAvailability";
+import SalaryRate from "./common/SalaryRate";
+import AvailabilityHours from "./common/AvailabilityHours";
 
 export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
@@ -855,8 +855,8 @@ export default {
     Portfolio,
     VideoPlayer,
     SocialButtons,
-    HourRate,
-    WeeklyAvailability,
+    SalaryRate,
+    AvailabilityHours,
   },
   data() {
     return {
