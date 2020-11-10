@@ -77,15 +77,18 @@
             <!-- Social Button for tablet only -->
 
             <!-- Availibility -->
-            <v-col xl="3" lg="4" md="5" sm="7" class>
+            <v-col xl="3" lg="4" md="5" sm="7" class="mt-xl-n12 ml-lg-n12">
               <!-- Hour rate -->
               <v-card
-                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-md-0"
+                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 mt-lg-n12 ml-xl-0 ml-md-0"
                 color="transparent"
                 flat
                 tile
               >
-                <v-card-text class="ml-xl-0 ml-lg-12 ml-md-0"  v-if="findPreference('hourly_rate')">
+                <v-card-text
+                  class="ml-xl-0 ml-lg-12 ml-md-0"
+                  v-if="findPreference('hourly_rate')"
+                >
                   <v-list-item two-line class>
                     <v-list-item-avatar size="18">
                       <img
@@ -93,7 +96,10 @@
                         src="/images/resume_themes/theme206/icons/usd.png"
                       />
                     </v-list-item-avatar>
-                    <v-list-item-content @click="paymentInfoNext()" style="cursor: pointer;">
+                    <v-list-item-content
+                      @click="paymentInfoNext()"
+                      style="cursor: pointer"
+                    >
                       <v-list-item-subtitle>
                         <v-card color="transparent" flat class="pa-0 ma-0" tile>
                           <template
@@ -103,7 +109,10 @@
                               class="hour-rate"
                               :key="index"
                               v-if="paymentInfo == index"
-                              >{{ item.salary_frequency | capitalize }} Rate</span
+                              >{{
+                                item.salary_frequency | capitalize
+                              }}
+                              Rate</span
                             >
                           </template>
                         </v-card>
