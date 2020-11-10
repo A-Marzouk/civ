@@ -37,6 +37,8 @@ use PayPal\Api\PaymentDefinition;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Plan;
 use PayPal\Api\ShippingAddress;
+use PayPal\Api\Webhook;
+use PayPal\Api\WebhookEventType;
 use PayPal\Common\PayPalModel;
 use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
@@ -278,7 +280,7 @@ class PayPalForClientsController extends Controller
             $result = $agreement->execute($token, $this->apiContext);
             $client = $this->createClient($result->payer->payer_info);
             $this->createSubscriptionHistory($client, $result);
-            $this->createPaymentHistory($client, $result->id , $result);
+            $this->createPaymentHistory($client, $result->id, $result);
 
             return view('billing.success');
         } catch (PayPalConnectionException $ex) {
@@ -327,13 +329,13 @@ class PayPalForClientsController extends Controller
             return false;
         }
 
-        $amount = 0 ;
-        $notes  = '';
+        $amount = 0;
+        $notes = '';
 
-        if(isset($result->transactions)){
-            $amount =  $result->transactions[0]->amount->total;
+        if (isset($result->transactions)) {
+            $amount = $result->transactions[0]->amount->total;
         }
-        if(isset($result->plan->payment_definitions)){
+        if (isset($result->plan->payment_definitions)) {
             $amount = $result->plan->payment_definitions[0]->amount->value;
             $notes = 'Subscription payment.';
         }
@@ -400,6 +402,50 @@ class PayPalForClientsController extends Controller
             $invoice->create($this->apiContext);
         } catch (PayPalConnectionException $ex) {
             return $ex->getData();
+        }
+    }
+
+
+    // webhooks creator:
+    public function createWebhooks()
+    {
+        $webhook = new Webhook();
+
+        // Set webhook notification URL
+        $webhook->setUrl("https://civ.ie/paypal/webhooks");
+
+        // Set webhooks to subscribe to
+        $webhookEventTypes = array();
+
+        $webhookEventTypes[] = new WebhookEventType(
+            '{
+                "name":"BILLING_AGREEMENTS.AGREEMENT.CREATED"
+            }'
+        );
+
+        $webhookEventTypes[] = new WebhookEventType(
+            '{
+                "name":"BILLING_AGREEMENTS.AGREEMENT.CANCELLED"
+            }'
+        );
+
+        $webhookEventTypes[] = new WebhookEventType(
+            '{
+                "name":"BILLING.SUBSCRIPTION.CANCELLED"
+            }'
+        );
+
+        $webhook->setEventTypes($webhookEventTypes);
+
+        try {
+            $output = $webhook->create($this->apiContext);
+            dd($output);
+        } catch (PayPalConnectionException $ex) {
+            echo $ex->getCode();
+            echo $ex->getData();
+            die($ex);
+        } catch (Exception $ex) {
+            die($ex);
         }
     }
 }
