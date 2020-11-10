@@ -332,21 +332,28 @@ export const store = new Vuex.Store({
                     link_title: 'Instagram',
                     is_active: true,
                     is_public: 1
-
                 },
                 {
                     id: Math.random(),
                     category: 'social_link',
-                    link: 'https://instagram.com',
+                    link: 'https://behance.net',
                     link_title: 'Behance',
-                    is_active: false,
+                    is_active: true,
                     is_public: 1
                 },
                 {
                     id: Math.random(),
                     category: 'social_link',
-                    link: 'https://instagram.com',
+                    link: 'https://linkedin.com',
                     link_title: 'Linkedin',
+                    is_active: true,
+                    is_public: 1
+                },
+                {
+                    id: Math.random(),
+                    category: 'social_link',
+                    link: 'https://twitter.com',
+                    link_title: 'Twitter',
                     is_active: true,
                     is_public: 1
                 }
