@@ -2,6 +2,7 @@
 <div class="social-buttons" :class="`--${screen}`">
     <v-icon v-if="activeLinks.length > maxVisible" class="social-buttons__prev mr-1" size="40" color="#5843BE" @click="prevLinks">mdi-chevron-left</v-icon>
     <v-btn
+        :x-small="screen === 'mobile'"
         class="custom-social-btn mx-1 px-0"
         href="javascript:void(0)"
         @click="goToExternalLink(userLink.link)"
@@ -75,6 +76,10 @@
     align-items: center;
     justify-content: center;
 
+    .custom-social-btn {
+        min-width: 30;
+    }
+
     &.--desktop {
         margin-right: 16px;
 
@@ -108,6 +113,23 @@
             width: 40px;
             height: 40px !important;
             min-width: 40px !important;
+        }
+    }
+
+    &.--mobile {
+        .social-buttons__prev,
+        .social-buttons__next {
+            width: 24px;
+            height: 24px;
+            font-size: 28px !important;
+        }
+
+        .custom-social-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: 1.5px 1.5px 3px rgba(35, 35, 35, 0.4),
+            -1px -1px 3px rgba(206, 206, 206, 0.24);
         }
     }
 }

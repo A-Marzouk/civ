@@ -52,7 +52,7 @@
                         x-large
                         @click="hireMeModal = !hireMeModal"
                     >
-                        <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me 1
+                        <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                     </v-btn>
 
                     <SocialButtons :links="currentUser.links" screen="tablet" />
@@ -143,7 +143,7 @@
                   x-large
                   @click="hireMeModal = !hireMeModal"
                 >
-                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me 2
+                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
                 <!-- social buttons -->
               </v-card>
@@ -165,7 +165,7 @@
                   x-large
                   @click="hireMeModal = !hireMeModal"
                 >
-                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me 3
+                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
               </v-card>
             </v-col>
@@ -218,24 +218,8 @@
               </v-list-item-subtitle>
               <v-list-item-title>
                 <v-card height="50" flat color="transparent" class="mt-2">
-                    <v-btn
-                      x-small
-                      class="custom-social-btn mx-2"
-                      href="javascript:void(0)"
-                      @click="goToExternalLink(userLink.link)"
-                      v-for="userLink in currentUser.links"
-                      :key="userLink.id + '_link'"
-                      target="_blank"
-                      v-show="userLink.is_active && userLink.is_public"
-                      color="#FAFAFA"
-                      height="40"
-                    >
-                      <img
-                        :width="userLink.link_title == 'facebook' ? '8' : '14'"
-                        :src="getSocialIcon(userLink.link_title)"
-                      />
-                    </v-btn>
-                  </v-card>
+                    <SocialButtons :links="currentUser.links" screen="mobile" />
+                </v-card>
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -246,7 +230,7 @@
               block
               @click="hireMeModal = !hireMeModal"
             >
-              <v-icon color="#5843BE" left>mdi-email-outline</v-icon>Hire Me 4
+              <v-icon color="#5843BE" left>mdi-email-outline</v-icon>Hire Me
             </v-btn>
           </v-card-text>
         </v-card>
@@ -1189,20 +1173,6 @@ export default {
   @media screen and (max-width: 599px) {
     width: 299px;
     color: #5843be !important;
-  }
-}
-.custom-social-btn {
-  /* @media screen and (min-width: 600px) and (max-width: 1263px) {
-    width: 40px;
-    height: 40px !important;
-  } */
-
-  @media screen and (max-width: 599px) {
-    height: 30px !important;
-    width: 30px !important;
-    border-radius: 5px !important;
-    box-shadow: 1.5px 1.5px 3px rgba(35, 35, 35, 0.4),
-      -1px -1px 3px rgba(206, 206, 206, 0.24) !important;
   }
 }
 // Tabs
