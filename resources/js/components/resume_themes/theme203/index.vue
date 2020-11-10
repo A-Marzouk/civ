@@ -258,7 +258,10 @@
 
                         <div
                           style="height: 41px; border: 1px solid #d7d7d7"
-                          v-if="findPreference('weekly_availability') || findPreference('hourly_rate')"
+                          v-if="
+                            findPreference('weekly_availability') ||
+                            findPreference('hourly_rate')
+                          "
                         ></div>
                         <v-col
                           lg="4"
@@ -1300,7 +1303,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    // console.log(this.currentUser);
+    console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
@@ -1410,7 +1413,7 @@ export default {
     changeAvailability() {
       this.$refs.availabilityCarousel.next();
     },
-    changeAvailability2(){
+    changeAvailability2() {
       this.$refs.availabilityCarousel2.next();
     },
   },

@@ -124,16 +124,39 @@
                     />
                   </v-list-item-avatar>
                   <v-list-item-content>
-                    <v-list-item-subtitle>
+                    <v-list-item-subtitle @click="paymentInfoNext()">
                       <v-card color="transparent" flat tile>
-                        <span class="hour-rate">Weekly availibility</span>
+                        <template
+                          v-for="(item, index) in currentUser.availability_info"
+                        >
+                          <span
+                            class="hour-rate"
+                            :key="item.id"
+                            v-if="paymentInfo == index"
+                            >{{
+                              item.available_hours_frequency
+                            }}
+                            availibility</span
+                          >
+                        </template>
                       </v-card>
                     </v-list-item-subtitle>
-                    <v-list-item-subtitle v-if="currentUser.availability_info">
+                    <v-list-item-subtitle
+                      v-if="currentUser.availability_info"
+                      style="cursor: pointer"
+                      @click="paymentInfoNext()"
+                    >
                       <v-card color="transparent" class="pa-0 ma-0" flat tile>
-                        <span class="rate">{{
-                          currentUser.availability_info[0].available_hours
-                        }}</span>
+                        <template
+                          v-for="(item, index) in currentUser.availability_info"
+                        >
+                          <span
+                            class="rate"
+                            :key="item.id"
+                            v-if="paymentInfo == index"
+                            >{{ item.available_hours }}</span
+                          >
+                        </template>
                       </v-card>
                     </v-list-item-subtitle>
                   </v-list-item-content>
@@ -960,6 +983,7 @@ export default {
       indexOfActiveTab: 0,
       currentSkillTab: 1,
       hireMeModal: false,
+      paymentInfo: 0,
       skills: [
         {
           id: 1,
@@ -993,6 +1017,11 @@ export default {
     },
   },
   methods: {
+    paymentInfoNext() {
+      if (this.paymentInfo == 2) {
+        this.paymentInfo = 0;
+      } else this.paymentInfo++;
+    },
     getFirstActiveTabTitle() {
       let title = "";
       this.currentUser.tabs.forEach((tab) => {
@@ -1091,6 +1120,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
 
     // set active tab
     this.setActiveTabByURL();
@@ -1299,10 +1329,10 @@ export default {
   line-height: 30px !important;
   font-size: 26px;
   word-break: break-word;
-  @media screen and (max-width: 411px){
+  @media screen and (max-width: 411px) {
     font-size: 20px;
   }
-  @media screen and (max-width: 374px){
+  @media screen and (max-width: 374px) {
     font-size: 16px;
   }
   img {
@@ -1323,10 +1353,10 @@ export default {
   color: #333333 !important;
   line-height: 23px;
   font-size: 1.125rem !important;
-  @media screen and (max-width: 411px){
+  @media screen and (max-width: 411px) {
     font-size: 1rem !important;
   }
-  @media screen and (max-width: 374px){
+  @media screen and (max-width: 374px) {
     font-size: 14px !important;
   }
 }
@@ -1334,10 +1364,10 @@ export default {
   font-family: "Roboto", sans-serif !important;
   color: rgba(51, 51, 51, 0.5) !important;
   font-size: 20px !important;
-  @media screen and (max-width: 374px){
+  @media screen and (max-width: 374px) {
     font-size: 12px !important;
   }
-} 
+}
 //education
 // Skill tab
 .skill-child-tab {
