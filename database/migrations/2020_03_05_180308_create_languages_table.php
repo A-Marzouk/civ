@@ -23,11 +23,12 @@ class CreateLanguagesTable extends Migration
         });
 
         Schema::create('language_user', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->index();
-            $table->integer('language_id')->unsigned()->index();
+            $table->increments('id');
+
+            $table->integer('user_id')->unsigned();
+            $table->integer('language_id')->unsigned();
             $table->integer('resume_link_id')->unsigned()->nullable();
 
-            $table->primary(['user_id', 'language_id']);
             $table->timestamps();
         });
     }

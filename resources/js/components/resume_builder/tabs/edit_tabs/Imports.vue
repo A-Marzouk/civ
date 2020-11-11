@@ -2118,7 +2118,7 @@
                     return;
                 }
 
-                await axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id})
+                await axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id, 'resume_link_id' : this.$store.state.user.default_resume_link.id})
                     .then((response) => {
 
                     })

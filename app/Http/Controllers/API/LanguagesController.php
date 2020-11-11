@@ -50,7 +50,12 @@ class LanguagesController extends Controller
 
         }
 
-        $user->languages()->sync($languagesID, false);
+        $filteredLanguageIDs = [] ;
+        foreach ($languagesID as $id){
+            $filteredLanguageIDs[$id] = ['resume_link_id' => $request->resume_link_id] ;
+        }
+
+        $user->languages()->sync($filteredLanguageIDs, false);
         return $user->languages;
     }
 
