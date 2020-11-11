@@ -275,7 +275,6 @@
                         resume_link_id: this.user.default_resume_link.id,
                     })
                     .then((response) => {
-                        console.log(response.data);
                         this.$store.dispatch("flyingNotification");
                     })
                     .catch(e => {

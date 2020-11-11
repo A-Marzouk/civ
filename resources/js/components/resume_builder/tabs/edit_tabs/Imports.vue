@@ -2201,7 +2201,6 @@
                         let importedFile = response.data.data;
                         this.imports.push(importedFile);
                         this.$store.dispatch('flyingNotification');
-                        console.log('success');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
