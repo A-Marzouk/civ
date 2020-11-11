@@ -303,9 +303,8 @@
             <!-- for mobile version  -->
             <v-tabs
               v-model="indexOfActiveTab"
-              centered
-              center-active
               hide-slider
+              show-arrows
               class="hidden-sm-and-up my-10"
             >
               <v-tab
