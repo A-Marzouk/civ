@@ -34,17 +34,6 @@ class LanguagesController extends Controller
         return LanguageResource::collection($languages);
     }
 
-    public function store(Request $request)
-    {
-        if(!is_auth($request->user_id)){
-            throw new Exception('Not Authenticated!');
-        }
-       // attach a language to user:
-        $user= User::find($request->user_id);
-        $user->languages()->attach($request->language_id);
-        return ['language' => Language::find($request->language_id)];
-    }
-
     public function storeMany(Request $request)
     {
        // attach a language to user:
@@ -70,10 +59,13 @@ class LanguagesController extends Controller
         // attach a language to user:
         $user= User::find($request->user_id);
         $languagesID = $request->IDs;
-        $user->languages()->sync($languagesID);
+        $filteredLanguageIDs = [] ;
+        foreach ($languagesID as $id){
+            $filteredLanguageIDs[$id] = ['resume_link_id' => $request->resume_link_id] ;
+        }
+        $user->languages()->sync($filteredLanguageIDs);
         return $user->languages;
     }
-
 
     public function destroy($id,$user_id)
     {

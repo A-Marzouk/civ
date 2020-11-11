@@ -18,7 +18,6 @@ class CreateLanguagesTable extends Migration
             $table->increments('id');
             $table->string('name')->unique()->nullable();
             $table->string('label');
-            $table->integer('resume_link_id')->unsigned()->nullable();
 
             $table->timestamps();
         });
@@ -26,6 +25,7 @@ class CreateLanguagesTable extends Migration
         Schema::create('language_user', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->index();
             $table->integer('language_id')->unsigned()->index();
+            $table->integer('resume_link_id')->unsigned()->nullable();
 
             $table->primary(['user_id', 'language_id']);
             $table->timestamps();

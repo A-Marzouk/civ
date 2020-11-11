@@ -235,7 +235,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // many to many relationships:
     public function languages()
     {
-        return $this->belongsToMany(Language::class);
+        return $this->belongsToMany(Language::class)->wherePivot('resume_link_id', auth()->user()->resume_link_id);
     }
 
 
