@@ -69,100 +69,8 @@
                 flat
                 tile
               >
-                <v-card-text class="ml-xl-0 ml-lg-12 ml-md-0"  v-if="findPreference('hourly_rate')">
-                  <v-list-item two-line class>
-                    <v-list-item-avatar size="18">
-                      <img
-                        width="18"
-                        src="/images/resume_themes/theme206/icons/usd.png"
-                      />
-                    </v-list-item-avatar>
-                    <v-list-item-content @click="paymentInfoNext()" style="cursor: pointer;">
-                      <v-list-item-subtitle>
-                        <v-card color="transparent" flat class="pa-0 ma-0" tile>
-                          <template
-                            v-for="(item, index) in currentUser.payment_info"
-                          >
-                            <span
-                              class="hour-rate"
-                              :key="index"
-                              v-if="paymentInfo == index"
-                              >{{ item.salary_frequency | capitalize }} Rate</span
-                            >
-                          </template>
-                        </v-card>
-                      </v-list-item-subtitle>
-                      <v-list-item-subtitle v-if="currentUser.payment_info">
-                        <v-card color="transparent" flat tile>
-                          <template
-                            v-for="(item, index) in currentUser.payment_info"
-                          >
-                            <span
-                              class="rate"
-                              :key="index"
-                              v-if="paymentInfo == index"
-                              >{{ item.salary }}</span
-                            >
-                          </template>
-                        </v-card>
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card-text>
-
-                <!-- Hour Rate -->
-                <!-- Weekly availibility -->
-
-                <v-list-item
-                  two-line
-                  class="availibilty-col ml-lg-0 ml-md-n10 ml-sm-n12 ml-0"
-                  v-if="findPreference('weekly_availability')"
-                >
-                  <v-list-item-avatar size="16">
-                    <img
-                      width="16"
-                      src="/images/resume_themes/theme206/icons/watch.png"
-                    />
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-subtitle @click="availabilityNext()">
-                      <v-card color="transparent" flat tile>
-                        <template
-                          v-for="(item, index) in currentUser.availability_info"
-                        >
-                          <span
-                            class="hour-rate"
-                            :key="item.id"
-                            v-if="availability == index"
-                            >{{
-                              item.available_hours_frequency
-                            }}
-                            availibility</span
-                          >
-                        </template>
-                      </v-card>
-                    </v-list-item-subtitle>
-                    <v-list-item-subtitle
-                      v-if="currentUser.availability_info"
-                      style="cursor: pointer"
-                      @click="availabilityNext()"
-                    >
-                      <v-card color="transparent" class="pa-0 ma-0" flat tile>
-                        <template
-                          v-for="(item, index) in currentUser.availability_info"
-                        >
-                          <span
-                            class="rate"
-                            :key="item.id"
-                            v-if="availability == index"
-                            >{{ item.available_hours }}</span
-                          >
-                        </template>
-                      </v-card>
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-                <!-- Weekly availibility -->
+                <SalaryRate :paymentInfo="currentUser.payment_info" />
+                <AvailabilityHours :availabilityInfo="currentUser.availability_info" />
               </v-card>
             </v-col>
             <!-- Availibility  -->
@@ -939,6 +847,9 @@ import VideoPlayer from "./media/VideoPlayer";
 import HireModal from "../theme203/payment/HireModal";
 import Portfolio from "./tabs/Portfolio";
 import SocialButtons from "./common/SocialButtons";
+import SalaryRate from "./common/SalaryRate";
+import AvailabilityHours from "./common/AvailabilityHours";
+
 export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
@@ -947,6 +858,8 @@ export default {
     Portfolio,
     VideoPlayer,
     SocialButtons,
+    SalaryRate,
+    AvailabilityHours,
   },
   filters: {
     capitalize: function (value) {
@@ -1226,20 +1139,6 @@ export default {
   }
 }
 
-.hour-rate {
-  font-family: "Poppins", sans-serif !important;
-  color: rgba(88, 67, 190, 0.5) !important;
-  font-size: 0.625rem;
-  line-height: 1.313rem;
-  text-transform: uppercase;
-}
-.rate {
-  font-family: "Poppins", sans-serif !important;
-  color: #5843be !important;
-  font-size: 2.5rem;
-  line-height: 3rem;
-  font-weight: bold;
-}
 .btn-hire-me {
   width: 180px;
   height: 50px !important;
@@ -1559,14 +1458,6 @@ export default {
   }
 }
 
-// .availibilty-col {
-//   @media screen and (min-width: 1025px) {
-//     margin-left: -52px;
-//   }
-//   @media screen and (max-width: 1024px) {
-//     margin-left: -20px;
-//   }
-// }
 //hobbies tab
 .card-hobby {
   background: linear-gradient(0deg, #fafafa, #fafafa) !important;
