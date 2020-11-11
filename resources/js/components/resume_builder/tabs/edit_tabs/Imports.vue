@@ -81,7 +81,7 @@
                                     v-model="behanceUsername"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-left:-10px;margin-top:-3px;">behance.net/</span>
+                                    <span class="inner-text" style="margin-left:-10px;">behance.net/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -114,7 +114,7 @@
                                     :error-messages="errors.linkedInUrl"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;"></span>
+                                    <span class="inner-text"></span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -149,7 +149,7 @@
                                     v-model="dribbbleUsername"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-left:-10px; margin-top:-3px;">dribbble.com/</span>
+                                    <span class="inner-text" style="margin-left:-10px;">dribbble.com/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -2118,7 +2118,7 @@
                     return;
                 }
 
-                await axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id})
+                await axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id, 'resume_link_id' : this.$store.state.user.default_resume_link.id})
                     .then((response) => {
 
                     })
@@ -2201,7 +2201,6 @@
                         let importedFile = response.data.data;
                         this.imports.push(importedFile);
                         this.$store.dispatch('flyingNotification');
-                        console.log('success');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {

@@ -60,13 +60,13 @@
                             <div class="date-group">
                                 <div class="date-input">
                                     <label :class="{'error-label' : errors.date_from}">Date</label>
-                                    <input type="date" class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
+                                    <input type="month" class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
                                 </div>
                                 <div class="date-input">
                                     <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
                                         <input type="checkbox" class="checkbox" v-model="newWork.present"> <span class="present-text">Present</span>
                                     </label>
-                                    <input type="date" class="pr-2" style="transition: all 1.5s;" :class="{'error-label' : errors.date_to, 'zero-opacity': newWork.present}"  v-model="newWork.date_to" :disabled="newWork.present"">
+                                    <input type="month" class="pr-2" style="transition: all 1.5s;" :class="{'error-label' : errors.date_to, 'zero-opacity': newWork.present}"  v-model="newWork.date_to" :disabled="newWork.present"">
                                 </div>
                             </div>
                         </div>
@@ -500,7 +500,7 @@
                                 border-bottom: 1.95px solid #C4C9F5 !important;
                                 border-radius: 0;
                                 opacity: 1;
-                                color: #c4c9f5;
+                                color: grey;
 
                                 @include lt-lg {
 

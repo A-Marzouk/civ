@@ -34,7 +34,7 @@
                             :error-messages="errors.username"
                     >
                         <template slot="prepend-inner">
-                            <span class="inner-text" style="margin-top:-4.8px; margin-left: -10px;">www.civ.ie/</span>
+                            <span class="inner-text" style="margin-left: -10px;">www.civ.ie/</span>
                         </template>
                     </v-text-field>
                 </div>
