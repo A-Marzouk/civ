@@ -1,45 +1,45 @@
 <template>
-    <v-container fluid v-if="activeTab === 'media'">
+  <v-container fluid v-if="activeTab === 'media'">
+    <v-row>
+      <v-col>
         <v-row>
-            <v-col>
-                <v-row>
-                    <v-col lg="8" cols="12">
-                        <v-row no-gutters>
-                            <v-col
-                                    cols="12"
-                                    lg="5"
-                                    v-for="m in media"
-                                    :key="m.id"
-                                    class="mx-3"
-                            >
-                                <v-row no-gutters justify="center" align="center" class="mb-8">
-                                    <v-col cols="2" sm="2" class="hidden-xs-only">
-                                        <div class="mediaSerial">{{ m.id }}</div>
-                                    </v-col>
-                                    <v-col cols="12" sm="10">
-                                        <Audio
-                                                v-if="m.type == 'audio'"
-                                                :file="m.url"
-                                                :title="getFormattedData(m.created_at)"
-                                                :user_name="user_name"
-                                                img="/images/resume_themes/theme511/audio_thumb-1.png"
-                                        ></Audio>
-                                        <Video
-                                                v-if="m.type == 'video'"
-                                                :link="m.url"
-                                                :title="getFormattedData(m.created_at)"
-                                                :user_name="user_name"
-                                                img="/images/resume_themes/theme511/video-thumb.png"
-                                        ></Video>
-                                    </v-col>
-                                </v-row>
-                            </v-col>
-                        </v-row>
-                    </v-col>
+          <v-col lg="8" cols="12">
+            <v-row no-gutters>
+              <v-col
+                cols="12"
+                lg="5"
+                v-for="(m, index) in media"
+                :key="index"
+                class="mx-3"
+              >
+                <v-row no-gutters justify="center" align="center" class="mb-8">
+                  <v-col cols="2" sm="2" class="hidden-xs-only">
+                    <div class="mediaSerial">{{ index + 1 }}</div>
+                  </v-col>
+                  <v-col cols="12" sm="10">
+                    <Audio
+                      v-if="m.type == 'audio'"
+                      :file="m.url"
+                      :title="getFormattedData(m.created_at)"
+                      :user_name="user_name"
+                      img="/images/resume_themes/theme511/audio_thumb-1.png"
+                    ></Audio>
+                    <Video
+                      v-if="m.type == 'video'"
+                      :link="m.url"
+                      :title="getFormattedData(m.created_at)"
+                      :user_name="user_name"
+                      img="/images/resume_themes/theme511/video-thumb.png"
+                    ></Video>
+                  </v-col>
                 </v-row>
-            </v-col>
+              </v-col>
+            </v-row>
+          </v-col>
         </v-row>
-    </v-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
     import Audio from "./../media/Audio";
@@ -113,13 +113,13 @@
     };
 </script>
 <style lang="scss" scoped>
-    .mediaSerial {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: 900;
-        font-size: 48px;
-        line-height: 56px;
-        text-align: center;
-        color: rgba(13, 0, 26, 0.2);
-    }
+.mediaSerial {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 48px;
+  line-height: 56px;
+  text-align: center;
+  color: rgba(13, 0, 26, 0.2);
+}
 </style>

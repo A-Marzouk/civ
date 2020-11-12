@@ -95,7 +95,7 @@
         <div class="item-wrapper">
           <ImagesCarouselModal :images="portfolio.images">
             <div class="portfolio-image">
-              <img :src="getProjectMainImage(portfolio)">
+              <img :src="getProjectMainImage(portfolio)" />
             </div>
           </ImagesCarouselModal>
 
@@ -128,23 +128,42 @@ export default {
       category: "All",
 
       categories: ["All"],
+      filterProjects: [],
     };
   },
   created() {
-    let uniqueCategories = [
-      ...new Set(this.currentUser.projects.map((project) => project.category)),
-    ];
-    this.categories = this.categories.concat(uniqueCategories);
+    this.filteredProjects();
   },
-  computed: {
-    filtredPortfolios() {
-      return this.portfolios.filter((portfolio) =>
-        portfolio.categories.includes(this.category)
-      );
+  watch: {
+    filteredProjects: function (val) {
+      if (!this.filterProjects.includes(val)) {
+        this.filterProjects = val;
+      } else {
+        this.filterProjects = this.filtredPortfolios();
+      }
     },
   },
+  // computed: {
+  //   filteredProjects: function () {
+  //     // let uniqueCategories = [
+  //     //   ...new Set(this.filterProjects.map((project) => project.category)),
+  //     // ];
+  //     // this.categories = this.categories.concat(uniqueCategories);
+  //     this.filtredPortfolios();
+  //   },
+  // },
 
   methods: {
+    filtredPortfolios() {
+      this.filterProjects = this.currentUser.projects.filter(
+        (a) => a.is_public
+      );
+      let uniqueCategories = [
+        ...new Set(this.filterProjects.map((project) => project.category)),
+      ];
+      this.categories = this.categories.concat(uniqueCategories);
+      this.$forceUpdate();
+    },
     getProjectMainImage(project) {
       let mainImage = "";
       let images = project.images;
@@ -174,18 +193,13 @@ export default {
 <style lang="scss" scoped>
 @import "./../scss/variables";
 
-
-.portfolio-image{
+.portfolio-image {
   height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  img{
-
-  }
 }
-
 
 .portfolio-topbar {
   display: none;
