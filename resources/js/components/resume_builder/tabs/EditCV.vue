@@ -185,6 +185,11 @@
             padding: 5px 5px;
 
             @include gt-md {
+                max-width: calc(100% - 230px);
+                margin-left: auto;
+            }
+
+            @include gt-lg {
                 max-width: calc(100% - 300px);
                 margin-left: auto;
             }
@@ -417,6 +422,9 @@
     .preview-rows-wrapper{
         width: 95%;
         margin: auto;
+        @include lt-md {
+            margin-top: 50px;
+        }
     }
 
     .preview-action-row {

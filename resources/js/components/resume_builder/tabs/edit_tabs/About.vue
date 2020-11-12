@@ -271,9 +271,10 @@
             syncLanguages(newLangauges) {
                 axios.post("/api/user/languages-sync", {
                         IDs: newLangauges,
-                        user_id: this.user.id
+                        user_id: this.user.id,
+                        resume_link_id: this.user.default_resume_link.id,
                     })
-                    .then(() => {
+                    .then((response) => {
                         this.$store.dispatch("flyingNotification");
                     })
                     .catch(e => {

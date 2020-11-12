@@ -1,6 +1,7 @@
 @component('mail::message')
 # {{$emailData['header']}}
 ## From: {{$from['name']}} ({{$from['email']}})
+## Resume URL: {{$emailData['actionURL']}}
 {{$emailData['body']}}
 
 @php

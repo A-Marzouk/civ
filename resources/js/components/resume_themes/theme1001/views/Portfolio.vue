@@ -3,7 +3,14 @@
     <div class="portfolio-topbar">
       <div class="portfolio-categories">
         <a
-          v-for="(categ, i) in categories"
+          class="portfolio-category"
+          :class="{ active: 'All' === category }"
+          href="#"
+          @click.prevent="changeCategory('All')"
+          v-text="`All`"
+        ></a>
+        <a
+          v-for="(categ, i) in filtredPortfolios()"
           class="portfolio-category"
           :class="{ active: categ === category }"
           :key="i"
@@ -95,7 +102,7 @@
         <div class="item-wrapper">
           <ImagesCarouselModal :images="portfolio.images">
             <div class="portfolio-image">
-              <img :src="getProjectMainImage(portfolio)">
+              <img :src="getProjectMainImage(portfolio)" />
             </div>
           </ImagesCarouselModal>
 
@@ -127,24 +134,20 @@ export default {
 
       category: "All",
 
-      categories: ["All"],
+      categories: [],
+      filterProjects: [],
     };
   },
-  created() {
-    let uniqueCategories = [
-      ...new Set(this.currentUser.projects.map((project) => project.category)),
-    ];
-    this.categories = this.categories.concat(uniqueCategories);
-  },
-  computed: {
-    filtredPortfolios() {
-      return this.portfolios.filter((portfolio) =>
-        portfolio.categories.includes(this.category)
-      );
-    },
-  },
-
   methods: {
+    filtredPortfolios() {
+      this.filterProjects = this.currentUser.projects.filter(
+        (a) => a.is_public
+      );
+      let uniqueCategories = [
+        ...new Set(this.filterProjects.map((project) => project.category)),
+      ];
+      return this.categories = uniqueCategories;
+    },
     getProjectMainImage(project) {
       let mainImage = "";
       let images = project.images;
@@ -174,18 +177,13 @@ export default {
 <style lang="scss" scoped>
 @import "./../scss/variables";
 
-
-.portfolio-image{
+.portfolio-image {
   height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  img{
-
-  }
 }
-
 
 .portfolio-topbar {
   display: none;

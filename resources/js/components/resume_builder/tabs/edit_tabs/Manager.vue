@@ -114,7 +114,7 @@
                             v-model="editedResumeLink.url"
                     >
                         <template slot="prepend-inner">
-                            <span class="inner-text" style="margin-top: -3.8px;margin-left: -10px;">civ.ie/{{user.username}}/</span>
+                            <span class="inner-text" style="margin-left: -10px;">civ.ie/{{user.username}}/</span>
                         </template>
                     </v-text-field>
                 </div>

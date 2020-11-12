@@ -96,7 +96,7 @@
                                     :error-messages="errors.username"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-4.8px;">www.civ.ie/</span>
+                                    <span class="inner-text" style="margin-top:-4.8px; padding-right: 5px;">www.civ.ie/</span>
                                 </template>
                             </v-text-field>
                         </div>

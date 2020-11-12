@@ -73,7 +73,7 @@
                 <label class="ml-1" :class="{'error-label' : errors.date_from}">Date</label>
                 
                 <div style="display: flex">
-                  <input type="date" style="flex: 1"
+                  <input type="month" style="flex: 1"
                     class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newEducation.date_from">
                 </div>
             </div>
@@ -84,7 +84,7 @@
                 </label>
                 
                 <div style="display: flex; transition: all 1.5s;" :class="{'zero-opacity': newEducation.present}">
-                  <input type="date" style="flex: 1" class="pr-2"
+                  <input type="month" style="flex: 1" class="pr-2"
                     :class="{'error-input' : errors.date_to}"  v-model="newEducation.date_to" :disabled="newEducation.present">
                 </div>
             </div>
@@ -273,8 +273,7 @@ export default {
     },
     toggleEducationVisibility(education) {
       education.is_public = !education.is_public;
-      axios
-        .put("/api/user/education", education)
+      axios.put("/api/user/education", education)
         .then((response) => {
           this.$store.dispatch("flyingNotification");
         })
@@ -333,10 +332,10 @@ export default {
         edit = true;
       }
 
-      axios
-        .post("/api/user/education", this.newEducation)
+      axios.post("/api/user/education", this.newEducation)
         .then((response) => {
           if (!edit) {
+            response.data.data.is_public = true;
             this.educations.unshift(response.data.data);
           } else {
             this.educations.forEach((myEducation, index) => {
@@ -743,7 +742,7 @@ export default {
       border-bottom: 1.95px solid #C4C9F5 !important;
       border-radius: 0;
       opacity: 1;
-      color: #c4c9f5;
+      color: grey;
 
       @include lt-lg {
       }
