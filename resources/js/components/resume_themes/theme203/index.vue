@@ -640,10 +640,10 @@
                                       flat
                                       color="transparent"
                                       tile
-                                      style="color: #fbd76d"
+                                      style="color: #fbd76d; font-size: 14px !important;"
                                     >
                                       {{ education.degree_title }},
-                                      <span class="ml-5">
+                                      <span class="ml-auto">
                                         {{ education.date_from }} -
                                         <span v-if="education.present == true"
                                           >Present</span
