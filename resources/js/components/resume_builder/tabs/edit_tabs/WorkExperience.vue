@@ -105,6 +105,7 @@
                 <draggable class="education-list" v-model="works" @start="drag=true" @end="drag=false"  handle=".drag-handler">
                     <div
                             v-for="work in works"
+                            v-show="work.category.toLowerCase() === activeTab.toLowerCase()"
                             class="education-item"
                             :class="{'closed' : expandedWorkID !== work.id, 'half-opacity' : !work.is_public}"
                             :key="work.id"

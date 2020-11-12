@@ -31,7 +31,11 @@
           <v-divider></v-divider>
 
           <v-list dense>
-            <v-list-item v-for="item in items" :key="item.id" @click="newTab(item.id)">
+            <v-list-item
+              v-for="item in items"
+              :key="item.id"
+              @click="newTab(item.id)"
+            >
               <v-list-item-content class="menu--tabs text-left">
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item-content>
@@ -42,9 +46,10 @@
       <v-col cols="auto" lg="4" class="pl-lg-8" sm="6" align-self="center">
         <div class="head">Amy Williams</div>
         <div class="subhead">BackEnd Developer</div>
-        <div
-          class="details hidden-xs-only"
-        >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices.🚲</div>
+        <div class="details hidden-xs-only">
+          Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi
+          feugiat eros nec sem ultrices.🚲
+        </div>
         <div class="hidden-xs-only">
           <div class="info-text d-inline-block mr-6 mr-sm-2">
             hour rate
@@ -56,9 +61,21 @@
           </div>
         </div>
       </v-col>
-      <v-col cols="auto" sm="3" lg="4" class="ml-auto align-self-sm-start" align-self="center">
+      <v-col
+        cols="auto"
+        sm="3"
+        lg="4"
+        class="ml-auto align-self-sm-start"
+        align-self="center"
+      >
         <div class="text-right mt-lg-4 hidden-md-and-down">
-          <v-btn v-for="(s,i) in social" :key="i" class="social mx-3" fab elevation="0">
+          <v-btn
+            v-for="(s, i) in social"
+            :key="i"
+            class="social mx-3"
+            fab
+            elevation="0"
+          >
             <v-img :src="s.src" contain max-width="24" height="24"></v-img>
           </v-btn>
           <v-btn
@@ -67,6 +84,7 @@
             width="200"
             min-width="60"
             elevation="0"
+            v-if="findPreference('hourly_rate')"
           >
             <div class="text-capitalize hire-text mr-lg-8">hire me</div>
             <v-btn
@@ -87,7 +105,14 @@
           </v-btn>
         </div>
         <div class="text-sm-center text-right mt-sm-4 hidden-lg-and-up">
-          <v-btn class="hire" height="40" width="135" min-width="40" elevation="0">
+          <v-btn
+            class="hire"
+            height="40"
+            width="135"
+            min-width="40"
+            elevation="0"
+            v-if="findPreference('hourly_rate')"
+          >
             <div class="text-capitalize hire-text mr-6">hire me</div>
             <v-btn
               color="#39e1aa"
@@ -136,13 +161,13 @@ export default {
       { title: "Experience", id: 2 },
       { title: "Skills", id: 3 },
       { title: "Media", id: 4 },
-      { title: "About Me", id: 5 }
+      { title: "About Me", id: 5 },
     ],
     social: [
       { src: "/images/resume_themes/theme511/twitter.svg" },
       { src: "/images/resume_themes/theme511/facebook.svg" },
-      { src: "/images/resume_themes/theme511/instagram.svg" }
-    ]
+      { src: "/images/resume_themes/theme511/instagram.svg" },
+    ],
   }),
 
   computed: {
@@ -159,8 +184,8 @@ export default {
     newTab(id) {
       // this.currentTab = id
       return (this.currentTab = id);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
