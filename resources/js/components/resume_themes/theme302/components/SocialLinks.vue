@@ -25,6 +25,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../scss/variables';
+
 .social-links {
   width: 100%;
   display: flex;
@@ -32,7 +34,7 @@ export default {
   min-height: 75px;
   align-items: center;
   justify-content: center;
-  background-color: #104efb;
+  background-color: $colorBlue;
 
   a {
     width: 30px;

@@ -342,50 +342,8 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-dialog v-model="dialogMessage" persistent max-width="1220" overlay-opacity="0.87" overlay-color="#656565">
-      <v-card class="form-wrap bg-gray">
-        <v-form ref="formMessages" class="form-messages sky-style">
-          <v-container>
-            <v-row>
-              <v-col lg="12" sm="12" cols="12">
-                <v-text-field
-                  v-model="formMessage.name"
-                  :rules="formMessage.nameRules"
-                  placeholder="Name"
-                  required
-                  color="#202124"
-                ></v-text-field>
-              </v-col>
-              <v-col lg="12" sm="12" cols="12">
-                <v-text-field
-                  v-model="formMessage.email"
-                  :rules="formMessage.emailRules"
-                  placeholder="E-mail"
-                  required
-                  color="#202124"
-                ></v-text-field>
-              </v-col>
-              <v-col lg="12" sm="12" cols="12">
-                <v-textarea
-                  v-model="formMessage.message"
-                  filled
-                  height="256"
-                  :no-resize="true"
-                  color="#202124"
-                  placeholder="Message"
-                ></v-textarea>
-              </v-col>
-            </v-row>
-            <v-row class="form-actions">
-              <v-btn depressed small @click="submitForm" class="btn-send">
-                Send Message
-              </v-btn>
-              <v-btn text small @click="cancelForm">Cancel</v-btn>
-            </v-row>
-          </v-container>
-        </v-form>
-      </v-card>
-    </v-dialog>
+
+    <ContactFormModal v-model="dialogMessage" />
 
     <!-- Audio Modal -->
     <v-dialog v-model="dialogAudio" persistent max-width="95%" overlay-opacity="0.5" overlay-color="#202124">
@@ -517,6 +475,7 @@
 @import 'resources/sass/themes/theme302.scss';
 </style>
 <style lang="scss" scoped>
+@import './scss/variables';
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,800,900&display=swap');
 @import 'https://fonts.googleapis.com/css?family=Actor:300,400,500,700,800,900&display=swap';
 
@@ -526,14 +485,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
-$max_wTheme: 1420px;
-$tab_OneColor: #d93025;
-$tab_TwoColor: #0f9d58;
-$tab_ThreeColor: #f4b400;
-$tab_FourColor: #4285f4;
-
-$colorBlue: #104efb;
 
 .container {
   margin: 0 auto !important;
@@ -1314,52 +1265,10 @@ $colorBlue: #104efb;
 }
 
 /** Slider section */
-
 /** Modals styles */
 .v-dialog {
   .v-card {
     padding-bottom: 80px;
-
-    &.form-wrap {
-      padding: 0;
-
-      .container {
-        padding: 20px;
-      }
-
-      .form-actions {
-        justify-content: center;
-        margin-top: 10px;
-      }
-
-      .v-btn {
-        &.btn-send {
-          max-width: 255px;
-          text-align: center;
-          border: 2px solid $colorBlue;
-          font-family: 'Raleway';
-          font-size: 24px;
-          line-height: 28px;
-          color: $colorBlue;
-          text-decoration: none;
-          background: #fff;
-          outline: none;
-        }
-
-        min-width: 255px;
-        font-family: 'Raleway';
-        font-style: normal;
-        font-weight: normal;
-        font-size: 24px;
-        line-height: 28px;
-        color: #104efb;
-        min-height: 75px;
-        text-transform: capitalize;
-        letter-spacing: normal;
-        text-indent: 0px;
-        border-radius: 0px;
-      }
-    }
 
     .v-card__actions {
       padding: 30px;
@@ -1376,20 +1285,8 @@ $colorBlue: #104efb;
   @media only screen and (max-width: 768px) {
     .v-card {
       padding-bottom: 50px;
-
       .container {
         padding: 20px;
-      }
-      &.form-wrap {
-        .v-btn {
-          min-width: 180px;
-          font-size: 18px;
-          min-height: 50px;
-
-          &.btn-send {
-            font-size: 18px;
-          }
-        }
       }
       .v-card__actions {
         padding: 20px;
@@ -1421,22 +1318,10 @@ $colorBlue: #104efb;
       .container {
         padding: 0 20px;
       }
-      &.form-wrap {
-        .v-btn {
-          min-width: 100px;
-          font-size: 14px;
-          padding: 0 15px;
-
-          &.btn-send {
-            font-size: 14px;
-          }
-        }
-      }
       .close-icon {
         font-size: 30px;
       }
     }
-
     .player {
       i {
         font-size: 50px;
@@ -1733,6 +1618,7 @@ import ReferenceCarousel from './reference/ReferenceCarousel';
 import AchievementCarousel from './achievement/AchievementCarousel';
 import HireModal from '../theme203/payment/HireModal';
 import SocialLinks from './components/SocialLinks';
+import ContactFormModal from './components/ContactFormModal';
 
 export default {
   name: 'theme302',
@@ -1745,7 +1631,8 @@ export default {
     ReferenceCarousel,
     AchievementCarousel,
     HireModal,
-    SocialLinks
+    SocialLinks,
+    ContactFormModal
   },
   data() {
     return {
@@ -1875,18 +1762,6 @@ export default {
           }
         ]
       },
-      formMessage: {
-        name: '',
-        nameRules: [
-          v => !!v || 'Name is required',
-          v => (v && v.length <= 10) || 'Name must be less than 10 characters'
-        ],
-        email: '',
-        emailRules: [v => !!v || 'E-mail is required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
-        message: ''
-      },
-      formHasErrors: false,
-
       // --Dialog
       dialogMessage: false,
       dialogAudio: false,
@@ -1991,13 +1866,7 @@ export default {
       this.$refs.videoPoster.style.display = 'none';
       this.$refs.videoElem.play();
     },
-    submitForm() {
-      /** Logic data send */
-    },
-    cancelForm() {
-      this.dialogMessage = false;
-      this.$refs.formMessages.reset();
-    },
+
     filteredSkillsByType(name) {
       const skillsFiltered = this.skills.reduce(
         (acc, cur) => (
