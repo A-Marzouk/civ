@@ -304,7 +304,7 @@
             background: #ffffff;
             font-family: Noto Sans, "sans-serif";
             max-width: 350px;
-            min-width: 300px;
+            min-width: 220px;
             margin-left: auto;
             margin-right: auto;
 
@@ -482,12 +482,12 @@
                 }
 
                 @media screen and (min-width: 1280px) and (max-width: 1520px) {
-                    width: 200px;
-                    margin-left: 20px !important;
+                    width: 240px;
+                    margin-left: -9px !important;
                 }
                 @media screen and (min-width: 1520px) and (max-width: 1720px) {
                     width: 240px;
-                    margin-left: 30px !important;
+                    margin-left: -5px !important;
                 }
 
                 .sidebar-links,
