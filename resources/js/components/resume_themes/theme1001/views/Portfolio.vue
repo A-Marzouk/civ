@@ -3,7 +3,14 @@
     <div class="portfolio-topbar">
       <div class="portfolio-categories">
         <a
-          v-for="(categ, i) in categories"
+          class="portfolio-category"
+          :class="{ active: 'All' === category }"
+          href="#"
+          @click.prevent="changeCategory('All')"
+          v-text="`All`"
+        ></a>
+        <a
+          v-for="(categ, i) in filtredPortfolios()"
           class="portfolio-category"
           :class="{ active: categ === category }"
           :key="i"
@@ -127,32 +134,10 @@ export default {
 
       category: "All",
 
-      categories: ["All"],
+      categories: [],
       filterProjects: [],
     };
   },
-  created() {
-    this.filteredProjects();
-  },
-  watch: {
-    filteredProjects: function (val) {
-      if (!this.filterProjects.includes(val)) {
-        this.filterProjects = val;
-      } else {
-        this.filterProjects = this.filtredPortfolios();
-      }
-    },
-  },
-  // computed: {
-  //   filteredProjects: function () {
-  //     // let uniqueCategories = [
-  //     //   ...new Set(this.filterProjects.map((project) => project.category)),
-  //     // ];
-  //     // this.categories = this.categories.concat(uniqueCategories);
-  //     this.filtredPortfolios();
-  //   },
-  // },
-
   methods: {
     filtredPortfolios() {
       this.filterProjects = this.currentUser.projects.filter(
@@ -161,8 +146,7 @@ export default {
       let uniqueCategories = [
         ...new Set(this.filterProjects.map((project) => project.category)),
       ];
-      this.categories = this.categories.concat(uniqueCategories);
-      this.$forceUpdate();
+      return this.categories = uniqueCategories;
     },
     getProjectMainImage(project) {
       let mainImage = "";

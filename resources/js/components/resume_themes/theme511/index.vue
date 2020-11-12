@@ -118,7 +118,7 @@
                 >
                   {{ currentUser.personal_info.overview }}
                 </div>
-                <v-row dense class="hidden-xs-only" justify="space-around">
+                <v-row dense class="hidden-xs-only">
                   <!-- Pay Rate -->
                   <v-col
                     cols="12"
