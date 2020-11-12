@@ -4,7 +4,7 @@
       <v-col
         class="hidden-lg-and-up"
         sm="3"
-        cols="6"
+        cols="12"
         v-for="(project, i) in projects"
         :key="i"
         v-show="project.is_public"
