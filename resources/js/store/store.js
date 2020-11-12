@@ -16,6 +16,8 @@ export const store = new Vuex.Store({
             id: 'dummy',
             personal_info: {
                 full_name: 'Beverly Andrews',
+                first_name: 'Beverly',
+                last_name: 'Andrews',
                 email: 'beverly@andrews.com',
                 profile_pic: '/images/resume_themes/theme200/images/about-me/men.png',
                 designation: 'User interface designer',
@@ -466,7 +468,7 @@ export const store = new Vuex.Store({
                     transcript: "John Doe, One of the greatest UX designers of all time.",
                     title: "John Doe",
                     resume_link_id: "4",
-                    url: '"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
                     media_preview: '/images/video-holder.svg',
                     order: "1",
                     is_public: "1",

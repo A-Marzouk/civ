@@ -6,48 +6,24 @@
           <div class="showOnlyOnmd">
             <v-container>
               <v-row class="head-section">
-                <v-col
-                  class="hold-profile"
-                  lg="auto"
-                  :class="{ 'active-indicator': currentTab === 'profile' }"
-                >
+                <v-col class="hold-profile" lg="auto" :class="{ 'active-indicator': currentTab === 'profile' }">
                   <div class="imageCol">
                     <span />
-                    <v-img
-                      class="profile-img"
-                      :src="currentUser.personal_info.profile_pic"
-                    ></v-img>
+                    <v-img class="profile-img" :src="currentUser.personal_info.profile_pic"></v-img>
                   </div>
                   <div class="profileCol">
-                    <span class="head-name">
-                      {{ currentUser.personal_info.first_name}} {{ currentUser.personal_info.last_name}}
-                    </span>
-                    <span class="head-profile">{{
-                      currentUser.personal_info.designation
-                    }}</span>
+                    <span class="head-name" v-text="currentUser.personal_info.full_name"></span>
+                    <span class="head-profile" v-text="currentUser.personal_info.designation"></span>
                   </div>
                   <div class="actionsSection">
-                    <a
-                      href
-                      @click.prevent="dialogMessage = true"
-                      class="send-message"
-                    >
-                      <img
-                        src="/images/resume_themes/theme302/icons/icon-message.svg"
-                        alt
-                      />
+                    <a href @click.prevent="dialogMessage = true" class="send-message">
+                      <img src="/images/resume_themes/theme302/icons/icon-message.svg" alt />
                     </a>
                     <a href @click.prevent="dialogAudio = true" class="audio">
-                      <img
-                        src="/images/resume_themes/theme302/icons/icon-audio.svg"
-                        alt
-                      />
+                      <img src="/images/resume_themes/theme302/icons/icon-audio.svg" alt />
                     </a>
                     <a href @click.prevent="dialogVideo = true" class="video">
-                      <img
-                        src="/images/resume_themes/theme302/icons/icon-video.svg"
-                        alt
-                      />
+                      <img src="/images/resume_themes/theme302/icons/icon-video.svg" alt />
                     </a>
                   </div>
                 </v-col>
@@ -55,69 +31,34 @@
                   class="hold-hireme"
                   lg="auto"
                   :class="{
-                    'active-indicator': currentTab === 'pay-availability',
+                    'active-indicator': currentTab === 'pay-availability'
                   }"
                 >
                   <div class="rateSection">
-                    <span class="price"
-                      >$ {{ currentUser.payment_info[0].salary }}</span
-                    >
-                    <span class="text_price"
-                      >{{
-                        currentUser.payment_info[0].salary_frequency
-                      }}
-                      rate</span
-                    >
+                    <span class="price">$ {{ currentUser.payment_info[0].salary }}</span>
+                    <span class="text_price">{{ currentUser.payment_info[0].salary_frequency }} rate</span>
                     <span class="hours">
                       {{ currentUser.availability_info[0].available_hours }}
                       hours
                     </span>
                     <span class="text_hours">
-                      {{
-                        currentUser.availability_info[0]
-                          .available_hours_frequency
-                      }}
+                      {{ currentUser.availability_info[0].available_hours_frequency }}
                       Availability
                     </span>
                   </div>
                   <div class="hireSection">
-                    <a
-                      href="#"
-                      class="btn-outline"
-                      @click.prevent="dialogHireme = true"
-                      >Hire Me</a
-                    >
+                    <a href="#" class="btn-outline" @click.prevent="dialogHireme = true">Hire Me</a>
                   </div>
                 </v-col>
               </v-row>
               <v-row class="social-section">
-                <v-col class="social-hold">
-                  <a
-                    href="javascript:void(0)"
-                    @click="goToExternalLink(userLink.link)"
-                    v-for="userLink in currentUser.links"
-                    :key="userLink.id + '_link'"
-                    target="_blank"
-                    v-show="userLink.is_active && userLink.is_public"
-                  >
-                    <img
-                      :src="`/images/resume_themes/theme302/social_icons/${userLink.link_title.toLowerCase()}.webp`"
-                      alt="social icons"
-                    />
-                  </a>
-                </v-col>
+                <SocialLinks :links="currentUser.links" />
+
                 <v-col class="hold-hireme only-mob">
                   <div class="rateSection">
                     <div class="hold_rate_price">
-                      <span class="price"
-                        >$ {{ currentUser.payment_info[0].salary }}</span
-                      >
-                      <span class="text_price"
-                        >{{
-                          currentUser.payment_info[0].salary_frequency
-                        }}
-                        rate</span
-                      >
+                      <span class="price">$ {{ currentUser.payment_info[0].salary }}</span>
+                      <span class="text_price">{{ currentUser.payment_info[0].salary_frequency }} rate</span>
                     </div>
                     <div class="hold_rate_hours">
                       <span class="hours">
@@ -125,33 +66,20 @@
                         hours
                       </span>
                       <span class="text_hours">
-                        {{
-                          currentUser.availability_info[0]
-                            .available_hours_frequency
-                        }}
+                        {{ currentUser.availability_info[0].available_hours_frequency }}
                         Availability
                       </span>
                     </div>
                   </div>
                   <div class="hireSection">
-                    <a
-                      href="#"
-                      class="btn-outline"
-                      @click.prevent="dialogHireme = true"
-                      >Hire Me</a
-                    >
+                    <a href="#" class="btn-outline" @click.prevent="dialogHireme = true">Hire Me</a>
                   </div>
                 </v-col>
               </v-row>
             </v-container>
           </div>
           <div class="hold-tabs">
-            <v-tabs
-              class="main-tabs_theme13"
-              height="85"
-              hide-slider
-              v-model="tabmodel"
-            >
+            <v-tabs class="main-tabs_theme13" height="85" hide-slider v-model="tabmodel">
               <v-tab
                 v-for="(tab, index) in resume_tabs"
                 :key="index"
@@ -179,17 +107,11 @@
                   </slick>
                   <div class="nav-slider">
                     <a href="#" @click.prevent="prevSlide">
-                      <img
-                        src="/images/resume_themes/theme302/arrow-left.png"
-                        alt
-                      />
+                      <img src="/images/resume_themes/theme302/arrow-left.png" alt />
                     </a>
                     <span class="navDots"></span>
                     <a href="#" @click.prevent="nextSlide">
-                      <img
-                        src="/images/resume_themes/theme302/arrow-right.png"
-                        alt
-                      />
+                      <img src="/images/resume_themes/theme302/arrow-right.png" alt />
                     </a>
                   </div>
                 </div>
@@ -209,9 +131,7 @@
                         <span class="title-work">{{ work.job_title }}</span>
                         <span class="years-work">
                           {{ getFullYear(work.date_from) }}
-                          <span
-                            >&nbsp;-&nbsp; {{ getFullYear(work.date_to) }}</span
-                          >
+                          <span>&nbsp;-&nbsp; {{ getFullYear(work.date_to) }}</span>
                         </span>
                       </div>
                       <div class="hold-text">
@@ -270,27 +190,16 @@
                       <v-tab
                         v-for="(skill, index) in items"
                         :key="index"
-                        v-show="
-                          currentUser.skills.find(
-                            (s) => s.category == skill.value
-                          )
-                        "
+                        v-show="currentUser.skills.find(s => s.category == skill.value)"
                         :ripple="false"
                         >{{ skill.name }}</v-tab
                       >
                     </v-tabs>
-                    <v-tabs-items
-                      v-model="activeTabSkill"
-                      class="mc-subtabs_skills"
-                    >
+                    <v-tabs-items v-model="activeTabSkill" class="mc-subtabs_skills">
                       <v-tab-item
                         v-for="item in items"
                         :key="item.id"
-                        v-show="
-                          currentUser.skills.find(
-                            (s) => s.category == item.value
-                          )
-                        "
+                        v-show="currentUser.skills.find(s => s.category == item.value)"
                       >
                         <v-container pa-0 fluid>
                           <v-row dense justify="center" align="center">
@@ -301,11 +210,7 @@
                               v-show="s.is_public"
                               align="center"
                             >
-                              <v-progress-circular
-                                size="93"
-                                width="10"
-                                :value="s.percentage"
-                                color="#4C71F0"
+                              <v-progress-circular size="93" width="10" :value="s.percentage" color="#4C71F0"
                                 >{{ s.percentage }}%</v-progress-circular
                               >
                               <v-img
@@ -327,17 +232,10 @@
               <!-- Hobbies -->
               <v-tab-item class="hobby-section" value="tab-4">
                 <HobbyCarousel
-                  v-if="
-                    currentUser.hobbies.length >= 10 &&
-                    $vuetify.breakpoint.mdAndUp
-                  "
+                  v-if="currentUser.hobbies.length >= 10 && $vuetify.breakpoint.mdAndUp"
                   :hobbies="currentUser.hobbies"
                 ></HobbyCarousel>
-                <v-container
-                  v-else
-                  style="width: 100%;"
-                  class="pa-md-4 pa-sm-12 pa-8"
-                >
+                <v-container v-else style="width: 100%;" class="pa-md-4 pa-sm-12 pa-8">
                   <v-row align="center">
                     <v-col
                       xl="2"
@@ -369,17 +267,10 @@
               <!-- References -->
               <v-tab-item class="reference-section" value="tab-5">
                 <ReferenceCarousel
-                  v-if="
-                    currentUser.references.length >= 5 &&
-                    $vuetify.breakpoint.mdAndUp
-                  "
+                  v-if="currentUser.references.length >= 5 && $vuetify.breakpoint.mdAndUp"
                   :references="currentUser.references"
                 ></ReferenceCarousel>
-                <v-container
-                  v-else
-                  style="width: 100%;"
-                  class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-0"
-                >
+                <v-container v-else style="width: 100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-0">
                   <v-row align="center">
                     <v-col
                       md="6"
@@ -390,39 +281,19 @@
                       v-show="reference.is_public"
                     >
                       <v-card flat class="card-ref pa-sm-5 pa-2">
-                        <v-card-title class="ref-title">{{
-                          reference.name
-                        }}</v-card-title>
+                        <v-card-title class="ref-title">{{ reference.name }}</v-card-title>
                         <v-card-subtitle class="ref-subtitle">
                           <v-row justify="space-between" dense>
-                            <v-col sm="6" cols="6" class="designation">{{
-                              reference.title
-                            }}</v-col>
-                            <v-col
-                              sm="6"
-                              cols="6"
-                              align="right"
-                              class="designation"
-                              >{{ reference.email }}</v-col
-                            >
+                            <v-col sm="6" cols="6" class="designation">{{ reference.title }}</v-col>
+                            <v-col sm="6" cols="6" align="right" class="designation">{{ reference.email }}</v-col>
                           </v-row>
                           <v-row justify="space-between" class="mt-n5">
-                            <v-col sm="6" cols="6" class="designation">{{
-                              reference.address
-                            }}</v-col>
-                            <v-col
-                              sm="6"
-                              cols="6"
-                              align="right"
-                              class="designation"
-                              >{{ reference.phone }}</v-col
-                            >
+                            <v-col sm="6" cols="6" class="designation">{{ reference.address }}</v-col>
+                            <v-col sm="6" cols="6" align="right" class="designation">{{ reference.phone }}</v-col>
                           </v-row>
                         </v-card-subtitle>
 
-                        <v-card-text class="ref-desc">
-                          {{ reference.reference_text }}</v-card-text
-                        >
+                        <v-card-text class="ref-desc"> {{ reference.reference_text }}</v-card-text>
                       </v-card>
                     </v-col>
                   </v-row>
@@ -432,17 +303,10 @@
               <!--  Achivements -->
               <v-tab-item class="achievement-section" value="tab-6">
                 <AchievementCarousel
-                  v-if="
-                    currentUser.achievements.length >= 5 &&
-                    $vuetify.breakpoint.mdAndUp
-                  "
+                  v-if="currentUser.achievements.length >= 5 && $vuetify.breakpoint.mdAndUp"
                   :achievements="currentUser.achievements"
                 ></AchievementCarousel>
-                <v-container
-                  v-else
-                  style="width: 100%;"
-                  class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-3"
-                >
+                <v-container v-else style="width: 100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-3">
                   <v-row align="center">
                     <v-col
                       md="6"
@@ -453,22 +317,10 @@
                       v-show="achievement.is_public"
                     >
                       <v-card class="card-achievement pa-5" flat>
-                        <div
-                          :class="
-                            windowWidth <= 599
-                              ? 'd-flex flex-column'
-                              : 'd-flex flex-row'
-                          "
-                        >
-                          <img
-                            style="width: 320px;"
-                            :src="achievement.image_src"
-                            alt="certificate"
-                          />
+                        <div :class="windowWidth <= 599 ? 'd-flex flex-column' : 'd-flex flex-row'">
+                          <img style="width: 320px;" :src="achievement.image_src" alt="certificate" />
                           <div class="ml-5 mt-sm-0 mt-5">
-                            <div class="title">
-                              {{ achievement.title }} {{ windowWidth }}
-                            </div>
+                            <div class="title">{{ achievement.title }} {{ windowWidth }}</div>
                             <div class="url">
                               <span>URL:</span> {{ achievement.url }}
                               award
@@ -490,13 +342,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-dialog
-      v-model="dialogMessage"
-      persistent
-      max-width="1220"
-      overlay-opacity="0.87"
-      overlay-color="#656565"
-    >
+    <v-dialog v-model="dialogMessage" persistent max-width="1220" overlay-opacity="0.87" overlay-color="#656565">
       <v-card class="form-wrap bg-gray">
         <v-form ref="formMessages" class="form-messages sky-style">
           <v-container>
@@ -531,9 +377,9 @@
               </v-col>
             </v-row>
             <v-row class="form-actions">
-              <v-btn depressed small @click="submitForm" class="btn-send"
-                >Send Message</v-btn
-              >
+              <v-btn depressed small @click="submitForm" class="btn-send">
+                Send Message
+              </v-btn>
               <v-btn text small @click="cancelForm">Cancel</v-btn>
             </v-row>
           </v-container>
@@ -542,13 +388,7 @@
     </v-dialog>
 
     <!-- Audio Modal -->
-    <v-dialog
-      v-model="dialogAudio"
-      persistent
-      max-width="95%"
-      overlay-opacity="0.5"
-      overlay-color="#202124"
-    >
+    <v-dialog v-model="dialogAudio" persistent max-width="95%" overlay-opacity="0.5" overlay-color="#202124">
       <v-card tile>
         <v-container fluid class="pt-6">
           <v-row no-gutters style="background: #104efb;" class="pa-4">
@@ -557,12 +397,7 @@
                 <div class="audio-head">My Audio</div>
               </div>
               <div class="float-right">
-                <v-icon
-                  color="#fff"
-                  large
-                  @click="dialogAudio = false || pauseAudio()"
-                  >mdi-close</v-icon
-                >
+                <v-icon color="#fff" large @click="dialogAudio = false || pauseAudio()">mdi-close</v-icon>
               </div>
             </v-col>
           </v-row>
@@ -583,9 +418,7 @@
                 <div class="audio-head">My Video</div>
               </div>
               <div class="float-right">
-                <v-icon color="#fff" large @click="dialogVideo = false"
-                  >mdi-close</v-icon
-                >
+                <v-icon color="#fff" large @click="dialogVideo = false">mdi-close</v-icon>
               </div>
             </v-col>
           </v-row>
@@ -624,11 +457,7 @@
         <VideoCarousel class="video-player"></VideoCarousel>
       </v-card>
     </v-dialog>-->
-    <hire-modal
-        :hireMeModal.sync="dialogHireme"
-        :windowWidth="windowWidth"
-        :currentUser="currentUser"
-      ></hire-modal>
+    <hire-modal :hireMeModal.sync="dialogHireme" :windowWidth="windowWidth" :currentUser="currentUser"></hire-modal>
     <!-- <v-dialog
       v-model="dialogHireme"
       persistent
@@ -684,16 +513,16 @@
     </v-dialog> -->
   </v-app>
 </template>
-<style lang="scss" >
-@import "resources/sass/themes/theme302.scss";
+<style lang="scss">
+@import 'resources/sass/themes/theme302.scss';
 </style>
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,800,900&display=swap");
-@import "https://fonts.googleapis.com/css?family=Actor:300,400,500,700,800,900&display=swap";
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,800,900&display=swap');
+@import 'https://fonts.googleapis.com/css?family=Actor:300,400,500,700,800,900&display=swap';
 
 @font-face {
-  font-family: "Gotham Pro";
-  src: url("/fonts/gotham-pro/GothaProRegular.otf") format("opentype");
+  font-family: 'Gotham Pro';
+  src: url('/fonts/gotham-pro/GothaProRegular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -717,7 +546,7 @@ $colorBlue: #104efb;
     border: 1px solid rgba(16, 78, 251, 0.2) !important;
 
     .hobby-title {
-      font-family: "Roboto-Medium" !important;
+      font-family: 'Roboto-Medium' !important;
       font-weight: 500;
       font-size: 25px;
       line-height: 29px;
@@ -744,14 +573,14 @@ $colorBlue: #104efb;
       height: auto;
     }
     .ref-title {
-      font-family: "Raleway" !important;
+      font-family: 'Raleway' !important;
       font-weight: 500;
       font-size: 28px;
       line-height: 33px;
       color: #104efb !important;
     }
     .ref-subtitle {
-      font-family: "Raleway" !important;
+      font-family: 'Raleway' !important;
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
@@ -763,7 +592,7 @@ $colorBlue: #104efb;
       }
     }
     .ref-desc {
-      font-family: "Raleway" !important;
+      font-family: 'Raleway' !important;
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
@@ -786,7 +615,7 @@ $colorBlue: #104efb;
       height: auto;
     }
     .title {
-      font-family: "Raleway" !important;
+      font-family: 'Raleway' !important;
       font-style: normal;
       font-weight: 500;
       font-size: 24px;
@@ -794,7 +623,7 @@ $colorBlue: #104efb;
       color: #104efb !important;
     }
     .url {
-      font-family: "Raleway" !important;
+      font-family: 'Raleway' !important;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
@@ -806,7 +635,7 @@ $colorBlue: #104efb;
       }
     }
     .desc {
-      font-family: "Raleway" !important;
+      font-family: 'Raleway' !important;
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
@@ -1008,14 +837,14 @@ $colorBlue: #104efb;
 }
 
 .head-name {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 500;
   font-size: 24px;
   line-height: 28px;
   color: $colorBlue;
 }
 .head-profile {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 14px;
   line-height: 16px;
   color: $colorBlue;
@@ -1050,7 +879,7 @@ $colorBlue: #104efb;
   .hours {
     font-weight: bold;
     text-transform: uppercase;
-    font-family: "Gotham Pro";
+    font-family: 'Gotham Pro';
     font-size: 12px;
     letter-spacing: 0px;
   }
@@ -1060,7 +889,7 @@ $colorBlue: #104efb;
     font-size: 9px;
     line-height: 10px;
     text-transform: lowercase;
-    font-family: "Raleway";
+    font-family: 'Raleway';
     font-style: normal;
     text-align: center;
     margin: 0px 0px 0px 0px;
@@ -1116,46 +945,6 @@ $colorBlue: #104efb;
   }
 }
 
-.social-hold {
-  min-height: 88px;
-  background: #104efb;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-
-  a {
-    margin-right: 45px;
-    max-height: 24px;
-
-    &:last-child {
-      margin: 0;
-    }
-
-    img {
-      width: 24px;
-      max-height: 24px;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    min-height: 120px;
-
-    a {
-      margin: 0px 20px;
-      max-height: 34px;
-
-      img {
-        width: 24px;
-        max-height: 24px;
-      }
-
-      &:last-child {
-        margin: 0px 20px;
-      }
-    }
-  }
-}
-
 .hold-tabs {
   background: #fff;
   padding-top: 55px;
@@ -1167,7 +956,7 @@ $colorBlue: #104efb;
 
   .v-tab {
     text-transform: capitalize;
-    font-family: "Raleway", sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
@@ -1223,7 +1012,7 @@ $colorBlue: #104efb;
       line-height: 40px;
 
       &::after {
-        content: "";
+        content: '';
         min-width: 180px;
         height: 1px;
         background: rgba(16, 78, 251, 0.2);
@@ -1281,7 +1070,7 @@ $colorBlue: #104efb;
   }
 
   .title-work {
-    font-family: "Gotham Pro";
+    font-family: 'Gotham Pro';
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
@@ -1291,7 +1080,7 @@ $colorBlue: #104efb;
   }
 
   .title-company {
-    font-family: "Actor";
+    font-family: 'Actor';
     font-style: normal;
     font-weight: 500;
     font-size: 30px;
@@ -1299,7 +1088,7 @@ $colorBlue: #104efb;
   }
 
   .list-tasks {
-    font-family: "Actor";
+    font-family: 'Actor';
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
@@ -1308,7 +1097,7 @@ $colorBlue: #104efb;
   }
 
   .years-work {
-    font-family: "Actor";
+    font-family: 'Actor';
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -1322,7 +1111,7 @@ $colorBlue: #104efb;
 
 .title-medium {
   font-size: 24px;
-  font-family: "Roboto-Medium";
+  font-family: 'Roboto-Medium';
   color: #202124;
 }
 
@@ -1332,7 +1121,7 @@ $colorBlue: #104efb;
   text-align: center;
   border-radius: 3px;
   font-size: 14px;
-  font-family: "Roboto-Medium";
+  font-family: 'Roboto-Medium';
   text-decoration: none;
   color: #5f6368;
   min-width: 173px;
@@ -1361,7 +1150,7 @@ $colorBlue: #104efb;
   padding: 0;
   text-decoration: none;
   font-size: 20px;
-  font-family: "Roboto";
+  font-family: 'Roboto';
 
   &:hover {
     opacity: 0.8;
@@ -1373,7 +1162,7 @@ $colorBlue: #104efb;
   text-align: center;
   min-height: 50px;
   border: 2px solid #104efb;
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-size: 16px;
   line-height: 16px;
   text-transform: uppercase;
@@ -1429,7 +1218,7 @@ $colorBlue: #104efb;
       min-height: 30px;
       padding: 0px;
       display: flex;
-      font-family: "Gotham Pro";
+      font-family: 'Gotham Pro';
       font-style: normal;
       font-weight: 300;
       font-size: 24px;
@@ -1548,7 +1337,7 @@ $colorBlue: #104efb;
           max-width: 255px;
           text-align: center;
           border: 2px solid $colorBlue;
-          font-family: "Raleway";
+          font-family: 'Raleway';
           font-size: 24px;
           line-height: 28px;
           color: $colorBlue;
@@ -1558,7 +1347,7 @@ $colorBlue: #104efb;
         }
 
         min-width: 255px;
-        font-family: "Raleway";
+        font-family: 'Raleway';
         font-style: normal;
         font-weight: normal;
         font-size: 24px;
@@ -1719,7 +1508,7 @@ $colorBlue: #104efb;
 
   h3 {
     font-size: 24px;
-    font-family: "Gotham Pro";
+    font-family: 'Gotham Pro';
     color: #5f6368;
     font-weight: normal;
   }
@@ -1798,50 +1587,6 @@ $colorBlue: #104efb;
 
     &.only-mob {
       display: block !important;
-    }
-  }
-  .social-hold {
-    min-height: 75px;
-    width: 100%;
-    flex-wrap: wrap;
-
-    a {
-      margin: 0px 15px;
-
-      &:nth-child(1) {
-        img {
-          width: 25.6px;
-          height: 16.6px;
-        }
-      }
-      &:nth-child(2) {
-        img {
-          width: 24px;
-          height: 24px;
-        }
-      }
-      &:nth-child(3) {
-        img {
-          width: 18px;
-          height: 23px;
-        }
-      }
-      &:nth-child(4) {
-        img {
-          width: 22px;
-          height: 22px;
-        }
-      }
-      &:nth-child(5) {
-        img {
-          width: 20.5px;
-          height: 20.5px;
-        }
-      }
-
-      :last-child {
-        margin: 0;
-      }
     }
   }
 
@@ -1945,7 +1690,7 @@ $colorBlue: #104efb;
     .list-tasks {
       font-size: 16px;
       line-height: 18px;
-      font-family: "Gotham Pro";
+      font-family: 'Gotham Pro';
     }
   }
   .payment-wrap {
@@ -1979,19 +1724,19 @@ $colorBlue: #104efb;
 }
 </style>
 <script>
-import Slick from "vue-slick";
+import Slick from 'vue-slick';
 
-
-import AudioCarousel from "./media/AudioCarousel";
-import VideoCarousel from "./media/VideoCarousel";
-import HobbyCarousel from "./hobby/HobbyCarousel";
-import ReferenceCarousel from "./reference/ReferenceCarousel";
-import AchievementCarousel from "./achievement/AchievementCarousel";
-import HireModal from "../theme203/payment/HireModal"
+import AudioCarousel from './media/AudioCarousel';
+import VideoCarousel from './media/VideoCarousel';
+import HobbyCarousel from './hobby/HobbyCarousel';
+import ReferenceCarousel from './reference/ReferenceCarousel';
+import AchievementCarousel from './achievement/AchievementCarousel';
+import HireModal from '../theme203/payment/HireModal';
+import SocialLinks from './components/SocialLinks';
 
 export default {
-  name: "theme302",
-  props: ["user", "is_preview", "currentTab"],
+  name: 'theme302',
+  props: ['user', 'is_preview', 'currentTab'],
   components: {
     Slick,
     AudioCarousel,
@@ -1999,70 +1744,70 @@ export default {
     HobbyCarousel,
     ReferenceCarousel,
     AchievementCarousel,
-    HireModal
-    
+    HireModal,
+    SocialLinks
   },
   data() {
     return {
       windowWidth: window.innerWidth,
-      activeTab: "portfolio",
+      activeTab: 'portfolio',
       tabmodel: null,
       resume_tabs: [
-        { name: "portfolio", label: "Portfolio" },
-        { name: "work-experience", label: "Work" },
-        { name: "education", label: "Education" },
-        { name: "skills", label: "Skills" },
-        { name: "hobbies", label: "Hobbies" },
-        { name: "references", label: "References" },
-        { name: "achievements", label: "Achievements" },
+        { name: 'portfolio', label: 'Portfolio' },
+        { name: 'work-experience', label: 'Work' },
+        { name: 'education', label: 'Education' },
+        { name: 'skills', label: 'Skills' },
+        { name: 'hobbies', label: 'Hobbies' },
+        { name: 'references', label: 'References' },
+        { name: 'achievements', label: 'Achievements' }
       ],
       skills: [
         {
           id: 1,
-          skill_title: "php",
-          percentage: "80",
+          skill_title: 'php',
+          percentage: '80'
         },
         {
           id: 2,
-          skill_title: "css3",
-          percentage: "50",
+          skill_title: 'css3',
+          percentage: '50'
         },
         {
           id: 3,
-          skill_title: "html5",
-          percentage: "50",
+          skill_title: 'html5',
+          percentage: '50'
         },
         {
           id: 4,
-          skill_title: "js",
-          percentage: "40",
-        },
+          skill_title: 'js',
+          percentage: '40'
+        }
       ],
-      typeSkill: "",
+      typeSkill: '',
       itemsPerRow: 4,
       skillFiltered: [],
 
       items: [
         {
           id: 1,
-          name: "Programming Languages",
-          value: "programming_languages",
+          name: 'Programming Languages',
+          value: 'programming_languages'
         },
         {
           id: 2,
-          name: "Frameworks/ Databases",
-          value: "frameworks",
+          name: 'Frameworks/ Databases',
+          value: 'frameworks'
         },
         {
           id: 3,
-          name: "Design Skills",
-          value: "design",
+          name: 'Design Skills',
+          value: 'design'
         },
         {
           id: 4,
-          name: "Software",
-          value: "software",
-        },
+          name: 'Software',
+          value: 'software'
+        }
       ],
       currentUser: this.user,
       slides: [],
@@ -2078,7 +1823,7 @@ export default {
         dots: false,
         swipe: true,
         speed: 500,
-        appendDots: ".navDots",
+        appendDots: '.navDots',
         responsive: [
           {
             breakpoint: 786,
@@ -2088,8 +1833,8 @@ export default {
               variableWidth: false,
               vertical: true,
               verticalSwiping: true,
-              infinite: true,
-            },
+              infinite: true
+            }
           },
           {
             breakpoint: 480,
@@ -2099,10 +1844,10 @@ export default {
               variableWidth: false,
               vertical: true,
               verticalSwiping: true,
-              infinite: true,
-            },
-          },
-        ],
+              infinite: true
+            }
+          }
+        ]
       },
       slickContents: {
         slidesToShow: 4,
@@ -2112,37 +1857,33 @@ export default {
         dots: true,
         swipe: true,
         speed: 500,
-        appendDots: ".navDotsContents",
+        appendDots: '.navDotsContents',
         responsive: [
           {
             breakpoint: 780,
             settings: {
               slidesToShow: 4,
-              slidesToScroll: 1,
-            },
+              slidesToScroll: 1
+            }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 1,
-            },
-          },
-        ],
+              slidesToScroll: 1
+            }
+          }
+        ]
       },
       formMessage: {
-        name: "",
+        name: '',
         nameRules: [
-          (v) => !!v || "Name is required",
-          (v) =>
-            (v && v.length <= 10) || "Name must be less than 10 characters",
+          v => !!v || 'Name is required',
+          v => (v && v.length <= 10) || 'Name must be less than 10 characters'
         ],
-        email: "",
-        emailRules: [
-          (v) => !!v || "E-mail is required",
-          (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-        ],
-        message: "",
+        email: '',
+        emailRules: [v => !!v || 'E-mail is required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
+        message: ''
       },
       formHasErrors: false,
 
@@ -2153,41 +1894,39 @@ export default {
       dialogHireme: false,
       // --Player
       playing: false,
-      radioGroup: 1,
+      radioGroup: 1
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function (val) {
+    currentTab: function(val) {
       this.activeTab = val;
-    },
+    }
   },
   methods: {
-    goToExternalLink(link){
-      if(!link.includes('http')){
-        link = 'http://' + link ;
+    goToExternalLink(link) {
+      if (!link.includes('http')) {
+        link = 'http://' + link;
       }
-      window.location.href = link ;
+      window.location.href = link;
     },
     skillCategory(skillName) {
-      var filteredSkill = this.currentUser.skills.filter(
-        (s) => s.category === skillName
-      );
+      var filteredSkill = this.currentUser.skills.filter(s => s.category === skillName);
       return filteredSkill;
     },
     findAudio(audio) {
-      var url = audio.find((s) => s.type === "audio").url;
+      var url = audio.find(s => s.type === 'audio').url;
       return url;
     },
     findVideo(video) {
-      var url = video.find((s) => s.type === "video").url;
+      var url = video.find(s => s.type === 'video').url;
       return url;
     },
     getProjectMainImage(project) {
-      let mainImage = "";
+      let mainImage = '';
 
       let images = project.images;
-      images.forEach((image) => {
+      images.forEach(image => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -2197,7 +1936,7 @@ export default {
     },
     nextSlide(name) {
       switch (name) {
-        case "contentSlides":
+        case 'contentSlides':
           this.$refs.contentSlides.next();
           break;
         default:
@@ -2207,7 +1946,7 @@ export default {
     },
     prevSlide(name) {
       switch (name) {
-        case "contentSlides":
+        case 'contentSlides':
           this.$refs.contentSlides.prev();
           break;
         default:
@@ -2217,7 +1956,7 @@ export default {
     },
     reInit(name) {
       switch (name) {
-        case "contentSlides":
+        case 'contentSlides':
           this.$refs.contentSlides.reSlick();
           break;
         default:
@@ -2232,11 +1971,7 @@ export default {
     },
 
     isMobile() {
-      if (
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          navigator.userAgent
-        )
-      ) {
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         return true;
       } else {
         return false;
@@ -2253,7 +1988,7 @@ export default {
       }
     },
     playVideo() {
-      this.$refs.videoPoster.style.display = "none";
+      this.$refs.videoPoster.style.display = 'none';
       this.$refs.videoElem.play();
     },
     submitForm() {
@@ -2270,7 +2005,7 @@ export default {
             acc.push({
               id: cur.id,
               skill_title: cur.skill_title,
-              percentage: cur.percentage,
+              percentage: cur.percentage
             }),
           acc
         ),
@@ -2279,17 +2014,14 @@ export default {
       this.skillFiltered = skillsFiltered;
     },
     itemCountInRow(index) {
-      return this.skillFiltered.slice(
-        (index - 1) * this.itemsPerRow,
-        index * this.itemsPerRow
-      );
+      return this.skillFiltered.slice((index - 1) * this.itemsPerRow, index * this.itemsPerRow);
     },
     countSlide() {
       return this.slideCount;
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-    },
+    }
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -2298,10 +2030,10 @@ export default {
     }
 
     // let user accessible in included components.
-    this.$store.dispatch("updateThemeUser", this.currentUser);
+    this.$store.dispatch('updateThemeUser', this.currentUser);
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
-  },
+  }
 };
 </script>
