@@ -17,29 +17,29 @@
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(1)">
                         </div>
                         <div class="step-content" v-show="isStepActive(1)">
-                                <div class="payment-methods-wrapper">
-                                    <template v-for="paymentMethod in paymentMethods">
-                                        <div v-show="paymentMethod.name === 'Stripe' " class="payment-method"
-                                             @click="currentPaymentMethod = 'stripe'"
-                                             :class="{active : currentPaymentMethod === 'stripe'}">
-                                            <img src="/icons/hire-modal/stripe-logo.svg" alt="stripe icon">
-                                        </div>
-                                        <div v-show="paymentMethod.name === 'PayPal' " class="payment-method"
-                                             @click="currentPaymentMethod = 'paypal'"
-                                             :class="{active : currentPaymentMethod === 'paypal'}">
-                                            <img src="/icons/hire-modal/paypal-logo.svg" alt="paypal icon" class="paypal">
-                                        </div>
-                                    </template>
-                                </div>
-                                <div class="step-footer" style="justify-content: flex-end">
-
-                                    <div class="action-btn">
-                                        <a href="javascript:void(0)" @click="goToNextStep">
-                                            Confirm
-                                            <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
-                                        </a>
+                            <div class="payment-methods-wrapper">
+                                <template v-for="paymentMethod in paymentMethods">
+                                    <div v-show="paymentMethod.name === 'Stripe' " class="payment-method"
+                                         @click="changePaymentMethod('stripe')"
+                                         :class="{active : currentPaymentMethod === 'stripe'}">
+                                        <img src="/icons/hire-modal/stripe-logo.svg" alt="stripe icon">
                                     </div>
+                                    <div v-show="paymentMethod.name === 'PayPal' " class="payment-method"
+                                         @click="changePaymentMethod('paypal')"
+                                         :class="{active : currentPaymentMethod === 'paypal'}">
+                                        <img src="/icons/hire-modal/paypal-logo.svg" alt="paypal icon" class="paypal">
+                                    </div>
+                                </template>
+                            </div>
+                            <div class="step-footer" style="justify-content: flex-end">
+
+                                <div class="action-btn">
+                                    <a href="javascript:void(0)" @click="goToNextStep">
+                                        Confirm
+                                        <img src="/icons/hire-modal/white-arrow.svg" alt="arrow right">
+                                    </a>
                                 </div>
+                            </div>
                         </div>
                     </div>
 
@@ -69,7 +69,8 @@
                             </div>
                             <!-- if recurring payment -->
                             <div class="interval-input">
-                                <input type="number" :disabled="currentPaymentType === 'hourly'" :class="{'low-opacity' : currentPaymentType === 'hourly'}"
+                                <input type="number" :disabled="currentPaymentType === 'hourly'"
+                                       :class="{'low-opacity' : currentPaymentType === 'hourly'}"
                                        :placeholder="intervalNumberPlaceHolder()" min="2"
                                        max="12" v-model="iterations">
                             </div>
@@ -82,17 +83,18 @@
                                 <div class="percentage-input-wrapper">
                                     <span class="max" v-show="currentSelectedHours < 40">50</span>
                                     <span class="current" :style="{right: currentHoursPosition + '%'}">{{currentSelectedHours}}</span>
-                                    <input type="range" class="range" min="0" max="50" step="1" v-model="currentSelectedHours"
+                                    <input type="range" class="range" min="0" max="50" step="1"
+                                           v-model="currentSelectedHours"
                                            style="width: 100%;">
                                 </div>
                             </div>
 
                             <div class="payment-details">
-                                {{currentSelectedHours}} hours x {{userHourlyRate}} Hourly rate x Percentage
-                                {{percentage}}% = {{Math.round(currentPaymentAmount)}}
+                                {{currentSelectedHours}} hours x {{userHourlyRate}} Hourly rate <span  v-show="currentPaymentMethod.toLowerCase() === 'stripe' " >x Percentage
+                                {{percentage}}% </span> = {{Math.round(currentPaymentAmount)}}
                             </div>
 
-                            <div class="percentage-select">
+                            <div class="percentage-select" v-show="currentPaymentMethod.toLowerCase() === 'stripe' ">
                                 <div class="label">
                                     Percentage
                                 </div>
@@ -123,7 +125,8 @@
 
                     </div>
 
-                    <div class="single-step-wrapper three" :class="{'active' : isStepActive(3) , 'short' : percentage == 100}">
+                    <div class="single-step-wrapper three"
+                         :class="{'active' : isStepActive(3) , 'short' : percentage == 100}">
                         <div class="step-header">
                             Total Payment
                             <img src="/icons/circle-tick.svg" class="tick" alt="tick icon" v-show="isStepDone(3)">
@@ -136,7 +139,8 @@
                                 Your Current Payment Will Be
                             </div>
 
-                            <div class="total-payment-row" style="border-bottom: 1px solid lightgray; padding-bottom: 20px; justify-content: center;">
+                            <div class="total-payment-row"
+                                 style="border-bottom: 1px solid lightgray; padding-bottom: 20px; justify-content: center;">
                                 <div class="total-payment">
                                     ${{Math.round(currentPaymentAmount)}}
                                 </div>
@@ -407,7 +411,7 @@
                 this.isModalOpened = value;
             },
             isModalOpened: function (value) {
-                if(! value){
+                if (!value) {
                     this.$emit('modalClosed');
                 }
             },
@@ -423,8 +427,8 @@
                 this.finishedSteps.push(this.currentStep);
                 this.currentStep++;
             },
-            intervalNumberPlaceHolder(){
-                if(this.currentPaymentType === 'hourly'){
+            intervalNumberPlaceHolder() {
+                if (this.currentPaymentType === 'hourly') {
                     return '';
                 }
                 return 'Number of ' + this.typeOfRecurringInterval + 's';
@@ -452,6 +456,10 @@
                 return this.finishedSteps.includes(step);
             },
 
+            changePaymentMethod(payment_method) {
+                this.currentPaymentMethod = payment_method;
+                this.percentage = 100;
+            },
             // step 2
             setPaymentType(payment_type) {
                 this.currentPaymentType = payment_type;
@@ -487,9 +495,9 @@
                 this.currentSelectedHours = 40;
                 this.closeModal();
             },
-            continueToSend(){
-                if (this.validateInputs()){
-                    this.currentNoPaymentStep = 3 ;
+            continueToSend() {
+                if (this.validateInputs()) {
+                    this.currentNoPaymentStep = 3;
                 }
             },
             pay() {
@@ -511,15 +519,15 @@
                     };
 
                     let paymentUrl = '/custom-stripe-payment';
-                    if(this.currentPaymentMethod === 'paypal'){
+                    if (this.currentPaymentMethod === 'paypal') {
                         paymentUrl = '/custom-paypal-payment';
                     }
 
-                    axios.post( paymentUrl , this.paymentData)
-                        .then( (response) => {
-                            window.location = response.data.url ;
+                    axios.post(paymentUrl, this.paymentData)
+                        .then((response) => {
+                            window.location = response.data.url;
                         })
-                        .catch( (error) => {
+                        .catch((error) => {
                             console.log(error)
                         });
                 }
@@ -588,8 +596,8 @@
                 this.isDatePickerOpened = false;
                 this.isDateChanged = true;
             },
-            validateAndGoToNextStep(){
-                if(this.validateInputs()){
+            validateAndGoToNextStep() {
+                if (this.validateInputs()) {
                     this.goToNextStep();
                 }
             }
@@ -708,7 +716,7 @@
                     height: 235px;
                 }
 
-                &.active.two.no-payment-method{
+                &.active.two.no-payment-method {
                     height: 520px;
                 }
 
@@ -771,7 +779,7 @@
                     width: 100%;
                     max-width: 360px;
 
-                    .header{
+                    .header {
                         font-weight: 500;
                         font-size: 24px;
                         margin-top: 20px;
@@ -802,12 +810,12 @@
                                 height: 40px;
                             }
 
-                            img{
+                            img {
                                 width: 22px;
                                 margin-left: 5px;
                             }
 
-                            &.contact{
+                            &.contact {
                                 width: 180px;
                             }
                         }
@@ -1058,9 +1066,10 @@
             align-items: center;
             justify-content: center;
 
-            img{
+            img {
                 width: 65px;
-                &.paypal{
+
+                &.paypal {
                     width: 85px;
                 }
             }
@@ -1079,11 +1088,11 @@
         }
     }
 
-    .low-opacity{
+    .low-opacity {
         opacity: 0.3;
     }
 
-    .payment-details{
+    .payment-details {
         font-size: 15px;
         margin-top: 5px;
         margin-bottom: 20px;
@@ -1091,7 +1100,7 @@
         color: #888DB1;
     }
 
-    .client-input-error{
+    .client-input-error {
         color: red;
         font-size: 14px;
         font-weight: 500;
