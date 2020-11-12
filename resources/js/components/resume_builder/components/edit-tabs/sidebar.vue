@@ -11,7 +11,6 @@
                     </div>
                     {{ currentSidebarLink.label }}
                 </a>
-
                 <a
                         href="#"
                         @click.prevent="open=!open"
@@ -44,7 +43,7 @@
                 >
                     <router-link
                             :to="sidebarLink.url"
-                            @click.native=""
+                            @click.native="setActive(sidebarLink)"
                             @mouseover.native="hoverMenu(sidebarLink)"
                             @mouseleave.native="hoverMenu(null)"
                             class="d-flex justify-content-between w-100"
