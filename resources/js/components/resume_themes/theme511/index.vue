@@ -28,7 +28,7 @@
                   v-if="findPreference('pdf_download')"
                 >
                   <v-img
-                    src="/images/resume_themes/theme511/social_icons/pdf.svg"
+                    src="/images/resume_themes/theme511/social_icons/pdfBtn.svg"
                     :max-width="pdfIconSize"
                     contain
                   ></v-img>
@@ -210,22 +210,23 @@
                 align-self="center"
               >
                 <div class="text-right mt-lg-4 hidden-md-and-down">
-                  <v-btn
-                    v-for="userLink in currentUser.links"
-                    :key="userLink.id + '_link'"
-                    v-show="userLink.is_active && userLink.is_public"
-                    href="javascript:void(0)"
-                    @click="goToExternalLink(userLink.link)"
-                    target="_blank"
-                    class="social mx-3"
-                    fab
-                    elevation="0"
-                  >
-                    <svg-vue
-                      class="icon"
-                      :icon="userLink.link_title.toLowerCase() + '-icon'"
-                    ></svg-vue>
-                  </v-btn>
+                  <!-- Social Icons -->
+                  <IconCarousel
+                    :currentUser="currentUser"
+                    themeNumber="theme511"
+                    btnWidth="45"
+                    btnHeight="45"
+                    iconWidth="24"
+                    iconHeight="24"
+                    border="5px solid #f56068"
+                    borderRadius="100"
+                    carouselHeight="50"
+                    justifyContent="flex-end"
+                    class="mr-lg-8 mb-2"
+                    arrowColor="#39E1AA"
+                  ></IconCarousel>
+
+                  <!-- Social Icons -->
                   <!-- Hire Me Button -->
                   <v-btn
                     class="hire text-right ml-1 mr-lg-8"
@@ -365,6 +366,7 @@ import References from "./tabs/References";
 import Achievement from "./tabs/Achievement";
 import MessageDialog from "./message/MessageDialog";
 import HireModal from "./payments/HireModal";
+import IconCarousel from "../reusable/IconCarousel";
 
 export default {
   components: {
@@ -380,6 +382,7 @@ export default {
     Achievement,
     MessageDialog,
     HireModal,
+    IconCarousel,
   },
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   data() {
