@@ -521,11 +521,10 @@
                             {{ currentUser.personal_info.location }}
                           </v-card-text>
                           <!-- location -->
-                          <div
-                            class="custom-hr hidden-sm-and-up"
+                          <hr
+                            class="custom-hr-mobile hidden-sm-and-up"
                             v-show="currentUser.personal_info.location"
-                          >
-                          </div>
+                          />
                         </v-card>
                       </v-col>
                     </v-row>
@@ -2211,11 +2210,14 @@ export default {
     left: -22px;
   }
   @media screen and (max-width: 599px) {
-    top: 67%;
-    left: 52%;
     transform: rotate(90deg);
-    min-height: 70%;
+    min-height: 4vw;
   }
+}
+.custom-hr-mobile{
+  border: 1px solid #000000;
+  opacity: 0.6;
+  margin-left: 14px;
 }
 </style>
 
