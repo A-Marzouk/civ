@@ -485,10 +485,10 @@
                             v-if="currentUser.personal_info.about"
                             >About Me
                           </v-card-subtitle>
-                          <hr
+                          <div
                             class="custom-hr hidden-xs-only"
                             v-show="currentUser.personal_info.about"
-                          />
+                          ></div>
                           <v-card-text
                             class="overview-text"
                             v-if="currentUser.personal_info.about"
@@ -521,10 +521,11 @@
                             {{ currentUser.personal_info.location }}
                           </v-card-text>
                           <!-- location -->
-                          <hr
+                          <div
                             class="custom-hr hidden-sm-and-up"
                             v-show="currentUser.personal_info.location"
-                          />
+                          >
+                          </div>
                         </v-card>
                       </v-col>
                     </v-row>
@@ -640,10 +641,10 @@
                                       flat
                                       color="transparent"
                                       tile
-                                      style="color: #fbd76d; font-size: 14px !important;"
+                                      style="color: #fbd76d"
                                     >
                                       {{ education.degree_title }},
-                                      <span class="ml-auto">
+                                      <span class="education-date">
                                         {{ education.date_from }} -
                                         <span v-if="education.present == true"
                                           >Present</span
@@ -1678,6 +1679,9 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 0.7rem;
   }
+  .education-margin {
+    margin-left: 5%;
+  }
 }
 
 .custom-education-details {
@@ -2191,25 +2195,26 @@ export default {
 }
 
 .custom-hr {
-  width: 245.36px;
-  opacity: 0.6;
-  border: 1px solid #000000;
-  transform: rotate(90deg);
-  margin-left: -198px;
-  margin-top: 12rem;
+  min-height: 100%;
+  opacity: 0.6 !important;
+  border: 2px solid #000000;
   position: absolute;
+  top: 0;
+  left: -72px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    margin-left: -158px;
+    left: -38px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
-    margin-left: -144px;
+    left: -22px;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    margin-left: -150px;
+    left: -22px;
   }
   @media screen and (max-width: 599px) {
-    margin-left: 16px;
-    transform: rotate(180deg);
+    top: 67%;
+    left: 52%;
+    transform: rotate(90deg);
+    min-height: 70%;
   }
 }
 </style>
