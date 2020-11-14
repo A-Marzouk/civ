@@ -32,6 +32,6 @@ class AccountRestored extends Mailable
     {
         return $this->subject('Mail from civ.ie | Account restored')
             ->from('info@civ.ie')
-            ->markdown('emails.account_restored');
+            ->markdown('emails.user.account_restored');
     }
 }

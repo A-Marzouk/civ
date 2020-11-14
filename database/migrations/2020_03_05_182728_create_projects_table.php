@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('link')->nullable();
+            $table->string('category')->nullable();
             $table->string('skills')->nullable();
             $table->string('software')->nullable();
             $table->boolean('is_public')->default(true);

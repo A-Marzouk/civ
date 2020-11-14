@@ -1,5 +1,8 @@
 <template>
-  <div class="social-carousel-wrapper">
+  <div
+    class="social-carousel-wrapper"
+    :style="{ justifyContent: justifyContent }"
+  >
     <div
       class="social-carousel--nav__left"
       @click="moveCarousel(-1)"
@@ -12,7 +15,11 @@
     </div>
     <div
       class="social-carousel"
-      :style="{ width: carouselWidth + 'px', height: carouselHeight + 'px' }"
+      :style="{
+        width: carouselWidth + 'px',
+        height: carouselHeight + 'px',
+        justifyContent: justifyContent,
+      }"
     >
       <div class="social-carousel--overflow-container">
         <div
@@ -35,6 +42,9 @@
               'px;' +
               'border:' +
               border +
+              ';' +
+              'box-shadow:' +
+              boxShadow +
               ';'
             "
             :width="btnWidth"
@@ -152,12 +162,19 @@ export default {
     border: {
       type: String,
     },
+    boxShadow: {
+      type: String,
+    },
+    justifyContent: {
+      type: String,
+      default: "center",
+    },
   },
   data() {
     return {
       currentOffset: 0,
       windowSize: 3,
-      paginationFactor: 60,
+      paginationFactor: 50,
       dragDistance: 0,
       dragStartX: 0,
       dragStartY: 0,
@@ -244,11 +261,11 @@ export default {
 .social-carousel-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: flex-start;
 }
 .social-carousel {
   display: flex;
-  justify-content: center;
+  // justify-content: flex-start;
   //   width: 190px;
 
   &--overflow-container {

@@ -54,7 +54,7 @@
               <v-img
                 class="thumbSize"
                 style="border-radius: 10px"
-                src="/images/resume_themes/theme1001/media/audio-1.png"
+                :src="img"
               ></v-img>
             </v-col>
             <v-col sm="auto" lg="auto" cols="3">

@@ -1,226 +1,358 @@
 <template>
-  <div id="wrapper_theme1001">
+  <div id="wrapper_theme1001" v-if="currentUser">
     <header id="header">
       <div class="header-profile">
-        <div class="profile-actions">
-          <a href="#" class="actions-toggle-button" @click.prevent="open">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
-              <g transform="translate(-318.538 -40)">
-                <circle
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  transform="translate(318.538 40)"
-                  fill="#f8ab29"
-                />
-                <circle
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  transform="translate(332.538 40)"
-                  fill="#f8ab29"
-                />
-                <circle
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  transform="translate(332.538 52)"
-                  fill="#f8ab29"
-                />
-                <circle
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  transform="translate(318.538 52)"
-                  fill="#f8ab29"
-                />
-              </g>
-            </svg>
-          </a>
-
-          <div
-            class="profile-actions__links"
-            :class="{ open: isOpen }"
-            @click="stopProp"
-          >
-            <a
-              class="action__button"
-              href="#"
-              @click.prevent="chatToggle = !chatToggle"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13">
-                <g transform="translate(0.347 0.201)">
-                  <rect
-                    width="13"
-                    height="13"
-                    transform="translate(-0.347 -0.201)"
-                    fill="none"
+        <v-row no-gutters>
+          <div class="profile-actions">
+            <a href="#" class="actions-toggle-button" @click.prevent="open">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
+                <g transform="translate(-318.538 -40)">
+                  <circle
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    transform="translate(318.538 40)"
+                    fill="#f8ab29"
                   />
-                  <path
-                    d="M1.535,3.07a.505.505,0,0,1-.358-.154L.154,1.893a.5.5,0,0,1,0-.716.494.494,0,0,1,.716,0l.665.665L3.224.154a.5.5,0,0,1,.716,0,.5.5,0,0,1,0,.716L1.893,2.917A.505.505,0,0,1,1.535,3.07Z"
-                    transform="translate(1.068 8.009)"
-                    fill="#fff"
+                  <circle
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    transform="translate(332.538 40)"
+                    fill="#f8ab29"
                   />
-                  <path
-                    d="M8,7H4.991A4.122,4.122,0,0,0,.833,3.231,4.327,4.327,0,0,0,0,3.312V2A2,2,0,0,1,2,0H8a2,2,0,0,1,2,2V5A2,2,0,0,1,8,7ZM1.389.942a.418.418,0,0,0-.367.212.389.389,0,0,0-.034.3.405.405,0,0,0,.2.244L4.8,3.587a.433.433,0,0,0,.4,0L8.808,1.7a.4.4,0,0,0,.2-.243.39.39,0,0,0-.033-.3A.42.42,0,0,0,8.611.942a.429.429,0,0,0-.2.049L5,2.772,1.587.991A.426.426,0,0,0,1.389.942Z"
-                    transform="translate(1.653 2.799)"
-                    fill="#fff"
+                  <circle
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    transform="translate(332.538 52)"
+                    fill="#f8ab29"
+                  />
+                  <circle
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    transform="translate(318.538 52)"
+                    fill="#f8ab29"
                   />
                 </g>
               </svg>
-              <span>Start A Chat!</span>
             </a>
-            <a class="action__button" href="#">
-              <svg
-                width="18"
-                height="19"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:svgjs="http://svgjs.com/svgjs"
-                viewBox="0 0.5 20 20"
-                fill="#fff"
+
+            <div
+              class="profile-actions__links"
+              :class="{ open: isOpen }"
+              @click="stopProp"
+            >
+              <a
+                class="action__button"
+                href="#"
+                @click.prevent="chatToggle = !chatToggle"
+                v-if="findPreference('chat')"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13">
+                  <g transform="translate(0.347 0.201)">
+                    <rect
+                      width="13"
+                      height="13"
+                      transform="translate(-0.347 -0.201)"
+                      fill="none"
+                    />
+                    <path
+                      d="M1.535,3.07a.505.505,0,0,1-.358-.154L.154,1.893a.5.5,0,0,1,0-.716.494.494,0,0,1,.716,0l.665.665L3.224.154a.5.5,0,0,1,.716,0,.5.5,0,0,1,0,.716L1.893,2.917A.505.505,0,0,1,1.535,3.07Z"
+                      transform="translate(1.068 8.009)"
+                      fill="#fff"
+                    />
+                    <path
+                      d="M8,7H4.991A4.122,4.122,0,0,0,.833,3.231,4.327,4.327,0,0,0,0,3.312V2A2,2,0,0,1,2,0H8a2,2,0,0,1,2,2V5A2,2,0,0,1,8,7ZM1.389.942a.418.418,0,0,0-.367.212.389.389,0,0,0-.034.3.405.405,0,0,0,.2.244L4.8,3.587a.433.433,0,0,0,.4,0L8.808,1.7a.4.4,0,0,0,.2-.243.39.39,0,0,0-.033-.3A.42.42,0,0,0,8.611.942a.429.429,0,0,0-.2.049L5,2.772,1.587.991A.426.426,0,0,0,1.389.942Z"
+                      transform="translate(1.653 2.799)"
+                      fill="#fff"
+                    />
+                  </g>
+                </svg>
+                <span>Start A Chat!</span>
+              </a>
+              <a
+                class="action__button"
+                href="#"
+                v-if="findPreference('pdf_download')"
               >
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
                   width="18"
                   height="19"
-                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns:svgjs="http://svgjs.com/svgjs"
+                  viewBox="0 0.5 20 20"
+                  fill="#fff"
                 >
-                  <path
-                    paint-order="stroke fill markers"
-                    fill-rule="evenodd"
-                    d="M18.91 1.09A3.7 3.7 0 0 0 16.275 0H3.723A3.728 3.728 0 0 0 0 3.724v12.552A3.728 3.728 0 0 0 3.723 20h12.553a3.728 3.728 0 0 0 3.723-3.724V3.724a3.7 3.7 0 0 0-1.09-2.633zM6.478 8.497a.586.586 0 0 1 .829 0l2.106 2.106v-6.25a.586.586 0 0 1 1.171 0v6.25l2.107-2.106a.586.586 0 1 1 .828.828l-3.107 3.107a.584.584 0 0 1-.828 0L6.479 9.324a.585.585 0 0 1 0-.828zm9.17 7.738H4.35a.586.586 0 1 1 0-1.172h11.297a.586.586 0 1 1 0 1.172z"
-                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="19"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      paint-order="stroke fill markers"
+                      fill-rule="evenodd"
+                      d="M18.91 1.09A3.7 3.7 0 0 0 16.275 0H3.723A3.728 3.728 0 0 0 0 3.724v12.552A3.728 3.728 0 0 0 3.723 20h12.553a3.728 3.728 0 0 0 3.723-3.724V3.724a3.7 3.7 0 0 0-1.09-2.633zM6.478 8.497a.586.586 0 0 1 .829 0l2.106 2.106v-6.25a.586.586 0 0 1 1.171 0v6.25l2.107-2.106a.586.586 0 1 1 .828.828l-3.107 3.107a.584.584 0 0 1-.828 0L6.479 9.324a.585.585 0 0 1 0-.828zm9.17 7.738H4.35a.586.586 0 1 1 0-1.172h11.297a.586.586 0 1 1 0 1.172z"
+                    />
+                  </svg>
                 </svg>
-              </svg>
-              <span>Download PDF </span>
-            </a>
+                <span>Download PDF </span>
+              </a>
+            </div>
           </div>
-        </div>
+          <v-col cols="2" sm="2" md="2">
+            <Avatar :src="currentUser.personal_info.profile_pic"
+          /></v-col>
+          <v-col cols="9" sm="9" md="10">
+            <div class="profile-detail">
+              <h3 class="title">
+                {{ currentUser.personal_info.first_name }}
+                {{ currentUser.personal_info.last_name }}
+              </h3>
+              <h4
+                class="sub-title"
+                v-text="currentUser.personal_info.designation"
+              ></h4>
 
-        <Avatar :src="currentUser.personal_info.profile_pic" />
-
-        <div class="profile-detail">
-          <h3 class="title">
-            {{ currentUser.personal_info.first_name }}
-            {{ currentUser.personal_info.last_name }}
-          </h3>
-          <h4
-            class="sub-title"
-            v-text="currentUser.personal_info.designation"
-          ></h4>
-
-          <div
-            class="profile__hireme"
-            v-if="currentUser.payment_info && currentUser.availability_info"
-          ></div>
-          <v-row no-gutters>
-            <v-col cols="12" sm="12" lg="5">
-              <v-row no-gutters>
-                <v-col cols="7">
+              <div
+                class="profile__hireme"
+                v-if="currentUser.payment_info && currentUser.availability_info"
+              ></div>
+              <!-- rate frequency for tablet & pc -->
+              <v-row no-gutters class="hidden-xs-only">
+                <v-col cols="12" sm="12" lg="6" xl="5">
                   <v-row no-gutters>
-                    <!-- Pay Rate -->
-                    <v-col cols="12" sm="6" class="hireme-rate pb-3 pb-sm-0">
+                    <v-col cols="7">
                       <v-row no-gutters>
-                        <v-col cols="12" class="pb-2">
-                          <div
-                            v-for="(payment_Info,
-                            index) in currentUser.payment_info"
-                            :key="index"
-                            v-show="payment_Info.is_public"
-                          >
-                            <strong v-if="paymentInfo == index"
-                              >${{ payment_Info.salary }}</strong
-                            >
-                          </div>
+                        <!-- Pay Rate -->
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          class="hireme-rate pb-3 pb-sm-0"
+                          v-if="findPreference('hourly_rate')"
+                        >
+                          <v-row no-gutters>
+                            <v-col cols="12" class="pb-2">
+                              <div
+                                v-for="(payment_Info,
+                                index) in currentUser.payment_info"
+                                :key="index"
+                                v-show="payment_Info.is_public"
+                              >
+                                <strong v-if="paymentInfo == index"
+                                  >${{ payment_Info.salary }}</strong
+                                >
+                              </div>
+                            </v-col>
+                            <v-col cols="12">
+                              <div
+                                v-for="(payment_Info,
+                                index) in currentUser.payment_info"
+                                :key="index"
+                                v-show="payment_Info.is_public"
+                              >
+                                <a
+                                  class="hire-rate-button"
+                                  @click="paymentInfoNext()"
+                                  v-if="paymentInfo == index"
+                                  href="javascript:void(0)"
+                                >
+                                  {{ payment_Info.salary_frequency }}
+                                  Rate
+                                </a>
+                              </div>
+                            </v-col>
+                          </v-row>
                         </v-col>
-                        <v-col cols="12">
-                          <div
-                            v-for="(payment_Info,
-                            index) in currentUser.payment_info"
-                            :key="index"
-                            v-show="payment_Info.is_public"
-                          >
-                            <a
-                              class="hire-rate-button"
-                              @click="availableNext()"
-                              v-if="paymentInfo == index"
-                              href="javascript:void(0)"
-                            >
-                              {{ payment_Info.salary_frequency }}
-                              Rate
-                            </a>
-                          </div>
+                        <!-- Pay Rate -->
+                        <!-- Availability -->
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          class="hireme-rate"
+                          v-if="findPreference('weekly_availability')"
+                        >
+                          <v-row no-gutters>
+                            <v-col cols="12" class="pb-2">
+                              <div
+                                v-for="(availability_info,
+                                index) in currentUser.availability_info"
+                                :key="index"
+                                v-show="availability_info.is_public"
+                              >
+                                <strong v-if="available == index">
+                                  {{ availability_info.available_hours }} hrs
+                                </strong>
+                              </div>
+                            </v-col>
+                            <v-col cols="12">
+                              <div
+                                v-for="(availability_info,
+                                index) in currentUser.availability_info"
+                                :key="index"
+                                v-show="availability_info.is_public"
+                              >
+                                <a
+                                  class="hire-rate-button"
+                                  @click="availableNext()"
+                                  v-if="available == index"
+                                  href="javascript:void(0)"
+                                >
+                                  {{
+                                    availability_info.available_hours_frequency
+                                  }}
+                                  Availability
+                                </a>
+                              </div>
+                            </v-col>
+                          </v-row>
                         </v-col>
+                        <!-- Availability -->
                       </v-row>
                     </v-col>
-                    <!-- Pay Rate -->
-                    <!-- Availability -->
-                    <v-col cols="12" sm="6" class="hireme-rate">
-                      <v-row no-gutters>
-                        <v-col cols="12" class="pb-2">
-                          <div
-                            v-for="(availability_info,
-                            index) in currentUser.availability_info"
-                            :key="index"
-                            v-show="availability_info.is_public"
+                    <!-- Hire Me Button -->
+                    <v-col cols="5" v-if="findPreference('hire_me')">
+                      <div class="text-center">
+                        <a
+                          class="hireme-button"
+                          href="#"
+                          @click.prevent="hireMeModal = !hireMeModal"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 10.969 12.124"
                           >
-                            <strong v-if="available == index">
-                              {{ availability_info.available_hours }} hrs
-                            </strong>
-                          </div>
-                        </v-col>
-                        <v-col cols="12">
-                          <div
-                            v-for="(availability_info,
-                            index) in currentUser.availability_info"
-                            :key="index"
-                            v-show="availability_info.is_public"
-                          >
-                            <a
-                              class="hire-rate-button"
-                              @click="availableNext()"
-                              v-if="available == index"
-                              href="javascript:void(0)"
-                            >
-                              {{ availability_info.available_hours_frequency }}
-                              Availability
-                            </a>
-                          </div>
-                        </v-col>
-                      </v-row>
+                            <path
+                              d="M7.969,12.124H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H7.969a3,3,0,0,1,3,3V9.123A3,3,0,0,1,7.969,12.124ZM5.479,6.062a3.17,3.17,0,0,0-2.071.686,2.848,2.848,0,0,0-.97,2.042.376.376,0,0,0,.114.217.229.229,0,0,0,.132.086H8.276a.246.246,0,0,0,.186-.068.319.319,0,0,0,.068-.235,2.764,2.764,0,0,0-.956-2.061A3.254,3.254,0,0,0,5.479,6.062Zm.005-3.03A1.212,1.212,0,1,0,6.7,4.244,1.217,1.217,0,0,0,5.485,3.031Z"
+                              transform="translate(0 0)"
+                              fill="#fff"
+                            />
+                          </svg>
+
+                          <span>Hire Me</span>
+                        </a>
+                      </div>
                     </v-col>
-                    <!-- Availability -->
+                    <!-- Hire Me Button -->
                   </v-row>
                 </v-col>
-                <!-- Hire Me Button -->
-                <v-col cols="5">
-                  <div class="text-center">
-                    <a
-                      class="hireme-button"
-                      href="#"
-                      @click.prevent="hireMeModal = !hireMeModal"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 10.969 12.124"
-                      >
-                        <path
-                          d="M7.969,12.124H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H7.969a3,3,0,0,1,3,3V9.123A3,3,0,0,1,7.969,12.124ZM5.479,6.062a3.17,3.17,0,0,0-2.071.686,2.848,2.848,0,0,0-.97,2.042.376.376,0,0,0,.114.217.229.229,0,0,0,.132.086H8.276a.246.246,0,0,0,.186-.068.319.319,0,0,0,.068-.235,2.764,2.764,0,0,0-.956-2.061A3.254,3.254,0,0,0,5.479,6.062Zm.005-3.03A1.212,1.212,0,1,0,6.7,4.244,1.217,1.217,0,0,0,5.485,3.031Z"
-                          transform="translate(0 0)"
-                          fill="#fff"
-                        />
-                      </svg>
-
-                      <span>Hire Me</span>
-                    </a>
-                  </div>
-                </v-col>
-                <!-- Hire Me Button -->
               </v-row>
-            </v-col>
-          </v-row>
-        </div>
+              <!-- rate frequency for tablet & pc -->
+            </div>
+          </v-col>
+        </v-row>
+
+        <!-- rate frequency for mobile -->
+        <v-row no-gutters class="hidden-sm-and-up mt-4">
+          <v-col cols="12" sm="12" lg="5">
+            <v-row no-gutters>
+              <v-col cols="9" sm="12">
+                <v-row no-gutters>
+                  <!-- Pay Rate -->
+                  <v-col cols="5" sm="4" class="hireme-rate pb-3 pb-sm-0">
+                    <v-row no-gutters>
+                      <v-col cols="12" class="pb-2">
+                        <div
+                          v-for="(payment_Info,
+                          index) in currentUser.payment_info"
+                          :key="index"
+                          v-show="payment_Info.is_public"
+                        >
+                          <strong v-if="paymentInfo == index"
+                            >${{ payment_Info.salary }}</strong
+                          >
+                        </div>
+                      </v-col>
+                      <v-col cols="12">
+                        <div
+                          v-for="(payment_Info,
+                          index) in currentUser.payment_info"
+                          :key="index"
+                          v-show="payment_Info.is_public"
+                        >
+                          <a
+                            class="hire-rate-button"
+                            @click="paymentInfoNext()"
+                            v-if="paymentInfo == index"
+                            href="javascript:void(0)"
+                          >
+                            {{ payment_Info.salary_frequency }}
+                            Rate
+                          </a>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <!-- Pay Rate -->
+                  <!-- Availability -->
+                  <v-col cols="7" sm="8" class="hireme-rate">
+                    <v-row no-gutters>
+                      <v-col cols="12" class="pb-2">
+                        <div
+                          v-for="(availability_info,
+                          index) in currentUser.availability_info"
+                          :key="index"
+                          v-show="availability_info.is_public"
+                        >
+                          <strong v-if="available == index">
+                            {{ availability_info.available_hours }} hrs
+                          </strong>
+                        </div>
+                      </v-col>
+                      <v-col cols="12">
+                        <div
+                          v-for="(availability_info,
+                          index) in currentUser.availability_info"
+                          :key="index"
+                          v-show="availability_info.is_public"
+                        >
+                          <a
+                            class="hire-rate-button"
+                            @click="availableNext()"
+                            v-if="available == index"
+                            href="javascript:void(0)"
+                          >
+                            {{ availability_info.available_hours_frequency }}
+                            Availability
+                          </a>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <!-- Availability -->
+                </v-row>
+              </v-col>
+              <!-- Hire Me Button -->
+              <v-col cols="3" sm="6" class="ml-auto">
+                <div class="text-center">
+                  <a
+                    class="hireme-button"
+                    href="#"
+                    @click.prevent="hireMeModal = !hireMeModal"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 10.969 12.124"
+                    >
+                      <path
+                        d="M7.969,12.124H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H7.969a3,3,0,0,1,3,3V9.123A3,3,0,0,1,7.969,12.124ZM5.479,6.062a3.17,3.17,0,0,0-2.071.686,2.848,2.848,0,0,0-.97,2.042.376.376,0,0,0,.114.217.229.229,0,0,0,.132.086H8.276a.246.246,0,0,0,.186-.068.319.319,0,0,0,.068-.235,2.764,2.764,0,0,0-.956-2.061A3.254,3.254,0,0,0,5.479,6.062Zm.005-3.03A1.212,1.212,0,1,0,6.7,4.244,1.217,1.217,0,0,0,5.485,3.031Z"
+                        transform="translate(0 0)"
+                        fill="#fff"
+                      />
+                    </svg>
+
+                    <span>Hire Me</span>
+                  </a>
+                </div>
+              </v-col>
+              <!-- Hire Me Button -->
+            </v-row>
+          </v-col>
+        </v-row>
+        <!-- rate frequency for mobile -->
       </div>
     </header>
     <!--<HireModal-->
@@ -234,7 +366,7 @@
       :closeHireMeModal="closeHireMeModal"
       :user="currentUser"
     ></updated-hire-modal>
-    <ChatModal :chatToggle="chatToggle" :closeChat="closeChat" />
+    <ChatModal :chatToggle="chatToggle" :user="user" :closeChat="closeChat" />
     <TabsNavigation
       :currentUser="currentUser"
       @tab-changed="tabChanged"
@@ -290,6 +422,21 @@ export default {
     },
   },
   methods: {
+    findPreference(title) {
+      if(!this.currentUser){
+        return ;
+      }
+      let currentPrefer = null;
+      this.currentUser.preferences.forEach((prefer) => {
+        if (prefer.title === title) {
+          currentPrefer = prefer;
+        }
+      });
+      if (currentPrefer) {
+        return currentPrefer.is_public;
+      }
+      return "";
+    },
     tabChanged(value) {
       this.activeTab = value;
     },
@@ -311,22 +458,11 @@ export default {
     close() {
       this.isOpen = false;
     },
+    
     availableNext() {
-      this.available++;
-      this.paymentInfo++;
-      if (this.paymentInfo == 4 && this.available == 3) {
+      if (this.available == 2) {
         this.available = 0;
-        this.paymentInfo = 0;
-      } else if (this.paymentInfo == 1) {
-        this.available = 0;
-      } else if (this.paymentInfo == 2) {
-        this.available = 1;
-      } else if (this.paymentInfo == 3) {
-        this.available = 2;
-      } else {
-        this.available = 0;
-        this.paymentInfo = 0;
-      }
+      } else this.available++;
     },
     availablePrev() {
       if (this.available == 0) {
@@ -418,7 +554,7 @@ export default {
 
 .header-profile {
   position: relative;
-  display: flex;
+  // display: flex;
   font-family: inherit;
 }
 .hourly-title {
@@ -475,7 +611,16 @@ export default {
   }
 }
 //header
-
+@media (max-width: 475px) {
+  .hidden-xs-only {
+    display: none;
+  }
+}
+@media (min-width: 500px) {
+  .hidden-sm-and-up {
+    display: none;
+  }
+}
 //profile-actions
 .profile-actions .actions-toggle-button {
   display: block;
@@ -761,7 +906,7 @@ export default {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  margin-top: 5px;
+  margin-top: 1em;
   margin-left: auto;
   width: 74px;
   height: 32px;

@@ -20,7 +20,7 @@
                   <v-text-field
                     class="input--field"
                     elevation="0"
-                    placeholder="Amy Will"
+                    placeholder="Name"
                     solo
                   ></v-text-field>
                 </v-col>

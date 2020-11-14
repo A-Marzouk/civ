@@ -6,19 +6,37 @@
 
     <div class="about-me__detail">
       <div class="left-side">
-        <div class="box" v-if="currentUser.personal_info.date_of_birth">
+        <div
+          class="box"
+          v-if="
+            currentUser.personal_info.is_date_of_birth_active &&
+            currentUser.personal_info.date_of_birth
+          "
+        >
           <div class="title">Date of Birth</div>
           <div class="subtitle">
             {{ currentUser.personal_info.date_of_birth }}
           </div>
         </div>
-        <div class="box" v-if="currentUser.personal_info.nationality">
+        <div
+          class="box"
+          v-if="
+            currentUser.personal_info.is_nationality_active &&
+            currentUser.personal_info.nationality
+          "
+        >
           <div class="title">Nationality</div>
           <div class="subtitle">
             {{ currentUser.personal_info.nationality }}
           </div>
         </div>
-        <div class="box" v-if="currentUser.personal_info.hometown">
+        <div
+          class="box"
+          v-if="
+            currentUser.personal_info.is_hometown_active &&
+            currentUser.personal_info.hometown
+          "
+        >
           <div class="title">Hometown</div>
           <div class="subtitle">{{ currentUser.personal_info.hometown }}</div>
         </div>
@@ -36,24 +54,45 @@
       <div class="right-side">
         <div
           class="box vertical-space"
-          v-if="currentUser.personal_info.overview"
+          v-if="
+            currentUser.personal_info.is_overview_active &&
+            currentUser.personal_info.overview
+          "
         >
           <div class="title">Overview Sumary</div>
           <div class="subtitle">
             {{ currentUser.personal_info.overview }}
           </div>
         </div>
-        <div class="box" v-if="currentUser.personal_info.about">
+        <div
+          class="box"
+          v-if="
+            currentUser.personal_info.is_about_active &&
+            currentUser.personal_info.about
+          "
+        >
           <div class="title">About Me</div>
           <div class="subtitle">
             {{ currentUser.personal_info.about }}
           </div>
         </div>
-        <div class="box" v-if="currentUser.personal_info.quote">
+        <div
+          class="box"
+          v-if="
+            currentUser.personal_info.is_quote_active &&
+            currentUser.personal_info.quote
+          "
+        >
           <div class="title">Quote</div>
           <div class="subtitle">{{ currentUser.personal_info.quote }}</div>
         </div>
-        <div class="box" v-if="currentUser.personal_info.location">
+        <div
+          class="box"
+          v-if="
+            currentUser.personal_info.is_location_active &&
+            currentUser.personal_info.location
+          "
+        >
           <div class="title">Location</div>
           <div class="subtitle">{{ currentUser.personal_info.location }}</div>
         </div>

@@ -16,6 +16,8 @@ export const store = new Vuex.Store({
             id: 'dummy',
             personal_info: {
                 full_name: 'Beverly Andrews',
+                first_name: 'Beverly',
+                last_name: 'Andrews',
                 email: 'beverly@andrews.com',
                 profile_pic: '/images/resume_themes/theme200/images/about-me/men.png',
                 designation: 'User interface designer',
@@ -28,6 +30,15 @@ export const store = new Vuex.Store({
                 hometown: 'London',
                 about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.',
             },
+            payment_methods: [
+                {
+                    'name': 'Stripe',
+                    'link': 'https://stripe.com',
+                    'is_active': true,
+                    'is_primary': true,
+                    'order': 1,
+                }
+            ],
             languages: [
                 {
                     id: 6,
@@ -188,6 +199,35 @@ export const store = new Vuex.Store({
                     is_public: 1
                 }
             ],
+            preferences: [
+                {
+                    title: 'hourly_rate',
+                    label: 'Hourly Rate',
+                    'is_public': true
+                },
+                {
+                    title: 'weekly_availability',
+                    label: 'Weekly Availability',
+                    'is_public': true
+                },
+                {
+                    title: 'hire_me',
+                    label: 'Hire Me',
+                    'is_public': true
+
+                },
+                {
+                    title: 'chat',
+                    label: 'Chat',
+                    'is_public': true
+
+                },
+                {
+                    title: 'pdf_download',
+                    label: 'Download PDF',
+                    'is_public': true
+                }
+            ],
             projects: [
                 {
 
@@ -196,6 +236,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
@@ -211,6 +252,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/dribbble_fitness_2x_2x 1.png',
@@ -226,6 +268,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness2_2x_2x 1.png',
@@ -241,6 +284,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
@@ -256,6 +300,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness2_2x_2x 1.png',
@@ -271,6 +316,7 @@ export const store = new Vuex.Store({
                     link: 'website.com',
                     skills: 'HTML, CSS and JS',
                     software: 'Vue.js',
+                    category: 'Development',
                     images: [
                         {
                             src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
@@ -288,21 +334,28 @@ export const store = new Vuex.Store({
                     link_title: 'Instagram',
                     is_active: true,
                     is_public: 1
-
                 },
                 {
                     id: Math.random(),
                     category: 'social_link',
-                    link: 'https://instagram.com',
+                    link: 'https://behance.net',
                     link_title: 'Behance',
-                    is_active: false,
+                    is_active: true,
                     is_public: 1
                 },
                 {
                     id: Math.random(),
                     category: 'social_link',
-                    link: 'https://instagram.com',
+                    link: 'https://linkedin.com',
                     link_title: 'Linkedin',
+                    is_active: true,
+                    is_public: 1
+                },
+                {
+                    id: Math.random(),
+                    category: 'social_link',
+                    link: 'https://twitter.com',
+                    link_title: 'Twitter',
                     is_active: true,
                     is_public: 1
                 }
@@ -415,7 +468,7 @@ export const store = new Vuex.Store({
                     transcript: "John Doe, One of the greatest UX designers of all time.",
                     title: "John Doe",
                     resume_link_id: "4",
-                    url: '"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
                     media_preview: '/images/video-holder.svg',
                     order: "1",
                     is_public: "1",
@@ -424,7 +477,7 @@ export const store = new Vuex.Store({
                     updated_at: "2020-07-20 09:12:51"
                 }
             ],
-            tabs:[
+            tabs: [
                 {
                     'title': 'work_experience',
                     'label': 'Work Experience',
@@ -494,10 +547,10 @@ export const store = new Vuex.Store({
             ],
         },
         themeUser: {},
-        currentGlobalTab:'',
+        currentGlobalTab: '',
         access_token: Vue.$cookies.get('access_token') || null,
         defaultTabs: ['work_experience', 'education', 'about_me', 'portfolio', 'skills', 'media', 'hobbies', 'references', 'achievements'],
-        excludedTabs:[
+        excludedTabs: [
             'structure',
             'imports',
             'manager',
@@ -521,18 +574,18 @@ export const store = new Vuex.Store({
         // activity
         updateActivity(state) {
             state.savingStatus = 'saving';
-            axios.post('/api/user/update-last-activity', { user_id: state.user.id }).then((response) => {
+            axios.post('/api/user/update-last-activity', {user_id: state.user.id}).then((response) => {
                 state.savingStatus = 'saved';
                 setTimeout(() => {
                     state.savingStatus = 'normal';
                     state.justSaved = true;
-                },2000);
+                }, 2000);
 
-                if(! state.updateActivityTimer ){
-                    state.updateActivityTimer = setInterval( () => {
+                if (!state.updateActivityTimer) {
+                    state.updateActivityTimer = setInterval(() => {
                         state.justSaved = false;
                         axios.get('/api/user/last-activity/' + state.user.id).then((response) => {
-                            state.user.last_activity = response.data.last_activity ;
+                            state.user.last_activity = response.data.last_activity;
                         });
                     }, 60000);
                 }
@@ -542,7 +595,7 @@ export const store = new Vuex.Store({
                 state.savingStatus = 'error';
                 setTimeout(() => {
                     state.savingStatus = 'normal';
-                },1500);
+                }, 1500);
                 console.log('Error - last activity');
             });
 
@@ -553,15 +606,15 @@ export const store = new Vuex.Store({
             }
         },
         // theme tab globally
-        updateThemeTabGlobally(state, tab_title){
+        updateThemeTabGlobally(state, tab_title) {
             console.log(tab_title);
-            state.currentGlobalTab = tab_title ;
+            state.currentGlobalTab = tab_title;
         },
 
         // updating order
         updateLinks(state, links) {
             state.user.links = links;
-            axios.post('/api/user/links/update-order', { links: links })
+            axios.post('/api/user/links/update-order', {links: links})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -569,7 +622,7 @@ export const store = new Vuex.Store({
         },
         updateResumeLinks(state, resume_links) {
             state.user.resume_links = resume_links;
-            axios.post('/api/user/resume-links/update-order', { resume_links: resume_links })
+            axios.post('/api/user/resume-links/update-order', {resume_links: resume_links})
                 .then((response) => {
                     this.dispatch('flyingNotification');
                 })
@@ -577,7 +630,7 @@ export const store = new Vuex.Store({
         },
         updateReferences(state, references) {
             state.user.references = references;
-            axios.post('/api/user/references/update-order', { references: references })
+            axios.post('/api/user/references/update-order', {references: references})
                 .then(() => {
                     this.dispatch('flyingNotification');
                 })
@@ -585,7 +638,7 @@ export const store = new Vuex.Store({
         },
         updateTabs(state, tabs) {
             state.user.tabs = tabs;
-            axios.post('/api/user/tabs/update-order', { tabs: tabs })
+            axios.post('/api/user/tabs/update-order', {tabs: tabs})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -593,7 +646,7 @@ export const store = new Vuex.Store({
         },
         updateDownloads(state, downloads) {
             state.user.downloads = downloads;
-            axios.post('/api/user/downloads/update-order', { tabs: downloads })
+            axios.post('/api/user/downloads/update-order', {tabs: downloads})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -601,7 +654,7 @@ export const store = new Vuex.Store({
         },
         updateWorks(state, works) {
             state.user.work_experience = works;
-            axios.post('/api/user/work-experience/update-order', { works: works })
+            axios.post('/api/user/work-experience/update-order', {works: works})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -609,7 +662,7 @@ export const store = new Vuex.Store({
         },
         updateEducation(state, educations) {
             state.user.education = educations;
-            axios.post('/api/user/education/update-order', { educations: educations })
+            axios.post('/api/user/education/update-order', {educations: educations})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -617,7 +670,7 @@ export const store = new Vuex.Store({
         },
         updateProjects(state, projects) {
             state.user.projects = projects;
-            axios.post('/api/user/projects/update-order', { projects: projects })
+            axios.post('/api/user/projects/update-order', {projects: projects})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -625,7 +678,7 @@ export const store = new Vuex.Store({
         },
         updateImports(state, imports) {
             state.user.imports = imports;
-            axios.post('/api/user/imports/update-order', { imports: imports })
+            axios.post('/api/user/imports/update-order', {imports: imports})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -633,7 +686,7 @@ export const store = new Vuex.Store({
         },
         updateMedia(state, medias) {
             state.user.media = medias;
-            axios.post('/api/user/media/update-order', { medias: medias })
+            axios.post('/api/user/media/update-order', {medias: medias})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -641,7 +694,7 @@ export const store = new Vuex.Store({
         },
         updateSkills(state, skills) {
             state.user.skills = skills;
-            axios.post('/api/user/skills/update-order', { skills: skills })
+            axios.post('/api/user/skills/update-order', {skills: skills})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -649,15 +702,15 @@ export const store = new Vuex.Store({
         },
         updatePaymentMethods(state, paymentMethods) {
             state.user.payment_methods = paymentMethods;
-            axios.post('/api/user/payment-methods/update-order', { paymentMethods: paymentMethods })
-                .then( () => {
+            axios.post('/api/user/payment-methods/update-order', {paymentMethods: paymentMethods})
+                .then(() => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
         updateHobbies(state, hobbies) {
             state.user.hobbies = hobbies;
-            axios.post('/api/user/hobbies/update-order', { hobbies: hobbies })
+            axios.post('/api/user/hobbies/update-order', {hobbies: hobbies})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -665,7 +718,7 @@ export const store = new Vuex.Store({
         },
         updateAchievements(state, achievements) {
             state.user.achievements = achievements;
-            axios.post('/api/user/achievements/update-order', { achievements: achievements })
+            axios.post('/api/user/achievements/update-order', {achievements: achievements})
                 .then(response => {
                     this.dispatch('flyingNotification');
                 })
@@ -674,9 +727,9 @@ export const store = new Vuex.Store({
 
         // system notifications
         showFlyingNotification: (state, data) => {
-            if(data.message === 'Error'){
-                state.savingStatus = 'error' ;
-            }else{
+            if (data.message === 'Error') {
+                state.savingStatus = 'error';
+            } else {
                 store.commit('updateActivity');
             }
 
@@ -716,12 +769,12 @@ export const store = new Vuex.Store({
         },
         logoutUnauthorizedUser() {
             axios.post('/logout').then((response) => {
-                // remove access token from cookies:
-                if (Vue.$cookies.isKey('access_token')) {
-                    Vue.$cookies.remove('access_token');
+                    // remove access token from cookies:
+                    if (Vue.$cookies.isKey('access_token')) {
+                        Vue.$cookies.remove('access_token');
+                    }
+                    window.location.href = '/login';
                 }
-                window.location.href = '/login';
-            }
             )
         },
 

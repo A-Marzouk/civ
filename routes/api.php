@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +106,10 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/tabs/toggle-tab', 'API\TabsController@toggleVisibility');
     Route::put('/tabs', 'API\TabsController@toggleVisibility');
 
+    // preferences:
+    Route::put('/preferences/toggle-visibility', 'API\PreferenceController@toggleVisibility');
+
+
     //list workExperience
     Route::get('/work-experience', 'API\WorkExController@index');
     //list single workExperience
@@ -166,7 +171,6 @@ Route::group(['prefix' => 'user/'], function () {
 // Languages api routes:
     Route::get('/languages', 'API\LanguagesController@index');
     Route::get('/languages-list', 'API\LanguagesController@languagesList');
-    Route::post('/languages', 'API\LanguagesController@store');
     Route::post('/languages-many', 'API\LanguagesController@storeMany');
     Route::post('/languages-sync', 'API\LanguagesController@syncLanguages');
     Route::delete('/languages/{id}/{user_id}', 'API\LanguagesController@destroy');
@@ -259,7 +263,10 @@ Route::group(['prefix' => 'admin/'], function () {
     Route::delete('delete-promocode/{id}', 'API\Admin\PromocodesController@destroy');
 });
 
-
+// API search routes
+Route::group(['prefix' => 'search/'], function(){
+    Route::get('/workforce-profiles', 'API\SearchController@getWorkForceVisibleProfiles');
+});
 // API users routes
 Route::get('user', 'API\UsersController@user');
 

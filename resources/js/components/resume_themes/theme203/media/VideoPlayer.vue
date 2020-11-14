@@ -17,8 +17,8 @@
                 <v-img
                   src="/images/resume_themes/theme203/icons/inner-play.svg"
                 ></v-img>
-              </v-btn> </v-overlay
-          ></v-img>
+              </v-btn>
+              </v-overlay></v-img>
         </div>
         <div ref="videotm903" class="videotm903">
           <video

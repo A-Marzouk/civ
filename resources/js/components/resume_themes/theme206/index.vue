@@ -17,25 +17,21 @@
           style="width: 100%"
         >
           <v-row class align="center" justify="center" dense>
-            <v-col
-              xl="4"
-              lg="3"
-              md="8"
-              sm="7"
-            >
+            <v-col xl="4" lg="3" md="8" sm="7">
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title"
-                  >{{ currentUser.personal_info.first_name }}
-                  {{ currentUser.personal_info.last_name }}</v-card-title
-                >
+                <v-card-title class="custom-profile-title">
+                  {{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}
+                </v-card-title>
                 <v-card-subtitle class="custom-profile-subtitle">
                   {{ currentUser.personal_info.designation }}
                 </v-card-subtitle>
                 <v-card-text
-                  class="custom-profile-text hidden-sm-and-down"
+                  class="custom-profile-text hidden-md-and-down"
                   v-if="currentUser.personal_info.overview"
-                  >{{ currentUser.personal_info.overview }}</v-card-text
                 >
+                  {{ currentUser.personal_info.overview }}
+                </v-card-text>
               </v-card>
             </v-col>
 
@@ -48,36 +44,19 @@
               <v-card
                 flat
                 color="transparent"
-                class="pa-0 hire-me-card mt-md-2 mt-sm-0"
+                class="pa-0 hire-me-card mt-md-2 mt-sm-0 ml"
               >
-                <v-btn
-                  color="#FAFAFA"
-                  class="btn-hire-me hidden-md-and-down"
-                  x-large
-                  @click="hireMeModal = !hireMeModal"
-                >
-                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
-                </v-btn>
+                    <v-btn
+                        color="#FAFAFA"
+                        class="btn-hire-me hidden-md-and-down"
+                        x-large
+                        @click="hireMeModal = !hireMeModal"
+                    >
+                        <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
+                    </v-btn>
 
-                <!-- social buttons -->
-                <v-btn
-                  class="custom-social-btn mx-md-3 mx-sm-3 mx-2"
-                  href="javascript:void(0)"
-                  @click="goToExternalLink(userLink.link)"
-                  v-for="userLink in currentUser.links"
-                  :key="userLink.id + '_link'"
-                  target="_blank"
-                  v-show="userLink.is_active && userLink.is_public"
-                  color="#FAFAFA"
-                >
-                  <img
-                    :width="userLink.link_title == 'facebook' ? '12' : '20'"
-                    x-large
-                    :src="getSocialIcon(userLink.link_title)"
-                  />
-                </v-btn>
-                <!-- social buttons -->
-              </v-card>
+                    <SocialButtons :links="currentUser.links" screen="tablet" />
+                </v-card>
             </v-col>
             <!-- Social Button for tablet only -->
 
@@ -85,102 +64,36 @@
             <v-col xl="3" lg="4" md="5" sm="7" class>
               <!-- Hour rate -->
               <v-card
-                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-lg-12 ml-md-0"
+                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-md-0"
                 color="transparent"
                 flat
                 tile
               >
-                <v-card-text class="ml-xl-0 ml-lg-12 ml-md-0">
-                  <v-list-item two-line class>
-                    <v-list-item-avatar size="18">
-                      <img
-                        width="18"
-                        src="/images/resume_themes/theme206/icons/usd.png"
-                      />
-                    </v-list-item-avatar>
-                    <v-list-item-content>
-                      <v-list-item-subtitle>
-                        <v-card color="transparent" flat class="pa-0 ma-0" tile>
-                          <span class="hour-rate">Hour Rate</span>
-                        </v-card>
-                      </v-list-item-subtitle>
-                      <v-list-item-subtitle v-if="currentUser.payment_info">
-                        <v-card color="transparent" flat tile>
-                          <span class="rate">{{
-                            currentUser.payment_info[0].salary
-                          }}</span>
-                        </v-card>
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card-text>
-
-                <!-- Hour Rate -->
-                <!-- Weekly availibility -->
-
-                <v-list-item
-                  two-line
-                  class="availibilty-col ml-lg-0 ml-md-n10 ml-sm-n12 ml-0"
-                >
-                  <v-list-item-avatar size="16">
-                    <img
-                      width="16"
-                      src="/images/resume_themes/theme206/icons/watch.png"
-                    />
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-subtitle>
-                      <v-card color="transparent" flat tile>
-                        <span class="hour-rate">Weekly availibility</span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                    <v-list-item-subtitle v-if="currentUser.availability_info">
-                      <v-card color="transparent" class="pa-0 ma-0" flat tile>
-                        <span class="rate">{{
-                          currentUser.availability_info[0].available_hours
-                        }}</span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-                <!-- Weekly availibility -->
+                <SalaryRate :paymentInfo="currentUser.payment_info" />
+                <AvailabilityHours :availabilityInfo="currentUser.availability_info" />
               </v-card>
             </v-col>
             <!-- Availibility  -->
 
             <!-- 3rd column -->
             <v-col
+              xl="5"
               lg="5"
               md="5"
               class="hidden-md-and-down mt-lg-0"
               align="right"
             >
-              <v-card flat color="transparent" class="pa-0 hire-me-card">
+              <v-card flat color="transparent" class="pa-0 hire-me-card d-flex align-items-center">
+                <SocialButtons :links="currentUser.links" screen="desktop" />
+
                 <v-btn
                   color="#FAFAFA"
                   class="btn-hire-me hidden-sm-and-down"
                   x-large
+                  v-if="findPreference('hire_me')"
                   @click="hireMeModal = !hireMeModal"
                 >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
-                </v-btn>
-
-                <!-- social buttons -->
-                <v-btn
-                  class="custom-social-btn mx-2"
-                  href="javascript:void(0)"
-                  @click="goToExternalLink(userLink.link)"
-                  v-for="userLink in currentUser.links"
-                  :key="userLink.id + '_link'"
-                  target="_blank"
-                  v-show="userLink.is_active && userLink.is_public"
-                  color="#FAFAFA"
-                >
-                  <img
-                    :width="userLink.link_title == 'facebook' ? '12' : '20'"
-                    x-large
-                    :src="getSocialIcon(userLink.link_title)"
-                  />
                 </v-btn>
                 <!-- social buttons -->
               </v-card>
@@ -196,9 +109,11 @@
             <v-col md="4" sm="5" class="d-none d-sm-flex d-md-flex d-lg-none">
               <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
                 <v-btn
-                  color="#FAFAFA"
                   class="btn-hire-me"
+                  color="#FAFAFA"
+                  width="212px"
                   x-large
+                  v-if="findPreference('hire_me')"
                   @click="hireMeModal = !hireMeModal"
                 >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
@@ -229,19 +144,16 @@
         absolute
         width="350"
       >
-        <v-card
-          flat
-          color="transparent"
-        >
+        <v-card flat color="transparent">
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
           <v-list-item class="mt-n12">
             <v-list-item-avatar size="80">
-              <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
+              <v-img :src="currentUser.personal_info.profile_pic"></v-img>
             </v-list-item-avatar>
             <div class="half-circle-mobile"></div>
             <v-list-item-content class="mt-12">
               <v-list-item-title>
-                <v-card color="transparent" class="pa-2" flat>
+                <v-card color="transparent" class="pa-5" flat>
                   <span class="profile-title-mobile"
                     >{{ currentUser.personal_info.first_name }}
                     {{ currentUser.personal_info.last_name }}</span
@@ -249,7 +161,7 @@
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
-                <v-card flat color="transparent" class="pa-2 mt-n5">
+                <v-card flat color="transparent" class="pa-5 mt-n5">
                   <span class="profile-subtitle-mobile">{{
                     currentUser.personal_info.designation
                   }}</span>
@@ -257,23 +169,7 @@
               </v-list-item-subtitle>
               <v-list-item-title>
                 <v-card height="50" flat color="transparent" class="mt-2">
-                  <v-btn
-                    x-small
-                    class="custom-social-btn mx-2"
-                    href="javascript:void(0)"
-                    @click="goToExternalLink(userLink.link)"
-                    v-for="userLink in currentUser.links"
-                    :key="userLink.id + '_link'"
-                    target="_blank"
-                    v-show="userLink.is_active && userLink.is_public"
-                    color="#FAFAFA"
-                    height="40"
-                  >
-                    <img
-                      :width="userLink.link_title == 'facebook' ? '8' : '14'"
-                      :src="getSocialIcon(userLink.link_title)"
-                    />
-                  </v-btn>
+                    <SocialButtons :links="currentUser.links" screen="mobile" />
                 </v-card>
               </v-list-item-title>
             </v-list-item-content>
@@ -314,7 +210,8 @@
               <v-tab
                 v-for="tab in currentUser.tabs"
                 :key="tab.title"
-                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                v-if="!excludedTabs.includes(tab.title)"
+                v-show="tab.is_public"
                 @click="activeTab = tab.title"
                 :class="[activeTab === tab.title ? 'active-mobile-tab' : '']"
               >
@@ -333,12 +230,14 @@
               v-model="indexOfActiveTab"
               center-active
               hide-slider
+              show-arrows
               class="hidden-xs-only mt-md-10 my-md-0 my-sm-3"
             >
               <v-tab
                 v-for="tab in currentUser.tabs"
                 :key="tab.title"
-                v-if="!excludedTabs.includes(tab.title)" v-show="tab.is_public"
+                v-if="!excludedTabs.includes(tab.title)"
+                v-show="tab.is_public"
                 @click="activeTab = tab.title"
                 class="mx-md-2 mx-sm-2 text-capitalize"
                 :class="[
@@ -366,27 +265,7 @@
               <v-tabs-items v-model="indexOfActiveTab">
                 <!-- Portfolio -->
                 <v-tab-item :value="getTabIndex('portfolio')">
-                  <v-card color="transparent" flat>
-                    <v-card-text>
-                      <v-row>
-                        <v-col
-                          cols="12"
-                          sm="6"
-                          md="3"
-                          v-for="project in currentUser.projects"
-                          :key="project.id"
-                          v-show="project.is_public"
-                        >
-                          <v-card class="card-portfolio" hover>
-                            <v-img
-                              :aspect-ratio="1.2"
-                              :src="getProjectMainImage(project)"
-                            ></v-img>
-                          </v-card>
-                        </v-col>
-                      </v-row>
-                    </v-card-text>
-                  </v-card>
+                  <Portfolio :currentUser="currentUser" />
                 </v-tab-item>
                 <!-- Portfolio -->
                 <!-- Education -->
@@ -401,12 +280,14 @@
                       :key="education.id"
                       v-show="education.is_public"
                     >
-                      <v-card class="card-education pa-5" hover>
+                      <v-card class="card-education pa-xl-5 pa-lg-3 pa-5" hover>
                         <v-card-title class="education-title">
                           <v-row>
-                            <v-col cols="10">{{
-                              education.university_name
-                            }}</v-col>
+                            <v-col cols="10">
+                              <div class="education-title">
+                                {{ education.university_name }}
+                              </div>
+                            </v-col>
                             <v-col cols="2" align="right">
                               <img
                                 src="/images/resume_themes/theme206/tabs/2.png"
@@ -440,7 +321,7 @@
                       :key="work.id"
                       v-show="work.is_public"
                     >
-                      <v-card class="card-education pa-5" hover>
+                      <v-card class="card-education pa-xl-5 pa-lg-2 pa-5" hover>
                         <v-card-title class="education-title">
                           <v-row>
                             <v-col cols="10">{{ work.job_title }}</v-col>
@@ -575,6 +456,28 @@
                           v-show="audio.is_public"
                         >
                           <audioMedia :audioMedia="audio"></audioMedia>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-row justify="start">
+                            <v-col
+                              xl="4"
+                              lg="4"
+                              md="6"
+                              sm="6"
+                              cols="12"
+                              v-for="item in filterVideo(currentUser.media)"
+                              :key="item.id"
+                            >
+                              <v-card style="border-radius: 9px">
+                                <video-player
+                                  :title="item.title"
+                                  :details="item.content"
+                                  :file="item.url"
+                                  :previewImg="item.media_preview"
+                                ></video-player>
+                              </v-card>
+                            </v-col>
+                          </v-row>
                         </v-col>
                       </v-row>
                     </v-card-text>
@@ -773,7 +676,7 @@
                               <img
                                 src="/images/resume_themes/theme206/football.svg"
                                 alt="football"
-                                class="mx-auto"
+                                class="mx-auto mr-lg-3 mr-md-3 mr-sm-2 mr-2"
                               />
                               <div class="hobby-title mx-auto my-auto">
                                 {{ hobby.title }}
@@ -874,7 +777,7 @@
                         v-show="achievement.is_public"
                       >
                         <v-card
-                          class="card-achievement pa-xl-10 pa-lg-6 pa-md-12 pa-sm-9 pa-2 mb-6"
+                          class="card-achievement pa-xl-10 pa-lg-6 pa-md-12 pa-sm-9 pa-5 mb-6"
                           hover
                         >
                           <div class="d-flex flex-row my-auto">
@@ -940,12 +843,30 @@
 
 <script>
 import audioMedia from "./media/audioMedia";
+import VideoPlayer from "./media/VideoPlayer";
 import HireModal from "../theme203/payment/HireModal";
+import Portfolio from "./tabs/Portfolio";
+import SocialButtons from "./common/SocialButtons";
+import SalaryRate from "./common/SalaryRate";
+import AvailabilityHours from "./common/AvailabilityHours";
+
 export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
     audioMedia,
     HireModal,
+    Portfolio,
+    VideoPlayer,
+    SocialButtons,
+    SalaryRate,
+    AvailabilityHours,
+  },
+  filters: {
+    capitalize: function (value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
   },
   data() {
     return {
@@ -957,6 +878,8 @@ export default {
       indexOfActiveTab: 0,
       currentSkillTab: 1,
       hireMeModal: false,
+      availability: 0,
+      paymentInfo: 0,
       skills: [
         {
           id: 1,
@@ -971,49 +894,82 @@ export default {
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    builderCurrentTabTitle: function(val) {
-      if(!this.defaultTabs.includes(val)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = val ;
+    builderCurrentTabTitle: function (val) {
+      if (!this.defaultTabs.includes(val)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = val;
       }
 
       this.setTabIndex();
-    }
-  },
-  computed:{
-    defaultTabs(){
-      return this.$store.state.defaultTabs ;
     },
-    excludedTabs(){
-      return this.$store.state.excludedTabs ;
-    }
+  },
+  computed: {
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
+    },
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
+    },
   },
   methods: {
-    getFirstActiveTabTitle(){
-      let title = '';
-      this.currentUser.tabs.forEach( (tab) => {
-        if(tab.is_public && !this.excludedTabs.includes(tab.title)){
-          if(title === ''){
-            title = tab.title ;
+    findPreference(title) {
+      if (!this.currentUser) {
+        return;
+      }
+      let currentPrefer = null;
+      this.currentUser.preferences.forEach((prefer) => {
+        if (prefer.title === title) {
+          currentPrefer = prefer;
+        }
+      });
+      if (currentPrefer) {
+        return currentPrefer.is_public;
+      }
+      return "";
+    },
+    availabilityNext() {
+      if (this.availability == 2) {
+        this.availability = 0;
+      } else this.availability++;
+    },
+    paymentInfoNext() {
+      if (this.paymentInfo == 3) {
+        this.paymentInfo = 0;
+      } else this.paymentInfo++;
+    },
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
           }
         }
       });
 
-      return title ;
+      return title;
     },
-    setTabIndex(){
-      this.indexOfActiveTab = this.currentUser.tabs.findIndex(tab => tab.title === this.activeTab);
+    filterVideo(dataArray) {
+      var filterArray = dataArray.filter((a) => a.type === "video");
+      return filterArray;
     },
-    getTabIndex(tabTitle){
-      let index =  this.currentUser.tabs.findIndex(tab => tab.title === tabTitle);
+    setTabIndex() {
+      this.indexOfActiveTab = this.currentUser.tabs.findIndex(
+        (tab) => tab.title === this.activeTab
+      );
+    },
+    getTabIndex(tabTitle) {
+      let index = this.currentUser.tabs.findIndex(
+        (tab) => tab.title === tabTitle
+      );
       return index;
     },
-    goToExternalLink(link){
-      if(!link.includes('http')){
-        link = 'http://' + link ;
+    goToExternalLink(link) {
+      if (!link.includes("http")) {
+        link = "http://" + link;
       }
-      window.location.href = link ;
+      window.location.href = link;
     },
     skillCategory(skillName) {
       var filteredSkill = this.currentUser.skills.filter(
@@ -1065,21 +1021,22 @@ export default {
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     },
-    setActiveTabByURL(){
+    setActiveTabByURL() {
       const pathSplit = this.$route.path.split("/");
       let currentActiveTab = pathSplit[pathSplit.length - 1];
-      if(!this.defaultTabs.includes(currentActiveTab)){
-        this.activeTab = this.getFirstActiveTabTitle() ;
-      }else {
-        this.activeTab = currentActiveTab ;
+      if (!this.defaultTabs.includes(currentActiveTab)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = currentActiveTab;
       }
-    }
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
 
     // set active tab
     this.setActiveTabByURL();
@@ -1176,28 +1133,16 @@ export default {
 }
 .hire-me-card {
   margin-top: -70px;
+
   @media screen and (max-width: 959px) {
     margin-top: 0px;
   }
 }
 
-.hour-rate {
-  font-family: "Poppins", sans-serif !important;
-  color: rgba(88, 67, 190, 0.5) !important;
-  font-size: 0.625rem;
-  line-height: 1.313rem;
-  text-transform: uppercase;
-}
-.rate {
-  font-family: "Poppins", sans-serif !important;
-  color: #5843be !important;
-  font-size: 2.5rem;
-  line-height: 3rem;
-  font-weight: bold;
-}
 .btn-hire-me {
-  width: 230px;
-  height: 60px !important;
+  width: 180px;
+  height: 50px !important;
+
   @media screen and (max-width: 1263px) {
     width: 240px;
   }
@@ -1205,22 +1150,6 @@ export default {
   @media screen and (max-width: 599px) {
     width: 299px;
     color: #5843be !important;
-  }
-}
-.custom-social-btn {
-  width: 60px;
-  height: 60px !important;
-  @media screen and (min-width: 600px) and (max-width: 1263px) {
-    width: 60px;
-    height: 60px !important;
-  }
-
-  @media screen and (max-width: 599px) {
-    height: 30px !important;
-    width: 30px !important;
-    border-radius: 5px !important;
-    box-shadow: 1.5px 1.5px 3px rgba(35, 35, 35, 0.4),
-      -1px -1px 3px rgba(206, 206, 206, 0.24) !important;
   }
 }
 // Tabs
@@ -1287,6 +1216,13 @@ export default {
   font-weight: bold !important;
   line-height: 30px !important;
   font-size: 26px;
+  word-break: break-word;
+  @media screen and (max-width: 411px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 374px) {
+    font-size: 16px;
+  }
   img {
     width: 40px;
   }
@@ -1305,10 +1241,20 @@ export default {
   color: #333333 !important;
   line-height: 23px;
   font-size: 1.125rem !important;
+  @media screen and (max-width: 411px) {
+    font-size: 1rem !important;
+  }
+  @media screen and (max-width: 374px) {
+    font-size: 14px !important;
+  }
 }
 .education-session {
   font-family: "Roboto", sans-serif !important;
   color: rgba(51, 51, 51, 0.5) !important;
+  font-size: 20px !important;
+  @media screen and (max-width: 374px) {
+    font-size: 12px !important;
+  }
 }
 //education
 // Skill tab
@@ -1512,14 +1458,6 @@ export default {
   }
 }
 
-// .availibilty-col {
-//   @media screen and (min-width: 1025px) {
-//     margin-left: -52px;
-//   }
-//   @media screen and (max-width: 1024px) {
-//     margin-left: -20px;
-//   }
-// }
 //hobbies tab
 .card-hobby {
   background: linear-gradient(0deg, #fafafa, #fafafa) !important;
@@ -1543,6 +1481,7 @@ export default {
   line-height: 27px;
   text-transform: uppercase;
   color: #000000;
+  word-break: break-word;
   @media screen and (max-width: 599px) {
     font-size: 14px;
     line-height: 21px;
@@ -1692,7 +1631,7 @@ export default {
     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
 }
 
-#resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled {
+/* #resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
-}
+} */
 </style>

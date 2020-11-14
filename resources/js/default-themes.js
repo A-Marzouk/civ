@@ -3,11 +3,11 @@ import vuetify from "./vuetify";
 import { store } from "./store/store";
 
 // VueRouter
-import VueRouter from 'vue-router';
-Vue.use(VueRouter)
+import VueRouter from "vue-router";
+Vue.use(VueRouter);
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: "history"
 });
 
 import resumeTheme2 from "./components/resume_themes/theme2/index";
@@ -81,6 +81,7 @@ if ($("#resumeTheme8").length !== 0) {
         el: "#resumeTheme8",
         store,
         vuetify,
+        iconfont: "fa4",
         components: {
             "resume-theme-8": resumeTheme8
         }
@@ -336,6 +337,7 @@ if ($("#resumeTheme203").length !== 0) {
         el: "#resumeTheme203",
         vuetify,
         store,
+        router,
         iconfont: "fa4",
         components: {
             "resume-theme-203": resumeTheme203

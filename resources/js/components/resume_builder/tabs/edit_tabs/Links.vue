@@ -43,6 +43,7 @@
             :class="{'resume-builder__input--disabled': false}"
             :disabled="false"
             :label="getLabel()"
+            :placeholder="getLabel()"
             :error="!!errors.link"
             :error-messages="errors.link"
             v-model="editedLink.link"
@@ -304,7 +305,7 @@ export default {
         "i"
       ); // fragment locator
       if (this.editedLink.link_title === "Skype") {
-        return this.testSkypeUrl(str);
+        return str.length > 2 ;
       }
       if (this.editedLink.link_title === "Email") {
         return this.testEmail(str);
@@ -317,10 +318,6 @@ export default {
         "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$"
       ); // fragment locator
       return !!pattern.test(str);
-    },
-    testSkypeUrl(skype_url) {
-      let skypePattern = /skype:/gi;
-      return skypePattern.test(skype_url);
     },
     testEmail(email) {
       let emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

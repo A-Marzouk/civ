@@ -22,7 +22,7 @@ export default {
 </script>
 <style lang="scss">
 .tm701-header {
-    background-image: url("../../../../../public/images/resume_themes/theme701/header-mask.png");
+    background-image: url("/images/resume_themes/theme701/header-mask.png");
     background-color: #dbdec4;
     .tm701-header--inner {
         padding: 0;

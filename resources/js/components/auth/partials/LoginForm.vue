@@ -27,41 +27,42 @@
                         <v-card-subtitle>
                             <v-form ref="form" :lazy-validation="lazy" class="login-form">
                                 <div class="input-div mt-md-0 mt-sm-0 mt-n3">
-                                    <label>Email Address</label>
+                                    <label style="line-height: 40px;">Email Address</label>
                                     <v-text-field
                                             dark
                                             color="primary"
                                             class="login-input"
                                             type="email"
                                             outlined
-                                            :error="errors.email"
+                                            :error="!!errors.email"
+                                            :error-messages="errors.email"
                                             background-color="#ffffff"
                                             v-model="formData.email"
                                             :height="windowWidth<=599 ? '33.44' : '60'"
                                     ></v-text-field>
-                                    <div
-                                            class="error--text error-custom-margin"
-                                            v-if="errors.email"
-                                    >{{errors.email[0]}}</div>
                                 </div>
 
                                 <div class="input-div mt-md-0 mt-sm-0 mt-n3">
-                                    <label>Password</label> <a href="/password/reset" class="ml-2">Forgot?</a>
+                                    <label style="line-height: 40px;">Password</label> <a href="/password/reset" class="ml-2">Forgot?</a>
                                     <v-text-field
                                             dark
                                             color="primary"
                                             class="login-input"
-                                            type="password"
+                                            :type="fieldType"
                                             outlined
-                                            :error="errors.password"
+                                            :error="!!errors.password"
+                                            :error-messages="errors.password"
                                             background-color="#ffffff"
                                             v-model="formData.password"
                                             :height="windowWidth<=599 ? '33.44' : '60'"
-                                    ></v-text-field>
-                                    <div
-                                            class="error--text error-custom-margin"
-                                            v-if="errors.password"
-                                    >{{errors.password[0]}}</div>
+                                    >
+                                        <template slot="append" class="show-password">
+                                            <a href="javascript:void(0)">
+                                                <img src="/icons/eye-blue.svg" alt="eye" style="width: 40px; height: 40px; margin-top: -8px !important;" @click="showPassword">
+                                            </a>
+                                        </template>
+                                    </v-text-field>
+
                                 </div>
 
                                 <v-checkbox dense v-model="formData.remember" class="hidden-sm-only mt-n2">
@@ -104,6 +105,7 @@
             return {
                 windowWidth: window.innerWidth,
                 agreeCheck: false,
+                fieldType: 'password',
                 socialMediaIcons: [
                     {
                         id: 1,
@@ -179,10 +181,14 @@
             getSocialIcon(title) {
                 return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
             },
+            showPassword(){
+                this.fieldType = 'text';
+                setTimeout(()=> {
+                    this.fieldType = 'password'
+                },1000);
+            }
         }
     }
 </script>
 
-<style scoped>
 
-</style>

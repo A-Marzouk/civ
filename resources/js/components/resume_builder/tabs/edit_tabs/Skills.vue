@@ -88,7 +88,7 @@
                                   v-show="skill.category === skillCategory"
                                   color="#E6E8FC"
                                   class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
-                                  :class="{'half-opacity' : !skill.is_public}"
+                                  :class="{'half-opacity' : !skill.is_public, 'edit' : skill.id === editedSkill.id}"
                                   flat
                           >
                             <v-card-text>
@@ -250,7 +250,7 @@ export default {
       typeItems: ["Programming Language"],
       activeTab: 0,
       skillCategory:'Leadership',
-      tabs: ["Leadership", "Professionalism", "Organizational", "Team Building", "Personal Life", "Analytical", "Sports", "Business related", "Technical", "Design", "Communication", "Creativity", "Nursing and Healthcare", "Engineering"],
+      tabs: ["Development", "Design", "Leadership", "Professionalism", "Organizational", "Team Building", "Personal Life", "Analytical", "Sports", "Business related", "Technical","Communication", "Creativity", "Nursing and Healthcare"],
       addNewSkill: false,
       optionSkillId: 0,
       skillItems: skills,
@@ -440,6 +440,7 @@ export default {
 }
 .card-skill-items {
   width: 100%;
+  min-height: 100%;
   @include lt-sm{
     padding: 0 30px;
   }
@@ -480,6 +481,11 @@ export default {
   .card-skill {
     border-radius: 10px !important;
     height: 76px !important;
+
+    &.edit{
+      border: blue solid 1.6px !important;
+    }
+
     @media screen and (min-width: 1264px) and (max-width: 1903px) {
       min-width: 400px !important;
     }

@@ -4,11 +4,7 @@
       <v-row class="borpad pt-md-4" no-gutters justify-sm="end">
         <v-col md="6" sm="12" cols="12">
           <v-container>
-            <v-row
-              no-gutters
-              justify="center"
-              :class="{ 'active-indicator': currentTab === 'profile' }"
-            >
+            <v-row no-gutters justify="center">
               <v-col
                 md="3"
                 sm="2"
@@ -36,20 +32,25 @@
                 <div class="job-title py-2 pb-sm-2">
                   {{ currentUser.personal_info.designation }}
                 </div>
-                <div class="bio padrgt">
+
+                <div
+                  class="bio padrgt"
+                  @click="collapsed = !collapsed"
+                  :class="[collapsed == true ? 'collapsed' : '']"
+                >
                   {{ currentUser.personal_info.about }}
+                  <span class="collasped-icon">
+                    <v-icon color="#5F45FF" v-if="!collapsed"
+                      >mdi-menu-up</v-icon
+                    >
+                    <v-icon color="#5F45FF" v-else>mdi-menu-down</v-icon>
+                  </span>
                 </div>
               </v-col>
             </v-row>
           </v-container>
         </v-col>
-        <v-col
-          md="6"
-          sm="10"
-          cols="12"
-          class="hidden-sm-only"
-          :class="{ 'active-indicator': currentTab === 'pay-availability' }"
-        >
+        <v-col md="6" sm="10" cols="12" class="hidden-sm-only">
           <v-container>
             <v-row>
               <v-col md="6">
@@ -57,6 +58,8 @@
                   <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/time.svg"
                       alt
                     ></v-img>
@@ -105,6 +108,8 @@
                   <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/payment.svg"
                       alt
                     ></v-img>
@@ -272,9 +277,12 @@
                         height: 50px;
                         width: 150px;
                         border-radius: 6px;
-                        background: #5f45ff;
+
                         box-shadow: #9180ff 0px 10px 30px -8px;
                       "
+                      :disabled="disableAudio"
+                      color="#5f45ff"
+                      id="audioBtn"
                       @click.stop="audioModal = true"
                       dark
                       class="mx-1 ct-buttom-mrg"
@@ -298,6 +306,9 @@
                         background: #e7e5f6;
                         box-shadow: #e7e5f6 0px 10px 30px -8px;
                       "
+                      :disabled="disableVideo"
+                      id="videoBtn"
+                      color="#e7e5f6"
                       @click.stop="videoModal = true"
                     >
                       <img
@@ -322,11 +333,14 @@
                         height: 50px;
                         width: 150px;
                         border-radius: 6px;
-                        background: #5f45ff;
-                        box-shadow: #9180ff 0px 10px 30px -8px;
+
+                        box-shadow: #9180ff 0px 10px 20px -8px;
                       "
-                      @click.stop="audioModal = true"
+                      :disabled="disableAudio"
+                      color="#5f45ff"
+                      id="audioBtn"
                       dark
+                      @click.stop="audioModal = true"
                       class="mx-1 ct-buttom-mrg"
                     >
                       <img
@@ -334,7 +348,10 @@
                         alt="voice call"
                         style="width: 18px; height: 18px; margin-right: 7.5px"
                       />
-                      <div class="text-capitalize" style="font-size: 14px">
+                      <div
+                        class="text-capitalize"
+                        style="font-size: 14px; color: #e7e5f6"
+                      >
                         Audio
                       </div>
                     </v-btn>
@@ -345,9 +362,11 @@
                         height: 50px;
                         width: 150px;
                         border-radius: 6px;
-                        background: #e7e5f6;
-                        box-shadow: #e7e5f6 0px 10px 30px -8px;
+                        box-shadow: #e7e5f6 0px 10px 20px -8px;
                       "
+                      :disabled="disableVideo"
+                      id="videoBtn"
+                      color="#e7e5f6"
                       @click.stop="videoModal = true"
                     >
                       <img
@@ -374,11 +393,7 @@
             </v-row>
           </v-container>
         </v-col>
-        <v-col
-          sm="10"
-          class="d-none d-sm-flex d-md-none"
-          :class="{ 'active-indicator': currentTab === 'pay-availability' }"
-        >
+        <v-col sm="10" class="d-none d-sm-flex d-md-none">
           <v-container>
             <v-row>
               <v-col md="6">
@@ -386,6 +401,8 @@
                   <v-col sm="5" align="center" class="mt-4">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/time.svg"
                       alt
                     ></v-img>
@@ -437,6 +454,8 @@
                   <v-col sm="5" align="center" class="mt-4">
                     <v-img
                       class="info-img"
+                      max-width="40"
+                      height="32"
                       src="/images/resume_themes/theme5/payment.svg"
                       alt
                     ></v-img>
@@ -509,9 +528,12 @@
                         height: 60px;
                         width: 93px;
                         border-radius: 6px;
-                        background: #5f45ff;
+
                         box-shadow: #9180ff 0px 10px 30px -8px;
                       "
+                      :disabled="disableAudio"
+                      color="#5f45ff"
+                      id="audioBtn"
                       @click.stop="audioModal = true"
                       dark
                       class="mx-1"
@@ -529,9 +551,12 @@
                         height: 60px;
                         width: 93px;
                         border-radius: 6px;
-                        background: #e7e5f6;
+
                         box-shadow: #e7e5f6 0px 10px 30px -8px;
                       "
+                      :disabled="disableVideo"
+                      id="videoBtn"
+                      color="#e7e5f6"
                       @click.stop="videoModal = true"
                     >
                       <img
@@ -567,14 +592,16 @@
               >
                 <v-tabs background-color="transparent" hide-slider centered>
                   <v-tab
-                    v-for="tab in tabs"
-                    :key="tab.value"
-                    @click="activeTab = tab.value"
-                    :class="{ 'active-indicator': currentTab === tab.value }"
+                    v-for="tab in currentUser.tabs"
+                    :class="{ 'blue-text': tab.title === activeTab }"
+                    v-show="tab.is_public && !excludedTabs.includes(tab.title)"
+                    :key="tab.title"
+                    :id="tab.title"
+                    @click="changeTab(tab.title)"
                   >
-                    <span v-if="tab.value === activeTab" class="left">[</span>
-                    {{ tab.text }}
-                    <span v-if="tab.value === activeTab" class="right">]</span>
+                    <span v-if="tab.title === activeTab" class="left">[</span>
+                    {{ tab.label }}
+                    <span v-if="tab.title === activeTab" class="right">]</span>
                   </v-tab>
                 </v-tabs>
               </v-col>
@@ -598,17 +625,18 @@
                   >
                     <ImagesCarouselModal :images="project.images">
                       <v-img
-                              :src="getProjectMainImage(project)"
-                              alt="portfolio img"
-                              :aspect-ratio="1.2"
-                              cover
+                        :src="getProjectMainImage(project)"
+                        alt="portfolio img"
+                        :aspect-ratio="1.2"
+                        cover
                       ></v-img>
                     </ImagesCarouselModal>
                   </v-col>
                 </v-row>
               </v-col>
+
               <v-col
-                v-if="activeTab === 'work-experience'"
+                v-if="activeTab === 'work_experience'"
                 md="6"
                 sm="12"
                 cols="12"
@@ -630,12 +658,17 @@
                         <span
                           class="hidden-xs-only pl-sm-4 subtitle-2"
                           style="color: rgba(0, 0, 0, 0.87)"
-                          >{{ work.date_from }} - {{ work.date_to }}</span
+                          >{{ getFullYear(work.date_from) }} -
+                          {{
+                            work.present ? "Present" : getFullYear(work.date_to)
+                          }}</span
                         >
                       </div>
                       <div class="hidden-sm-and-up subtitle-2 pb-4">
-                        {{ work.date_from }} -
-                        {{ work.date_to }}
+                        {{ getFullYear(work.date_from) }} -
+                        {{
+                          work.present ? "Present" : getFullYear(work.date_to)
+                        }}
                       </div>
                       <div class="subtitle-2 grey--text lighten-2">
                         {{ work.description }}
@@ -675,7 +708,12 @@
                       </div>
                       <div class="subtitle-2 pb-1" style="color: #1f5de4">
                         {{ education.university_name }},
-                        {{ education.date_from }} - {{ education.date_to }}
+                        {{ getFullYear(education.date_from) }} -
+                        {{
+                          education.present
+                            ? "Present"
+                            : getFullYear(education.date_to)
+                        }}
                       </div>
                       <div class="subtitle-2 pb-2" style="color: #707070">
                         {{ education.degree_title }}
@@ -684,6 +722,7 @@
                   </v-col>
                 </v-row>
               </v-col>
+
               <v-col v-if="activeTab === 'skills'" md="11" sm="11" cols="11">
                 <v-row no-gutters justify="center">
                   <v-col
@@ -714,13 +753,13 @@
                         >
                           <v-progress-linear
                             :background-opacity="0.2"
-                            :color="skillColor[index].color"
+                            :color="randomColor()"
                             :value="s.percentage"
                             class="pro"
                           ></v-progress-linear>
                         </v-col>
                         <v-col cols="2" sm="2">
-                          <v-btn text :color="skillColor[index].color">
+                          <v-btn text :color="randomColor()">
                             <div
                               class="skillname font-weight-bold mr-0 mr-md-n12 mr-sm-n12"
                             >
@@ -736,7 +775,7 @@
 
               <!-- about section start -->
               <v-col
-                v-if="activeTab === 'about'"
+                v-if="activeTab === 'about_me'"
                 md="10"
                 sm="11"
                 cols="11"
@@ -856,11 +895,6 @@
                     ></div>
 
                     <div class="hobby__content">
-                      <img
-                        src="/images/resume_themes/theme5/ball.png"
-                        class="hobby_img"
-                        alt="hobby_img"
-                      />
                       <div class="text-capitalize">{{ hobby.title }}</div>
                     </div>
                   </div>
@@ -1059,6 +1093,14 @@
     margin: 1.5rem 1.5rem 0 2.5rem;
     border-radius: 10px;
   }
+  #audioBtn.v-btn--disabled {
+    background-color: #5f45ff !important;
+    opacity: 0.4 !important;
+  }
+  #videoBtn.v-btn--disabled {
+    background-color: #e7e5f6 !important;
+    opacity: 0.4 !important;
+  }
   .imgradius {
     width: 184px;
     height: auto;
@@ -1089,7 +1131,9 @@
       transition: all 0.5s ease;
     }
   }
-
+  .v-tabs:not(.v-tabs--vertical) .v-tab {
+    white-space: nowrap;
+  }
   .v-tab:hover {
     cursor: pointer;
 
@@ -1128,8 +1172,45 @@
 
   .bio {
     font-size: 0.8rem;
-    line-height: 23px;
+    max-height: 100%;
     color: #6b6b6b;
+    line-height: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+  .collapsed {
+    // word-break: break-word;
+    overflow: hidden;
+    max-height: 6rem;
+
+    // display: -webkit-box;
+    // //  line-height: 16px;
+    // //  max-height: 32px;
+    // text-overflow: "-";
+    // -webkit-line-clamp: 4; /* number of lines to show */
+    // -webkit-box-orient: vertical;
+  }
+  .collasped-icon {
+    position: absolute;
+    bottom: 2px;
+    right: 105px;
+  }
+  @media (max-width: 1024px) {
+    .collasped-icon {
+      bottom: 0;
+      right: 0;
+    }
+  }
+  @media (max-width: 475px) {
+    .collasped-icon {
+      bottom: -4px;
+      right: -7px;
+    }
   }
   .padrgt {
     padding-right: 8rem;
@@ -1141,6 +1222,7 @@
   }
   .info-img {
     width: 40px;
+    max-width: 40px;
     height: 32px;
   }
   .v-tabs .v-tab {
@@ -1211,6 +1293,13 @@
   }
   .txtcol {
     color: #5f45ff;
+  }
+
+  .no-decoration {
+    color: rgba(0, 0, 0, 0.54) !important;
+  }
+  .blue-text {
+    color: #5f45ff !important;
   }
 
   // Tablet Version
@@ -1690,8 +1779,8 @@ import SocialLinks from "./SocialLinks";
 import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
 
 export default {
-  name: "theme8",
-  props: ["user", "is_preview", "currentTab"],
+  name: "theme5",
+  props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
     Slick,
     VueSlickCarousel,
@@ -1699,7 +1788,7 @@ export default {
     VideoPlayer,
     "updated-hire-modal": UpdatedHireModal,
     SocialLinks,
-    ImagesCarouselModal
+    ImagesCarouselModal,
   },
   data() {
     return {
@@ -1707,41 +1796,10 @@ export default {
       hireMeModal: false,
       videoModal: false,
       audioModal: false,
-      tabs: [
-        {
-          text: "Portfolio",
-          value: "portfolio",
-        },
-        {
-          text: "Work Ex.",
-          value: "work-experience",
-        },
-        {
-          text: "Education",
-          value: "education",
-        },
-        {
-          text: "Skills",
-          value: "skills",
-        },
-        {
-          text: "About",
-          value: "about",
-        },
-        {
-          text: "Hobbies",
-          value: "hobbies",
-        },
-        {
-          text: "References",
-          value: "references",
-        },
-        {
-          text: "Achievements",
-          value: "achievements",
-        },
-      ],
+      collapsed: true,
       available: 0,
+      disableAudio: false,
+      disableVideo: false,
       activeTab: "portfolio",
       paymentInfo: 0,
 
@@ -1816,11 +1874,64 @@ export default {
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function (val) {
-      this.activeTab = val;
+    builderCurrentTabTitle: function (val) {
+      if (!this.defaultTabs.includes(val)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = val;
+      }
+      $("#" + val).click();
+    },
+  },
+  computed: {
+    defaultTabs() {
+      return this.$store.state.defaultTabs;
+    },
+    excludedTabs() {
+      return this.$store.state.excludedTabs;
     },
   },
   methods: {
+    randomColor() {
+      let colors = this.skillColor;
+      let color = colors[Math.floor(Math.random() * colors.length)];
+      return color.color;
+    },
+    //get year of the date
+    getFullYear(date) {
+      let newDate = new Date(date);
+      let yyyy = newDate.getUTCFullYear();
+      return yyyy;
+    },
+    // dynamic tabs
+    changeTab(tab_title) {
+      this.activeTab = tab_title;
+      this.$store.dispatch("updateThemeTabGlobally", tab_title);
+    },
+    getFirstActiveTabTitle() {
+      let title = "";
+      this.currentUser.tabs.forEach((tab) => {
+        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
+          if (title === "") {
+            title = tab.title;
+          }
+        }
+      });
+
+      return title;
+    },
+    setActiveTabByURL() {
+      const pathSplit = this.$route.path.split("/");
+      let currentActiveTab = pathSplit[pathSplit.length - 1];
+      if (!this.defaultTabs.includes(currentActiveTab)) {
+        this.activeTab = this.getFirstActiveTabTitle();
+      } else {
+        this.activeTab = currentActiveTab;
+      }
+      $("#" + this.activeTab).click();
+    },
+    // dynamic tabs end
+
     goToExternalLink(link) {
       if (!link.includes("http")) {
         link = "http://" + link;
@@ -1841,7 +1952,7 @@ export default {
       } else this.available--;
     },
     paymentInfoNext() {
-      if (this.paymentInfo == 2) {
+      if (this.paymentInfo == 3) {
         this.paymentInfo = 0;
       } else this.paymentInfo++;
     },
@@ -1864,10 +1975,16 @@ export default {
     },
     filterAudio(audios) {
       var filterArray = audios.filter((a) => a.type === "audio");
+      if (!Array.isArray(filterArray) || !filterArray.length) {
+        this.disableAudio = true;
+      }
       return filterArray;
     },
     filterVideo(videos) {
       var filterArray = videos.filter((a) => a.type === "video");
+      if (!Array.isArray(filterArray) || !filterArray.length) {
+        this.disableVideo = true;
+      }
       return filterArray;
     },
     setDummyUser() {
@@ -1884,6 +2001,8 @@ export default {
       this.windowWidth = window.innerWidth;
     };
 
+    // set active tab
+    this.setActiveTabByURL();
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
   },

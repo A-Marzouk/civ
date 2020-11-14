@@ -7,7 +7,7 @@
           color="#D4DDFF"
           height="90"
           width="90"
-          style="border:1px solid #3D5ED4;"
+          style="border: 1px solid #3d5ed4"
           dark
           fab
           elevation="0"
@@ -29,20 +29,20 @@ export default {
   props: {
     title: {
       type: String,
-      default: null
+      default: null,
     },
     user_name: {
       type: String,
-      default: null
+      default: null,
     },
     link: {
       type: String,
-      default: null
+      default: null,
     },
     img: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   methods: {
     playVideo() {
@@ -54,19 +54,20 @@ export default {
       this.$refs.videotm1001.style.display = "none";
       this.$refs.videoPoster.style.display = "block";
       this.$refs.videoElem.pause();
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .video-tm1001 {
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-  .img-video-tm1001 {
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  // .img-video-tm1001 {
+  //   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 
-    border-radius: 10px;
-  }
+  //   border-radius: 10px;
+  // }
 
   .b-play-tm1001 {
     left: -20%;

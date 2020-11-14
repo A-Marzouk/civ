@@ -1,5 +1,5 @@
 <template>
-  <div class="main-content" id="portfolio-tab">
+  <div class="main-content" id="achievements-tab">
     <div class="data-container pa-md-0 pa-sm-0 pa-10 view-container resume-builder__scroll">
       <v-card class>
         <v-form class="grid-form" ref="form">
@@ -10,11 +10,13 @@
             label="Achievement type"
             color="#001CE2"
             v-model="editedAchievement.type"
+            placeholder="Certificate"
             :error="!!errors.type"
             :error-messages="errors.type"
           ></v-text-field>
           <v-text-field
             id="url"
+            placeholder="https://website.com"
             class="resume-builder__input civie-input"
             outlined
             label="URL"
@@ -28,8 +30,12 @@
             id="description"
             class="resume-builder__input civie-textarea"
             outlined
+            rows="1"
+            auto-grow
+            row-height="13"
             label="Description"
             color="#001CE2"
+            placeholder="Describe your achievement"
             v-model="editedAchievement.description"
             :error="!!errors.description"
             :error-messages="errors.description"
@@ -63,6 +69,7 @@
             class="resume-builder__input civie-input"
             outlined
             label="Year"
+            placeholder="2020"
             color="#001CE2"
             v-model="editedAchievement.year"
             :error="!!errors.year"
@@ -72,6 +79,7 @@
             id="software"
             class="resume-builder__input civie-input"
             outlined
+            placeholder="Java Certified Developer"
             label="Title"
             color="#001CE2"
             v-model="editedAchievement.title"
@@ -354,7 +362,7 @@ export default {
     margin-left: auto;
   }
 }
-#portfolio-tab {
+#achievements-tab {
   .view-container {
     max-height: 450px;
     overflow: auto;
@@ -377,7 +385,7 @@ export default {
         &.civie-dropzone {
           grid-row-start: 1;
           grid-row-end: 3;
-          height: 98%;
+          height: 97.5%;
 
           .v-input__control,
           .v-input__slot {

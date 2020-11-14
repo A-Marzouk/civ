@@ -7,7 +7,7 @@
 
                 <div class="save-bar">
                     <div v-if="savingStatus === 'normal'" class="status">
-                        Last save <img src="/icons/clock-icon.svg" alt="clock icon"> {{justSaved ? 'a few moments ago' : lastActivity}}
+                        Last save <img src="/icons/clock-icon.svg" alt="clock icon"> {{justSaved ? 'a few moments ago' : lastActivity}} | <span v-if="user.username">{{user.default_resume_link.url}}</span>
                     </div>
                     <div v-else-if="savingStatus === 'saving'" class="saving">
                         Saving...
@@ -185,6 +185,11 @@
             padding: 5px 5px;
 
             @include gt-md {
+                max-width: calc(100% - 230px);
+                margin-left: auto;
+            }
+
+            @include gt-lg {
                 max-width: calc(100% - 300px);
                 margin-left: auto;
             }
@@ -369,6 +374,11 @@
         font-size: 18px;
         margin-bottom: 8px;
 
+        @include lt-sm{
+            padding-left: 22px;
+        }
+
+
         .status{
             color: #888DB1;
             display: flex;
@@ -412,6 +422,9 @@
     .preview-rows-wrapper{
         width: 95%;
         margin: auto;
+        @include lt-md {
+            margin-top: 50px;
+        }
     }
 
     .preview-action-row {
@@ -489,14 +502,6 @@
             &:hover {
                 cursor: pointer;
             }
-        }
-    }
-
-    /* I frame styling */
-    .vue-friendly-iframe {
-        iframe {
-            width: 100%;
-            min-height: 1300px;
         }
     }
 

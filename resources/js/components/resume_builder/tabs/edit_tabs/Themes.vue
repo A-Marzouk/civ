@@ -377,7 +377,7 @@
 
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-around;
 
             @include lt-lg{
                 justify-content: space-around;
@@ -390,7 +390,7 @@
             .theme-container{
                 margin-top: 25px;
                 width: 100%;
-                max-width: 430px;
+                max-width: 515px;
 
                 @include lt-lg{
                     max-width: 310px;
@@ -402,8 +402,8 @@
 
                 .card-theme-holder {
                     background-size: cover;
-                    width: 417px;
-                    height: 300px;
+                    width: 515px;
+                    height: 291px;
                     border-radius: 26px;
 
                     @include lt-lg{
@@ -423,7 +423,7 @@
 
                     .holder {
                         width: 100%;
-                        height: 300px;
+                        height: 291px;
                         border-radius: 26px;
 
                         @include lt-lg{
@@ -704,14 +704,6 @@
             width: 100%;
             display: flex;
             align-items: center;
-        }
-    }
-
-    /* I frame styling */
-    .vue-friendly-iframe{
-        iframe{
-            width:100%;
-            min-height:1400px;
         }
     }
 </style>

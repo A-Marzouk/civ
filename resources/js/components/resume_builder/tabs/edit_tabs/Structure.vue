@@ -5,10 +5,19 @@
                 <img src="/icons/edit-cv-sidebar/structure.svg" alt="structure icon">
                 <span>Drag to order tab view</span>
             </div>
+
+            <div class="str-content" >
+                <div class="tab-chip" v-for="preference in preferences" :key="preference.title" :class="{ 'half-opacity' : !isPreferenceActive(preference.title)}">
+                    <span>{{preference.label}}</span>
+                    <img class="eye-icon-btn" src="/icons/eye-blue.svg" alt="eye-icon" :class="{'blackAndWhite' : !isPreferenceActive(preference.title)}" @click.prevent="togglePreference(preference.title)">
+                </div>
+            </div>
+
             <draggable class="str-content" v-model="tabs" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                <div class="tab-chip" v-for="tab in tabs" v-if="!excludedTabs.includes(tab.title)" :key="tab.label">
-                    <img src="/icons/edit-cv-sidebar/drag-btn-icon.svg" alt="drag button icon" class="drag-handler">
+                <div class="tab-chip" v-for="tab in tabs" v-if="!excludedTabs.includes(tab.title)" :key="tab.label" :class="{ 'half-opacity' : !isTabActive(tab.title)}">
+                    <img src="/icons/drag-dots.svg" alt="drag button icon" class="drag-handler">
                     <span>{{tab.label}}</span>
+                    <img class="eye-icon-btn" src="/icons/eye-blue.svg" alt="eye-icon" :class="{'blackAndWhite' : !isTabActive(tab.title)}" @click.prevent="toggleTab(tab.title)">
                 </div>
             </draggable>
         </div>
@@ -44,10 +53,68 @@
                 set(tabs) {
                     this.$store.commit("updateTabs", tabs);
                 }
+            },
+            preferences: {
+                get() {
+                    return this.$store.state.user.preferences;
+                }
             }
         },
         methods: {
+            toggleTab(tabTitle) {
+                let currentTab = {};
 
+                this.tabs.forEach((tab) => {
+                    if (tab.title === tabTitle) {
+                        currentTab = tab;
+                        currentTab.is_public = !currentTab.is_public;
+                    }
+                });
+
+                if (currentTab.id) {
+                    axios.put('/api/user/tabs/toggle-tab', currentTab)
+                        .then((response) => {
+                            this.$store.dispatch('flyingNotification');
+                        });
+                }
+
+            },
+            togglePreference(preferenceTitle) {
+                let currentPreference = {};
+
+                this.preferences.forEach((preference) => {
+                    if (preference.title === preferenceTitle) {
+                        currentPreference = preference;
+                        currentPreference.is_public = !currentPreference.is_public;
+                    }
+                });
+
+                if (currentPreference.id) {
+                    axios.put('/api/user/preferences/toggle-visibility', currentPreference)
+                        .then((response) => {
+                            this.$store.dispatch('flyingNotification');
+                        });
+                }
+
+            },
+            isTabActive(tabTitle) {
+                let active = false;
+                this.tabs.forEach((tab) => {
+                    if (tab.title === tabTitle && tab.is_public) {
+                        active = true;
+                    }
+                });
+                return active;
+            },
+            isPreferenceActive(preferenceTitle) {
+                let active = false;
+                this.preferences.forEach((preference) => {
+                    if (preference.title === preferenceTitle && preference.is_public) {
+                        active = true;
+                    }
+                });
+                return active;
+            },
 
         },
         mounted() {
@@ -59,6 +126,12 @@
 <style scoped lang="scss">
     @import '../../../../../sass/media-queries';
 
+    .eye-icon-btn{
+        margin-left: 10px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
     .str-main-content-container{
         width: 100%;
         height: 450px;
@@ -103,13 +176,15 @@
                 flex-wrap: wrap;
                 padding: 25px 30px;
                 margin-top:40px;
-
+                background: #FBFBFF;
 
                 .tab-chip{
-                    display:flex;
+                    display: flex;
                     align-items: center;
-                    margin-top:25px;
-                    margin-left:25px;
+                    background: #E6E8FC;
+                    border-radius: 8px;
+                    padding: 12px 15px;
+                    margin: 12px 15px;
 
                     @media screen and (max-width: 1024px){
                         width: 100%;
@@ -117,10 +192,10 @@
                     }
 
 
-                    img{
-                        width: 30px;
-                        height: 30px;
-                        margin-right:15px;
+                    img.drag-handler{
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 5px;
                         &:hover{
                             cursor: grab;
                         }

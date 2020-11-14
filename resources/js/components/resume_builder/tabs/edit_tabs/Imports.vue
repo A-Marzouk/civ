@@ -76,12 +76,12 @@
                             </span>
                             <v-text-field
                                     style="margin-top: -15px;"
-                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    class="resume-builder__input with-inner top-input-margin url mt-n6"
                                     :outlined="true"
                                     v-model="behanceUsername"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;">behance.net/</span>
+                                    <span class="inner-text" style="margin-left:-10px;">behance.net/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -114,7 +114,7 @@
                                     :error-messages="errors.linkedInUrl"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;"></span>
+                                    <span class="inner-text"></span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -144,12 +144,12 @@
                             </span>
                             <v-text-field
                                     style="margin-top: -15px;"
-                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    class="resume-builder__input with-inner top-input-margin url mt-n6"
                                     :outlined="true"
                                     v-model="dribbbleUsername"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;">dribbble.com/</span>
+                                    <span class="inner-text" style="margin-left:-10px;">dribbble.com/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
@@ -167,8 +167,18 @@
 
         <div class="outer-container information-container"  v-if="extractedText.length > 0" >
             <div class="title">
-                <img src="/icons/edit-cv-sidebar/information-icon.svg" alt="info icon">
-                <span>Please pick your information</span>
+                <div style="display: flex; align-items: center;">
+                    <img src="/icons/edit-cv-sidebar/information-icon.svg" alt="info icon">
+                    <span>Please pick your information</span>
+                </div>
+                <div class="import-btn">
+                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importAvailableData" :class="{disabled : importingExtractedData}">
+                        {{importingExtractedData ? 'Importing.. ' : 'Import'}}
+                    </v-btn>
+                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAll">
+                        {{ isAllSelected ? 'Deselect' : 'Select'}} all
+                    </v-btn>
+                </div>
             </div>
             <div class="dns-main-content-container resume-builder__scroll">
                 <div class="dns-main-content">
@@ -263,6 +273,9 @@
                                                     <v-textarea
                                                             class="resume-builder__input  civie-textarea"
                                                             outlined
+                                                            rows="1"
+                                                            auto-grow
+                                                            row-height="13"
                                                             color="#001CE2"
                                                             :error="!!errors.about"
                                                             :error-messages="errors.about"
@@ -346,6 +359,9 @@
                                                             <v-textarea
                                                                     class="resume-builder__input  civie-textarea"
                                                                     outlined
+                                                                    rows="1"
+                                                                    auto-grow
+                                                                    row-height="13"
                                                                     color="#001CE2"
                                                                     :error="!!errors.description"
                                                                     :error-messages="errors.description"
@@ -528,16 +544,6 @@
 
                                     <div class="import-action-btns no-background mb-5">
                                         <div class="d-flex justify-space-between">
-                                            <div class="d-flex">
-                                                <div class="import-btn">
-                                                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importAvailableData" :class="{disabled : importingExtractedData}">
-                                                        {{importingExtractedData ? 'Importing.. ' : 'Import'}}
-                                                    </v-btn>
-                                                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAll">
-                                                        {{ isAllSelected ? 'Deselect' : 'Select'}} all
-                                                    </v-btn>
-                                                </div>
-                                            </div>
                                             <div class="eye-icon"  @click="showFullText = !showFullText"
                                                  @mouseenter="showToolTip = true" @mouseleave="showToolTip = false">
                                                 <img src="/images/resume_builder/imports/eye.png" alt="eye icon">
@@ -574,8 +580,18 @@
 
         <div class="outer-container information-container"  v-if="behanceProjects.length > 0" >
             <div class="title">
-                <img src="/icons/edit-cv-sidebar/information-icon.svg" alt="info icon">
-                <span>Please pick your projects</span>
+                <div style="display: flex; align-items: center;">
+                    <img src="/icons/edit-cv-sidebar/information-icon.svg" alt="info icon">
+                    <span>Please pick your projects</span>
+                </div>
+                <div class="import-btn">
+                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importBehanceProjects" :class="{disabled : importingBehanceProjects}">
+                        {{importingBehanceProjects ? 'Importing.. ' : 'Import'}}
+                    </v-btn>
+                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAllProjects">
+                        {{ isAllProjectsSelected ? 'Deselect' : 'Select'}} all
+                    </v-btn>
+                </div>
             </div>
             <div class="dns-main-content-container resume-builder__scroll">
                 <div class="dns-main-content">
@@ -616,20 +632,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="import-action-btns no-background mb-5">
-                                        <div class="d-flex justify-space-between">
-                                            <div class="d-flex">
-                                                <div class="import-btn">
-                                                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importBehanceProjects" :class="{disabled : importingBehanceProjects}">
-                                                        {{importingBehanceProjects ? 'Importing.. ' : 'Import'}}
-                                                    </v-btn>
-                                                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAllProjects">
-                                                        {{ isAllProjectsSelected ? 'Deselect' : 'Select'}} all
-                                                    </v-btn>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
 
                                     <div class="errors-container" v-show="Object.keys(errors).length !== 0">
                                         {{errors}}
@@ -645,8 +648,18 @@
 
         <div class="outer-container information-container"  v-if="dribbbleData.projects.length > 0" >
             <div class="title">
-                <img src="/icons/edit-cv-sidebar/information-icon.svg" alt="info icon">
-                <span>Please pick your projects</span>
+                <div style="display: flex; align-items: center;">
+                    <img src="/icons/edit-cv-sidebar/information-icon.svg" alt="info icon">
+                    <span>Please pick your projects</span>
+                </div>
+                <div class="import-btn">
+                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importDribbbleProjects" :class="{disabled : isDribbbleImporting}">
+                        {{isDribbbleImporting ? 'Importing.. ' : 'Import'}}
+                    </v-btn>
+                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAllDribbbleProjects">
+                        {{ isAllDribbbleProjectsSelected ? 'Deselect' : 'Select'}} all
+                    </v-btn>
+                </div>
             </div>
             <div class="dns-main-content-container resume-builder__scroll">
                 <div class="dns-main-content">
@@ -687,20 +700,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="import-action-btns no-background mb-5">
-                                        <div class="d-flex justify-space-between">
-                                            <div class="d-flex">
-                                                <div class="import-btn">
-                                                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importDribbbleProjects" :class="{disabled : isDribbbleImporting}">
-                                                        {{isDribbbleImporting ? 'Importing.. ' : 'Import'}}
-                                                    </v-btn>
-                                                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAllDribbbleProjects">
-                                                        {{ isAllDribbbleProjectsSelected ? 'Deselect' : 'Select'}} all
-                                                    </v-btn>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="errors-container" v-show="Object.keys(errors).length !== 0">
                                         {{errors}}
@@ -716,8 +715,10 @@
 
         <div class="outer-container">
             <div class="title">
-                <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
-                <span>Manage Imports</span>
+                <div style="display: flex; align-items: center;">
+                    <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
+                    <span>Manage Imports</span>
+                </div>
             </div>
             <div class="dns-main-content-container resume-builder__scroll">
                 <div class="dns-main-content">
@@ -2117,7 +2118,7 @@
                     return;
                 }
 
-                await axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id})
+                await axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id, 'resume_link_id' : this.$store.state.user.default_resume_link.id})
                     .then((response) => {
 
                     })
@@ -2200,7 +2201,6 @@
                         let importedFile = response.data.data;
                         this.imports.push(importedFile);
                         this.$store.dispatch('flyingNotification');
-                        console.log('success');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -2422,6 +2422,7 @@
         .title {
             display: flex;
             align-items: flex-end;
+            justify-content: space-between;
 
             img {
                 width: 24px;
