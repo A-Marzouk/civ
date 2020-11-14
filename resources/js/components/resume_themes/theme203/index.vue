@@ -587,7 +587,7 @@
                                         <span v-if="work.present == 1"
                                           >Present</span
                                         >
-                                        <span v-else>{{ work.to }}</span>
+                                        <span v-else>{{ work.date_to }}</span>
                                       </v-card>
                                     </v-list-item-subtitle>
                                   </v-list-item-content>
@@ -1213,7 +1213,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    // console.log(this.currentUser);
+    console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
@@ -2215,6 +2215,7 @@ export default {
   }
 }
 .custom-hr-mobile{
+  display: none;
   border: 1px solid #000000;
   opacity: 0.6;
   margin-left: 14px;
