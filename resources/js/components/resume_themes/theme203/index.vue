@@ -642,16 +642,18 @@
                                       tile
                                       style="color: #fbd76d"
                                     >
-                                      {{ education.degree_title }},
-                                      <span class="education-date">
-                                        {{ education.date_from }} -
-                                        <span v-if="education.present == true"
-                                          >Present</span
-                                        >
-                                        <span v-else>
-                                          {{ education.date_to }}
+                                      <div class="d-flex flex-column">
+                                        {{ education.degree_title }},
+                                        <span class="education-date mt-2">
+                                          {{ education.date_from }} -
+                                          <span v-if="education.present == true"
+                                            >Present</span
+                                          >
+                                          <span v-else>
+                                            {{ education.date_to }}
+                                          </span>
                                         </span>
-                                      </span>
+                                      </div>
                                     </v-card>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle class="mt-6">
@@ -2214,7 +2216,7 @@ export default {
     min-height: 4vw;
   }
 }
-.custom-hr-mobile{
+.custom-hr-mobile {
   display: none;
   border: 1px solid #000000;
   opacity: 0.6;
