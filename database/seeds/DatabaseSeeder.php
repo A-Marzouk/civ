@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemesTableSeeder::class);
         $this->call(TestimonialsTableSeeder::class);
         $this->call(PromocodesTableSeeder::class);
-//        $this->call(SummaryTableSeeder::class); // commented out because we make relationship for each created USER.
+        $this->call(PaymentMethodSeeder::class);
     }
 
     private function cleanDatabase()

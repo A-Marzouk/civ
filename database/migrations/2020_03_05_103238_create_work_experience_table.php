@@ -21,8 +21,8 @@ class CreateWorkExperienceTable extends Migration
             $table->text('description')->nullable();
             $table->string('website')->nullable();
             $table->string('category')->nullable();
-            $table->date('date_from')->nullable();
-            $table->date('date_to')->nullable();
+            $table->string('date_from')->nullable();
+            $table->string('date_to')->nullable();
             $table->boolean('present')->nullable();
             $table->boolean('is_public')->default(true);
             $table->integer('order')->default(1);

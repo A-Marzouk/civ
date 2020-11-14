@@ -11,7 +11,6 @@
                     </div>
                     {{ currentSidebarLink.label }}
                 </a>
-
                 <a
                         href="#"
                         @click.prevent="open=!open"
@@ -44,7 +43,7 @@
                 >
                     <router-link
                             :to="sidebarLink.url"
-                            @click.native=""
+                            @click.native="setActive(sidebarLink)"
                             @mouseover.native="hoverMenu(sidebarLink)"
                             @mouseleave.native="hoverMenu(null)"
                             class="d-flex justify-content-between w-100"
@@ -57,13 +56,6 @@
                         <span style="flex:2;" @click="setActive(sidebarLink)">
                             {{ sidebarLink.label }}
                         </span>
-                        <div class="resume-builder__action-buttons-container">
-                            <v-btn class="btn-icon civie-btn" depressed v-if="!structureTabs.includes(sidebarLink.title)"
-                                   style="border-radius: 50%;" @click.prevent="toggleTab(sidebarLink.title)">
-                                <svg-vue icon="eye-icon" class="icon"
-                                         :class="{'visible' : isTabActive(sidebarLink.title)}"></svg-vue>
-                            </v-btn>
-                        </div>
                     </router-link>
 
                     <hr v-if="sidebarLink.title === 'references'"
@@ -311,7 +303,7 @@
             background: #ffffff;
             font-family: Noto Sans, "sans-serif";
             max-width: 350px;
-            min-width: 300px;
+            min-width: 220px;
             margin-left: auto;
             margin-right: auto;
 
@@ -489,12 +481,12 @@
                 }
 
                 @media screen and (min-width: 1280px) and (max-width: 1520px) {
-                    width: 200px;
-                    margin-left: 20px !important;
+                    width: 240px;
+                    margin-left: -9px !important;
                 }
                 @media screen and (min-width: 1520px) and (max-width: 1720px) {
                     width: 240px;
-                    margin-left: 30px !important;
+                    margin-left: -5px !important;
                 }
 
                 .sidebar-links,

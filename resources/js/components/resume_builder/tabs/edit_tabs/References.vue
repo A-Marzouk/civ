@@ -13,6 +13,7 @@
                                     outlined
                                     color="#001CE2"
                                     label="Reference link"
+                                    placeholder="https://website.com"
                                     :disabled="true"
                                     hint="Share with your former employers for your reference"
                                     persistent-hint
@@ -43,6 +44,7 @@
                                         outlined
                                         color="#001CE2"
                                         label="Reference Type"
+                                        placeholder="Former employer"
                                         v-model="editedReference.type"
                                         :error="!!errors.type"
                                         :error-messages="errors.type"
@@ -61,6 +63,7 @@
                                         outlined
                                         color="#001CE2"
                                         label="Full Name"
+                                        placeholder="John doe"
                                         v-model="editedReference.name"
                                         :error="!!errors.name"
                                         :error-messages="errors.name"
@@ -80,6 +83,7 @@
                                         outlined
                                         color="#001CE2"
                                         label="Title/Position"
+                                        placeholder="Project Manager"
                                         v-model="editedReference.title"
                                         :error="!!errors.title"
                                         :error-messages="errors.title"
@@ -101,6 +105,7 @@
                                         color="#001CE2"
                                         label="Phone"
                                         v-model="editedReference.phone"
+                                        placeholder="123 00 0000 00"
                                         :error="!!errors.phone"
                                         :error-messages="errors.phone"
                                 ></v-text-field>
@@ -120,6 +125,7 @@
                                         outlined
                                         color="#001CE2"
                                         v-model="editedReference.email"
+                                        placeholder="john@doe.com"
                                         label="Email"
                                         :error="!!errors.email"
                                         :error-messages="errors.email"
@@ -139,6 +145,7 @@
                                         color="#001CE2"
                                         label="Company"
                                         v-model="editedReference.company"
+                                        placeholder="Company name"
                                         :error="!!errors.company"
                                         :error-messages="errors.company"
                                 ></v-text-field>
@@ -157,6 +164,7 @@
                                         color="#001CE2"
                                         label="Address"
                                         v-model="editedReference.address"
+                                        placeholder="City/Country"
                                         :error="!!errors.address"
                                         :error-messages="errors.address"
                                 ></v-text-field>
@@ -174,6 +182,7 @@
                                         outlined
                                         color="#001CE2"
                                         label="URL"
+                                        placeholder="https://website.com"
                                         v-model="editedReference.url"
                                         :error="!!errors.url"
                                         :error-messages="errors.url"
@@ -187,7 +196,7 @@
                                     cols="12"
                                     class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n8"
                             >
-                                <label  :class="{'error' : !!errors.file || !!errors.image}" style="position: absolute; top: -14px; color: #888DB1;font-size: 15px;">Upload Image</label>
+                                <label  :class="{'error' : !!errors.file || !!errors.image}" style="position: absolute; font-weight: 600; top: -14px; color: #888DB1;font-size: 15px;">Upload Image</label>
                                 <v-input
                                         class="resume-builder__input civie-dropzone"
                                         outlined
@@ -228,7 +237,11 @@
                                         class="resume-builder__input civie-textarea"
                                         outlined
                                         color="#001CE2"
+                                        rows="1"
+                                        auto-grow
+                                        row-height="13"
                                         label="Reference Text"
+                                        placeholder="Reference"
                                         v-model="editedReference.reference_text"
                                         :error="!!errors.reference_text"
                                         :error-messages="errors.reference_text"

@@ -2,7 +2,7 @@
 
 @section('content')
     <script src="https://js.stripe.com/v3/"></script>
-    <span id="stripe_public_key" style="display: none">{{env('STRIPE_KEY')}}</span>
+    <span id="stripe_public_key" style="display: none">{{config('services.stripe.key')}}</span>
     <script>
         var stripe = Stripe(document.getElementById('stripe_public_key').innerText);
         let searchParams = new URLSearchParams(window.location.search);
@@ -17,9 +17,8 @@
                 // using `result.error.message`.
                 console.log(result.error.message);
             });
-            console.log(param);
         }else{
-            console.log('coming');
+
         }
     </script>
 @endsection

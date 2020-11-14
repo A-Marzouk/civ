@@ -33,6 +33,6 @@ class AccountDeleted extends Mailable
     {
         return $this->subject('Mail from civ.ie | Account Deleted')
             ->from('info@civ.ie')
-            ->markdown('emails.account_deleted');
+            ->markdown('emails.user.account_deleted');
     }
 }

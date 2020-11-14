@@ -42,6 +42,27 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('pay_gateway_info', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('user_id')->unsigned()->index();
+            $table->string('stripe_customer_id')->nullable();
+            $table->string('paypal_payer_id')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('social_info', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned()->index();
+            // social login ID's holder
+            $table->string('github_id')->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('linkedin_id')->nullable();
+            $table->string('facebook_id')->nullable();
+            $table->string('instagram_id')->nullable();
+
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -52,5 +73,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('pay_gateway_info');
+        Schema::dropIfExists('social_info');
     }
 }

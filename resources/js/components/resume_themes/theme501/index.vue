@@ -10,15 +10,13 @@
           cols="12"
           :class="{ 'active-indicator': currentTab === 'profile' }"
         >
-
-
           <!-- refactor -->
           <div
-            class="d-flex align-center justify-space-between ct-info-container"
+            class="d-flex align-center justify-md-space-between justify-sm-space-around justify-space-between ct-info-container"
           >
             <!-- profile image -->
             <div class="d-flex">
-              <div class="text-center mr-4">
+              <div class="text-center mr-4 mt-2 mt-lg-0">
                 <v-img
                   :src="currentUser.personal_info.profile_pic"
                   style="border: 3px solid white; border-radius: 50%"
@@ -42,7 +40,8 @@
                   class="head font-weight-bold text-left mb-2 user_name"
                   style="color: whitesmoke"
                 >
-                  {{ currentUser.personal_info.first_name }} {{ currentUser.personal_info.last_name }}
+                  {{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}
                 </div>
                 <div
                   class="subhead text-left mb-4 white--text user_designation"
@@ -50,29 +49,19 @@
                   {{ currentUser.personal_info.designation }}
                 </div>
 
+                <IconCarousel
+                  :currentUser="currentUser"
+                  themeNumber="theme1001"
+                  btnWidth="40"
+                  btnHeight="40"
+                  iconWidth="22"
+                  iconHeight="22"
+                  border="1px solid rgba(4, 199, 155,0.5)"
+                  borderRadius="100"
+                  :depressed="true"
+                  justifyContent="flex-start"
+                ></IconCarousel>
                 <!-- profile info -->
-                <div class="mt-sm-8">
-                  <v-btn
-                    fab
-                    outlined
-                    dark
-                    x-small
-                    v-for="userLink in currentUser.links"
-                    :key="userLink.id + '_link'"
-                    v-show="userLink.is_active && userLink.is_public"
-                    href="javascript:void(0)"
-                    @click="goToExternalLink(userLink.link)"
-                    target="_blank"
-                    :height="iconSize"
-                    :width="iconSize"
-                    color="rgba(4, 199, 155,0.5)"
-                    class="mr-2 mt-1"
-                  >
-                    <v-icon dark color="white"
-                      >mdi-{{ userLink.link_title.toLowerCase() }}</v-icon
-                    >
-                  </v-btn>
-                </div>
               </div>
             </div>
 
@@ -923,7 +912,7 @@
               <div class="summary_title">Overview Sumary</div>
               <div
                 class="mt-4 mb-2"
-                style="height: 4px; width: 4rem; background-color: #69c03e"
+                style="height: 4px; width: 4rem; background-color: #2fd5b4"
               ></div>
               <div class="summary_value">
                 {{ currentUser.personal_info.overview }}
@@ -936,7 +925,7 @@
               <div class="summary_title">About Me</div>
               <div
                 class="mt-4 mb-2"
-                style="height: 4px; width: 4rem; background-color: #69c03e"
+                style="height: 4px; width: 4rem; background-color: #2fd5b4"
               ></div>
               <div class="summary_value">
                 {{ currentUser.personal_info.about }}
@@ -949,7 +938,7 @@
               <div class="summary_title">Quote</div>
               <div
                 class="mt-4 mb-2"
-                style="height: 4px; width: 4rem; background-color: #69c03e"
+                style="height: 4px; width: 4rem; background-color: #2fd5b4"
               ></div>
               <div class="summary_value">
                 {{ currentUser.personal_info.quote }}
@@ -962,7 +951,7 @@
               <div class="summary_title">About Me</div>
               <div
                 class="mt-4 mb-2"
-                style="height: 4px; width: 4rem; background-color: #69c03e"
+                style="height: 4px; width: 4rem; background-color: #2fd5b4"
               ></div>
               <div class="summary_value">
                 {{ currentUser.personal_info.location }}
@@ -971,7 +960,7 @@
           </div>
 
           <v-img
-            src="/images/resume_themes/theme501/green.png"
+            :src="currentUser.personal_info.profile_pic"
             class="box-layer about_image"
             style="background-color: #2fd5b4"
           ></v-img>
@@ -1053,19 +1042,7 @@
                 class="mb-12"
               >
                 <v-row no-gutters>
-                  <v-col
-                    cols="2"
-                    align="center"
-                    align-self="center"
-                    class="mr-4"
-                  >
-                    <v-img
-                      :src="`/images/resume_themes/theme501/${hobby.title}.svg`"
-                      max-width="60"
-                      class="ma-auto"
-                    ></v-img
-                  ></v-col>
-                  <v-col cols="9"
+                  <v-col cols="12"
                     ><div class="hobbyTitle">{{ hobby.title }}</div></v-col
                   >
                 </v-row>
@@ -1228,10 +1205,10 @@
             <audio-player
               :modalOpen="audioModal"
               color="#FC5C8A"
-              v-for="i in 2"
+              v-for="(audio, i) in filterAudio(currentUser.media)"
               :key="i"
               :audio_num="i"
-              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+              :file="audio.url"
             ></audio-player>
 
             <div
@@ -1288,12 +1265,15 @@
               :show-arrows="false"
               hide-delimiter-background
             >
-              <v-carousel-item v-for="i in videos" :key="i.num">
+              <v-carousel-item
+                v-for="(video, i) in filterVideo(currentUser.media)"
+                :key="i"
+              >
                 <v-sheet class="transparent" height="100%">
                   <video-player
                     :video_num="i.num"
                     :modalOpen="videoModal"
-                    link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    :link="video.url"
                   ></video-player>
                 </v-sheet>
               </v-carousel-item>
@@ -1343,6 +1323,7 @@
 @import "https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css";
 @import "https://fonts.googleapis.com/css?family=Material+Icons";
 @import "resources/sass/themes/theme501.scss";
+
 #resumeTheme501
   .v-slide-group__prev
   .v-slide-group__prev
@@ -1370,12 +1351,14 @@ import AudioPlayer from "./media/AudioPlayer";
 import VideoPlayer from "./media/VideoPlayer";
 import HireModal from "./payment/HireModal";
 
+import IconCarousel from "./../reusable/IconCarousel";
 export default {
   props: ["user", "is_preview", "currentTab"],
   components: {
     AudioPlayer,
     VideoPlayer,
     HireModal,
+    IconCarousel,
   },
   data() {
     return {
@@ -1477,42 +1460,6 @@ export default {
         { icon: "mdi-package-variant" },
         { icon: "mdi-ruler-square-compass" },
       ],
-      hobbies: [
-        { title: "Football", value: "football" },
-        { title: "Basketball", value: "basketball" },
-        { title: "Video Games", value: "video_games" },
-        { title: "Travel", value: "travel" },
-      ],
-      reference: {
-        title: "Jhone doe",
-        date: "20 april 2020",
-        gmail: "Jhone@gmail.com",
-        phone: "+212082840542",
-        description:
-          "I have a great passion on designing and always love to create a new design. Thus now I am highly skilled, enthusiastic",
-      },
-      about_section: {
-        short_info: [
-          { title: "Date of Birth", value: ["01/14/90"] },
-          { title: "Nationality", value: ["Ukrainian"] },
-          { title: "Hometown", value: ["Kiev"] },
-          { title: "Languages", value: ["English", "Arabic", "Franch"] },
-        ],
-        summary: [
-          {
-            title: "Overview Sumary",
-            value:
-              "В работе дизайнера есть много пространства для креатива, но это только на первый взгляд кажется, что такие специалисты полагаются исключительно на фантазию.",
-          },
-          {
-            title: "About Me",
-            value:
-              "В работе дизайнера есть много пространства для креатива но это только на первый взгляд кажется, что такие специалисты полагаются исключительно на фантазию.",
-          },
-          { title: "Quote", value: "B создавать графический контент." },
-          { title: "Location", value: "Ireland, Dublin" },
-        ],
-      },
     };
   },
   watch: {
@@ -1566,11 +1513,11 @@ export default {
     },
   },
   methods: {
-    goToExternalLink(link){
-      if(!link.includes('http')){
-        link = 'http://' + link ;
+    goToExternalLink(link) {
+      if (!link.includes("http")) {
+        link = "http://" + link;
       }
-      window.location.href = link ;
+      window.location.href = link;
     },
     availableNext() {
       if (this.available == 2) {
@@ -1602,6 +1549,20 @@ export default {
         }
       });
       return mainImage.src;
+    },
+    filterAudio(audios) {
+      var filterArray = audios.filter((a) => a.type === "audio");
+      if (!Array.isArray(filterArray) || !filterArray.length) {
+        this.disableAudio = true;
+      }
+      return filterArray;
+    },
+    filterVideo(videos) {
+      var filterArray = videos.filter((a) => a.type === "video");
+      if (!Array.isArray(filterArray) || !filterArray.length) {
+        this.disableVideo = true;
+      }
+      return filterArray;
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
@@ -1786,11 +1747,6 @@ export default {
 /* audio */
 .audio_body {
   padding: 0rem 14rem !important;
-}
-
-/* video */
-.video_body {
-  /* grid-template-columns: 1fr 1fr; */
 }
 
 .video-container {

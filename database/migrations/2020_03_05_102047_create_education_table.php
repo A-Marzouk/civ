@@ -22,8 +22,8 @@ class CreateEducationTable extends Migration
             $table->string('location')->nullable();
             $table->string('category')->nullable();
             $table->text('description')->nullable();
-            $table->date('date_from')->nullable();
-            $table->date('date_to')->nullable();
+            $table->string('date_from')->nullable();
+            $table->string('date_to')->nullable();
             $table->boolean('present')->nullable();
             $table->boolean('is_public')->default(true);
             $table->integer('order')->default(1);

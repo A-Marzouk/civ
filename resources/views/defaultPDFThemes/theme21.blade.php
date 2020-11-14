@@ -309,8 +309,8 @@
                     <img src="{{ public_path('images/resume_builder/default-user.jpg') }}" alt="">
                 </td>
                 <td class="user-info">
-                    <div class="user-name">José Quintero</div>
-                    <div class="user-profession">Fullstack Developer</div>
+                    <div class="user-name">{{ $user->personalInfo->first_name.' '.$user->personalInfo->last_name }}</div>
+                    <div class="user-profession">{{ $user->personalInfo->designation }}</div>
 
                     <div class="user-contact">
                         <div class="contact">
@@ -318,7 +318,7 @@
                                 <div class="icon-wrapper">
                                     <img src="{{ public_path('images/resume_themes/theme21/location-icon.png') }}" alt="" class="icon" />
                                 </div>
-                                Av. Panteon, Caracas. Venezuela.
+                                {{ $user->personalInfo->location }}
                             </a>
                         </div>
                         <div class="contact">
@@ -326,273 +326,264 @@
                                 <div class="icon-wrapper">
                                     <img src="{{ public_path('images/resume_themes/theme21/whatsapp-icon.png') }}" alt="" class="icon" />
                                 </div>
-                                +584241714022
+                                {{ $user->personalInfo->phone }}
                             </a>
                         </div>
                         <div class="contact">
-                            <a href="https://civ.ie/josedan10" >
+                            <a href="{{ $user->getPersonalWebsite()->link }}" >
                                 <div class="icon-wrapper">
                                     <img src="{{ public_path('images/resume_themes/theme21/google-icon.png') }}" alt="" class="icon" />
                                 </div>
-                                civ.ie/josedan10
+                                {{ $user->getPersonalWebsite()->link }}
                             </a>
                         </div>
                     </div>
                 </td>
 
                 <td class="user-social">
-                    <div class="social">
-                        <a href="https://behance.net">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme21/behance-icon.png') }}" alt="">
-                            </div>
-                            Behance username
-                        </a>
-                    </div>
-                    <div class="social">
-                        <a href="https://dribbble.com">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme21/dribbble-icon.png') }}" alt="">
-                            </div>
-                            Dribbble username
-                        </a>
-                    </div>
-                    <div class="social">
-                        <a href="https://instagram.com">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme21/instagram-icon.png') }}" alt="">
-                            </div>
-                            Instagram username
-                        </a>
-                    </div>
-                    <div class="social">
-                        <a href="https://behance.net">
-                            <div class="img-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme21/behance-icon.png') }}" alt="">
-                            </div>
-                            LinkedIn username
-                        </a>
-                    </div>
+                    @foreach ($user->getSocialLinks()->toArray() as $item)
+                        <div class="social">
+                            <a
+                                href="{{ $item['link'] }}"
+                            >
+                                <div class="img-wrapper">
+                                    <img src="{{ public_path('images/resume_themes/theme5/'.strtolower($item['link_title']).'-icon.png') }}" alt="">
+                                </div>
+                                {{ $item['link_title'] }} username
+                            </a>
+                        </div>
+                    @endforeach
                 </td>
             </tr>
         </table>
         <section class="about">
             <div class="section-title">ABOUT</div>
             <div class="container">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni consequatur, ex at est quibusdam hic numquam delectus repudiandae impedit veniam dignissimos, a expedita? Dolorem commodi tempore iste ullam, placeat nemo!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates magni facere placeat aut odio beatae, non dolores quae aliquid commodi voluptas, molestias saepe alias accusantium ex laborum possimus, necessitatibus assumenda!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi illo magni placeat, omnis suscipit odio ab quod? Voluptate eius accusamus voluptatibus non consequuntur reprehenderit ut sint, provident, incidunt aspernatur impedit.</p>
+                {{ $user->personalInfo->overview }}
             </div>
         </section>
 
-        <section class="work-experience">
+        @php
+            $visibleWorks = $user->getPublicWorkExperience();
+        @endphp
 
-            <div class="section-title">Work</div>
-            
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="work">
-                                <div class="date">
-                                    <div class="decorator"></div>
-                                    2019 - Now
-                                </div>
-                                <div class="job-title">Fullstack Developer</div>
-                                <div class="company-name">Civie</div>
-                                <div class="description">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, veniam molestiae. Dolores tenetur sequi ratione est velit, dolore natus molestias quos optio quo saepe recusandae iste nulla neque accusamus officiis.
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="work">
-                                <div class="date">
-                                    <div class="decorator"></div>
-                                    2019 - Now
-                                </div>
-                                <div class="job-title">Fullstack Developer</div>
-                                <div class="company-name">Civie</div>
-                                <div class="description">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, veniam molestiae. Dolores tenetur sequi ratione est velit, dolore natus molestias quos optio quo saepe recusandae iste nulla neque accusamus officiis.
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
-                            <div class="work">
-                                <div class="date">
-                                    <div class="decorator"></div>
-                                    2019 - Now
-                                </div>
-                                <div class="job-title">Fullstack Developer</div>
-                                <div class="company-name">Civie</div>
-                                <div class="description">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, veniam molestiae. Dolores tenetur sequi ratione est velit, dolore natus molestias quos optio quo saepe recusandae iste nulla neque accusamus officiis.
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="work">
-                                <div class="date">
-                                    <div class="decorator"></div>
-                                    2019 - Now
-                                </div>
-                                <div class="job-title">Fullstack Developer</div>
-                                <div class="company-name">Civie</div>
-                                <div class="description">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, veniam molestiae. Dolores tenetur sequi ratione est velit, dolore natus molestias quos optio quo saepe recusandae iste nulla neque accusamus officiis.
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </section>
+        @if ($visibleWorks->count() > 0)
+            <section class="work-experience">
 
-        <section class="education-container">
+                <div class="section-title">Work</div>
+                
+                <div class="container">
+                    @foreach ($visibleWorks as $item)
+                        @php
+                            $dateFrom = strtotime($item->date_from);
+                            $dateTo = strtotime($item->date_to);
+                            
+                        @endphp
 
-            <div class="section-title">Education</div>
-            
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="education">
-                                <div class="date">
-                                    <div class="decorator"></div>
-                                    2014 - 2019
-                                </div>
-                                <div class="grade-title">Computing mathematics and statistics</div>
-                                <div class="school-name">Simon Bolivar University</div>
-                                <div class="description">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, veniam molestiae. Dolores tenetur sequi ratione est velit, dolore natus molestias quos optio quo saepe recusandae iste nulla neque accusamus officiis.
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="education">
-                                <div class="date">
-                                    <div class="decorator"></div>
-                                    2014 - 2019
-                                </div>
-                                <div class="grade-title">Computing mathematics and statistics</div>
-                                <div class="school-name">Simon Bolivar University</div>
-                                <div class="description">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, veniam molestiae. Dolores tenetur sequi ratione est velit, dolore natus molestias quos optio quo saepe recusandae iste nulla neque accusamus officiis.
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
-                            <div class="education">
-                                <div class="date">
-                                    <div class="decorator"></div>
-                                    2014 - 2019
-                                </div>
-                                <div class="grade-title">Computing mathematics and statistics</div>
-                                <div class="school-name">Simon Bolivar University</div>
-                                <div class="description">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, veniam molestiae. Dolores tenetur sequi ratione est velit, dolore natus molestias quos optio quo saepe recusandae iste nulla neque accusamus officiis.
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="education">
-                                <div class="date">
-                                    <div class="decorator"></div>
-                                    2014 - 2019
-                                </div>
-                                <div class="grade-title">Computing mathematics and statistics</div>
-                                <div class="school-name">Simon Bolivar University</div>
-                                <div class="description">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, veniam molestiae. Dolores tenetur sequi ratione est velit, dolore natus molestias quos optio quo saepe recusandae iste nulla neque accusamus officiis.
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </section>
+                        @if ($loop->last && $loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="work">
+                                            <div class="date">
+                                                <div class="decorator"></div>
+                                                {{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Now' : date('Y', $dateTo) }}
+                                            </div>
+                                            <div class="job-title">{{ $item->job_title }}</div>
+                                            <div class="company-name">{{ $item->company_name }}</div>
+                                            <div class="description">
+                                                {{ $item->description }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
 
-        <section class="skills">
-            <div class="section-title">Skills</div>
-            <div class="container">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="skill">
-                                <div class="inner-box">
-                                    <img src="{{ public_path('/images/resume_themes/theme21/illustrator-icon.png') }}" alt="">
+                        @elseif ($loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="work">
+                                            <div class="date">
+                                                <div class="decorator"></div>
+                                                {{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Now' : date('Y', $dateTo) }}
+                                            </div>
+                                            <div class="job-title">{{ $item->job_title }}</div>
+                                            <div class="company-name">{{ $item->company_name }}</div>
+                                            <div class="description">
+                                                {{ $item->description }}
+                                            </div>
+                                        </div>
+                                    </td>
+                        @else
+
+                                    <td>
+                                        <div class="work">
+                                            <div class="date">
+                                                <div class="decorator"></div>
+                                                {{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Now' : date('Y', $dateTo) }}
+                                            </div>
+                                            <div class="job-title">{{ $item->job_title }}</div>
+                                            <div class="company-name">{{ $item->company_name }}</div>
+                                            <div class="description">
+                                                {{ $item->description }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        @endif
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        @php
+            $visibleEducations = $user->getPublicEducation();
+        @endphp
+
+        @if ($visibleEducations->count() > 0)
+            <section class="education-container">
+
+                <div class="section-title">Education</div>
+                
+                <div class="container">
+                    @foreach ($visibleEducations as $item)
+                        @php
+                            $dateFrom = strtotime($item->date_from);
+                            $dateTo = strtotime($item->date_to);
+                            
+                        @endphp
+
+                        @if ($loop->last && $loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="education">
+                                            <div class="date">
+                                                <div class="decorator"></div>
+                                                {{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Now' : date('Y', $dateTo) }}
+                                            </div>
+                                            <div class="grade-title">{{ $item->degree_title }}</div>
+                                            <div class="school-name">{{ $item->university_name }}</div>
+                                            <div class="description">{{ $item->description }}</div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        @elseif ($loop->index % 2 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="education">
+                                            <div class="date">
+                                                <div class="decorator"></div>
+                                                {{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Now' : date('Y', $dateTo) }}
+                                            </div>
+                                            <div class="grade-title">{{ $item->degree_title }}</div>
+                                            <div class="school-name">{{ $item->university_name }}</div>
+                                            <div class="description">{{ $item->description }}</div>
+                                        </div>
+                                    </td>
+                        @else
+                                    <td>
+                                        <div class="education">
+                                            <div class="date">
+                                                <div class="decorator"></div>
+                                                {{ date('Y', $dateFrom) }} - {{ ($item->present == 1) ? 'Now' : date('Y', $dateTo) }}
+                                            </div>
+                                            <div class="grade-title">{{ $item->degree_title }}</div>
+                                            <div class="school-name">{{ $item->university_name }}</div>
+                                            <div class="description">{{ $item->description }}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        @endif
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        @php
+            $publicSkills = $user->getPublicSkills();
+        @endphp
+
+        @if ($publicSkills->count() > 0)
+            <section class="skills">
+                <div class="section-title">Skills</div>
+                <div class="container">
+                    @foreach ($publicSkills as $skill)
+                        @if ($loop->last && $loop->index % 8 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="skill">
+                                            <div class="inner-box">
+                                                <img src="{{ public_path('/images/resume_themes/theme21/'.{{ strtolower($skill->title) }}.'-icon.png') }}" alt="">
+                                            </div>
+                                        </div>
+                                    </td>
+                            
+                                    @for ($i = 0; $i < 7; $i++)
+                                        <td>
+                                            <div class="skill"></div>
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            </table>
+                        @elseif ($loop->last && $loop->index % 8 != 7)
+                                    <td>
+                                        <div class="skill">
+                                            <div class="inner-box">
+                                                <img src="{{ public_path('/images/resume_themes/theme21/'.{{ strtolower($skill->title) }}.'-icon.png') }}" alt="">
+                                            </div>
+                                        </div>
+                                    </td>
+                            
+                                    @for ($i = 0; $i < 7 - $loop->index % 8; $i++)
+                                        <td>
+                                            <div class="skill"></div>
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            </table>
+                        @elseif ($loop->index % 8 == 0)
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="skill">
+                                            <div class="inner-box">
+                                                <img src="{{ public_path('/images/resume_themes/theme21/'.{{ strtolower($skill->title) }}.'-icon.png') }}" alt="">
+                                            </div>
+                                        </div>
+                                    </td>
+                        @elseif ($loop->index % == 7)
+                                    <td>
+                                        <div class="skill">
+                                            <div class="inner-box">
+                                                <img src="{{ public_path('/images/resume_themes/theme21/'.{{ strtolower($skill->title) }}.'-icon.png') }}" alt="">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        @else
+                            <td>
+                                <div class="skill">
+                                    <div class="inner-box">
+                                        <img src="{{ public_path('/images/resume_themes/theme21/'.{{ strtolower($skill->title) }}.'-icon.png') }}" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <div class="inner-box">
-                                    <img src="{{ public_path('/images/resume_themes/theme21/photoshop-icon.png') }}" alt="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <div class="inner-box">
-                                    <img src="{{ public_path('/images/resume_themes/theme21/sketch-icon.png') }}" alt="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <div class="inner-box">
-                                    <img src="{{ public_path('/images/resume_themes/theme21/illustrator-icon.png') }}" alt="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <div class="inner-box">
-                                    <img src="{{ public_path('/images/resume_themes/theme21/photoshop-icon.png') }}" alt="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <div class="inner-box">
-                                    <img src="{{ public_path('/images/resume_themes/theme21/sketch-icon.png') }}" alt="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <div class="inner-box">
-                                    <img src="{{ public_path('/images/resume_themes/theme21/illustrator-icon.png') }}" alt="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <div class="inner-box">
-                                    <img src="{{ public_path('/images/resume_themes/theme21/photoshop-icon.png') }}" alt="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="skill">
-                                <div class="inner-box">
-                                    <img src="{{ public_path('/images/resume_themes/theme21/sketch-icon.png') }}" alt="">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </section>
+                            </td>
+                        @endif                      
+                    @endforeach
+                </div>
+            </section>
+        @endif
     </main>
 </body>
 </html>

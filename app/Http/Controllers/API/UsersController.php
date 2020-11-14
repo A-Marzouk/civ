@@ -10,6 +10,7 @@ namespace App\Http\Controllers\API;
 
 
 use App\Http\Controllers\Controller;
+use App\Preference;
 use App\Promocode;
 use App\ResumeLink;
 use App\Subscription;
@@ -43,6 +44,7 @@ class UsersController extends Controller
 
         if($user){
             $this->setDefaultTabs($user);
+            $this->setDefaultPreferences($user);
             $this->setDefaultResumeLink($user);
             // get user with updated relations:
             $user = User::withAllRelations($user->username, $user->resume_link_id);
@@ -72,6 +74,30 @@ class UsersController extends Controller
 
         Tab::insert($defaultTabs);
 
+    }
+
+    protected function setDefaultPreferences($user){
+        $profiles = $user->resumeLinks;
+
+        foreach($profiles as $profile){
+            $preferences = Preference::where([
+                'user_id' => $user->id,
+                'resume_link_id' => $profile->id
+            ])->get();
+
+            if(count($preferences) < 1){
+                $defaultPreferences = [] ;
+                foreach (Preference::$defaultPreferences as $preference){
+                    $defaultPreferences[] = [
+                        'user_id' => $user->id,
+                        'resume_link_id' => $profile->id,
+                        'title' => $preference['title'],
+                        'label' =>  $preference['label']
+                    ];
+                }
+                Preference::insert($defaultPreferences);
+            }
+        }
     }
 
     public function deactivateAccount($id){

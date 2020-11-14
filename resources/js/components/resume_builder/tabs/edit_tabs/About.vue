@@ -140,6 +140,9 @@
                             v-model="personalInfo.about"
                             label="About Me"
                             hide-details="auto"
+                            rows="1"
+                            auto-grow
+                            row-height="13"
                             outlined
                             @blur="applyEdit"
                     >
@@ -160,6 +163,9 @@
                             v-model="personalInfo.overview"
                             label="Overview Summary"
                             hide-details="auto"
+                            rows="1"
+                            auto-grow
+                            row-height="15"
                             outlined
                             @blur="applyEdit"
                     >
@@ -181,6 +187,9 @@
                             v-model="personalInfo.quote"
                             hide-details="auto"
                             outlined
+                            rows="1"
+                            auto-grow
+                            row-height="15"
                             @blur="applyEdit"
                     >
                         <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"
@@ -262,9 +271,10 @@
             syncLanguages(newLangauges) {
                 axios.post("/api/user/languages-sync", {
                         IDs: newLangauges,
-                        user_id: this.user.id
+                        user_id: this.user.id,
+                        resume_link_id: this.user.default_resume_link.id,
                     })
-                    .then(() => {
+                    .then((response) => {
                         this.$store.dispatch("flyingNotification");
                     })
                     .catch(e => {
@@ -840,11 +850,12 @@
 
 <style lang="scss">
     .resume-builder__input.civie-textarea.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
-        bottom: 162px;
+        bottom: 20px;
     }
 
     .resume-builder__input.civie-input.eye-up-position > .v-input__control > .v-input__slot .v-input__append-inner {
-        bottom: 62px;
+        bottom: 20px;
+        right: 5px;
     }
 
 
@@ -858,10 +869,12 @@
         .custom-predict-input-label {
             display: flex;
             justify-content: space-between;
+            position: relative;
 
             label {
                 color: #888DB1;
                 font-size: 16px;
+                font-weight: 600;
                 margin-bottom: 10px;
 
                 &.focused {
@@ -871,22 +884,23 @@
 
             .eye {
                 margin-right: 14px;
+                position: absolute;
+                right: 0;
+                top: 40px;
             }
 
         }
 
         .custom-predict-input {
             height: 45px;
-            border: 1.9px solid #C4C9F5;
-            border-radius: 10px;
+            border-bottom: 1.95px solid #C4C9F5;
             width: 100%;
             margin-top: -4px;
-            padding-left: 12px;
             color: #888DB1;
 
             &:focus {
                 outline: none;
-                border: 1.9px solid blue;
+                border-bottom: 1.9px solid blue;
             }
         }
 

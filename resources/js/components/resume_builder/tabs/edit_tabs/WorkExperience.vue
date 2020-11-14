@@ -60,13 +60,13 @@
                             <div class="date-group">
                                 <div class="date-input">
                                     <label :class="{'error-label' : errors.date_from}">Date</label>
-                                    <input type="date" class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
+                                    <input type="month" class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
                                 </div>
                                 <div class="date-input">
                                     <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
                                         <input type="checkbox" class="checkbox" v-model="newWork.present"> <span class="present-text">Present</span>
                                     </label>
-                                    <input type="date" class="pr-2" style="transition: all 1.5s;" :class="{'error-label' : errors.date_to, 'zero-opacity': newWork.present}"  v-model="newWork.date_to" :disabled="newWork.present"">
+                                    <input type="month" class="pr-2" style="transition: all 1.5s;" :class="{'error-label' : errors.date_to, 'zero-opacity': newWork.present}"  v-model="newWork.date_to" :disabled="newWork.present"">
                                 </div>
                             </div>
                         </div>
@@ -75,10 +75,14 @@
                             <v-textarea
                                     class="ml-lg-custom3 resume-builder__input profile-input civie-textarea"
                                     outlined
+                                    rows="1"
+                                    auto-grow
+                                    row-height="13"
                                     color="#001CE2"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :disabled="false"
                                     :error="!!errors.description"
+                                    placeholder="Describe your experience"
                                     :error-messages="errors.description"
                                     counter
                                     maxlength="1000"
@@ -101,6 +105,7 @@
                 <draggable class="education-list" v-model="works" @start="drag=true" @end="drag=false"  handle=".drag-handler">
                     <div
                             v-for="work in works"
+                            v-show="work.category.toLowerCase() === activeTab.toLowerCase()"
                             class="education-item"
                             :class="{'closed' : expandedWorkID !== work.id, 'half-opacity' : !work.is_public}"
                             :key="work.id"
@@ -492,11 +497,11 @@
 
                             input {
                                 height: 48px; // adjusted | 50px
-                                border: 1.95px solid #C4C9F5 !important; // adjusted | 2px
-                                border-radius: 10px;
+                                border: none;
+                                border-bottom: 1.95px solid #C4C9F5 !important;
+                                border-radius: 0;
                                 opacity: 1;
-                                color: #c4c9f5;
-                                padding-left: 12px;
+                                color: grey;
 
                                 @include lt-lg {
 

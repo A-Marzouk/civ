@@ -33,6 +33,6 @@ class ActivationReminder extends Mailable
     {
         return $this->subject('Mail from civ.ie | Activation reminder')
             ->from('info@civ.ie')
-            ->markdown('emails.activation_reminder');
+            ->markdown('emails.user.activation_reminder');
     }
 }

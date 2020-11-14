@@ -17,4 +17,20 @@ class Skill extends Model
        return $this->belongsTo(User::class);
     }
 
+    /**
+     * Receives an skills array and return all the skill categories availables
+     *
+     * @param Illuminate\Support\Collection $skills
+     * @return array
+     */
+    public static function filterCategories($skills) {
+        $categories = [];
+        
+        $skills->each(function ($item, $key) use (&$categories) {
+            if (!in_array($item->category, $categories)) {
+                array_push($categories, $item->category);
+            }
+        });
+        return $categories;
+    }
 }

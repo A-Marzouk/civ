@@ -20,9 +20,15 @@
                   contain
                 >
                 </v-img>
-                <v-btn fab color="#f56068" class="pdf-btn" elevation="0">
+                <v-btn
+                  fab
+                  color="#f56068"
+                  class="pdf-btn"
+                  elevation="0"
+                  v-if="findPreference('pdf_download')"
+                >
                   <v-img
-                    src="/images/resume_themes/theme511/social_icons/pdf.svg"
+                    src="/images/resume_themes/theme511/social_icons/pdfBtn.svg"
                     :max-width="pdfIconSize"
                     contain
                   ></v-img>
@@ -32,7 +38,7 @@
                   color="#39E1AA"
                   class="msg-btn hidden-sm-and-down"
                   @click.stop="messageToggle = !messageToggle"
-                  elevation="0"
+                  v-if="findPreference('chat')"
                 >
                   <v-img
                     src="/images/resume_themes/theme511/email.svg"
@@ -40,14 +46,6 @@
                     contain
                   ></v-img>
                 </v-btn>
-
-                <!-- <a
-                  href="/preview-pdf-theme-by-code/theme21"
-                  class="pdf-btn"
-                  target="_blank"
-                >
-                  <svg-vue  :icon="'themes.pdf-button-theme511'"></svg-vue>
-                </a> -->
               </v-col>
               <MessageDialog
                 :messageToggle="messageToggle"
@@ -82,8 +80,7 @@
                 <v-list>
                   <v-list-item
                     v-for="(tab, i) in currentUser.tabs"
-                    v-if="!excludedTabs.includes(tab.title)"
-                    v-show="tab.is_public"
+                    v-show="tab.is_public && !excludedTabs.includes(tab.title)"
                     :key="i"
                     @click="activeTab = tab.title"
                   >
@@ -102,7 +99,8 @@
               </v-navigation-drawer>
               <v-col
                 cols="auto"
-                lg="4"
+                xl="6"
+                lg="6"
                 class="pl-lg-8"
                 sm="6"
                 align-self="center"
@@ -120,28 +118,89 @@
                 >
                   {{ currentUser.personal_info.overview }}
                 </div>
-                <div class="hidden-xs-only">
-                  <div class="info-text d-inline-block mr-6 mr-sm-2">
-                    hour rate
-                    <div
-                      class="info-rate d-inline-block mx-2 mx-sm-1"
-                      v-if="currentUser.payment_info"
+                <v-row dense class="hidden-xs-only">
+                  <!-- Pay Rate -->
+                  <v-col
+                    cols="12"
+                    sm="12"
+                    lg="6"
+                    xl="5"
+                    v-if="findPreference('hourly_rate')"
+                  >
+                    <span class="info-text">Rate - </span>
+                    <span class="info-text">
+                      <v-icon color="#39E1AA" @click="paymentInfoPrev()"
+                        >mdi-chevron-left</v-icon
+                      >
+                      <a
+                        href="javascript:void(0)"
+                        class="info-text"
+                        v-for="(payment_Info,
+                        index) in currentUser.payment_info"
+                        :key="index"
+                        v-show="payment_Info.is_public && paymentInfo == index"
+                        @click="paymentInfoNext()"
+                      >
+                        {{ payment_Info.salary_frequency }}
+                      </a>
+
+                      <v-icon color="#39E1AA" @click="paymentInfoNext()"
+                        >mdi-chevron-right</v-icon
+                      ></span
                     >
-                      {{ currentUser.payment_info[0].salary }}
-                      {{ currentUser.payment_info[0].currency }}
-                    </div>
-                  </div>
-                  <div class="info-text d-inline-block">
-                    Weekly availability
-                    <div
-                      class="info-rate d-inline-block mx-2 mx-sm-1"
-                      v-if="currentUser.availability_info"
+                    <span
+                      class="info-rate"
+                      v-for="(payment_Info, index) in currentUser.payment_info"
+                      :key="index"
+                      v-show="payment_Info.is_public && paymentInfo == index"
                     >
-                      {{ currentUser.availability_info[0].available_hours }}
-                      Hours
-                    </div>
-                  </div>
-                </div>
+                      {{ payment_Info.salary }}
+                      {{ payment_Info.currency }}
+                    </span>
+                  </v-col>
+                  <!-- Pay Rate -->
+                  <!-- Availability -->
+                  <v-col
+                    cols="12"
+                    sm="12"
+                    md="6"
+                    v-if="findPreference('weekly_availability')"
+                  >
+                    <span class="info-text">Availability - </span>
+                    <span class="info-text">
+                      <v-icon color="#39E1AA" @click="availablePrev()"
+                        >mdi-chevron-left</v-icon
+                      >
+                      <a
+                        href="javascript:void(0)"
+                        class="info-text"
+                        v-for="(availability_info,
+                        index) in currentUser.availability_info"
+                        :key="index"
+                        v-show="
+                          availability_info.is_public && available == index
+                        "
+                        @click="availableNext()"
+                      >
+                        {{ availability_info.available_hours_frequency }}
+                      </a>
+
+                      <v-icon color="#39E1AA" @click="availableNext()"
+                        >mdi-chevron-right</v-icon
+                      ></span
+                    >
+                    <span
+                      class="info-rate"
+                      v-for="(availability_info,
+                      index) in currentUser.availability_info"
+                      :key="index"
+                      v-show="availability_info.is_public && available == index"
+                    >
+                      {{ availability_info.available_hours }}
+                    </span>
+                  </v-col>
+                  <!-- Availability -->
+                </v-row>
               </v-col>
               <v-col
                 cols="auto"
@@ -151,23 +210,24 @@
                 align-self="center"
               >
                 <div class="text-right mt-lg-4 hidden-md-and-down">
-                  <v-btn
-                    v-for="userLink in currentUser.links"
-                    :key="userLink.id + '_link'"
-                    v-show="userLink.is_active && userLink.is_public"
-                    href="javascript:void(0)"
-                    @click="goToExternalLink(userLink.link)"
-                    target="_blank"
-                    class="social mx-3"
-                    fab
-                    elevation="0"
-                  >
-                    <svg-vue
-                      class="icon"
-                      :icon="userLink.link_title.toLowerCase() + '-icon'"
-                    ></svg-vue>
-                  </v-btn>
+                  <!-- Social Icons -->
+                  <IconCarousel
+                    :currentUser="currentUser"
+                    themeNumber="theme511"
+                    btnWidth="45"
+                    btnHeight="45"
+                    iconWidth="24"
+                    iconHeight="24"
+                    border="5px solid #f56068"
+                    borderRadius="100"
+                    carouselHeight="50"
+                    justifyContent="flex-end"
+                    class="mr-lg-8 mb-2"
+                    arrowColor="#39E1AA"
+                  ></IconCarousel>
 
+                  <!-- Social Icons -->
+                  <!-- Hire Me Button -->
                   <v-btn
                     class="hire text-right ml-1 mr-lg-8"
                     height="60"
@@ -175,9 +235,11 @@
                     min-width="60"
                     elevation="0"
                     @click.stop="hireMeModal = !hireMeModal"
+                    v-if="findPreference('hire_me')"
                   >
                     <div class="text-capitalize hire-text">hire me</div>
                   </v-btn>
+                  <!-- Hire Me Button -->
                 </div>
 
                 <div class="text-sm-center text-right mt-sm-4 hidden-lg-and-up">
@@ -189,6 +251,7 @@
                     elevation="0"
                     fab
                     @click.stop="messageToggle = !messageToggle"
+                    v-if="findPreference('chat')"
                   >
                     <v-img
                       src="/images/resume_themes/theme511/emailmob.svg"
@@ -206,6 +269,7 @@
                     min-width="40"
                     elevation="0"
                     @click.stop="hireMeModal = !hireMeModal"
+                    v-if="findPreference('hire_me')"
                   >
                     <div class="text-capitalize hire-text">hire me</div>
                   </v-btn>
@@ -216,11 +280,7 @@
           </v-container>
         </v-col>
         <!-- Payment-dialog-box   -->
-        <!-- <payment
-          :currentUser="currentUser"
-          :hireMeModal="hireMeModal"
-          :closePayment="closePayment"
-        /> -->
+
         <HireModal :hireMeModal="hireMeModal" :closePayment="closePayment" />
         <!-- Payment-dialog-box   -->
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4 mainheight">
@@ -241,8 +301,7 @@
                 >
                   <v-tab
                     v-for="tab in currentUser.tabs"
-                    v-if="!excludedTabs.includes(tab.title)"
-                    v-show="tab.is_public"
+                    v-show="tab.is_public && !excludedTabs.includes(tab.title)"
                     :key="tab.title"
                     @click="activeTab = tab.title"
                     class="mx-auto"
@@ -307,8 +366,10 @@ import References from "./tabs/References";
 import Achievement from "./tabs/Achievement";
 import MessageDialog from "./message/MessageDialog";
 import HireModal from "./payments/HireModal";
-
+import IconCarousel from "../reusable/IconCarousel";
+import MainFunctions from "../reusable/functions/main.functions";
 export default {
+  extends:MainFunctions,
   components: {
     Portfolio,
     Experience,
@@ -322,37 +383,17 @@ export default {
     Achievement,
     MessageDialog,
     HireModal,
+    IconCarousel,
   },
-  props: ["user", "is_preview", "builderCurrentTabTitle"],
   data() {
     return {
       drawer: null,
-      currentUser: this.user,
-      activeTab: "portfolio",
       messageToggle: false,
       hireMeModal: false,
-      indexOfActiveTab: 0,
     };
   },
-  watch: {
-    // if current tab changed, change the active tab as well.
-    builderCurrentTabTitle: function (val) {
-      if (!this.defaultTabs.includes(val)) {
-        this.activeTab = this.getFirstActiveTabTitle();
-      } else {
-        this.activeTab = val;
-      }
 
-      this.setTabIndex();
-    },
-  },
   computed: {
-    defaultTabs() {
-      return this.$store.state.defaultTabs;
-    },
-    excludedTabs() {
-      return this.$store.state.excludedTabs;
-    },
     borderadius() {
       return document.querySelector(".v-tabs-slider").borderRadius("50px");
     },
@@ -419,31 +460,7 @@ export default {
       }
     },
   },
-
   methods: {
-    getFirstActiveTabTitle() {
-      let title = "";
-      this.currentUser.tabs.forEach((tab) => {
-        if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
-          if (title === "") {
-            title = tab.title;
-          }
-        }
-      });
-
-      return title;
-    },
-    setTabIndex() {
-      this.indexOfActiveTab = this.currentUser.tabs.findIndex(
-        (tab) => tab.title === this.activeTab
-      );
-    },
-    goToExternalLink(link) {
-      if (!link.includes("http")) {
-        link = "http://" + link;
-      }
-      window.location.href = link;
-    },
     closeDialog() {
       console.log("closeDialog");
       this.messageToggle = false;
@@ -452,9 +469,7 @@ export default {
       console.log("closePayment");
       this.hireMeModal = false;
     },
-    setDummyUser() {
-      this.currentUser = this.$store.state.dummyUser;
-    },
+   
     sliderColor() {
       if (this.activeTab === "portfolio") {
         return "#F7B301";
@@ -484,31 +499,10 @@ export default {
         return "#F7B301";
       }
     },
-    setActiveTabByURL() {
-      const pathSplit = this.$route.path.split("/");
-      let currentActiveTab = pathSplit[pathSplit.length - 1];
-      if (!this.defaultTabs.includes(currentActiveTab)) {
-        this.activeTab = this.getFirstActiveTabTitle();
-      } else {
-        this.activeTab = currentActiveTab;
-      }
+   
+  },
 
-      this.setTabIndex();
-    },
-  },
-  mounted() {
-    // if there is no user or the preview is true, set dummy user
-    if (!this.currentUser || this.is_preview) {
-      this.setDummyUser();
-    }
 
-    // let user accessible in included components.
-    this.$store.dispatch("updateThemeUser", this.currentUser);
-  },
-  created() {
-    // set active tab
-    this.setActiveTabByURL();
-  },
 };
 </script>
 <style lang="scss" scoped>
@@ -705,8 +699,6 @@ export default {
   font-weight: normal;
   font-size: 1rem;
   line-height: 27px;
-  display: flex;
-  align-items: center;
   text-transform: uppercase;
   color: #000000;
 }
@@ -717,8 +709,6 @@ export default {
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 45px;
-  display: flex;
-  align-items: center;
   color: #000000;
 }
 
@@ -816,8 +806,6 @@ export default {
     font-weight: normal;
     font-size: 14px;
     line-height: 21px;
-    display: flex;
-    align-items: center;
     text-transform: uppercase;
 
     color: #000000;
@@ -828,9 +816,6 @@ export default {
     font-weight: bold;
     font-size: 20px;
     line-height: 30px;
-    display: flex;
-    align-items: center;
-
     color: #000000;
   }
 }
@@ -906,8 +891,6 @@ export default {
     font-weight: normal;
     font-size: 14px;
     line-height: 21px;
-    display: flex;
-    align-items: center;
     text-transform: uppercase;
 
     color: #000000;
@@ -918,9 +901,6 @@ export default {
     font-weight: bold;
     font-size: 20px;
     line-height: 30px;
-    display: flex;
-    align-items: center;
-
     color: #000000;
   }
 }

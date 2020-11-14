@@ -155,7 +155,7 @@ export default {
 <style lang="scss">
 .tm701-main {
   .tm701-tabs--container {
-    background-image: url("../../../../../public/images/resume_themes/theme701/header-mask.png");
+    background-image: url("/images/resume_themes/theme701/header-mask.png");
     background-color: #dbdec4;
   }
   // Start Tabs

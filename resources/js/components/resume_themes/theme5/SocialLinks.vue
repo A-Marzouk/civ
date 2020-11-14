@@ -1,153 +1,32 @@
 <template>
   <div class="social-menu">
-    <div class="social-label">Follow Me</div>
-    <div class="social-carousel-wrapper">
-      <div
-        class="social-carousel--nav__left"
-        @click="moveCarousel(-1)"
-        v-if="currentUser.links.length > 5"
-        :disabled="atHeadOfList"
-      >
-        <v-icon color="#5F45FF" large>mdi-chevron-left</v-icon>
-      </div>
-      <div class="social-carousel">
-        <div class="social-carousel--overflow-container">
-          <div
-            class="social-carousel-group"
-            :style="{
-              transform: 'translateX' + '(' + currentOffset + 'px' + ')',
-            }"
-            ref="track"
-          >
-            <v-btn
-              href="javascript:void(0)"
-              @click="goToExternalLink(userLink.link)"
-              v-for="userLink in currentUser.links"
-              :key="userLink.id + '_link'"
-              target="_blank"
-              class="mx-1"
-              color="#E6E8FC"
-              style="
-                width: 40px;
-                min-width: 40px;
-                height: 40px;
-                box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;
-              "
-              v-show="userLink.is_active && userLink.is_public"
-            >
-              <v-img
-                contain
-                width="18"
-                height="18"
-                :src="`/images/resume_themes/theme5/social_icons/${userLink.link_title.toLowerCase()}.svg`"
-                alt="social-icon"
-              ></v-img>
-            </v-btn>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="social-carousel--nav__right"
-        @click="moveCarousel(1)"
-        v-if="currentUser.links.length > 5"
-        :disabled="atEndOfList"
-      >
-        <v-icon color="#5F45FF" large>mdi-chevron-right</v-icon>
-      </div>
-    </div>
+    <IconCarousel
+      :currentUser="currentUser"
+      themeNumber="theme5"
+      btnWidth="40"
+      btnHeight="40"
+      btnColor="#E6E8FC"
+      iconWidth="18"
+      iconHeight="18"
+      :arrowLarge="true"
+      bgColor="rgba(81, 91, 212, 0.1)"
+      :depressed="true"
+      borderRadius="5"
+      arrowColor="#5F45FF"
+    ></IconCarousel>
   </div>
 </template>
 
 <script>
+import IconCarousel from "../reusable/IconCarousel";
 export default {
   name: "social-links",
-
+  components: { IconCarousel },
   props: {
     currentUser: {
       type: undefined,
       required: true,
     },
-  },
-  data() {
-    return {
-      currentOffset: 0,
-      windowSize: 3,
-      paginationFactor: 60,
-      dragDistance: 0,
-      dragStartX: 0,
-      dragStartY: 0,
-      isMouseDown: false,
-    };
-  },
-  computed: {
-    atEndOfList() {
-      return (
-        this.currentOffset <=
-        this.paginationFactor *
-          -1 *
-          (this.currentUser.links.length - this.windowSize)
-      );
-    },
-    atHeadOfList() {
-      return this.currentOffset === 0;
-    },
-  },
-
-  methods: {
-    goToExternalLink(link) {
-      if (!link.includes("http")) {
-        link = "http://" + link;
-      }
-      window.location.href = link;
-    },
-    moveCarousel(direction) {
-      // Find a more elegant way to express the :style. consider using props to make it truly generic
-      if (direction === 1 && !this.atEndOfList) {
-        this.currentOffset -= this.paginationFactor;
-      } else if (direction === -1 && !this.atHeadOfList) {
-        this.currentOffset += this.paginationFactor;
-      }
-    },
-    handleMouseMove(e) {
-      let positionX;
-      let positionY;
-      if (e.type.indexOf("touch") !== -1) {
-        positionX = e.touches[0].clientX;
-        positionY = e.touches[0].clientY;
-      }
-
-      let dragDistanceX = Math.abs(positionX - this.dragStartX);
-      let dragDistanceY = Math.abs(positionY - this.dragStartY);
-      if (dragDistanceX > 3 * dragDistanceY) {
-        console.log(positionX);
-        this.currentOffset = positionX - this.dragStartX;
-      }
-    },
-    handleMouseDown(e) {
-      this.isMouseDown = true;
-
-      if (e.type.indexOf("touch") !== -1) {
-        this.dragStartX = e.touches[0].clientX;
-        this.dragStartY = e.touches[0].clientY;
-      }
-    },
-
-    handleMouseUp() {
-      this.isMouseDown = false;
-    },
-  },
-  mounted() {
-    // Mouse and touch events
-    this.$refs.track.addEventListener("touchstart", this.handleMouseDown);
-    this.$refs.track.addEventListener("touchend", this.handleMouseUp);
-    this.$refs.track.addEventListener("touchmove", this.handleMouseMove);
-  },
-  beforeDestroy() {
-    // Mouse and touch events
-    this.$refs.track.removeEventListener("touchstart", this.handleMouseDown);
-    this.$refs.track.removeEventListener("touchend", this.handleMouseUp);
-    this.$refs.track.removeEventListener("touchmove", this.handleMouseMove);
   },
 };
 </script>

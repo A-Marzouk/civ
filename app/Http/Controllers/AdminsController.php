@@ -9,10 +9,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Mail\CustomMail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminsController extends Controller
 {
@@ -50,5 +51,36 @@ class AdminsController extends Controller
         }
 
         return view('admin.resume-builder',compact('tempUser','is_admin'));
+    }
+
+    public function sendCustomEmail(Request $request){
+        $senderEmail = $request->sender . '@civ.ie' ?? 'hi@civ.ie' ;
+        $toEmails = $request->receivers ;
+        $to = [];
+
+        foreach ($toEmails as $emailInfo){
+            $to[] = [
+              'name' => $emailInfo['name'],
+              'email' => $emailInfo['email'],
+            ];
+        }
+        $emailData    = $request->data ?? [] ;
+        $emailSubject = $request->subject ?? [] ;
+
+        Mail::to($to)->send(new CustomMail($emailSubject, $emailData, $senderEmail));
+    }
+
+    public function mailPreview(){
+        $emailData = [
+            'header'     => request('header') ?? 'Header placeholder',
+            'body'       => request('body') ?? 'Email body placeholder | Email body placeholder | Email body placeholder',
+            "actionText" => request('actionText') ?? 'Placeholder',
+            "actionURL"  => request('actionURL') ?? '#',
+            "footer"     => request('footer') ?? 'Footer placeholder'
+        ];
+
+        return (new CustomMail('Hi, Email preview', $emailData, 'info@civ.ie'))
+            ->subject('Hi, Email preview')
+            ->markdown('emails.admin.custom_mail');
     }
 }
