@@ -69,7 +69,6 @@
                 flat
                 tile
               >
-<<<<<<< HEAD
                 <v-card-text
                   class="ml-xl-0 ml-lg-12 ml-md-0"
                   v-if="findPreference('hourly_rate')"
@@ -173,10 +172,6 @@
                   </v-list-item-content>
                 </v-list-item>
                 <!-- Weekly availibility -->
-=======
-                <SalaryRate :paymentInfo="currentUser.payment_info" />
-                <AvailabilityHours :availabilityInfo="currentUser.availability_info" />
->>>>>>> 0d74b6a93cfc052ea4c34b68e790440b319bddd0
               </v-card>
             </v-col>
             <!-- Availibility  -->
