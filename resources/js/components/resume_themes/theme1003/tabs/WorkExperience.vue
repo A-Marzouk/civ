@@ -2,12 +2,12 @@
   <div class="experience">
     <div class="experience-items">
       <ItemView
-        v-for="item in experiences"
-        :title="item.title"
-        :subtitle="item.subtitle"
-        :description="item.description"
-        :duration="item.duration"
-        :key="item.id"
+        v-for="experience in experiences"
+        :title="experience.job_title"
+        :subtitle="experience.company_name"
+        :description="experience.description"
+        :duration="experience.duration"
+        :key="experience.id"
       />
     </div>
   </div>
@@ -19,38 +19,25 @@ import ItemView from '../components/education-experience/ItemView';
 export default {
   name: 'WorkExperience',
 
-  components: { ItemView },
-
-  data: () => {
-    return {
-      experiences: [
-        {
-          id: 1,
-          title: 'Civie - FrontEnd Developer',
-          subtitle: 'London',
-          description: 'Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.',
-          duration: '2010-2013'
-        },
-        {
-          id: 2,
-          title: 'Civie - FrontEnd Developer',
-          subtitle: 'London',
-          description: 'Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.',
-          duration: '2010-2013'
-        }
-      ]
-    };
+  props: {
+    currentUser: {
+      type: Object,
+      required: true
+    }
   },
 
-  computed: {
-    isLastExperience() {
-      return experience => {
-        if (experience.length === 0) {
-          return true;
-        }
+  components: { ItemView },
 
-        return experience.id !== this.experiences[this.experiences.length - 1].id;
-      };
+  computed: {
+    experiences() {
+      return this.currentUser.work_experience
+        .filter(wExperience => wExperience.is_public)
+        .map(wExperience => {
+          wExperience.duration = `${wExperience.date_from}-`;
+          wExperience.duration += wExperience.present ? 'present' : wExperience.date_to;
+
+          return wExperience;
+        });
     }
   }
 };
