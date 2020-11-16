@@ -120,24 +120,36 @@ class StripeForClientsController extends Controller
 
         $nowSubscriptionPrice = $this->createPriceForSubscription($product->id, $request);
 
+
+        // set up payment method
         $session = StripeSession::create([
             'customer' => $customer->id,
-            'mode' => 'subscription',
+            'mode' => 'setup',
             'payment_method_types' => ['card'],
-            'line_items' => [
-                [
-                    'price' => $nowSubscriptionPrice->id,
-                    'quantity' => 1,
-                ]
-            ],
             'success_url' => url('/') . '/hire-freelancer/success',
             'cancel_url' =>  url('/') . '/hire-freelancer/cancel',
         ]);
 
         Session::put('hire_sub_session_id',  $session->id);
-        Session::put('expires_at',  $session->id);
 
-        // create non-active subscription with the expires_at date.
+
+        // create now subscription:
+        StripeSubscriptionSchedule::create([
+            'customer' =>  $customer->id,
+            'start_date' => 'now',
+            'end_behavior' => 'cancel',
+            'phases' => [
+                [
+                    'items' => [
+                        [
+                            'price' => $nowSubscriptionPrice->id,
+                            'quantity' => 1,
+                        ],
+                    ],
+                    'iterations' => $request->payment_info['iterations'],
+                ],
+            ],
+        ]);
 
         if($request->percentage < 100){
 
