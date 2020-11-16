@@ -39,7 +39,8 @@ class AdminsController extends Controller
     }
 
     public function userFullEdit($username){
-        $tempUser = User::withAllRelations($username);
+        $user = User::where('username', $username)->first();
+        $tempUser = User::withAllRelations($username, $user->defaultResumeLink->id);
         if(!$tempUser){
             return redirect('/workforce-admin');
         }

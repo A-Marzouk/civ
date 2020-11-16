@@ -114,8 +114,8 @@
                                     themeNumber="theme203"
                                     btnWidth="39"
                                     btnHeight="39"
-                                    iconWidth="19"
-                                    iconHeight="19"
+                                    iconWidth="21"
+                                    iconHeight="21"
                                     bgColor="rgba(252, 210, 89, 1)"
                                     borderRadius="100"
                                     arrowColor="#000"
@@ -485,10 +485,10 @@
                             v-if="currentUser.personal_info.about"
                             >About Me
                           </v-card-subtitle>
-                          <hr
+                          <div
                             class="custom-hr hidden-xs-only"
                             v-show="currentUser.personal_info.about"
-                          />
+                          ></div>
                           <v-card-text
                             class="overview-text"
                             v-if="currentUser.personal_info.about"
@@ -522,7 +522,7 @@
                           </v-card-text>
                           <!-- location -->
                           <hr
-                            class="custom-hr hidden-sm-and-up"
+                            class="custom-hr-mobile hidden-sm-and-up"
                             v-show="currentUser.personal_info.location"
                           />
                         </v-card>
@@ -587,7 +587,7 @@
                                         <span v-if="work.present == 1"
                                           >Present</span
                                         >
-                                        <span v-else>{{ work.to }}</span>
+                                        <span v-else>{{ work.date_to }}</span>
                                       </v-card>
                                     </v-list-item-subtitle>
                                   </v-list-item-content>
@@ -642,16 +642,18 @@
                                       tile
                                       style="color: #fbd76d"
                                     >
-                                      {{ education.degree_title }},
-                                      <span class="ml-5">
-                                        {{ education.date_from }} -
-                                        <span v-if="education.present == true"
-                                          >Present</span
-                                        >
-                                        <span v-else>
-                                          {{ education.date_to }}
+                                      <div class="d-flex flex-column">
+                                        {{ education.degree_title }},
+                                        <span class="education-date mt-2">
+                                          {{ education.date_from }} -
+                                          <span v-if="education.present == true"
+                                            >Present</span
+                                          >
+                                          <span v-else>
+                                            {{ education.date_to }}
+                                          </span>
                                         </span>
-                                      </span>
+                                      </div>
                                     </v-card>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle class="mt-6">
@@ -1213,7 +1215,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    // console.log(this.currentUser);
+    //console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
@@ -1678,6 +1680,9 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 0.7rem;
   }
+  .education-margin {
+    margin-left: 5%;
+  }
 }
 
 .custom-education-details {
@@ -1741,7 +1746,7 @@ export default {
   position: absolute;
   font-size: 10vw;
   width: 100%;
-  opacity: 0.1;
+  opacity: 0.02;
   white-space: nowrap;
   display: inline-block;
   font-family: "Poppins" !important;
@@ -2191,26 +2196,31 @@ export default {
 }
 
 .custom-hr {
-  width: 245.36px;
-  opacity: 0.6;
-  border: 1px solid #000000;
-  transform: rotate(90deg);
-  margin-left: -198px;
-  margin-top: 12rem;
+  min-height: 100%;
+  opacity: 0.6 !important;
+  border: 2px solid #000000;
   position: absolute;
+  top: 0;
+  left: -72px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    margin-left: -158px;
+    left: -38px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
-    margin-left: -144px;
+    left: -22px;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    margin-left: -150px;
+    left: -22px;
   }
   @media screen and (max-width: 599px) {
-    margin-left: 16px;
-    transform: rotate(180deg);
+    transform: rotate(90deg);
+    min-height: 4vw;
   }
+}
+.custom-hr-mobile {
+  display: none;
+  border: 1px solid #000000;
+  opacity: 0.6;
+  margin-left: 14px;
 }
 </style>
 

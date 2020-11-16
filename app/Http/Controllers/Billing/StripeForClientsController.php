@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Billing;
 
 use App\Billing\paymentGatewayInfo;
 use App\Http\Controllers\Controller;
+use App\Subscription;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -119,21 +120,36 @@ class StripeForClientsController extends Controller
 
         $nowSubscriptionPrice = $this->createPriceForSubscription($product->id, $request);
 
+
+        // set up payment method
         $session = StripeSession::create([
             'customer' => $customer->id,
-            'mode' => 'subscription',
+            'mode' => 'setup',
             'payment_method_types' => ['card'],
-            'line_items' => [
-                [
-                    'price' => $nowSubscriptionPrice->id,
-                    'quantity' => 1,
-                ]
-            ],
             'success_url' => url('/') . '/hire-freelancer/success',
             'cancel_url' =>  url('/') . '/hire-freelancer/cancel',
         ]);
 
         Session::put('hire_sub_session_id',  $session->id);
+
+
+        // create now subscription:
+        StripeSubscriptionSchedule::create([
+            'customer' =>  $customer->id,
+            'start_date' => 'now',
+            'end_behavior' => 'cancel',
+            'phases' => [
+                [
+                    'items' => [
+                        [
+                            'price' => $nowSubscriptionPrice->id,
+                            'quantity' => 1,
+                        ],
+                    ],
+                    'iterations' => $request->payment_info['iterations'],
+                ],
+            ],
+        ]);
 
         if($request->percentage < 100){
 
@@ -239,6 +255,17 @@ class StripeForClientsController extends Controller
     public function clientSubscription(){
         return view('subscription');
     }
+
+    protected function createSubscriptionHistory($data){
+        return Subscription::create([
+            'payment_method' => 'stripe',
+            'sub_frequency' => $data['frequency'],
+            'sub_status' => 'pre',
+            'stripe_subscription_id' => $data['stripe_subscription_id'],
+            'user_id' => $data['client_id']
+        ]);
+    }
+
 
 
 
