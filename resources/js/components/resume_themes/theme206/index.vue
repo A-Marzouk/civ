@@ -61,16 +61,117 @@
             <!-- Social Button for tablet only -->
 
             <!-- Availibility -->
-            <v-col xl="3" lg="4" md="5" sm="7" class>
+            <v-col xl="3" lg="4" md="5" sm="7" class="mt-xl-n12 ml-lg-n12">
               <!-- Hour rate -->
               <v-card
-                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 ml-xl-0 ml-md-0"
+                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10 mt-lg-n12 ml-xl-0 ml-md-0"
                 color="transparent"
                 flat
                 tile
               >
-                <SalaryRate :paymentInfo="currentUser.payment_info" />
-                <AvailabilityHours :availabilityInfo="currentUser.availability_info" />
+                <v-card-text
+                  class="ml-xl-0 ml-lg-12 ml-md-0"
+                  v-if="findPreference('hourly_rate')"
+                >
+                  <v-list-item two-line class>
+                    <v-list-item-avatar size="18">
+                      <img
+                        width="18"
+                        src="/images/resume_themes/theme206/icons/usd.png"
+                      />
+                    </v-list-item-avatar>
+                    <v-list-item-content
+                      @click="paymentInfoNext()"
+                      style="cursor: pointer"
+                    >
+                      <v-list-item-subtitle>
+                        <v-card color="transparent" flat class="pa-0 ma-0" tile>
+                          <template
+                            v-for="(item, index) in currentUser.payment_info"
+                          >
+                            <span
+                              class="hour-rate"
+                              :key="index"
+                              v-if="paymentInfo == index"
+                              >{{
+                                item.salary_frequency | capitalize
+                              }}
+                              Rate</span
+                            >
+                          </template>
+                        </v-card>
+                      </v-list-item-subtitle>
+                      <v-list-item-subtitle v-if="currentUser.payment_info">
+                        <v-card color="transparent" flat tile>
+                          <template
+                            v-for="(item, index) in currentUser.payment_info"
+                          >
+                            <span
+                              class="rate"
+                              :key="index"
+                              v-if="paymentInfo == index"
+                              >{{ item.salary }}</span
+                            >
+                          </template>
+                        </v-card>
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card-text>
+
+                <!-- Hour Rate -->
+                <!-- Weekly availibility -->
+
+                <v-list-item
+                  two-line
+                  class="availibilty-col ml-lg-0 ml-md-n10 ml-sm-n12 ml-0"
+                  v-if="findPreference('weekly_availability')"
+                >
+                  <v-list-item-avatar size="16">
+                    <img
+                      width="16"
+                      src="/images/resume_themes/theme206/icons/watch.png"
+                    />
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-subtitle @click="availabilityNext()">
+                      <v-card color="transparent" flat tile>
+                        <template
+                          v-for="(item, index) in currentUser.availability_info"
+                        >
+                          <span
+                            class="hour-rate"
+                            :key="item.id"
+                            v-if="availability == index"
+                            >{{
+                              item.available_hours_frequency
+                            }}
+                            availibility</span
+                          >
+                        </template>
+                      </v-card>
+                    </v-list-item-subtitle>
+                    <v-list-item-subtitle
+                      v-if="currentUser.availability_info"
+                      style="cursor: pointer"
+                      @click="availabilityNext()"
+                    >
+                      <v-card color="transparent" class="pa-0 ma-0" flat tile>
+                        <template
+                          v-for="(item, index) in currentUser.availability_info"
+                        >
+                          <span
+                            class="rate"
+                            :key="item.id"
+                            v-if="availability == index"
+                            >{{ item.available_hours }}</span
+                          >
+                        </template>
+                      </v-card>
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+                <!-- Weekly availibility -->
               </v-card>
             </v-col>
             <!-- Availibility  -->
@@ -202,9 +303,8 @@
             <!-- for mobile version  -->
             <v-tabs
               v-model="indexOfActiveTab"
-              centered
-              center-active
               hide-slider
+              show-arrows
               class="hidden-sm-and-up my-10"
             >
               <v-tab
@@ -830,11 +930,12 @@
       </v-container>
       <!-- Tab items container -->
       <!-- All Modals -->
-      <hire-modal
+      <updated-hire-modal
+        @modalClosed="hireMeModal = false"
         :hireMeModal.sync="hireMeModal"
-        :widowWidth="windowWidth"
-        :currentUser="currentUser"
-      ></hire-modal>
+        :closeHireMeModal="closeHireMeModal"
+        :user="currentUser"
+      ></updated-hire-modal>
       <!-- All Modals -->
     </v-container>
     <!-- Main container -->
@@ -844,7 +945,8 @@
 <script>
 import audioMedia from "./media/audioMedia";
 import VideoPlayer from "./media/VideoPlayer";
-import HireModal from "../theme203/payment/HireModal";
+// import HireModal from "../theme203/payment/HireModal";
+import UpdatedHireModal from "../includes/HireMeModal";
 import Portfolio from "./tabs/Portfolio";
 import SocialButtons from "./common/SocialButtons";
 import SalaryRate from "./common/SalaryRate";
@@ -854,7 +956,7 @@ export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
     audioMedia,
-    HireModal,
+    UpdatedHireModal,
     Portfolio,
     VideoPlayer,
     SocialButtons,
