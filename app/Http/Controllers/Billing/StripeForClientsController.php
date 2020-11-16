@@ -271,8 +271,6 @@ class StripeForClientsController extends Controller
 
     // notifications:
     public function firstPaymentSuccess(){
-        $sessionInfo = StripeSession::retrieve(Session::get('hire_sub_session_id'));
-        dd($sessionInfo);
         dd('Thank you! your payment went through');
     }
 
