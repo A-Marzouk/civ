@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Billing;
 
 use App\Billing\paymentGatewayInfo;
 use App\Http\Controllers\Controller;
+use App\Subscription;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -134,6 +135,9 @@ class StripeForClientsController extends Controller
         ]);
 
         Session::put('hire_sub_session_id',  $session->id);
+        Session::put('expires_at',  $session->id);
+
+        // create non-active subscription with the expires_at date.
 
         if($request->percentage < 100){
 
@@ -240,10 +244,23 @@ class StripeForClientsController extends Controller
         return view('subscription');
     }
 
+    protected function createSubscriptionHistory($data){
+        return Subscription::create([
+            'payment_method' => 'stripe',
+            'sub_frequency' => $data['frequency'],
+            'sub_status' => 'pre',
+            'stripe_subscription_id' => $data['stripe_subscription_id'],
+            'user_id' => $data['client_id']
+        ]);
+    }
+
+
 
 
     // notifications:
     public function firstPaymentSuccess(){
+        $sessionInfo = StripeSession::retrieve(Session::get('hire_sub_session_id'));
+        dd($sessionInfo);
         dd('Thank you! your payment went through');
     }
 
