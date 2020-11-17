@@ -1,13 +1,13 @@
 <template>
-  <div class="education">
-    <div class="education-items">
+  <div class="experience">
+    <div class="experience-items">
       <ItemView
-        v-for="edu in education"
-        :title="edu.degree_title"
-        :subtitle="edu.university_name"
-        :description="edu.institution_type"
-        :duration="edu.duration"
-        :key="edu.id"
+        v-for="experience in experiences"
+        :title="experience.job_title"
+        :subtitle="experience.company_name"
+        :description="experience.description"
+        :duration="experience.duration"
+        :key="experience.id"
       />
     </div>
   </div>
@@ -17,7 +17,7 @@
 import ItemView from '../components/education-experience/ItemView';
 
 export default {
-  name: 'education',
+  name: 'WorkExperience',
 
   props: {
     currentUser: {
@@ -29,14 +29,14 @@ export default {
   components: { ItemView },
 
   computed: {
-    education() {
-      return this.currentUser.education
-        .filter(edu => edu.is_public)
-        .map(edu => {
-          edu.duration = `${edu.date_from}-`;
-          edu.duration += edu.present ? 'present' : edu.date_to;
+    experiences() {
+      return this.currentUser.work_experience
+        .filter(wExperience => wExperience.is_public)
+        .map(wExperience => {
+          wExperience.duration = `${wExperience.date_from}-`;
+          wExperience.duration += wExperience.present ? 'present' : wExperience.date_to;
 
-          return edu;
+          return wExperience;
         });
     }
   }
@@ -46,12 +46,12 @@ export default {
 <style lang="scss" scoped>
 @import './../scss/variables';
 
-.education {
+.experience {
   font-family: $roboto;
   padding-left: 7px;
   padding-right: 7px;
 
-  .education-items {
+  .experience-items {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 25px;
@@ -65,7 +65,7 @@ export default {
   @include md {
     padding: 10px 15px;
 
-    .education-items {
+    .experience-items {
       max-width: 752px;
       margin: 0 auto;
       column-gap: 30px;
@@ -74,7 +74,7 @@ export default {
   }
 
   @include lg {
-    .education-items {
+    .experience-items {
       max-width: 1320px;
       grid-template-columns: 1fr 1fr 1fr;
     }
@@ -84,7 +84,7 @@ export default {
     padding-top: 25px;
     padding-bottom: 25px;
 
-    .education-items {
+    .experience-items {
       max-width: 1770px;
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
