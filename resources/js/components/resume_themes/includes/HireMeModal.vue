@@ -386,7 +386,6 @@
                 currentAutoPaymentType: '7-days',
                 currentHoursType: 'week',
                 // payment calculations:
-                userHourlyRate: 10,
                 percentage: 100,
                 currentSelectedHours: 25,
                 finishedSteps: [],
@@ -615,6 +614,9 @@
                 }
 
                 return this.datePicker;
+            },
+            userHourlyRate(){
+                return this.user.payment_info[0].salary;
             },
             currentPosition() {
                 return (100 - this.percentage - 10);

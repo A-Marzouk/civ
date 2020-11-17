@@ -1,78 +1,89 @@
 <template>
-	<div id="wrapper_theme1003" class="tw-w-full tw-bg-white tw-font-roboto">
-		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" @showModal="showModal" />
+  <div id="wrapper_theme1003" class="tw-w-full tw-bg-white tw-font-roboto">
+    <Header
+      :currentTab="$data._currentTab"
+      :currentUser="currentUser"
+      @tabchanged="$data._currentTab = $event"
+      @showModal="showModal"
+    />
 
-		<TabsContent :currentTab="currentTab" />
+    <TabsContent :currentTab="$data._currentTab" :currentUser="currentUser" />
 
-		<Modal :isOpen="isModalOpen" @onClose="isModalOpen=false">
-			<keep-alive>
-				<component @showModal="showModal" :is="currentModal"></component>
-			</keep-alive>
-		</Modal>
-	</div>
+    <Modal :isOpen="isModalOpen" @onClose="isModalOpen = false">
+      <keep-alive>
+        <component @showModal="showModal" :is="currentModal"></component>
+      </keep-alive>
+    </Modal>
+  </div>
 </template>
 
 <script>
-import Header from "./components/Header";
-import TabsContent from "./components/TabsContent";
-import Modal from "./components/modals/Modal";
-import PaymentMethods from "./components/modals/PaymentMethods";
-import PaymentSuccessMessage from "./components/modals/PaymentSuccessMessage";
-import PaypalPaymentForm from "./components/modals/PaypalPaymentForm";
-import StripePaymentForm from "./components/modals/StripePaymentForm";
+import Header from './components/Header';
+import TabsContent from './components/TabsContent';
+import Modal from './components/modals/Modal';
+import PaymentMethods from './components/modals/PaymentMethods';
+import PaymentSuccessMessage from './components/modals/PaymentSuccessMessage';
+import PaypalPaymentForm from './components/modals/PaypalPaymentForm';
+import StripePaymentForm from './components/modals/StripePaymentForm';
 
 export default {
-	name: "resume-theme-1003",
+  name: 'resume-theme-1003',
 
-	components: {
-		Header,
-		TabsContent,
-		Modal,
-		PaymentMethods,
-		PaymentSuccessMessage,
-		PaypalPaymentForm,
-		StripePaymentForm
-	},
+  props: ['user', 'is_preview', 'currentTab'],
 
-	data: () => {
-		return {
-			currentTab: "portfolio",
-			currentUser: {
-				avatar: "/images/resume_themes/theme1003/avatar.png",
-				fullname: "Lorem campbell",
-				jobTitle: "BackEnd Developer",
-				motivationLetter:
-					"Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices.🚲",
-				hourRate: 20,
-				weeklyAvailability: 250
-			},
-			isPaymentModalOpen: false,
-			isPaymentSuccessModalOpen: false,
+  components: {
+    Header,
+    TabsContent,
+    Modal,
+    PaymentMethods,
+    PaymentSuccessMessage,
+    PaypalPaymentForm,
+    StripePaymentForm
+  },
 
-			currentModal: "PaymentForm",
-			isModalOpen: false
-		};
-	},
+  data() {
+    return {
+      _currentTab: this.currentTab,
+      currentUser: this.user,
+      isPaymentModalOpen: false,
+      isPaymentSuccessModalOpen: false,
 
-	methods: {
-		showModal(currentModal) {
-			console.log("showModal", currentModal);
+      currentModal: 'PaymentForm',
+      isModalOpen: false
+    };
+  },
 
-			this.isModalOpen = true;
-			this.currentModal = currentModal;
-		},
+  methods: {
+    showModal(currentModal) {
+      console.log('showModal', currentModal);
 
-		openPaymentModal() {
-			this.isPaymentModalOpen = true;
-		},
+      this.isModalOpen = true;
+      this.currentModal = currentModal;
+    },
 
-		openPaymentSuccessModal() {
-			this.isPaymentModalOpen = false;
-			this.isPaymentSuccessModalOpen = true;
-		}
-	}
+    openPaymentModal() {
+      this.isPaymentModalOpen = true;
+    },
+
+    openPaymentSuccessModal() {
+      this.isPaymentModalOpen = false;
+      this.isPaymentSuccessModalOpen = true;
+    },
+
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
+    }
+  },
+  created() {
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    if (!this.$data._currentTab) {
+      this.$data._currentTab = this.currentUser.tabs.length ? this.currentUser.tabs[0].title : 'portfolio';
+    }
+  }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
