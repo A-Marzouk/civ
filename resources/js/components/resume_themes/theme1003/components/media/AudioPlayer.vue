@@ -1,12 +1,12 @@
 <template>
 	<div class="audio-player">
 		<div class="player-meta">
-			<div class="player-thumbnail">
-				<img :src="track.thumbnail" :alt="track.title">
-			</div>
+			<!-- <div class="player-thumbnail">
+                    <img :src="audio.thumbnail" :alt="audio.title">
+                </div> -->
 			<div class="player-detail">
-				<div class="player-category" v-text="track.category"></div>
-				<div class="player-title" v-text="track.title"></div>
+				<div class="player-category" v-text="shorten(audio.title)" :title="audio.title"></div>
+				<div class="player-title" v-text="shorten(audio.transcript)" :title="audio.transcript"></div>
 			</div>
 		</div>
 
@@ -22,8 +22,8 @@
 					<path d="M16.9395 11.9182L12.0323 7.00035L16.9395 2.08249L15.4287 0.571777L9.00017 7.00035L15.4287 13.4289L16.9395 11.9182Z" fill="white" />
 				</svg>
 			</div>
-			<div class="control-action control-play-pause-action" @click="onPlayPause">
-				<svg v-if="isPlaying" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<div class="control-action control-play-pause-action" @click="mediaStore.state.playing ? mediaStore.methods.pause() : mediaStore.methods.play(audio)">
+				<svg v-if="mediaStore.state.playing" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill="#ffffff" d="M0.5 17.75H5.5V0.25H0.5V17.75ZM10.5 0.25V17.75H15.5V0.25H10.5Z" />
 				</svg>
 				<svg v-else width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,57 +51,34 @@
 
 		<div class="player-footer">
 			<div class="player-progress">
-				<div class="player-progress-bar" :style="`width: ${calculatePercentage(track.position, track.duration)}%;`"></div>
+				<div class="player-progress-bar" :style="`width: ${calculatePercentage(mediaStore.state.audioPosition, mediaStore.state.audioDuration)}%;`"></div>
 			</div>
 			<div class="player-progress-meta">
-				<div class="player-duration" v-text="formatDuration(track.duration)"></div>
-				<div class="player-position" v-text="formatDuration(track.position)"></div>
+				<div class="player-duration" v-text="formatDuration(mediaStore.state.audioDuration)"></div>
+				<div class="player-position" v-text="formatDuration(mediaStore.state.audioPosition)"></div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import utilsMixin from "./../../mixins/utilsMixin";
+import mediaStore from '../../stores/media.store';
+import utilsMixin from './../../mixins/utilsMixin';
 
 export default {
-	name: "audio-player",
-
-	props: {
-		track: {
-			type: Object,
-			required: true
-		},
-
-		isPlaying: {
-			type: Boolean,
-			default: false
-		}
-	},
-
+	name: 'AudioPlayer',
+	props: { audio: { type: Object } },
 	mixins: [utilsMixin],
-
-	data: () => {
+	data() {
 		return {
-			position: 60 * 5
+			mediaStore
 		};
-	},
-
-	methods: {
-		onPlayPause() {
-			if (this.isPlaying) {
-				this.$emit("onPause");
-				return;
-			}
-
-			this.$emit("onPlay", this.media.id);
-		}
 	}
 };
 </script>
 
 <style lang="scss" scoped>
-@import "./../../scss/variables";
+@import './../../scss/variables';
 
 .audio-player {
 	font-family: $poppins;
