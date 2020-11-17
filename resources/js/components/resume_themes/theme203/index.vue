@@ -2129,7 +2129,7 @@ export default {
   font-family: "Gotham Pro" !important;
   font-style: normal;
   font-weight: bold;
-  font-size: 400px;
+  font-size: 400px !important;
   line-height: 383px;
   letter-spacing: 0.05em;
   color: rgba(0, 0, 0, 0.03) !important;
@@ -2145,15 +2145,15 @@ export default {
   margin: auto;
   z-index: 100;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
-    font-size: 200px;
+    font-size: 200px !important;
     top: -30%;
   }
   @media screen and (min-width: 668px) and (max-width: 959px) {
-    font-size: 150px;
+    font-size: 150px !important;
     top: -30%;
   }
   @media screen and (max-width: 667px) {
-    font-size: 100px;
+    font-size: 100px !important;
     top: -30%;
   }
 }
@@ -2177,7 +2177,11 @@ export default {
   top: -30%;
   bottom: 0;
   margin: auto;
-  @media screen and (min-width: 960px) and (max-width: 1903px) {
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    font-size: 300px !important;
+    top: 0;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 300px !important;
     top: -40%;
   }
