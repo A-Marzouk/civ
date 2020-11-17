@@ -10,6 +10,20 @@ const mediaStore = {
     audioPosition: null
   },
   methods: {
+    init() {
+      console.log('init');
+      mediaStore.methods.initAudioPlayer();
+    },
+    initAudioPlayer() {
+      const audioPlayer = new Audio();
+      audioPlayer.ontimeupdate = () => {
+        mediaStore.setters.audioPosition();
+      };
+      audioPlayer.onended = () => {
+        mediaStore.setters.resetAudioPosition();
+      };
+      mediaStore.setters.audioPlayer(audioPlayer);
+    },
     play(mediaItem) {
       if (!mediaStore.state.mediaItem || mediaItem.id !== mediaStore.state.mediaItem.id) {
         mediaStore.setters.mediaItem(mediaItem);
@@ -55,9 +69,11 @@ const mediaStore = {
       mediaStore.state.audioDuration = mediaStore.state.audioPlayer.duration;
     },
     audioPosition() {
+      console.log('audioPosition');
       mediaStore.state.audioPosition = mediaStore.state.audioPlayer.currentTime;
     },
     resetAudioPosition() {
+      console.log('resetAudioPosition');
       mediaStore.state.playing = false;
       mediaStore.state.audioPosition = 0;
     },

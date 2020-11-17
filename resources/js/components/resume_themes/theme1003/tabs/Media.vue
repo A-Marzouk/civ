@@ -7,14 +7,13 @@
 			</div>
 		</div>
 
-		<AudioPlayerPreview :audio="mediaStore.state.mediaItem" />
-		<audio ref="audioPlayer" class="tw-hidden" @timeupdate="mediaStore.setters.audioPosition" @ended="mediaStore.setters.resetAudioPosition"></audio>
+		<AudioPlayer v-if="mediaStore.state.mediaItem" :audio="mediaStore.state.mediaItem" />
 	</div>
 </template>
 
 <script>
 import mediaStore from '../stores/media.store';
-import AudioPlayerPreview from '../components/media/AudioPlayer';
+import AudioPlayer from '../components/media/AudioPlayer';
 import AudioPreview from '../components/media/AudioPreview';
 import VideoPreview from '../components/media/VideoPreview';
 
@@ -23,14 +22,14 @@ export default {
 	props: {
 		currentUser: { type: Object, required: true }
 	},
-	components: { AudioPlayerPreview, AudioPreview, VideoPreview },
+	components: { AudioPlayer, AudioPreview, VideoPreview },
 	data() {
 		return {
 			mediaStore
 		};
 	},
-	mounted() {
-		mediaStore.setters.audioPlayer(this.$refs.audioPlayer);
+	created() {
+		mediaStore.methods.init();
 	}
 };
 </script>

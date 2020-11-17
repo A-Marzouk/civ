@@ -1,9 +1,9 @@
 <template>
-	<div class="audio-player">
+	<div v-if="audio" class="audio-player">
 		<div class="player-meta">
 			<!-- <div class="player-thumbnail">
-                    <img :src="audio.thumbnail" :alt="audio.title">
-                </div> -->
+                <img :src="audio.thumbnail" :alt="audio.title">
+            </div> -->
 			<div class="player-detail">
 				<div class="player-category" v-text="shorten(audio.title)" :title="audio.title"></div>
 				<div class="player-title" v-text="shorten(audio.transcript)" :title="audio.transcript"></div>

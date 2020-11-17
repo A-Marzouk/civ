@@ -6,7 +6,7 @@
 			<div class="audio-infos">
 				<h4 class="audio-category" v-text="shorten(audio.title)" :title="audio.title"></h4>
 				<h4 class="audio-title" v-text="shorten(audio.transcript)" :title="audio.transcript"></h4>
-				<!-- <div class="audio-duration" v-text="formatDuration(audio.duration)"></div> -->
+				<div class="audio-duration" v-if="mediaStore.state.audioPosition" v-text="`${formatDuration(mediaStore.state.audioPosition)} - ${formatDuration(mediaStore.state.audioDuration)}`"></div>
 			</div>
 
 			<div class="audio-play-pause" @click="mediaStore.state.playing ? mediaStore.methods.pause() : mediaStore.methods.play(audio)">
