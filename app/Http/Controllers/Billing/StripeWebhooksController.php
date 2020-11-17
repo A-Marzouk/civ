@@ -15,6 +15,7 @@ use App\Subscription;
 use App\User;
 use Carbon\Carbon;
 
+
 class StripeWebhooksController extends Controller
 {
 
@@ -41,13 +42,25 @@ class StripeWebhooksController extends Controller
 
     public function onCustomerSubscriptionDeleted($payload)
     {
-        User::byStripeCustomerId($payload['data']['object']['customer'])->deactivate();
+        // here should be by the subscription ID.
+        $stripe_subscription_id = $payload['data']['object']['id'];
+        $subscription    = Subscription::where('stripe_subscription_id', $stripe_subscription_id);
+        if($subscription){
+            $subscription->update([
+                'sub_status' => 'canceled',
+                'expires_at' => Carbon::now(),
+            ]);
+        }
     }
 
     public function onChargeSucceeded($payload)
     {
+
         $client = User::byStripeCustomerId($payload['data']['object']['customer']);
         // add success payment history.
+        if( ! $client){
+            return;
+        }
         Payment::create([
             'user_id' => $client->id,
             'amount' => $payload['data']['object']['amount'],
@@ -60,12 +73,17 @@ class StripeWebhooksController extends Controller
     public function onSubscriptionScheduleCreated($payload){
         $client = User::byStripeCustomerId($payload['data']['object']['customer']);
 
+        if( ! $client){
+            return;
+        }
+
         Subscription::create([
             'payment_method' => 'stripe',
             'sub_frequency' => '',
             'sub_status' => $payload['data']['object']['status'],
             'stripe_subscription_id' => $payload['data']['object']['id'],
-            'expires_at' => Carbon::createFromTimestamp($payload['data']['phases']['end_at'])->toDateTimeString(),
+            'stripe_customer_id' => $payload['data']['object']['customer'],
+            'expires_at' => Carbon::createFromTimestamp($payload['data']['object']['phases'][0]['end_date'])->toDateTimeString(),
             'user_id' => $client->id
         ]);
     }

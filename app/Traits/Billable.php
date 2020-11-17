@@ -11,6 +11,7 @@ namespace App\Traits;
 
 use App\Subscription;
 use Carbon\Carbon;
+use App\Billing\paymentGatewayInfo;
 
 trait Billable
 {
@@ -39,15 +40,6 @@ trait Billable
 
     }
 
-
-    public function deactivate(){
-        $this->subscription->update([
-            'sub_status' => 'canceled',
-            'expires_at' => Carbon::now(),
-        ]);
-
-    }
-
     public function isSubscribed(){
         $sub = $this->subscription;
 
@@ -59,7 +51,15 @@ trait Billable
     }
 
     public static function byStripeCustomerId($id){
-        return Subscription::where('stripe_customer_id', $id)->first()->user;
+        $subscription = Subscription::where('stripe_customer_id', $id)->first();
+        if($subscription){
+            return $subscription->user;
+        }
+
+        $paymentGatewoayInfo = paymentGatewayInfo::where('stripe_customer_id', $id)->first();
+        if($paymentGatewoayInfo){
+            return $paymentGatewoayInfo->user;
+        }
     }
 
 }
