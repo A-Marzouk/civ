@@ -1653,6 +1653,7 @@ export default {
 .custom-work-title {
   font-size: 24px;
   line-height: 2.6875rem;
+  word-break: break-word;
 }
 
 .custom-work-subtitle {
@@ -2089,10 +2090,9 @@ export default {
 .card-modal-video-holder {
   border-radius: 40px !important;
   overflow: hidden !important;
-  height: 850px;
+  min-height: 400px;
   padding: 40px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    height: 700px;
     padding: 40px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
@@ -2101,12 +2101,11 @@ export default {
     min-height: 500px;
   }
   @media screen and (max-width: 959px) {
-    height: 1250px;
     padding: 8px;
     max-height: 500px;
   }
   @media screen and (max-width: 599px) {
-    height: 770px;
+    max-height: 770px;
   }
 
   .btn-video-close {
