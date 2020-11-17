@@ -2201,7 +2201,7 @@ export default {
 .custom-hr {
   min-height: 100%;
   opacity: 0.6 !important;
-  border: 2px solid #000000;
+  border: 1px solid #000000;
   position: absolute;
   top: 0;
   left: -72px;
