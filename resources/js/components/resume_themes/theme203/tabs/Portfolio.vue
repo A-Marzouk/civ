@@ -8,6 +8,7 @@
             active-class="child-tab-text-active"
             class="child-tab-text"
             href="#All"
+            v-show="categories.length > 0"
             >All</v-tab
           >
           <v-tab
