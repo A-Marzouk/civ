@@ -6,17 +6,17 @@
 
         <div class="navbar">
             <a href="/">
-                <img src="/images/civie_logo-blue1.svg" alt="check green">
+                <img src="/images/civie_logo-blue1.svg" alt="logo">
             </a>
         </div>
 
         <div class="notification">
             <div class="notification-image">
-                <img src="/icons/hire-modal/check-circle.svg" alt="check green">
+                <img src="/images/new_resume_builder/error-icon.svg" alt="error icon">
             </div>
             <div class="notification-message">
-                Thank you! your payment has been successfully made.<br/>
-                We will contact you soon.
+                We are sorry! your payment did not go through!<br/>
+                Please check your credit card status or contact us for help.
             </div>
         </div>
 

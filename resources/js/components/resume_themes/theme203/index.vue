@@ -114,8 +114,8 @@
                                     themeNumber="theme203"
                                     btnWidth="39"
                                     btnHeight="39"
-                                    iconWidth="21"
-                                    iconHeight="21"
+                                    iconWidth="19"
+                                    iconHeight="19"
                                     bgColor="rgba(252, 210, 89, 1)"
                                     borderRadius="100"
                                     arrowColor="#000"
@@ -544,7 +544,7 @@
                   <v-card color="transparent" tile flat>
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width: 100%">
-                        <v-row align="center">
+                        <v-row>
                           <template
                             v-for="(work, index) in currentUser.work_experience"
                           >
@@ -607,7 +607,7 @@
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width: 100%">
-                      <v-row align="center">
+                      <v-row>
                         <template
                           v-for="(education, index) in currentUser.education"
                         >
@@ -685,7 +685,10 @@
                         <v-col
                           cols="12"
                           sm="12"
-                          md="5"
+                          md="12"
+                          lg="6"
+                          xl="6"
+
                           class="mb-12"
                           :key="skill.id"
                           v-show="skill.is_public"
@@ -1653,6 +1656,7 @@ export default {
 .custom-work-title {
   font-size: 24px;
   line-height: 2.6875rem;
+  word-break: break-word;
 }
 
 .custom-work-subtitle {
@@ -2089,10 +2093,9 @@ export default {
 .card-modal-video-holder {
   border-radius: 40px !important;
   overflow: hidden !important;
-  height: 850px;
+  min-height: 400px;
   padding: 40px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    height: 700px;
     padding: 40px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
@@ -2101,12 +2104,11 @@ export default {
     min-height: 500px;
   }
   @media screen and (max-width: 959px) {
-    height: 1250px;
     padding: 8px;
     max-height: 500px;
   }
   @media screen and (max-width: 599px) {
-    height: 770px;
+    max-height: 770px;
   }
 
   .btn-video-close {
@@ -2130,7 +2132,7 @@ export default {
   font-family: "Gotham Pro" !important;
   font-style: normal;
   font-weight: bold;
-  font-size: 400px;
+  font-size: 400px !important;
   line-height: 383px;
   letter-spacing: 0.05em;
   color: rgba(0, 0, 0, 0.03) !important;
@@ -2146,15 +2148,15 @@ export default {
   margin: auto;
   z-index: 100;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
-    font-size: 200px;
+    font-size: 200px !important;
     top: -30%;
   }
   @media screen and (min-width: 668px) and (max-width: 959px) {
-    font-size: 150px;
+    font-size: 150px !important;
     top: -30%;
   }
   @media screen and (max-width: 667px) {
-    font-size: 100px;
+    font-size: 100px !important;
     top: -30%;
   }
 }
@@ -2178,7 +2180,11 @@ export default {
   top: -30%;
   bottom: 0;
   margin: auto;
-  @media screen and (min-width: 960px) and (max-width: 1903px) {
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    font-size: 300px !important;
+    top: 0;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 300px !important;
     top: -40%;
   }
@@ -2198,7 +2204,7 @@ export default {
 .custom-hr {
   min-height: 100%;
   opacity: 0.6 !important;
-  border: 2px solid #000000;
+  border: 1px solid #000000;
   position: absolute;
   top: 0;
   left: -72px;

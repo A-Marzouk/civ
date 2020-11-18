@@ -265,9 +265,9 @@ class PayPalForClientsController extends Controller
 
             return view('billing.success');
         } catch (PayPalConnectionException $ex) {
-            return view('billing.fail');
+            return view('billing.error');
         } catch (Exception $ex) {
-            return view('billing.fail');
+            return view('billing.error');
         }
     }
 
