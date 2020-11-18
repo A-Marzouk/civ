@@ -103,7 +103,7 @@
                     {text: 'Full name', align: 'start', sortable: false, value: 'name'},
                     {text: 'Email', value: 'email'},
                     {text: 'Sign up date', value: 'created_at'},
-                    {text: 'Actions', value: 'actions'},
+                    {text: 'Payment Information', value: 'actions'},
                 ],
                 tableClients: [],
                 dialog: false,
