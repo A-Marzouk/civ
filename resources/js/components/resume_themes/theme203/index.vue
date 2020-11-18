@@ -544,7 +544,7 @@
                   <v-card color="transparent" tile flat>
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width: 100%">
-                        <v-row align="center">
+                        <v-row>
                           <template
                             v-for="(work, index) in currentUser.work_experience"
                           >
@@ -607,7 +607,7 @@
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width: 100%">
-                      <v-row align="center">
+                      <v-row>
                         <template
                           v-for="(education, index) in currentUser.education"
                         >
