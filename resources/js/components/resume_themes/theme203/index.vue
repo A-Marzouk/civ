@@ -685,7 +685,10 @@
                         <v-col
                           cols="12"
                           sm="12"
-                          md="5"
+                          md="12"
+                          lg="6"
+                          xl="6"
+
                           class="mb-12"
                           :key="skill.id"
                           v-show="skill.is_public"
