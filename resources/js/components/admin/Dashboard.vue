@@ -63,7 +63,7 @@
             </v-card>
 
             <div class="table-content" style="width: 100%;">
-                <router-view :users="users" :deletedUsers="deleted_users"></router-view>
+                <router-view :users="users.agents" :deletedUsers="users.deletedUsers"></router-view>
             </div>
         </div>
 
@@ -96,7 +96,7 @@
     import UsersTable from './tabs/UsersTable'
     export default {
         name: "Dashboard",
-        props:['users','deleted_users'],
+        props:['users'],
         components:{
             'users-table' : UsersTable
         },

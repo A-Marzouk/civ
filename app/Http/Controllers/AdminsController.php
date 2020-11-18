@@ -22,20 +22,30 @@ class AdminsController extends Controller
     }
 
     public function index(){
+
+        $agents = User::whereHas('roles', function ($q) {
+            $q->where('roles.name', 'agent'); // or whatever constraint you need here
+        })->get();
+        $clients = User::whereHas('roles', function ($q) {
+            $q->where('roles.name', 'client'); // or whatever constraint you need here
+        })->get();
+
+        $deletedUsers = User::onlyTrashed()->get();
+
         // get all users:
-        $users = User::all();
-        foreach ($users as $user){
-            $user['is_admin'] = $user->hasRole('admin');
-            $user['can_test_builder'] = $user->can('test.builder.users');
-            $user['subscription'] = $user->subscription;
-            if($user->subscription){
-                $user['subscription']['promocode'] = $user->subscription->promocode;
+        foreach ($agents as $agent){
+            $agent['can_test_builder'] = $agent->can('test.builder.users');
+            $agent['subscription'] = $agent->subscription;
+            if($agent->subscription){
+                $agent['subscription']['promocode'] = $agent->subscription->promocode;
             }
         }
 
-        // get deleted users:
-        $deletedUsers = User::onlyTrashed()->get();
-        return view('admin.dashboard', compact('users','deletedUsers'));
+        $users['agents'] = $agents;
+        $users['deletedUsers'] = $deletedUsers;
+        $users['clients'] = $clients;
+
+        return view('admin.dashboard', compact('users'));
     }
 
     public function userFullEdit($username){
