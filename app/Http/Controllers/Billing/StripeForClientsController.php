@@ -238,7 +238,7 @@ class StripeForClientsController extends Controller
 
     protected function createClient($request, $stripe_customer_id)
     {
-        $client = User::where('email', )->first($request->client['email']);
+        $client = User::where('email', $request->client['email'])->first();
 
         if( ! $client){
             $client =  User::create([
@@ -281,11 +281,11 @@ class StripeForClientsController extends Controller
 
     // notifications:
     public function firstPaymentSuccess(){
-        dd('Thank you! your payment went through');
+       return view('billing.success');
     }
 
     public function firstPaymentFail(){
-        dd('Sorry! your payment did not go through');
+        return view('billing.error');
     }
 
 
