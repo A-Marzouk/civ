@@ -63,7 +63,7 @@
             </v-card>
 
             <div class="table-content" style="width: 100%;">
-                <router-view :users="users.agents" :deletedUsers="users.deletedUsers"></router-view>
+                <router-view :users="users.agents" :clients="users.clients" :deletedUsers="users.deletedUsers"></router-view>
             </div>
         </div>
 

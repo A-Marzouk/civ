@@ -24,20 +24,29 @@ class AdminsController extends Controller
     public function index(){
 
         $agents = User::whereHas('roles', function ($q) {
-            $q->where('roles.name', 'agent'); // or whatever constraint you need here
+            $q->where('roles.name', 'agent');
         })->get();
         $clients = User::whereHas('roles', function ($q) {
-            $q->where('roles.name', 'client'); // or whatever constraint you need here
+            $q->where('roles.name', 'client');
         })->get();
 
         $deletedUsers = User::onlyTrashed()->get();
 
-        // get all users:
         foreach ($agents as $agent){
             $agent['can_test_builder'] = $agent->can('test.builder.users');
             $agent['subscription'] = $agent->subscription;
             if($agent->subscription){
                 $agent['subscription']['promocode'] = $agent->subscription->promocode;
+            }
+        }
+
+        foreach ($clients as $client){
+            $agent['can_test_builder'] = $agent->can('test.builder.users');
+            if($client->payments){
+                $client['payments'] = $client->payments;
+            }
+            if($client->subscriptions){
+                $client['subscription'] = $client->subscriptions;
             }
         }
 
