@@ -6,12 +6,12 @@
             </div> -->
 			<div class="player-detail">
 				<div class="player-category" v-text="shorten(audio.title)" :title="audio.title"></div>
-				<div class="player-title" v-text="shorten(audio.transcript)" :title="audio.transcript"></div>
+				<div class="player-title" v-text="shorten(audio.transcript, 100)" :title="audio.transcript"></div>
 			</div>
 		</div>
 
 		<div class="player-control">
-			<div class="control-action control-shuffle-action">
+			<!-- <div class="control-action control-shuffle-action">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M6.59 5.17L1.41 0L0 1.41L5.17 6.58L6.59 5.17ZM10.5 0L12.54 2.04L0 14.59L1.41 16L13.96 3.46L16 5.5V0H10.5ZM10.83 9.41L9.42 10.82L12.55 13.95L10.5 16H16V10.5L13.96 12.54L10.83 9.41Z" fill="black" />
 				</svg>
@@ -21,7 +21,7 @@
 					<path d="M8.36816 11.9182L3.46102 7.00035L8.36816 2.08249L6.85745 0.571777L0.428879 7.00035L6.85745 13.4289L8.36816 11.9182Z" fill="white" />
 					<path d="M16.9395 11.9182L12.0323 7.00035L16.9395 2.08249L15.4287 0.571777L9.00017 7.00035L15.4287 13.4289L16.9395 11.9182Z" fill="white" />
 				</svg>
-			</div>
+			</div> -->
 			<div class="control-action control-play-pause-action" @click="audio.isPlaying ? mediaStore.pauseAudio() : mediaStore.playAudio(audio)">
 				<svg v-if="audio.isPlaying" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill="#ffffff" d="M0.5 17.75H5.5V0.25H0.5V17.75ZM10.5 0.25V17.75H15.5V0.25H10.5Z" />
@@ -30,7 +30,7 @@
 					<path fill="#ffffff" d="M16.5 8.63398C17.1667 9.01888 17.1667 9.98112 16.5 10.366L2.25 18.5933C1.58333 18.9782 0.75 18.497 0.75 17.7272V1.27276C0.75 0.502958 1.58333 0.0218327 2.25 0.406733L16.5 8.63398Z" />
 				</svg>
 			</div>
-			<div class="control-action control-next-action">
+			<!-- <div class="control-action control-next-action">
 				<svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M8.63184 11.9182L13.539 7.00035L8.63184 2.08249L10.1425 0.571777L16.5711 7.00035L10.1425 13.4289L8.63184 11.9182Z" fill="white" />
 					<path d="M0.0605469 11.9182L4.96769 7.00035L0.0605469 2.08249L1.57126 0.571777L7.99983 7.00035L1.57126 13.4289L0.0605469 11.9182Z" fill="white" />
@@ -46,7 +46,7 @@
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M7 14H5V19H10V17H7V14ZM5 10H7V7H10V5H5V10ZM17 17H14V19H19V14H17V17ZM14 5V7H17V10H19V5H14Z" fill="black" />
 				</svg>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="player-footer">

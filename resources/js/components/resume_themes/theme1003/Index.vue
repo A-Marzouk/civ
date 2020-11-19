@@ -38,7 +38,7 @@ export default {
 
 	data() {
 		return {
-			_currentTab: 'media', //this.currentTab,
+			_currentTab: this.currentTab,
 			currentUser: this.user,
 			isPaymentModalOpen: false,
 			isPaymentSuccessModalOpen: false,
