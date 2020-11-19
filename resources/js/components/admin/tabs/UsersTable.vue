@@ -79,7 +79,6 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <v-icon
                             small
-                            v-show="!item.is_admin"
                             class="mr-3"
                             @click="editItem(item)"
                     >
@@ -87,7 +86,6 @@
                     </v-icon>
                     <v-icon
                             small
-                            v-show="!item.is_admin"
                             @click="deleteItem(item)"
                     >
                         mdi-delete
