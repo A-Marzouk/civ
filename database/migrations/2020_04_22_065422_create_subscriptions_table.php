@@ -21,6 +21,7 @@ class CreateSubscriptionsTable extends Migration
             $table->string('stripe_customer_id')->nullable();
             $table->string('paypal_agreement_id')->nullable();
             $table->string('sub_status')->nullable();
+            $table->string('amount')->nullable();
             $table->date('expires_at')->nullable();
 
 
