@@ -48,7 +48,6 @@ export default {
       this.current.position = audioPlayer.currentTime;
     };
 
-    audioPlayer.volume = 0.01;
     audioPlayer.onended = () => {
       this.current.position = audioPlayer.currentTime;
     };
