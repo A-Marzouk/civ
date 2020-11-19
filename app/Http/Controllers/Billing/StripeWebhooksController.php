@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Subscription;
 use App\User;
 use Carbon\Carbon;
+use Stripe\Price as StripePrice;
 
 
 class StripeWebhooksController extends Controller
@@ -63,7 +64,7 @@ class StripeWebhooksController extends Controller
         }
         Payment::create([
             'user_id' => $client->id,
-            'amount' => $payload['data']['object']['amount'],
+            'amount' => $payload['data']['object']['amount'] / 100,
             'payment_method' => 'stripe',
             'status' => 'paid',
             'notes' => 'Successfully paid.',
@@ -77,10 +78,15 @@ class StripeWebhooksController extends Controller
             return;
         }
 
+        // get the amount of teh subscription:
+        $price_id = $payload['data']['object']['phases'][0]['plans']['price'];
+        $price    = StripePrice::retrieve($price_id);
+
         Subscription::create([
             'payment_method' => 'stripe',
-            'sub_frequency' => '',
+            'sub_frequency' => $price['recurring']['interval'],
             'sub_status' => $payload['data']['object']['status'],
+            'amount' => $price['unit_amount'] / 100 ,
             'stripe_subscription_id' => $payload['data']['object']['id'],
             'stripe_customer_id' => $payload['data']['object']['customer'],
             'expires_at' => Carbon::createFromTimestamp($payload['data']['object']['phases'][0]['end_date'])->toDateTimeString(),

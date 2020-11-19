@@ -33,46 +33,60 @@
                 <v-card class="p-4">
 
                    <div v-if="dialogClient">
-                       <div class="payments pa-5 mb-3">
-                           <h2 class="sub-heading">Payments:</h2>
-                           <div class="payment-element" v-for="payment in dialogClient.payments" :key="payment.id">
-                               <ul>
-                                   <li>
-                                       Method: <b>{{payment.payment_method}}</b>
-                                   </li>
-                                   <li>
-                                       Payment ID: <b>{{payment.away_payment_id}}</b>
-                                   </li>
-                                   <li>
-                                       Status: <b>{{payment.status}}</b>
-                                   </li>
-                                   <li>
-                                       Amount: <b>{{payment.amount}}</b>
-                                   </li>
-                                   <li>
-                                       Notes: <b>{{payment.notes}}</b>
-                                   </li>
-                               </ul>
+                       <div v-if="dialogClient.payments.length > 0 || dialogClient.subscriptions.length > 0">
+                           <div class="payments pa-5 mb-3">
+                               <h2 class="sub-heading">Payments:</h2>
+                               <div class="payment-element" v-for="payment in dialogClient.payments" :key="payment.id">
+                                   <ul>
+                                       <li>
+                                           Method: <b>{{payment.payment_method}}</b>
+                                       </li>
+                                       <li>
+                                           Payment ID: <b>{{payment.away_payment_id}}</b>
+                                       </li>
+                                       <li>
+                                           Status: <b>{{payment.status}}</b>
+                                       </li>
+                                       <li>
+                                           Amount: <b>{{payment.amount}}</b>
+                                       </li>
+                                       <li>
+                                           Notes: <b>{{payment.notes}}</b>
+                                       </li>
+                                       <li>
+                                           Created at: <b>{{payment.created_at}}</b>
+                                       </li>
+                                   </ul>
+                               </div>
                            </div>
-                       </div>
-                       <hr>
-                       <div class="subscriptions pa-5">
-                           <h2 class="sub-heading">Subscriptions:</h2>
-                           <div class="subscription-element" v-for="subscription in dialogClient.subscriptions" :key="subscription.id">
-                               <ul>
-                                   <li>
-                                       Method: <b>{{subscription.payment_method}}</b>
-                                   </li>
-                                   <li>
-                                       Frequency: <b>{{subscription.sub_frequency}}</b>
-                                   </li>
-                                   <li>
-                                       Status: <b>{{subscription.sub_status}}</b>
-                                   </li>
-                                   <li>
-                                       Sub ID: <b>{{subscription.paypal_agreement_id}} {{stripe_subscription_id}}</b>
-                                   </li>
-                               </ul>
+                           <hr>
+                           <div class="subscriptions pa-5">
+                               <h2 class="sub-heading">Subscriptions:</h2>
+                               <div class="subscription-element" v-for="subscription in dialogClient.subscriptions" :key="subscription.id">
+                                   <ul>
+                                       <li>
+                                           Method: <b>{{subscription.payment_method}}</b>
+                                       </li>
+                                       <li v-if="subscription.sub_frequency">
+                                           Frequency: <b>{{subscription.sub_frequency}}</b>
+                                       </li>
+                                       <li>
+                                           Status: <b>{{subscription.sub_status}}</b>
+                                       </li>
+                                       <li v-if="subscription.amount">
+                                           Amount: <b>{{subscription.amount}}</b>
+                                       </li>
+                                       <li>
+                                           Sub ID: <b>{{subscription.paypal_agreement_id}} {{subscription.stripe_subscription_id}}</b>
+                                       </li>
+                                       <li>
+                                           Created at: <b>{{subscription.created_at}}</b>
+                                       </li>
+                                       <li v-if="subscription.expires_at">
+                                           Expires at: <b>{{subscription.expires_at}}</b>
+                                       </li>
+                                   </ul>
+                               </div>
                            </div>
                        </div>
                    </div>
@@ -107,7 +121,10 @@
                 ],
                 tableClients: [],
                 dialog: false,
-                dialogClient: {}
+                dialogClient: {
+                    payments:[],
+                    subscriptions:[]
+                }
             }
         },
         methods:{

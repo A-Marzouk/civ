@@ -266,16 +266,6 @@ class StripeForClientsController extends Controller
         return view('subscription');
     }
 
-    protected function createSubscriptionHistory($data){
-        return Subscription::create([
-            'payment_method' => 'stripe',
-            'sub_frequency' => $data['frequency'],
-            'sub_status' => 'pre',
-            'stripe_subscription_id' => $data['stripe_subscription_id'],
-            'user_id' => $data['client_id']
-        ]);
-    }
-
 
 
 
