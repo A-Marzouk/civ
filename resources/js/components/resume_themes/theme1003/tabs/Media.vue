@@ -1,13 +1,14 @@
 <template>
 	<div class="media">
 		<div class="tw-w-full" v-masonry :transition-duration="0" item-selector=".item" :origin-top="true">
-			<div v-masonry-tile class="media_outer item" v-for="mediaItem in this.currentUser.media" :key="mediaItem.id">
+			<div v-masonry-tile class="media_outer item" v-for="mediaItem in mediaStore.mediaItems" :key="mediaItem.id">
 				<AudioPreview v-if="mediaItem.type === 'audio'" :audio="mediaItem" />
-				<!-- <VideoPreview v-else-if="mediaItem.type === 'video'" :video="mediaItem" /> -->
+				<VideoPreview v-else-if="mediaItem.type === 'video'" :video="mediaItem" />
 			</div>
 		</div>
 
-		<AudioPlayer v-if="mediaStore.state.mediaItem" :audio="mediaStore.state.mediaItem" />
+		<AudioPlayer v-if="mediaStore.current && mediaStore.current.type === 'audio'" :audio="mediaStore.current" />
+		<VideoPlayer v-if="mediaStore.current && mediaStore.current.type === 'video'" :video="mediaStore.current" />
 	</div>
 </template>
 
@@ -15,6 +16,7 @@
 import mediaStore from '../stores/media.store';
 import AudioPlayer from '../components/media/AudioPlayer';
 import AudioPreview from '../components/media/AudioPreview';
+import VideoPlayer from '../components/media/VideoPlayer';
 import VideoPreview from '../components/media/VideoPreview';
 
 export default {
@@ -22,14 +24,14 @@ export default {
 	props: {
 		currentUser: { type: Object, required: true }
 	},
-	components: { AudioPlayer, AudioPreview, VideoPreview },
+	components: { AudioPlayer, AudioPreview, VideoPlayer, VideoPreview },
 	data() {
 		return {
 			mediaStore
 		};
 	},
-	created() {
-		mediaStore.methods.init();
+	mounted() {
+		mediaStore.init(this.currentUser.media);
 	}
 };
 </script>

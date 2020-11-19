@@ -6,8 +6,8 @@
 			</div>
 		</div>
 
-		<div class="video-play" @click="mediaStore.actions.togglePlaying(video.id, 'video')">
-			<svg v-if="mediaStore.getIsPlaying(video.id)" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<div class="video-play" @click="video.isPlaying ? mediaStore.pauseVideo() : mediaStore.playVideo(video)">
+			<svg v-if="video.isPlaying" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path fill="#ffffff" d="M0.5 17.75H5.5V0.25H0.5V17.75ZM10.5 0.25V17.75H15.5V0.25H10.5Z" />
 			</svg>
 

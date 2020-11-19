@@ -6,11 +6,11 @@
 			<div class="audio-infos">
 				<h4 class="audio-category" v-text="shorten(audio.title)" :title="audio.title"></h4>
 				<h4 class="audio-title" v-text="shorten(audio.transcript)" :title="audio.transcript"></h4>
-				<div class="audio-duration" v-if="mediaStore.state.audioPosition" v-text="`${formatDuration(mediaStore.state.audioPosition)} - ${formatDuration(mediaStore.state.audioDuration)}`"></div>
+				<div class="audio-duration" v-if="audio.position" v-text="`${formatDuration(audio.position)} - ${formatDuration(audio.duration)}`"></div>
 			</div>
 
-			<div class="audio-play-pause" @click="mediaStore.state.playing ? mediaStore.methods.pause() : mediaStore.methods.play(audio)">
-				<svg v-if="mediaStore.state.playing" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<div class="audio-play-pause" @click="audio.isPlaying ? mediaStore.pauseAudio() : mediaStore.playAudio(audio)">
+				<svg v-if="audio.isPlaying" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill="#ffffff" d="M0.5 17.75H5.5V0.25H0.5V17.75ZM10.5 0.25V17.75H15.5V0.25H10.5Z" />
 				</svg>
 
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div class="audio-progress">
-			<div class="audio-progress-bar" :style="`width: ${calculatePercentage(mediaStore.state.audioPosition, mediaStore.state.audioDuration)}%;`"></div>
+			<div class="audio-progress-bar" :style="`width: ${calculatePercentage(audio.position, audio.duration)}%;`"></div>
 		</div>
 	</div>
 </template>

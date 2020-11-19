@@ -502,6 +502,60 @@ export const store = new Vuex.Store({
           user_id: '2',
           created_at: '2020-06-23 09:34:43',
           updated_at: '2020-07-20 09:12:51'
+        },
+        {
+          id: '3',
+          type: 'audio',
+          transcript: 'John Doe, One of the greatest UX designers of all time.',
+          title: 'John Doe',
+          resume_link_id: '4',
+          url: 'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3',
+          order: '1',
+          is_public: '1',
+          user_id: '2',
+          created_at: '2020-06-23 09:34:43',
+          updated_at: '2020-07-20 09:12:51'
+        },
+        {
+          id: '4',
+          type: 'video',
+          transcript: 'John Doe, One of the greatest UX designers of all time.',
+          title: 'John Doe',
+          resume_link_id: '4',
+          url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+          media_preview: '/images/video-holder.svg',
+          order: '1',
+          is_public: '1',
+          user_id: '2',
+          created_at: '2020-06-23 09:34:43',
+          updated_at: '2020-07-20 09:12:51'
+        },
+        {
+          id: '5',
+          type: 'audio',
+          transcript: 'John Doe, One of the greatest UX designers of all time.',
+          title: 'John Doe',
+          resume_link_id: '4',
+          url: 'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3',
+          order: '1',
+          is_public: '1',
+          user_id: '2',
+          created_at: '2020-06-23 09:34:43',
+          updated_at: '2020-07-20 09:12:51'
+        },
+        {
+          id: '26',
+          type: 'video',
+          transcript: 'John Doe, One of the greatest UX designers of all time.',
+          title: 'John Doe',
+          resume_link_id: '4',
+          url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+          media_preview: '/images/video-holder.svg',
+          order: '1',
+          is_public: '1',
+          user_id: '2',
+          created_at: '2020-06-23 09:34:43',
+          updated_at: '2020-07-20 09:12:51'
         }
       ],
       tabs: [
