@@ -27,12 +27,10 @@ export default {
     }
 
     this.current = video;
-    console.log('playVideo', video);
   },
   pauseVideo() {
     this.current.isPlaying = false;
     this.current = null;
-    console.log('pauseVideo');
   },
   setMediaItems(mediaItems) {
     this.mediaItems = mediaItems.map((mediaItem, index) => {

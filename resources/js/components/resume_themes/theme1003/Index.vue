@@ -1,12 +1,12 @@
 <template>
 	<div id="wrapper_theme1003" class="tw-w-full tw-bg-white tw-font-roboto">
-		<Header :currentTab="$data._currentTab" :currentUser="currentUser" @tabchanged="$data._currentTab = $event" @showModal="showModal" />
+		<Header :currentTab="$data._currentTab" :currentUser="currentUser" @tabchanged="$data._currentTab = $event" @showmodal="showModal" />
 
 		<TabsContent :currentTab="$data._currentTab" :currentUser="currentUser" />
 
 		<Modal :isOpen="isModalOpen" @onClose="isModalOpen = false">
 			<keep-alive>
-				<component @showModal="showModal" :is="currentModal"></component>
+				<component @showmodal="showModal" :is="currentModal"></component>
 			</keep-alive>
 		</Modal>
 	</div>
