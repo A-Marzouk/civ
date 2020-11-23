@@ -4,11 +4,7 @@
       <v-col cols="12" sm="11" md="8" class="category__bar">
         <v-tabs hide-slider centered background-color="#FAF7F1">
           <v-tab href="#ALL" @click="category = 'All'">All</v-tab>
-          <v-tab
-            v-for="(categ, i) in categories"
-            :key="i"
-            @click="category = categ"
-            :href="'#' + categ"
+          <v-tab v-for="(categ, i) in categories" :key="i" @click="category = categ" :href="'#' + categ"
             >{{ categ }}
           </v-tab>
         </v-tabs>
@@ -34,12 +30,7 @@
             v-show="portfolio.is_public"
             class="px-2"
           >
-            <v-img
-              :src="getProjectMainImage(portfolio)"
-              class="borImg"
-              :aspect-ratio="1"
-              alt="portfolio img"
-            ></v-img>
+            <v-img :src="getProjectMainImage(portfolio)" class="borImg" :aspect-ratio="1" alt="portfolio img"></v-img>
           </div>
 
           <template #customPaging="i">
@@ -75,7 +66,7 @@ export default {
     },
       category: "All",
       categories: [],
-     filterProjects:[]
+      filterProjects:[]
    
   }),
 
