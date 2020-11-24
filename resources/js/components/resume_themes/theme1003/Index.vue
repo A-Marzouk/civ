@@ -1,20 +1,15 @@
 <template>
-  <div id="wrapper_theme1003" class="tw-w-full tw-bg-white tw-font-roboto">
-    <Header
-      :currentTab="$data._currentTab"
-      :currentUser="currentUser"
-      @tabchanged="$data._currentTab = $event"
-      @showModal="showModal"
-    />
+	<div id="wrapper_theme1003" class="tw-w-full tw-bg-white tw-font-roboto">
+		<Header :currentTab="$data._currentTab" :currentUser="currentUser" @tabchanged="$data._currentTab = $event" @showmodal="showModal" />
 
-    <TabsContent :currentTab="$data._currentTab" :currentUser="currentUser" />
+		<TabsContent :currentTab="$data._currentTab" :currentUser="currentUser" />
 
-    <Modal :isOpen="isModalOpen" @onClose="isModalOpen = false">
-      <keep-alive>
-        <component @showModal="showModal" :is="currentModal"></component>
-      </keep-alive>
-    </Modal>
-  </div>
+		<Modal :isOpen="isModalOpen" @onClose="isModalOpen = false">
+			<keep-alive>
+				<component @showmodal="showModal" :is="currentModal"></component>
+			</keep-alive>
+		</Modal>
+	</div>
 </template>
 
 <script>
@@ -27,62 +22,62 @@ import PaypalPaymentForm from './components/modals/PaypalPaymentForm';
 import StripePaymentForm from './components/modals/StripePaymentForm';
 
 export default {
-  name: 'resume-theme-1003',
+	name: 'resume-theme-1003',
 
-  props: ['user', 'is_preview', 'currentTab'],
+	props: ['user', 'is_preview', 'currentTab'],
 
-  components: {
-    Header,
-    TabsContent,
-    Modal,
-    PaymentMethods,
-    PaymentSuccessMessage,
-    PaypalPaymentForm,
-    StripePaymentForm
-  },
+	components: {
+		Header,
+		TabsContent,
+		Modal,
+		PaymentMethods,
+		PaymentSuccessMessage,
+		PaypalPaymentForm,
+		StripePaymentForm
+	},
 
-  data() {
-    return {
-      _currentTab: this.currentTab,
-      currentUser: this.user,
-      isPaymentModalOpen: false,
-      isPaymentSuccessModalOpen: false,
+	data() {
+		return {
+			_currentTab: this.currentTab,
+			currentUser: this.user,
+			isPaymentModalOpen: false,
+			isPaymentSuccessModalOpen: false,
 
-      currentModal: 'PaymentForm',
-      isModalOpen: false
-    };
-  },
+			currentModal: 'PaymentForm',
+			isModalOpen: false
+		};
+	},
 
-  methods: {
-    showModal(currentModal) {
-      console.log('showModal', currentModal);
+	methods: {
+		showModal(currentModal) {
+			console.log('showModal', currentModal);
 
-      this.isModalOpen = true;
-      this.currentModal = currentModal;
-    },
+			this.isModalOpen = true;
+			this.currentModal = currentModal;
+		},
 
-    openPaymentModal() {
-      this.isPaymentModalOpen = true;
-    },
+		openPaymentModal() {
+			this.isPaymentModalOpen = true;
+		},
 
-    openPaymentSuccessModal() {
-      this.isPaymentModalOpen = false;
-      this.isPaymentSuccessModalOpen = true;
-    },
+		openPaymentSuccessModal() {
+			this.isPaymentModalOpen = false;
+			this.isPaymentSuccessModalOpen = true;
+		},
 
-    setDummyUser() {
-      this.currentUser = this.$store.state.dummyUser;
-    }
-  },
-  created() {
-    if (!this.currentUser || this.is_preview) {
-      this.setDummyUser();
-    }
+		setDummyUser() {
+			this.currentUser = this.$store.state.dummyUser;
+		}
+	},
+	created() {
+		if (!this.currentUser || this.is_preview) {
+			this.setDummyUser();
+		}
 
-    if (!this.$data._currentTab) {
-      this.$data._currentTab = this.currentUser.tabs.length ? this.currentUser.tabs[0].title : 'portfolio';
-    }
-  }
+		if (!this.$data._currentTab) {
+			this.$data._currentTab = this.currentUser.tabs.length ? this.currentUser.tabs[0].title : 'portfolio';
+		}
+	}
 };
 </script>
 

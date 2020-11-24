@@ -11,23 +11,23 @@
 			</div>
 		</div>
 
-		<a class="payment-form__submit" href="#" @click.prevent="$emit('showModal', 'PaymentSuccessMessage')">Pay</a>
+		<a class="payment-form__submit" href="#" @click.prevent="$emit('showmodal', 'PaymentSuccessMessage')">Pay</a>
 	</form>
 </template>
 
 <script>
-import FormInput from "./FormInput";
+import FormInput from './FormInput';
 
 export default {
-	name: "paypal-payment-form",
+	name: 'paypal-payment-form',
 
 	components: { FormInput },
 
 	data: () => {
 		return {
 			form: {
-				email: "",
-				password: ""
+				email: '',
+				password: ''
 			}
 		};
 	}
@@ -36,7 +36,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@import "./../../scss/variables";
+@import './../../scss/variables';
 
 .paypal-payment-form {
 	font-family: $poppins;
