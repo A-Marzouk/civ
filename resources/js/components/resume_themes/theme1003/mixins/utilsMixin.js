@@ -19,6 +19,10 @@ export default {
     },
 
     calculatePercentage(part, whole) {
+      if (!part || !whole) {
+        return 0;
+      }
+
       return (part * 100) / whole;
     },
 
@@ -26,6 +30,15 @@ export default {
       return ratio.split(':').reduce((a, b) => {
         return a / b;
       });
+    },
+
+    shorten(str, num = 24) {
+      if (!str) return '';
+
+      if (str.length > num) {
+        return str.slice(0, num) + '...';
+      }
+      return str;
     },
 
     capitalize(str) {

@@ -21,71 +21,21 @@
       </div>
 
       <div class="portfolio-option">
-        <a
-          :class="{ active: displayMode === 'simple' }"
-          href="#"
-          @click.prevent="displayMode = 'simple'"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="45"
-            viewBox="0 0 50 45"
-          >
+        <a :class="{ active: displayMode === 'simple' }" href="#" @click.prevent="displayMode = 'simple'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="45" viewBox="0 0 50 45">
             <g transform="translate(-1781 -494)">
-              <rect
-                id="option-rect"
-                width="50"
-                height="45"
-                rx="9"
-                transform="translate(1781 494)"
-                fill="#d4ddff"
-              />
-              <rect
-                width="23"
-                height="23"
-                rx="3"
-                transform="translate(1795 505)"
-                fill="#fff"
-              />
+              <rect id="option-rect" width="50" height="45" rx="9" transform="translate(1781 494)" fill="#d4ddff" />
+              <rect width="23" height="23" rx="3" transform="translate(1795 505)" fill="#fff" />
             </g>
           </svg>
         </a>
 
-        <a
-          :class="{ active: displayMode === 'detail' }"
-          href="#"
-          @click.prevent="displayMode = 'detail'"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="45"
-            viewBox="0 0 50 45"
-          >
+        <a :class="{ active: displayMode === 'detail' }" href="#" @click.prevent="displayMode = 'detail'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="45" viewBox="0 0 50 45">
             <g transform="translate(-1783 -492)">
-              <rect
-                id="option-rect"
-                width="50"
-                height="45"
-                rx="9"
-                transform="translate(1783 492)"
-                fill="#3d5ed4"
-              />
-              <rect
-                width="26"
-                height="20"
-                rx="1"
-                transform="translate(1795 503)"
-                fill="#fff"
-              />
-              <rect
-                width="26"
-                height="2"
-                rx="1"
-                transform="translate(1795 525)"
-                fill="#fff"
-              />
+              <rect id="option-rect" width="50" height="45" rx="9" transform="translate(1783 492)" fill="#3d5ed4" />
+              <rect width="26" height="20" rx="1" transform="translate(1795 503)" fill="#fff" />
+              <rect width="26" height="2" rx="1" transform="translate(1795 525)" fill="#fff" />
             </g>
           </svg>
         </a>
@@ -108,10 +58,7 @@
 
           <div v-show="displayMode === 'detail'" class="item-detail">
             <h3 class="item-detail__title" v-text="portfolio.name"></h3>
-            <div
-              class="item-detail__excerpt"
-              v-text="portfolio.description"
-            ></div>
+            <div class="item-detail__excerpt" v-text="portfolio.description"></div>
           </div>
         </div>
       </div>
@@ -131,9 +78,7 @@ export default {
   data: () => {
     return {
       displayMode: "detail",
-
       category: "All",
-
       categories: [],
       filterProjects: [],
     };
@@ -175,7 +120,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./../scss/variables";
+@import './../scss/variables';
 
 .portfolio-image {
   height: 300px;
@@ -288,7 +233,7 @@ export default {
   color: #172c7a;
 
   &::before {
-    content: "";
+    content: '';
     width: 25px;
     height: 1px;
     background: #172c7a;

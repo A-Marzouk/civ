@@ -2,12 +2,16 @@
 	<div class="video-preview">
 		<div class="video-thumbnail-wrapper">
 			<div class="video-thumbnail">
-				<img :src="media.thumbnail" :alt="media.title">
+				<img :src="video.media_preview" :alt="video.title">
 			</div>
 		</div>
 
-		<div class="video-play">
-			<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<div class="video-play" @click="video.isPlaying ? mediaStore.pauseVideo() : mediaStore.playVideo(video)">
+			<svg v-if="video.isPlaying" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill="#ffffff" d="M0.5 17.75H5.5V0.25H0.5V17.75ZM10.5 0.25V17.75H15.5V0.25H10.5Z" />
+			</svg>
+
+			<svg v-else width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path fill="#ffffff" d="M16.5 8.63398C17.1667 9.01888 17.1667 9.98112 16.5 10.366L2.25 18.5933C1.58333 18.9782 0.75 18.497 0.75 17.7272V1.27276C0.75 0.502958 1.58333 0.0218327 2.25 0.406733L16.5 8.63398Z" />
 			</svg>
 		</div>
@@ -15,20 +19,21 @@
 </template>
 
 <script>
-export default {
-	name: "video-preview",
+import mediaStore from '../../stores/media.store';
 
-	props: {
-		media: {
-			type: Object,
-			required: true
-		}
+export default {
+	name: 'VideoPreview',
+	props: { video: { type: Object, required: true } },
+	data() {
+		return {
+			mediaStore
+		};
 	}
 };
 </script>
 
 <style lang="scss" scoped>
-@import "./../../scss/variables";
+@import './../../scss/variables';
 
 .video-preview {
 	position: relative;
