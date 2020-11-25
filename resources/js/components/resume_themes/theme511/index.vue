@@ -149,9 +149,10 @@
                     iconHeight="24"
                     border="5px solid #f56068"
                     borderRadius="100"
-                    carouselHeight="50"
+                    carouselHeight="55"
+                    carouselWidth="215"
                     justifyContent="flex-end"
-                    class="mr-lg-8 mb-2"
+                    class="mr-lg-2 mb-2"
                     arrowColor="#39E1AA"
                   ></IconCarousel>
 
