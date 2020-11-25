@@ -18,10 +18,9 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="/css/app-vuetify.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+    <link href="/css/homepage/main.css" rel="stylesheet">
     <title>civ.ie</title>
-    <link rel="icon" href="/images/welcome_landing_page/logo/civie_logo_res-01.png" type="image/x-icon">
+    <link rel="icon" href="/images/welcome_landing_page/logo/civie_logo_reficon.png" type="image/x-icon">
 
 </head>
 <body>
