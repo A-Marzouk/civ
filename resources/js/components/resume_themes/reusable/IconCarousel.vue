@@ -1,51 +1,37 @@
 <template>
-  <div
-    class="social-carousel-wrapper"
-    :style="{ justifyContent: justifyContent }"
-  >
+  <div class="social-carousel-wrapper" :style="{ justifyContent: justifyContent }">
     <div
       class="social-carousel--nav__left"
       @click="moveCarousel(-1)"
       v-if="currentUser.links.length > 5"
       :disabled="atHeadOfList"
     >
-      <v-icon :color="arrowColor" :large="arrowLarge" :small="arrowSmall"
-        >mdi-chevron-left</v-icon
-      >
+      <v-icon :color="arrowColor" :large="arrowLarge" :small="arrowSmall">mdi-chevron-left</v-icon>
     </div>
     <div
       class="social-carousel"
       :style="{
         width: carouselWidth + 'px',
         height: carouselHeight + 'px',
-        justifyContent: justifyContent,
+        justifyContent: justifyContent
       }"
     >
       <div class="social-carousel--overflow-container">
         <div
           class="social-carousel-group"
           :style="{
-            transform: 'translateX' + '(' + currentOffset + 'px' + ')',
+            transform: 'translateX' + '(' + currentOffset + 'px' + ')'
           }"
           ref="track"
         >
           <v-btn
-            href="javascript:void(0)"
-            @click="goToExternalLink(userLink.link)"
             v-for="userLink in currentUser.links"
+            :href="userLink.link"
             :key="userLink.id + '_link'"
             target="_blank"
             class="mx-1"
             :style="
-              ' border-radius:' +
-              borderRadius +
-              'px;' +
-              'border:' +
-              border +
-              ';' +
-              'box-shadow:' +
-              boxShadow +
-              ';'
+              ' border-radius:' + borderRadius + 'px;' + 'border:' + border + ';' + 'box-shadow:' + boxShadow + ';'
             "
             :width="btnWidth"
             :min-width="btnWidth"
@@ -75,9 +61,7 @@
       v-if="currentUser.links.length > 5"
       :disabled="atEndOfList"
     >
-      <v-icon :color="arrowColor" :large="arrowLarge" :small="arrowSmall"
-        >mdi-chevron-right</v-icon
-      >
+      <v-icon :color="arrowColor" :large="arrowLarge" :small="arrowSmall">mdi-chevron-right</v-icon>
     </div>
   </div>
 </template>
