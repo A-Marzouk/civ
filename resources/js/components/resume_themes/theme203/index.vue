@@ -218,7 +218,6 @@
                     <v-card-text class="ml-lg-n5">
                       <v-row no-gutters align="center" justify="center">
                         <!-- availability slider zone -->
-
                         <v-col
                           xl="4"
                           lg="4"
@@ -342,7 +341,7 @@
                   <template v-for="item in currentUser.tabs">
                     <v-tab
                       :key="item.title"
-                      class="text-capitalize custom-tab-text"
+                      class="text-capitalize custom-tab-text mr-xl-auto mr-lg-7"
                       @click="changeTab(item.title)"
                       :id="item.title"
                       :href="'#' + item.title"
