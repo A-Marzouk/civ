@@ -334,7 +334,6 @@
                   v-model="mainDataTab"
                   color="black"
                   centered
-                  grow
                   show-arrows
                   hide-slider
                 >
