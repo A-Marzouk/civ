@@ -152,7 +152,7 @@
                     carouselHeight="55"
                     carouselWidth="215"
                     justifyContent="flex-end"
-                    class="mr-lg-2 mb-2"
+                    class="mr-lg-6 mb-2"
                     arrowColor="#39E1AA"
                   ></IconCarousel>
 
