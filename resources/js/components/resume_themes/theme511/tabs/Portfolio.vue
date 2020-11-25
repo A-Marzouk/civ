@@ -19,7 +19,11 @@
         :key="portfolio.id"
         v-show="portfolio.is_public"
       >
-        <v-img class="borImg" :src="getProjectMainImage(portfolio)"></v-img>
+        <ImagesCarouselModal :images="portfolio.images">
+          <div class="portfolio-image">
+            <v-img class="borImg" aspect-ratio="0.94" :src="getProjectMainImage(portfolio)"> </v-img>
+          </div>
+        </ImagesCarouselModal>
       </v-col>
 
       <v-col lg="12" class="hidden-md-and-down">
@@ -30,7 +34,12 @@
             v-show="portfolio.is_public"
             class="px-2"
           >
-            <v-img :src="getProjectMainImage(portfolio)" class="borImg" :aspect-ratio="1" alt="portfolio img"></v-img>
+            <ImagesCarouselModal :images="portfolio.images">
+              <div class="portfolio-image">
+                <v-img class="borImg" aspect-ratio="1" :src="getProjectMainImage(portfolio)" alt="portfolio img">
+                </v-img>
+              </div>
+            </ImagesCarouselModal>
           </div>
 
           <template #customPaging="i">
@@ -44,13 +53,15 @@
   </v-container>
 </template>
 <script>
+import ImagesCarouselModal from "../../reusable/ImagesCarouselModal";
 import VueSlickCarousel from "vue-slick-carousel";
 // optional style for arrows & dots
 import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 export default {
   props: ["activeTab", "projects"],
   components: {
-    VueSlickCarousel
+    VueSlickCarousel,
+    ImagesCarouselModal,
   },
   data: () => ({
     settings: {
@@ -122,6 +133,7 @@ export default {
   border-radius: 50%;
   width: 15px;
   height: 15px;
+  margin-top: 15px;
 }
 .borImg {
   border-radius: 20px !important  ;
