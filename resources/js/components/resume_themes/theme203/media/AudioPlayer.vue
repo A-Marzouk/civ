@@ -7,16 +7,14 @@
           <v-list-item color="transparent">
             <v-list-item-icon class="mr-n1">
               <div>
-                <v-btn
-                  class="btn-play"
-                  depressed
-                  @click.prevent="playing ? pause() : play()"
-                >
+                <v-btn class="btn-play" depressed @click.prevent="playing ? pause() : play()">
                   <v-img
                     src="/images/resume_themes/theme203/icons/inner-play.svg"
                     v-if="!playing || paused"
+                    style="z-index: 1005"
                   ></v-img>
                   <v-img
+                    style="z-index: 1005"
                     src="/images/resume_themes/theme203/icons/inner-pause.svg"
                     v-else
                   ></v-img>
@@ -29,22 +27,14 @@
                   <v-row no-gutters>
                     <v-col lg="6" sm="6" cols="6" class="">
                       <span class="mb-n4">
-                        <v-card
-                          flat
-                          color="transparent"
-                          class="duration-time custom-ml"
-                          >{{ currentTime }}</v-card
-                        >
+                        <v-card flat color="transparent" class="duration-time custom-ml">{{ currentTime }}</v-card>
                       </span>
                     </v-col>
                     <v-col lg="6" sm="6" cols="5" align="right" class="">
                       <span class="">
-                        <v-card
-                          flat
-                          color="transparent"
-                          class="duration-time custom-mr"
-                          >{{ totalDuration | secondToMinHours }}</v-card
-                        >
+                        <v-card flat color="transparent" class="duration-time custom-mr">{{
+                          totalDuration | secondToMinHours
+                        }}</v-card>
                       </span>
                     </v-col>
                   </v-row>
@@ -80,8 +70,7 @@
   </v-card>
 </template>
 <script>
-const formatTime = (second) =>
-  new Date(second * 1000).toISOString().substr(11, 8);
+const formatTime = second => new Date(second * 1000).toISOString().substr(11, 8);
 export default {
   filters: {
     secondToMinHours(sec) {
@@ -89,45 +78,45 @@ export default {
       var h = Math.floor(sec / 3600);
       var m = Math.floor((sec % 3600) / 60);
       var s = Math.floor((sec % 3600) % 60);
-      var newH = h < 10 ? "0" + h : h;
-      var newM = m < 10 ? "0" + m : m;
-      var newS = s < 10 ? "0" + s : s;
-      return newH + ":" + newM + ":" + newS;
-    },
+      var newH = h < 10 ? '0' + h : h;
+      var newM = m < 10 ? '0' + m : m;
+      var newS = s < 10 ? '0' + s : s;
+      return newH + ':' + newM + ':' + newS;
+    }
   },
-  name: "AudioPlayer",
+  name: 'AudioPlayer',
   components: {},
   props: {
     modalOpen: {
       type: Boolean,
-      default: true,
+      default: true
     },
     color: {
-      type: String,
+      type: String
     },
     index: {
-      type: Number,
+      type: Number
     },
     file: {
       type: String,
-      default: null,
+      default: null
     },
     audioTitle: {
       type: String,
-      default: "",
+      default: ''
     },
     autoPlay: {
       type: Boolean,
-      default: false,
+      default: false
     },
     ended: {
       type: Function,
-      default: () => {},
+      default: () => {}
     },
     canPlay: {
       type: Function,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
@@ -137,9 +126,9 @@ export default {
       playing: false,
       paused: false,
       percentage: 0,
-      currentTime: "00:00:00",
+      currentTime: '00:00:00',
       audio: undefined,
-      totalDuration: 0,
+      totalDuration: 0
     };
   },
 
@@ -148,13 +137,11 @@ export default {
       if (val == false) {
         this.stop();
       }
-    },
+    }
   },
   methods: {
     setPosition() {
-      this.audio.currentTime = parseInt(
-        (this.audio.duration / 100) * this.percentage
-      );
+      this.audio.currentTime = parseInt((this.audio.duration / 100) * this.percentage);
     },
     stop() {
       this.audio.pause();
@@ -164,7 +151,7 @@ export default {
     },
     play() {
       if (this.playing) return;
-      this.audio.play().then((_) => (this.playing = true));
+      this.audio.play().then(_ => (this.playing = true));
       this.paused = false;
       this.playing = true;
     },
@@ -203,7 +190,7 @@ export default {
         }
         if (this.autoPlay) this.audio.play();
       } else {
-        throw new Error("Failed to load sound file");
+        throw new Error('Failed to load sound file');
       }
     },
     _handlePlayingUI: function (e) {
@@ -212,43 +199,39 @@ export default {
       this.playing = true;
     },
     _handlePlayPause: function (e) {
-      if (e.type === "play" && this.firstPlay) {
+      if (e.type === 'play' && this.firstPlay) {
         // in some situations, audio.currentTime is the end one on chrome
         this.audio.currentTime = 0;
         if (this.firstPlay) {
           this.firstPlay = false;
         }
       }
-      if (
-        e.type === "pause" &&
-        this.paused === false &&
-        this.playing === false
-      ) {
-        this.currentTime = "00:00:00";
+      if (e.type === 'pause' && this.paused === false && this.playing === false) {
+        this.currentTime = '00:00:00';
       }
     },
     _handleEnded() {
       this.paused = this.playing = false;
     },
     init: function () {
-      this.audio.addEventListener("timeupdate", this._handlePlayingUI);
-      this.audio.addEventListener("loadeddata", this._handleLoaded);
-      this.audio.addEventListener("pause", this._handlePlayPause);
-      this.audio.addEventListener("play", this._handlePlayPause);
-      this.audio.addEventListener("ended", this._handleEnded);
-    },
+      this.audio.addEventListener('timeupdate', this._handlePlayingUI);
+      this.audio.addEventListener('loadeddata', this._handleLoaded);
+      this.audio.addEventListener('pause', this._handlePlayPause);
+      this.audio.addEventListener('play', this._handlePlayPause);
+      this.audio.addEventListener('ended', this._handleEnded);
+    }
   },
   mounted() {
     this.audio = this.$refs.player;
     this.init();
   },
   beforeDestroy() {
-    this.audio.removeEventListener("timeupdate", this._handlePlayingUI);
-    this.audio.removeEventListener("loadeddata", this._handleLoaded);
-    this.audio.removeEventListener("pause", this._handlePlayPause);
-    this.audio.removeEventListener("play", this._handlePlayPause);
-    this.audio.removeEventListener("ended", this._handleEnded);
-  },
+    this.audio.removeEventListener('timeupdate', this._handlePlayingUI);
+    this.audio.removeEventListener('loadeddata', this._handleLoaded);
+    this.audio.removeEventListener('pause', this._handlePlayPause);
+    this.audio.removeEventListener('play', this._handlePlayPause);
+    this.audio.removeEventListener('ended', this._handleEnded);
+  }
 };
 </script>
 
@@ -283,7 +266,7 @@ export default {
   }
 }
 .duration-time {
-  font-family: "Montserrat" !important;
+  font-family: 'Montserrat' !important;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -317,6 +300,7 @@ export default {
   background: #e0e0e0 !important;
   opacity: 0.7;
   margin-left: -4px;
+  z-index: 0 !important;
 }
 </style>
 
@@ -328,17 +312,12 @@ export default {
       position: absolute;
     }
     .v-progress-linear__determinate:after {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       top: 0;
       left: 0;
-      background-image: linear-gradient(
-        92.63deg,
-        #fcd259 1.07%,
-        #e5bf4e 51.95%,
-        #ffde81 89.88%
-      ) !important;
+      background-image: linear-gradient(92.63deg, #fcd259 1.07%, #e5bf4e 51.95%, #ffde81 89.88%) !important;
       height: 100%;
       width: 100%;
       border-radius: 15px !important;
