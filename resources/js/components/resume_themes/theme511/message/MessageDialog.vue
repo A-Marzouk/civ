@@ -3,7 +3,7 @@
     <div class="msg__content">
       <v-container>
         <v-row class="px-4">
-          <v-col cols="12" class="mt-8">
+          <v-col cols="12" class="mt-sm-8 mt-2">
             <v-row no-gutters>
               <v-col cols="10">
                 <div class="msg-title">Message</div>
@@ -13,16 +13,11 @@
               </v-col>
             </v-row>
 
-            <v-form class="mt-8">
+            <v-form class="mt-sm-8 mt-2">
               <v-row justify="center">
                 <v-col cols="12">
                   <div class="input--label ml-6">Name</div>
-                  <v-text-field
-                    class="input--field"
-                    elevation="0"
-                    placeholder="Name"
-                    solo
-                  ></v-text-field>
+                  <v-text-field class="input--field" elevation="0" placeholder="Name" solo></v-text-field>
                 </v-col>
               </v-row>
               <v-row justify="center">
@@ -88,7 +83,7 @@ export default {
 
     @media screen and (max-width: 475px) {
       width: 95%;
-      height: auto;
+      height: 90vh;
       background: #6764c8;
       border-radius: 50px;
     }
@@ -127,8 +122,8 @@ textarea:focus {
   font-family: Poppins;
   font-style: normal;
   font-weight: 800;
-  font-size: 30px;
-  line-height: 45px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
   color: #ffffff;
 }
 
@@ -156,10 +151,17 @@ textarea:focus {
   font-family: Poppins;
   font-style: normal;
   font-weight: bold;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
 
   color: #f56068;
 }
 //message-modal-style
+// Mobile Version
+@media screen and (max-width: 475px) {
+  .message {
+    height: 80px;
+  }
+}
+// Mobile Version
 </style>
