@@ -68,7 +68,7 @@ class PersonalInfoController extends Controller
             'last_name' => ['sometimes', 'string', 'max:255','min:2'],
             'date_of_birth' => ['sometimes', 'string', 'max:255','min:3'],
             'email' => ['email','max:255','unique:users'],
-            'designation' => ['sometimes', 'string','max:255','min:3'],
+            'designation' => ['sometimes', 'string','max:255','min:2'],
             'profile_pic' => ['sometimes'],
             'phone' => ['sometimes', 'numeric','min:7'],
             'location' => ['sometimes', 'string', 'max:255','min:3'],
