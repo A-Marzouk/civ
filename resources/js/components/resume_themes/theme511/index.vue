@@ -5,28 +5,10 @@
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4">
           <v-container fluid>
             <v-row dense>
-              <v-col
-                class="profile-picture"
-                cols="2"
-                lg="2"
-                sm="3"
-                align="center"
-                align-self="center"
-              >
-                <v-img
-                  :src="currentUser.personal_info.profile_pic"
-                  alt="avatar"
-                  style="border-radius: 50%"
-                  contain
-                >
+              <v-col class="profile-picture" cols="2" lg="2" sm="3" align="center" align-self="center">
+                <v-img :src="currentUser.personal_info.profile_pic" alt="avatar" style="border-radius: 50%" contain>
                 </v-img>
-                <v-btn
-                  fab
-                  color="#f56068"
-                  class="pdf-btn"
-                  elevation="0"
-                  v-if="findPreference('pdf_download')"
-                >
+                <v-btn fab color="#f56068" class="pdf-btn" elevation="0" v-if="findPreference('pdf_download')">
                   <v-img
                     src="/images/resume_themes/theme511/social_icons/pdfBtn.svg"
                     :max-width="pdfIconSize"
@@ -40,17 +22,10 @@
                   @click.stop="messageToggle = !messageToggle"
                   v-if="findPreference('chat')"
                 >
-                  <v-img
-                    src="/images/resume_themes/theme511/email.svg"
-                    :max-width="pdfIconSize"
-                    contain
-                  ></v-img>
+                  <v-img src="/images/resume_themes/theme511/email.svg" :max-width="pdfIconSize" contain></v-img>
                 </v-btn>
               </v-col>
-              <MessageDialog
-                :messageToggle="messageToggle"
-                :closeDialog="closeDialog"
-              ></MessageDialog>
+              <MessageDialog :messageToggle="messageToggle" :closeDialog="closeDialog"></MessageDialog>
               <v-navigation-drawer
                 color="rgba(103, 100, 200, 0.95)"
                 v-model="drawer"
@@ -62,16 +37,12 @@
               >
                 <div class="text-right mt-4">
                   <v-btn text small>
-                    <v-icon color="#fff" @click.stop="drawer = !drawer"
-                      >close</v-icon
-                    >
+                    <v-icon color="#fff" @click.stop="drawer = !drawer">close</v-icon>
                   </v-btn>
                 </div>
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title class="menu text-left"
-                      >Menu</v-list-item-title
-                    >
+                    <v-list-item-title class="menu text-left">Menu</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
 
@@ -86,10 +57,8 @@
                   >
                     <v-list-item-content
                       :class="[
-                        activeTab === tab.title
-                          ? 'drawer--tab-active'
-                          : 'drawer--tab-disable',
-                        'menu--tabs white--text text-left',
+                        activeTab === tab.title ? 'drawer--tab-active' : 'drawer--tab-disable',
+                        'menu--tabs white--text text-left'
                       ]"
                     >
                       <v-list-item-title>{{ tab.label }}</v-list-item-title>
@@ -97,14 +66,7 @@
                   </v-list-item>
                 </v-list>
               </v-navigation-drawer>
-              <v-col
-                cols="auto"
-                xl="6"
-                lg="6"
-                class="pl-lg-8"
-                sm="6"
-                align-self="center"
-              >
+              <v-col cols="auto" xl="6" lg="6" class="pl-lg-8" sm="6" align-self="center">
                 <div class="head">
                   {{ currentUser.personal_info.first_name }}
                   {{ currentUser.personal_info.last_name }}
@@ -112,31 +74,19 @@
                 <div class="subhead">
                   {{ currentUser.personal_info.designation }}
                 </div>
-                <div
-                  class="details hidden-xs-only"
-                  v-if="currentUser.personal_info.overview"
-                >
+                <div class="details hidden-xs-only" v-if="currentUser.personal_info.overview">
                   {{ currentUser.personal_info.overview }}
                 </div>
                 <v-row dense class="hidden-xs-only">
                   <!-- Pay Rate -->
-                  <v-col
-                    cols="12"
-                    sm="12"
-                    lg="6"
-                    xl="5"
-                    v-if="findPreference('hourly_rate')"
-                  >
+                  <v-col cols="12" sm="12" lg="6" xl="5" v-if="findPreference('hourly_rate')">
                     <span class="info-text">Rate - </span>
                     <span class="info-text">
-                      <v-icon color="#39E1AA" @click="paymentInfoPrev()"
-                        >mdi-chevron-left</v-icon
-                      >
+                      <v-icon color="#39E1AA" @click="paymentInfoPrev()">mdi-chevron-left</v-icon>
                       <a
                         href="javascript:void(0)"
                         class="info-text"
-                        v-for="(payment_Info,
-                        index) in currentUser.payment_info"
+                        v-for="(payment_Info, index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public && paymentInfo == index"
                         @click="paymentInfoNext()"
@@ -144,9 +94,7 @@
                         {{ payment_Info.salary_frequency }}
                       </a>
 
-                      <v-icon color="#39E1AA" @click="paymentInfoNext()"
-                        >mdi-chevron-right</v-icon
-                      ></span
+                      <v-icon color="#39E1AA" @click="paymentInfoNext()">mdi-chevron-right</v-icon></span
                     >
                     <span
                       class="info-rate"
@@ -160,39 +108,26 @@
                   </v-col>
                   <!-- Pay Rate -->
                   <!-- Availability -->
-                  <v-col
-                    cols="12"
-                    sm="12"
-                    md="6"
-                    v-if="findPreference('weekly_availability')"
-                  >
+                  <v-col cols="12" sm="12" md="6" v-if="findPreference('weekly_availability')">
                     <span class="info-text">Availability - </span>
                     <span class="info-text">
-                      <v-icon color="#39E1AA" @click="availablePrev()"
-                        >mdi-chevron-left</v-icon
-                      >
+                      <v-icon color="#39E1AA" @click="availablePrev()">mdi-chevron-left</v-icon>
                       <a
                         href="javascript:void(0)"
                         class="info-text"
-                        v-for="(availability_info,
-                        index) in currentUser.availability_info"
+                        v-for="(availability_info, index) in currentUser.availability_info"
                         :key="index"
-                        v-show="
-                          availability_info.is_public && available == index
-                        "
+                        v-show="availability_info.is_public && available == index"
                         @click="availableNext()"
                       >
                         {{ availability_info.available_hours_frequency }}
                       </a>
 
-                      <v-icon color="#39E1AA" @click="availableNext()"
-                        >mdi-chevron-right</v-icon
-                      ></span
+                      <v-icon color="#39E1AA" @click="availableNext()">mdi-chevron-right</v-icon></span
                     >
                     <span
                       class="info-rate"
-                      v-for="(availability_info,
-                      index) in currentUser.availability_info"
+                      v-for="(availability_info, index) in currentUser.availability_info"
                       :key="index"
                       v-show="availability_info.is_public && available == index"
                     >
@@ -202,13 +137,7 @@
                   <!-- Availability -->
                 </v-row>
               </v-col>
-              <v-col
-                cols="auto"
-                sm="3"
-                lg="4"
-                class="ml-auto align-self-sm-start"
-                align-self="center"
-              >
+              <v-col cols="auto" sm="3" lg="4" class="ml-auto align-self-sm-start" align-self="center">
                 <div class="text-right mt-lg-4 hidden-md-and-down">
                   <!-- Social Icons -->
                   <IconCarousel
@@ -281,7 +210,12 @@
         </v-col>
         <!-- Payment-dialog-box   -->
 
-        <HireModal :hireMeModal="hireMeModal" :closePayment="closePayment" />
+        <HireModal
+          @modalClosed="hireMeModal = false"
+          :hireMeModal.sync="hireMeModal"
+          :closeHireMeModal="closePayment"
+          :user="currentUser"
+        />
         <!-- Payment-dialog-box   -->
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4 mainheight">
           <v-container fluid>
@@ -311,19 +245,10 @@
                 </v-tabs>
               </v-col>
               <v-col lg="11">
-                <Portfolio
-                  :projects="currentUser.projects"
-                  :activeTab="activeTab"
-                />
-                <Experience
-                  :works="currentUser.work_experience"
-                  :activeTab="activeTab"
-                />
+                <Portfolio :projects="currentUser.projects" :activeTab="activeTab" />
+                <Experience :works="currentUser.work_experience" :activeTab="activeTab" />
                 <Skills :skills="currentUser.skills" :activeTab="activeTab" />
-                <Education
-                  :education="currentUser.education"
-                  :activeTab="activeTab"
-                />
+                <Education :education="currentUser.education" :activeTab="activeTab" />
                 <Media
                   style="margin-bottom: 150px"
                   :activeTab="activeTab"
@@ -331,18 +256,9 @@
                   :user_name="currentUser.full_name"
                 />
                 <About :activeTab="activeTab" :user="currentUser" />
-                <Hobbies
-                  :activeTab="activeTab"
-                  :hobbies="currentUser.hobbies"
-                />
-                <References
-                  :activeTab="activeTab"
-                  :references="currentUser.references"
-                />
-                <Achievement
-                  :activeTab="activeTab"
-                  :achievements="currentUser.achievements"
-                />
+                <Hobbies :activeTab="activeTab" :hobbies="currentUser.hobbies" />
+                <References :activeTab="activeTab" :references="currentUser.references" />
+                <Achievement :activeTab="activeTab" :achievements="currentUser.achievements" />
               </v-col>
             </v-row>
           </v-container>
@@ -365,7 +281,7 @@ import Hobbies from "./tabs/Hobbies";
 import References from "./tabs/References";
 import Achievement from "./tabs/Achievement";
 import MessageDialog from "./message/MessageDialog";
-import HireModal from "./payments/HireModal";
+import HireModal from "../includes/HireMeModal";
 import IconCarousel from "../reusable/IconCarousel";
 import MainFunctions from "../reusable/functions/main.functions";
 export default {
@@ -508,7 +424,7 @@ export default {
 <style lang="scss" scoped>
 //index
 #theme511 {
-  background: url("/images/resume_themes/theme511/back.png");
+  background: url('/images/resume_themes/theme511/back.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -522,7 +438,7 @@ export default {
   min-height: 500px;
 }
 .paymentBack {
-  background: url("/images/resume_themes/theme511/payback.png");
+  background: url('/images/resume_themes/theme511/payback.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -601,7 +517,7 @@ export default {
   position: relative;
 }
 .drawer--tab-active:after {
-  content: "";
+  content: '';
   position: absolute;
   background-color: #39e1aa;
   width: 90px;
