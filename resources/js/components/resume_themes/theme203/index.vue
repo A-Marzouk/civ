@@ -340,7 +340,7 @@
                   <template v-for="item in currentUser.tabs">
                     <v-tab
                       :key="item.title"
-                      class="text-capitalize custom-tab-text mr-xl-auto mr-lg-7"
+                      class="text-capitalize custom-tab-text"
                       @click="changeTab(item.title)"
                       :id="item.title"
                       :href="'#' + item.title"
@@ -532,10 +532,8 @@
                 <!--------------------- About ------------------------------>
 
                 <!-- ................Portfolio............................... -->
-
                 <Portfolio :currentUser="currentUser" />
                 <!-- .......................Portfolio.................................. -->
-
                 <!-- ...................Tab Item Work............................. -->
                 <v-tab-item value="work_experience" key="work_experience">
                   <div class="watermark-text text-center">Work</div>
@@ -1609,7 +1607,7 @@ export default {
 // ............................ Main Navigation Tab...........................//
 .custom-tab-text {
   font-size: 1.2rem;
-  @media screen and (max-width: 599px) {
+  @media screen and (max-width: 1903px) {
     font-size: 1rem;
   }
 }
