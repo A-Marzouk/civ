@@ -6,11 +6,11 @@
           <v-card flat color="transparent" tile>
             <img
               class="logo-footer hidden-sm-and-down"
-              src="/images/welcome_landing_page/logo/civie_logo-01.png"
+              src="/images/welcome_landing_page/logo/civie_logo-01.webp"
             />
             <img
               class="logo-footer hidden-md-and-up"
-              src="/images/welcome_landing_page/logo/civie_logo-01.png"
+              src="/images/welcome_landing_page/logo/civie_logo-01.webp"
             />
           </v-card>
         </v-col>
