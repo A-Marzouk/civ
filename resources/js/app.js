@@ -17,17 +17,7 @@ $.ajaxSetup({
 import moment from 'moment'
 Vue.prototype.moment = moment;
 
-// welcome page view component registration:
-import welcomeView from './components/welcome-view/welcome';
-if ($("#welcomeView").length !== 0) {
-    new Vue({
-        el: '#welcomeView',
-        vuetify,
-        components: {
-            'welcome-view': welcomeView
-        }
-    });
-}
+
 
 // for tesging HireMeModalUpdated
 import HireMeModalUpdated from './components/resume_themes/includes/HireMeModalUpdated';

@@ -22,24 +22,44 @@ class AdminsController extends Controller
     }
 
     public function index(){
-        // get all users:
-        $users = User::all();
-        foreach ($users as $user){
-            $user['is_admin'] = $user->hasRole('admin');
-            $user['can_test_builder'] = $user->can('test.builder.users');
-            $user['subscription'] = $user->subscription;
-            if($user->subscription){
-                $user['subscription']['promocode'] = $user->subscription->promocode;
+
+        $agents = User::whereHas('roles', function ($q) {
+            $q->where('roles.name', 'agent');
+        })->get();
+        $clients = User::whereHas('roles', function ($q) {
+            $q->where('roles.name', 'client');
+        })->get();
+
+        $deletedUsers = User::onlyTrashed()->get();
+
+        foreach ($agents as $agent){
+            $agent['can_test_builder'] = $agent->can('test.builder.users');
+            $agent['subscription'] = $agent->subscription;
+            if($agent->subscription){
+                $agent['subscription']['promocode'] = $agent->subscription->promocode;
             }
         }
 
-        // get deleted users:
-        $deletedUsers = User::onlyTrashed()->get();
-        return view('admin.dashboard', compact('users','deletedUsers'));
+        foreach ($clients as $client){
+            $agent['can_test_builder'] = $agent->can('test.builder.users');
+            if($client->payments){
+                $client['payments'] = $client->payments;
+            }
+            if($client->subscriptions){
+                $client['subscription'] = $client->subscriptions;
+            }
+        }
+
+        $users['agents'] = $agents;
+        $users['deletedUsers'] = $deletedUsers;
+        $users['clients'] = $clients;
+
+        return view('admin.dashboard', compact('users'));
     }
 
     public function userFullEdit($username){
-        $tempUser = User::withAllRelations($username);
+        $user = User::where('username', $username)->first();
+        $tempUser = User::withAllRelations($username, $user->defaultResumeLink->id);
         if(!$tempUser){
             return redirect('/workforce-admin');
         }

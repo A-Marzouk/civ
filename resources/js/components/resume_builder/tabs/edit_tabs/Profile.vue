@@ -27,6 +27,7 @@
                     <v-text-field
                             class="resume-builder__input  with-inner top-input-margin url min-height"  style="margin-top: -21px;"
                             v-model="usernameCurrentValue"
+                            disabled
                             @blur="updateUsername"
                             :outlined="true"
                             :class="{'resume-builder__input--disabled': false}"

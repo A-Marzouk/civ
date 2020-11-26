@@ -90,6 +90,7 @@
                             <v-text-field
                                     class="resume-builder__input top-input-margin url mt-n6"
                                     v-model="accountData.username"
+                                    disabled
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.username"
