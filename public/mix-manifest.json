@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/app-vuetify.css": "/css/app-vuetify.css",
-    "/js/app.js.map": "/js/app.js.map"
+    "/css/homepage/main.css": "/css/homepage/main.css",
+    "/js/homepage/main.js": "/js/homepage/main.js"
 }

@@ -1,4 +1,4 @@
-@extends('layouts.theme-vuetify')
+@extends('layouts.homepage.main')
 
 @section('content')
     <div id="welcomeView">

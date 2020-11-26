@@ -218,7 +218,6 @@
                     <v-card-text class="ml-lg-n5">
                       <v-row no-gutters align="center" justify="center">
                         <!-- availability slider zone -->
-
                         <v-col
                           xl="4"
                           lg="4"
@@ -335,14 +334,13 @@
                   v-model="mainDataTab"
                   color="black"
                   centered
-                  grow
                   show-arrows
                   hide-slider
                 >
                   <template v-for="item in currentUser.tabs">
                     <v-tab
                       :key="item.title"
-                      class="text-capitalize custom-tab-text"
+                      class="text-capitalize custom-tab-text mr-xl-auto mr-lg-7"
                       @click="changeTab(item.title)"
                       :id="item.title"
                       :href="'#' + item.title"
@@ -485,10 +483,10 @@
                             v-if="currentUser.personal_info.about"
                             >About Me
                           </v-card-subtitle>
-                          <hr
+                          <div
                             class="custom-hr hidden-xs-only"
                             v-show="currentUser.personal_info.about"
-                          />
+                          ></div>
                           <v-card-text
                             class="overview-text"
                             v-if="currentUser.personal_info.about"
@@ -522,7 +520,7 @@
                           </v-card-text>
                           <!-- location -->
                           <hr
-                            class="custom-hr hidden-sm-and-up"
+                            class="custom-hr-mobile hidden-sm-and-up"
                             v-show="currentUser.personal_info.location"
                           />
                         </v-card>
@@ -544,7 +542,7 @@
                   <v-card color="transparent" tile flat>
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width: 100%">
-                        <v-row align="center">
+                        <v-row>
                           <template
                             v-for="(work, index) in currentUser.work_experience"
                           >
@@ -587,7 +585,7 @@
                                         <span v-if="work.present == 1"
                                           >Present</span
                                         >
-                                        <span v-else>{{ work.to }}</span>
+                                        <span v-else>{{ work.date_to }}</span>
                                       </v-card>
                                     </v-list-item-subtitle>
                                   </v-list-item-content>
@@ -607,7 +605,7 @@
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width: 100%">
-                      <v-row align="center">
+                      <v-row>
                         <template
                           v-for="(education, index) in currentUser.education"
                         >
@@ -642,16 +640,18 @@
                                       tile
                                       style="color: #fbd76d"
                                     >
-                                      {{ education.degree_title }},
-                                      <span class="ml-5">
-                                        {{ education.date_from }} -
-                                        <span v-if="education.present == true"
-                                          >Present</span
-                                        >
-                                        <span v-else>
-                                          {{ education.date_to }}
+                                      <div class="d-flex flex-column">
+                                        {{ education.degree_title }},
+                                        <span class="education-date mt-2">
+                                          {{ education.date_from }} -
+                                          <span v-if="education.present == true"
+                                            >Present</span
+                                          >
+                                          <span v-else>
+                                            {{ education.date_to }}
+                                          </span>
                                         </span>
-                                      </span>
+                                      </div>
                                     </v-card>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle class="mt-6">
@@ -683,7 +683,10 @@
                         <v-col
                           cols="12"
                           sm="12"
-                          md="5"
+                          md="12"
+                          lg="6"
+                          xl="6"
+
                           class="mb-12"
                           :key="skill.id"
                           v-show="skill.is_public"
@@ -1213,7 +1216,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    // console.log(this.currentUser);
+    //console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
@@ -1651,6 +1654,7 @@ export default {
 .custom-work-title {
   font-size: 24px;
   line-height: 2.6875rem;
+  word-break: break-word;
 }
 
 .custom-work-subtitle {
@@ -1677,6 +1681,9 @@ export default {
 
   @media screen and (max-width: 599px) {
     font-size: 0.7rem;
+  }
+  .education-margin {
+    margin-left: 5%;
   }
 }
 
@@ -1741,7 +1748,7 @@ export default {
   position: absolute;
   font-size: 10vw;
   width: 100%;
-  opacity: 0.1;
+  opacity: 0.02;
   white-space: nowrap;
   display: inline-block;
   font-family: "Poppins" !important;
@@ -2084,10 +2091,9 @@ export default {
 .card-modal-video-holder {
   border-radius: 40px !important;
   overflow: hidden !important;
-  height: 850px;
+  min-height: 400px;
   padding: 40px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    height: 700px;
     padding: 40px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
@@ -2096,12 +2102,11 @@ export default {
     min-height: 500px;
   }
   @media screen and (max-width: 959px) {
-    height: 1250px;
     padding: 8px;
     max-height: 500px;
   }
   @media screen and (max-width: 599px) {
-    height: 770px;
+    max-height: 770px;
   }
 
   .btn-video-close {
@@ -2125,7 +2130,7 @@ export default {
   font-family: "Gotham Pro" !important;
   font-style: normal;
   font-weight: bold;
-  font-size: 400px;
+  font-size: 400px !important;
   line-height: 383px;
   letter-spacing: 0.05em;
   color: rgba(0, 0, 0, 0.03) !important;
@@ -2141,15 +2146,15 @@ export default {
   margin: auto;
   z-index: 100;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
-    font-size: 200px;
+    font-size: 200px !important;
     top: -30%;
   }
   @media screen and (min-width: 668px) and (max-width: 959px) {
-    font-size: 150px;
+    font-size: 150px !important;
     top: -30%;
   }
   @media screen and (max-width: 667px) {
-    font-size: 100px;
+    font-size: 100px !important;
     top: -30%;
   }
 }
@@ -2173,7 +2178,11 @@ export default {
   top: -30%;
   bottom: 0;
   margin: auto;
-  @media screen and (min-width: 960px) and (max-width: 1903px) {
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    font-size: 300px !important;
+    top: 0;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 300px !important;
     top: -40%;
   }
@@ -2191,26 +2200,31 @@ export default {
 }
 
 .custom-hr {
-  width: 245.36px;
-  opacity: 0.6;
+  min-height: 100%;
+  opacity: 0.6 !important;
   border: 1px solid #000000;
-  transform: rotate(90deg);
-  margin-left: -198px;
-  margin-top: 12rem;
   position: absolute;
+  top: 0;
+  left: -72px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    margin-left: -158px;
+    left: -38px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
-    margin-left: -144px;
+    left: -22px;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    margin-left: -150px;
+    left: -22px;
   }
   @media screen and (max-width: 599px) {
-    margin-left: 16px;
-    transform: rotate(180deg);
+    transform: rotate(90deg);
+    min-height: 4vw;
   }
+}
+.custom-hr-mobile {
+  display: none;
+  border: 1px solid #000000;
+  opacity: 0.6;
+  margin-left: 14px;
 }
 </style>
 

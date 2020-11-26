@@ -10,7 +10,7 @@
 
                 <img src="/icons/close-grey.svg" alt="close btn" class="close-modal" @click="closeModal">
 
-                <div class="steps-wrapper" v-if="paymentMethods.length > 0">
+                <div class="steps-wrapper">
                     <div class="single-step-wrapper one" :class="{'active' : isStepActive(1)}">
                         <div class="step-header">
                             Choose Payment Method
@@ -18,18 +18,16 @@
                         </div>
                         <div class="step-content" v-show="isStepActive(1)">
                             <div class="payment-methods-wrapper">
-                                <template v-for="paymentMethod in paymentMethods">
-                                    <div v-show="paymentMethod.name === 'Stripe' " class="payment-method"
-                                         @click="changePaymentMethod('stripe')"
-                                         :class="{active : currentPaymentMethod === 'stripe'}">
-                                        <img src="/icons/hire-modal/stripe-logo.svg" alt="stripe icon">
-                                    </div>
-                                    <div v-show="paymentMethod.name === 'PayPal' " class="payment-method"
-                                         @click="changePaymentMethod('paypal')"
-                                         :class="{active : currentPaymentMethod === 'paypal'}">
-                                        <img src="/icons/hire-modal/paypal-logo.svg" alt="paypal icon" class="paypal">
-                                    </div>
-                                </template>
+                                <div class="payment-method"
+                                     @click="changePaymentMethod('stripe')"
+                                     :class="{active : currentPaymentMethod === 'stripe'}">
+                                    <img src="/icons/hire-modal/stripe-logo.svg" alt="stripe icon">
+                                </div>
+                                <div class="payment-method"
+                                     @click="changePaymentMethod('paypal')"
+                                     :class="{active : currentPaymentMethod === 'paypal'}">
+                                    <img src="/icons/hire-modal/paypal-logo.svg" alt="paypal icon" class="paypal">
+                                </div>
                             </div>
                             <div class="step-footer" style="justify-content: flex-end">
 
@@ -238,7 +236,7 @@
                     </div>
                 </div>
 
-                <div class="steps-wrapper" v-else>
+                <div class="steps-wrapper" style="display: none !important;">
 
                     <div class="single-step-wrapper one no-payment-method" :class="{'active' : isStepActive(1)}">
                         <div class="step-header">
@@ -354,7 +352,6 @@
 
                 </div>
 
-
             </div>
         </v-dialog>
         <!-- dialog -->
@@ -389,7 +386,6 @@
                 currentAutoPaymentType: '7-days',
                 currentHoursType: 'week',
                 // payment calculations:
-                userHourlyRate: 10,
                 percentage: 100,
                 currentSelectedHours: 25,
                 finishedSteps: [],
@@ -619,6 +615,9 @@
 
                 return this.datePicker;
             },
+            userHourlyRate(){
+                return this.user.payment_info[0].salary;
+            },
             currentPosition() {
                 return (100 - this.percentage - 10);
             },
@@ -648,7 +647,7 @@
         height: fit-content;
         background: white;
         border-radius: 5px;
-        padding: 50px;
+        padding: 40px 50px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -670,8 +669,8 @@
 
         .steps-wrapper {
             width: 100%;
-            border-bottom: 1.5px solid #F2F3FD;
-            margin-bottom: 20px;
+            /*border-bottom: 1.5px solid #F2F3FD;*/
+            /*margin-bottom: 20px;*/
 
             .single-step-wrapper {
                 background: #FFFFFF;

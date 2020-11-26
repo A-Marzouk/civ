@@ -6,8 +6,8 @@
         cols="12"
         sm="12"
         class="px-lg-4 px-sm-4 px-2"
-        v-for="reference in references"
-        :key="reference.id"
+        v-for="(reference, i) in references"
+        :key="i"
         v-show="reference.is_public"
       >
         <v-row no-gutters class="card pa-4 pa-sm-6 pa-lg-8">

@@ -5,13 +5,7 @@
         <v-col md="6" sm="12" cols="12">
           <v-container>
             <v-row no-gutters justify="center">
-              <v-col
-                md="3"
-                sm="2"
-                cols="11"
-                class="pa-md-6 pa-sm-2 mt-0 mt-sm-n2 mt-md-n6"
-                align="center"
-              >
+              <v-col md="3" sm="2" cols="11" class="pa-md-6 pa-sm-2 mt-0 mt-sm-n2 mt-md-n6" align="center">
                 <img
                   :aspect-ratio="1"
                   :src="currentUser.personal_info.profile_pic"
@@ -19,12 +13,7 @@
                   class="imgradius"
                 />
               </v-col>
-              <v-col
-                md="8"
-                sm="9"
-                cols="11"
-                class="text-md-left text-center text-sm-left"
-              >
+              <v-col md="8" sm="9" cols="11" class="text-md-left text-center text-sm-left">
                 <div class="user-name font-weight-regular">
                   {{ currentUser.personal_info.first_name }}
                   {{ currentUser.personal_info.last_name }}
@@ -33,17 +22,10 @@
                   {{ currentUser.personal_info.designation }}
                 </div>
 
-                <div
-                  class="bio padrgt"
-                  @click="collapsed = !collapsed"
-                  :class="[collapsed == true ? 'collapsed' : '']"
-                >
-                  {{ currentUser.personal_info.about }}
-                  <span class="collasped-icon">
-                    <v-icon color="#5F45FF" v-if="!collapsed"
-                      >mdi-menu-up</v-icon
-                    >
-                    <v-icon color="#5F45FF" v-else>mdi-menu-down</v-icon>
+                <div class="bio padrgt" @click="collapsed = !collapsed" :class="[collapsed == true ? 'collapsed' : '']">
+                  {{ currentUser.personal_info.overview }}
+                  <span class="collasped-icon" v-if="lines >= 4">
+                    <v-icon color="#5F45FF" v-if="collapsed">mdi-menu-down</v-icon>
                   </span>
                 </div>
               </v-col>
@@ -64,12 +46,9 @@
                       alt
                     ></v-img>
                     <div>
-                      <v-icon small @click="availablePrev()"
-                        >navigate_before</v-icon
-                      >
+                      <v-icon small @click="availablePrev()">navigate_before</v-icon>
                       <div
-                        v-for="(availability_info,
-                        index) in currentUser.availability_info"
+                        v-for="(availability_info, index) in currentUser.availability_info"
                         :key="index"
                         v-show="availability_info.is_public"
                         class="d-inline-block"
@@ -78,14 +57,11 @@
                           {{ availability_info.available_hours_frequency }}
                         </span>
                       </div>
-                      <v-icon small @click="availableNext()"
-                        >navigate_next</v-icon
-                      >
+                      <v-icon small @click="availableNext()">navigate_next</v-icon>
                     </div>
                     <div>
                       <div
-                        v-for="(availability_info,
-                        index) in currentUser.availability_info"
+                        v-for="(availability_info, index) in currentUser.availability_info"
                         :key="index"
                         v-show="availability_info.is_public"
                       >
@@ -96,14 +72,7 @@
                     </div>
                   </v-col>
                   <v-col cols="2" md="1" align="center">
-                    <div
-                      style="
-                        width: 2px;
-                        height: 2.5rem;
-                        background-color: #cbcbcb;
-                        margin-top: 50%;
-                      "
-                    ></div>
+                    <div style="width: 2px; height: 2.5rem; background-color: #cbcbcb; margin-top: 50%"></div>
                   </v-col>
                   <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
@@ -115,12 +84,9 @@
                     ></v-img>
 
                     <div>
-                      <v-icon small @click="paymentInfoPrev()"
-                        >navigate_before</v-icon
-                      >
+                      <v-icon small @click="paymentInfoPrev()">navigate_before</v-icon>
                       <div
-                        v-for="(payment_Info,
-                        index) in currentUser.payment_info"
+                        v-for="(payment_Info, index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                         class="d-inline-block"
@@ -129,20 +95,15 @@
                           {{ payment_Info.salary_frequency }}
                         </span>
                       </div>
-                      <v-icon small @click="paymentInfoNext()"
-                        >navigate_next</v-icon
-                      >
+                      <v-icon small @click="paymentInfoNext()">navigate_next</v-icon>
                     </div>
                     <div>
                       <div
-                        v-for="(payment_Info,
-                        index) in currentUser.payment_info"
+                        v-for="(payment_Info, index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                       >
-                        <span class="title" v-if="paymentInfo == index">
-                          $ {{ payment_Info.salary }}
-                        </span>
+                        <span class="title" v-if="paymentInfo == index"> $ {{ payment_Info.salary }} </span>
                       </div>
                     </div>
                   </v-col>
@@ -171,12 +132,9 @@
                   <v-col cols="5" align="center">
                     <div class="subtitle-1">Rate</div>
                     <div class="subtitle-1 txtcol">
-                      <v-icon small @click="paymentInfoPrev()"
-                        >navigate_before</v-icon
-                      >
+                      <v-icon small @click="paymentInfoPrev()">navigate_before</v-icon>
                       <div
-                        v-for="(payment_Info,
-                        index) in currentUser.payment_info"
+                        v-for="(payment_Info, index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                         class="d-inline-block"
@@ -185,14 +143,11 @@
                           {{ payment_Info.salary_frequency }}
                         </span>
                       </div>
-                      <v-icon small @click="paymentInfoNext()"
-                        >navigate_next</v-icon
-                      >
+                      <v-icon small @click="paymentInfoNext()">navigate_next</v-icon>
                     </div>
                     <div class="headline font-weight-bold txtcol">
                       <div
-                        v-for="(payment_Info,
-                        index) in currentUser.payment_info"
+                        v-for="(payment_Info, index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                       >
@@ -204,25 +159,15 @@
                     </div>
                   </v-col>
                   <v-col cols="2" align="center">
-                    <div
-                      style="
-                        width: 2px;
-                        height: 2.2rem;
-                        background: rgba(31, 93, 228, 0.4);
-                        margin-top: 30%;
-                      "
-                    ></div>
+                    <div style="width: 2px; height: 2.2rem; background: rgba(31, 93, 228, 0.4); margin-top: 30%"></div>
                   </v-col>
                   <v-col cols="5" align="center">
                     <div class="subtitle-1">Available for</div>
                     <div class="headline font-weight-bold txtcol">
                       <div>
-                        <v-icon @click="availablePrev()"
-                          >navigate_before</v-icon
-                        >
+                        <v-icon @click="availablePrev()">navigate_before</v-icon>
                         <div
-                          v-for="(availability_info,
-                          index) in currentUser.availability_info"
+                          v-for="(availability_info, index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                           class="d-inline-block"
@@ -235,8 +180,7 @@
                       </div>
                       <div>
                         <div
-                          v-for="(availability_info,
-                          index) in currentUser.availability_info"
+                          v-for="(availability_info, index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                         >
@@ -292,9 +236,7 @@
                         alt="voice call"
                         style="width: 18px; height: 18px; margin-right: 7.5px"
                       />
-                      <div class="text-capitalize" style="font-size: 14px">
-                        Audio
-                      </div>
+                      <div class="text-capitalize" style="font-size: 14px">Audio</div>
                     </v-btn>
 
                     <v-btn
@@ -317,12 +259,7 @@
                         style="width: 27px; height: 18px; margin-right: 7.5px"
                       />
 
-                      <div
-                        class="text-capitalize"
-                        style="font-size: 14px; color: #5f45ff"
-                      >
-                        Video
-                      </div>
+                      <div class="text-capitalize" style="font-size: 14px; color: #5f45ff">Video</div>
                     </v-btn>
                   </v-col>
 
@@ -333,13 +270,12 @@
                         height: 50px;
                         width: 150px;
                         border-radius: 6px;
-
+                        background-color: #5f45ff;
                         box-shadow: #9180ff 0px 10px 20px -8px;
                       "
                       :disabled="disableAudio"
                       color="#5f45ff"
                       id="audioBtn"
-                      dark
                       @click.stop="audioModal = true"
                       class="mx-1 ct-buttom-mrg"
                     >
@@ -348,22 +284,12 @@
                         alt="voice call"
                         style="width: 18px; height: 18px; margin-right: 7.5px"
                       />
-                      <div
-                        class="text-capitalize"
-                        style="font-size: 14px; color: #e7e5f6"
-                      >
-                        Audio
-                      </div>
+                      <div class="text-capitalize" style="font-size: 14px; color: #e7e5f6">Audio</div>
                     </v-btn>
 
                     <v-btn
                       class="mx-1"
-                      style="
-                        height: 50px;
-                        width: 150px;
-                        border-radius: 6px;
-                        box-shadow: #e7e5f6 0px 10px 20px -8px;
-                      "
+                      style="height: 50px; width: 150px; border-radius: 6px; box-shadow: #e7e5f6 0px 10px 20px -8px"
                       :disabled="disableVideo"
                       id="videoBtn"
                       color="#e7e5f6"
@@ -375,12 +301,7 @@
                         style="width: 27px; height: 18px; margin-right: 7.5px"
                       />
 
-                      <div
-                        class="text-capitalize"
-                        style="font-size: 14px; color: #5f45ff"
-                      >
-                        Video
-                      </div>
+                      <div class="text-capitalize" style="font-size: 14px; color: #5f45ff">Video</div>
                     </v-btn>
                   </v-col>
                 </v-row>
@@ -408,12 +329,9 @@
                     ></v-img>
                     <div class="subtitle-1 text-capitalize mt-2">
                       <div>
-                        <v-icon small @click="availablePrev()"
-                          >navigate_before</v-icon
-                        >
+                        <v-icon small @click="availablePrev()">navigate_before</v-icon>
                         <div
-                          v-for="(availability_info,
-                          index) in currentUser.availability_info"
+                          v-for="(availability_info, index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                           class="d-inline-block"
@@ -422,14 +340,11 @@
                             {{ availability_info.available_hours_frequency }}
                           </span>
                         </div>
-                        <v-icon small @click="availableNext()"
-                          >navigate_next</v-icon
-                        >
+                        <v-icon small @click="availableNext()">navigate_next</v-icon>
                       </div>
                       <div>
                         <div
-                          v-for="(availability_info,
-                          index) in currentUser.availability_info"
+                          v-for="(availability_info, index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                         >
@@ -442,13 +357,7 @@
                   </v-col>
                   <v-col sm="2" align="center" class="ml-n4 mr-n4 mt-4">
                     <div
-                      style="
-                        width: 2px;
-                        height: 1.5rem;
-                        background-color: #cbcbcb;
-                        margin-top: 20%;
-                        margin: auto;
-                      "
+                      style="width: 2px; height: 1.5rem; background-color: #cbcbcb; margin-top: 20%; margin: auto"
                     ></div>
                   </v-col>
                   <v-col sm="5" align="center" class="mt-4">
@@ -461,12 +370,9 @@
                     ></v-img>
                     <div class="subtitle-1 text-capitalize mt-2">
                       <div>
-                        <v-icon small @click="paymentInfoPrev()"
-                          >navigate_before</v-icon
-                        >
+                        <v-icon small @click="paymentInfoPrev()">navigate_before</v-icon>
                         <div
-                          v-for="(payment_Info,
-                          index) in currentUser.payment_info"
+                          v-for="(payment_Info, index) in currentUser.payment_info"
                           :key="index"
                           v-show="payment_Info.is_public"
                           class="d-inline-block"
@@ -475,20 +381,15 @@
                             {{ payment_Info.salary_frequency }}
                           </span>
                         </div>
-                        <v-icon small @click="paymentInfoNext()"
-                          >navigate_next</v-icon
-                        >
+                        <v-icon small @click="paymentInfoNext()">navigate_next</v-icon>
                       </div>
                       <div>
                         <div
-                          v-for="(payment_Info,
-                          index) in currentUser.payment_info"
+                          v-for="(payment_Info, index) in currentUser.payment_info"
                           :key="index"
                           v-show="payment_Info.is_public"
                         >
-                          <span class="title" v-if="paymentInfo == index">
-                            $ {{ payment_Info.salary }}
-                          </span>
+                          <span class="title" v-if="paymentInfo == index"> $ {{ payment_Info.salary }} </span>
                         </div>
                       </div>
                     </div>
@@ -579,15 +480,10 @@
           <v-container fluid ma-0 pa-0 style="max-width: 100%">
             <v-row no-gutters justify="center">
               <v-col
-                md="10"
+                md="auto"
                 cols="11"
                 sm="11"
-                style="
-                  background-color: #f1f1f1;
-                  margin: 1rem;
-                  border-radius: 5px;
-                  padding: 1rem;
-                "
+                style="background-color: #f1f1f1; margin: 1rem; border-radius: 5px; padding: 1rem"
                 class="text-center"
               >
                 <v-tabs background-color="transparent" hide-slider centered>
@@ -612,36 +508,10 @@
           <v-container fluid ma-0 pa-0 style="max-width: 100%">
             <v-row no-gutters justify="center">
               <v-col v-if="activeTab === 'portfolio'" md="11" sm="11" cols="11">
-                <v-row no-gutters justify="center">
-                  <v-col
-                    md="4"
-                    sm="12"
-                    cols="12"
-                    v-for="project in currentUser.projects"
-                    :key="project.id + '_project'"
-                    class="pa-4"
-                    align="center"
-                    v-show="project.is_public"
-                  >
-                    <ImagesCarouselModal :images="project.images">
-                      <v-img
-                        :src="getProjectMainImage(project)"
-                        alt="portfolio img"
-                        :aspect-ratio="1.2"
-                        cover
-                      ></v-img>
-                    </ImagesCarouselModal>
-                  </v-col>
-                </v-row>
+                <Portfolio :projects="currentUser.projects" />
               </v-col>
 
-              <v-col
-                v-if="activeTab === 'work_experience'"
-                md="6"
-                sm="12"
-                cols="12"
-                class="pb-12"
-              >
+              <v-col v-if="activeTab === 'work_experience'" md="6" sm="12" cols="12" class="pb-12">
                 <v-timeline
                   dense
                   align-top
@@ -655,20 +525,14 @@
                       <div class="head mt-n1">{{ work.company_name }}</div>
                       <div class="subtitle-2 pb-sm-4 pt-2">
                         {{ work.job_title }},
-                        <span
-                          class="hidden-xs-only pl-sm-4 subtitle-2"
-                          style="color: rgba(0, 0, 0, 0.87)"
+                        <span class="hidden-xs-only pl-sm-4 subtitle-2" style="color: rgba(0, 0, 0, 0.87)"
                           >{{ getFullYear(work.date_from) }} -
-                          {{
-                            work.present ? "Present" : getFullYear(work.date_to)
-                          }}</span
+                          {{ work.present ? 'Present' : getFullYear(work.date_to) }}</span
                         >
                       </div>
                       <div class="hidden-sm-and-up subtitle-2 pb-4">
                         {{ getFullYear(work.date_from) }} -
-                        {{
-                          work.present ? "Present" : getFullYear(work.date_to)
-                        }}
+                        {{ work.present ? 'Present' : getFullYear(work.date_to) }}
                       </div>
                       <div class="subtitle-2 grey--text lighten-2">
                         {{ work.description }}
@@ -678,13 +542,7 @@
                 </v-timeline>
               </v-col>
 
-              <v-col
-                v-if="activeTab === 'education'"
-                md="11"
-                sm="11"
-                cols="11"
-                class="pb-12"
-              >
+              <v-col v-if="activeTab === 'education'" md="11" sm="11" cols="11" class="pb-12">
                 <v-row no-gutters justify="center">
                   <v-col
                     v-for="education in currentUser.education"
@@ -695,11 +553,7 @@
                     cols="12"
                     class="ma-md-4 ma-sm-4 ma-4"
                   >
-                    <v-card
-                      color="#F8F8F8"
-                      elevation="0"
-                      class="px-sm-10 py-sm-4 px-4 py-2"
-                    >
+                    <v-card color="#F8F8F8" elevation="0" class="px-sm-10 py-sm-4 px-4 py-2">
                       <div class="edu-type">
                         {{ education.institution_type }}
                       </div>
@@ -707,13 +561,8 @@
                         {{ education.university_name }}
                       </div>
                       <div class="subtitle-2 pb-1" style="color: #1f5de4">
-                        {{ education.university_name }},
-                        {{ getFullYear(education.date_from) }} -
-                        {{
-                          education.present
-                            ? "Present"
-                            : getFullYear(education.date_to)
-                        }}
+                        {{ education.university_name }}, {{ getFullYear(education.date_from) }} -
+                        {{ education.present ? 'Present' : getFullYear(education.date_to) }}
                       </div>
                       <div class="subtitle-2 pb-2" style="color: #707070">
                         {{ education.degree_title }}
@@ -734,23 +583,13 @@
                     class="ma-md-4 my-sm-3 my-2"
                   >
                     <v-card color="#F8F8F8" elevation="0">
-                      <v-row
-                        no-gutters
-                        justify="center"
-                        class="py-sm-8 pr-sm-6 pl-sm-2 py-3 pr-2 pl-2"
-                      >
+                      <v-row no-gutters justify="center" class="py-sm-8 pr-sm-6 pl-sm-2 py-3 pr-2 pl-2">
                         <v-col cols="11" sm="11">
                           <div class="skillname mb-1 font-weight-bold">
                             {{ s.title }}
                           </div>
                         </v-col>
-                        <v-col
-                          cols="9"
-                          sm="9"
-                          class="text-center"
-                          justify="center"
-                          align-self="center"
-                        >
+                        <v-col cols="9" sm="9" class="text-center" justify="center" align-self="center">
                           <v-progress-linear
                             :background-opacity="0.2"
                             :color="randomColor()"
@@ -760,11 +599,7 @@
                         </v-col>
                         <v-col cols="2" sm="2">
                           <v-btn text :color="randomColor()">
-                            <div
-                              class="skillname font-weight-bold mr-0 mr-md-n12 mr-sm-n12"
-                            >
-                              {{ s.percentage }}%
-                            </div>
+                            <div class="skillname font-weight-bold mr-0 mr-md-n12 mr-sm-n12">{{ s.percentage }}%</div>
                           </v-btn>
                         </v-col>
                       </v-row>
@@ -774,53 +609,31 @@
               </v-col>
 
               <!-- about section start -->
-              <v-col
-                v-if="activeTab === 'about_me'"
-                md="10"
-                sm="11"
-                cols="11"
-                class="pb-12"
-              >
+              <v-col v-if="activeTab === 'about_me'" md="10" sm="11" cols="11" class="pb-12">
                 <div class="about-container">
                   <!-- short info -->
                   <div class="short-info">
-                    <div
-                      class="short-info-item mb-4"
-                      v-if="currentUser.personal_info.date_of_birth"
-                    >
+                    <div class="short-info-item mb-4" v-if="currentUser.personal_info.date_of_birth">
                       <div class="short-info-title">Date of Birth</div>
                       <div class="short-info-value">
                         {{ currentUser.personal_info.date_of_birth }}
                       </div>
                     </div>
-                    <div
-                      class="short-info-item mb-4"
-                      v-if="currentUser.personal_info.nationality"
-                    >
+                    <div class="short-info-item mb-4" v-if="currentUser.personal_info.nationality">
                       <div class="short-info-title">Nationality</div>
                       <div class="short-info-value">
                         {{ currentUser.personal_info.nationality }}
                       </div>
                     </div>
-                    <div
-                      class="short-info-item mb-4"
-                      v-if="currentUser.personal_info.hometown"
-                    >
+                    <div class="short-info-item mb-4" v-if="currentUser.personal_info.hometown">
                       <div class="short-info-title">Hometown</div>
                       <div class="short-info-value">
                         {{ currentUser.personal_info.hometown }}
                       </div>
                     </div>
-                    <div
-                      class="short-info-item mb-4"
-                      v-if="currentUser.languages[0]"
-                    >
+                    <div class="short-info-item mb-4" v-if="currentUser.languages[0]">
                       <div class="short-info-title">Languages</div>
-                      <div
-                        class="short-info-value"
-                        v-for="(language, i) in currentUser.languages"
-                        :key="i"
-                      >
+                      <div class="short-info-value" v-for="(language, i) in currentUser.languages" :key="i">
                         {{ language.label }}
                       </div>
                     </div>
@@ -828,37 +641,25 @@
 
                   <!-- summary info -->
                   <div class="summary-info">
-                    <div
-                      class="summary-info-item mb-6"
-                      v-if="currentUser.personal_info.overview"
-                    >
+                    <div class="summary-info-item mb-6" v-if="currentUser.personal_info.overview">
                       <div class="summary_title">Overview Sumary</div>
                       <div class="summary_value">
                         {{ currentUser.personal_info.overview }}
                       </div>
                     </div>
-                    <div
-                      class="summary-info-item mb-6"
-                      v-if="currentUser.personal_info.about"
-                    >
+                    <div class="summary-info-item mb-6" v-if="currentUser.personal_info.about">
                       <div class="summary_title">About Me</div>
                       <div class="summary_value">
                         {{ currentUser.personal_info.about }}
                       </div>
                     </div>
-                    <div
-                      class="summary-info-item mb-6"
-                      v-if="currentUser.personal_info.quote"
-                    >
+                    <div class="summary-info-item mb-6" v-if="currentUser.personal_info.quote">
                       <div class="summary_title">Quote</div>
                       <div class="summary_value">
                         {{ currentUser.personal_info.quote }}
                       </div>
                     </div>
-                    <div
-                      class="summary-info-item mb-6"
-                      v-if="currentUser.personal_info.location"
-                    >
+                    <div class="summary-info-item mb-6" v-if="currentUser.personal_info.location">
                       <div class="summary_title">Location</div>
                       <div class="summary_value">
                         {{ currentUser.personal_info.location }}
@@ -871,13 +672,7 @@
               <!-- about section end -->
 
               <!-- hobbies -->
-              <v-col
-                v-if="activeTab === 'hobbies'"
-                md="11"
-                sm="11"
-                cols="11"
-                class="pb-12"
-              >
+              <v-col v-if="activeTab === 'hobbies'" md="11" sm="11" cols="11" class="pb-12">
                 <div class="hobby-container">
                   <div
                     class="hobby"
@@ -885,14 +680,7 @@
                     :key="index"
                     v-show="hobby.is_public"
                   >
-                    <div
-                      class="hobby__layer"
-                      :class="[
-                        index % 2 === 0
-                          ? 'hobby_item--even'
-                          : 'hobby_item--odd',
-                      ]"
-                    ></div>
+                    <div class="hobby__layer" :class="[index % 2 === 0 ? 'hobby_item--even' : 'hobby_item--odd']"></div>
 
                     <div class="hobby__content">
                       <div class="text-capitalize">{{ hobby.title }}</div>
@@ -903,13 +691,7 @@
               <!-- hobbies end-->
 
               <!-- references -->
-              <v-col
-                v-if="activeTab === 'references'"
-                md="11"
-                sm="11"
-                cols="11"
-                class="pb-12"
-              >
+              <v-col v-if="activeTab === 'references'" md="11" sm="11" cols="11" class="pb-12">
                 <div class="reference-container">
                   <div
                     class="reference__card"
@@ -929,9 +711,7 @@
 
                         <div class="mb-6">
                           <div class="ref_smalltext">
-                            <span class="ref_company font-weight-bold pr-2">{{
-                              reference.company
-                            }}</span>
+                            <span class="ref_company font-weight-bold pr-2">{{ reference.company }}</span>
                             {{ reference.created_at }}
                           </div>
                           <div class="ref_smalltext">
@@ -952,13 +732,7 @@
               <!-- references end-->
 
               <!-- Achievement section -->
-              <v-col
-                v-if="activeTab === 'achievements'"
-                md="11"
-                sm="11"
-                cols="11"
-                class="pb-12"
-              >
+              <v-col v-if="activeTab === 'achievements'" md="11" sm="11" cols="11" class="pb-12">
                 <div class="achievement-container">
                   <div
                     class="achievement__card"
@@ -968,11 +742,7 @@
                   >
                     <div class="achievement__content">
                       <!-- card left -->
-                      <img
-                        class="achievement_img"
-                        :src="achievement.image_src"
-                        alt="certificate"
-                      />
+                      <img class="achievement_img" :src="achievement.image_src" alt="certificate" />
                       <!-- card right -->
                       <div>
                         <div class="award_title font-weight-bold">
@@ -981,9 +751,7 @@
                         <div class="award_year mb-2">
                           {{ achievement.year }}
                         </div>
-                        <div class="award_url font-weight-bold my-2">
-                          URL: {{ achievement.url }}
-                        </div>
+                        <div class="award_url font-weight-bold my-2">URL: {{ achievement.url }}</div>
                         <div class="award_desc">
                           {{ achievement.description }}
                         </div>
@@ -996,19 +764,9 @@
             </v-row>
 
             <!-- video modal -->
-            <v-dialog
-              v-model="videoModal"
-              max-width="1690"
-              max-height="740"
-              persistent
-            >
-              <v-card
-                class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0"
-                align="center"
-              >
-                <div
-                  class="audio-header video-2 d-flex justify-space-between mb-12"
-                >
+            <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+              <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+                <div class="audio-header video-2 d-flex justify-space-between mb-12">
                   <div class="my-audio">My Video</div>
 
                   <img
@@ -1033,13 +791,7 @@
             <!-- Video modal end-->
 
             <!-- Audio Modal -->
-            <v-dialog
-              v-model="audioModal"
-              :elevation="0"
-              max-width="1690"
-              persistent
-              content-class="ct-dialog"
-            >
+            <v-dialog v-model="audioModal" :elevation="0" max-width="1690" persistent content-class="ct-dialog">
               <div class="audio-modal-main-card">
                 <div class="audio-header d-flex justify-space-between mb-12">
                   <div class="my-audio">My Audio</div>
@@ -1082,6 +834,24 @@
   </v-app>
 </template>
 <style lang="scss" scoped>
+#audioBtn.v-btn--disabled {
+  background-color: #5f45ff !important;
+  opacity: 0.4 !important;
+}
+#videoBtn.v-btn--disabled {
+  background-color: #e7e5f6 !important;
+  opacity: 0.4 !important;
+}
+.collapsed {
+  // word-break: break-word;
+  overflow: hidden;
+  max-height: 6.5rem;
+}
+.collasped-icon {
+  position: absolute;
+  bottom: 30px;
+  right: 0px;
+}
 #resumeTheme5 {
   .theme--light.v-application {
     background: #f1f1f1;
@@ -1093,14 +863,7 @@
     margin: 1.5rem 1.5rem 0 2.5rem;
     border-radius: 10px;
   }
-  #audioBtn.v-btn--disabled {
-    background-color: #5f45ff !important;
-    opacity: 0.4 !important;
-  }
-  #videoBtn.v-btn--disabled {
-    background-color: #e7e5f6 !important;
-    opacity: 0.4 !important;
-  }
+
   .imgradius {
     width: 184px;
     height: auto;
@@ -1152,7 +915,7 @@
   .v-tab:before {
     background-color: transparent;
     bottom: 0;
-    content: "";
+    content: '';
     left: 0;
     opacity: 0;
     pointer-events: none;
@@ -1187,13 +950,6 @@
     // word-break: break-word;
     overflow: hidden;
     max-height: 6rem;
-
-    // display: -webkit-box;
-    // //  line-height: 16px;
-    // //  max-height: 32px;
-    // text-overflow: "-";
-    // -webkit-line-clamp: 4; /* number of lines to show */
-    // -webkit-box-orient: vertical;
   }
   .collasped-icon {
     position: absolute;
@@ -1250,16 +1006,12 @@
   }
   .v-timeline:before {
     bottom: 0;
-    content: "";
+    content: '';
     height: 100%;
     position: absolute;
     top: 25px;
     width: 2px;
-    background: linear-gradient(
-      to bottom,
-      #548aff 40%,
-      rgba(255, 255, 255, 0) 20%
-    );
+    background: linear-gradient(to bottom, #548aff 40%, rgba(255, 255, 255, 0) 20%);
     background-position: left;
     background-size: 1.5px 18px;
     background-repeat: repeat-y;
@@ -1777,11 +1529,12 @@ import VideoPlayer from "./media/VideoPlayer";
 import UpdatedHireModal from "../includes/HireMeModal";
 import SocialLinks from "./SocialLinks";
 import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
-
+import Portfolio from "./tabs/Portfolio"
 export default {
   name: "theme5",
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
+    Portfolio,
     Slick,
     VueSlickCarousel,
     AudioPlayer,
@@ -1802,7 +1555,7 @@ export default {
       disableVideo: false,
       activeTab: "portfolio",
       paymentInfo: 0,
-
+      lines:0,
       skillColor: [
         {
           color: "#3C327B",
@@ -1883,6 +1636,8 @@ export default {
       $("#" + val).click();
     },
   },
+
+ 
   computed: {
     defaultTabs() {
       return this.$store.state.defaultTabs;
@@ -1890,8 +1645,33 @@ export default {
     excludedTabs() {
       return this.$store.state.excludedTabs;
     },
+    countLines(){
+          let detail = this.$el.querySelector('.bio');
+          let divHeight = detail.offsetHeight 
+          let lines =Math.ceil(divHeight / 25); 
+          console.log("Number of Lines: ",divHeight,lines);
+          return lines;
+    }
   },
   methods: {
+    getLines(){
+      let detail = this.$el.querySelector('.bio');
+          let divHeight = detail.offsetHeight 
+          let lines =Math.ceil(divHeight / 25); 
+          console.log("Number of Lines: ",divHeight,lines);
+          // return lines;
+            this.lines = lines ;
+    
+      if(lines >=4) 
+      {
+        console.log('true');
+        return true;
+      }
+      // return false;
+       console.log('false');
+       return false;
+    },
+   
     randomColor() {
       let colors = this.skillColor;
       let color = colors[Math.floor(Math.random() * colors.length)];
@@ -1961,18 +1741,7 @@ export default {
         this.paymentInfo = 0;
       } else this.paymentInfo--;
     },
-    getProjectMainImage(project) {
-      let mainImage = "";
-
-      let images = project.images;
-      images.forEach((image) => {
-        if (image.is_main) {
-          mainImage = image;
-        }
-      });
-
-      return mainImage.src;
-    },
+   
     filterAudio(audios) {
       var filterArray = audios.filter((a) => a.type === "audio");
       if (!Array.isArray(filterArray) || !filterArray.length) {
@@ -1991,7 +1760,9 @@ export default {
       this.currentUser = this.$store.state.dummyUser;
     },
   },
+
   mounted() {
+    this.getLines();
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();

@@ -1,107 +1,86 @@
 <template>
-	<div class="skills">
-		<TabLinks :currentTab="currentTab" @skillChanged="currentTab=$event" />
+  <div class="skills">
+    <TabLinks :currentTab="currentCategory" :tabs="categories" @skillchanged="currentCategory = $event" />
 
-		<ItemsView :items="skills[currentTab]" />
-	</div>
+    <ItemsView :items="skills[currentCategory]" />
+  </div>
 </template>
 
 <script>
-import TabLinks from "./../components/skills/TabLinks";
-import ItemsView from "./../components/skills/ItemsView";
+import utilsMixin from '../mixins/utilsMixin';
+import TabLinks from './../components/skills/TabLinks';
+import ItemsView from './../components/skills/ItemsView';
 
 export default {
-	name: "skills",
+  name: 'skills',
 
-	components: { ItemsView, TabLinks },
+  props: {
+    currentUser: {
+      type: Object,
+      required: true
+    }
+  },
 
-	data: () => {
-		return {
-			currentTab: "ProgramingLanguages",
+  mixins: [utilsMixin],
 
-			skills: {
-				ProgramingLanguages: [
-					{
-						id: 1,
-						title: "Flutter",
-						level: 60
-					},
-					{
-						id: 2,
-						title: "PHP",
-						level: 64
-					},
-					{
-						id: 3,
-						title: "C",
-						level: 45
-					},
-					{
-						id: 4,
-						title: "Python",
-						level: 5
-					},
-					{
-						id: 5,
-						title: "Javascript",
-						level: 67
-					},
-					{
-						id: 6,
-						title: "Java",
-						level: 43
-					}
-				],
-				Frameworks: [
-					{
-						id: 1,
-						title: "Flutter",
-						level: 54
-					}
-				],
-				DesignSkills: [
-					{
-						id: 1,
-						title: "UI/UX",
-						level: 65
-					},
-					{
-						id: 2,
-						title: "Material Design",
-						level: 74
-					}
-				],
-				Softwares: [
-					{
-						id: 1,
-						title: "Photoshop",
-						level: 43
-					},
-					{
-						id: 2,
-						title: "Word 2007",
-						level: 65
-					}
-				]
-			}
-		};
-	},
+  components: { ItemsView, TabLinks },
 
-	mounted() {
-		console.log(this.skills);
-		console.log(this.currentTab);
-	}
+  data() {
+    const currentCategory = this.currentUser.skills.length ? this.currentUser.skills[0].category : '';
+
+    return {
+      currentCategory: currentCategory
+    };
+  },
+
+  computed: {
+    categories() {
+      const categories = [];
+      this.currentUser.skills.forEach(skill => {
+        if (categories.findIndex(category => category.name === skill.category) !== -1) return;
+
+        categories.push({ name: skill.category, label: this.formatTitle(skill.category) });
+      });
+
+      return categories;
+    },
+    skills() {
+      let formattedSkill = {};
+      this.categories.forEach(category => {
+        formattedSkill[category.name] = this.currentUser.skills
+          .filter(skill => skill.is_public)
+          .filter(skill => skill.category === category.name)
+          .map(skill => {
+            return {
+              id: skill.id,
+              title: this.capitalize(skill.title),
+              level: skill.percentage
+            };
+          });
+      });
+      return formattedSkill;
+    }
+  },
+
+  methods: {
+    formatTitle(str) {
+      return str
+        .split('_')
+        .map(substr => this.capitalize(substr))
+        .join(' ');
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "./../scss/variables";
+@import './../scss/variables';
 
 .skills {
-	padding-top: 15px;
+  padding-top: 15px;
 
-	@include xl {
-		padding-top: 25px;
-	}
+  @include xl {
+    padding-top: 25px;
+  }
 }
 </style>

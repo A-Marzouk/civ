@@ -265,9 +265,9 @@ class PayPalForClientsController extends Controller
 
             return view('billing.success');
         } catch (PayPalConnectionException $ex) {
-            return view('billing.fail');
+            return view('billing.error');
         } catch (Exception $ex) {
-            return view('billing.fail');
+            return view('billing.error');
         }
     }
 
@@ -284,9 +284,9 @@ class PayPalForClientsController extends Controller
 
             return view('billing.success');
         } catch (PayPalConnectionException $ex) {
-            return view('billing.cancel');
+            return view('billing.error');
         } catch (Exception $ex) {
-            return view('billing.cancel');
+            return view('billing.error');
         }
 
     }
@@ -356,12 +356,17 @@ class PayPalForClientsController extends Controller
             return false;
         }
 
+        $dt = Carbon::now();
+        $expires_at = $dt->addWeeks($result->agreement_details->cycles_remaining);
+
         return Subscription::create([
             'payment_method' => 'paypal',
             'sub_frequency' => $result->plan->payment_definitions[0]->frequency,
+            'amount' => $result->plan->payment_definitions[0]->amount->value,
             'sub_status' => 'active',
             'paypal_agreement_id' => $result->id,
-            'user_id' => $client->id
+            'user_id' => $client->id,
+            'expires_at' => $result->agreement_details->final_billing_date ?? $expires_at
         ]);
     }
 

@@ -8,6 +8,7 @@
             active-class="child-tab-text-active"
             class="child-tab-text"
             href="#All"
+            v-show="categories.length > 0"
             >All</v-tab
           >
           <v-tab
@@ -160,7 +161,7 @@ export default {
   position: absolute;
   font-size: 10vw;
   width: 100%;
-  opacity: 0.1;
+  opacity: 0.02;
   white-space: nowrap;
   display: inline-block;
   font-family: "Poppins" !important;

@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Billing;
 
 use App\Billing\paymentGatewayInfo;
 use App\Http\Controllers\Controller;
+use App\Subscription;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -119,21 +120,36 @@ class StripeForClientsController extends Controller
 
         $nowSubscriptionPrice = $this->createPriceForSubscription($product->id, $request);
 
+
+        // set up payment method
         $session = StripeSession::create([
             'customer' => $customer->id,
-            'mode' => 'subscription',
+            'mode' => 'setup',
             'payment_method_types' => ['card'],
-            'line_items' => [
-                [
-                    'price' => $nowSubscriptionPrice->id,
-                    'quantity' => 1,
-                ]
-            ],
             'success_url' => url('/') . '/hire-freelancer/success',
             'cancel_url' =>  url('/') . '/hire-freelancer/cancel',
         ]);
 
         Session::put('hire_sub_session_id',  $session->id);
+
+
+        // create now subscription:
+        StripeSubscriptionSchedule::create([
+            'customer' =>  $customer->id,
+            'start_date' => 'now',
+            'end_behavior' => 'cancel',
+            'phases' => [
+                [
+                    'items' => [
+                        [
+                            'price' => $nowSubscriptionPrice->id,
+                            'quantity' => 1,
+                        ],
+                    ],
+                    'iterations' => $request->payment_info['iterations'],
+                ],
+            ],
+        ]);
 
         if($request->percentage < 100){
 
@@ -222,17 +238,27 @@ class StripeForClientsController extends Controller
 
     protected function createClient($request, $stripe_customer_id)
     {
-        $newClient =  User::create([
-            'name' => $request->client['name'],
-            'email' => $request->client['email'],
-            'username' => strstr($request->client['email'], '@', true),
-            'password' => Hash::make($request->client['email'] . '_civie_client'),
-        ])->assignRole('client');
+        $client = User::where('email', $request->client['email'])->first();
 
-        paymentGatewayInfo::create([
-            'user_id' => $newClient->id,
-            'stripe_customer_id' => $stripe_customer_id
-        ]);
+        if( ! $client){
+            $client =  User::create([
+                'name' => $request->client['name'],
+                'email' => $request->client['email'],
+                'username' => strstr($request->client['email'], '@', true),
+                'password' => Hash::make($request->client['email'] . '_civie_client'),
+            ])->assignRole('client');
+        }
+
+        $paymentGatewayInfo = paymentGatewayInfo::where('user_id', $client->id)->first();
+
+        if( ! $paymentGatewayInfo){
+            paymentGatewayInfo::create([
+                'user_id' => $client->id,
+                'stripe_customer_id' => $stripe_customer_id
+            ]);
+        }
+
+        return $client;
 
     }
 
@@ -242,13 +268,14 @@ class StripeForClientsController extends Controller
 
 
 
+
     // notifications:
     public function firstPaymentSuccess(){
-        dd('Thank you! your payment went through');
+       return view('billing.success');
     }
 
     public function firstPaymentFail(){
-        dd('Sorry! your payment did not go through');
+        return view('billing.error');
     }
 
 
