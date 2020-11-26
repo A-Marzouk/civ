@@ -71,11 +71,14 @@
                   <v-card flat color="transparent" tile style="z-index:3;">
                     <agile :options="agileOptions">
                       <div class="slide" v-for="i in 4" :key="i">
-                        <img
-                          src="/images/welcome_landing_page/imgs/edit-cv.png"
-                          alt
-                          style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
-                        />
+                        <picture>
+                          <source srcset="/images/welcome_landing_page/imgs/edit-cv.jp2" type="image/jp2">
+                          <img
+                              src="/images/welcome_landing_page/imgs/edit-cv.webp"
+                              alt
+                              style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
+                          />
+                        </picture>
                       </div>
                     </agile>
                   </v-card>
@@ -192,7 +195,10 @@
                   :key="n"
                   class="card-gallery-items"
                 >
-                  <img :src="getGalleryImages(n)" alt="gallery" />
+                  <picture>
+                    <source :srcset="getGalleryImages(n) + '.jp2' " type="image/jp2">
+                    <img :src="getGalleryImages(n) + '.webp'" alt="example-alt-text">
+                  </picture>
                 </v-card>
               </slick>
             </v-card>
@@ -202,7 +208,10 @@
                 <template v-for="n in 5">
                   <v-col md="4" :key="n">
                     <v-card flat tile color="transparent" class="card-gallery">
-                      <img :src="getGalleryImages(n)" alt="gallery" />
+                      <picture>
+                        <source :srcset="getGalleryImages(n) + '.jp2' " type="image/jp2">
+                        <img :src="getGalleryImages(n) + '.webp'" alt="example-alt-text">
+                      </picture>
                     </v-card>
                   </v-col>
                 </template>
@@ -381,7 +390,7 @@ export default {
       return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
     },
     getGalleryImages(id) {
-      return `/images/welcome_landing_page/imgs/gallery/${id}.png`;
+      return `/images/welcome_landing_page/imgs/gallery/${id}`;
     },
 
     playIntroVideo() {
