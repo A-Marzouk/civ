@@ -1005,6 +1005,7 @@
                 :modalOpen="audioModal"
                 :file="item.url"
                 :audioTitle="item.title"
+                class="mt-xl-0 mt-lg-n5"
               ></audio-player>
             </template>
           </VueSlickCarousel>
@@ -2054,6 +2055,7 @@ export default {
   min-height: 400px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     padding: 24px;
+    min-height: 300px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     padding: 30px;
