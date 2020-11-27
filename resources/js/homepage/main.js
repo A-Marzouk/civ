@@ -5,6 +5,9 @@ import vuetify from '../vuetify';
 import VueAgile from 'vue-agile'
 Vue.use(VueAgile)
 
+// axios:
+window.axios = require('axios');
+
 // welcome page view component registration:
 import welcomeView from '../components/welcome-view/welcome';
 
