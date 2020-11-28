@@ -9,7 +9,7 @@
               <div>
                 <v-btn class="btn-play" depressed @click.prevent="playing ? pause() : play()">
                   <v-img
-                    src="/images/resume_themes/theme203/icons/inner-play.svg"
+                    src="/images/resume_themes/theme203/icons/inner-play.png"
                     v-if="!playing || paused"
                     style="z-index: 1005"
                   ></v-img>
