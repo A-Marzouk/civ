@@ -2144,7 +2144,7 @@ export default {
   top: 0;
   bottom: 0;
   margin: auto;
-  z-index: 100;
+  z-index: 0;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
     font-size: 200px !important;
     top: -30%;
