@@ -1,0 +1,26 @@
+export const jobTitles = [
+    "Software Engineer",
+    "Software Architect",
+    "Front-end Developer",
+    "Back-end Developer",
+    "Full-stack Developer",
+    "PHP Developer",
+    "IOS Developer",
+    "Android Developer",
+    "Data Analyst",
+    "Data Scientist",
+    "Product Manager",
+
+    // designers:
+    "Web Designer",
+    "UX Designer",
+    "UI Designer",
+    "UX/UI Designer",
+    "Graphic Designer",
+    "Creative Director",
+    "Art Director",
+    "Art Production Manager",
+    "Brand identity Developer",
+    "Illustrator",
+    "Layout artist",
+] ;
