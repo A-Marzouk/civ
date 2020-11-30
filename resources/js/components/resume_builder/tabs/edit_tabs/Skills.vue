@@ -98,7 +98,7 @@
                           <v-card
                                   v-for="skill in skills"
                                   :key="skill.id"
-                                  v-show="skill.category === skillCategory"
+                                  v-show="skill.category === skillCategory && skillCategory !== 'Main Skills'"
                                   color="#E6E8FC"
                                   class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
                                   :class="{'half-opacity' : !skill.is_public, 'edit' : skill.id === editedSkill.id}"
@@ -236,8 +236,15 @@
                           </v-card>
                         </draggable>
                       </v-col>
+                      <v-col cols="12" class="d-flex flex-wrap ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5">
+                        <div  v-for="skill in skills" v-show="skill.category === skillCategory && skillCategory === 'Main Skills'"   :key="skill.id + 'main'" class="skill-chip">
+                          <span>{{skill.title}}</span>
+                          <img src="/icons/deletex.svg" @click="deleteSkill(skill)" alt="skill delete">
+                        </div>
+                      </v-col>
                     </v-row>
                   </v-container>
+
                 </v-col>
               </v-row>
           </div>
@@ -429,6 +436,31 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 
+.skill-chip{
+  background: #E6E8FC;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 39px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  color: #888DB1;
+  padding-left:11px;
+  padding-right:11px;
+  width: fit-content;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  span{
+    margin-right: 6px;
+  }
+  img{
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
 .civie-select,
 .civie-input {
   min-width: 300px;
