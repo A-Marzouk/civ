@@ -340,7 +340,7 @@
                   <template v-for="item in currentUser.tabs">
                     <v-tab
                       :key="item.title"
-                      class="text-capitalize custom-tab-text mr-xl-auto mr-lg-7"
+                      class="text-capitalize custom-tab-text"
                       @click="changeTab(item.title)"
                       :id="item.title"
                       :href="'#' + item.title"
@@ -532,10 +532,8 @@
                 <!--------------------- About ------------------------------>
 
                 <!-- ................Portfolio............................... -->
-
                 <Portfolio :currentUser="currentUser" />
                 <!-- .......................Portfolio.................................. -->
-
                 <!-- ...................Tab Item Work............................. -->
                 <v-tab-item value="work_experience" key="work_experience">
                   <div class="watermark-text text-center">Work</div>
@@ -1005,6 +1003,7 @@
                 :modalOpen="audioModal"
                 :file="item.url"
                 :audioTitle="item.title"
+                class="mt-xl-0 mt-lg-n5"
               ></audio-player>
             </template>
           </VueSlickCarousel>
@@ -1608,7 +1607,7 @@ export default {
 // ............................ Main Navigation Tab...........................//
 .custom-tab-text {
   font-size: 1.2rem;
-  @media screen and (max-width: 599px) {
+  @media screen and (max-width: 1903px) {
     font-size: 1rem;
   }
 }
@@ -2054,6 +2053,7 @@ export default {
   min-height: 400px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     padding: 24px;
+    min-height: 300px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     padding: 30px;
@@ -2144,7 +2144,7 @@ export default {
   top: 0;
   bottom: 0;
   margin: auto;
-  z-index: 100;
+  z-index: 0;
   @media screen and (min-width: 960px) and (max-width: 1903px) {
     font-size: 200px !important;
     top: -30%;

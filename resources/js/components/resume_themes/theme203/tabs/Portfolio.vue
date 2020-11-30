@@ -24,7 +24,7 @@
         <!-- child tabs -->
       </div>
       <div class="watermark-text text-center">Portfolio</div>
-      <v-card flat color="transparent" tile align="center">
+      <v-card flat color="transparent" tile align="center" class="pa-0">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-tabs-items v-model="category">
