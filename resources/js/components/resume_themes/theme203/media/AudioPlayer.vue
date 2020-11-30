@@ -299,7 +299,7 @@ export default {
   border-radius: 15px !important;
   background: #e0e0e0 !important;
   opacity: 0.7;
-  margin-left: -4px;
+  margin-left: -8px;
   z-index: 0 !important;
 }
 </style>
