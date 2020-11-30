@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="card-audio" color="transparent">
+  <v-card flat class="card-audio mb-xl-0 mb-lg-n12" color="transparent">
     <v-card-subtitle class="duration-time">{{ audioTitle }}</v-card-subtitle>
     <v-card-text class>
       <v-row dense class="main-row">
