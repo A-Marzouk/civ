@@ -20,9 +20,10 @@
                     <v-combobox
                         v-model="editedSkill.title"
                         :items="getSkillSet"
+                        :search-input.sync="search"
                         flat
                         placeholder="Skill Title"
-                        label="Skill Title"
+                        :label="skillCategory === mainSkillsTabName ? 'Main Skill' : 'Skill Title' "
                         outlined
                         color="#001CE2"
                         class="resume-builder__input civie-select"
@@ -32,6 +33,17 @@
                         <button class="dropdown-icon icon pb-1" slot="append">
                             <!-- <svg-vue></svg-vue> -->
                         </button>
+
+                      <template v-slot:no-data>
+                        <v-list-item>
+                          <v-list-item-content>
+                            <v-list-item-title>
+                              No results matching "<strong>{{ search }}</strong>". Press <kbd>enter</kbd> to create a new one
+                            </v-list-item-title>
+                          </v-list-item-content>
+                        </v-list-item>
+                      </template>
+
                     </v-combobox>
                   </v-card>
                 </v-col>
@@ -43,6 +55,7 @@
                   sm="6"
                   cols="12"
                   class="mt-md-0 mt-sm-n10 mt-n12 ml-xl-n7"
+                  v-if="skillCategory !== mainSkillsTabName"
                 >
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
@@ -249,10 +262,12 @@ export default {
       windowWidth: window.innerWidth,
       typeItems: ["Programming Language"],
       activeTab: 0,
-      skillCategory:'Leadership',
-      tabs: ["Development", "Design", "Leadership", "Professionalism", "Organizational", "Team Building", "Personal Life", "Analytical", "Sports", "Business related", "Technical","Communication", "Creativity", "Nursing and Healthcare"],
+      mainSkillsTabName: 'Main Skills',
+      skillCategory: 'Main Skills',
+      tabs: [ "Main Skills" ,"Development", "Design", "Leadership", "Professionalism", "Organizational", "Team Building", "Personal Life", "Analytical", "Sports", "Business related", "Technical","Communication", "Creativity", "Nursing and Healthcare"],
       addNewSkill: false,
       optionSkillId: 0,
+      search:'',
       skillItems: skills,
       editedSkill: {
         category: "",
@@ -296,6 +311,9 @@ export default {
         });
     },
     addSkill() {
+      if(this.skillCategory === this.mainSkillsTabName){
+        this.editedSkill.percentage = 100;
+      }
       if (this.validateSkill()) {
         // set skill category & add new
 
