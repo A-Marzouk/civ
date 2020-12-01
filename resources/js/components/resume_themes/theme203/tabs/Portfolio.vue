@@ -1,5 +1,5 @@
 <template>
-  <div class="portfolio">
+  <v-container class="portfolio ma-0 pa-0" fluid>
     <v-tab-item value="portfolio" key="portfolio">
       <div class="child-tabs" style="z-index: 2000">
         <!-- child tabs -->
@@ -24,7 +24,7 @@
         <!-- child tabs -->
       </div>
       <div class="watermark-text text-center">Portfolio</div>
-      <v-card flat color="transparent" tile align="center" class="pa-0">
+      <v-container fluid class="ma-0 pa-0">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-tabs-items v-model="category">
@@ -110,9 +110,9 @@
             </v-tabs-items>
           </v-col>
         </v-row>
-      </v-card>
+      </v-container>
     </v-tab-item>
-  </div>
+  </v-container>
 </template>
 <script>
 import ImagesCarouselModal from "../../reusable/ImagesCarouselModal";
