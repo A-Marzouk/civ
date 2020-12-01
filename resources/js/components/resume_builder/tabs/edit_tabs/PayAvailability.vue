@@ -56,7 +56,20 @@
                                                 </v-select>
                                             </v-text-field>
                                         </v-col>
-
+                                        <v-col xl="1" lg="1" md="1" sm="1" cols="12">
+                                            <v-tooltip top>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <div class="resume-builder__action-buttons-container">
+                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on" v-bind="attrs"
+                                                               @click="toggleVisibility">
+                                                            <svg-vue icon="eye-icon" class="icon"
+                                                                     :class="{'visible' : currentPayment.is_public}"></svg-vue>
+                                                        </v-btn>
+                                                    </div>
+                                                </template>
+                                                <span>Visibility</span>
+                                            </v-tooltip>
+                                        </v-col>
                                         <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                                             <v-btn
                                                     class="resume-builder__btn civie-btn filled btn-add-new"
@@ -71,7 +84,7 @@
                         <v-tab-item>
                             <v-container style="width: 100%;" v-if="currentAvailability">
                                 <v-form>
-                                    <v-row align="center">
+                                    <v-row align="center" class="align-items-center">
                                         <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                                             <v-select
                                                     class="resume-builder__input civie-select"
@@ -99,10 +112,23 @@
                                                     v-model="currentAvailability.available_hours"
                                             ></v-text-field>
                                         </v-col>
-
+                                        <v-col xl="1" lg="1" md="1" sm="1" cols="12">
+                                            <v-tooltip top>
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <div class="resume-builder__action-buttons-container">
+                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on" v-bind="attrs"
+                                                               @click="toggleAvailabilityVisibility">
+                                                            <svg-vue icon="eye-icon" class="icon"
+                                                                     :class="{'visible' : currentAvailability.is_public}"></svg-vue>
+                                                        </v-btn>
+                                                    </div>
+                                                </template>
+                                                <span>Visibility</span>
+                                            </v-tooltip>
+                                        </v-col>
                                         <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                                             <v-btn
-                                                    class="resume-builder__btn civie-btn filled btn-add-new mt-md-0 mt-sm-0 mt-n5 btn-add-new-custom"
+                                                    class="resume-builder__btn civie-btn filled btn-add-new"
                                                     @click="updateAvailabilityInfo"
                                             >Save
                                             </v-btn>
@@ -515,6 +541,12 @@
                     is_active: true,
                     is_primary: false,
                 }
+            },
+            toggleVisibility(){
+                this.currentPayment.is_public = !this.currentPayment.is_public;
+            },
+            toggleAvailabilityVisibility(){
+                this.currentAvailability.is_public = !this.currentAvailability.is_public;
             }
 
         },
