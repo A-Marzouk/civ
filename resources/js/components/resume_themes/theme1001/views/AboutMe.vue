@@ -5,7 +5,66 @@
     </div>
 
     <div class="about-me__detail">
-      <div class="left-side">
+      <v-container pa-0 fluid>
+        <v-row no-gutters>
+          <v-col cols="12" md="4" class="left-side">
+            <div
+              class="box"
+              v-if="currentUser.personal_info.is_date_of_birth_active && currentUser.personal_info.date_of_birth"
+            >
+              <div class="title">Date of Birth</div>
+              <div class="subtitle">
+                {{ currentUser.personal_info.date_of_birth }}
+              </div>
+            </div>
+            <div
+              class="box"
+              v-if="currentUser.personal_info.is_nationality_active && currentUser.personal_info.nationality"
+            >
+              <div class="title">Nationality</div>
+              <div class="subtitle">
+                {{ currentUser.personal_info.nationality }}
+              </div>
+            </div>
+            <div class="box" v-if="currentUser.personal_info.is_hometown_active && currentUser.personal_info.hometown">
+              <div class="title">Hometown</div>
+              <div class="subtitle">{{ currentUser.personal_info.hometown }}</div>
+            </div>
+            <div class="box" v-if="currentUser.languages[0]">
+              <div class="title">Languages</div>
+              <div class="subtitle" v-for="(language, i) in currentUser.languages" :key="i">
+                {{ language.label }}
+              </div>
+            </div>
+          </v-col>
+          <v-col cols="12" md="8" class="right-side">
+            <div
+              class="box vertical-space"
+              v-if="currentUser.personal_info.is_overview_active && currentUser.personal_info.overview"
+            >
+              <div class="title">Overview Sumary</div>
+              <div class="subtitle">
+                {{ currentUser.personal_info.overview }}
+              </div>
+            </div>
+            <div class="box" v-if="currentUser.personal_info.is_about_active && currentUser.personal_info.about">
+              <div class="title">About Me</div>
+              <div class="subtitle">
+                {{ currentUser.personal_info.about }}
+              </div>
+            </div>
+            <div class="box" v-if="currentUser.personal_info.is_quote_active && currentUser.personal_info.quote">
+              <div class="title">Quote</div>
+              <div class="subtitle">{{ currentUser.personal_info.quote }}</div>
+            </div>
+            <div class="box" v-if="currentUser.personal_info.is_location_active && currentUser.personal_info.location">
+              <div class="title">Location</div>
+              <div class="subtitle">{{ currentUser.personal_info.location }}</div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+      <!-- <div class="left-side">
         <div
           class="box"
           v-if="
@@ -50,8 +109,8 @@
             {{ language.label }}
           </div>
         </div>
-      </div>
-      <div class="right-side">
+      </div> -->
+      <!-- <div class="right-side">
         <div
           class="box vertical-space"
           v-if="
@@ -96,24 +155,22 @@
           <div class="title">Location</div>
           <div class="subtitle">{{ currentUser.personal_info.location }}</div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "about-me",
-  props: ["currentUser"],
+  name: 'about-me',
+  props: ['currentUser']
 };
 </script>
 
 <style lang="scss" scoped>
-@import "./../scss/variables";
+@import './../scss/variables';
 
 .left-side {
-  width: 20%;
-  height: auto;
   .box {
     width: 100%;
     padding-bottom: 2rem;
@@ -133,8 +190,6 @@ export default {
   }
 }
 .right-side {
-  width: 75%;
-  height: auto;
   .box {
     width: 100%;
     padding-bottom: 3rem;
@@ -156,9 +211,6 @@ export default {
 }
 @media (max-width: $md) {
   .left-side {
-    width: 100%;
-    height: auto;
-
     .box {
       width: 50%;
       float: left;
@@ -166,9 +218,6 @@ export default {
     }
   }
   .right-side {
-    width: 100%;
-    height: auto;
-
     .box {
       width: 100%;
       float: left;
@@ -181,9 +230,6 @@ export default {
 }
 @media (max-width: $sm) {
   .left-side {
-    width: 100%;
-    height: auto;
-
     .box {
       width: 50%;
       float: left;
@@ -199,9 +245,6 @@ export default {
     }
   }
   .right-side {
-    width: 100%;
-    height: auto;
-
     .box {
       width: 100%;
       float: left;

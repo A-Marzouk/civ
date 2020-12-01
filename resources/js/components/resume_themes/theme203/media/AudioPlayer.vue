@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="card-audio" color="transparent">
+  <v-card flat class="card-audio mb-xl-0 mb-lg-n12" color="transparent">
     <v-card-subtitle class="duration-time">{{ audioTitle }}</v-card-subtitle>
     <v-card-text class>
       <v-row dense class="main-row">
@@ -299,7 +299,7 @@ export default {
   border-radius: 15px !important;
   background: #e0e0e0 !important;
   opacity: 0.7;
-  margin-left: -4px;
+  margin-left: -6px;
   z-index: 0 !important;
 }
 </style>

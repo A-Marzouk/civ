@@ -18,12 +18,14 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link href="/css/vuetify.min.css" rel="preload" as="style">
     <link href="/css/slick.css" rel="preload" as="style">
     <link href="/css/homepage/main.css" rel="preload" as="style">
 
 
     <link href="/css/homepage/main.css" rel="stylesheet">
     <link href="/css/slick.css" rel="stylesheet">
+    <link href="/css/vuetify.min.css" rel="stylesheet">
 
     <title>civ.ie</title>
     <link rel="icon" href="/images/welcome_landing_page/logo/civie_logo_reficon.png" type="image/x-icon">

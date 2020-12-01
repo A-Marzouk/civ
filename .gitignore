@@ -1,5 +1,7 @@
 /.idea
 /public/css/app.css
+/public/css/homepage
+/public/js/homepage
 /public/css/app-vuetify.css
 /public/js/app.js
 /node_modules
