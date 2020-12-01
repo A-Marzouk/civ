@@ -69,17 +69,23 @@
                 </div>
 
                 <div class="profile-input-field input-field--job-title input-field--group-1">
-                    <v-text-field
-                            class="resume-builder__input civie-input "
-                            label="Job Title"
+                    <v-combobox
                             v-model="personalInfo.designation"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :items="jobsSuggestions"
+                            flat
+                            placeholder="Job Title"
+                            label="Job Title"
+                            outlined
+                            color="#001CE2"
+                            class="resume-builder__input civie-select"
                             :error="!!errors.designation"
                             :error-messages="errors.designation"
-                            outlined
-                            hide-details="auto"
                             @blur="applyEdit()"
-                    ></v-text-field>
+                    >
+                        <button class="dropdown-icon icon pb-1" slot="append">
+                            <!-- <svg-vue></svg-vue> -->
+                        </button>
+                    </v-combobox>
                 </div>
 
             </div>
@@ -89,6 +95,7 @@
 
 <script>
     import photoUploader from './includes/PhotoUploader';
+    import {jobTitles} from '../../helpers/job_titles'
 
     export default {
         name: "profile",
@@ -102,7 +109,8 @@
                 profile_pic_error: "",
                 menu: false,
                 showImageUpload: false,
-                updatedUsername: ''
+                updatedUsername: '',
+                jobsSuggestions : jobTitles
             };
         },
         computed: {
