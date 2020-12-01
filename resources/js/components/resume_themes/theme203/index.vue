@@ -2164,7 +2164,7 @@ export default {
   font-family: "Gotham Pro" !important;
   font-style: normal;
   font-weight: bold;
-  font-size: 25rem !important;
+  font-size: 400px !important;
   line-height: 383px;
   letter-spacing: 0.05em;
   color: rgba(0, 0, 0, 0.03) !important;
@@ -2179,7 +2179,7 @@ export default {
   bottom: 0;
   margin: auto;
   @media screen and (min-width: 1264px) and (max-width: 1903px){
-    font-size: 300px !important;
+    font-size: 200px !important;
     top: 0;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
