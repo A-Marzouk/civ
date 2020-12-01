@@ -45,9 +45,13 @@ class SearchController extends Controller
                 'name' => $user->personalInfo->first_name . ' ' . $user->personalInfo->last_name,
                 'job_title' => $user->personalInfo->designation,
                 'location' => $user->personalInfo->location,
-                'skills' => $user->skills,
                 'preview' => 'resumeApp/public/images/theme-holder.svg',
                 'url' => $baseURL . '/' . $user->username . '/' . $profile->url,
+                // new end points:
+                'avatar'=> $user->personalInfo->profile_pic,
+                'hourlyRate'=> $user->paymentInfo[0]->salary,
+                'projects' => $user->projects,
+                'skills' => $user->skills,
             ];
 
             $users[] = $formattedUser;

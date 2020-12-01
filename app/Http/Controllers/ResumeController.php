@@ -87,7 +87,11 @@ class ResumeController extends Controller
         $is_preview = 'false';
 
         if ($user) {
-            $user = User::withAllRelations($username, $this->getVersionID($version, $user->id));
+            $versionID =  $this->getVersionID($version, $user->id);
+            if( ! $versionID){
+                return abort(404);
+            }
+            $user = User::withAllRelations($username, $versionID);
             $theme = Theme::find($this->getVersionThemeID($version, $user->id));
             $themeCode = $theme ? $theme->code : '1001';
             return view('defaultThemes.theme' . $themeCode, compact('user', 'is_preview'));
