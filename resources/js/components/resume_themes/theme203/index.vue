@@ -238,6 +238,7 @@
                               v-for="i in currentUser.payment_info"
                               :key="i.id"
                               @click="changeAvailability"
+                              v-show="i.is_public == 1"
                             >
                               <v-card-subtitle class="hire-me-title">
                                 <!-- {{
@@ -281,6 +282,7 @@
                               v-for="i in currentUser.availability_info"
                               :key="i.id"
                               @click="changeAvailability2"
+                              v-show="i.is_public == 1"
                             >
                               <v-card-subtitle class="hire-me-title"
                                 >{{ i.available_hours_frequency | capitalize }}
@@ -1215,7 +1217,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    //console.log(this.currentUser);
+    console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
