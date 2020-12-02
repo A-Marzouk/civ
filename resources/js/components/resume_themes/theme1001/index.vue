@@ -7,43 +7,15 @@
             <a href="#" class="actions-toggle-button" @click.prevent="open">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20">
                 <g transform="translate(-318.538 -40)">
-                  <circle
-                    cx="4"
-                    cy="4"
-                    r="4"
-                    transform="translate(318.538 40)"
-                    fill="#f8ab29"
-                  />
-                  <circle
-                    cx="4"
-                    cy="4"
-                    r="4"
-                    transform="translate(332.538 40)"
-                    fill="#f8ab29"
-                  />
-                  <circle
-                    cx="4"
-                    cy="4"
-                    r="4"
-                    transform="translate(332.538 52)"
-                    fill="#f8ab29"
-                  />
-                  <circle
-                    cx="4"
-                    cy="4"
-                    r="4"
-                    transform="translate(318.538 52)"
-                    fill="#f8ab29"
-                  />
+                  <circle cx="4" cy="4" r="4" transform="translate(318.538 40)" fill="#f8ab29" />
+                  <circle cx="4" cy="4" r="4" transform="translate(332.538 40)" fill="#f8ab29" />
+                  <circle cx="4" cy="4" r="4" transform="translate(332.538 52)" fill="#f8ab29" />
+                  <circle cx="4" cy="4" r="4" transform="translate(318.538 52)" fill="#f8ab29" />
                 </g>
               </svg>
             </a>
 
-            <div
-              class="profile-actions__links"
-              :class="{ open: isOpen }"
-              @click="stopProp"
-            >
+            <div class="profile-actions__links" :class="{ open: isOpen }" @click="stopProp">
               <a
                 class="action__button"
                 href="#"
@@ -52,12 +24,7 @@
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13">
                   <g transform="translate(0.347 0.201)">
-                    <rect
-                      width="13"
-                      height="13"
-                      transform="translate(-0.347 -0.201)"
-                      fill="none"
-                    />
+                    <rect width="13" height="13" transform="translate(-0.347 -0.201)" fill="none" />
                     <path
                       d="M1.535,3.07a.505.505,0,0,1-.358-.154L.154,1.893a.5.5,0,0,1,0-.716.494.494,0,0,1,.716,0l.665.665L3.224.154a.5.5,0,0,1,.716,0,.5.5,0,0,1,0,.716L1.893,2.917A.505.505,0,0,1,1.535,3.07Z"
                       transform="translate(1.068 8.009)"
@@ -72,11 +39,7 @@
                 </svg>
                 <span>Start A Chat!</span>
               </a>
-              <a
-                class="action__button"
-                href="#"
-                v-if="findPreference('pdf_download')"
-              >
+              <a class="action__button" href="#" v-if="findPreference('pdf_download')">
                 <svg
                   width="18"
                   height="19"
@@ -86,12 +49,7 @@
                   viewBox="0 0.5 20 20"
                   fill="#fff"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="19"
-                    viewBox="0 0 20 20"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 20 20">
                     <path
                       paint-order="stroke fill markers"
                       fill-rule="evenodd"
@@ -103,24 +61,16 @@
               </a>
             </div>
           </div>
-          <v-col cols="2" sm="2" md="2">
-            <Avatar :src="currentUser.personal_info.profile_pic"
-          /></v-col>
+          <v-col cols="2" sm="2" md="2"> <Avatar :src="currentUser.personal_info.profile_pic" /></v-col>
           <v-col cols="9" sm="9" md="10">
             <div class="profile-detail">
               <h3 class="title">
                 {{ currentUser.personal_info.first_name }}
                 {{ currentUser.personal_info.last_name }}
               </h3>
-              <h4
-                class="sub-title"
-                v-text="currentUser.personal_info.designation"
-              ></h4>
+              <h4 class="sub-title" v-text="currentUser.personal_info.designation"></h4>
 
-              <div
-                class="profile__hireme"
-                v-if="currentUser.payment_info && currentUser.availability_info"
-              ></div>
+              <div class="profile__hireme" v-if="currentUser.payment_info && currentUser.availability_info"></div>
               <!-- rate frequency for tablet & pc -->
               <v-row no-gutters class="hidden-xs-only">
                 <v-col cols="12" sm="12" lg="6" xl="5">
@@ -128,39 +78,17 @@
                     <v-col cols="7">
                       <v-row no-gutters>
                         <!-- Pay Rate -->
-                        <v-col
-                          cols="12"
-                          sm="6"
-                          class="hireme-rate pb-3 pb-sm-0"
-                          v-if="findPreference('hourly_rate')"
-                        >
+                        <v-col cols="12" sm="6" class="hireme-rate pb-3 pb-sm-0" v-if="findPreference('hourly_rate')">
                           <v-row no-gutters>
                             <v-col cols="12" class="pb-2">
-                              <div
-                                v-for="(payment_Info,
-                                index) in currentUser.payment_info"
-                                :key="index"
-                                v-show="payment_Info.is_public"
-                              >
-                                <strong v-if="paymentInfo == index"
-                                  >${{ payment_Info.salary }}</strong
-                                >
+                              <div>
+                                <strong>${{ filterPaymentInfoList[paymentInfo].salary }}</strong>
                               </div>
                             </v-col>
                             <v-col cols="12">
-                              <div
-                                v-for="(payment_Info,
-                                index) in currentUser.payment_info"
-                                :key="index"
-                                v-show="payment_Info.is_public"
-                              >
-                                <a
-                                  class="hire-rate-button"
-                                  @click="paymentInfoNext()"
-                                  v-if="paymentInfo == index"
-                                  href="javascript:void(0)"
-                                >
-                                  {{ payment_Info.salary_frequency }}
+                              <div>
+                                <a class="hire-rate-button" @click="paymentInfoNext()" href="javascript:void(0)">
+                                  {{ filterPaymentInfoList[paymentInfo].salary_frequency }}
                                   Rate
                                 </a>
                               </div>
@@ -169,41 +97,17 @@
                         </v-col>
                         <!-- Pay Rate -->
                         <!-- Availability -->
-                        <v-col
-                          cols="12"
-                          sm="6"
-                          class="hireme-rate"
-                          v-if="findPreference('weekly_availability')"
-                        >
+                        <v-col cols="12" sm="6" class="hireme-rate" v-if="findPreference('weekly_availability')">
                           <v-row no-gutters>
                             <v-col cols="12" class="pb-2">
-                              <div
-                                v-for="(availability_info,
-                                index) in currentUser.availability_info"
-                                :key="index"
-                                v-show="availability_info.is_public"
-                              >
-                                <strong v-if="available == index">
-                                  {{ availability_info.available_hours }} hrs
-                                </strong>
+                              <div>
+                                <strong> {{ filterAvailabilityInfoList[available].available_hours }} hrs </strong>
                               </div>
                             </v-col>
                             <v-col cols="12">
-                              <div
-                                v-for="(availability_info,
-                                index) in currentUser.availability_info"
-                                :key="index"
-                                v-show="availability_info.is_public"
-                              >
-                                <a
-                                  class="hire-rate-button"
-                                  @click="availableNext()"
-                                  v-if="available == index"
-                                  href="javascript:void(0)"
-                                >
-                                  {{
-                                    availability_info.available_hours_frequency
-                                  }}
+                              <div>
+                                <a class="hire-rate-button" @click="availableInfoNext()" href="javascript:void(0)">
+                                  {{ filterAvailabilityInfoList[available].available_hours_frequency }}
                                   Availability
                                 </a>
                               </div>
@@ -216,15 +120,8 @@
                     <!-- Hire Me Button -->
                     <v-col cols="5" v-if="findPreference('hire_me')">
                       <div class="text-center">
-                        <a
-                          class="hireme-button"
-                          href="#"
-                          @click.prevent="hireMeModal = !hireMeModal"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 10.969 12.124"
-                          >
+                        <a class="hireme-button" href="#" @click.prevent="hireMeModal = !hireMeModal">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.969 12.124">
                             <path
                               d="M7.969,12.124H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H7.969a3,3,0,0,1,3,3V9.123A3,3,0,0,1,7.969,12.124ZM5.479,6.062a3.17,3.17,0,0,0-2.071.686,2.848,2.848,0,0,0-.97,2.042.376.376,0,0,0,.114.217.229.229,0,0,0,.132.086H8.276a.246.246,0,0,0,.186-.068.319.319,0,0,0,.068-.235,2.764,2.764,0,0,0-.956-2.061A3.254,3.254,0,0,0,5.479,6.062Zm.005-3.03A1.212,1.212,0,1,0,6.7,4.244,1.217,1.217,0,0,0,5.485,3.031Z"
                               transform="translate(0 0)"
@@ -256,20 +153,16 @@
                     <v-row no-gutters>
                       <v-col cols="12" class="pb-2">
                         <div
-                          v-for="(payment_Info,
-                          index) in currentUser.payment_info"
+                          v-for="(payment_Info, index) in currentUser.payment_info"
                           :key="index"
                           v-show="payment_Info.is_public"
                         >
-                          <strong v-if="paymentInfo == index"
-                            >${{ payment_Info.salary }}</strong
-                          >
+                          <strong v-if="paymentInfo == index">${{ payment_Info.salary }}</strong>
                         </div>
                       </v-col>
                       <v-col cols="12">
                         <div
-                          v-for="(payment_Info,
-                          index) in currentUser.payment_info"
+                          v-for="(payment_Info, index) in currentUser.payment_info"
                           :key="index"
                           v-show="payment_Info.is_public"
                         >
@@ -292,20 +185,16 @@
                     <v-row no-gutters>
                       <v-col cols="12" class="pb-2">
                         <div
-                          v-for="(availability_info,
-                          index) in currentUser.availability_info"
+                          v-for="(availability_info, index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                         >
-                          <strong v-if="available == index">
-                            {{ availability_info.available_hours }} hrs
-                          </strong>
+                          <strong v-if="available == index"> {{ availability_info.available_hours }} hrs </strong>
                         </div>
                       </v-col>
                       <v-col cols="12">
                         <div
-                          v-for="(availability_info,
-                          index) in currentUser.availability_info"
+                          v-for="(availability_info, index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                         >
@@ -328,15 +217,8 @@
               <!-- Hire Me Button -->
               <v-col cols="3" sm="6" class="ml-auto">
                 <div class="text-center">
-                  <a
-                    class="hireme-button"
-                    href="#"
-                    @click.prevent="hireMeModal = !hireMeModal"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 10.969 12.124"
-                    >
+                  <a class="hireme-button" href="#" @click.prevent="hireMeModal = !hireMeModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.969 12.124">
                       <path
                         d="M7.969,12.124H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0H7.969a3,3,0,0,1,3,3V9.123A3,3,0,0,1,7.969,12.124ZM5.479,6.062a3.17,3.17,0,0,0-2.071.686,2.848,2.848,0,0,0-.97,2.042.376.376,0,0,0,.114.217.229.229,0,0,0,.132.086H8.276a.246.246,0,0,0,.186-.068.319.319,0,0,0,.068-.235,2.764,2.764,0,0,0-.956-2.061A3.254,3.254,0,0,0,5.479,6.062Zm.005-3.03A1.212,1.212,0,1,0,6.7,4.244,1.217,1.217,0,0,0,5.485,3.031Z"
                         transform="translate(0 0)"
@@ -367,29 +249,22 @@
       :user="currentUser"
     ></updated-hire-modal>
     <ChatModal :chatToggle="chatToggle" :user="user" :closeChat="closeChat" />
-    <TabsNavigation
-      :currentUser="currentUser"
-      @tab-changed="tabChanged"
-      :builderCurrentTabTitle="activeTab"
-    />
+    <TabsNavigation :currentUser="currentUser" @tab-changed="tabChanged" :builderCurrentTabTitle="activeTab" />
 
-    <TabsContent
-      :builderCurrentTabTitle="activeTab"
-      :currentUser="currentUser"
-    />
+    <TabsContent :builderCurrentTabTitle="activeTab" :currentUser="currentUser" />
   </div>
 </template>
 
 <script>
-import TabsNavigation from "./components/TabsNavigation";
-import TabsContent from "./components/TabsContent";
-import Avatar from "./components/header/Avatar";
-import HireModal from "./components/hireModal/HireModal";
-import UpdatedHireModal from "../includes/HireMeModal";
-import ChatModal from "./components/chatModal/ChatModal";
+import TabsNavigation from './components/TabsNavigation';
+import TabsContent from './components/TabsContent';
+import Avatar from './components/header/Avatar';
+import HireModal from './components/hireModal/HireModal';
+import UpdatedHireModal from '../includes/HireMeModal';
+import ChatModal from './components/chatModal/ChatModal';
 
 export default {
-  name: "resume-theme-1001",
+  name: 'resume-theme-1001',
 
   components: {
     TabsNavigation,
@@ -397,37 +272,39 @@ export default {
     Avatar,
     HireModal,
     ChatModal,
-    "updated-hire-modal": UpdatedHireModal,
+    'updated-hire-modal': UpdatedHireModal
   },
-  props: ["user", "is_preview", "builderCurrentTabTitle"],
+  props: ['user', 'is_preview', 'builderCurrentTabTitle'],
   data() {
     return {
-      activeTab: "portfolio",
+      activeTab: 'portfolio',
       currentUser: this.user,
       hireMeModal: false,
       chatToggle: false,
       isOpen: false,
+
       available: 0,
-      paymentInfo: 0,
+      paymentInfo: 0
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    builderCurrentTabTitle: function (val) {
+    builderCurrentTabTitle: function(val) {
       if (!this.defaultTabs.includes(val)) {
         this.activeTab = this.getFirstActiveTabTitle();
       } else {
         this.activeTab = val;
       }
-    },
+    }
   },
+
   methods: {
     findPreference(title) {
-      if(!this.currentUser){
-        return ;
+      if (!this.currentUser) {
+        return;
       }
       let currentPrefer = null;
-      this.currentUser.preferences.forEach((prefer) => {
+      this.currentUser.preferences.forEach(prefer => {
         if (prefer.title === title) {
           currentPrefer = prefer;
         }
@@ -435,7 +312,7 @@ export default {
       if (currentPrefer) {
         return currentPrefer.is_public;
       }
-      return "";
+      return '';
     },
     tabChanged(value) {
       this.activeTab = value;
@@ -444,7 +321,7 @@ export default {
       this.hireMeModal = false;
     },
     closeChat() {
-      console.log("closeHireMeModal");
+      console.log('closeHireMeModal');
       this.chatToggle = false;
     },
     open(e) {
@@ -458,26 +335,19 @@ export default {
     close() {
       this.isOpen = false;
     },
-    
-    availableNext() {
-      if (this.available == 2) {
-        this.available = 0;
-      } else this.available++;
-    },
-    availablePrev() {
-      if (this.available == 0) {
-        this.available = 0;
-      } else this.available--;
-    },
     paymentInfoNext() {
-      if (this.paymentInfo == 2) {
+      let paymentList = this.filterPaymentInfoList;
+      this.paymentInfo++;
+      if (this.paymentInfo >= paymentList.length) {
         this.paymentInfo = 0;
-      } else this.paymentInfo++;
+      }
     },
-    paymentInfoPrev() {
-      if (this.paymentInfo == 0) {
-        this.paymentInfo = 0;
-      } else this.paymentInfo--;
+    availableInfoNext() {
+      let availableList = this.filterAvailabilityInfoList;
+      this.available++;
+      if (this.available >= availableList.length) {
+        this.available = 0;
+      }
     },
     stopProp(e) {
       e.stopPropagation();
@@ -486,7 +356,7 @@ export default {
       this.currentUser = this.$store.state.dummyUser;
     },
     setActiveTabByURL() {
-      const pathSplit = this.$route.path.split("/");
+      const pathSplit = this.$route.path.split('/');
       let currentActiveTab = pathSplit[pathSplit.length - 1];
       if (!this.defaultTabs.includes(currentActiveTab)) {
         this.activeTab = this.getFirstActiveTabTitle();
@@ -495,17 +365,17 @@ export default {
       }
     },
     getFirstActiveTabTitle() {
-      let title = "";
-      this.currentUser.tabs.forEach((tab) => {
+      let title = '';
+      this.currentUser.tabs.forEach(tab => {
         if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
-          if (title === "") {
+          if (title === '') {
             title = tab.title;
           }
         }
       });
 
       return title;
-    },
+    }
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -514,16 +384,22 @@ export default {
     }
 
     // let user accessible in included components.
-    this.$store.dispatch("updateThemeUser", this.currentUser);
+    this.$store.dispatch('updateThemeUser', this.currentUser);
 
     // set active tab
     this.setActiveTabByURL();
-    window.addEventListener("click", this.close);
+    window.addEventListener('click', this.close);
   },
   destroyed() {
-    window.removeEventListener("click", this.close);
+    window.removeEventListener('click', this.close);
   },
   computed: {
+    filterPaymentInfoList() {
+      return this.currentUser.payment_info.filter(a => a.is_public);
+    },
+    filterAvailabilityInfoList() {
+      return this.currentUser.availability_info.filter(a => a.is_public);
+    },
     defaultTabs() {
       return this.$store.state.defaultTabs;
     },
@@ -531,13 +407,13 @@ export default {
       return this.$store.state.excludedTabs;
     },
     popupAnimation() {
-      return this.isOpen ? "open" : "close";
-    },
-  },
+      return this.isOpen ? 'open' : 'close';
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
-@import "./scss/variables";
+@import './scss/variables';
 //header
 #header {
   font-family: $muli;
@@ -545,8 +421,7 @@ export default {
   padding: 20px;
   padding-bottom: 25px;
   color: #ffffff;
-  background-image: url("/images/resume_themes/theme1001/bg-header.png"),
-    linear-gradient(#4870fc 100%, #4870fc 100%);
+  background-image: url('/images/resume_themes/theme1001/bg-header.png'), linear-gradient(#4870fc 100%, #4870fc 100%);
   background-size: cover;
 
   background-repeat: repeat-x;
@@ -572,8 +447,7 @@ export default {
 
 @media (min-width: $md) {
   #header {
-    background-image: url("/images/resume_themes/theme1001/bg-header.png"),
-      linear-gradient(#4870ff 100%, #4870ff 100%);
+    background-image: url('/images/resume_themes/theme1001/bg-header.png'), linear-gradient(#4870ff 100%, #4870ff 100%);
     background-size: contain;
 
     background-repeat: repeat-x;
