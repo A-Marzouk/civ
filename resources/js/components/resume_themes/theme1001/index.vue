@@ -152,27 +152,14 @@
                   <v-col cols="5" sm="4" class="hireme-rate pb-3 pb-sm-0">
                     <v-row no-gutters>
                       <v-col cols="12" class="pb-2">
-                        <div
-                          v-for="(payment_Info, index) in currentUser.payment_info"
-                          :key="index"
-                          v-show="payment_Info.is_public"
-                        >
-                          <strong v-if="paymentInfo == index">${{ payment_Info.salary }}</strong>
+                        <div>
+                          <strong>${{ filterPaymentInfoList[paymentInfo].salary }}</strong>
                         </div>
                       </v-col>
                       <v-col cols="12">
-                        <div
-                          v-for="(payment_Info, index) in currentUser.payment_info"
-                          :key="index"
-                          v-show="payment_Info.is_public"
-                        >
-                          <a
-                            class="hire-rate-button"
-                            @click="paymentInfoNext()"
-                            v-if="paymentInfo == index"
-                            href="javascript:void(0)"
-                          >
-                            {{ payment_Info.salary_frequency }}
+                        <div>
+                          <a class="hire-rate-button" @click="paymentInfoNext()" href="javascript:void(0)">
+                            {{ filterPaymentInfoList[paymentInfo].salary_frequency }}
                             Rate
                           </a>
                         </div>
@@ -184,27 +171,14 @@
                   <v-col cols="7" sm="8" class="hireme-rate">
                     <v-row no-gutters>
                       <v-col cols="12" class="pb-2">
-                        <div
-                          v-for="(availability_info, index) in currentUser.availability_info"
-                          :key="index"
-                          v-show="availability_info.is_public"
-                        >
-                          <strong v-if="available == index"> {{ availability_info.available_hours }} hrs </strong>
+                        <div>
+                          <strong> {{ filterAvailabilityInfoList[available].available_hours }} hrs </strong>
                         </div>
                       </v-col>
                       <v-col cols="12">
-                        <div
-                          v-for="(availability_info, index) in currentUser.availability_info"
-                          :key="index"
-                          v-show="availability_info.is_public"
-                        >
-                          <a
-                            class="hire-rate-button"
-                            @click="availableNext()"
-                            v-if="available == index"
-                            href="javascript:void(0)"
-                          >
-                            {{ availability_info.available_hours_frequency }}
+                        <div>
+                          <a class="hire-rate-button" @click="availableInfoNext()" href="javascript:void(0)">
+                            {{ filterAvailabilityInfoList[available].available_hours_frequency }}
                             Availability
                           </a>
                         </div>

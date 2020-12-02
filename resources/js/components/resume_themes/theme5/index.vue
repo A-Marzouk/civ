@@ -1522,26 +1522,26 @@
 
 
 <script>
-import Slick from "vue-slick";
-import VueSlickCarousel from "vue-slick-carousel";
-import AudioPlayer from "./media/AudioPlayer";
-import VideoPlayer from "./media/VideoPlayer";
-import UpdatedHireModal from "../includes/HireMeModal";
-import SocialLinks from "./SocialLinks";
-import ImagesCarouselModal from "../reusable/ImagesCarouselModal";
-import Portfolio from "./tabs/Portfolio"
+import Slick from 'vue-slick';
+import VueSlickCarousel from 'vue-slick-carousel';
+import AudioPlayer from './media/AudioPlayer';
+import VideoPlayer from './media/VideoPlayer';
+import UpdatedHireModal from '../includes/HireMeModal';
+import SocialLinks from './SocialLinks';
+import ImagesCarouselModal from '../reusable/ImagesCarouselModal';
+import Portfolio from './tabs/Portfolio';
 export default {
-  name: "theme5",
-  props: ["user", "is_preview", "builderCurrentTabTitle"],
+  name: 'theme5',
+  props: ['user', 'is_preview', 'builderCurrentTabTitle'],
   components: {
     Portfolio,
     Slick,
     VueSlickCarousel,
     AudioPlayer,
     VideoPlayer,
-    "updated-hire-modal": UpdatedHireModal,
+    'updated-hire-modal': UpdatedHireModal,
     SocialLinks,
-    ImagesCarouselModal,
+    ImagesCarouselModal
   },
   data() {
     return {
@@ -1553,64 +1553,64 @@ export default {
       available: 0,
       disableAudio: false,
       disableVideo: false,
-      activeTab: "portfolio",
+      activeTab: 'portfolio',
       paymentInfo: 0,
-      lines:0,
+      lines: 0,
       skillColor: [
         {
-          color: "#3C327B",
+          color: '#3C327B'
         },
         {
-          color: "#FF26BE",
+          color: '#FF26BE'
         },
         {
-          color: "#D291FF",
+          color: '#D291FF'
         },
         {
-          color: "#FF7C00",
+          color: '#FF7C00'
         },
         {
-          color: "#0D47A1",
+          color: '#0D47A1'
         },
         {
-          color: "#004D40",
+          color: '#004D40'
         },
         {
-          color: "#3C327B",
+          color: '#3C327B'
         },
         {
-          color: "#FF26BE",
+          color: '#FF26BE'
         },
         {
-          color: "#D291FF",
+          color: '#D291FF'
         },
         {
-          color: "#FF7C00",
+          color: '#FF7C00'
         },
         {
-          color: "#0D47A1",
+          color: '#0D47A1'
         },
         {
-          color: "#004D40",
+          color: '#004D40'
         },
         {
-          color: "#3C327B",
+          color: '#3C327B'
         },
         {
-          color: "#FF26BE",
+          color: '#FF26BE'
         },
         {
-          color: "#D291FF",
+          color: '#D291FF'
         },
         {
-          color: "#FF7C00",
+          color: '#FF7C00'
         },
         {
-          color: "#0D47A1",
+          color: '#0D47A1'
         },
         {
-          color: "#004D40",
-        },
+          color: '#004D40'
+        }
       ],
 
       //audio Modal
@@ -1620,58 +1620,62 @@ export default {
         arrows: false,
         slidesPerRow: 1,
         slidesToScroll: 1,
-        rows: 3,
+        rows: 3
       },
-      currentUser: this.user,
+      currentUser: this.user
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    builderCurrentTabTitle: function (val) {
+    builderCurrentTabTitle: function(val) {
       if (!this.defaultTabs.includes(val)) {
         this.activeTab = this.getFirstActiveTabTitle();
       } else {
         this.activeTab = val;
       }
-      $("#" + val).click();
-    },
+      $('#' + val).click();
+    }
   },
 
- 
   computed: {
+    filterPaymentInfoList() {
+      return this.currentUser.payment_info.filter(a => a.is_public);
+    },
+    filterAvailabilityInfoList() {
+      return this.currentUser.availability_info.filter(a => a.is_public);
+    },
     defaultTabs() {
       return this.$store.state.defaultTabs;
     },
     excludedTabs() {
       return this.$store.state.excludedTabs;
     },
-    countLines(){
-          let detail = this.$el.querySelector('.bio');
-          let divHeight = detail.offsetHeight 
-          let lines =Math.ceil(divHeight / 25); 
-          console.log("Number of Lines: ",divHeight,lines);
-          return lines;
+    countLines() {
+      let detail = this.$el.querySelector('.bio');
+      let divHeight = detail.offsetHeight;
+      let lines = Math.ceil(divHeight / 25);
+      console.log('Number of Lines: ', divHeight, lines);
+      return lines;
     }
   },
   methods: {
-    getLines(){
+    getLines() {
       let detail = this.$el.querySelector('.bio');
-          let divHeight = detail.offsetHeight 
-          let lines =Math.ceil(divHeight / 25); 
-          console.log("Number of Lines: ",divHeight,lines);
-          // return lines;
-            this.lines = lines ;
-    
-      if(lines >=4) 
-      {
+      let divHeight = detail.offsetHeight;
+      let lines = Math.ceil(divHeight / 25);
+      console.log('Number of Lines: ', divHeight, lines);
+      // return lines;
+      this.lines = lines;
+
+      if (lines >= 4) {
         console.log('true');
         return true;
       }
       // return false;
-       console.log('false');
-       return false;
+      console.log('false');
+      return false;
     },
-   
+
     randomColor() {
       let colors = this.skillColor;
       let color = colors[Math.floor(Math.random() * colors.length)];
@@ -1686,13 +1690,13 @@ export default {
     // dynamic tabs
     changeTab(tab_title) {
       this.activeTab = tab_title;
-      this.$store.dispatch("updateThemeTabGlobally", tab_title);
+      this.$store.dispatch('updateThemeTabGlobally', tab_title);
     },
     getFirstActiveTabTitle() {
-      let title = "";
-      this.currentUser.tabs.forEach((tab) => {
+      let title = '';
+      this.currentUser.tabs.forEach(tab => {
         if (tab.is_public && !this.excludedTabs.includes(tab.title)) {
-          if (title === "") {
+          if (title === '') {
             title = tab.title;
           }
         }
@@ -1701,26 +1705,50 @@ export default {
       return title;
     },
     setActiveTabByURL() {
-      const pathSplit = this.$route.path.split("/");
+      const pathSplit = this.$route.path.split('/');
       let currentActiveTab = pathSplit[pathSplit.length - 1];
       if (!this.defaultTabs.includes(currentActiveTab)) {
         this.activeTab = this.getFirstActiveTabTitle();
       } else {
         this.activeTab = currentActiveTab;
       }
-      $("#" + this.activeTab).click();
+      $('#' + this.activeTab).click();
     },
     // dynamic tabs end
 
     goToExternalLink(link) {
-      if (!link.includes("http")) {
-        link = "http://" + link;
+      if (!link.includes('http')) {
+        link = 'http://' + link;
       }
       window.location.href = link;
     },
     closeHireMeModal() {
       this.hireMeModal = false;
     },
+    paymentInfoNext() {
+      let paymentList = this.filterPaymentInfoList;
+      this.paymentInfo++;
+      if (this.paymentInfo >= paymentList.length) {
+        this.paymentInfo = 0;
+      }
+    },
+    availableInfoNext() {
+      let availableList = this.filterAvailabilityInfoList;
+      this.available++;
+      if (this.available >= availableList.length) {
+        this.available = 0;
+      }
+    },
+
+    paymentInfoPrev() {
+      let paymentList = this.filterPaymentInfoList;
+      this.paymentInfo--;
+    },
+    availableInfoPrev() {
+      let availableList = this.filterAvailabilityInfoList;
+      this.available--;
+    },
+
     availableNext() {
       if (this.available == 2) {
         this.available = 0;
@@ -1741,16 +1769,16 @@ export default {
         this.paymentInfo = 0;
       } else this.paymentInfo--;
     },
-   
+
     filterAudio(audios) {
-      var filterArray = audios.filter((a) => a.type === "audio");
+      var filterArray = audios.filter(a => a.type === 'audio');
       if (!Array.isArray(filterArray) || !filterArray.length) {
         this.disableAudio = true;
       }
       return filterArray;
     },
     filterVideo(videos) {
-      var filterArray = videos.filter((a) => a.type === "video");
+      var filterArray = videos.filter(a => a.type === 'video');
       if (!Array.isArray(filterArray) || !filterArray.length) {
         this.disableVideo = true;
       }
@@ -1758,7 +1786,7 @@ export default {
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-    },
+    }
   },
 
   mounted() {
@@ -1775,7 +1803,7 @@ export default {
     // set active tab
     this.setActiveTabByURL();
     // let user accessible in included components.
-    this.$store.dispatch("updateThemeUser", this.currentUser);
-  },
+    this.$store.dispatch('updateThemeUser', this.currentUser);
+  }
 };
 </script>
