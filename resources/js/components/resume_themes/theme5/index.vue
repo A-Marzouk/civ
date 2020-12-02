@@ -46,28 +46,17 @@
                       alt
                     ></v-img>
                     <div>
-                      <v-icon small @click="availablePrev()">navigate_before</v-icon>
-                      <div
-                        v-for="(availability_info, index) in currentUser.availability_info"
-                        :key="index"
-                        v-show="availability_info.is_public"
-                        class="d-inline-block"
-                      >
-                        <span class="title" v-if="available == index">
-                          {{ availability_info.available_hours_frequency }}
+                      <v-icon small @click="availableInfoPrev()">navigate_before</v-icon>
+                      <div class="d-inline-block">
+                        <span class="title">
+                          {{ filterAvailabilityInfoList[available].available_hours_frequency }}
                         </span>
                       </div>
-                      <v-icon small @click="availableNext()">navigate_next</v-icon>
+                      <v-icon small @click="availableInfoNext()">navigate_next</v-icon>
                     </div>
                     <div>
-                      <div
-                        v-for="(availability_info, index) in currentUser.availability_info"
-                        :key="index"
-                        v-show="availability_info.is_public"
-                      >
-                        <span class="title" v-if="available == index">
-                          {{ availability_info.available_hours }} hrs
-                        </span>
+                      <div>
+                        <span class="title"> {{ filterAvailabilityInfoList[available].available_hours }} hrs </span>
                       </div>
                     </div>
                   </v-col>
@@ -85,25 +74,16 @@
 
                     <div>
                       <v-icon small @click="paymentInfoPrev()">navigate_before</v-icon>
-                      <div
-                        v-for="(payment_Info, index) in currentUser.payment_info"
-                        :key="index"
-                        v-show="payment_Info.is_public"
-                        class="d-inline-block"
-                      >
-                        <span class="title" v-if="paymentInfo == index">
-                          {{ payment_Info.salary_frequency }}
+                      <div class="d-inline-block">
+                        <span class="title">
+                          {{ filterPaymentInfoList[paymentInfo].salary_frequency }}
                         </span>
                       </div>
                       <v-icon small @click="paymentInfoNext()">navigate_next</v-icon>
                     </div>
                     <div>
-                      <div
-                        v-for="(payment_Info, index) in currentUser.payment_info"
-                        :key="index"
-                        v-show="payment_Info.is_public"
-                      >
-                        <span class="title" v-if="paymentInfo == index"> $ {{ payment_Info.salary }} </span>
+                      <div>
+                        <span class="title"> $ {{ filterPaymentInfoList[paymentInfo].salary }} </span>
                       </div>
                     </div>
                   </v-col>
@@ -133,27 +113,18 @@
                     <div class="subtitle-1">Rate</div>
                     <div class="subtitle-1 txtcol">
                       <v-icon small @click="paymentInfoPrev()">navigate_before</v-icon>
-                      <div
-                        v-for="(payment_Info, index) in currentUser.payment_info"
-                        :key="index"
-                        v-show="payment_Info.is_public"
-                        class="d-inline-block"
-                      >
-                        <span class="title" v-if="paymentInfo == index">
-                          {{ payment_Info.salary_frequency }}
+                      <div class="d-inline-block">
+                        <span class="title">
+                          {{ filterPaymentInfoList[paymentInfo].salary_frequency }}
                         </span>
                       </div>
                       <v-icon small @click="paymentInfoNext()">navigate_next</v-icon>
                     </div>
                     <div class="headline font-weight-bold txtcol">
-                      <div
-                        v-for="(payment_Info, index) in currentUser.payment_info"
-                        :key="index"
-                        v-show="payment_Info.is_public"
-                      >
-                        <span class="title" v-if="paymentInfo == index">
-                          $ {{ payment_Info.salary }}
-                          {{ payment_Info.currency }}
+                      <div>
+                        <span class="title">
+                          $ {{ filterPaymentInfoList[paymentInfo].salary }}
+                          {{ filterPaymentInfoList[paymentInfo].currency }}
                         </span>
                       </div>
                     </div>
@@ -165,28 +136,17 @@
                     <div class="subtitle-1">Available for</div>
                     <div class="headline font-weight-bold txtcol">
                       <div>
-                        <v-icon @click="availablePrev()">navigate_before</v-icon>
-                        <div
-                          v-for="(availability_info, index) in currentUser.availability_info"
-                          :key="index"
-                          v-show="availability_info.is_public"
-                          class="d-inline-block"
-                        >
-                          <span class="title" v-if="available == index">
-                            {{ availability_info.available_hours_frequency }}
+                        <v-icon @click="availableInfoPrev()">navigate_before</v-icon>
+                        <div class="d-inline-block">
+                          <span class="title">
+                            {{ filterAvailabilityInfoList[available].available_hours_frequency }}
                           </span>
                         </div>
-                        <v-icon @click="availableNext()">navigate_next</v-icon>
+                        <v-icon @click="availableInfoNext()">navigate_next</v-icon>
                       </div>
                       <div>
-                        <div
-                          v-for="(availability_info, index) in currentUser.availability_info"
-                          :key="index"
-                          v-show="availability_info.is_public"
-                        >
-                          <span class="title" v-if="available == index">
-                            {{ availability_info.available_hours }} hrs
-                          </span>
+                        <div>
+                          <span class="title"> {{ filterAvailabilityInfoList[available].available_hours }} hrs </span>
                         </div>
                       </div>
                     </div>
@@ -329,28 +289,17 @@
                     ></v-img>
                     <div class="subtitle-1 text-capitalize mt-2">
                       <div>
-                        <v-icon small @click="availablePrev()">navigate_before</v-icon>
-                        <div
-                          v-for="(availability_info, index) in currentUser.availability_info"
-                          :key="index"
-                          v-show="availability_info.is_public"
-                          class="d-inline-block"
-                        >
-                          <span class="subtitle-1" v-if="available == index">
-                            {{ availability_info.available_hours_frequency }}
+                        <v-icon small @click="availableInfoPrev()">navigate_before</v-icon>
+                        <div class="d-inline-block">
+                          <span class="subtitle-1">
+                            {{ filterAvailabilityInfoList[available].available_hours_frequency }}
                           </span>
                         </div>
-                        <v-icon small @click="availableNext()">navigate_next</v-icon>
+                        <v-icon small @click="availableInfoNext()">navigate_next</v-icon>
                       </div>
                       <div>
-                        <div
-                          v-for="(availability_info, index) in currentUser.availability_info"
-                          :key="index"
-                          v-show="availability_info.is_public"
-                        >
-                          <span class="title" v-if="available == index">
-                            {{ availability_info.available_hours }} hrs
-                          </span>
+                        <div>
+                          <span class="title"> {{ filterAvailabilityInfoList[available].available_hours }} hrs </span>
                         </div>
                       </div>
                     </div>
@@ -371,25 +320,16 @@
                     <div class="subtitle-1 text-capitalize mt-2">
                       <div>
                         <v-icon small @click="paymentInfoPrev()">navigate_before</v-icon>
-                        <div
-                          v-for="(payment_Info, index) in currentUser.payment_info"
-                          :key="index"
-                          v-show="payment_Info.is_public"
-                          class="d-inline-block"
-                        >
-                          <span class="subtitle-1" v-if="paymentInfo == index">
-                            {{ payment_Info.salary_frequency }}
+                        <div class="d-inline-block">
+                          <span class="subtitle-1">
+                            {{ filterPaymentInfoList[paymentInfo].salary_frequency }}
                           </span>
                         </div>
                         <v-icon small @click="paymentInfoNext()">navigate_next</v-icon>
                       </div>
                       <div>
-                        <div
-                          v-for="(payment_Info, index) in currentUser.payment_info"
-                          :key="index"
-                          v-show="payment_Info.is_public"
-                        >
-                          <span class="title" v-if="paymentInfo == index"> $ {{ payment_Info.salary }} </span>
+                        <div>
+                          <span class="title"> $ {{ filterPaymentInfoList[paymentInfo].salary }} </span>
                         </div>
                       </div>
                     </div>
@@ -1747,27 +1687,6 @@ export default {
     availableInfoPrev() {
       let availableList = this.filterAvailabilityInfoList;
       this.available--;
-    },
-
-    availableNext() {
-      if (this.available == 2) {
-        this.available = 0;
-      } else this.available++;
-    },
-    availablePrev() {
-      if (this.available == 0) {
-        this.available = 0;
-      } else this.available--;
-    },
-    paymentInfoNext() {
-      if (this.paymentInfo == 3) {
-        this.paymentInfo = 0;
-      } else this.paymentInfo++;
-    },
-    paymentInfoPrev() {
-      if (this.paymentInfo == 0) {
-        this.paymentInfo = 0;
-      } else this.paymentInfo--;
     },
 
     filterAudio(audios) {
