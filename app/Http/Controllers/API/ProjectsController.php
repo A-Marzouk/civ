@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Exception;
+use Intervention\Image\Facades\Image;
 
 
 class ProjectsController extends Controller
@@ -21,7 +22,7 @@ class ProjectsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('optimizeImage');
     }
 
     /**
@@ -164,12 +165,42 @@ class ProjectsController extends Controller
     protected function storeProjectImages($data, $project){
         $is_main = true ;
         foreach ($data as $filePath){
+            if($this->image_exists('storage/' . $filePath)){
+                $this->optimizeImage($filePath);
+            }
             $project->images()->create([
                 'src' => $filePath,
                 'is_main' => $is_main
             ]);
             $is_main = false;
         }
+    }
+
+    protected function optimizeImage($imageSrc){
+        $image = 'storage/' . $imageSrc;
+        $img = Image::make($image);
+        $img->resize(225, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $imageName = str_replace("storage/projects_media/","",$image);
+        $img->stream();
+        Storage::disk('local')->put(('/public/projects_media_resized/' . $imageName), $img, 'public');
+
+        return true;
+    }
+
+    protected function getImageSrc($src){
+        if($src[0] == '/'){
+            $src = substr($src, 1);
+        }
+        return  $src;
+    }
+
+    protected function image_exists($src){
+        if(!file_exists($this->getImageSrc($src))){
+            return false ;
+        }
+        return true;
     }
 
 
