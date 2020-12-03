@@ -52,7 +52,6 @@
                                     x-small
                                     depressed
                                     class="mx-md-auto mx-sm-2 btn-video-player"
-                                    @click="videoModal = true"
                                   >
                                     <img width="15" src="/images/resume_themes/theme204/icons/download-pdf.png" />
                                   </v-btn>
