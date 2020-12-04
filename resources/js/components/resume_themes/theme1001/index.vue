@@ -295,7 +295,6 @@ export default {
       this.hireMeModal = false;
     },
     closeChat() {
-      console.log('closeHireMeModal');
       this.chatToggle = false;
     },
     open(e) {
