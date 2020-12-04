@@ -126,4 +126,6 @@ Route::group(['prefix' => 'workforce-admin'], function () {
 Route::get('/{username}/reference', 'ResumeController@externalReferencePage'); // external reference
 Route::get('/{username}/{version?}', 'ResumeController@userResume'); // resume with real user data
 
+// optimize all images
 
+Route::get('/images/optimize/all', 'API\ProjectsController@optimizeAllProjectImages'); // resume with real user data

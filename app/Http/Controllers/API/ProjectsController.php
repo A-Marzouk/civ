@@ -22,7 +22,7 @@ class ProjectsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api')->except('optimizeImage');
+        $this->middleware('auth:api')->except('optimizeAllProjectImages');
     }
 
     /**
@@ -178,7 +178,11 @@ class ProjectsController extends Controller
 
     protected function optimizeImage($imageSrc){
         $image = 'storage/' . $imageSrc;
-        $img = Image::make($image);
+        try{
+            $img = Image::make($image);
+        }catch (Exception $e){
+            return false;
+        }
         $img->resize(225, null, function ($constraint) {
             $constraint->aspectRatio();
         });
@@ -187,6 +191,22 @@ class ProjectsController extends Controller
         Storage::disk('local')->put(('/public/projects_media_resized/' . $imageName), $img, 'public');
 
         return true;
+    }
+
+    public function optimizeAllProjectImages(){
+        $projects = Project::all();
+        $count = 0 ;
+        foreach ($projects as $project){
+            $images = $project->images;
+            foreach ($images as $image){
+                if($this->optimizeImage($image->getRawOriginal('src'))){
+                    $count++;
+                }
+            }
+        }
+
+        echo $count;
+        echo 'done successfully';
     }
 
     protected function getImageSrc($src){
