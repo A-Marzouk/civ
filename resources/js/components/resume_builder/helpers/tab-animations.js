@@ -22,8 +22,6 @@ export function moveTabsHelper (e, wrapperId, component) {
     let linksWrapper = document.getElementById(wrapperId)
     let { target } = e
 
-    // console.log(component, target);
-    
     component.setActiveTab(target.getAttribute('data-target'))
 
     let decorator = linksWrapper.querySelector('.decorator');

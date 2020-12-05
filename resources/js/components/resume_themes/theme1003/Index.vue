@@ -50,8 +50,6 @@ export default {
 
 	methods: {
 		showModal(currentModal) {
-			console.log('showModal', currentModal);
-
 			this.isModalOpen = true;
 			this.currentModal = currentModal;
 		},
