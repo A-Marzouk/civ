@@ -258,7 +258,7 @@ import Hobbies from './tabs/Hobbies';
 import References from './tabs/References';
 import Achievement from './tabs/Achievement';
 import MessageDialog from './message/MessageDialog';
-import HireModal from '../includes/HireMeModal';
+import HireModal from '../reusable/components/hireMe/hireMe';
 import IconCarousel from '../reusable/IconCarousel';
 import MainFunctions from '../reusable/functions/main.functions';
 export default {
