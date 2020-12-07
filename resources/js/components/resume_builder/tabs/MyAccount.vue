@@ -401,7 +401,6 @@
             },
             deleteAccount() {
                 axios.delete('/api/user/deactivate-account/' + this.user.id).then((response) => {
-                    console.log(response.data);
                     // redirect to login page:
                     window.location = '/login'
                 }).catch();

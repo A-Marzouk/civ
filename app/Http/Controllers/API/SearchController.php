@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\ResumeLink;
 use App\User;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class SearchController extends Controller
 {
@@ -40,6 +41,19 @@ class SearchController extends Controller
             $user = User::withAllRelations('123workforce', $profile->id);
             $baseURL = URL::to('/');
 
+            $projects = $user->projects ;
+
+            foreach ($projects as $project){
+                foreach ($project->images as &$image){
+                    if(Str::of($image->src)->contains('behance.net')){
+                        // image from Behance
+                        $image['preview'] = str_replace('original','202', $image->src);
+                    }else{
+                        $image['preview'] = str_replace('projects_media','projects_media_resized', $image->src);
+                    }
+                }
+            }
+
             $formattedUser = [
                 'id'=> $profile->id,
                 'name' => $user->personalInfo->first_name . ' ' . $user->personalInfo->last_name,
@@ -50,7 +64,7 @@ class SearchController extends Controller
                 // new end points:
                 'avatar'=> $user->personalInfo->profile_pic,
                 'hourlyRate'=> $user->paymentInfo[0]->salary,
-                'projects' => $user->projects,
+                'projects' => $projects,
                 'skills' => $user->skills,
             ];
 

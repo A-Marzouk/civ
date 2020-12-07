@@ -699,7 +699,6 @@ export const store = new Vuex.Store({
     },
     // theme tab globally
     updateThemeTabGlobally(state, tab_title) {
-      console.log(tab_title);
       state.currentGlobalTab = tab_title;
     },
 
