@@ -178,6 +178,9 @@ class ProjectsController extends Controller
 
     protected function optimizeImage($imageSrc){
         $image = 'storage/' . $imageSrc;
+        if(!$this->image_exists($image) || $this->resized_image_exists($image)){
+            return false;
+        }
         try{
             $img = Image::make($image);
         }catch (Exception $e){
@@ -223,5 +226,11 @@ class ProjectsController extends Controller
         return true;
     }
 
+    protected function resized_image_exists($src){
+        if(!file_exists($this->getImageSrc(str_replace('projects_media','projects_media_resized', $src)))){
+            return false ;
+        }
+        return true;
+    }
 
 }
