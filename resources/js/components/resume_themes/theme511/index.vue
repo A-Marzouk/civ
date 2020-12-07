@@ -355,7 +355,6 @@ export default {
   },
   methods: {
     closeDialog() {
-      console.log('closeDialog');
       this.messageToggle = false;
     },
     closePayment() {

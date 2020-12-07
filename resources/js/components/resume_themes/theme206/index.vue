@@ -1138,7 +1138,6 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    console.log(this.currentUser);
 
     // set active tab
     this.setActiveTabByURL();

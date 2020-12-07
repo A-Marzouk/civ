@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Exception;
+use Intervention\Image\Facades\Image;
 
 
 class ProjectsController extends Controller
@@ -21,7 +22,7 @@ class ProjectsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('optimizeAllProjectImages');
     }
 
     /**
@@ -164,6 +165,9 @@ class ProjectsController extends Controller
     protected function storeProjectImages($data, $project){
         $is_main = true ;
         foreach ($data as $filePath){
+            if($this->image_exists('storage/' . $filePath)){
+                $this->optimizeImage($filePath);
+            }
             $project->images()->create([
                 'src' => $filePath,
                 'is_main' => $is_main
@@ -172,5 +176,61 @@ class ProjectsController extends Controller
         }
     }
 
+    protected function optimizeImage($imageSrc){
+        $image = 'storage/' . $imageSrc;
+        if(!$this->image_exists($image) || $this->resized_image_exists($image)){
+            return false;
+        }
+        try{
+            $img = Image::make($image);
+        }catch (Exception $e){
+            return false;
+        }
+        $img->resize(225, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $imageName = str_replace("storage/projects_media/","",$image);
+        $img->stream();
+        Storage::disk('local')->put(('/public/projects_media_resized/' . $imageName), $img, 'public');
+
+        return true;
+    }
+
+    public function optimizeAllProjectImages(){
+        $projects = Project::all();
+        $count = 0 ;
+        foreach ($projects as $project){
+            $images = $project->images;
+            foreach ($images as $image){
+                if($this->optimizeImage($image->getRawOriginal('src'))){
+                    $count++;
+                }
+            }
+        }
+
+        echo $count;
+        echo 'done successfully';
+    }
+
+    protected function getImageSrc($src){
+        if($src[0] == '/'){
+            $src = substr($src, 1);
+        }
+        return  $src;
+    }
+
+    protected function image_exists($src){
+        if(!file_exists($this->getImageSrc($src))){
+            return false ;
+        }
+        return true;
+    }
+
+    protected function resized_image_exists($src){
+        if(!file_exists($this->getImageSrc(str_replace('projects_media','projects_media_resized', $src)))){
+            return false ;
+        }
+        return true;
+    }
 
 }
