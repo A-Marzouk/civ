@@ -1,0 +1,196 @@
+ 
+
+  .main-color {
+    color: #001d68;
+  }
+  .user-name {
+    font-family: Noto Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #001d68;
+  }
+  .user-rate {
+    font-family: Noto Sans;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 35.76px;
+    text-align: left;
+    color: #001d68;
+  }
+  .hireMe-text {
+    display: inline;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 36px;
+    color: #001d68;
+  }
+  .monthly {
+    background: #e6e8fc;
+    border-radius: 5px;
+    width: 110px;
+    height: 38px;
+    display: inline-block;
+    text-align: center;
+    margin: 0 5px;
+    &_text {
+      font-family: Noto Sans;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 39px;
+      color: #001ce2;
+    }
+  }
+  .elevation {
+    box-shadow: 0px 5px 10px rgba(0, 16, 131, 0.15);
+  }
+  .selectHour{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 40px rgba(0, 28, 226, 0.08);
+    border-radius: 10px;
+  }
+  .select-text{
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 39px;
+    color: #001D68;
+  }
+  .select-tag{
+    float: right;
+    text-align: center;
+    padding: 5px 10px;
+    background: #E6E8FC;
+    border-radius: 5px;
+    font-family: Noto Sans;
+    font-style: normal; 
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #001CE2;
+  }
+  .perDayNumber,.perMonthNumber{
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+    padding: 0 12px;
+    .number{
+        width: 1.5rem;
+        text-align: center;
+        font-family: Noto Sans;
+        font-style: normal; 
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 12px;
+        color: #687494;
+
+    }
+  }
+  .calculate-payment{
+    background: #F2F3FD;
+    border-radius: 5px;
+    .rate-label{
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        color: #001D68;
+    }
+    .operators{
+      display: inline-block;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 22px;
+      color: #001D68;
+      position: absolute;
+      margin-left: 38px;
+      margin-top: 10px;
+    }
+    .rate-input {
+        width: 90px;
+        height: 44.81px;
+        background: #ffffff;
+        border: 2px solid #e6e8fc;
+        box-sizing: border-box;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .text{
+        font-family: Noto Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 39px;
+        color: #001D68;
+      }
+      .total{
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        color: #001CE2;
+      }
+    
+  }
+  .divider{
+    margin: 1rem auto ;
+    height: 1px;
+    width: 95%;
+    background: rgba(122, 133, 161, 0.2);
+  }
+  .total-payment{
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #687494;
+      &_text{
+        font-weight: 500;
+      }
+      &_value{
+        font-weight: bold;
+      }
+  }
+  
+  .payment-text{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 32px;
+    color: #687494;
+    text-transform: initial;
+      }
+  .or{
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 32px;
+        color: #687494;
+    }
+.month-numbers{
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 39px;
+  color: #001D68;
+}
+ .inactive-method{
+   opacity:0.2;
+ }
+ .active-method{
+  opacity:1;
+ }

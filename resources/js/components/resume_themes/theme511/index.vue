@@ -83,27 +83,15 @@
                     <span class="info-text">Rate - </span>
                     <span class="info-text">
                       <v-icon color="#39E1AA" @click="paymentInfoPrev()">mdi-chevron-left</v-icon>
-                      <a
-                        href="javascript:void(0)"
-                        class="info-text"
-                        v-for="(payment_Info, index) in currentUser.payment_info"
-                        :key="index"
-                        v-show="payment_Info.is_public && paymentInfo == index"
-                        @click="paymentInfoNext()"
-                      >
-                        {{ payment_Info.salary_frequency }}
+                      <a href="javascript:void(0)" class="info-text" @click="paymentInfoNext()">
+                        {{ filterPaymentInfoList[paymentInfo].salary_frequency }}
                       </a>
 
                       <v-icon color="#39E1AA" @click="paymentInfoNext()">mdi-chevron-right</v-icon></span
                     >
-                    <span
-                      class="info-rate"
-                      v-for="(payment_Info, index) in currentUser.payment_info"
-                      :key="index"
-                      v-show="payment_Info.is_public && paymentInfo == index"
-                    >
-                      {{ payment_Info.salary }}
-                      {{ payment_Info.currency }}
+                    <span class="info-rate">
+                      {{ filterPaymentInfoList[paymentInfo].salary }}
+                      {{ filterPaymentInfoList[paymentInfo].currency }}
                     </span>
                   </v-col>
                   <!-- Pay Rate -->
@@ -111,27 +99,15 @@
                   <v-col cols="12" sm="12" md="6" v-if="findPreference('weekly_availability')">
                     <span class="info-text">Availability - </span>
                     <span class="info-text">
-                      <v-icon color="#39E1AA" @click="availablePrev()">mdi-chevron-left</v-icon>
-                      <a
-                        href="javascript:void(0)"
-                        class="info-text"
-                        v-for="(availability_info, index) in currentUser.availability_info"
-                        :key="index"
-                        v-show="availability_info.is_public && available == index"
-                        @click="availableNext()"
-                      >
-                        {{ availability_info.available_hours_frequency }}
+                      <v-icon color="#39E1AA" @click="availableInfoPrev()">mdi-chevron-left</v-icon>
+                      <a href="javascript:void(0)" class="info-text" @click="availableInfoNext()">
+                        {{ filterAvailabilityInfoList[available].available_hours_frequency }}
                       </a>
 
-                      <v-icon color="#39E1AA" @click="availableNext()">mdi-chevron-right</v-icon></span
+                      <v-icon color="#39E1AA" @click="availableInfoNext()">mdi-chevron-right</v-icon></span
                     >
-                    <span
-                      class="info-rate"
-                      v-for="(availability_info, index) in currentUser.availability_info"
-                      :key="index"
-                      v-show="availability_info.is_public && available == index"
-                    >
-                      {{ availability_info.available_hours }}
+                    <span class="info-rate">
+                      {{ filterAvailabilityInfoList[available].available_hours }}
                     </span>
                   </v-col>
                   <!-- Availability -->
@@ -271,22 +247,22 @@
 <script>
 // import Header from "./Header";
 // import Main from "./Main";
-import Portfolio from "./tabs/Portfolio";
-import Experience from "./tabs/Experience";
-import Education from "./tabs/Education";
-import Skills from "./tabs/Skills";
-import Media from "./tabs/Media";
-import About from "./tabs/About";
-import payment from "./payments/payment";
-import Hobbies from "./tabs/Hobbies";
-import References from "./tabs/References";
-import Achievement from "./tabs/Achievement";
-import MessageDialog from "./message/MessageDialog";
-import HireModal from "../includes/HireMeModal";
-import IconCarousel from "../reusable/IconCarousel";
-import MainFunctions from "../reusable/functions/main.functions";
+import Portfolio from './tabs/Portfolio';
+import Experience from './tabs/Experience';
+import Education from './tabs/Education';
+import Skills from './tabs/Skills';
+import Media from './tabs/Media';
+import About from './tabs/About';
+import payment from './payments/payment';
+import Hobbies from './tabs/Hobbies';
+import References from './tabs/References';
+import Achievement from './tabs/Achievement';
+import MessageDialog from './message/MessageDialog';
+import HireModal from '../reusable/components/hireMe/hireMe';
+import IconCarousel from '../reusable/IconCarousel';
+import MainFunctions from '../reusable/functions/main.functions';
 export default {
-  extends:MainFunctions,
+  extends: MainFunctions,
   components: {
     Portfolio,
     Experience,
@@ -300,125 +276,122 @@ export default {
     Achievement,
     MessageDialog,
     HireModal,
-    IconCarousel,
+    IconCarousel
   },
   data() {
     return {
       drawer: null,
       messageToggle: false,
-      hireMeModal: false,
+      hireMeModal: false
     };
   },
 
   computed: {
     borderadius() {
-      return document.querySelector(".v-tabs-slider").borderRadius("50px");
+      return document.querySelector('.v-tabs-slider').borderRadius('50px');
     },
     hireColor() {
       switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return "#ffff";
-        case "sm":
-          return "#39E1AA";
-        case "md":
-          return "#39E1AA";
+        case 'xs':
+          return '#ffff';
+        case 'sm':
+          return '#39E1AA';
+        case 'md':
+          return '#39E1AA';
       }
     },
     lightMobile() {
       switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return "#000";
-        case "sm":
-          return "#000";
-        case "md":
-          return "#000";
-        case "lg":
-          return "#ffff";
-        case "xl":
-          return "#ffff";
+        case 'xs':
+          return '#000';
+        case 'sm':
+          return '#000';
+        case 'md':
+          return '#000';
+        case 'lg':
+          return '#ffff';
+        case 'xl':
+          return '#ffff';
       }
     },
     pdfIconSize() {
       switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return "18";
-        case "sm":
-          return "24";
-        case "md":
-          return "24";
-        case "lg":
-          return "24";
-        case "xl":
-          return "26";
+        case 'xs':
+          return '18';
+        case 'sm':
+          return '24';
+        case 'md':
+          return '24';
+        case 'lg':
+          return '24';
+        case 'xl':
+          return '26';
       }
     },
     buttonSize() {
       switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return "30px";
-        case "sm":
-          return "40px";
-        case "md":
-          return "40px";
-        case "lg":
-          return "50px";
-        case "xl":
-          return "50px";
+        case 'xs':
+          return '30px';
+        case 'sm':
+          return '40px';
+        case 'md':
+          return '40px';
+        case 'lg':
+          return '50px';
+        case 'xl':
+          return '50px';
       }
     },
     drawerWidth() {
       switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return "300";
-        case "sm":
-          return "400";
-        case "md":
-          return "500";
+        case 'xs':
+          return '300';
+        case 'sm':
+          return '400';
+        case 'md':
+          return '500';
       }
-    },
+    }
   },
   methods: {
     closeDialog() {
       this.messageToggle = false;
     },
     closePayment() {
-      console.log("closePayment");
+      console.log('closePayment');
       this.hireMeModal = false;
     },
-   
+
     sliderColor() {
-      if (this.activeTab === "portfolio") {
-        return "#F7B301";
+      if (this.activeTab === 'portfolio') {
+        return '#F7B301';
       }
-      if (this.activeTab === "education") {
-        return "#19AAC9";
+      if (this.activeTab === 'education') {
+        return '#19AAC9';
       }
-      if (this.activeTab === "work") {
-        return "#6764C8";
+      if (this.activeTab === 'work') {
+        return '#6764C8';
       }
-      if (this.activeTab === "skills") {
-        return "#F56068";
+      if (this.activeTab === 'skills') {
+        return '#F56068';
       }
-      if (this.activeTab === "media") {
-        return "#39E1AA";
+      if (this.activeTab === 'media') {
+        return '#39E1AA';
       }
-      if (this.activeTab === "about") {
-        return "#F7B301";
+      if (this.activeTab === 'about') {
+        return '#F7B301';
       }
-      if (this.activeTab === "hobbies") {
-        return "#F7B301";
+      if (this.activeTab === 'hobbies') {
+        return '#F7B301';
       }
-      if (this.activeTab === "references") {
-        return "#F7B301";
+      if (this.activeTab === 'references') {
+        return '#F7B301';
       }
-      if (this.activeTab === "achievement") {
-        return "#F7B301";
+      if (this.activeTab === 'achievement') {
+        return '#F7B301';
       }
-    },
-   
-  },
-
-
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
