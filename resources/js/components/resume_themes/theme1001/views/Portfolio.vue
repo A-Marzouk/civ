@@ -10,7 +10,7 @@
           v-text="`All`"
         ></a>
         <a
-          v-for="(categ, i) in filtredPortfolios()"
+          v-for="(categ, i) in filtredPortfolios"
           class="portfolio-category"
           :class="{ active: categ === category }"
           :key="i"
@@ -67,36 +67,34 @@
 </template>
 
 <script>
-import Thumbnail from "../components/Thumbnail";
-import ImagesCarouselModal from "../../reusable/ImagesCarouselModal";
+import Thumbnail from '../components/Thumbnail';
+import ImagesCarouselModal from '../../reusable/ImagesCarouselModal';
 
 export default {
-  name: "portfolio",
+  name: 'portfolio',
 
   components: { Thumbnail, ImagesCarouselModal },
-  props: ["currentUser"],
+  props: ['currentUser'],
   data: () => {
     return {
-      displayMode: "detail",
-      category: "All",
+      displayMode: 'detail',
+      category: 'All',
       categories: [],
-      filterProjects: [],
+      filterProjects: []
     };
   },
-  methods: {
+  computed: {
     filtredPortfolios() {
-      this.filterProjects = this.currentUser.projects.filter(
-        (a) => a.is_public
-      );
-      let uniqueCategories = [
-        ...new Set(this.filterProjects.map((project) => project.category)),
-      ];
-      return this.categories = uniqueCategories;
-    },
+      this.filterProjects = this.currentUser.projects.filter(a => a.is_public);
+      let uniqueCategories = [...new Set(this.filterProjects.map(project => project.category))];
+      return uniqueCategories;
+    }
+  },
+  methods: {
     getProjectMainImage(project) {
-      let mainImage = "";
+      let mainImage = '';
       let images = project.images;
-      images.forEach((image) => {
+      images.forEach(image => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -104,18 +102,16 @@ export default {
       return mainImage.src;
     },
     filterCategory(category) {
-      if (category == "All") {
+      if (category == 'All') {
         return this.currentUser.projects;
       }
-      var filterArray = this.currentUser.projects.filter(
-        (a) => a.category === category
-      );
+      var filterArray = this.currentUser.projects.filter(a => a.category === category);
       return filterArray;
     },
     changeCategory(category) {
       this.category = category;
-    },
-  },
+    }
+  }
 };
 </script>
 
