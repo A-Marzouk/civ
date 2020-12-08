@@ -4,7 +4,7 @@
       <v-col cols="12" sm="11" md="8" class="category__bar">
         <v-tabs hide-slider centered background-color="#FAF7F1">
           <v-tab href="#ALL" @click="category = 'All'">All</v-tab>
-          <v-tab v-for="(categ, i) in categories" :key="i" @click="category = categ" :href="'#' + categ"
+          <v-tab v-for="(categ, i) in filtredPortfolios" :key="i" @click="category = categ" :href="'#' + categ"
             >{{ categ }}
           </v-tab>
         </v-tabs>
@@ -53,15 +53,15 @@
   </v-container>
 </template>
 <script>
-import ImagesCarouselModal from "../../reusable/ImagesCarouselModal";
-import VueSlickCarousel from "vue-slick-carousel";
+import ImagesCarouselModal from '../../reusable/ImagesCarouselModal';
+import VueSlickCarousel from 'vue-slick-carousel';
 // optional style for arrows & dots
-import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 export default {
-  props: ["activeTab", "projects"],
+  props: ['activeTab', 'projects'],
   components: {
     VueSlickCarousel,
-    ImagesCarouselModal,
+    ImagesCarouselModal
   },
   data: () => ({
     settings: {
@@ -72,32 +72,26 @@ export default {
       slidesToShow: 4,
       slidesToScroll: 4,
       touchThreshold: 5,
-      initialSlide: 0,
+      initialSlide: 0
       // Any other options that can be got from plugin documentation
     },
-      category: "All",
-      categories: [],
-      filterProjects:[]
-   
+    category: 'All',
+    categories: [],
+    filterProjects: []
   }),
 
-  mounted() {
-    this.filtredPortfolios();
+  computed: {
+    filtredPortfolios() {
+      this.filterProjects = this.projects.filter(a => a.is_public);
+      let uniqueCategories = [...new Set(this.filterProjects.map(project => project.category))];
+      return uniqueCategories;
+    }
   },
   methods: {
-    filtredPortfolios() {
-       this.filterProjects = this.projects.filter(
-          (a) => a.is_public
-        );
-        let uniqueCategories = [
-          ...new Set(this.filterProjects.map((project) => project.category)),
-        ];
-       return this.categories = uniqueCategories;
-    },
     getProjectMainImage(project) {
-      let mainImage = "";
+      let mainImage = '';
       let images = project.images;
-      images.forEach((image) => {
+      images.forEach(image => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -105,19 +99,17 @@ export default {
       return mainImage.src;
     },
     filterCategory(category) {
-      if (category == "All") {
+      if (category == 'All') {
         return this.projects;
       }
-      var filterArray = this.projects.filter(
-        (a) => a.category === category
-      );
-     
+      var filterArray = this.projects.filter(a => a.category === category);
+
       return filterArray;
     },
     changeCategory(category) {
       this.category = category;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
