@@ -20,25 +20,29 @@ class SearchController extends Controller
         // return all approved civ profiles.
     }
 
-    public function getWorkForceVisibleProfiles(){
+    public function getWorkForceVisibleProfiles($count = 25 ){
 
         $user = User::where('username', '123workforce')->firstOrFail();
 
-        $profiles = ResumeLink::where([
+        $paginatedResult = ResumeLink::where([
             ['user_id', $user->id],
             ['url','!=', ''],
-            ['is_public', '1'],
-        ])->get();
+            ['is_public', '1']
+        ])->paginate(request('count') ?? $count)->toArray();
 
 
-        return $this->formatResults($profiles);
+        $paginatedResult["data"] = $this->formatResults($paginatedResult["data"]);
+
+
+        return $paginatedResult;
+
     }
 
     protected function formatResults($profiles){
         $users=[];
 
         foreach ($profiles as $profile){
-            $user = User::withAllRelations('123workforce', $profile->id);
+            $user = User::withAllRelations('123workforce', $profile['id']);
             $baseURL = URL::to('/');
 
             $projects = $user->projects ;
@@ -55,12 +59,12 @@ class SearchController extends Controller
             }
 
             $formattedUser = [
-                'id'=> $profile->id,
+                'id'=> $profile['id'],
                 'name' => $user->personalInfo->first_name . ' ' . $user->personalInfo->last_name,
                 'job_title' => $user->personalInfo->designation,
                 'location' => $user->personalInfo->location,
                 'preview' => 'resumeApp/public/images/theme-holder.svg',
-                'url' => $baseURL . '/' . $user->username . '/' . $profile->url,
+                'url' => $baseURL . '/' . $user->username . '/' . $profile['url'],
                 // new end points:
                 'avatar'=> $user->personalInfo->profile_pic,
                 'hourlyRate'=> $user->paymentInfo[0]->salary,
