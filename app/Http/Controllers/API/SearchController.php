@@ -6,6 +6,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\ResumeLink;
 use App\User;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
@@ -13,7 +15,7 @@ class SearchController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('forgetCivProfiles');
     }
 
     public function getApprovedProfiles(){
@@ -76,6 +78,20 @@ class SearchController extends Controller
         }
 
         return $users;
+    }
+
+    public function forgetCivProfiles(){
+        $client = new Client();
+        $res = $client->request('POST',config('services.123workforce.url') . '/api/webhooks' ,
+           [
+               'form_params' => [
+                   'api_token' => Hash::make(config('services.123workforce.api_token')),
+                   'name' => config('services.123workforce.webhook_name')
+               ]
+           ]
+        );
+        echo $res->getStatusCode();
+        echo $res->getBody();
     }
 
 }
