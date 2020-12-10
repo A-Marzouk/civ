@@ -45,6 +45,7 @@
       font-size: 12px;
       line-height: 39px;
       color: #001ce2;
+      text-transform: capitalize;
     }
   }
   .elevation {
@@ -169,7 +170,6 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 32px;
-    color: #687494;
     text-transform: initial;
       }
   .or{
@@ -194,3 +194,25 @@
  .active-method{
   opacity:1;
  }
+ .week-days{
+  justify-content: space-evenly;
+  flex-direction: row;
+  display: flex;
+  padding: 0 5px;
+  &_single{
+      width: 4rem;
+      text-align: center;
+      font-family: Proxima Nova;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #687494;
+      .weekday{
+        font-size: 12px;
+        line-height: 15px;
+      }
+      .days{
+        font-size: 18px;
+        line-height: 22px;
+      }
+  }
+}

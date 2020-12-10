@@ -14,23 +14,38 @@ export default {
        
       data() {
         return {
+          select: { number: 'Ongoing' },
+          totalNumber: [
+            { number: 'Ongoing' },
+            { number: '1' },
+            { number: '2' },
+            { number: '3' },
+            { number: '4' },
+            { number: '5' },
+            { number: '6' },
+          ],
+          model:null,
           currentActiveMethod: null,
           isModalOpened: false,
           selectHours:1,
-          paymentTotal:null,
-          monthlyhours:null,
+          totalHours:null,
           payToday:false,
           currentStep: 1,
           currentNoPaymentStep: 1,
           iterations: 2,
           typeOfRecurringInterval: 'week',
           currentPaymentMethod: 'stripe',
-          currentPaymentType: 'hourly',
           currentAutoPaymentType: '7-days',
           currentHoursType: 'week',
           // payment calculations:
           percentage: 100,
           hours:[1,2,4,6,8],
+          currentPaymentType: 'hourly',
+          paymentTypes:[
+            "hour", "month","week"
+          ],
+          activePaymentTypeIndex:1,
+          unitHours:20,
           currentSelectedHours: 25,
           finishedSteps: [],
           datePicker: this.currentDate,
@@ -67,18 +82,35 @@ export default {
           this.typeOfRecurringInterval = value.replace('ly', '');
         },
         selectHours:function(value) {
-          this.monthlyhours = value;
-          if (value==60) {
-            this.monthlyhours= value+20;
-          }
-          if (value==80) {
-            this.monthlyhours= value+40;
-          }
-          if (value==100) {
-            this.monthlyhours= value+60;
-          }
-          this.paymentTotal = this.monthlyhours * this.user.payment_info[0].salary;
+            this.totalHours =  this.hours[(value-20)/20]*this.unitHours;
+            
         },
+        activePaymentTypeIndex: function(value) {
+          if (value==0) {
+            this.unitHours = 1;
+          }
+          if (value==1) {
+            this.unitHours = 20;
+            // calculate total number
+            this.totalNumber = [{ number: 'Ongoing' }];
+            for (let index = 1; index < 7; index++) {
+              const element ={number:`${index}`};
+              this.totalNumber.push(element)
+            }
+          }
+          if (value==2) {
+            this.unitHours = 7;
+             // calculate total number
+            this.totalNumber = [{ number: 'Ongoing' }];
+            for (let index = 1; index < 13; index++) {
+              const element ={number:`${index}`};
+              this.totalNumber.push(element)
+            }
+          }
+          this.totalHours =  this.hours[(this.selectHours-20)/20]*this.unitHours;
+          
+        },
+      
         
       },
       methods: {
@@ -86,6 +118,20 @@ export default {
           this.payToday = true;
           this.isDatePickerOpened = false;
         },
+        nextPaymentType(){
+          this.activePaymentTypeIndex++;
+          if(this.activePaymentTypeIndex >2){
+            this.activePaymentTypeIndex = 0;
+          }
+        },
+        prevPaymentType(){
+          this.activePaymentTypeIndex--;
+          if(this.activePaymentTypeIndex < 0){
+            this.activePaymentTypeIndex = 2;
+          }
+        },
+     
+
         goToNextStep() {
           if (this.currentStep > 4) {
             return;
@@ -265,11 +311,32 @@ export default {
         }
       },
       computed: {
+        paymentTotal(){
+          return this.totalHours * this.user.payment_info[0].salary;
+        },
+        monthsNumber(){
+         
+          return moment().format("M");
+        },
         currentPaymentAmount() {
           return ((this.user.payment_info[0].salary * this.percentage) / 100) * this.currentSelectedHours;
         },
         totalPaymentAmount() {
           return this.user.payment_info[0].salary * this.currentSelectedHours;
+        },
+        getArrayOfMonths(){
+          const months = []
+          const dateStart = moment()
+          const dateEnd = moment().add(6, 'month')
+          while (dateEnd.diff(dateStart, 'months') >= 0) {
+            months.push(dateStart.format('MMMM, YYYY'))
+            dateStart.add(1, 'month')
+          }
+          return months;
+        },
+        getArrayOfDays(){
+          
+          return moment("2012-01", "YYYY-MM").daysInMonth()
         },
         payLaterDate() {
           if (this.currentAutoPaymentType === '7-days') {
