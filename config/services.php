@@ -70,7 +70,14 @@ return [
         'redirect' => env('SPOTIFY_REDIRECT_URI')
     ],
 
-//    payments
+    // 123workforce
+    '123workforce' => [
+        'api_token' =>  env('CIV_API_TOKEN'),
+        'url' => env('123WORKFORCE_URL'),
+        'webhook_name' => env('WEBHOOK_NAME'),
+    ],
+
+    // payments
 
     'stripe' => [
         'model' => User::class,
