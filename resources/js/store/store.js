@@ -676,7 +676,7 @@ export const store = new Vuex.Store({
 
 
           if(state.user.username === '123workforce'){
-            axios.get('/api/search/send-invalidate-cache').then( () => { console.log('cache invalidated successfully')});
+            axios.get('/api/search/send-invalidate-cache').then( (r) => { console.log(r.data)});
           }
 
           if (!state.updateActivityTimer) {

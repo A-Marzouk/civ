@@ -22,7 +22,7 @@ class SearchController extends Controller
         // return all approved civ profiles.
     }
 
-    public function getWorkForceVisibleProfiles($count = 25 ){
+    public function getWorkForceVisibleProfiles($count = 50 ){
 
         $user = User::where('username', '123workforce')->firstOrFail();
 
@@ -32,12 +32,15 @@ class SearchController extends Controller
             ['is_public', '1']
         ])->paginate(request('count') ?? $count)->toArray();
 
-
         $paginatedResult["data"] = $this->formatResults($paginatedResult["data"]);
-
 
         return $paginatedResult;
 
+    }
+
+    protected function getLastPageNumber(){
+       $users = $this->getWorkForceVisibleProfiles();
+       return $users['last_page'];
     }
 
     protected function formatResults($profiles){
@@ -81,17 +84,19 @@ class SearchController extends Controller
     }
 
     public function forgetCivProfiles(){
+        $last_page = $this->getLastPageNumber() ;
         $client = new Client();
         $res = $client->request('POST',config('services.123workforce.url') . '/api/webhooks' ,
            [
                'form_params' => [
                    'api_token' => Hash::make(config('services.123workforce.api_token')),
-                   'name' => config('services.123workforce.webhook_name')
+                   'name' => config('services.123workforce.webhook_name'),
+                   'last_page' => $last_page,
                ]
            ]
         );
-        echo $res->getStatusCode();
-        echo $res->getBody();
+
+        return $res->getBody();
     }
 
 }
