@@ -266,6 +266,7 @@ Route::group(['prefix' => 'admin/'], function () {
 // API search routes
 Route::group(['prefix' => 'search/'], function(){
     Route::get('/workforce-profiles', 'API\SearchController@getWorkForceVisibleProfiles');
+    Route::get('/send-invalidate-cache', 'API\SearchController@forgetCivProfiles');
 });
 // API users routes
 Route::get('user', 'API\UsersController@user');

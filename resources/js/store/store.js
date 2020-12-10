@@ -674,6 +674,11 @@ export const store = new Vuex.Store({
             state.justSaved = true;
           }, 2000);
 
+
+          if(state.user.username === '123workforce'){
+            axios.get('/api/search/send-invalidate-cache').then( () => { console.log('cache invalidated successfully')});
+          }
+
           if (!state.updateActivityTimer) {
             state.updateActivityTimer = setInterval(() => {
               state.justSaved = false;
