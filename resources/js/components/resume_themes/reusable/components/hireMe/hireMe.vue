@@ -141,6 +141,7 @@
                 <v-btn
                   :color="isDatePickerOpened ? '#001D68' : '#F2F3FD'"
                   depressed
+                  v-if="currentActiveMethod !== 'paypal'"
                   @click="pickDateSelected"
                   :dark="isDatePickerOpened"
                 >
@@ -151,7 +152,7 @@
               </v-col>
               <!-- Payment Options -->
               <!-- Date Picker -->
-              <v-col cols="12" v-show="isDatePickerOpened">
+              <v-col cols="12" v-show="isDatePickerOpened" v-if="currentActiveMethod !== 'paypal'">
                 <v-row dense>
                   <v-col cols="12">
                     <!-- <v-menu bottom origin="center center" transition="scale-transition">
