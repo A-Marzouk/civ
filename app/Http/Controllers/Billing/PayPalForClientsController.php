@@ -160,7 +160,7 @@ class PayPalForClientsController extends Controller
             ->setType('REGULAR')
             ->setFrequency($request->payment_info['interval'])
             ->setFrequencyInterval('1')
-            ->setCycles($request->payment_info['iterations'] === 'ongoing' ? 0 : $request->payment_info['iterations'])
+            ->setCycles($request->payment_info['iterations'] === 'ongoing' ? '12' : $request->payment_info['iterations'])
             ->setAmount(new Currency(array('value' => $request->payment_info['toPayNowAmount'], 'currency' => 'USD')));
 
 
