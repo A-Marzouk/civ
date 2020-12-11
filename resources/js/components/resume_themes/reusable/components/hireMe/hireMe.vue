@@ -1,12 +1,12 @@
 <template>
   <div data-app>
     <v-row justify="center">
-      <v-dialog v-model="isModalOpened" persistent max-width="600">
+      <v-dialog v-model="hireMeModal" persistent max-width="600">
         <v-card>
           <v-toolbar dark color="#f2f3fd" flat>
             <v-toolbar-title class="main-color pl-4">Booking/ payment</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn icon dark @click="closeModal">
+            <v-btn icon dark @click.prevent="closeHireMeModal()">
               <v-icon color="#001D68">mdi-close</v-icon>
             </v-btn>
           </v-toolbar>
@@ -93,7 +93,13 @@
                   <v-row>
                     <v-col cols="4" class="text-center">
                       <div class="rate-label mb-3">Hourly rate</div>
-                      <input type="text" class="rate-input text" name="hourly_rate" :value="'$' + userHourlyRate" />
+                      <input
+                        type="text"
+                        disabled
+                        class="rate-input text"
+                        name="hourly_rate"
+                        :value="'$' + userHourlyRate"
+                      />
                       <div class="operators">x</div>
                     </v-col>
                     <v-col cols="4" class="text-center"
@@ -103,7 +109,7 @@
                           paymentTypes[activePaymentTypeIndex] == 'hour' ? 'day' : paymentTypes[activePaymentTypeIndex]
                         }}
                       </div>
-                      <input type="text" class="rate-input text" name="no_of_week" :value="totalHours" />
+                      <input type="text" disabled class="rate-input text" name="no_of_week" :value="totalHours" />
                       <div class="operators">=</div>
                     </v-col>
                     <v-col cols="4" class="text-center"
@@ -111,7 +117,13 @@
                         <span class="text-capitalize">{{ paymentTypes[activePaymentTypeIndex] }}ly</span> payment
                       </div>
 
-                      <input type="text" class="rate-input total" name="weekly-rate" :value="'$' + paymentTotal" />
+                      <input
+                        type="text"
+                        disabled
+                        class="rate-input total"
+                        name="weekly-rate"
+                        :value="'$' + paymentTotal"
+                      />
                     </v-col>
                   </v-row>
                 </v-container>

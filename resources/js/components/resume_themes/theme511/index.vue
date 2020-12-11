@@ -187,12 +187,7 @@
         </v-col>
         <!-- Payment-dialog-box   -->
 
-        <HireModal
-          @modalClosed="hireMeModal = false"
-          :hireMeModal.sync="hireMeModal"
-          :closeHireMeModal="closePayment"
-          :user="currentUser"
-        />
+        <HireModal :hireMeModal="hireMeModal" :closeHireMeModal="closeHireMeModal" :user="currentUser" />
         <!-- Payment-dialog-box   -->
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4 mainheight">
           <v-container fluid>
@@ -357,7 +352,7 @@ export default {
     closeDialog() {
       this.messageToggle = false;
     },
-    closePayment() {
+    closeHireMeModal() {
       this.hireMeModal = false;
     },
 
