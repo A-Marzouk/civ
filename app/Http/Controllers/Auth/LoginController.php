@@ -56,13 +56,15 @@ class LoginController extends Controller
             ->where('email', $request->only($this->username()))
             ->first();
 
-        if($user->trashed() &&  \Illuminate\Support\Facades\Hash::check($request->password, $user->password)){
-            $user->restore();
-            return $this->sendLoginResponse($request);
+        if($user){
+            if($user->trashed() &&  \Illuminate\Support\Facades\Hash::check($request->password, $user->password)){
+                $user->restore();
+                return $this->sendLoginResponse($request);
+            }
         }
 
-        // normal attempt:
 
+        // normal attempt:
         if ($this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
         }

@@ -19,11 +19,9 @@
                                           class="resume-builder__input input-margin input-margin-3 ct-fix-input"
                                           label="First name"
                                           v-model="personalInfo.first_name"
-                                          :outlined="true"
                                           :class="{'resume-builder__input--disabled': false}"
                                           :error="!!errors.name"
                                           :error-messages="errors.name"
-                                          :disabled="false"
                             ></v-text-field>
 
                             <div class="email-input">
@@ -33,7 +31,6 @@
                                         v-model="accountData.email"
                                         persistent-hint
                                         :outlined="true"
-                                        :class="{'resume-builder__input--disabled': false}"
                                         :error="!!errors.email"
                                         :error-messages="errors.email"
                                         :disabled="canEditEmail()"
@@ -54,7 +51,6 @@
                                     v-model="accountData.password"
                                     placeholder="••••••••••"
                                     :outlined="true"
-                                    :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.password"
                                     :error-messages="errors.password"
                             ></v-text-field>
@@ -66,7 +62,6 @@
                                     v-model="accountData.password_confirmation"
                                     placeholder="••••••••••"
                                     :outlined="true"
-                                    :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.password"
                                     :error-messages="errors.password"
                             ></v-text-field>
@@ -90,7 +85,7 @@
                             <v-text-field
                                     class="resume-builder__input top-input-margin url mt-n6"
                                     v-model="accountData.username"
-                                    disabled
+                                    :disabled="accountData.username === '123workforce'"
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.username"

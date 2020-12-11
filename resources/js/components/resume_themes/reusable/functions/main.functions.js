@@ -26,26 +26,34 @@ export default {
             }
             return "";
         },
-        availableNext() {
-            if (this.available == 2) {
-                this.available = 0;
-            } else this.available++;
-        },
-        availablePrev() {
-            if (this.available == 0) {
-                this.available = 0;
-            } else this.available--;
-        },
         paymentInfoNext() {
-            if (this.paymentInfo == 2) {
-                this.paymentInfo = 0;
-            } else this.paymentInfo++;
-        },
-        paymentInfoPrev() {
-            if (this.paymentInfo == 0) {
-                this.paymentInfo = 0;
-            } else this.paymentInfo--;
-        },
+            let paymentList = this.filterPaymentInfoList;
+            this.paymentInfo++;
+            if (this.paymentInfo >= paymentList.length) {
+              this.paymentInfo = 0;
+            }
+          },
+          availableInfoNext() {
+            let availableList = this.filterAvailabilityInfoList;
+            this.available++;
+            if (this.available >= availableList.length) {
+              this.available = 0;
+            }
+          },
+          paymentInfoPrev() {
+            let paymentList = this.filterPaymentInfoList;
+            this.paymentInfo--;
+            if (this.paymentInfo <= 0) {
+              this.paymentInfo = 0;
+            }
+          },
+          availableInfoPrev() {
+            let availableList = this.filterAvailabilityInfoList;
+            this.available--;
+            if (this.available <= 0) {
+              this.available = 0;
+            }
+          },
         getFirstActiveTabTitle() {
             let title = "";
             this.currentUser.tabs.forEach((tab) => {
@@ -87,6 +95,12 @@ export default {
         },
     },
     computed: {
+        filterPaymentInfoList() {
+            return this.currentUser.payment_info.filter(a => a.is_public);
+          },
+          filterAvailabilityInfoList() {
+            return this.currentUser.availability_info.filter(a => a.is_public);
+          },
         defaultTabs() {
             return this.$store.state.defaultTabs;
         },

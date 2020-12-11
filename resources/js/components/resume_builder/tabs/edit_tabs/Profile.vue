@@ -27,10 +27,9 @@
                     <v-text-field
                             class="resume-builder__input  with-inner top-input-margin url min-height"  style="margin-top: -21px;"
                             v-model="usernameCurrentValue"
-                            disabled
+                            :disabled="usernameCurrentValue === '123workforce'"
                             @blur="updateUsername"
                             :outlined="true"
-                            :class="{'resume-builder__input--disabled': false}"
                             :error="!!errors.username"
                             :error-messages="errors.username"
                     >
@@ -43,7 +42,6 @@
                 <div class="profile-input-field input-field--firstname input-field--group-1">
                     <v-text-field
                             class="resume-builder__input civie-input "
-                            :class="{'resume-builder__input--disabled': false}"
                             label="First Name"
                             v-model="personalInfo.first_name"
                             :error="!!errors.first_name"
@@ -59,7 +57,6 @@
                             class="resume-builder__input civie-input "
                             label="Last Name"
                             v-model="personalInfo.last_name"
-                            :class="{'resume-builder__input--disabled': false}"
                             :error="!!errors.last_name"
                             :error-messages="errors.last_name"
                             @blur="applyEdit()"

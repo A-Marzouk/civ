@@ -1679,14 +1679,19 @@ export default {
         this.available = 0;
       }
     },
-
     paymentInfoPrev() {
       let paymentList = this.filterPaymentInfoList;
       this.paymentInfo--;
+      if (this.paymentInfo <= 0) {
+        this.paymentInfo = 0;
+      }
     },
     availableInfoPrev() {
       let availableList = this.filterAvailabilityInfoList;
       this.available--;
+      if (this.available <= 0) {
+        this.available = 0;
+      }
     },
 
     filterAudio(audios) {
