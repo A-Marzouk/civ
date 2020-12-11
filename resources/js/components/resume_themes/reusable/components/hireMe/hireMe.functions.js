@@ -14,9 +14,9 @@ export default {
        
       data() {
         return {
-          select: { number: 'Ongoing' },
+          select: { number: 'ongoing' },
           totalNumber: [
-            { number: 'Ongoing' },
+            { number: 'ongoing' },
             { number: '1' },
             { number: '2' },
             { number: '3' },
@@ -83,7 +83,7 @@ export default {
           if (value==1) {
             this.unitHours = 20;
             // calculate total number
-            this.totalNumber = [{ number: 'Ongoing' }];
+            this.totalNumber = [{ number: 'ongoing' }];
             for (let index = 1; index < 7; index++) {
               const element ={number:`${index}`};
               this.totalNumber.push(element)
@@ -92,7 +92,7 @@ export default {
           if (value==2) {
             this.unitHours = 7;
              // calculate total number
-            this.totalNumber = [{ number: 'Ongoing' }];
+            this.totalNumber = [{ number: 'ongoing' }];
             for (let index = 1; index < 13; index++) {
               const element ={number:`${index}`};
               this.totalNumber.push(element)

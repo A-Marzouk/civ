@@ -145,7 +145,7 @@ class StripeForClientsController extends Controller
         StripeSubscriptionSchedule::create([
             'customer' =>  $customer->id,
             'start_date' => $startDate,
-            'end_behavior' => 'cancel',
+            'end_behavior' =>  $request->payment_info['iterations'] === 'ongoing' ? 'release' : 'cancel',
             'phases' => [
                 [
                     'items' => [
@@ -154,7 +154,7 @@ class StripeForClientsController extends Controller
                             'quantity' => 1,
                         ],
                     ],
-                    'iterations' => $request->payment_info['iterations'],
+                    'iterations' => $request->payment_info['iterations'] === 'ongoing' ? null : $request->payment_info['iterations'],
                 ],
             ],
         ]);
