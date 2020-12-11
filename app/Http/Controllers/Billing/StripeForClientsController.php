@@ -52,32 +52,30 @@ class StripeForClientsController extends Controller
     {
         $product = $this->createNewProduct('Hire ' . $request->freelancer['default_resume_link']['title'] . ' For ' . $request->payment_info['numberOfHours'] . ' Hours.');
 
-        $nowPrice = $this->createOneTimePriceForNowPayment($product->id, $request);
-
-        $session = StripeSession::create([
-            'customer' => $customer->id,
-            'mode' => 'payment',
-            'payment_method_types' => ['card'],
-            'line_items' => [
-                [
-                    'price' => $nowPrice->id,
-                    'quantity' => 1,
-                ]
-            ],
-            'success_url' => url('/') . '/hire-freelancer/success',
-            'cancel_url' =>  url('/') . '/hire-freelancer/cancel',
-        ]);
-
-        Session::put('hire_session_id',  $session->id);
-
-        if($request->percentage < 100){
-            $laterPrice = $this->createOneTimePriceForLaterPayment($product->id, $request);
+        if($request->payment_info['payNow'] == 'true'){
+            // pay now
+            $price = $this->createOneTimePriceForNowPayment($product->id, $request);
+            $session = StripeSession::create([
+                'customer' => $customer->id,
+                'mode' => 'payment',
+                'payment_method_types' => ['card'],
+                'line_items' => [
+                    [
+                        'price' => $price->id,
+                        'quantity' => 1,
+                    ]
+                ],
+                'success_url' => url('/') . '/hire-freelancer/success',
+                'cancel_url' =>  url('/') . '/hire-freelancer/cancel',
+            ]);
+        }else{
+            // pay later with an invoice.
+            $price = $this->createOneTimePriceForLaterPayment($product->id, $request);
 
             StripeInvoiceItem::create([
                 'customer' => $customer->id,
-                'price' => $laterPrice->id,
+                'price' => $price->id,
             ]);
-
             StripeInvoice::create([
                 'customer' => $customer->id,
                 'auto_advance' => true,
@@ -85,7 +83,17 @@ class StripeForClientsController extends Controller
                 'description' => 'Second part of payment | Hiring freelancer with civ.ie',
                 'days_until_due' => 7
             ]);
+
+            $session = StripeSession::create([
+                'customer' => $customer->id,
+                'mode' => 'setup',
+                'payment_method_types' => ['card'],
+                'success_url' => url('/') . '/hire-freelancer/success',
+                'cancel_url' =>  url('/') . '/hire-freelancer/cancel',
+            ]);
         }
+
+        Session::put('hire_session_id',  $session->id);
 
         return $session->id ;
     }
@@ -117,11 +125,15 @@ class StripeForClientsController extends Controller
             ' For ' . $request->payment_info['numberOfHours'] . ' Hours | ' .
             $request->payment_info['iterations'] . ' '
             . $request->payment_info['interval'] . 's');
+        if($request->payment_info['payNow'] == 'true'){
+            $subscriptionPrice = $this->createPriceForSubscription($product->id, $request);
+            $startDate = 'now';
+        }else{
+            $subscriptionPrice = $this->createPriceForSubscriptionLaterPayment($product->id, $request);
+            $date = new Carbon($request->payment_info['toPayLaterDate']);
+            $startDate = $date->timestamp;
+        }
 
-        $nowSubscriptionPrice = $this->createPriceForSubscription($product->id, $request);
-
-
-        // set up payment method
         $session = StripeSession::create([
             'customer' => $customer->id,
             'mode' => 'setup',
@@ -129,52 +141,23 @@ class StripeForClientsController extends Controller
             'success_url' => url('/') . '/hire-freelancer/success',
             'cancel_url' =>  url('/') . '/hire-freelancer/cancel',
         ]);
-
         Session::put('hire_sub_session_id',  $session->id);
-
-
-        // create now subscription:
         StripeSubscriptionSchedule::create([
             'customer' =>  $customer->id,
-            'start_date' => 'now',
-            'end_behavior' => 'cancel',
+            'start_date' => $startDate,
+            'end_behavior' =>  $request->payment_info['iterations'] === 'ongoing' ? 'release' : 'cancel',
             'phases' => [
                 [
                     'items' => [
                         [
-                            'price' => $nowSubscriptionPrice->id,
+                            'price' => $subscriptionPrice->id,
                             'quantity' => 1,
                         ],
                     ],
-                    'iterations' => $request->payment_info['iterations'],
+                    'iterations' => $request->payment_info['iterations'] === 'ongoing' ? null : $request->payment_info['iterations'],
                 ],
             ],
         ]);
-
-        if($request->percentage < 100){
-
-            $laterSubscriptionPrice = $this->createPriceForSubscriptionLaterPayment($product->id, $request);
-
-            $startDate = new Carbon($request->payment_info['toPayLaterDate']);
-
-            StripeSubscriptionSchedule::create([
-                'customer' =>  $customer->id,
-                'start_date' => $startDate->timestamp,
-                'end_behavior' => 'cancel',
-                'phases' => [
-                    [
-                        'items' => [
-                            [
-                                'price' => $laterSubscriptionPrice->id,
-                                'quantity' => 1,
-                            ],
-                        ],
-                        'iterations' => $request->payment_info['iterations'],
-                    ],
-                ],
-            ]);
-
-        }
 
         return $session->id ;
     }

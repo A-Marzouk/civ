@@ -259,7 +259,7 @@
           <v-col cols="12" md="10">
             <v-card flat color="transparent" tile>
               <v-card-text>
-                <v-tabs v-model="mainDataTab" color="black" centered show-arrows hide-slider>
+                <v-tabs v-model="mainDataTab" color="black" centered grow show-arrows hide-slider>
                   <template v-for="item in currentUser.tabs">
                     <v-tab
                       :key="item.title"
@@ -957,7 +957,6 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-    console.log(this.currentUser);
 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
