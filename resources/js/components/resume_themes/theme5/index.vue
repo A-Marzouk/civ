@@ -1327,8 +1327,8 @@
   }
 
   .achievement_img {
-    height: 8.1rem;
-    width: auto;
+    height: 8rem;
+    width: 10rem;
     margin-right: 2rem;
   }
 

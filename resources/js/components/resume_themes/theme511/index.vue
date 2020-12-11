@@ -358,7 +358,6 @@ export default {
       this.messageToggle = false;
     },
     closePayment() {
-      console.log('closePayment');
       this.hireMeModal = false;
     },
 

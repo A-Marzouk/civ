@@ -211,17 +211,12 @@
         <!-- rate frequency for mobile -->
       </div>
     </header>
-    <!--<HireModal-->
-    <!--:hireMeModal.sync="hireMeModal"-->
-    <!--:closeHireMeModal="closeHireMeModal"-->
-    <!--/>-->
-
-    <updated-hire-modal
+    <HireModal
       @modalClosed="hireMeModal = false"
       :hireMeModal.sync="hireMeModal"
-      :closeHireMeModal="closeHireMeModal"
+      :closeHireMeModal="closePayment"
       :user="currentUser"
-    ></updated-hire-modal>
+    />
     <ChatModal :chatToggle="chatToggle" :user="user" :closeChat="closeChat" />
     <TabsNavigation :currentUser="currentUser" @tab-changed="tabChanged" :builderCurrentTabTitle="activeTab" />
 
@@ -233,8 +228,8 @@
 import TabsNavigation from './components/TabsNavigation';
 import TabsContent from './components/TabsContent';
 import Avatar from './components/header/Avatar';
-import HireModal from './components/hireModal/HireModal';
-import UpdatedHireModal from '../includes/HireMeModal';
+import HireModal from '../reusable/components/hireMe/hireMe';
+
 import ChatModal from './components/chatModal/ChatModal';
 
 export default {
@@ -245,8 +240,7 @@ export default {
     TabsContent,
     Avatar,
     HireModal,
-    ChatModal,
-    'updated-hire-modal': UpdatedHireModal
+    ChatModal
   },
   props: ['user', 'is_preview', 'builderCurrentTabTitle'],
   data() {
@@ -256,7 +250,6 @@ export default {
       hireMeModal: false,
       chatToggle: false,
       isOpen: false,
-
       available: 0,
       paymentInfo: 0
     };
@@ -273,6 +266,9 @@ export default {
   },
 
   methods: {
+    closePayment() {
+      this.hireMeModal = false;
+    },
     findPreference(title) {
       if (!this.currentUser) {
         return;
