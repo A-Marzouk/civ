@@ -37,7 +37,7 @@
                     <template v-for="item in currentUser.projects">
                       <ImagesCarouselModal :images="item.images" :key="item.id">
                         <v-card
-                          class="mb-2 card-portfolio"
+                          class="mb-2 card-portfolio mr-auto"
                           align="left"
                           flat
                           color="transparent"
