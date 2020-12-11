@@ -104,7 +104,6 @@ export default {
         weekdayCounter:function (value) {
           let startOfWeek = moment().add(value,'d').startOf('isoWeek');
           var endOfWeek = moment().add(value,'d').endOf('isoWeek');
-          console.log("added days", startOfWeek)
           var days = [];
           var day = startOfWeek;
           while (day <= endOfWeek) {
@@ -112,6 +111,7 @@ export default {
               obj: day.format('YYYY-MM-DD'),
               weekday: day.format('ddd'),
               date: day.format('DD'),
+              month: day.format('MMMM, YYYY')
             }
               days.push(dayObj);
               day = day.clone().add(1, 'd');
@@ -206,7 +206,7 @@ export default {
             .format('YYYY-MM-DD');
         }
       },
-      mounted(){
+      created(){
         var startOfWeek = moment().startOf('isoWeek');
         var endOfWeek = moment().endOf('isoWeek');
         var days = [];
@@ -216,6 +216,7 @@ export default {
             obj: day.format('YYYY-MM-DD'),
             weekday: day.format('ddd'),
             date: day.format('DD'),
+            month: day.format('MMMM, YYYY')
           }
             days.push(dayObj);
             day = day.clone().add(1, 'd');

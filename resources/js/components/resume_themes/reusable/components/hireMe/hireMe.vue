@@ -154,7 +154,7 @@
               <v-col cols="12" v-show="isDatePickerOpened">
                 <v-row dense>
                   <v-col cols="12">
-                    <v-menu bottom origin="center center" transition="scale-transition">
+                    <!-- <v-menu bottom origin="center center" transition="scale-transition">
                       <template v-slot:activator="{ on, attrs }">
                         <v-btn color="#001D68" dark v-bind="attrs" v-on="on" text class="px-0">
                           {{ getArrayOfMonths[0] }} <v-icon right>mdi-calendar-blank</v-icon>
@@ -166,7 +166,11 @@
                           <v-list-item-title>{{ item }}</v-list-item-title>
                         </v-list-item>
                       </v-list>
-                    </v-menu>
+                    </v-menu> -->
+                    <v-btn color="#001D68" dark text class="px-0">
+                      {{ currentWeekDays[6].month }}
+                      <v-icon right>mdi-calendar-blank</v-icon>
+                    </v-btn>
                   </v-col>
                   <v-col cols="auto">
                     <v-btn fab width="18" height="18" class="elevation" color="white"
