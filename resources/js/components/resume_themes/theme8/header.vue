@@ -447,7 +447,7 @@ export default {
     },
 
     created() {
-        console.log(this.currentUser);
+
     }
 };
 </script>
