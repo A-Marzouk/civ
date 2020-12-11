@@ -205,7 +205,7 @@
       font-family: Proxima Nova;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: #687494;
+      cursor: pointer;
       .weekday{
         font-size: 12px;
         line-height: 15px;
@@ -214,5 +214,12 @@
         font-size: 18px;
         line-height: 22px;
       }
+    }
+  .active{
+    color: #001CE2 ;
   }
+  .inactive{
+    color:#687494;
+  }
+  
 }
