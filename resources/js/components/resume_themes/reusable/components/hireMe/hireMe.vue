@@ -235,13 +235,19 @@
                     :rules="[rules.required]"
                     label="Name"
                     type="text"
+                    :error="!!errors.name"
+                    :error-messages="errors.name"
                     single-line
+                    v-model="client.name"
                     color="#001CE2"
                   ></v-text-field>
                   <v-text-field
                     :rules="[rules.required, rules.email]"
                     label="Email"
                     type="email"
+                    :error="!!errors.email"
+                    :error-messages="errors.email"
+                    v-model="client.email"
                     single-line
                     color="#001CE2"
                   ></v-text-field>
@@ -275,7 +281,7 @@
                 ></v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="3">
-                  <v-btn dark depressed color="#001CE2" height="50" class="text-captalize"> Confirm</v-btn>
+                  <v-btn dark depressed color="#001CE2" height="50" class="text-captalize" @click="pay">{{ loading ? 'Redirecting..' : 'Confirm'}}</v-btn>
                 </v-col>
               </v-row>
             </v-col>

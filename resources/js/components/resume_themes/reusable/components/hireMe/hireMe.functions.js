@@ -24,12 +24,12 @@ export default {
             { number: '5' },
             { number: '6' },
           ],
-         
-          currentActiveMethod: null,
+          loading: false,
+          currentActiveMethod: 'stripe',
           isModalOpened: false,
           selectHours:1,
           totalHours:null,
-          payToday:false,
+          payToday:true,
           weekdayCounter:0,
           dateSelected:null,
           currentWeekDays:[],
@@ -48,8 +48,7 @@ export default {
           isDateChanged: false,
           client: {
             email: '',
-            name: '',
-            phone: ''
+            name: ''
           },
           rules: {
             required: value => !!value || 'Required.',
@@ -161,6 +160,72 @@ export default {
           this.isDatePickerOpened = false;
           this.isDateChanged = true;
         },
+
+        // paying methods:
+        pay() {
+          this.loading = true ;
+          if (this.validateInputs()) {
+            this.paymentData = {
+              client: this.client,
+              freelancer: this.user,
+              payment_info: {
+                numberOfHours: this.totalHours,
+                totalAmount: this.paymentTotal,
+                // percentage: this.percentage,
+                toPayNowAmount: this.paymentTotal,
+                toPayLaterAmount: this.paymentTotal,
+                payNow: this.payToday ? 'true' : 'false',
+                toPayLaterDate: this.dateSelected,
+                iterations: this.select.number,
+                isRecurring: this.activePaymentTypeIndex === 1 || this.activePaymentTypeIndex === 2,
+                interval: this.activePaymentTypeIndex === 2 ? 'week' : 'month',
+              }
+            };
+
+            let paymentUrl = this.getPaymentLink();
+
+            axios.post(paymentUrl, this.paymentData)
+                .then( (response) => {
+                  this.loading = false ;
+                  window.location = response.data.url;
+                })
+                .catch( (error) => {
+                  this.loading = false ;
+                  console.log(error)
+                });
+          }else{
+            this.loading = false ;
+          }
+
+
+        },
+        validateInputs() {
+          let isValid = true;
+          this.errors = {};
+
+          if (this.client.name.length < 2 || this.client.name.length > 200) {
+            isValid = false;
+            this.errors.name = 'Name should be at least 2 characters';
+          }
+          if (!this.validateEmail(this.client.email)) {
+            isValid = false;
+            this.errors.email = 'Email should be a valid format';
+          }
+
+          return isValid;
+
+        },
+        validateEmail(email) {
+          const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(String(email).toLowerCase());
+        },
+        getPaymentLink(){
+          if(this.currentActiveMethod === 'stripe'){
+            return '/custom-stripe-payment';
+          }
+          return '/custom-paypal-payment';
+        },
+
       },
       computed: {
         paymentTotal(){
