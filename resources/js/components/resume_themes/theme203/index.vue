@@ -401,7 +401,7 @@
                 <!-- .......................Portfolio.................................. -->
                 <!-- ...................Tab Item Work............................. -->
                 <v-tab-item value="work_experience" key="work_experience">
-                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto">
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
                     <div class="watermark-text text-center">Work</div>
                     <v-card color="transparent" tile flat>
                       <v-card-text class>
@@ -513,55 +513,57 @@
 
                 <!-- ...................Tab Item Skills............................. -->
                 <v-tab-item value="skills" key="skills">
-                  <div class="watermark-text text-center">Skills</div>
-                  <v-card color="transparent" tile flat>
-                    <v-row align="center">
-                      <template v-for="skill in currentUser.skills">
-                        <v-col
-                          cols="12"
-                          sm="12"
-                          md="12"
-                          lg="6"
-                          xl="6"
-                          class="mb-12"
-                          :key="skill.id"
-                          v-show="skill.is_public"
-                        >
-                          <v-card flat color="transparent" tile class="mx-auto">
-                            <v-card-text>
-                              <v-list-item>
-                                <v-list-item-avatar class="skill-circle mr-n1 mt-sm-2" style="z-index: 1">
-                                  <span>{{ skillSubString(skill.title) }}</span>
-                                </v-list-item-avatar>
-                                <v-list-item-content class="mt-n6">
-                                  <v-list-item-subtitle>
-                                    <v-row no-gutters>
-                                      <v-col cols="6" class="skill-title-text">
-                                        <span class="ml-2">
-                                          {{ skill.title }}
-                                        </span>
-                                      </v-col>
-                                      <v-col cols="6" align="right" class="skill-title-text"
-                                        >{{ skill.percentage }}
-                                      </v-col>
-                                    </v-row>
-                                  </v-list-item-subtitle>
-                                  <v-list-item-subtitle>
-                                    <v-progress-linear
-                                      color="#FCD259"
-                                      height="12"
-                                      rounded
-                                      :value="skill.percentage"
-                                    ></v-progress-linear>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                            </v-card-text>
-                          </v-card>
-                        </v-col>
-                      </template>
-                    </v-row>
-                  </v-card>
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
+                    <div class="watermark-text text-center">Skills</div>
+                    <v-card color="transparent" tile flat>
+                      <v-row align="center">
+                        <template v-for="skill in currentUser.skills">
+                          <v-col
+                            cols="12"
+                            sm="12"
+                            md="12"
+                            lg="6"
+                            xl="6"
+                            class="mb-12"
+                            :key="skill.id"
+                            v-show="skill.is_public"
+                          >
+                            <v-card flat color="transparent" tile class="mx-auto">
+                              <v-card-text>
+                                <v-list-item>
+                                  <v-list-item-avatar class="skill-circle mr-n1 mt-sm-2" style="z-index: 1">
+                                    <span>{{ skillSubString(skill.title) }}</span>
+                                  </v-list-item-avatar>
+                                  <v-list-item-content class="mt-n6">
+                                    <v-list-item-subtitle>
+                                      <v-row no-gutters>
+                                        <v-col cols="6" class="skill-title-text">
+                                          <span class="ml-2">
+                                            {{ skill.title }}
+                                          </span>
+                                        </v-col>
+                                        <v-col cols="6" align="right" class="skill-title-text"
+                                          >{{ skill.percentage }}
+                                        </v-col>
+                                      </v-row>
+                                    </v-list-item-subtitle>
+                                    <v-list-item-subtitle>
+                                      <v-progress-linear
+                                        color="#FCD259"
+                                        height="12"
+                                        rounded
+                                        :value="skill.percentage"
+                                      ></v-progress-linear>
+                                    </v-list-item-subtitle>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-card-text>
+                            </v-card>
+                          </v-col>
+                        </template>
+                      </v-row>
+                    </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!--................... Tab item Skills............................... -->
 
