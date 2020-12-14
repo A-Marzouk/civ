@@ -75,6 +75,7 @@
                         :max="100"
                         :min="20"
                         v-model="selectHours"
+                        @click="initial = false"
                       ></v-slider>
 
                       <div class="perMonthNumber">
@@ -115,7 +116,7 @@
                           paymentTypes[activePaymentTypeIndex] == 'hour' ? 'day' : paymentTypes[activePaymentTypeIndex]
                         }}
                       </div>
-                      <input type="text" disabled class="rate-input text" name="no_of_week" :value="totalHours" />
+                      <input type="text" disabled class="rate-input text" name="no_of_week" :value="getTotalHours()" />
                     </v-col>
                     <v-col cols="12" sm="auto" class="text-center">
                       <div class="operators">=</div>
