@@ -569,29 +569,39 @@
 
                 <!-- ...... Tab item hobbies ..... -->
                 <v-tab-item value="hobbies" key="hobbies">
-                  <div class="watermark-text text-center">Hobbies</div>
-                  <v-card color="transparent" tile flat>
-                    <v-container ma-0 pa-0 fluid style="width: 100%">
-                      <v-row align="center">
-                        <template v-for="(hobby, index) in currentUser.hobbies">
-                          <v-col lg="4" md="6" sm="6" cols="6" class="mb-5" :key="index" v-show="hobby.is_public == 1">
-                            <v-list-item>
-                              <v-list-item-avatar class="hobbies-avatar">
-                                <img src="/images/resume_themes/theme203/icons/hobby.svg" alt="hobby icon" />
-                              </v-list-item-avatar>
-                              <v-list-item-content>
-                                <v-list-item-title class="hobby-title ml-xl-5">
-                                  <v-card flat color="transparent">
-                                    {{ hobby.title }}
-                                  </v-card>
-                                </v-list-item-title>
-                              </v-list-item-content>
-                            </v-list-item>
-                          </v-col>
-                        </template>
-                      </v-row>
-                    </v-container>
-                  </v-card>
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
+                    <div class="watermark-text text-center">Hobbies</div>
+                    <v-card color="transparent" tile flat>
+                      <v-container ma-0 pa-0 fluid style="width: 100%">
+                        <v-row align="center">
+                          <template v-for="(hobby, index) in currentUser.hobbies">
+                            <v-col
+                              lg="4"
+                              md="6"
+                              sm="6"
+                              cols="6"
+                              class="mb-5"
+                              :key="index"
+                              v-show="hobby.is_public == 1"
+                            >
+                              <v-list-item>
+                                <v-list-item-avatar class="hobbies-avatar">
+                                  <img src="/images/resume_themes/theme203/icons/hobby.svg" alt="hobby icon" />
+                                </v-list-item-avatar>
+                                <v-list-item-content>
+                                  <v-list-item-title class="hobby-title ml-xl-5">
+                                    <v-card flat color="transparent">
+                                      {{ hobby.title }}
+                                    </v-card>
+                                  </v-list-item-title>
+                                </v-list-item-content>
+                              </v-list-item>
+                            </v-col>
+                          </template>
+                        </v-row>
+                      </v-container>
+                    </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!--  tab item hobbies  -->
                 <!-- ...... Tab item achievement ..... -->
