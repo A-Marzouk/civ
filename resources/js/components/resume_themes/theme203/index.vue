@@ -408,7 +408,15 @@
                         <v-container fluid ma-0 pa-0 style="width: 100%">
                           <v-row>
                             <template v-for="(work, index) in currentUser.work_experience">
-                              <v-col cols="12" sm="12" md="12" lg="6" class="mb-12" :key="index" v-show="work.is_public == 1">
+                              <v-col
+                                cols="12"
+                                sm="12"
+                                md="12"
+                                lg="6"
+                                class="mb-12"
+                                :key="index"
+                                v-show="work.is_public == 1"
+                              >
                                 <v-card flat color="transparent" tile>
                                   <v-list-item three-line>
                                     <v-list-item-icon>
@@ -447,50 +455,59 @@
 
                 <!-- ...................Tab Item Education............................. -->
                 <v-tab-item value="education" key="education">
-                  <div class="watermark-text text-center">Education</div>
-                  <v-card color="transparent" tile flat>
-                    <v-container ma-0 pa-0 fluid style="width: 100%">
-                      <v-row>
-                        <template v-for="(education, index) in currentUser.education">
-                          <v-col cols="12" sm="12" md="6" class="mb-12" :key="index" v-show="education.is_public == 1">
-                            <v-card flat color="transparent" tile>
-                              <v-list-item three-line>
-                                <v-list-item-icon>
-                                  <img class="work-icon" src="/images/resume_themes/theme203/images/ellipse.png" />
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                  <v-list-item-title class="custom-work-title">
-                                    <v-card flat color="transparent" tile>
-                                      {{ education.university_name }}
-                                    </v-card>
-                                  </v-list-item-title>
-                                  <v-list-item-subtitle class="custom-education-subtitle">
-                                    <v-card flat color="transparent" tile style="color: #fbd76d">
-                                      <div class="d-flex flex-column">
-                                        {{ education.degree_title }},
-                                        <span class="education-date mt-2">
-                                          {{ education.date_from }} -
-                                          <span v-if="education.present == true">Present</span>
-                                          <span v-else>
-                                            {{ education.date_to }}
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
+                    <div class="watermark-text text-center">Education</div>
+                    <v-card color="transparent" tile flat>
+                      <v-container ma-0 pa-0 fluid style="width: 100%">
+                        <v-row>
+                          <template v-for="(education, index) in currentUser.education">
+                            <v-col
+                              cols="12"
+                              sm="12"
+                              md="6"
+                              class="mb-12"
+                              :key="index"
+                              v-show="education.is_public == 1"
+                            >
+                              <v-card flat color="transparent" tile>
+                                <v-list-item three-line>
+                                  <v-list-item-icon>
+                                    <img class="work-icon" src="/images/resume_themes/theme203/images/ellipse.png" />
+                                  </v-list-item-icon>
+                                  <v-list-item-content>
+                                    <v-list-item-title class="custom-work-title">
+                                      <v-card flat color="transparent" tile>
+                                        {{ education.university_name }}
+                                      </v-card>
+                                    </v-list-item-title>
+                                    <v-list-item-subtitle class="custom-education-subtitle">
+                                      <v-card flat color="transparent" tile style="color: #fbd76d">
+                                        <div class="d-flex flex-column">
+                                          {{ education.degree_title }},
+                                          <span class="education-date mt-2">
+                                            {{ education.date_from }} -
+                                            <span v-if="education.present == true">Present</span>
+                                            <span v-else>
+                                              {{ education.date_to }}
+                                            </span>
                                           </span>
-                                        </span>
-                                      </div>
-                                    </v-card>
-                                  </v-list-item-subtitle>
-                                  <v-list-item-subtitle class="mt-6">
-                                    <v-card color="transparent" tile flat class="custom-education-details"
-                                      >{{ education.institution_type }}
-                                    </v-card>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                            </v-card>
-                          </v-col>
-                        </template>
-                      </v-row>
-                    </v-container>
-                  </v-card>
+                                        </div>
+                                      </v-card>
+                                    </v-list-item-subtitle>
+                                    <v-list-item-subtitle class="mt-6">
+                                      <v-card color="transparent" tile flat class="custom-education-details"
+                                        >{{ education.institution_type }}
+                                      </v-card>
+                                    </v-list-item-subtitle>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-card>
+                            </v-col>
+                          </template>
+                        </v-row>
+                      </v-container>
+                    </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!--................... Tab item Education............................... -->
 
