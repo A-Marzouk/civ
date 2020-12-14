@@ -71,6 +71,7 @@
                         :max="100"
                         :min="20"
                         v-model="selectHours"
+                        @click="initial = false"
                       ></v-slider>
 
                       <div class="perMonthNumber">
@@ -109,7 +110,7 @@
                           paymentTypes[activePaymentTypeIndex] == 'hour' ? 'day' : paymentTypes[activePaymentTypeIndex]
                         }}
                       </div>
-                      <input type="text" disabled class="rate-input text" name="no_of_week" :value="totalHours" />
+                      <input type="text" disabled class="rate-input text" name="no_of_week" :value="getTotalHours()" />
                       <div class="operators">=</div>
                     </v-col>
                     <v-col cols="4" class="text-center"
@@ -167,19 +168,6 @@
               <v-col cols="12" v-show="isDatePickerOpened" v-if="currentActiveMethod !== 'paypal'">
                 <v-row dense>
                   <v-col cols="12">
-                    <!-- <v-menu bottom origin="center center" transition="scale-transition">
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn color="#001D68" dark v-bind="attrs" v-on="on" text class="px-0">
-                          {{ getArrayOfMonths[0] }} <v-icon right>mdi-calendar-blank</v-icon>
-                        </v-btn>
-                      </template>
-
-                      <v-list>
-                        <v-list-item v-for="(item, i) in getArrayOfMonths" :key="i">
-                          <v-list-item-title>{{ item }}</v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu> -->
                     <v-btn color="#001D68" dark text class="px-0">
                       {{ currentWeekDays[6].month }}
                       <v-icon right>mdi-calendar-blank</v-icon>

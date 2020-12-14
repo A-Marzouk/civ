@@ -213,6 +213,7 @@
     </header>
     <HireModal
       @modalClosed="hireMeModal = false"
+      @openModal="hireMeModal = true"
       :hireMeModal.sync="hireMeModal"
       :closeHireMeModal="closePayment"
       :user="currentUser"
