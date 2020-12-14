@@ -164,7 +164,7 @@
                     </v-btn>
                   </v-col>
                   <v-col cols="2">
-                    <div class="or">or</div>
+                    <div class="or" v-if="currentActiveMethod !== 'paypal'">or</div>
                   </v-col>
                   <v-col cols="5">
                     <v-btn
