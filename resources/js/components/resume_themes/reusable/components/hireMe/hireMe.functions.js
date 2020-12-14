@@ -2,7 +2,8 @@ import moment from 'moment';
 export default {
     props: {
         hireMeModal: {
-          type: Boolean
+          type: Boolean,
+          default: true,
         },
         closeHireMeModal: {
           type: Function
@@ -64,14 +65,7 @@ export default {
         };
       },
       watch: {
-        hireMeModal: function(value) {
-          this.isModalOpened = value;
-        },
-        isModalOpened: function(value) {
-          if (!value) {
-            this.$emit('modalClosed');
-          }
-        },
+        
         selectHours:function(value) {
             this.totalHours =  this.hours[(value-20)/20]*this.unitHours;
             
