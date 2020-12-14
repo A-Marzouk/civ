@@ -316,7 +316,14 @@
                   ></v-img
                 ></v-col>
                 <v-col cols="auto" class="flex-fill text-right">
-                  <v-btn dark depressed color="#001CE2" height="42" class="text-captalize" @click="pay">
+                  <v-btn
+                    dark
+                    depressed
+                    color="#001CE2"
+                    height="50"
+                    class="submit-button text-captalize mr-sm-3"
+                    @click="pay"
+                  >
                     {{ loading ? 'Redirecting..' : 'Confirm' }}
                   </v-btn>
                 </v-col>
@@ -346,6 +353,11 @@ export default {
 <style lang="scss">
 .hire-me-modal__main-content {
   font-family: Montserrat, sans-serif;
+  .submit-button {
+    @media screen and (max-width: 425px) {
+      height: 46px !important;
+    }
+  }
 }
 
 .hourSlider {
