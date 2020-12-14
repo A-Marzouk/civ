@@ -213,6 +213,7 @@
     </header>
     <HireModal
       @modalClosed="hireMeModal = false"
+      @openModal="hireMeModal = true"
       :hireMeModal.sync="hireMeModal"
       :closeHireMeModal="closePayment"
       :user="currentUser"
@@ -478,7 +479,7 @@ export default {
   position: absolute;
   top: -100vh;
   right: 0;
-  z-index: 9999;
+  z-index: 99;
   background: #ffffff;
   width: 100%;
   opacity: 0;
