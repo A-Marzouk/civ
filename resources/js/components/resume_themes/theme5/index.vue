@@ -1714,7 +1714,7 @@ export default {
   },
 
   mounted() {
-    this.getLines();
+    //this.getLines();
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
