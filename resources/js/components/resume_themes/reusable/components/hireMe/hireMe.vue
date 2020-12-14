@@ -1,7 +1,7 @@
 <template>
   <div data-app>
     <v-row justify="center">
-      <v-dialog v-model="hireMeModal" persistent max-width="600">
+      <v-dialog v-model="hireMeModal" content-class="m-2" persistent max-width="576">
         <v-card>
           <v-toolbar dark color="#f2f3fd" flat>
             <v-toolbar-title class="main-color pl-4">Booking/ payment</v-toolbar-title>
@@ -11,13 +11,17 @@
             </v-btn>
           </v-toolbar>
           <v-container>
-            <v-row class="px-4">
+            <v-row class="px-md-4">
               <v-col cols="12">
                 <!-- Profile Info -->
                 <v-row dense>
-                  <v-col cols="auto"
-                    ><v-avatar size="100">
-                      <img :src="user.personal_info.profile_pic" :alt="user.personal_info.first_name" /> </v-avatar
+                  <v-col cols="3">
+                    <v-avatar size="100%">
+                      <img
+                        class="user-avatar"
+                        :src="user.personal_info.profile_pic"
+                        :alt="user.personal_info.first_name"
+                      /> </v-avatar
                   ></v-col>
                   <v-col cols="9">
                     <div class="user-name">
@@ -90,9 +94,9 @@
               <!-- Calculate Payment -->
               <v-col cols="12">
                 <v-container class="calculate-payment">
-                  <v-row>
-                    <v-col cols="4" class="text-center">
-                      <div class="rate-label mb-3">Hourly rate</div>
+                  <v-row no-gutters class="align-items-end justify-content-between">
+                    <v-col cols="5" sm="auto" class="text-center">
+                      <div class="rate-label">Hourly rate</div>
                       <input
                         type="text"
                         disabled
@@ -100,20 +104,24 @@
                         name="hourly_rate"
                         :value="'$' + userHourlyRate"
                       />
+                    </v-col>
+                    <v-col cols="2" sm="auto" class="text-center">
                       <div class="operators">x</div>
                     </v-col>
-                    <v-col cols="4" class="text-center"
-                      ><div class="rate-label mb-3">
+                    <v-col cols="5" sm="auto" class="text-center"
+                      ><div class="rate-label">
                         No. of hours/
                         {{
                           paymentTypes[activePaymentTypeIndex] == 'hour' ? 'day' : paymentTypes[activePaymentTypeIndex]
                         }}
                       </div>
                       <input type="text" disabled class="rate-input text" name="no_of_week" :value="totalHours" />
+                    </v-col>
+                    <v-col cols="12" sm="auto" class="text-center">
                       <div class="operators">=</div>
                     </v-col>
-                    <v-col cols="4" class="text-center"
-                      ><div class="rate-label mb-3">
+                    <v-col cols="12" sm="auto" class="text-center"
+                      ><div class="rate-label">
                         <span class="text-capitalize">{{ paymentTypes[activePaymentTypeIndex] }}ly</span> payment
                       </div>
 
@@ -131,36 +139,49 @@
               <!-- Calculate Payment -->
               <div class="divider"></div>
               <!-- Total Payment -->
-              <v-col cols="12" class="total-payment">
-                <v-row no-gutters>
-                  <v-col cols="9">
-                    <div class="total-payment_text pl-6">
-                      Your {{ paymentTypes[activePaymentTypeIndex] }}ly payment will be
-                    </div>
-                  </v-col>
-                  <v-col cols="2">
-                    <div class="total-payment_value pl-3">${{ paymentTotal }}</div>
-                  </v-col>
-                </v-row>
+              <v-col cols="12" class="total-payment mb-2 mb-sm-4">
+                <div class="d-flex align-items-center">
+                  <div class="total-payment_text pl-md-3">
+                    Your {{ paymentTypes[activePaymentTypeIndex] }}ly payment will be
+                  </div>
+                  <div class="total-payment_value pl-2 pl-md-3">${{ paymentTotal }}</div>
+                </div>
               </v-col>
               <!-- Total Payment -->
               <!-- Payment Options -->
-              <v-col cols="12">
-                <v-btn :color="payToday ? '#001D68' : '#F2F3FD'" :dark="payToday" depressed @click="payableToday">
-                  <div class="payment-text" :class="[payToday ? 'white--text' : 'main-color']">Payable today</div>
-                </v-btn>
-                <div class="d-inline-block or px-4">or</div>
-                <v-btn
-                  :color="isDatePickerOpened ? '#001D68' : '#F2F3FD'"
-                  depressed
-                  v-if="currentActiveMethod !== 'paypal'"
-                  @click="pickDateSelected"
-                  :dark="isDatePickerOpened"
-                >
-                  <div class="payment-text" :class="[isDatePickerOpened ? 'white--text' : 'main-color']">
-                    Date picker
-                  </div>
-                </v-btn>
+              <v-col cols="12" sm="10" md="8">
+                <v-row no-gutters class="flex-nowrap ">
+                  <v-col cols="5">
+                    <v-btn
+                      width="100%"
+                      height="42px"
+                      :color="payToday ? '#001D68' : '#F2F3FD'"
+                      :dark="payToday"
+                      depressed
+                      @click="payableToday"
+                    >
+                      <div class="payment-text" :class="[payToday ? 'white--text' : 'main-color']">Payable today</div>
+                    </v-btn>
+                  </v-col>
+                  <v-col cols="2">
+                    <div class="or" v-if="currentActiveMethod !== 'paypal'">or</div>
+                  </v-col>
+                  <v-col cols="5">
+                    <v-btn
+                      width="100%"
+                      height="42px"
+                      :color="isDatePickerOpened ? '#001D68' : '#F2F3FD'"
+                      depressed
+                      v-if="currentActiveMethod !== 'paypal'"
+                      @click="pickDateSelected"
+                      :dark="isDatePickerOpened"
+                    >
+                      <div class="payment-text" :class="[isDatePickerOpened ? 'white--text' : 'main-color']">
+                        Date picker
+                      </div>
+                    </v-btn>
+                  </v-col>
+                </v-row>
               </v-col>
               <!-- Payment Options -->
               <!-- Date Picker -->
@@ -209,9 +230,9 @@
                     <!-- <div>{{ weekdayCounter }}</div> -->
                   </v-col>
                   <v-col cols="auto">
-                    <v-btn fab width="18" height="18" class="elevation" color="white"
-                      ><v-icon small color="#888DB1" @click="increaseCounter">mdi-chevron-right</v-icon></v-btn
-                    >
+                    <v-btn fab width="18" height="18" class="elevation" color="white">
+                      <v-icon small color="#888DB1" @click="increaseCounter">mdi-chevron-right</v-icon>
+                    </v-btn>
                   </v-col>
                 </v-row>
               </v-col>
@@ -221,10 +242,10 @@
             <v-col cols="12">
               <v-row no-gutters v-show="activePaymentTypeIndex != 0">
                 <v-col cols="auto">
-                  <div class="month-numbers">Number of {{ paymentTypes[activePaymentTypeIndex] }}’s -</div>
+                  <div class="month-numbers mr-1">Number of {{ paymentTypes[activePaymentTypeIndex] }}’s -</div>
                 </v-col>
-                <v-col cols="3">
-                  <div style="max-width: 72%">
+                <v-col col cols="4" md="3">
+                  <div>
                     <v-select
                       v-model="select"
                       dense
@@ -243,7 +264,7 @@
               </v-row>
 
               <v-row no-gutters>
-                <v-col cols="7">
+                <v-col cols="12" sm="7">
                   <v-text-field
                     :rules="[rules.required]"
                     label="Name"
@@ -292,9 +313,10 @@
                     :class="[currentActiveMethod == 'paypal' ? 'active-method' : 'inactive-method']"
                   ></v-img
                 ></v-col>
-                <v-spacer></v-spacer>
-                <v-col cols="3">
-                  <v-btn dark depressed color="#001CE2" height="50" class="text-captalize" @click="pay">{{ loading ? 'Redirecting..' : 'Confirm'}}</v-btn>
+                <v-col cols="auto" class="flex-fill text-right">
+                  <v-btn dark depressed color="#001CE2" height="50" class="text-captalize" @click="pay">
+                    {{ loading ? 'Redirecting..' : 'Confirm' }}
+                  </v-btn>
                 </v-col>
               </v-row>
             </v-col>
@@ -337,6 +359,19 @@ export default {
       position: absolute;
       border-radius: 50px !important;
       transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    }
+  }
+}
+
+.month-numbers.theme--light.v-text-field {
+  & > .v-input__control > .v-input__slot {
+    max-width: 100px;
+    &:before,
+    &:after {
+      border-width: 0;
+    }
+    .v-input__append-inner {
+      display: none;
     }
   }
 }
