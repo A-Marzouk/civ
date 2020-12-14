@@ -1599,23 +1599,6 @@ export default {
     }
   },
   methods: {
-    getLines() {
-      let detail = this.$el.querySelector('.bio');
-      let divHeight = detail.offsetHeight;
-      let lines = Math.ceil(divHeight / 25);
-      console.log('Number of Lines: ', divHeight, lines);
-      // return lines;
-      this.lines = lines;
-
-      if (lines >= 4) {
-        console.log('true');
-        return true;
-      }
-      // return false;
-      console.log('false');
-      return false;
-    },
-
     randomColor() {
       let colors = this.skillColor;
       let color = colors[Math.floor(Math.random() * colors.length)];
