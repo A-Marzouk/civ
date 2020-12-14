@@ -28,12 +28,8 @@
 
       <v-col lg="12" class="hidden-md-and-down">
         <VueSlickCarousel v-bind="settings">
-          <div
-            v-for="portfolio in filterCategory(category)"
-            :key="portfolio.id"
-            v-show="portfolio.is_public"
-            class="px-2"
-          >
+          <div class="d-none" v-show="!filterCategory(category)">No Porfolio</div>
+          <div v-for="portfolio in filterCategory(category)" :key="portfolio.id" class="px-2">
             <ImagesCarouselModal :images="portfolio.images">
               <div class="portfolio-image">
                 <v-img class="borImg" aspect-ratio="1" :src="getProjectMainImage(portfolio)" alt="portfolio img">
@@ -71,8 +67,8 @@ export default {
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4,
-      touchThreshold: 5,
-      initialSlide: 0
+      touchThreshold: 5
+      // initialSlide: 0
       // Any other options that can be got from plugin documentation
     },
     category: 'All',

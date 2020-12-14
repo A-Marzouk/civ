@@ -357,7 +357,11 @@ class PayPalForClientsController extends Controller
         }
 
         $dt = Carbon::now();
-        $expires_at = $dt->addWeeks($result->agreement_details->cycles_remaining);
+        if($result->plan->payment_definitions[0]->frequency == 'MONTH'){
+            $expires_at = $dt->addMonths($result->agreement_details->cycles_remaining);
+        }else{
+            $expires_at = $dt->addWeeks($result->agreement_details->cycles_remaining);
+        }
 
         return Subscription::create([
             'payment_method' => 'paypal',
@@ -366,7 +370,7 @@ class PayPalForClientsController extends Controller
             'sub_status' => 'active',
             'paypal_agreement_id' => $result->id,
             'user_id' => $client->id,
-            'expires_at' => $result->agreement_details->final_billing_date ?? $expires_at
+            'expires_at' => $expires_at
         ]);
     }
 
