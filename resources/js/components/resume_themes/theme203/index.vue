@@ -173,24 +173,22 @@
                           <VueSlickCarousel v-bind="slickOptionsAvailability" ref="availabilityCarousel">
                             <template v-for="i in currentUser.payment_info">
                               <v-card
-                              flat
-                              class="text-center"
-                              color="tranparent"
-                              
-                              :key="i.id"
-                              @click="changeAvailability"
-                              v-if="i.is_public === 1"
-                            >
-                              <v-card-subtitle class="hire-me-title">
-                                {{ i.salary_frequency | capitalize }}
-                              </v-card-subtitle>
-                              <v-card-subtitle class="hire-me-subtitle mt-n8">
-                                {{ i.salary }}
-                                {{ i.currency.toUpperCase() }}
-                              </v-card-subtitle>
-                            </v-card>
+                                flat
+                                class="text-center"
+                                color="tranparent"
+                                :key="i.id"
+                                @click="changeAvailability"
+                                v-if="i.is_public === 1"
+                              >
+                                <v-card-subtitle class="hire-me-title">
+                                  {{ i.salary_frequency | capitalize }}
+                                </v-card-subtitle>
+                                <v-card-subtitle class="hire-me-subtitle mt-n8">
+                                  {{ i.salary }}
+                                  {{ i.currency.toUpperCase() }}
+                                </v-card-subtitle>
+                              </v-card>
                             </template>
-                            
                           </VueSlickCarousel>
                         </v-col>
 
@@ -285,7 +283,7 @@
       </v-container>
       <!-- ....................Tab Items ..........................-->
       <v-container style="width: 100%">
-        <v-row class="mx-md-10 mx-sm-10 mx-1">
+        <v-row class="">
           <v-col cols="12">
             <v-card flat color="transparent" tile style="z-index: 1">
               <v-tabs-items v-model="mainDataTab" style="background-color: transparent">
@@ -403,45 +401,47 @@
                 <!-- .......................Portfolio.................................. -->
                 <!-- ...................Tab Item Work............................. -->
                 <v-tab-item value="work_experience" key="work_experience">
-                  <div class="watermark-text text-center">Work</div>
-                  <v-card color="transparent" tile flat>
-                    <v-card-text class>
-                      <v-container fluid ma-0 pa-0 style="width: 100%">
-                        <v-row>
-                          <template v-for="(work, index) in currentUser.work_experience">
-                            <v-col cols="12" sm="12" md="6" class="mb-12" :key="index" v-show="work.is_public == 1">
-                              <v-card flat color="transparent" tile>
-                                <v-list-item three-line>
-                                  <v-list-item-icon>
-                                    <img class="work-icon" src="/images/resume_themes/theme203/images/ellipse.png" />
-                                  </v-list-item-icon>
-                                  <v-list-item-content>
-                                    <v-list-item-title class="custom-work-title">
-                                      <v-card flat color="transparent" tile>
-                                        {{ work.company_name }}
-                                      </v-card>
-                                    </v-list-item-title>
-                                    <v-list-item-subtitle class="custom-work-subtitle">
-                                      <v-card flat color="transparent" tile>
-                                        {{ work.job_title }}
-                                      </v-card>
-                                    </v-list-item-subtitle>
-                                    <v-list-item-subtitle class="custom-work-duration mt-6">
-                                      <v-card color="transparent" tile flat>
-                                        {{ work.date_from }}-
-                                        <span v-if="work.present == 1">Present</span>
-                                        <span v-else>{{ work.date_to }}</span>
-                                      </v-card>
-                                    </v-list-item-subtitle>
-                                  </v-list-item-content>
-                                </v-list-item>
-                              </v-card>
-                            </v-col>
-                          </template>
-                        </v-row>
-                      </v-container>
-                    </v-card-text>
-                  </v-card>
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto">
+                    <div class="watermark-text text-center">Work</div>
+                    <v-card color="transparent" tile flat>
+                      <v-card-text class>
+                        <v-container fluid ma-0 pa-0 style="width: 100%">
+                          <v-row>
+                            <template v-for="(work, index) in currentUser.work_experience">
+                              <v-col cols="12" sm="12" md="12" lg="6" class="mb-12" :key="index" v-show="work.is_public == 1">
+                                <v-card flat color="transparent" tile>
+                                  <v-list-item three-line>
+                                    <v-list-item-icon>
+                                      <img class="work-icon" src="/images/resume_themes/theme203/images/ellipse.png" />
+                                    </v-list-item-icon>
+                                    <v-list-item-content>
+                                      <v-list-item-title class="custom-work-title">
+                                        <v-card flat color="transparent" tile>
+                                          {{ work.company_name }}
+                                        </v-card>
+                                      </v-list-item-title>
+                                      <v-list-item-subtitle class="custom-work-subtitle">
+                                        <v-card flat color="transparent" tile>
+                                          {{ work.job_title }}
+                                        </v-card>
+                                      </v-list-item-subtitle>
+                                      <v-list-item-subtitle class="custom-work-duration mt-6">
+                                        <v-card color="transparent" tile flat>
+                                          {{ work.date_from }}-
+                                          <span v-if="work.present == 1">Present</span>
+                                          <span v-else>{{ work.date_to }}</span>
+                                        </v-card>
+                                      </v-list-item-subtitle>
+                                    </v-list-item-content>
+                                  </v-list-item>
+                                </v-card>
+                              </v-col>
+                            </template>
+                          </v-row>
+                        </v-container>
+                      </v-card-text>
+                    </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!--................... Tab item Work............................... -->
 
