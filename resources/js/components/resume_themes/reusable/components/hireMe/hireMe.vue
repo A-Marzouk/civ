@@ -1,7 +1,7 @@
 <template>
   <div data-app>
     <v-row justify="center">
-      <v-dialog v-model="hireMeModal" content-class="m-2" persistent max-width="576">
+      <v-dialog v-model="hireMeModal" content-class="m-2 hire-me-modal__main-content" persistent max-width="576">
         <v-card>
           <v-toolbar dark color="#f2f3fd" flat>
             <v-toolbar-title class="main-color pl-4">Booking/ payment</v-toolbar-title>
@@ -206,12 +206,14 @@
                       <v-icon right>mdi-calendar-blank</v-icon>
                     </v-btn>
                   </v-col>
-                  <v-col cols="auto">
-                    <v-btn fab width="18" height="18" class="elevation" color="white"
-                      ><v-icon small color="#888DB1" @click="decreaseCounter">mdi-chevron-left</v-icon></v-btn
-                    >
+                </v-row>
+                <v-row dense class="align-items-center justify-content-between">
+                  <v-col cols="auto" class="order-0">
+                    <v-btn fab width="18" height="18" class="elevation" color="white">
+                      <v-icon small color="#888DB1" @click="decreaseCounter">mdi-chevron-left</v-icon>
+                    </v-btn>
                   </v-col>
-                  <v-col cols="auto">
+                  <v-col cols="12" sm="auto" class="order-2 order-sm-1 flex-sm-fill">
                     <div class="week-days">
                       <div
                         v-for="(day, i) in currentWeekDays"
@@ -224,12 +226,12 @@
                           {{ day.weekday }}
                         </div>
                         <div class="day">{{ day.date }}</div>
-                        <div v-show="currentDate == day.obj">●</div>
+                        <!-- <div class="active-dot" v-show="currentDate == day.obj">●</div> -->
                       </div>
                     </div>
                     <!-- <div>{{ weekdayCounter }}</div> -->
                   </v-col>
-                  <v-col cols="auto">
+                  <v-col cols="auto" class="order-1 order-sm-2">
                     <v-btn fab width="18" height="18" class="elevation" color="white">
                       <v-icon small color="#888DB1" @click="increaseCounter">mdi-chevron-right</v-icon>
                     </v-btn>
@@ -314,7 +316,7 @@
                   ></v-img
                 ></v-col>
                 <v-col cols="auto" class="flex-fill text-right">
-                  <v-btn dark depressed color="#001CE2" height="50" class="text-captalize" @click="pay">
+                  <v-btn dark depressed color="#001CE2" height="42" class="text-captalize" @click="pay">
                     {{ loading ? 'Redirecting..' : 'Confirm' }}
                   </v-btn>
                 </v-col>
@@ -342,6 +344,10 @@ export default {
 </style>
 
 <style lang="scss">
+.hire-me-modal__main-content {
+  font-family: Montserrat, sans-serif;
+}
+
 .hourSlider {
   .v-slider--horizontal {
     min-height: 25px !important;
