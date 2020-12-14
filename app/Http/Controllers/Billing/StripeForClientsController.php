@@ -201,9 +201,9 @@ class StripeForClientsController extends Controller
 
         $newStripeCustomer = StripeCustomer::create([
             'email' => $request->client['email'],
-            'payment_method' => 'pm_card_visa',
+            'payment_method' => null,
             'invoice_settings' => [
-                'default_payment_method' => 'pm_card_visa',
+                'default_payment_method' => null,
             ],
         ]);
 

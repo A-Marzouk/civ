@@ -293,7 +293,7 @@ class PayPalForClientsController extends Controller
 
     public function cancel()
     {
-        dd('Payment cancelled');
+        return view('billing.error');
     }
 
 
