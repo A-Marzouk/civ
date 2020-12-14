@@ -256,7 +256,7 @@
       <v-container style="width: 100%" class="pa-md-0 pa-sm-5 pa-5">
         <!-- main Navigation tab -->
         <v-row no-gutters align="center" justify="center">
-          <v-col cols="12" md="10">
+          <v-col cols="12" md="10" lg="11">
             <v-card flat color="transparent" tile>
               <v-card-text>
                 <v-tabs v-model="mainDataTab" color="black" centered grow show-arrows hide-slider>
