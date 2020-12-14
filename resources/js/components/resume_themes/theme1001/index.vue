@@ -479,7 +479,7 @@ export default {
   position: absolute;
   top: -100vh;
   right: 0;
-  z-index: 9999;
+  z-index: 99;
   background: #ffffff;
   width: 100%;
   opacity: 0;

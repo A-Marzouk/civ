@@ -159,7 +159,7 @@
         top: 0;
         left: 0;
         background-color: rgba(0, 0, 0, 0.6);
-        z-index: 9999;
+        z-index: 99;
 
         &__content {
             position: absolute;

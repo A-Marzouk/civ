@@ -54,7 +54,7 @@ export default {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.9);
-  z-index: 9999;
+  z-index: 99;
   &__content {
     position: absolute;
     top: 50%;
