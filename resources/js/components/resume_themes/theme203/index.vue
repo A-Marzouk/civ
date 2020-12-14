@@ -647,41 +647,43 @@
                 <!--  tab item achivement  -->
                 <!-- ...... Tab item Reference ..... -->
                 <v-tab-item value="references" key="references">
-                  <div class="watermark-text text-center">References</div>
-                  <v-card color="transparent" tile flat>
-                    <v-container ma-0 pa-0 style="width: 100%">
-                      <v-row align="center" justify="space-between">
-                        <template v-for="(reference, index) in currentUser.references">
-                          <v-col xl="5" lg="5" md="12" sm="12" cols="12" class="mb-5" :key="index">
-                            <v-card flat color="transparent">
-                              <v-row>
-                                <v-col cols="7">
-                                  <div class="reference-title">
-                                    {{ reference.name }}
-                                  </div>
-                                </v-col>
-                                <v-col cols="5" align="right">
-                                  <div class="reference-date">
-                                    {{ reference.created_at | getFormattedData }}
-                                  </div>
-                                </v-col>
-                                <v-col cols="12">
-                                  <div class="reference-email">
-                                    {{ reference.email }}
-                                  </div>
-                                </v-col>
-                                <v-col cols="12">
-                                  <div class="reference-desc">
-                                    {{ reference.reference_text }}
-                                  </div>
-                                </v-col>
-                              </v-row>
-                            </v-card>
-                          </v-col>
-                        </template>
-                      </v-row>
-                    </v-container>
-                  </v-card>
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
+                    <div class="watermark-text text-center">References</div>
+                    <v-card color="transparent" tile flat>
+                      <v-container ma-0 pa-0 style="width: 100%">
+                        <v-row align="center" justify="space-between">
+                          <template v-for="(reference, index) in currentUser.references">
+                            <v-col xl="5" lg="5" md="12" sm="12" cols="12" class="mb-5" :key="index">
+                              <v-card flat color="transparent">
+                                <v-row>
+                                  <v-col cols="7">
+                                    <div class="reference-title">
+                                      {{ reference.name }}
+                                    </div>
+                                  </v-col>
+                                  <v-col cols="5" align="right">
+                                    <div class="reference-date">
+                                      {{ reference.created_at | getFormattedData }}
+                                    </div>
+                                  </v-col>
+                                  <v-col cols="12">
+                                    <div class="reference-email">
+                                      {{ reference.email }}
+                                    </div>
+                                  </v-col>
+                                  <v-col cols="12">
+                                    <div class="reference-desc">
+                                      {{ reference.reference_text }}
+                                    </div>
+                                  </v-col>
+                                </v-row>
+                              </v-card>
+                            </v-col>
+                          </template>
+                        </v-row>
+                      </v-container>
+                    </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!--  tab item Reference  -->
               </v-tabs-items>
