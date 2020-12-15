@@ -314,17 +314,17 @@
                     :class="[currentActiveMethod == 'paypal' ? 'active-method' : 'inactive-method']"
                   ></v-img
                 ></v-col>
-                <v-col cols="auto" class="flex-fill text-right">
+                <v-col cols="auto" class="flex-fill text-right" style="display: flex;
+    justify-content: space-between;">
+                  <a class="hire-me-url-btn" target="_blank" :href="sharableURL">
+                     Hire me URL
+                  </a>
                   <v-btn dark depressed color="#001CE2" height="50" class="text-captalize" @click="pay">
                     {{ loading ? 'Redirecting..' : 'Confirm' }}
                   </v-btn>
                 </v-col>
               </v-row>
             </v-col>
-              <v-col cols="12">
-                  <b>Hire me Sharable URL: </b><br/>
-                  <a target="_blank" class="sharableLink" :href="sharableURL">{{sharableURL}}</a>
-              </v-col>
             <!-- Payment Methods -->
           </v-container>
         </v-card>
@@ -347,6 +347,24 @@ export default {
 </style>
 
 <style lang="scss">
+
+  .hire-me-url-btn{
+    height: 50px;
+    width:123px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #001CE2;
+    border: 1.5px solid #001CE2;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
 .hourSlider {
   .v-slider--horizontal {
     min-height: 25px !important;

@@ -235,7 +235,7 @@ export default {
                 this.activePaymentTypeIndex = 2;
             }
             if(parameters.recurring === 'hourly'){
-                this.activePaymentTypeIndex = 3;
+                this.activePaymentTypeIndex = 0;
             }
 
         },
