@@ -321,6 +321,10 @@
                 </v-col>
               </v-row>
             </v-col>
+              <v-col cols="12">
+                  <b>Hire me Sharable URL: </b><br/>
+                  <a target="_blank" class="sharableLink" :href="sharableURL">{{sharableURL}}</a>
+              </v-col>
             <!-- Payment Methods -->
           </v-container>
         </v-card>
