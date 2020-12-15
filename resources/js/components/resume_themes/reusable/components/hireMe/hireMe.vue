@@ -293,8 +293,8 @@
 
             <!-- Payment Methods -->
             <v-col cols="12">
-              <v-row align="center">
-                <v-col cols="3" align-self="center">
+              <v-row align="center" style="justify-content: center;">
+                <v-col cols="4"  sm="3" align-self="center">
                   <v-img
                     src="/icons/hire-modal/stripe-logo.svg"
                     height="30"
@@ -304,7 +304,7 @@
                     :class="[currentActiveMethod == 'stripe' ? 'active-method' : 'inactive-method']"
                   ></v-img>
                 </v-col>
-                <v-col cols="3" align-self="center">
+                <v-col cols="4"  sm="3" align-self="center">
                   <v-img
                     src="/icons/hire-modal/paypal-logo.svg"
                     height="30"
@@ -314,9 +314,9 @@
                     :class="[currentActiveMethod == 'paypal' ? 'active-method' : 'inactive-method']"
                   ></v-img
                 ></v-col>
-                <v-col cols="6" class="flex-fill text-right" style="display: flex; justify-content: space-between;">
+                <v-col cols="12"  sm="6" class="flex-fill text-right" style="display: flex; justify-content: space-around;">
                   <a class="hire-me-url-btn" target="_blank" :href="sharableURL">
-                    HIRE ME URL
+                     SHARABLE LINK
                   </a>
                   <v-btn
                     dark
@@ -356,7 +356,10 @@ export default {
 
   .hire-me-url-btn{
     height: 50px;
-    width:123px;
+    @media screen and (max-width: 425px) {
+      height: 46px !important;
+    }
+    min-width:124px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -364,7 +367,7 @@ export default {
     border: 1.5px solid #001CE2;
     border-radius: 5px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 18px;
     &:hover{
       text-decoration: none;
