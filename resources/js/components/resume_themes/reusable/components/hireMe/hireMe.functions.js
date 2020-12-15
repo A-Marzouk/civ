@@ -66,7 +66,8 @@ export default {
             paymentData: {},
             errors: {},
             messageBody: 'Hi, can you please setup your payment details to start working with you.',
-            initial: true
+            initial: true,
+            copyText: 'Copy',
         };
     },
     watch: {
@@ -218,6 +219,7 @@ export default {
             return '/custom-paypal-payment';
         },
         getURLParameters(){
+
             let parameters = this.$route.query ;
 
             this.currentActiveMethod = parameters.payment_type  ?? 'stripe' ;
@@ -232,8 +234,10 @@ export default {
             if(parameters.recurring === 'weekly'){
                 this.activePaymentTypeIndex = 2;
             }
+            if(parameters.recurring === 'hourly'){
+                this.activePaymentTypeIndex = 0;
+            }
 
-            console.log(parameters);
         },
         getTotalHours(){
             let parameters = this.$route.query ;
@@ -241,12 +245,28 @@ export default {
                 this.totalHours = parameters.hours;
             }
             return this.totalHours;
-        }
-
+        },
     },
     computed: {
         paymentTotal() {
             return this.totalHours * this.user.payment_info[0].salary;
+        },
+        sharableURL() {
+            let URL = location.protocol + '//' + location.host + location.pathname + '?hire=true' ;
+            URL += '&hours=' + this.totalHours;
+            URL += '&payment_type=' + this.currentActiveMethod;
+            if(this.activePaymentTypeIndex === 1){
+                URL += '&recurring=monthly';
+            }
+            if(this.activePaymentTypeIndex === 2){
+                URL += '&recurring=weekly';
+            }
+            if(this.activePaymentTypeIndex === 3){
+                URL += '&recurring=hourly';
+            }
+            URL += '&iterations=' + this.select.number;
+
+            return URL;
         },
         userHourlyRate() {
             return this.user.payment_info[0].salary;

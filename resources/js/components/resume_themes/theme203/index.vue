@@ -173,24 +173,22 @@
                           <VueSlickCarousel v-bind="slickOptionsAvailability" ref="availabilityCarousel">
                             <template v-for="i in currentUser.payment_info">
                               <v-card
-                              flat
-                              class="text-center"
-                              color="tranparent"
-                              
-                              :key="i.id"
-                              @click="changeAvailability"
-                              v-if="i.is_public === 1"
-                            >
-                              <v-card-subtitle class="hire-me-title">
-                                {{ i.salary_frequency | capitalize }}
-                              </v-card-subtitle>
-                              <v-card-subtitle class="hire-me-subtitle mt-n8">
-                                {{ i.salary }}
-                                {{ i.currency.toUpperCase() }}
-                              </v-card-subtitle>
-                            </v-card>
+                                flat
+                                class="text-center"
+                                color="tranparent"
+                                :key="i.id"
+                                @click="changeAvailability"
+                                v-if="i.is_public === 1"
+                              >
+                                <v-card-subtitle class="hire-me-title">
+                                  {{ i.salary_frequency | capitalize }}
+                                </v-card-subtitle>
+                                <v-card-subtitle class="hire-me-subtitle mt-n8">
+                                  {{ i.salary }}
+                                  {{ i.currency.toUpperCase() }}
+                                </v-card-subtitle>
+                              </v-card>
                             </template>
-                            
                           </VueSlickCarousel>
                         </v-col>
 
@@ -285,7 +283,7 @@
       </v-container>
       <!-- ....................Tab Items ..........................-->
       <v-container style="width: 100%">
-        <v-row class="mx-md-10 mx-sm-10 mx-1">
+        <v-row class="">
           <v-col cols="12">
             <v-card flat color="transparent" tile style="z-index: 1">
               <v-tabs-items v-model="mainDataTab" style="background-color: transparent">
@@ -403,13 +401,74 @@
                 <!-- .......................Portfolio.................................. -->
                 <!-- ...................Tab Item Work............................. -->
                 <v-tab-item value="work_experience" key="work_experience">
-                  <div class="watermark-text text-center">Work</div>
-                  <v-card color="transparent" tile flat>
-                    <v-card-text class>
-                      <v-container fluid ma-0 pa-0 style="width: 100%">
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
+                    <div class="watermark-text text-center">Work</div>
+                    <v-card color="transparent" tile flat>
+                      <v-card-text class>
+                        <v-container fluid ma-0 pa-0 style="width: 100%">
+                          <v-row>
+                            <template v-for="(work, index) in currentUser.work_experience">
+                              <v-col
+                                cols="12"
+                                sm="12"
+                                md="12"
+                                lg="6"
+                                class="mb-12"
+                                :key="index"
+                                v-show="work.is_public == 1"
+                              >
+                                <v-card flat color="transparent" tile>
+                                  <v-list-item three-line>
+                                    <v-list-item-icon>
+                                      <img class="work-icon" src="/images/resume_themes/theme203/images/ellipse.png" />
+                                    </v-list-item-icon>
+                                    <v-list-item-content>
+                                      <v-list-item-title class="custom-work-title">
+                                        <v-card flat color="transparent" tile>
+                                          {{ work.company_name }}
+                                        </v-card>
+                                      </v-list-item-title>
+                                      <v-list-item-subtitle class="custom-work-subtitle">
+                                        <v-card flat color="transparent" tile>
+                                          {{ work.job_title }}
+                                        </v-card>
+                                      </v-list-item-subtitle>
+                                      <v-list-item-subtitle class="custom-work-duration mt-6">
+                                        <v-card color="transparent" tile flat>
+                                          {{ work.date_from }}-
+                                          <span v-if="work.present == 1">Present</span>
+                                          <span v-else>{{ work.date_to }}</span>
+                                        </v-card>
+                                      </v-list-item-subtitle>
+                                    </v-list-item-content>
+                                  </v-list-item>
+                                </v-card>
+                              </v-col>
+                            </template>
+                          </v-row>
+                        </v-container>
+                      </v-card-text>
+                    </v-card>
+                  </v-container>
+                </v-tab-item>
+                <!--................... Tab item Work............................... -->
+
+                <!-- ...................Tab Item Education............................. -->
+                <v-tab-item value="education" key="education">
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
+                    <div class="watermark-text text-center">Education</div>
+                    <v-card color="transparent" tile flat>
+                      <v-container ma-0 pa-0 fluid style="width: 100%">
                         <v-row>
-                          <template v-for="(work, index) in currentUser.work_experience">
-                            <v-col cols="12" sm="12" md="6" class="mb-12" :key="index" v-show="work.is_public == 1">
+                          <template v-for="(education, index) in currentUser.education">
+                            <v-col
+                              cols="12"
+                              sm="12"
+                              md="6"
+                              class="mb-12"
+                              :key="index"
+                              v-show="education.is_public == 1"
+                            >
                               <v-card flat color="transparent" tile>
                                 <v-list-item three-line>
                                   <v-list-item-icon>
@@ -418,19 +477,26 @@
                                   <v-list-item-content>
                                     <v-list-item-title class="custom-work-title">
                                       <v-card flat color="transparent" tile>
-                                        {{ work.company_name }}
+                                        {{ education.university_name }}
                                       </v-card>
                                     </v-list-item-title>
-                                    <v-list-item-subtitle class="custom-work-subtitle">
-                                      <v-card flat color="transparent" tile>
-                                        {{ work.job_title }}
+                                    <v-list-item-subtitle class="custom-education-subtitle">
+                                      <v-card flat color="transparent" tile style="color: #fbd76d">
+                                        <div class="d-flex flex-column">
+                                          {{ education.degree_title }},
+                                          <span class="education-date mt-2">
+                                            {{ education.date_from }} -
+                                            <span v-if="education.present == true">Present</span>
+                                            <span v-else>
+                                              {{ education.date_to }}
+                                            </span>
+                                          </span>
+                                        </div>
                                       </v-card>
                                     </v-list-item-subtitle>
-                                    <v-list-item-subtitle class="custom-work-duration mt-6">
-                                      <v-card color="transparent" tile flat>
-                                        {{ work.date_from }}-
-                                        <span v-if="work.present == 1">Present</span>
-                                        <span v-else>{{ work.date_to }}</span>
+                                    <v-list-item-subtitle class="mt-6">
+                                      <v-card color="transparent" tile flat class="custom-education-details"
+                                        >{{ education.institution_type }}
                                       </v-card>
                                     </v-list-item-subtitle>
                                   </v-list-item-content>
@@ -440,139 +506,102 @@
                           </template>
                         </v-row>
                       </v-container>
-                    </v-card-text>
-                  </v-card>
-                </v-tab-item>
-                <!--................... Tab item Work............................... -->
-
-                <!-- ...................Tab Item Education............................. -->
-                <v-tab-item value="education" key="education">
-                  <div class="watermark-text text-center">Education</div>
-                  <v-card color="transparent" tile flat>
-                    <v-container ma-0 pa-0 fluid style="width: 100%">
-                      <v-row>
-                        <template v-for="(education, index) in currentUser.education">
-                          <v-col cols="12" sm="12" md="6" class="mb-12" :key="index" v-show="education.is_public == 1">
-                            <v-card flat color="transparent" tile>
-                              <v-list-item three-line>
-                                <v-list-item-icon>
-                                  <img class="work-icon" src="/images/resume_themes/theme203/images/ellipse.png" />
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                  <v-list-item-title class="custom-work-title">
-                                    <v-card flat color="transparent" tile>
-                                      {{ education.university_name }}
-                                    </v-card>
-                                  </v-list-item-title>
-                                  <v-list-item-subtitle class="custom-education-subtitle">
-                                    <v-card flat color="transparent" tile style="color: #fbd76d">
-                                      <div class="d-flex flex-column">
-                                        {{ education.degree_title }},
-                                        <span class="education-date mt-2">
-                                          {{ education.date_from }} -
-                                          <span v-if="education.present == true">Present</span>
-                                          <span v-else>
-                                            {{ education.date_to }}
-                                          </span>
-                                        </span>
-                                      </div>
-                                    </v-card>
-                                  </v-list-item-subtitle>
-                                  <v-list-item-subtitle class="mt-6">
-                                    <v-card color="transparent" tile flat class="custom-education-details"
-                                      >{{ education.institution_type }}
-                                    </v-card>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                            </v-card>
-                          </v-col>
-                        </template>
-                      </v-row>
-                    </v-container>
-                  </v-card>
+                    </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!--................... Tab item Education............................... -->
 
                 <!-- ...................Tab Item Skills............................. -->
                 <v-tab-item value="skills" key="skills">
-                  <div class="watermark-text text-center">Skills</div>
-                  <v-card color="transparent" tile flat>
-                    <v-row align="center">
-                      <template v-for="skill in currentUser.skills">
-                        <v-col
-                          cols="12"
-                          sm="12"
-                          md="12"
-                          lg="6"
-                          xl="6"
-                          class="mb-12"
-                          :key="skill.id"
-                          v-show="skill.is_public"
-                        >
-                          <v-card flat color="transparent" tile class="mx-auto">
-                            <v-card-text>
-                              <v-list-item>
-                                <v-list-item-avatar class="skill-circle mr-n1 mt-sm-2" style="z-index: 1">
-                                  <span>{{ skillSubString(skill.title) }}</span>
-                                </v-list-item-avatar>
-                                <v-list-item-content class="mt-n6">
-                                  <v-list-item-subtitle>
-                                    <v-row no-gutters>
-                                      <v-col cols="6" class="skill-title-text">
-                                        <span class="ml-2">
-                                          {{ skill.title }}
-                                        </span>
-                                      </v-col>
-                                      <v-col cols="6" align="right" class="skill-title-text"
-                                        >{{ skill.percentage }}
-                                      </v-col>
-                                    </v-row>
-                                  </v-list-item-subtitle>
-                                  <v-list-item-subtitle>
-                                    <v-progress-linear
-                                      color="#FCD259"
-                                      height="12"
-                                      rounded
-                                      :value="skill.percentage"
-                                    ></v-progress-linear>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                            </v-card-text>
-                          </v-card>
-                        </v-col>
-                      </template>
-                    </v-row>
-                  </v-card>
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
+                    <div class="watermark-text text-center">Skills</div>
+                    <v-card color="transparent" tile flat>
+                      <v-row align="center">
+                        <template v-for="skill in currentUser.skills">
+                          <v-col
+                            cols="12"
+                            sm="12"
+                            md="12"
+                            lg="6"
+                            xl="6"
+                            class="mb-12"
+                            :key="skill.id"
+                            v-show="skill.is_public"
+                          >
+                            <v-card flat color="transparent" tile class="mx-auto">
+                              <v-card-text>
+                                <v-list-item>
+                                  <v-list-item-avatar class="skill-circle mr-n1 mt-sm-2" style="z-index: 1">
+                                    <span>{{ skillSubString(skill.title) }}</span>
+                                  </v-list-item-avatar>
+                                  <v-list-item-content class="mt-n6">
+                                    <v-list-item-subtitle>
+                                      <v-row no-gutters>
+                                        <v-col cols="6" class="skill-title-text">
+                                          <span class="ml-2">
+                                            {{ skill.title }}
+                                          </span>
+                                        </v-col>
+                                        <v-col cols="6" align="right" class="skill-title-text"
+                                          >{{ skill.percentage }}
+                                        </v-col>
+                                      </v-row>
+                                    </v-list-item-subtitle>
+                                    <v-list-item-subtitle>
+                                      <v-progress-linear
+                                        color="#FCD259"
+                                        height="12"
+                                        rounded
+                                        :value="skill.percentage"
+                                      ></v-progress-linear>
+                                    </v-list-item-subtitle>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-card-text>
+                            </v-card>
+                          </v-col>
+                        </template>
+                      </v-row>
+                    </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!--................... Tab item Skills............................... -->
 
                 <!-- ...... Tab item hobbies ..... -->
                 <v-tab-item value="hobbies" key="hobbies">
-                  <div class="watermark-text text-center">Hobbies</div>
-                  <v-card color="transparent" tile flat>
-                    <v-container ma-0 pa-0 fluid style="width: 100%">
-                      <v-row align="center">
-                        <template v-for="(hobby, index) in currentUser.hobbies">
-                          <v-col lg="4" md="6" sm="6" cols="6" class="mb-5" :key="index" v-show="hobby.is_public == 1">
-                            <v-list-item>
-                              <v-list-item-avatar class="hobbies-avatar">
-                                <img src="/images/resume_themes/theme203/icons/hobby.svg" alt="hobby icon" />
-                              </v-list-item-avatar>
-                              <v-list-item-content>
-                                <v-list-item-title class="hobby-title ml-xl-5">
-                                  <v-card flat color="transparent">
-                                    {{ hobby.title }}
-                                  </v-card>
-                                </v-list-item-title>
-                              </v-list-item-content>
-                            </v-list-item>
-                          </v-col>
-                        </template>
-                      </v-row>
-                    </v-container>
-                  </v-card>
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
+                    <div class="watermark-text text-center">Hobbies</div>
+                    <v-card color="transparent" tile flat>
+                      <v-container ma-0 pa-0 fluid style="width: 100%">
+                        <v-row align="center">
+                          <template v-for="(hobby, index) in currentUser.hobbies">
+                            <v-col
+                              lg="4"
+                              md="6"
+                              sm="6"
+                              cols="6"
+                              class="mb-5"
+                              :key="index"
+                              v-show="hobby.is_public == 1"
+                            >
+                              <v-list-item>
+                                <v-list-item-avatar class="hobbies-avatar">
+                                  <img src="/images/resume_themes/theme203/icons/hobby.svg" alt="hobby icon" />
+                                </v-list-item-avatar>
+                                <v-list-item-content>
+                                  <v-list-item-title class="hobby-title ml-xl-5">
+                                    <v-card flat color="transparent">
+                                      {{ hobby.title }}
+                                    </v-card>
+                                  </v-list-item-title>
+                                </v-list-item-content>
+                              </v-list-item>
+                            </v-col>
+                          </template>
+                        </v-row>
+                      </v-container>
+                    </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!--  tab item hobbies  -->
                 <!-- ...... Tab item achievement ..... -->
@@ -618,41 +647,43 @@
                 <!--  tab item achivement  -->
                 <!-- ...... Tab item Reference ..... -->
                 <v-tab-item value="references" key="references">
-                  <div class="watermark-text text-center">References</div>
-                  <v-card color="transparent" tile flat>
-                    <v-container ma-0 pa-0 style="width: 100%">
-                      <v-row align="center" justify="space-between">
-                        <template v-for="(reference, index) in currentUser.references">
-                          <v-col xl="5" lg="5" md="12" sm="12" cols="12" class="mb-5" :key="index">
-                            <v-card flat color="transparent">
-                              <v-row>
-                                <v-col cols="7">
-                                  <div class="reference-title">
-                                    {{ reference.name }}
-                                  </div>
-                                </v-col>
-                                <v-col cols="5" align="right">
-                                  <div class="reference-date">
-                                    {{ reference.created_at | getFormattedData }}
-                                  </div>
-                                </v-col>
-                                <v-col cols="12">
-                                  <div class="reference-email">
-                                    {{ reference.email }}
-                                  </div>
-                                </v-col>
-                                <v-col cols="12">
-                                  <div class="reference-desc">
-                                    {{ reference.reference_text }}
-                                  </div>
-                                </v-col>
-                              </v-row>
-                            </v-card>
-                          </v-col>
-                        </template>
-                      </v-row>
-                    </v-container>
-                  </v-card>
+                  <v-container class="mx-xl-10 mx-lg-auto mx-md-auto mx-sm-0">
+                    <div class="watermark-text text-center">References</div>
+                    <v-card color="transparent" tile flat>
+                      <v-container ma-0 pa-0 style="width: 100%">
+                        <v-row align="center" justify="space-between">
+                          <template v-for="(reference, index) in currentUser.references">
+                            <v-col xl="5" lg="5" md="12" sm="12" cols="12" class="mb-5" :key="index">
+                              <v-card flat color="transparent">
+                                <v-row>
+                                  <v-col cols="7">
+                                    <div class="reference-title">
+                                      {{ reference.name }}
+                                    </div>
+                                  </v-col>
+                                  <v-col cols="5" align="right">
+                                    <div class="reference-date">
+                                      {{ reference.created_at | getFormattedData }}
+                                    </div>
+                                  </v-col>
+                                  <v-col cols="12">
+                                    <div class="reference-email">
+                                      {{ reference.email }}
+                                    </div>
+                                  </v-col>
+                                  <v-col cols="12">
+                                    <div class="reference-desc">
+                                      {{ reference.reference_text }}
+                                    </div>
+                                  </v-col>
+                                </v-row>
+                              </v-card>
+                            </v-col>
+                          </template>
+                        </v-row>
+                      </v-container>
+                    </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!--  tab item Reference  -->
               </v-tabs-items>

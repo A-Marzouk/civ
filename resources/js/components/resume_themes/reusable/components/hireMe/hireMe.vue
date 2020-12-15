@@ -1,7 +1,7 @@
 <template>
   <div data-app>
     <v-row justify="center">
-      <v-dialog v-model="hireMeModal" content-class="m-2" persistent max-width="576">
+      <v-dialog v-model="hireMeModal" content-class="m-2 hire-me-modal__main-content" persistent max-width="576">
         <v-card>
           <v-toolbar dark color="#f2f3fd" flat>
             <v-toolbar-title class="main-color pl-4">Booking/ payment</v-toolbar-title>
@@ -314,8 +314,18 @@
                     :class="[currentActiveMethod == 'paypal' ? 'active-method' : 'inactive-method']"
                   ></v-img
                 ></v-col>
-                <v-col cols="auto" class="flex-fill text-right">
-                  <v-btn dark depressed color="#001CE2" height="50" class="text-captalize" @click="pay">
+                <v-col cols="6" class="flex-fill text-right" style="display: flex; justify-content: space-between;">
+                  <a class="hire-me-url-btn" target="_blank" :href="sharableURL">
+                    HIRE ME URL
+                  </a>
+                  <v-btn
+                    dark
+                    depressed
+                    color="#001CE2"
+                    height="50"
+                    class="submit-button"
+                    @click="pay"
+                  >
                     {{ loading ? 'Redirecting..' : 'Confirm' }}
                   </v-btn>
                 </v-col>
@@ -343,6 +353,33 @@ export default {
 </style>
 
 <style lang="scss">
+
+  .hire-me-url-btn{
+    height: 50px;
+    width:123px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #001CE2;
+    border: 1.5px solid #001CE2;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+.hire-me-modal__main-content {
+  font-family: Montserrat, sans-serif;
+  .submit-button {
+    @media screen and (max-width: 425px) {
+      height: 46px !important;
+    }
+  }
+}
+
 .hourSlider {
   .v-slider--horizontal {
     min-height: 25px !important;

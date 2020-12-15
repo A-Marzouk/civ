@@ -15,6 +15,7 @@
         <ChatModal :chatToggle="chatToggle" :closeChat="closeChat" />
         <HireModal
             :currentUser="currentUser"
+            @openModal="hireMeModal = true"
             :hireToggle="hireToggle"
             :closeHire="closeHire"
         />
