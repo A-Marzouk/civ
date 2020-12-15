@@ -261,7 +261,7 @@ export default {
             if(this.activePaymentTypeIndex === 2){
                 URL += '&recurring=weekly';
             }
-            if(this.activePaymentTypeIndex === 3){
+            if(this.activePaymentTypeIndex === 0){
                 URL += '&recurring=hourly';
             }
             URL += '&iterations=' + this.select.number;
