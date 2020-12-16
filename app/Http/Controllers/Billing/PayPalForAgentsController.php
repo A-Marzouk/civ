@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\Billing;
+
 use App\Http\Controllers\Controller;
 use App\Subscription;
 use Illuminate\Http\Request;

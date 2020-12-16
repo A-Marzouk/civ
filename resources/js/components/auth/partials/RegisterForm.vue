@@ -205,11 +205,12 @@
                     .then(response => {
                         // save the access token then redirect:
                         Vue.$cookies.set('access_token', response.data.access_token, "3y");
-                        if(response.data.is_admin){
+                        if(response.data.role === 'admin'){
                             window.location.href = '/workforce-admin';
-                        }else{
-                            window.location.href = '/resume-builder';
+                        }else if(response.data.role === 'client'){
+                            window.location.href = '/client';
                         }
+                        window.location.href = '/resume-builder';
                     })
                     .catch(error => {
                         if (typeof error.response.data === 'object') {

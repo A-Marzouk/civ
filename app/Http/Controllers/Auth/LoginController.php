@@ -87,7 +87,18 @@ class LoginController extends Controller
         $request->session()->regenerate();
         $this->clearLoginAttempts($request);
         $token = $this->authenticated($request, $this->guard()->user());
-        return ['access_token' => $token, 'is_admin' => $this->guard()->user()->hasRole('admin')];
+        $role = $this->getUserRole($this->guard()->user());
+        return ['access_token' => $token, 'role' => $role];
+    }
+
+    protected function getUserRole($user){
+        if($user->hasRole('admin')){
+            return 'admin';
+        }
+        if($user->hasRole('client')){
+            return 'client';
+        }
+        return 'agent';
     }
 
     /**
@@ -139,6 +150,9 @@ class LoginController extends Controller
     public function redirectTo(){
         if (Auth::user()->hasRole('admin')) {
             return '/workforce-admin';
+        }
+        if (Auth::user()->hasRole('client')) {
+            return '/client';
         }
         return  '/resume-builder';
     }

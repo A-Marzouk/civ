@@ -159,11 +159,17 @@
                     .then(response => {
                         // save the access token then redirect:
                         Vue.$cookies.set('access_token', response.data.access_token, "3y");
-                        if(response.data.is_admin){
+
+                        if(response.data.role == 'admin'){
                             window.location.href = '/workforce-admin';
-                        }else{
+                        }
+                        else if(response.data.role == 'client'){
+                            window.location.href = '/client';
+                        }
+                        else{
                             window.location.href = '/resume-builder';
                         }
+
                     })
                     .catch(error => {
                         this.canSubmit = true;
@@ -185,7 +191,7 @@
                 this.fieldType = 'text';
                 setTimeout(()=> {
                     this.fieldType = 'password'
-                },1000);
+                },10000);
             }
         }
     }

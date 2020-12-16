@@ -39,12 +39,22 @@ class SocialSitesRegisterController extends Controller
 
          $token =  $user->createToken($user->name. '| USER ID:' . $user->id)->accessToken;
          auth()->login($user);
-
+        $role = $this->getUserRole($user);
         return [
             'status' => 'success',
             'access_token' => $token,
-            'is_admin' => $user->hasRole('admin'),
+            'role' => $role,
         ];
+    }
+
+    protected function getUserRole($user){
+        if($user->hasRole('admin')){
+            return 'admin';
+        }
+        if($user->hasRole('client')){
+            return 'client';
+        }
+        return 'agent';
     }
 
     protected function validator(array $data)
