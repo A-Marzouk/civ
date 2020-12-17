@@ -288,7 +288,7 @@ export default {
   },
   watch: {
     'editedProject.category': function (val) {
-      if (val.length > 5) {
+      if (val.length > 5 && this.model) {
         this.$nextTick(() => this.model.pop())
       }
     },
