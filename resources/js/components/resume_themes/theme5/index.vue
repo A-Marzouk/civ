@@ -758,16 +758,14 @@
           </v-container>
         </v-col>
       </v-row>
-      <!-- hire modal start -->
 
-      <!--<hire-modal-->
-
-      <updated-hire-modal
-        @modalClosed="hireMeModal = false"
-        :hireMeModal.sync="hireMeModal"
-        :closeHireMeModal="closeHireMeModal"
-        :user="currentUser"
-      ></updated-hire-modal>
+      <HireModal
+              @modalClosed="hireMeModal = false"
+              @openModal="hireMeModal = true"
+              :hireMeModal.sync="hireMeModal"
+              :closeHireMeModal="closeHireMeModal"
+              :user="currentUser"
+      />
 
       <!-- hire modal end -->
     </v-container>
@@ -1466,7 +1464,7 @@ import Slick from 'vue-slick';
 import VueSlickCarousel from 'vue-slick-carousel';
 import AudioPlayer from './media/AudioPlayer';
 import VideoPlayer from './media/VideoPlayer';
-import UpdatedHireModal from '../includes/HireMeModal';
+import HireModal from '../reusable/components/hireMe/hireMe';
 import SocialLinks from './SocialLinks';
 import ImagesCarouselModal from '../reusable/ImagesCarouselModal';
 import Portfolio from './tabs/Portfolio';
@@ -1479,7 +1477,7 @@ export default {
     VueSlickCarousel,
     AudioPlayer,
     VideoPlayer,
-    'updated-hire-modal': UpdatedHireModal,
+    HireModal,
     SocialLinks,
     ImagesCarouselModal
   },

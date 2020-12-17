@@ -930,12 +930,13 @@
       </v-container>
       <!-- Tab items container -->
       <!-- All Modals -->
-      <updated-hire-modal
-        @modalClosed="hireMeModal = false"
-        :hireMeModal.sync="hireMeModal"
-        :closeHireMeModal="closeHireMeModal"
-        :user="currentUser"
-      ></updated-hire-modal>
+      <HireModal
+              @modalClosed="hireMeModal = false"
+              @openModal="hireMeModal = true"
+              :hireMeModal.sync="hireMeModal"
+              :closeHireMeModal="closeHireMeModal"
+              :user="currentUser"
+      />
       <!-- All Modals -->
     </v-container>
     <!-- Main container -->
@@ -945,8 +946,7 @@
 <script>
 import audioMedia from "./media/audioMedia";
 import VideoPlayer from "./media/VideoPlayer";
-// import HireModal from "../theme203/payment/HireModal";
-import UpdatedHireModal from "../includes/HireMeModal";
+import HireModal from '../reusable/components/hireMe/hireMe';
 import Portfolio from "./tabs/Portfolio";
 import SocialButtons from "./common/SocialButtons";
 import SalaryRate from "./common/SalaryRate";
@@ -956,7 +956,7 @@ export default {
   props: ["user", "is_preview", "builderCurrentTabTitle"],
   components: {
     audioMedia,
-    UpdatedHireModal,
+    HireModal,
     Portfolio,
     VideoPlayer,
     SocialButtons,

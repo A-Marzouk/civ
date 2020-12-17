@@ -98,15 +98,17 @@ Route::post('/paypal/webhooks', 'Billing\PayPalWebhooksController@handle')->name
 
 
 // paypal
-Route::get('/subscribe/create-paypal-plan/{plan_period}', 'PayPalForAgentsController@create_plan');
-Route::get('/subscribe/paypal/monthly', 'PayPalForAgentsController@subscribePayPalMonthly')->name('paypal.redirect.monthly');
-Route::get('/subscribe/paypal/yearly', 'PayPalForAgentsController@subscribePayPalYearly')->name('paypal.redirect.yearly');
-Route::get('/subscribe/paypal/return', 'PayPalForAgentsController@paypalReturn')->name('paypal.return');
+Route::get('/subscribe/create-paypal-plan/{plan_period}', 'Billing\PayPalForAgentsController@create_plan');
+Route::get('/subscribe/paypal/monthly', 'Billing\PayPalForAgentsController@subscribePayPalMonthly')->name('paypal.redirect.monthly');
+Route::get('/subscribe/paypal/yearly', 'Billing\PayPalForAgentsController@subscribePayPalYearly')->name('paypal.redirect.yearly');
+Route::get('/subscribe/paypal/return', 'Billing\PayPalForAgentsController@paypalReturn')->name('paypal.return');
 
 
+// client routes:
+Route::group(['prefix' => 'client'], function () {
+    Route::get('/', 'ClientsController@index')->name('client.dashboard');
+});
 
-
-// admin routes:
 
 
 // Admin routes

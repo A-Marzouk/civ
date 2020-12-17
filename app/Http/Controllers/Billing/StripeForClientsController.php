@@ -227,8 +227,8 @@ class StripeForClientsController extends Controller
             $client =  User::create([
                 'name' => $request->client['name'],
                 'email' => $request->client['email'],
-                'username' => strstr($request->client['email'], '@', true),
-                'password' => Hash::make($request->client['email'] . '_civie_client'),
+                'username' => strtolower(strstr($request->client['email'], '@', true)),
+                'password' => Hash::make(strtolower($request->client['email'] . '_civie_client')),
             ])->assignRole('client');
         }
 

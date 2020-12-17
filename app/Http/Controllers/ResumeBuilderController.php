@@ -13,7 +13,7 @@ class ResumeBuilderController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth']); // TODO: out back the subscribed middleware.
+        $this->middleware(['auth','role:agent|admin']); // TODO: out back the subscribed middleware.
     }
 
     // we will allow even admin to have a resume-builder account
