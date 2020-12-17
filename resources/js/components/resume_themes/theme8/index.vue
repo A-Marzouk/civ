@@ -14,10 +14,11 @@
         ></HeaderTheme8>
         <ChatModal :chatToggle="chatToggle" :closeChat="closeChat" />
         <HireModal
-            :currentUser="currentUser"
-            @openModal="hireMeModal = true"
-            :hireToggle="hireToggle"
-            :closeHire="closeHire"
+                @modalClosed="hireMeModal = false"
+                @openModal="hireMeModal = true"
+                :hireMeModal.sync="hireMeModal"
+                :closeHireMeModal="closeHireMeModal"
+                :user="currentUser"
         />
         <AudioModal
             :audioToggle="audioToggle"
@@ -171,7 +172,7 @@ import Hobbies from "./hobbies";
 import References from "./references";
 import Achievements from "./achievements";
 import ChatModal from "./message/ChatModal";
-import HireModal from "./hireme/HireModal";
+import HireModal from '../reusable/components/hireMe/hireMe';
 import AudioModal from "./media/AudioModal";
 import VideoModal from "./media/VideoModal";
 
