@@ -1,7 +1,7 @@
 <template>
   <div data-app>
     <v-row justify="center">
-      <v-dialog v-model="hireMeModal" content-class="m-2 hire-me-modal__main-content" persistent max-width="576">
+      <v-dialog v-model="hireMeModal" content-class="m-2 hire-me-modal__main-content" persistent max-width="624">
         <v-card>
           <v-toolbar dark color="#f2f3fd" flat>
             <v-toolbar-title class="main-color pl-4">Booking/ payment</v-toolbar-title>
@@ -323,7 +323,7 @@
                     depressed
                     color="#001CE2"
                     height="50"
-                    class="submit-button"
+                    class="submit-button ml-sm-1"
                     @click="pay"
                   >
                     {{ loading ? 'Redirecting..' : 'Confirm' }}
