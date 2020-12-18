@@ -25,7 +25,7 @@
                   ></v-col>
                   <v-col cols="9">
                     <div class="user-name">
-                      {{ user.personal_info.first_name }} - {{ user.personal_info.designation }}
+                      {{ user.personal_info.first_name }} - <span>{{ user.personal_info.designation }}</span>
                     </div>
                     <div class="user-rate">${{ user.payment_info[0].salary }}/Hour</div>
                   </v-col>
