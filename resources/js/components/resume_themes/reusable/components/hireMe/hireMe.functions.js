@@ -48,7 +48,7 @@ export default {
             paymentTypes: [
                 "hour", "month", "week"
             ],
-            activePaymentTypeIndex: 1,
+            activePaymentTypeIndex: 0,
             unitHours: 20,
             isDatePickerOpened: false,
             client: {
