@@ -37,7 +37,7 @@
                     <template v-for="item in currentUser.projects">
                       <ImagesCarouselModal :images="item.images" :key="item.id">
                         <v-card
-                          class="mb-2 card-portfolio mr-auto"
+                          class="card-portfolio mr-auto"
                           align="left"
                           flat
                           color="transparent"
@@ -190,6 +190,10 @@ export default {
     color: #ffffff !important;
   }
 }
+.card-portfolio{
+  margin-bottom: 50px;
+}
+
 .custom-portfolio-img {
   max-width: 420px !important;
   max-height: 339px !important;
