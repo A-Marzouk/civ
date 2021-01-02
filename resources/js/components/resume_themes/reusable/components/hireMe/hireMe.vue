@@ -151,7 +151,7 @@
               <!-- Total Payment -->
               <!-- Payment Options -->
               <v-col cols="12" sm="10" md="8">
-                <v-row no-gutters class="flex-nowrap ">
+                <v-row no-gutters class="flex-nowrap">
                   <v-col cols="5">
                     <v-btn
                       width="100%"
@@ -225,7 +225,7 @@
                           {{ day.weekday }}
                         </div>
                         <div class="day">{{ day.date }}</div>
-                        <div v-show="currentDate == day.obj">●</div>
+                        <!-- <div v-show="currentDate == day.obj">●</div> -->
                       </div>
                     </div>
                     <!-- <div>{{ weekdayCounter }}</div> -->
@@ -239,6 +239,7 @@
               </v-col>
               <!-- Date Picker -->
             </v-row>
+            <div class="divider"></div>
             <!-- Payment Form -->
             <v-col cols="12">
               <v-row no-gutters v-show="activePaymentTypeIndex != 0">
@@ -293,8 +294,8 @@
 
             <!-- Payment Methods -->
             <v-col cols="12">
-              <v-row align="center" style="justify-content: center;">
-                <v-col cols="4"  sm="3" align-self="center">
+              <v-row align="center" style="justify-content: center">
+                <v-col cols="4" sm="3" align-self="center">
                   <v-img
                     src="/icons/hire-modal/stripe-logo.svg"
                     height="30"
@@ -304,7 +305,7 @@
                     :class="[currentActiveMethod == 'stripe' ? 'active-method' : 'inactive-method']"
                   ></v-img>
                 </v-col>
-                <v-col cols="4"  sm="3" align-self="center">
+                <v-col cols="4" sm="3" align-self="center">
                   <v-img
                     src="/icons/hire-modal/paypal-logo.svg"
                     height="30"
@@ -314,18 +315,14 @@
                     :class="[currentActiveMethod == 'paypal' ? 'active-method' : 'inactive-method']"
                   ></v-img
                 ></v-col>
-                <v-col cols="12"  sm="6" class="flex-fill text-right" style="display: flex; justify-content: space-around;">
-                  <a class="hire-me-url-btn" target="_blank" :href="sharableURL">
-                     SHARABLE LINK
-                  </a>
-                  <v-btn
-                    dark
-                    depressed
-                    color="#001CE2"
-                    height="50"
-                    class="submit-button ml-sm-1"
-                    @click="pay"
-                  >
+                <v-col
+                  cols="12"
+                  sm="6"
+                  class="flex-fill text-right"
+                  style="display: flex; justify-content: space-around"
+                >
+                  <a class="hire-me-url-btn" target="_blank" :href="sharableURL"> SHARABLE LINK </a>
+                  <v-btn dark depressed color="#001CE2" height="50" class="submit-button ml-sm-1" @click="pay">
                     {{ loading ? 'Redirecting..' : 'Confirm' }}
                   </v-btn>
                 </v-col>
@@ -353,26 +350,31 @@ export default {
 </style>
 
 <style lang="scss">
-
-  .hire-me-url-btn{
-    height: 50px;
-    @media screen and (max-width: 425px) {
-      height: 46px !important;
-    }
-    min-width:124px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #001CE2;
-    border: 1.5px solid #001CE2;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 18px;
-    &:hover{
-      text-decoration: none;
-    }
+.align-items-end {
+  align-items: flex-end !important;
+}
+.justify-content-between {
+  justify-content: space-between !important;
+}
+.hire-me-url-btn {
+  height: 50px;
+  @media screen and (max-width: 425px) {
+    height: 46px !important;
   }
+  min-width: 124px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #001ce2;
+  border: 1.5px solid #001ce2;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  &:hover {
+    text-decoration: none;
+  }
+}
 
 .hire-me-modal__main-content {
   font-family: Montserrat, sans-serif;
@@ -381,6 +383,18 @@ export default {
       height: 46px !important;
     }
   }
+}
+.hire-me-modal__main-content::-webkit-scrollbar {
+  width: 3px;
+}
+
+.hire-me-modal__main-content::-webkit-scrollbar-track {
+  background-color: #e6e8fc;
+}
+
+.hire-me-modal__main-content::-webkit-scrollbar-thumb {
+  background-color: #001ce2;
+  border-radius: 10px;
 }
 
 .hourSlider {
