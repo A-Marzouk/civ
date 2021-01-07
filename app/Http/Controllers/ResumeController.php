@@ -160,12 +160,11 @@ class ResumeController extends Controller
     public function sendResumeMessage(Request $request)
     {
         $emailData = [
-            'header' => 'New message from your resume.',
+            'header' => 'New message on resume.',
             'body' => $request->message['body'],
             'actionText' => 'Open resume',
             'actionURL' => $request->resumeURL,
             'footer' => 'Civ.ie team.'
-
         ];
 
         $from = [
@@ -174,8 +173,8 @@ class ResumeController extends Controller
         ];
 
         $to[] = [
-            'name' => $request->receiver['name'],
-            'email' => $request->receiver['email'],
+            'name' => '123workforce admin',
+            'email' => 'conor@123workforce.com',
         ];
 
 

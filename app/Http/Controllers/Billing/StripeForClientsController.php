@@ -11,7 +11,6 @@ namespace App\Http\Controllers\Billing;
 
 use App\Billing\paymentGatewayInfo;
 use App\Http\Controllers\Controller;
-use App\Subscription;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -246,7 +245,7 @@ class StripeForClientsController extends Controller
     }
 
     public function clientSubscription(){
-        return view('subscription');
+        return view('billing.subscription');
     }
 
 

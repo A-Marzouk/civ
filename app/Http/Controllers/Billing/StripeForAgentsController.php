@@ -18,7 +18,7 @@ class StripeForAgentsController extends Controller
     }
 
     public function index(){
-        return view('subscription');
+        return view('billing.subscription');
     }
 
     public function subscribePage(){

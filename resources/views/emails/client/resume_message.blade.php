@@ -1,8 +1,11 @@
 @component('mail::message')
 # {{$emailData['header']}}
-## From: {{$from['name']}} ({{$from['email']}})
-## Resume URL: {{$emailData['actionURL']}}
+### From: {{$from['name']}} ({{$from['email']}})
+### Resume URL: {{$emailData['actionURL']}}
+### Message body:
+<div class="message-body">
 {{$emailData['body']}}
+</div>
 
 @php
     $url = $emailData['actionURL'];
@@ -19,6 +22,10 @@ Thanks,<br>
 <style>
     body {
         color: #888DB1 !important;
+    }
+
+    .message-body{
+        white-space: pre;
     }
 
     body>table>tbody>tr>td>table>tbody>tr:nth-child(2)>td>table>tbody>tr>td>table>tbody>tr>td>table>tbody>tr>td>table {
