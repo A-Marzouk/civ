@@ -43,12 +43,12 @@ export default {
             currentPaymentMethod: 'stripe',
             // payment calculations:
             percentage: 100,
-            hours: [1, 2, 4, 6, 8],
+            hours: [1, 2, 4, 6, 8,9,10],
             currentPaymentType: 'hourly',
             paymentTypes: [
                 "hour", "month", "week"
             ],
-            activePaymentTypeIndex: 1,
+            activePaymentTypeIndex: 0,
             unitHours: 20,
             isDatePickerOpened: false,
             client: {

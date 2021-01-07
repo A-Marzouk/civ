@@ -31,7 +31,7 @@ class ResumeMessage extends Mailable
      */
     public function build()
     {
-        return $this->subject( 'New message on your resume | civ.ie' )
+        return $this->subject( 'New message on resume | civ.ie' )
             ->from('info@civ.ie')
             ->markdown('emails.client.resume_message');
     }

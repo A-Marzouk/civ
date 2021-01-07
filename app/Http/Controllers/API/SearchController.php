@@ -70,7 +70,7 @@ class SearchController extends Controller
                 'location' => $user->personalInfo->location,
                 'preview' => 'resumeApp/public/images/theme-holder.svg',
                 'url' => $baseURL . '/' . $user->username . '/' . $profile['url'],
-                // new end points:
+                'workforce_url' =>  'https://123workforce.com/' . $user->username . '/' . $profile['url'],
                 'avatar'=> $user->personalInfo->profile_pic,
                 'hourlyRate'=> $user->paymentInfo[0]->salary,
                 'projects' => $projects,
