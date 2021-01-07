@@ -25,7 +25,7 @@ Thanks,<br>
     }
 
     .message-body{
-        white-space: pre;
+        white-space: pre-wrap;
     }
 
     body>table>tbody>tr>td>table>tbody>tr:nth-child(2)>td>table>tbody>tr>td>table>tbody>tr>td>table>tbody>tr>td>table {
