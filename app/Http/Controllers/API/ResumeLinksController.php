@@ -36,6 +36,17 @@ class ResumeLinksController extends Controller
         return ResumeLinkResource::collection($resumeLinks);
     }
 
+    public function toggleWorkForcePublicity(Request $request){
+        $resumeLink = ResumeLink::findOrFail($request->id);
+        $resumeLink->update([
+            'is_123workforce_public' => ! $resumeLink->is_123workforce_public
+        ]);
+
+        if ($resumeLink->id) {
+            return new ResumeLinkResource($resumeLink);
+        }
+    }
+
     public function store(Request $request)
     {
 

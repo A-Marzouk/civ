@@ -166,6 +166,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/resume-links/import', 'API\ResumeLinksController@importFromCIVResume');
     Route::post('/resume-links/update-order', 'API\ResumeLinksController@updateResumeLinksOrder');
     Route::put('/resume-links', 'API\ResumeLinksController@store');
+    Route::put('/resume-links/update-workforce-publicity', 'API\ResumeLinksController@toggleWorkForcePublicity');
     Route::delete('/resume-links/{id}', 'API\ResumeLinksController@destroy');
 
 // Languages api routes:
