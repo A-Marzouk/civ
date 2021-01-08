@@ -1,10 +1,16 @@
 <template>
     <div>
+        <v-btn color="primary" dark class="mt-2" @click="clearWorkforceRefresh">Refresh 123workforce homepage profiles</v-btn>
+
         <v-data-table
                 :headers="headers"
                 :items="tableUsers"
                 sort-by="name"
                 class="elevation-1 users-table"
+                :single-expand="singleExpand"
+                :expanded.sync="expanded"
+                item-key="name"
+                show-expand
         >
             <template v-slot:top>
                 <v-toolbar flat color="white">
@@ -118,11 +124,6 @@
                         max-width="550"
                         style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);border-radius: 10px; z-index:1000; overflow-y:hidden;">
                     <v-card>
-                        <v-card-subtitle align="right">
-                            <v-btn icon class="btn-close-modal" absolute>
-                                <img src="/images/new_resume_builder/icons/main/close.svg" alt="close icon"/>
-                            </v-btn>
-                        </v-card-subtitle>
                         <v-card-text align="center" class="padding-sm-1">
                             <v-row align="center" justify="center" class="p-5 d-flex flex-column"
                                    v-if="item.subscription">
@@ -151,6 +152,28 @@
                     </v-card>
                 </v-dialog>
                 <!-- dialogs -->
+            </template>
+
+            <template v-slot:expanded-item="{item}">
+                <td :colspan="headers.length" style="padding:0;">
+                    <v-data-table
+                            :headers="resumeHeaders"
+                            :items="item.resumeLinks"
+                            item-key="id"
+                            class="elevation-1"
+                            :hide-default-footer="true"
+                    >
+                        <template v-slot:item.url="{ item }">
+                            https://civ.ie/{{getUsernameByID(item.user_id)}}/{{item.url}}
+                        </template>
+                        <template v-slot:item.workforce_public="{ item }">
+                            <v-checkbox v-model="item.is_123workforce_public" label="Public"
+                                        @change="toggleWorkForcePublicity(item)">
+                            </v-checkbox>
+
+                        </template>
+                    </v-data-table>
+                </td>
             </template>
         </v-data-table>
 
@@ -247,13 +270,12 @@
         props: ['users', 'deletedUsers'],
         data: () => ({
             dialog: false,
+            singleExpand: false,
+            singleSelect: false,
+            selected: [],
+            expanded: [],
             headers: [
-                {
-                    text: 'Full name',
-                    align: 'start',
-                    sortable: false,
-                    value: 'name',
-                },
+                {text: 'Full name', align: 'start', sortable: false, value: 'name'},
                 {text: 'Email', value: 'email'},
                 {text: 'Link to resume builder', value: 'profileLink'},
                 {text: 'Sub. Status', value: 'subscription'},
@@ -261,6 +283,10 @@
                 {text: 'Last activity', value: 'lastActivity'},
                 {text: 'Actions', value: 'actions', sortable: false},
                 {text: 'Tester', value: 'tester', sortable: false},
+            ],
+            resumeHeaders:[
+                {text: 'Resume URL', value:'url'},
+                {text: 'is public on 123workforce homepage', value:'workforce_public'},
             ],
             tableUsers: [],
             tableDeletedUsers: [],
@@ -319,6 +345,25 @@
                     this.tableDeletedUsers.splice(index, 1);
                     this.tableUsers.push(item);
                 });
+            },
+            clearWorkforceRefresh(){
+                axios.get('/api/search/send-invalidate-cache').then( (r) => { console.log(r.data)});
+            },
+            getUsernameByID(id){
+                let username = '' ;
+                this.users.forEach( (user) => {
+                    if(user.id == id){
+                        username = user.username;
+                    }
+                });
+                return username;
+            },
+            toggleWorkForcePublicity(item){
+                if(item.is_123workforce_public === 0 ||  item.is_123workforce_public === '0') item.is_123workforce_public = false;
+                if(item.is_123workforce_public === 1 ||  item.is_123workforce_public === '1') item.is_123workforce_public = true ;
+                axios.put('/api/user/resume-links/update-workforce-publicity', item)
+                    .then()
+                    .catch();
             },
             // permanently  delete
             forceDeleteUser(item) {

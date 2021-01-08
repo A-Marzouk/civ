@@ -34,6 +34,7 @@ class AdminsController extends Controller
 
         foreach ($agents as $agent){
             $agent['can_test_builder'] = $agent->can('test.builder.users');
+            $agent['resumeLinks'] = $agent->resumeLinks;
             $agent['subscription'] = $agent->subscription;
             if($agent->subscription){
                 $agent['subscription']['promocode'] = $agent->subscription->promocode;
