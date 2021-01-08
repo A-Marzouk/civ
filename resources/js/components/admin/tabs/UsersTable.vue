@@ -162,6 +162,7 @@
                             item-key="id"
                             class="elevation-1"
                             :hide-default-footer="true"
+                            disable-pagination
                     >
                         <template v-slot:item.url="{ item }">
                             https://civ.ie/{{getUsernameByID(item.user_id)}}/{{item.url}}
