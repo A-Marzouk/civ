@@ -1,5 +1,7 @@
 <template>
     <div>
+        <v-btn color="primary" dark class="mt-2" @click="clearWorkforceRefresh">Refresh 123workforce homepage profiles</v-btn>
+
         <v-data-table
                 :headers="headers"
                 :items="tableUsers"
@@ -343,6 +345,9 @@
                     this.tableDeletedUsers.splice(index, 1);
                     this.tableUsers.push(item);
                 });
+            },
+            clearWorkforceRefresh(){
+                axios.get('/api/search/send-invalidate-cache').then( (r) => { console.log(r.data)});
             },
             getUsernameByID(id){
                 let username = '' ;
