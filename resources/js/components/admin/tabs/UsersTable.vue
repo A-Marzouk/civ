@@ -1,6 +1,10 @@
 <template>
     <div>
-        <v-btn color="primary" dark class="mt-2" @click="clearWorkforceRefresh">Refresh 123workforce homepage profiles</v-btn>
+        <v-btn color="primary" dark class="mt-2" @click="clearWorkforceRefresh">
+            {{ isClearing ? 'Clearing Cache...' : ''}}
+            {{ isCleared  ? 'Cleared' : ''}}
+            {{ !isCleared && !isClearing  ? 'Refresh 123workforce homepage profiles' : ''}}
+        </v-btn>
 
         <v-data-table
                 :headers="headers"
@@ -310,6 +314,8 @@
                 password_confirmation: ''
             },
             errors: [],
+            isClearing: false,
+            isCleared: false,
         }),
 
         computed: {
@@ -348,7 +354,15 @@
                 });
             },
             clearWorkforceRefresh(){
-                axios.get('/api/search/send-invalidate-cache').then( (r) => { console.log(r.data)});
+                this.isClearing = true;
+                axios.get('/api/search/send-invalidate-cache').then( (r) => {
+                    console.log(r.data);
+                    this.isClearing = false;
+                    this.isCleared  = true;
+                    setTimeout( () => {
+                        this.isCleared  = false;
+                    }, 3000);
+                });
             },
             getUsernameByID(id){
                 let username = '' ;
