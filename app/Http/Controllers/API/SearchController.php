@@ -22,14 +22,11 @@ class SearchController extends Controller
         // return all approved civ profiles.
     }
 
-    public function getWorkForceVisibleProfiles($count = 50 ){
-
-        $user = User::where('username', '123workforce')->firstOrFail();
+    public function getWorkForceVisibleProfiles($count = 50){
 
         $paginatedResult = ResumeLink::where([
-            ['user_id', $user->id],
             ['url','!=', ''],
-            ['is_public', '1']
+            ['is_123workforce_public', '1']
         ])->paginate(request('count') ?? $count)->toArray();
 
         $paginatedResult["data"] = $this->formatResults($paginatedResult["data"]);
@@ -47,7 +44,8 @@ class SearchController extends Controller
         $users=[];
 
         foreach ($profiles as $profile){
-            $user = User::withAllRelations('123workforce', $profile['id']);
+            $username = User::find($profile['user_id'])->username;
+            $user = User::withAllRelations($username, $profile['id']);
             $baseURL = URL::to('/');
 
             $projects = $user->projects ;
