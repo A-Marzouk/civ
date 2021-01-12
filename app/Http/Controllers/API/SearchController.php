@@ -49,11 +49,16 @@ class SearchController extends Controller
             $baseURL = URL::to('/');
 
             $projects = $user->projects ;
+            $videos = [] ;
+            foreach ($user->media as $media){
+                if($media->type = 'video'){
+                    $videos[] = $media;
+                }
+            }
 
             foreach ($projects as $project){
                 foreach ($project->images as &$image){
                     if(Str::of($image->src)->contains('behance.net')){
-                        // image from Behance
                         $image['preview'] = str_replace('original','202', $image->src);
                     }else{
                         $image['preview'] = str_replace('projects_media','projects_media_resized', $image->src);
@@ -72,7 +77,8 @@ class SearchController extends Controller
                 'avatar'=> $user->personalInfo->profile_pic,
                 'hourlyRate'=> $user->paymentInfo[0]->salary,
                 'projects' => $projects,
-                'skills' => $user->skills,
+                'videos' => $videos,
+                'skills' => $user->skills
             ];
 
             $users[] = $formattedUser;
