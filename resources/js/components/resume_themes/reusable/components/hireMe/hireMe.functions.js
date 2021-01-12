@@ -72,7 +72,7 @@ export default {
     },
     watch: {
         selectHours: function (value) {
-            this.totalHours = this.hours[(value - 20) / 20] * this.unitHours;
+            this.totalHours = this.hours[(value - 14) / 14] * this.unitHours;
         },
         activePaymentTypeIndex: function (value) {
             if (value == 0) {

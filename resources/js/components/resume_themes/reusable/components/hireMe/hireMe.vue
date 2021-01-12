@@ -71,9 +71,9 @@
                         track-color="#E6E8FC"
                         track-fill-color="#E6E8FC"
                         thumb-color="#001CE2"
-                        :step="20"
+                        :step="14"
                         :max="100"
-                        :min="20"
+                        :min="14"
                         v-model="selectHours"
                         @click="initial = false"
                       ></v-slider>
@@ -401,7 +401,7 @@ export default {
   .v-slider--horizontal {
     min-height: 25px !important;
     margin-left: 15px !important;
-    margin-right: 30px !important;
+    margin-right: 20px !important;
     .v-slider__thumb {
       padding: 2px 15px !important;
     }
