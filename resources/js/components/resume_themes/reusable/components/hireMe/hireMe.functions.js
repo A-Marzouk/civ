@@ -72,7 +72,7 @@ export default {
     },
     watch: {
         selectHours: function (value) {
-            this.totalHours = this.hours[(value - 20) / 20] * this.unitHours;
+            this.totalHours = this.hours[(value - 14) / 14] * this.unitHours;
         },
         activePaymentTypeIndex: function (value) {
             if (value == 0) {
@@ -82,7 +82,7 @@ export default {
                 this.unitHours = 20;
                 // calculate total number
                 this.totalNumber = [{number: 'ongoing'}];
-                for (let index = 1; index < 7; index++) {
+                for (let index = 0; index < 7; index++) {
                     const element = {number: `${index}`};
                     this.totalNumber.push(element)
                 }
@@ -91,7 +91,7 @@ export default {
                 this.unitHours = 7;
                 // calculate total number
                 this.totalNumber = [{number: 'ongoing'}];
-                for (let index = 1; index < 13; index++) {
+                for (let index = 0; index < 13; index++) {
                     const element = {number: `${index}`};
                     this.totalNumber.push(element)
                 }
