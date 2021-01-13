@@ -34,8 +34,8 @@ export default {
             loading: false,
             currentActiveMethod: 'stripe',
             isModalOpened: false,
-            selectHours: 1,
-            totalHours: null,
+            totalHours: 0,
+            refinedTotalHours: 1,
             payToday: true,
             weekdayCounter: 0,
             dateSelected: null,
@@ -43,13 +43,13 @@ export default {
             currentPaymentMethod: 'stripe',
             // payment calculations:
             percentage: 100,
-            hours: [1, 2, 4, 6, 8,9,10],
+            hours: [0, 2, 4, 6, 8],
+            step: 2,
             currentPaymentType: 'hourly',
             paymentTypes: [
-                "hour", "month", "week"
+                "hour","week", "month"
             ],
             activePaymentTypeIndex: 0,
-            unitHours: 20,
             isDatePickerOpened: false,
             client: {
                 email: '',
@@ -71,32 +71,8 @@ export default {
         };
     },
     watch: {
-        selectHours: function (value) {
-            this.totalHours = this.hours[(value - 20) / 20] * this.unitHours;
-        },
         activePaymentTypeIndex: function (value) {
-            if (value == 0) {
-                this.unitHours = 1;
-            }
-            if (value == 1) {
-                this.unitHours = 20;
-                // calculate total number
-                this.totalNumber = [{number: 'ongoing'}];
-                for (let index = 1; index < 7; index++) {
-                    const element = {number: `${index}`};
-                    this.totalNumber.push(element)
-                }
-            }
-            if (value == 2) {
-                this.unitHours = 7;
-                // calculate total number
-                this.totalNumber = [{number: 'ongoing'}];
-                for (let index = 1; index < 13; index++) {
-                    const element = {number: `${index}`};
-                    this.totalNumber.push(element)
-                }
-            }
-            this.totalHours = this.hours[(this.selectHours - 20) / 20] * this.unitHours;
+            this.totalHours = value;
         },
         weekdayCounter: function (value) {
             let startOfWeek = moment().add(value, 'd').startOf('isoWeek');
@@ -117,6 +93,13 @@ export default {
         }
     },
     methods: {
+        refineTotalHours(){
+          if(this.totalHours === 0){
+              this.refinedTotalHours = this.hours[1]/2 ;
+          }else{
+              this.refinedTotalHours = this.totalHours;
+          }
+        },
         increaseCounter() { // Increase
             this.weekdayCounter += 7;
         },
@@ -132,12 +115,33 @@ export default {
             if (this.activePaymentTypeIndex > 2) {
                 this.activePaymentTypeIndex = 0;
             }
+           this.setPaymentHours();
         },
         prevPaymentType() {
             this.activePaymentTypeIndex--;
             if (this.activePaymentTypeIndex < 0) {
                 this.activePaymentTypeIndex = 2;
             }
+            this.setPaymentHours();
+        },
+        setPaymentHours(){
+            let paymentType = this.paymentTypes[this.activePaymentTypeIndex] ;
+
+            if(paymentType === 'hour'){
+                this.hours =  [0, 2, 4, 6, 8];
+                this.step = 2;
+            }
+            if(paymentType === 'week'){
+                this.hours = [0, 10, 20, 30, 40];
+                this.step = 10;
+            }
+            if(paymentType === 'month'){
+                this.hours = [0, 40, 80, 120, 160];
+                this.step = 40;
+            }
+
+            this.totalHours = 0;
+            this.refinedTotalHours = this.hours[1]/2;
         },
         selectedDate(date) {
             this.dateSelected = date;
@@ -162,7 +166,7 @@ export default {
                     client: this.client,
                     freelancer: this.user,
                     payment_info: {
-                        numberOfHours: this.totalHours,
+                        numberOfHours: this.refinedTotalHours,
                         totalAmount: this.paymentTotal,
                         // percentage: this.percentage,
                         toPayNowAmount: this.paymentTotal,
@@ -242,14 +246,14 @@ export default {
         getTotalHours(){
             let parameters = this.$route.query ;
             if(parameters.hours && this.initial){
-                this.totalHours = parameters.hours;
+                this.refinedTotalHours = parameters.hours;
             }
-            return this.totalHours;
+            return this.refinedTotalHours;
         },
     },
     computed: {
         paymentTotal() {
-            return this.totalHours * this.user.payment_info[0].salary;
+            return this.refinedTotalHours * this.user.payment_info[0].salary;
         },
         sharableURL() {
             let URL = location.protocol + '//' + location.host + location.pathname + '?hire=true' ;

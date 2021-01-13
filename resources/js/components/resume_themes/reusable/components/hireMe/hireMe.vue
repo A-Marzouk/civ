@@ -55,12 +55,12 @@
                   <v-row justify="center" align-content="center" dense>
                     <v-col cols="12">
                       <div class="d-inline-block select-text">Select Hours</div>
-                      <div class="d-inline-block select-tag">Per day</div>
+                      <div class="d-inline-block select-tag">Per {{ paymentTypes[activePaymentTypeIndex] === 'hour' ? 'day' : paymentTypes[activePaymentTypeIndex] }}</div>
                     </v-col>
                     <v-col cols="12">
                       <div class="perDayNumber">
                         <div v-for="(n, i) in hours" :key="i" class="number">
-                          {{ n }}
+                          {{ n === 0 ? hours[1]/2 : n }}
                         </div>
                       </div>
 
@@ -71,22 +71,16 @@
                         track-color="#E6E8FC"
                         track-fill-color="#E6E8FC"
                         thumb-color="#001CE2"
-                        :step="20"
-                        :max="100"
-                        :min="20"
-                        v-model="selectHours"
+                        :step="step"
+                        :min="hours[0]"
+                        :max="hours[4]"
+                        v-model="totalHours"
+                        @change="refineTotalHours"
                         @click="initial = false"
                       ></v-slider>
 
-                      <div class="perMonthNumber">
-                        <div v-for="(n, i) in hours" :key="i" class="number">
-                          {{ n * unitHours }}
-                        </div>
-                      </div>
                     </v-col>
-                    <v-col cols="12">
-                      <div class="d-inline-block select-tag">Per {{ paymentTypes[activePaymentTypeIndex] }}</div>
-                    </v-col>
+
                   </v-row>
                 </v-container>
               </v-col>
@@ -111,19 +105,19 @@
                     </v-col>
                     <v-col cols="5" sm="auto" class="text-center"
                       ><div class="rate-label">
-                        No. of hours/
+                        No. of hours /
                         {{
                           paymentTypes[activePaymentTypeIndex] == 'hour' ? 'day' : paymentTypes[activePaymentTypeIndex]
                         }}
                       </div>
-                      <input type="text" disabled class="rate-input text" name="no_of_week" :value="getTotalHours()" />
+                      <input type="text" disabled class="rate-input text" name="no_of_week"  :value="getTotalHours()" />
                     </v-col>
                     <v-col cols="12" sm="auto" class="text-center">
                       <div class="operators">=</div>
                     </v-col>
                     <v-col cols="12" sm="auto" class="text-center"
                       ><div class="rate-label">
-                        <span class="text-capitalize">{{ paymentTypes[activePaymentTypeIndex] }}ly</span> payment
+                        Total
                       </div>
 
                       <input
@@ -189,19 +183,6 @@
               <v-col cols="12" v-show="isDatePickerOpened" v-if="currentActiveMethod !== 'paypal'">
                 <v-row dense>
                   <v-col cols="12">
-                    <!-- <v-menu bottom origin="center center" transition="scale-transition">
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn color="#001D68" dark v-bind="attrs" v-on="on" text class="px-0">
-                          {{ getArrayOfMonths[0] }} <v-icon right>mdi-calendar-blank</v-icon>
-                        </v-btn>
-                      </template>
-
-                      <v-list>
-                        <v-list-item v-for="(item, i) in getArrayOfMonths" :key="i">
-                          <v-list-item-title>{{ item }}</v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu> -->
                     <v-btn color="#001D68" dark text class="px-0">
                       {{ currentWeekDays[6].month }}
                       <v-icon right>mdi-calendar-blank</v-icon>
@@ -400,10 +381,9 @@ export default {
 .hourSlider {
   .v-slider--horizontal {
     min-height: 25px !important;
-    margin-left: 15px !important;
-    margin-right: 30px !important;
     .v-slider__thumb {
       padding: 2px 15px !important;
+      margin-left: -6px;
     }
     .v-slider__thumb:before {
       width: 0px !important;
