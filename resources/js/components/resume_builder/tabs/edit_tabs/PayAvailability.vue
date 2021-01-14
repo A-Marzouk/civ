@@ -185,6 +185,11 @@
                                         </v-col>
                                     </v-row>
                                 </v-form>
+
+                                <div class="stripe-btn">
+                                    <a href="javascript:void(0)" @click="connectToStripe">Connect to stripe</a>
+                                </div>
+
                             </v-container>
                             <draggable
                                     class="links-items"
@@ -338,10 +343,7 @@
 
 
                 // third tab | payment methods:
-                paymentMethodItems: [
-                    'PayPal',
-                    'Stripe'
-                ],
+                paymentMethodItems: ['PayPal'],
 
                 paymentMethodObject: {
                     id: '',
@@ -547,6 +549,17 @@
             },
             toggleAvailabilityVisibility(){
                 this.currentAvailability.is_public = !this.currentAvailability.is_public;
+            },
+
+
+            connectToStripe(){
+                axios.post('/stripe/onboard-user')
+                    .then( (res) => {
+                        window.location = res.data.url;
+                    })
+                    .catch( (err) => {
+                        console.log(err)
+                    })
             }
 
         },
@@ -689,6 +702,21 @@
                     position: static;
                 }
             }
+        }
+    }
+
+    .stripe-btn{
+        margin-bottom: 30px;
+        a{
+            background: blue;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 5px;
+        }
+        a:hover{
+            text-decoration: none;
         }
     }
 
