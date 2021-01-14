@@ -9,6 +9,7 @@
 namespace App\Traits;
 
 
+use App\PaymentMethod;
 use App\Subscription;
 use Carbon\Carbon;
 use App\Billing\paymentGatewayInfo;
@@ -60,6 +61,10 @@ trait Billable
         if($paymentGatewoayInfo){
             return $paymentGatewoayInfo->user;
         }
+    }
+
+    public function stripeConnectedAccountID(){
+        return $this->paymentMethods->where('name', 'stripe_connected')->first()->stripe_account_id;
     }
 
 }

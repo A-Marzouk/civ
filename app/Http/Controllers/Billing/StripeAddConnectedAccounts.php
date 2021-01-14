@@ -13,14 +13,21 @@ use Illuminate\Support\Facades\Session;
 use Stripe\Account;
 use Stripe\AccountLink;
 
-class StripeDirectPaymentsToUsers extends Controller
+class StripeAddConnectedAccounts extends Controller
 {
 
     public function CreateOnBoardUser(Request $request){
-        $account = Account::create([
-            'type' => 'standard',
-            'email' => auth()->user()->email
-        ]);
+        // add or retrieve the account:
+        $account_id = $this->getUserStripeConnectedAccountID();
+        if($account_id){
+            $account = Account::retrieve($account_id);
+        }else{
+            $account = Account::create([
+                'type' => 'standard',
+                'email' => auth()->user()->email
+            ]);
+        }
+
 
         Session::put('account_id',  $account->id);
 
@@ -87,17 +94,16 @@ class StripeDirectPaymentsToUsers extends Controller
         return Redirect::to('/add-account/success');
     }
 
+    protected function getUserStripeConnectedAccountID(){
+        return auth()->user()->stripeConnectedAccountID() ;
+    }
+
     public function addAccountSuccess(){
         return view('Billing.account_added_success');
     }
 
     public function addAccountFail(){
         return view('Billing.account_added_fail');
-    }
-
-    public function payUser(Request $request){
-        // checkout session with a payee.
-
     }
 
 }

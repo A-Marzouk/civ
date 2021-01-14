@@ -218,7 +218,7 @@ export default {
         },
         getPaymentLink() {
             if (this.currentActiveMethod === 'stripe') {
-                return '/custom-stripe-payment';
+                return '/direct-stripe-payment';
             }
             return '/custom-paypal-payment';
         },

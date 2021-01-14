@@ -85,12 +85,17 @@ Route::get('/hire-freelancer/success', 'Billing\StripeForClientsController@first
 Route::get('/hire-freelancer/cancel', 'Billing\StripeForClientsController@firstPaymentFail')->name('payment.fail');
 
 // Stripe direct user payments:
-Route::post('/stripe/onboard-user', 'Billing\StripeDirectPaymentsToUsers@CreateOnBoardUser')->name('stripe.onboard.user');
-Route::get('/stripe/onboard-user/refresh', 'Billing\StripeDirectPaymentsToUsers@refreshOnBoardUser')->name('stripe.onboard.user.refresh');
-Route::get('/stripe/onboard-user/return', 'Billing\StripeDirectPaymentsToUsers@returnAfterConnect')->name('stripe.onboard.user.return');
-Route::get('/add-account/success', 'Billing\StripeDirectPaymentsToUsers@addAccountSuccess')->name('account.added.success');
-Route::get('/add-account/fail', 'Billing\StripeDirectPaymentsToUsers@addAccountFail')->name('account.added.fail');
-Route::post('/stripe/pay-user', 'Billing\StripeDirectPaymentsToUsers@payUser');
+    // add connected accounts:
+Route::post('/stripe/onboard-user', 'Billing\StripeAddConnectedAccounts@CreateOnBoardUser')->name('stripe.onboard.user');
+Route::get('/stripe/onboard-user/refresh', 'Billing\StripeAddConnectedAccounts@refreshOnBoardUser')->name('stripe.onboard.user.refresh');
+Route::get('/stripe/onboard-user/return', 'Billing\StripeAddConnectedAccounts@returnAfterConnect')->name('stripe.onboard.user.return');
+Route::get('/add-account/success', 'Billing\StripeAddConnectedAccounts@addAccountSuccess')->name('account.added.success');
+Route::get('/add-account/fail', 'Billing\StripeAddConnectedAccounts@addAccountFail')->name('account.added.fail');
+
+
+    // direct payouts:
+Route::post('/direct-stripe-payment', 'Billing\StripeDirectPayouts@directStripePayments')->name('stripe.checkout');
+Route::get('/stripe-checkout', 'Billing\StripeDirectPayouts@stripeCheckout')->name('stripe.checkout');
 
 
 // PayPal for clients:
