@@ -60,7 +60,8 @@
                                             <v-tooltip top>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <div class="resume-builder__action-buttons-container">
-                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on" v-bind="attrs"
+                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on"
+                                                               v-bind="attrs"
                                                                @click="toggleVisibility">
                                                             <svg-vue icon="eye-icon" class="icon"
                                                                      :class="{'visible' : currentPayment.is_public}"></svg-vue>
@@ -116,7 +117,8 @@
                                             <v-tooltip top>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <div class="resume-builder__action-buttons-container">
-                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on" v-bind="attrs"
+                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on"
+                                                               v-bind="attrs"
                                                                @click="toggleAvailabilityVisibility">
                                                             <svg-vue icon="eye-icon" class="icon"
                                                                      :class="{'visible' : currentAvailability.is_public}"></svg-vue>
@@ -179,7 +181,8 @@
                                             >
                                                 {{isEditing ? 'Update' : 'Add'}}
                                             </v-btn>
-                                            <v-btn v-if="isEditing" @click="clearPaymentMethod" class="resume-builder__btn civie-btn filled btn-add-new mt-md-0 mt-sm-0 mt-n5 btn-add-new-custom">
+                                            <v-btn v-if="isEditing" @click="clearPaymentMethod"
+                                                   class="resume-builder__btn civie-btn filled btn-add-new mt-md-0 mt-sm-0 mt-n5 btn-add-new-custom">
                                                 Cancel
                                             </v-btn>
                                         </v-col>
@@ -188,7 +191,7 @@
 
                                 <div class="stripe-btn">
                                     <a href="javascript:void(0)" @click="connectToStripe">Connect to stripe</a>
-                                    <span class="status true" v-if="getStripeAccountStatus()">Connected</span>
+                                    <span class="status true" v-if="stripeAccountStatus">Connected</span>
                                     <span class="status false" v-else>Not Connected</span>
                                 </div>
 
@@ -389,6 +392,24 @@
                     this.$store.commit("updatePaymentMethods", paymentMethods);
                 }
             },
+            stripeAccountStatus: {
+                get() {
+                    let payment_methods = this.$store.state.user.payment_methods;
+
+                    if (payment_methods) {
+                        let status = false;
+
+                        payment_methods.forEach((method) => {
+                            if (method.stripe_account_id !== null) {
+                                status = true;
+                            }
+                        });
+
+                        return status;
+                    }
+
+                },
+            },
             isEditing() {
                 return (this.paymentMethodObject.id !== "")
             }
@@ -549,32 +570,23 @@
                     is_primary: false,
                 }
             },
-            toggleVisibility(){
+            toggleVisibility() {
                 this.currentPayment.is_public = !this.currentPayment.is_public;
             },
-            toggleAvailabilityVisibility(){
+            toggleAvailabilityVisibility() {
                 this.currentAvailability.is_public = !this.currentAvailability.is_public;
             },
 
             // stripe connected account:
-            connectToStripe(){
+            connectToStripe() {
                 axios.post('/stripe/onboard-user')
-                    .then( (res) => {
+                    .then((res) => {
                         window.location = res.data.url;
                     })
-                    .catch( (err) => {
+                    .catch((err) => {
                         console.log(err)
                     })
-            },
-            getStripeAccountStatus(){
-                this.paymentMethods.forEach( (method) => {
-                    if(method.stripe_account_id !== null){
-                        this.stripe_connected_status = true;
-                    }
-                });
-                return this.stripe_connected_status ;
             }
-
         },
 
         mounted() {
@@ -718,11 +730,12 @@
         }
     }
 
-    .stripe-btn{
+    .stripe-btn {
         margin-bottom: 30px;
         display: flex;
         align-items: flex-end;
-        a{
+
+        a {
             background: blue;
             color: white;
             font-size: 18px;
@@ -730,20 +743,22 @@
             padding: 12px;
             border-radius: 5px;
         }
-        a:hover{
+
+        a:hover {
             text-decoration: none;
         }
     }
 
-    .status{
+    .status {
         font-size: 14px;
         font-weight: 600;
         padding-left: 12px;
-        &.true{
+
+        &.true {
             color: lightgreen;
         }
 
-        &.false{
+        &.false {
             color: orangered;
         }
     }

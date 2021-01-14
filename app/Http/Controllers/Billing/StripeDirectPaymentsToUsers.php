@@ -33,7 +33,6 @@ class StripeDirectPaymentsToUsers extends Controller
         ];
     }
 
-
     public function generate_account_link($account_id, $origin) {
 
         $account_link = AccountLink::create([
@@ -95,4 +94,10 @@ class StripeDirectPaymentsToUsers extends Controller
     public function addAccountFail(){
         return view('Billing.account_added_fail');
     }
+
+    public function payUser(Request $request){
+        // checkout session with a payee.
+
+    }
+
 }

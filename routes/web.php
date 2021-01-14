@@ -90,6 +90,7 @@ Route::get('/stripe/onboard-user/refresh', 'Billing\StripeDirectPaymentsToUsers@
 Route::get('/stripe/onboard-user/return', 'Billing\StripeDirectPaymentsToUsers@returnAfterConnect')->name('stripe.onboard.user.return');
 Route::get('/add-account/success', 'Billing\StripeDirectPaymentsToUsers@addAccountSuccess')->name('account.added.success');
 Route::get('/add-account/fail', 'Billing\StripeDirectPaymentsToUsers@addAccountFail')->name('account.added.fail');
+Route::post('/stripe/pay-user', 'Billing\StripeDirectPaymentsToUsers@payUser');
 
 
 // PayPal for clients:
