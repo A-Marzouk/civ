@@ -220,12 +220,12 @@ class StripeForClientsController extends Controller
 
     protected function createClient($request, $stripe_customer_id)
     {
-        $client = User::where('email', $request->client['email'])->first();
+        $client = User::where('email', 'guest_' . $request->client['email'])->first();
 
-        if( ! $client){
-            $client =  User::create([
+        if (!$client) {
+            $client = User::create([
                 'name' => $request->client['name'],
-                'email' => $request->client['email'],
+                'email' => 'guest_' . $request->client['email'],
                 'username' => strtolower(strstr($request->client['email'], '@', true)),
                 'password' => Hash::make(strtolower($request->client['email'] . '_civie_client')),
             ])->assignRole('client');
@@ -233,7 +233,7 @@ class StripeForClientsController extends Controller
 
         $paymentGatewayInfo = paymentGatewayInfo::where('user_id', $client->id)->first();
 
-        if( ! $paymentGatewayInfo){
+        if (!$paymentGatewayInfo) {
             paymentGatewayInfo::create([
                 'user_id' => $client->id,
                 'stripe_customer_id' => $stripe_customer_id
