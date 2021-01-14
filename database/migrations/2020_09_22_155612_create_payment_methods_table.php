@@ -15,7 +15,7 @@ class CreatePaymentMethodsTable extends Migration
     {
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
-            $table->id('stripe_account_id')->nullable();
+            $table->string('stripe_account_id')->nullable();
             $table->string('name');
             $table->string('link')->nullable();
             $table->integer('order')->default(1);

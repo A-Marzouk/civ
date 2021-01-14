@@ -39,7 +39,7 @@ class StripeDirectPaymentsToUsers extends Controller
         $account_link = AccountLink::create([
             'type' => 'account_onboarding',
             'account' => $account_id,
-            'refresh_url' => "{$origin}/onboard-user/refresh",
+            'refresh_url' => "{$origin}/stripe/onboard-user/refresh",
             'return_url' => "{$origin}/stripe/onboard-user/return"
         ]);
 
@@ -71,8 +71,6 @@ class StripeDirectPaymentsToUsers extends Controller
 
         // add or update payment method:
         $paymentMethod = PaymentMethod::where('stripe_account_id', $account_id)->first();
-
-        dd($account_id);
 
         if( ! $paymentMethod){
             PaymentMethod::create([

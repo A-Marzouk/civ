@@ -188,6 +188,8 @@
 
                                 <div class="stripe-btn">
                                     <a href="javascript:void(0)" @click="connectToStripe">Connect to stripe</a>
+                                    <span class="status true" v-if="getStripeAccountStatus()">Connected</span>
+                                    <span class="status false" v-else>Not Connected</span>
                                 </div>
 
                             </v-container>
@@ -202,6 +204,7 @@
                                         class="link-item"
                                         v-for="paymentMethod in paymentMethods"
                                         :key="paymentMethod.id"
+                                        v-if="paymentMethod.name !== 'stripe_connected'"
                                         :class="{'half-opacity' : !paymentMethod.is_active}"
                                 >
                                     <div class="link-data">
@@ -352,7 +355,9 @@
                     order: 1,
                     is_active: true,
                     is_primary: false,
-                }
+                },
+
+                stripe_connected_status: false
             };
         },
         computed: {
@@ -551,7 +556,7 @@
                 this.currentAvailability.is_public = !this.currentAvailability.is_public;
             },
 
-
+            // stripe connected account:
             connectToStripe(){
                 axios.post('/stripe/onboard-user')
                     .then( (res) => {
@@ -560,6 +565,14 @@
                     .catch( (err) => {
                         console.log(err)
                     })
+            },
+            getStripeAccountStatus(){
+                this.paymentMethods.forEach( (method) => {
+                    if(method.stripe_account_id !== null){
+                        this.stripe_connected_status = true;
+                    }
+                });
+                return this.stripe_connected_status ;
             }
 
         },
@@ -707,6 +720,8 @@
 
     .stripe-btn{
         margin-bottom: 30px;
+        display: flex;
+        align-items: flex-end;
         a{
             background: blue;
             color: white;
@@ -717,6 +732,19 @@
         }
         a:hover{
             text-decoration: none;
+        }
+    }
+
+    .status{
+        font-size: 14px;
+        font-weight: 600;
+        padding-left: 12px;
+        &.true{
+            color: lightgreen;
+        }
+
+        &.false{
+            color: orangered;
         }
     }
 
