@@ -64,7 +64,12 @@ trait Billable
     }
 
     public function stripeConnectedAccountID(){
-        return $this->paymentMethods->where('name', 'stripe_connected')->first()->stripe_account_id;
+        $paymentMethod = $this->paymentMethods->where('name', 'stripe_connected')->first();
+        if($paymentMethod){
+            return $paymentMethod->stripe_account_id;
+        }
+
+        return null;
     }
 
 }

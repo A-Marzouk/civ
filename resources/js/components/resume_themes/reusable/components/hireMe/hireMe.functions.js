@@ -175,7 +175,7 @@ export default {
                         toPayLaterDate: this.dateSelected,
                         iterations: this.select.number,
                         isRecurring: this.activePaymentTypeIndex === 1 || this.activePaymentTypeIndex === 2,
-                        interval: this.activePaymentTypeIndex === 2 ? 'week' : 'month',
+                        interval: this.activePaymentTypeIndex === 1 ? 'week' : 'month',
                     }
                 };
 

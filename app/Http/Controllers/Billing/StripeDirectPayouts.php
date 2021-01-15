@@ -20,8 +20,6 @@ use Stripe\Price as StripePrice;
 use Stripe\Customer as StripeCustomer;
 use Illuminate\Support\Facades\Session;
 use Stripe\Checkout\Session as StripeSession;
-use Stripe\InvoiceItem as StripeInvoiceItem;
-use Stripe\Invoice as StripeInvoice;
 use Stripe\SubscriptionSchedule as StripeSubscriptionSchedule;
 
 class StripeDirectPayouts extends Controller
@@ -40,7 +38,7 @@ class StripeDirectPayouts extends Controller
 
         }
 
-        $stripe_account_id = $this->getUserStripeConnectedAccountID();
+        $stripe_account_id = $this->getUserStripeConnectedAccountID($request);
 
         return [
             'url' => config('url') . '/stripe-checkout?session_id=' . $session_id . "&stripe_account_id=" . $stripe_account_id
@@ -51,7 +49,7 @@ class StripeDirectPayouts extends Controller
     // one time payments
     protected function makeOneTimePayment($request)
     {
-        $stripe_account_id = $this->getUserStripeConnectedAccountID();
+        $stripe_account_id = $this->getUserStripeConnectedAccountID($request);
 
         if ($request->payment_info['payNow'] == 'true') {
             // pay now
@@ -77,17 +75,19 @@ class StripeDirectPayouts extends Controller
     }
 
 
-    // subscriptions :
-    protected function makeSubscriptionPayment($request)
-    {
-        $stripe_account_id = $this->getUserStripeConnectedAccountID();
-        $customer = $this->createOrFetchCustomer($request, $stripe_account_id);
 
-        $product = $this->createNewProduct('civ.ie | Hire ' .
+    // subscriptions :
+    protected function makeSubscriptionPayment($request){
+
+        $product  = $this->createNewProduct('civ.ie | Hire ' .
             $request->freelancer['default_resume_link']['title'] .
             ' For ' . $request->payment_info['numberOfHours'] . ' Hours | ' .
             $request->payment_info['iterations'] . ' '
-            . $request->payment_info['interval'] . 's');
+            . $request->payment_info['interval'] . 's' , $request);
+
+        $stripe_account_id = $this->getUserStripeConnectedAccountID($request);
+
+        $customer = $this->createOrFetchCustomer($request, $stripe_account_id);
 
         $subscriptionPrice = $this->createPriceForSubscription($product->id, $request);
 
@@ -96,24 +96,39 @@ class StripeDirectPayouts extends Controller
             'mode' => 'setup',
             'payment_method_types' => ['card'],
             'success_url' => url('/') . '/hire-freelancer/success',
-            'cancel_url' => url('/') . '/hire-freelancer/cancel',
-        ]);
+            'cancel_url' =>  url('/') . '/hire-freelancer/cancel',
+        ], ['stripe_account' => $stripe_account_id]);
+
+        Session::put('hire_sub_session_id',  $session->id);
+
+        $dt = Carbon::now();
+
+        if($request->payment_info['toPayLaterDate'] == 'month'){
+            $cancel_at = $dt->addMonths($request->payment_info['iterations']);
+            $cancel_at = $cancel_at->timestamp;
+        }elseif ($request->payment_info['toPayLaterDate'] == 'week'){
+            $cancel_at = $dt->addWeeks($request->payment_info['iterations']);
+            $cancel_at = $cancel_at->timestamp;
+        }else{
+            $cancel_at = null;
+        }
 
         \Stripe\Subscription::create([
-            "customer" => $customer->id,
+            'customer' =>  $customer->id,
             "items" => [
-                ["price" => $subscriptionPrice->id],
+                ['price' => $subscriptionPrice->id],
             ],
             "expand" => ["latest_invoice.payment_intent"],
+            "cancel_at" => $cancel_at
         ], ["stripe_account" => $stripe_account_id]);
 
-        Session::put('hire_sub_session_id', $session->id);
-
-        return $session->id;
+        return $session->id ;
     }
 
     protected function createPriceForSubscription($product_id, $request)
     {
+        $stripe_account_id = $this->getUserStripeConnectedAccountID($request);
+
         return StripePrice::create([
             'product' => $product_id,
             'unit_amount' => $request->payment_info['toPayNowAmount'] * 100, // USD in cents
@@ -122,35 +137,22 @@ class StripeDirectPayouts extends Controller
             'recurring' => [
                 'interval' => $request->payment_info['interval'],
             ],
-        ]);
-    }
-
-    protected function createPriceForSubscriptionLaterPayment($product_id, $request)
-    {
-        return StripePrice::create([
-            'product' => $product_id,
-            'unit_amount' => $request->payment_info['toPayLaterAmount'] * 100, // USD in cents
-            'currency' => 'usd',
-            // pass interval only if recurring payment.
-            'recurring' => [
-                'interval' => $request->payment_info['interval'],
-            ],
-        ]);
+        ], ["stripe_account" => $stripe_account_id ]);
     }
 
 
     // general:
     protected function createOrFetchCustomer($request, $stripe_account_id)
     {
-        $client = User::where('email', $request->client['email'])->first();
-        $stripeID = $client->paymentGatewayInfo->stripe_customer_id ?? '';
+        $client   = User::where('email', $request->client['email'])->first();
+        $stripeID = $client->paymentGatewayInfo->stripe_customer_id ?? '' ;
 
-        if ($stripeID) {
+        if($stripeID){
             return StripeCustomer::retrieve($stripeID);
         }
 
         $newStripeCustomer = StripeCustomer::create([
-            'email' => 'paying.user@example.com',
+            'email' => $request->client['email'],
             'source' => 'tok_mastercard',
         ]);
 
@@ -160,33 +162,36 @@ class StripeDirectPayouts extends Controller
             'stripe_account' => $stripe_account_id,
         ]);
 
-        $connectedCustomer = StripeCustomer::create([
+        $copiedAccount = StripeCustomer::create([
             'source' => $token->id,
         ], [
             'stripe_account' => $stripe_account_id,
         ]);
 
-        $this->createClient($request, $connectedCustomer->id);
 
-        return $connectedCustomer;
+        $this->createClient($request, $copiedAccount->id);
+
+        return $copiedAccount ;
     }
 
-    protected function createNewProduct($productName)
+    protected function createNewProduct($productName, $request)
     {
+        $stripe_account_id = $this->getUserStripeConnectedAccountID($request);
+
         return StripeProduct::create([
             'name' => $productName
-        ]);
+        ], ["stripe_account" => $stripe_account_id ]);
     }
 
     protected function createClient($request, $stripe_customer_id)
     {
-        $client = User::where('email', $request->client['email'])->first();
+        $client = User::where('email', 'guest_' . $request->client['email'])->first();
 
         if (!$client) {
             $client = User::create([
                 'name' => $request->client['name'],
-                'email' => $request->client['email'],
-                'username' => strtolower(strstr($request->client['email'], '@', true)),
+                'email' => 'guest_' . $request->client['email'],
+                'username' => strtolower(strstr('guest_' . $request->client['email'], '@', true)),
                 'password' => Hash::make(strtolower($request->client['email'] . '_civie_client')),
             ])->assignRole('client');
         }
@@ -204,9 +209,10 @@ class StripeDirectPayouts extends Controller
 
     }
 
-    protected function getUserStripeConnectedAccountID()
+    protected function getUserStripeConnectedAccountID($request)
     {
-        return auth()->user()->stripeConnectedAccountID();
+        $user = User::where('email', $request->freelancer['email'])->first();
+        return $user->stripeConnectedAccountID();
     }
 
     public function stripeCheckout()
