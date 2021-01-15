@@ -64,6 +64,9 @@ class StripeDirectPayouts extends Controller
                         'quantity' => 1,
                     ]
                 ],
+                'payment_intent_data' => [
+                    'application_fee_amount' => $request->payment_info['toPayNowAmount'] * 100 * 0.025,
+                ],
                 'success_url' => url('/') . '/hire-freelancer/success',
                 'cancel_url' => url('/') . '/hire-freelancer/cancel',
             ], ['stripe_account' => $stripe_account_id]);
