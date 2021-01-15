@@ -72,4 +72,16 @@ trait Billable
         return null;
     }
 
+
+    public function paypalPaymentEmail(){
+        $paymentMethod = $this->paymentMethods->where('name', 'PayPal')->first();
+
+        if($paymentMethod){
+            if($paymentMethod->payment_email){
+                return $paymentMethod->payment_email;
+            }
+        }
+
+        return null;
+    }
 }

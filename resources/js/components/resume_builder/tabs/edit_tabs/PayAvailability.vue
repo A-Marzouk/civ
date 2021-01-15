@@ -168,11 +168,11 @@
                                                     outlined
                                                     color="#001CE2"
                                                     :class="{'resume-builder__input--disabled': false}"
-                                                    label="Payment Link"
+                                                    label="Payment email"
                                                     placholder="https://pay.stripe.com/john-doe"
-                                                    :error="!!errors.link"
-                                                    :error-messages="errors.link"
-                                                    v-model="paymentMethodObject.link"
+                                                    :error="!!errors.payment_email"
+                                                    :error-messages="errors.payment_email"
+                                                    v-model="paymentMethodObject.payment_email"
                                             ></v-text-field>
                                         </v-col>
                                         <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -215,7 +215,7 @@
                                             <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon"/>
                                         </div>
                                         <div class="link-text">
-                                            <span>{{paymentMethod.link}}</span>
+                                            <span>{{paymentMethod.payment_email}}</span>
                                         </div>
                                     </div>
                                     <div class="action-btns">
@@ -355,6 +355,7 @@
                     id: '',
                     name: '',
                     link: '',
+                    payment_email: '',
                     order: 1,
                     is_active: true,
                     is_primary: false,
@@ -492,6 +493,7 @@
                     id: paymentMethod.id,
                     name: paymentMethod.name,
                     link: paymentMethod.link,
+                    payment_email: paymentMethod.payment_email,
                     is_active: paymentMethod.is_active,
                     is_primary: paymentMethod.is_primary,
                     order: paymentMethod.order,
@@ -565,6 +567,7 @@
                     id: '',
                     name: '',
                     link: '',
+                    payment_email: '',
                     order: 1,
                     is_active: true,
                     is_primary: false,

@@ -96,6 +96,8 @@ Route::get('/add-account/fail', 'Billing\StripeAddConnectedAccounts@addAccountFa
     // direct payouts:
 Route::post('/direct-stripe-payment', 'Billing\StripeDirectPayouts@directStripePayments')->name('stripe.checkout');
 Route::get('/stripe-checkout', 'Billing\StripeDirectPayouts@stripeCheckout')->name('stripe.checkout');
+    // paypal:
+Route::post('/direct-paypal-payment', 'Billing\PayPalDirectPayouts@directPayPalPayments')->name('paypal.checkout');
 
 
 // PayPal for clients:

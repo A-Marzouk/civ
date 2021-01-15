@@ -184,7 +184,9 @@ export default {
                 axios.post(paymentUrl, this.paymentData)
                     .then((response) => {
                         this.loading = false;
-                        window.location = response.data.url;
+                        if(response.data.url != undefined){
+                            window.location = response.data.url;
+                        }
                     })
                     .catch((error) => {
                         this.loading = false;
@@ -220,7 +222,7 @@ export default {
             if (this.currentActiveMethod === 'stripe') {
                 return '/direct-stripe-payment';
             }
-            return '/custom-paypal-payment';
+            return '/direct-paypal-payment';
         },
         getURLParameters(){
 
