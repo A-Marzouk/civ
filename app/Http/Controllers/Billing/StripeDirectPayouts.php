@@ -50,17 +50,17 @@ class StripeDirectPayouts extends Controller
     protected function makeOneTimePayment($request)
     {
         $stripe_account_id = $this->getUserStripeConnectedAccountID($request);
+        $product = $this->createNewProduct('Hire ' . $request->freelancer['default_resume_link']['title'] . ' For ' . $request->payment_info['numberOfHours'] . ' Hours.' , $request);
 
         if ($request->payment_info['payNow'] == 'true') {
             // pay now
-
+            $price = $this->createOneTimePriceForNowPayment($product->id, $request);
             $session = StripeSession::create([
+                'mode' => 'payment',
                 'payment_method_types' => ['card'],
                 'line_items' => [
                     [
-                        'name' => 'Freelancer services | Hire ' . $request->freelancer['default_resume_link']['title'] . ' For ' . $request->payment_info['numberOfHours'] . ' Hours.',
-                        'amount' => $request->payment_info['toPayNowAmount'] * 100, // USD in cents,
-                        'currency' => 'usd',
+                        'price' => $price->id,
                         'quantity' => 1,
                     ]
                 ],
@@ -74,7 +74,16 @@ class StripeDirectPayouts extends Controller
         return $session->id;
     }
 
+    protected function createOneTimePriceForNowPayment($product_id, $request)
+    {
+        $stripe_account_id = $this->getUserStripeConnectedAccountID($request);
 
+        return StripePrice::create([
+            'product' => $product_id,
+            'unit_amount' => $request->payment_info['toPayNowAmount'] * 100, // USD in cents
+            'currency' => 'usd',
+        ], ["stripe_account" => $stripe_account_id ]);
+    }
 
     // subscriptions :
     protected function makeSubscriptionPayment($request){
@@ -119,6 +128,7 @@ class StripeDirectPayouts extends Controller
                 ['price' => $subscriptionPrice->id],
             ],
             "expand" => ["latest_invoice.payment_intent"],
+            "application_fee_percent" => 2.5,
             "cancel_at" => $cancel_at
         ], ["stripe_account" => $stripe_account_id]);
 
