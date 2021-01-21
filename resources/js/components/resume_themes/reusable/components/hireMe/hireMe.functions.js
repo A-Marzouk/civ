@@ -175,7 +175,7 @@ export default {
                         toPayLaterDate: this.dateSelected,
                         iterations: this.select.number,
                         isRecurring: this.activePaymentTypeIndex === 1 || this.activePaymentTypeIndex === 2,
-                        interval: this.activePaymentTypeIndex === 2 ? 'week' : 'month',
+                        interval: this.activePaymentTypeIndex === 1 ? 'week' : 'month',
                     }
                 };
 
@@ -184,7 +184,9 @@ export default {
                 axios.post(paymentUrl, this.paymentData)
                     .then((response) => {
                         this.loading = false;
-                        window.location = response.data.url;
+                        if(response.data.url != undefined){
+                            window.location = response.data.url;
+                        }
                     })
                     .catch((error) => {
                         this.loading = false;

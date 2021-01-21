@@ -287,9 +287,7 @@
             padding: 25px;
             max-width: 94%;
         }
-        @media screen and (min-width: 1904px) {
-            max-width: 1480px !important;
-        }
+
         @media screen and (min-width: 1264px) and (max-width: 1903px) {
             width: 98% !important;
         }

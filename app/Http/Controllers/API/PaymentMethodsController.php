@@ -101,7 +101,8 @@ class PaymentMethodsController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:200','min:2'],
-            'link' => ['required', 'url','max:200','min:2'],
+            'payment_email' => ['required', 'email','max:200','min:2'],
+            'link' => ['max:200'],
             'is_active' => ['required','bool'],
             'is_primary' => ['required', 'bool'],
             'order' => ['required', 'numeric'],

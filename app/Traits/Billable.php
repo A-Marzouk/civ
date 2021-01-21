@@ -9,6 +9,7 @@
 namespace App\Traits;
 
 
+use App\PaymentMethod;
 use App\Subscription;
 use Carbon\Carbon;
 use App\Billing\paymentGatewayInfo;
@@ -62,4 +63,25 @@ trait Billable
         }
     }
 
+    public function stripeConnectedAccountID(){
+        $paymentMethod = $this->paymentMethods->where('name', 'stripe_connected')->first();
+        if($paymentMethod){
+            return $paymentMethod->stripe_account_id;
+        }
+
+        return null;
+    }
+
+
+    public function paypalPaymentEmail(){
+        $paymentMethod = $this->paymentMethods->where('name', 'PayPal')->first();
+
+        if($paymentMethod){
+            if($paymentMethod->payment_email){
+                return $paymentMethod->payment_email;
+            }
+        }
+
+        return null;
+    }
 }

@@ -60,7 +60,8 @@
                                             <v-tooltip top>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <div class="resume-builder__action-buttons-container">
-                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on" v-bind="attrs"
+                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on"
+                                                               v-bind="attrs"
                                                                @click="toggleVisibility">
                                                             <svg-vue icon="eye-icon" class="icon"
                                                                      :class="{'visible' : currentPayment.is_public}"></svg-vue>
@@ -116,7 +117,8 @@
                                             <v-tooltip top>
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <div class="resume-builder__action-buttons-container">
-                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on" v-bind="attrs"
+                                                        <v-btn class="btn-icon civie-btn" depressed v-on="on"
+                                                               v-bind="attrs"
                                                                @click="toggleAvailabilityVisibility">
                                                             <svg-vue icon="eye-icon" class="icon"
                                                                      :class="{'visible' : currentAvailability.is_public}"></svg-vue>
@@ -166,11 +168,11 @@
                                                     outlined
                                                     color="#001CE2"
                                                     :class="{'resume-builder__input--disabled': false}"
-                                                    label="Payment Link"
+                                                    label="Payment email"
                                                     placholder="https://pay.stripe.com/john-doe"
-                                                    :error="!!errors.link"
-                                                    :error-messages="errors.link"
-                                                    v-model="paymentMethodObject.link"
+                                                    :error="!!errors.payment_email"
+                                                    :error-messages="errors.payment_email"
+                                                    v-model="paymentMethodObject.payment_email"
                                             ></v-text-field>
                                         </v-col>
                                         <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -179,12 +181,20 @@
                                             >
                                                 {{isEditing ? 'Update' : 'Add'}}
                                             </v-btn>
-                                            <v-btn v-if="isEditing" @click="clearPaymentMethod" class="resume-builder__btn civie-btn filled btn-add-new mt-md-0 mt-sm-0 mt-n5 btn-add-new-custom">
+                                            <v-btn v-if="isEditing" @click="clearPaymentMethod"
+                                                   class="resume-builder__btn civie-btn filled btn-add-new mt-md-0 mt-sm-0 mt-n5 btn-add-new-custom">
                                                 Cancel
                                             </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
+
+                                <div class="stripe-btn">
+                                    <a href="javascript:void(0)" @click="connectToStripe">Connect to stripe</a>
+                                    <span class="status true" v-if="stripeAccountStatus">Connected</span>
+                                    <span class="status false" v-else>Not Connected</span>
+                                </div>
+
                             </v-container>
                             <draggable
                                     class="links-items"
@@ -197,6 +207,7 @@
                                         class="link-item"
                                         v-for="paymentMethod in paymentMethods"
                                         :key="paymentMethod.id"
+                                        v-if="paymentMethod.name !== 'stripe_connected'"
                                         :class="{'half-opacity' : !paymentMethod.is_active}"
                                 >
                                     <div class="link-data">
@@ -204,7 +215,7 @@
                                             <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon"/>
                                         </div>
                                         <div class="link-text">
-                                            <span>{{paymentMethod.link}}</span>
+                                            <span>{{paymentMethod.payment_email}}</span>
                                         </div>
                                     </div>
                                     <div class="action-btns">
@@ -338,19 +349,19 @@
 
 
                 // third tab | payment methods:
-                paymentMethodItems: [
-                    'PayPal',
-                    'Stripe'
-                ],
+                paymentMethodItems: ['PayPal'],
 
                 paymentMethodObject: {
                     id: '',
                     name: '',
                     link: '',
+                    payment_email: '',
                     order: 1,
                     is_active: true,
                     is_primary: false,
-                }
+                },
+
+                stripe_connected_status: false
             };
         },
         computed: {
@@ -381,6 +392,24 @@
                 set(paymentMethods) {
                     this.$store.commit("updatePaymentMethods", paymentMethods);
                 }
+            },
+            stripeAccountStatus: {
+                get() {
+                    let payment_methods = this.$store.state.user.payment_methods;
+
+                    if (payment_methods) {
+                        let status = false;
+
+                        payment_methods.forEach((method) => {
+                            if (method.stripe_account_id !== null) {
+                                status = true;
+                            }
+                        });
+
+                        return status;
+                    }
+
+                },
             },
             isEditing() {
                 return (this.paymentMethodObject.id !== "")
@@ -464,6 +493,7 @@
                     id: paymentMethod.id,
                     name: paymentMethod.name,
                     link: paymentMethod.link,
+                    payment_email: paymentMethod.payment_email,
                     is_active: paymentMethod.is_active,
                     is_primary: paymentMethod.is_primary,
                     order: paymentMethod.order,
@@ -537,18 +567,29 @@
                     id: '',
                     name: '',
                     link: '',
+                    payment_email: '',
                     order: 1,
                     is_active: true,
                     is_primary: false,
                 }
             },
-            toggleVisibility(){
+            toggleVisibility() {
                 this.currentPayment.is_public = !this.currentPayment.is_public;
             },
-            toggleAvailabilityVisibility(){
+            toggleAvailabilityVisibility() {
                 this.currentAvailability.is_public = !this.currentAvailability.is_public;
-            }
+            },
 
+            // stripe connected account:
+            connectToStripe() {
+                axios.post('/stripe/onboard-user')
+                    .then((res) => {
+                        window.location = res.data.url;
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
         },
 
         mounted() {
@@ -689,6 +730,39 @@
                     position: static;
                 }
             }
+        }
+    }
+
+    .stripe-btn {
+        margin-bottom: 30px;
+        display: flex;
+        align-items: flex-end;
+
+        a {
+            background: blue;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    }
+
+    .status {
+        font-size: 14px;
+        font-weight: 600;
+        padding-left: 12px;
+
+        &.true {
+            color: lightgreen;
+        }
+
+        &.false {
+            color: orangered;
         }
     }
 
