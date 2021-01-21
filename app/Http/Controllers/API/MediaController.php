@@ -140,7 +140,7 @@ class MediaController extends Controller
             'title' => ['required', 'string', 'max:255', 'min:3'],
             'type' => ['required', 'string', 'max:255'],
             'url' => ['sometimes', 'max:255'],
-            'mediaFile' => ['sometimes', 'file', 'max:51200'], // maximum of 50 mega bytes
+            'mediaFile' => ['sometimes', 'file', 'max:204800'], // maximum of 200 mega bytes
             'mediaPreviewFile' => ['sometimes', 'file', 'max:5120','image','mimes:jpeg,png,jpg,gif,svg'], // maximum of 5 mega bytes
             'transcript' => ['max:2500'],
         ]);

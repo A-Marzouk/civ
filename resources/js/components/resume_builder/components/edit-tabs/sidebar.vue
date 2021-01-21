@@ -65,6 +65,7 @@
             <div class="arrow-icon" v-if="currentSidebarLink.title !== 'imports' ">
                 <img src="/images/new_resume_builder/arrow_down.svg" alt="arrow icon">
             </div>
+
         </div>
     </aside>
 </template>
@@ -297,9 +298,7 @@
 
         .sidebar-container {
             position: relative;
-            @include gt-md {
-                position: absolute;
-            }
+
             background: #ffffff;
             font-family: Noto Sans, "sans-serif";
             max-width: 350px;
@@ -441,102 +440,8 @@
             margin-top: unset;
 
             .sidebar-container {
-                // margin-left: unset;
-                // margin-right: unset;
                 padding-left: unset;
                 padding-right: unset;
-            }
-        }
-
-        @include gt-md {
-            padding-left: unset;
-            padding-right: unset;
-            margin-bottom: unset;
-
-            .sidebar-container {
-                background: transparent;
-                width: 300px;
-                height: 517px;
-                overflow: hidden;
-                border-right: 1px solid rgba(0, 28, 226, 0.1);
-                border-bottom: 1px solid rgba(0, 28, 226, 0.1);
-                z-index: 10;
-                max-height: 935px;;
-                transition: all 1s;
-
-                &:hover {
-                    height: 940px;
-                    .arrow-icon{
-                        opacity:0 ;
-                    }
-                }
-
-                .arrow-icon{
-                    display: block;
-                    position: absolute;
-                    bottom: 3px;
-                    right: 22px;
-                    opacity: 1;
-                    transition: inherit;
-                }
-
-                @media screen and (min-width: 1280px) and (max-width: 1520px) {
-                    width: 240px;
-                    margin-left: -9px !important;
-                }
-                @media screen and (min-width: 1520px) and (max-width: 1720px) {
-                    width: 240px;
-                    margin-left: -5px !important;
-                }
-
-                .sidebar-links,
-                .sidebar-link-activator {
-                    &.sidebar-link-activator {
-                        display: none;
-                    }
-
-                    &.sidebar-links {
-                        max-height: unset;
-                        position: static;
-
-                        .sidebar-link {
-                            padding-left: unset;
-                            padding-right: unset;
-
-                            a {
-                                color: #888db1;
-                                padding-left: unset;
-                                padding-right: 16px;
-                                border-radius: unset;
-                                border: unset;
-
-                                &:hover {
-                                    background-color: transparent;
-                                    text-decoration: none;
-                                    color: #001ce2;
-                                }
-                            }
-
-                            &.active a {
-                                position: relative;
-                                background-color: transparent;
-                                color: #001ce2;
-
-                                &::after {
-                                    content: "";
-                                    display: block;
-                                    background: #001ce2;
-                                    position: absolute;
-                                    right: 0;
-                                    bottom: 0;
-                                    height: 100%;
-                                    width: 5px;
-                                    border-radius: 10px 0px 0px 10px;
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
     }

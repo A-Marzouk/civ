@@ -220,9 +220,9 @@ export default {
         },
         getPaymentLink() {
             if (this.currentActiveMethod === 'stripe') {
-                return '/direct-stripe-payment';
+                return '/custom-stripe-payment';
             }
-            return '/direct-paypal-payment';
+            return '/custom-paypal-payment';
         },
         getURLParameters(){
 
