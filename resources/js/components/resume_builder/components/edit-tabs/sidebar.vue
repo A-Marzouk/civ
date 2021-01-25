@@ -320,6 +320,7 @@
                     display: flex;
                     align-items: center;
                     border-radius: 10px;
+                    padding-left: 10px;
 
                     .activator-preview-link {
                         flex: 1;
@@ -349,6 +350,7 @@
                     position: absolute;
                     top: 74px;
                     left: -10px;
+                    padding-left: 10px;
                     width: 100%;
                     z-index: 30;
                     min-width: 320px;

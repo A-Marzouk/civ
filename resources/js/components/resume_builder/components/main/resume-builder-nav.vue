@@ -220,10 +220,7 @@ $resume-builder-nav-height: 90px;
         position: static;
         width: auto;
         padding: 0;
-        margin-left: 20px;
-        @media screen and (max-width: 920px) {
-          margin-left: 10px;
-        }
+        margin-left: 10px;
         margin-right: auto;
       }
 
