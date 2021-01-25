@@ -2,8 +2,10 @@
   <nav class="resume-builder-nav">
     <div class="builder-nav-container">
       <div class="builder-nav-logo-wrapper">
+        <sidebar :activeTab="editActiveTab" class="sidebar-component" @onChange="editActiveTab=$event"/>
+
         <a href="/resume-builder" class="brand-link">
-          <img class="brand-image" src="/images/logo_new.png" alt="123workforce icon" />
+          <img class="brand-image" src="/images/logo_new.png" alt="civ.ie icon" />
         </a>
       </div>
 
@@ -23,6 +25,7 @@
 <script>
 // import { moveTabsHelper } from "./../../helpers/tab-animations";
 import myAccountDropdown from "./my-account-dropdown";
+import sidebar from "../edit-tabs/sidebar";
 
 export default {
   name: "resume-builder-nav",
@@ -39,8 +42,16 @@ export default {
     }
   },
 
+  data(){
+    return{
+      editActiveTab: "profile",
+      editMenuOn: false
+    }
+  },
+
   components: {
-    "my-account-dropdown": myAccountDropdown
+    "my-account-dropdown": myAccountDropdown,
+    sidebar: sidebar,
   },
 
   computed: {
@@ -53,6 +64,10 @@ export default {
     setActiveTab(activeTab) {
       this.$emit("onClose");
       this.$emit("onChange", activeTab);
+    },
+
+    toggleMenu(){
+      this.editMenuOn = ! this.editMenuOn;
     },
 
     logout() {
@@ -99,12 +114,16 @@ $resume-builder-nav-height: 90px;
       bottom: 0;
       width: 100%;
       height: 100%;
-      padding: 24px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: white;
       z-index: 10;
+
+
+      @media screen and (max-width: 550px) {
+        justify-content: flex-start;
+      }
 
       .brand-link {
         height: 52px;
@@ -120,10 +139,8 @@ $resume-builder-nav-height: 90px;
       position: absolute;
       right: 20px;
       bottom: 0;
-      width: 100%;
       height: 100%;
       padding-left: 10px;
-      padding-right: 10px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -203,7 +220,7 @@ $resume-builder-nav-height: 90px;
         position: static;
         width: auto;
         padding: 0;
-        margin-left: 30px;
+        margin-left: 10px;
         margin-right: auto;
       }
 

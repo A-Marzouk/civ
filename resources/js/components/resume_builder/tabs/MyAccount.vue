@@ -16,7 +16,7 @@
                     <div class="content-wrapper">
                         <div class="mar-form">
                             <v-text-field v-if="personalInfo"
-                                          class="resume-builder__input input-margin input-margin-3 ct-fix-input"
+                                          class="resume-builder__input input-margin centered-input mt-n3 ct-fix-input"
                                           label="First name"
                                           v-model="personalInfo.first_name"
                                           :class="{'resume-builder__input--disabled': false}"
