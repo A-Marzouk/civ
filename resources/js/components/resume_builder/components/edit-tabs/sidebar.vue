@@ -2,8 +2,8 @@
     <aside class="sidebar">
         <div class="sidebar-container ml-sm-0 ml-1">
             <div class="sidebar-link-activator">
-                <a href="#" @click.prevent="open=!open" class="activator-preview-link">
-                    <img class="menu-img" src="/icons/edit-cv-sidebar/main-menu.svg" alt="menu icon" />
+                <a href="#" @click.prevent="toggleMenu" class="activator-preview-link">
+                    <img class="menu-img" :src="iconSrc" alt="menu icon" />
                 </a>
             </div>
             <div class="sidebar-links" :class="{'open' :open}" v-if="tabs">
@@ -56,6 +56,7 @@
         data() {
             return {
                 open: false,
+                iconSrc: '/icons/edit-cv-sidebar/main-menu-grey.svg',
                 menuHover: false,
                 activeHoverMenu: null,
                 sidebarLinks: [
@@ -188,6 +189,16 @@
                 this.currentSidebarLink = activeLink;
                 this.$emit("onChange", activeLink.title);
             },
+            toggleMenu(){
+                console.log('hi toggle');
+
+                this.open = ! this.open;
+                if(this.open){
+                    this.iconSrc = '/icons/edit-cv-sidebar/main-menu.svg' ;
+                }else{
+                    this.iconSrc = '/icons/edit-cv-sidebar/main-menu-grey.svg' ;
+                }
+            },
             hoverMenu(sidebarLink) {
                 if (sidebarLink !== null) {
                     this.activeHoverMenu = sidebarLink.title;
@@ -263,9 +274,6 @@
     @import "../../../../../sass/media-queries";
 
     .sidebar {
-        margin-top: 40px;
-        padding-left: 10px;
-        padding-right: 10px;
 
         .sidebar-container {
             position: relative;
@@ -349,7 +357,7 @@
                     border-radius: 0px 0px 10px 0px;
                     transition: all 200ms;
                     &.open {
-                        height: 490px;
+                        height: calc(100vh - 180px);
                         overflow-y: scroll;
                         opacity: 1;
                     }
@@ -390,6 +398,8 @@
         }
 
         @media screen and (min-width: 375px) {
+
+            top:62px;
             & {
                 .sidebar-container {
                     padding-left: 10px;
@@ -413,6 +423,9 @@
     .menu-img{
         width: 35px;
         margin-right: 50px;
+        @media screen and (max-width: 550px) {
+            margin-right: 20px;
+        }
     }
 </style>
 

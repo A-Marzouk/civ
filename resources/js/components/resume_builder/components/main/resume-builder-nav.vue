@@ -114,12 +114,16 @@ $resume-builder-nav-height: 90px;
       bottom: 0;
       width: 100%;
       height: 100%;
-      padding: 24px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: white;
       z-index: 10;
+
+
+      @media screen and (max-width: 550px) {
+        justify-content: flex-start;
+      }
 
       .brand-link {
         height: 52px;
@@ -135,10 +139,8 @@ $resume-builder-nav-height: 90px;
       position: absolute;
       right: 20px;
       bottom: 0;
-      width: 100%;
       height: 100%;
       padding-left: 10px;
-      padding-right: 10px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -219,6 +221,9 @@ $resume-builder-nav-height: 90px;
         width: auto;
         padding: 0;
         margin-left: 20px;
+        @media screen and (max-width: 920px) {
+          margin-left: 10px;
+        }
         margin-right: auto;
       }
 
