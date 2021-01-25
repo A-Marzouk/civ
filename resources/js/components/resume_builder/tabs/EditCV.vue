@@ -1,8 +1,6 @@
 <template>
     <div>
         <div class="edit-cv" :class="{'imports-tab' : activeTab === 'imports' }">
-            <sidebar :activeTab="activeTab" class="sidebar-component" @onChange="activeTab=$event"/>
-
             <main class="edit-cv-content">
 
                 <div class="save-bar">

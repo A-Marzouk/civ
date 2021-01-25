@@ -3,35 +3,7 @@
         <div class="sidebar-container ml-sm-0 ml-1">
             <div class="sidebar-link-activator">
                 <a href="#" @click.prevent="open=!open" class="activator-preview-link">
-                    <div
-                            class="link-icon profile-ixklwxz-link-icon-active"
-                            :data-icon="currentSidebarLink.icon"
-                    >
-                        <svg-vue :icon="`edit-cv-sidebar/${currentSidebarLink.icon}`"></svg-vue>
-                    </div>
-                    {{ currentSidebarLink.label }}
-                </a>
-                <a
-                        href="#"
-                        @click.prevent="open=!open"
-                        class="link-activator-caret"
-                        :class="{'open' :open}"
-                >
-                    <svg
-                            width="14"
-                            height="8"
-                            viewBox="0 0 14 8"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                                d="M1 1L7 7L13 1"
-                                stroke="#001CE2"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                        />
-                    </svg>
+                    <img class="menu-img" src="/icons/edit-cv-sidebar/main-menu.svg" alt="menu icon" />
                 </a>
             </div>
             <div class="sidebar-links" :class="{'open' :open}" v-if="tabs">
@@ -292,7 +264,6 @@
 
     .sidebar {
         margin-top: 40px;
-        margin-bottom: 30px;
         padding-left: 10px;
         padding-right: 10px;
 
@@ -301,8 +272,6 @@
 
             background: #ffffff;
             font-family: Noto Sans, "sans-serif";
-            max-width: 350px;
-            min-width: 220px;
             margin-left: auto;
             margin-right: auto;
 
@@ -319,7 +288,6 @@
                     color: #001ce2;
 
                     .link-icon {
-                        background: #f2f3fd;
                         height: 35px;
                         width: 35px;
                         display: flex;
@@ -341,10 +309,8 @@
                 }
 
                 &.sidebar-link-activator {
-                    height: 60px;
                     display: flex;
                     align-items: center;
-                    border: 2px solid #e6e8fc;
                     border-radius: 10px;
 
                     .activator-preview-link {
@@ -370,43 +336,41 @@
                 }
 
                 &.sidebar-links {
-                    padding-left: 5px;
-                    max-height: 0;
+                    height: 0;
                     overflow: hidden;
                     position: absolute;
-                    top: 67px;
-                    left: 0;
-                    background: white;
+                    top: 74px;
+                    left: -10px;
                     width: 100%;
                     z-index: 30;
-                    border-radius: 8px 0 0 8px;
-                    border: 0 solid #e6e8fc;
-                    transition: all 100ms;
-
+                    min-width: 320px;
+                    background: #FFFFFF;
+                    box-shadow: 0px 0px 50px rgba(0, 19, 156, 0.05);
+                    border-radius: 0px 0px 10px 0px;
+                    transition: all 200ms;
                     &.open {
-                        max-height: 250px;
+                        height: 490px;
                         overflow-y: scroll;
                         opacity: 1;
-                        border-width: 2px 0 2px 2px;
                     }
 
                     .sidebar-link {
-                        padding: 3px;
+                        padding-bottom: 4px;
 
                         a {
                             padding: 7.5px 15px;
-                            border-radius: 10px;
                             transition: all 100ms;
-                            border: 1px solid #e5e5e5;
+                            color: #888DB1;
 
                             &:hover {
                                 background-color: #f9f9f9;
+                                color: #001ce2;
                                 text-decoration: none;
                             }
                         }
 
                         &.active a {
-                            background-color: #f9f9f9;
+                            color: #001ce2;
                         }
                     }
 
@@ -444,6 +408,11 @@
                 padding-right: unset;
             }
         }
+    }
+
+    .menu-img{
+        width: 35px;
+        margin-right: 50px;
     }
 </style>
 
