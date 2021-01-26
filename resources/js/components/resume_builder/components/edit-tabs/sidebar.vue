@@ -2,11 +2,11 @@
     <aside class="sidebar">
         <div class="sidebar-container ml-sm-0 ml-1">
             <div class="sidebar-link-activator">
-                <a href="#" @click.prevent="toggleMenu" class="activator-preview-link">
+                <a href="#" @mouseover="openMenu" @mouseleave="closeMenu" class="activator-preview-link">
                     <img class="menu-img" :src="iconSrc" alt="menu icon" />
                 </a>
             </div>
-            <div class="sidebar-links" :class="{'open' :open}" v-if="tabs">
+            <div class="sidebar-links" @mouseover="openMenu" @mouseleave="closeMenu" :class="{'open' :open}" v-if="tabs">
                 <div
                         v-for="sidebarLink in sidebarLinks"
                         class="sidebar-link"
@@ -189,15 +189,14 @@
                 this.currentSidebarLink = activeLink;
                 this.$emit("onChange", activeLink.title);
             },
-            toggleMenu(){
-                console.log('hi toggle');
+            openMenu(){
+                this.open = true;
+                this.iconSrc = '/icons/edit-cv-sidebar/main-menu.svg' ;
 
-                this.open = ! this.open;
-                if(this.open){
-                    this.iconSrc = '/icons/edit-cv-sidebar/main-menu.svg' ;
-                }else{
-                    this.iconSrc = '/icons/edit-cv-sidebar/main-menu-grey.svg' ;
-                }
+            },
+            closeMenu(){
+                this.open = false;
+                this.iconSrc = '/icons/edit-cv-sidebar/main-menu-grey.svg' ;
             },
             hoverMenu(sidebarLink) {
                 if (sidebarLink !== null) {
@@ -357,7 +356,7 @@
                     background: #FFFFFF;
                     box-shadow: 0px 0px 50px rgba(0, 19, 156, 0.05);
                     border-radius: 0px 0px 10px 0px;
-                    transition: all 200ms;
+                    transition: all 400ms;
                     &.open {
                         height: calc(100vh - 180px);
                         overflow-y: scroll;

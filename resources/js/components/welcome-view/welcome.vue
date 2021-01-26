@@ -48,16 +48,8 @@
                         </template>
 
                         <template slot="append">
-                          <v-icon
-                            color="#1DBF73"
-                            class="custom-append-icon"
-                            v-show="is_username_valid"
-                          >mdi-check-circle</v-icon>
-                          <v-icon
-                            color="#E91E63"
-                            class="custom-append-icon"
-                            v-show="!is_username_valid && is_username_valid !== null"
-                          >mdi-close-circle</v-icon>
+                          <img src="/icons/check-circle.svg" v-show="is_username_valid" alt="check icon">
+                          <img src="/icons/close-circle.svg" v-show="!is_username_valid && is_username_valid !== null" alt="close icon">
                         </template>
                         <template slot="prepend-inner">
                           <span class="inner-text">civ.ie/</span>
@@ -89,13 +81,6 @@
         </v-row>
       </v-container>
       <!-- 1st inner container ends here -->
-
-      <!-- new 2nd layer -->
-      <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up?</v-card-subtitle>
-      <register-form :username="validUserName"></register-form>
-
-      <!-- new 2nd layer -->
-
       <!-- 2nd inner container starts here -->
       <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
@@ -153,83 +138,6 @@
       </v-container>
       <!-- 2nd inner container ends here -->
 
-      <!-- 3rd inner container starts here -->
-      <v-container style="width:100%" class="gallery-container mb-md-12">
-        <v-row align="center" justify="center">
-          <v-col xl="11" cols="12">
-            <v-card flat tile color="transparent" class="card-choose-theme margin-0">
-              <v-card-title class="build-resume-title margin-n30">
-                40+ Beautiful Themes
-                <br />to choose from
-              </v-card-title>
-              <v-card-subtitle class="build-resume-subtitle mt-1 margin-n10">
-                <v-row>
-                  <v-col md="6" cols="12">
-                    <span
-                      class="hidden-sm-only"
-                    >Add your data and then apply any theme to make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</span>
-                    <span class="d-none d-sm-flex d-md-none">
-                      Add your data and then apply any theme to make your resume visually amazing. Ensure that you stand out
-                      <br />and make a great first impression with any hiring manager.
-                    </span>
-                  </v-col>
-                  <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
-                    <v-btn color="#0046FE" href="/register" class="btn-view-themes">View All Themes</v-btn>
-                  </v-col>
-                </v-row>
-              </v-card-subtitle>
-            </v-card>
-
-            <v-card tile color="transparet" flat class="card-gallery hidden-md-and-up">
-              <slick
-                class="gallery-slides"
-                ref="slick"
-                :options="slickOptionsGallery"
-                style="z-index:2;"
-              >
-                <v-card
-                  flat
-                  tile
-                  color="transparent"
-                  v-for="n in 6"
-                  :key="n"
-                  class="card-gallery-items"
-                >
-                  <picture>
-                    <source :srcset="getGalleryImages(n) + '.jp2' " type="image/jp2">
-                    <img :src="getGalleryImages(n) + '.webp'" alt="example-alt-text">
-                  </picture>
-                </v-card>
-              </slick>
-            </v-card>
-
-            <v-card tile flat color="transparent" class="hidden-sm-and-down">
-              <v-row align="center" justify="center">
-                <template v-for="n in 5">
-                  <v-col md="4" :key="n">
-                    <v-card flat tile color="transparent" class="card-gallery">
-                      <picture>
-                        <source :srcset="getGalleryImages(n) + '.jp2' " type="image/jp2">
-                        <img :src="getGalleryImages(n) + '.webp'" alt="example-alt-text">
-                      </picture>
-                    </v-card>
-                  </v-col>
-                </template>
-                <v-col cols="4">
-                  <v-card align="center" color="transparent" flat tile>
-                    <v-card-subtitle class="explore-number">+35</v-card-subtitle>
-                    <v-card-subtitle class="explore-text">Themes you can explore</v-card-subtitle>
-                    <v-card-subtitle class="explore-link mt-n10 NoDecor">
-                      <a href="/register">EXPLORE ALL THEMES ></a>
-                    </v-card-subtitle>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-      <!-- 3rd inner container starts here -->
     </v-container>
     <!-- main container -->
     <!-- Footer -->
@@ -239,14 +147,10 @@
 </template>
 
 <script>
-import Slick from "vue-slick";
-import RegisterForm from "../auth/partials/RegisterForm";
 import HomeFooter from "../auth/partials/HomeFooter";
 import HomeNavbar from "../auth/partials/HomeNavbar";
 export default {
   components: {
-    Slick,
-    "register-form": RegisterForm,
     "home-footer": HomeFooter,
     "home-navbar": HomeNavbar,
   },
@@ -256,65 +160,6 @@ export default {
       windowWidth: window.innerWidth,
       username: "",
       valid: false,
-      lazy: false,
-      agreeCheck: false,
-      errors: {},
-      formData: {
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-      },
-      socialMediaIcons: [
-        {
-          id: 1,
-          title: "instagram",
-          width: 18,
-          tablet_width: 18,
-          link: "/register/instagram",
-        },
-        {
-          id: 2,
-          title: "linkedin",
-          width: 16,
-          tablet_width: 16,
-          link: "/register/linkedin",
-        },
-        {
-          id: 3,
-          title: "google",
-          width: 14,
-          tablet_width: 14,
-          link: "/register/google",
-        },
-        {
-          id: 4,
-          title: "facebook",
-          width: 18,
-          tablet_width: 18,
-          link: "/register/facebook",
-        },
-        {
-          id: 5,
-          title: "github",
-          width: 22,
-          tablet_width: 22,
-          link: "/register/github",
-        },
-      ],
-      integrations: [
-        { id: 1, title: "Connect your online profiles" },
-        { id: 2, title: "Integrate your social account" },
-        {
-          id: 3,
-          title: "Allow potential employers to <br /> contact you easly",
-        },
-        { id: 4, title: "Import your data/Export to PDF" },
-        { id: 5, title: "Easy acception line payments" },
-      ],
-
-      users: ["nishad", "ahmed", "anton", "gladwin"],
-
       //agile options
       agileOptions: {
         dots: false,
@@ -322,46 +167,6 @@ export default {
         autoplay: true,
         navButtons: false,
         pauseOnHover: true,
-      },
-      //agile options
-
-      slickOptionsGallery: {
-        centerMode: true,
-        infinite: true,
-        dots: true,
-        arrows: false,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: false,
-        autoplaySpeed: 5000,
-        pauseOnDotsHover: true,
-        responsive: [
-          {
-            breakpoint: 959,
-            settings: {
-              centerPadding: "75px",
-              slidesPerRow: 1,
-              slidesToShow: 1,
-              slidesToScroll: 1,
-            },
-          },
-          {
-            breakpoint: 599,
-            settings: {
-              centerPadding: "75px",
-              slidesToShow: 1,
-              slidesToScroll: 1,
-            },
-          },
-          {
-            breakpoint: 400,
-            settings: {
-              centerPadding: "50px",
-              slidesToShow: 1,
-              slidesToScroll: 1,
-            },
-          },
-        ],
       },
       validUserName: "",
       is_username_valid: null,
@@ -386,13 +191,6 @@ export default {
           this.is_username_valid = false;
         });
     },
-    getSocialIcon(title) {
-      return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
-    },
-    getGalleryImages(id) {
-      return `/images/welcome_landing_page/imgs/gallery/${id}`;
-    },
-
     playIntroVideo() {
       this.videoOn = true;
       document.getElementById("introVideo").play();

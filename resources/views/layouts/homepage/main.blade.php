@@ -19,15 +19,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="/css/vuetify.min.css" rel="preload" as="style">
-    <link href="/css/slick.css" rel="preload" as="style">
     <link href="/css/homepage/main.css" rel="preload" as="style">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css" rel="preload" as="style">
 
 
     <link href="/css/homepage/main.css" rel="stylesheet">
-    <link href="/css/slick.css" rel="stylesheet">
     <link href="/css/vuetify.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css" rel="stylesheet">
 
 
     <title>civ.ie</title>
