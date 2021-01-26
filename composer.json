@@ -26,6 +26,7 @@
         "nunomaduro/collision": "^4.2",
         "paypal/rest-api-sdk-php": "^1.14",
         "phpoffice/phpword": "^0.17.0",
+        "silber/page-cache": "^1.0",
         "smalot/pdfparser": "^0.14.0",
         "snowfire/beautymail": "^1.1",
         "socialiteproviders/instagram": "^3.0",

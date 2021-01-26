@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'cors' => \App\Http\Middleware\Cors::class,
         'subscribed' => \App\Http\Middleware\Subscribed::class,
+        'page-cache' => \Silber\PageCache\Middleware\CacheResponse::class,
     ];
 
     /**
