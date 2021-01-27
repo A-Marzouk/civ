@@ -46,14 +46,11 @@
                   <v-card flat color="transparent" tile style="z-index:3;">
                     <agile :options="agileOptions">
                       <div class="slide" v-for="i in 4" :key="i">
-                        <picture>
-                          <source srcset="/images/welcome_landing_page/imgs/edit-cv.jp2" type="image/jp2">
-                          <img
-                              src="/images/welcome_landing_page/imgs/edit-cv.webp"
-                              alt
-                              style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
-                          />
-                        </picture>
+                        <img
+                                src="/images/welcome_landing_page/imgs/edit-cv.webp"
+                                alt
+                                style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
+                        />
                       </div>
                     </agile>
                   </v-card>
