@@ -2,9 +2,6 @@
   <v-app style="width:100%; background-color: #ffffff;" class="app-container">
     <!-- main container -->
     <v-container class="main-container">
-      <!-- main navigation bar -->
-      <home-navbar :windowWidth="windowWidth"></home-navbar>
-      <!-- main navigation bar -->
       <!-- 1st inner container -->
 
       <!-- 1st inner container -->
@@ -13,19 +10,6 @@
           <v-col md="10" cols="12">
             <v-card color="transparent" flat tile>
               <v-row align="center" justify="center">
-                <v-col md="10" sm="10" cols="12">
-                  <v-card color="transparent" flat tile>
-                    <v-card-subtitle class="resume-title" align="center">Make Your Online Resume</v-card-subtitle>
-                  </v-card>
-                </v-col>
-                <v-col md="7" sm="12" cols="12">
-                  <v-card color="transparent" flat tile>
-                    <v-card-subtitle
-                      align="center"
-                      class="resume-subtitle"
-                    >We believe that resume’s can look beautiful, we help freelancers, contractors & jobseekers create stunning online resume’s.</v-card-subtitle>
-                  </v-card>
-                </v-col>
                 <v-col xl="7" lg="8" md="8" sm="12" cols="12">
                   <v-card color="transparent" flat tile class="mt-n5">
                     <v-card-subtitle
@@ -58,7 +42,6 @@
                     </v-card-subtitle>
                   </v-card>
                 </v-col>
-
                 <v-col md="11" sm="12" cols="12">
                   <v-card flat color="transparent" tile style="z-index:3;">
                     <agile :options="agileOptions">
@@ -114,20 +97,20 @@
 
               <v-img
                 v-show="!videoOn"
-                src="/images/welcome_landing_page/icons/poster-video.png"
+                src="/images/welcome_landing_page/icons/poster-video.webp"
                 class="align-center hidden-sm-and-down"
               >
                 <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false" x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png" @click="playIntroVideo" />
+                  <img src="/images/welcome_landing_page/icons/play.webp" @click="playIntroVideo" />
                 </v-btn>
               </v-img>
               <v-img
                 v-show="!videoOn"
-                src="/images/welcome_landing_page/icons/poster-video-tablet.png"
+                src="/images/welcome_landing_page/icons/poster-video-tablet.webp"
                 class="align-center hidden-md-and-up"
               >
                 <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false" x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png" @click="playIntroVideo" />
+                  <img src="/images/welcome_landing_page/icons/play.webp" @click="playIntroVideo" />
                 </v-btn>
               </v-img>
             </v-card>
@@ -148,11 +131,9 @@
 
 <script>
 import HomeFooter from "../auth/partials/HomeFooter";
-import HomeNavbar from "../auth/partials/HomeNavbar";
 export default {
   components: {
     "home-footer": HomeFooter,
-    "home-navbar": HomeNavbar,
   },
   data() {
     return {
