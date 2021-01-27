@@ -10,19 +10,6 @@
           <v-col md="10" cols="12">
             <v-card color="transparent" flat tile>
               <v-row align="center" justify="center">
-                <v-col md="10" sm="10" cols="12">
-                  <v-card color="transparent" flat tile>
-                    <v-card-subtitle class="resume-title" align="center">Make Your Online Resume</v-card-subtitle>
-                  </v-card>
-                </v-col>
-                <v-col md="7" sm="12" cols="12">
-                  <v-card color="transparent" flat tile>
-                    <v-card-subtitle
-                      align="center"
-                      class="resume-subtitle"
-                    >We believe that resume’s can look beautiful, we help freelancers, contractors & jobseekers create stunning online resume’s.</v-card-subtitle>
-                  </v-card>
-                </v-col>
                 <v-col xl="7" lg="8" md="8" sm="12" cols="12">
                   <v-card color="transparent" flat tile class="mt-n5">
                     <v-card-subtitle
