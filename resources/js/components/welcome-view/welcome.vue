@@ -114,20 +114,20 @@
 
               <v-img
                 v-show="!videoOn"
-                src="/images/welcome_landing_page/icons/poster-video.png"
+                src="/images/welcome_landing_page/icons/poster-video.webp"
                 class="align-center hidden-sm-and-down"
               >
                 <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false" x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png" @click="playIntroVideo" />
+                  <img src="/images/welcome_landing_page/icons/play.webp" @click="playIntroVideo" />
                 </v-btn>
               </v-img>
               <v-img
                 v-show="!videoOn"
-                src="/images/welcome_landing_page/icons/poster-video-tablet.png"
+                src="/images/welcome_landing_page/icons/poster-video-tablet.webp"
                 class="align-center hidden-md-and-up"
               >
                 <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false" x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png" @click="playIntroVideo" />
+                  <img src="/images/welcome_landing_page/icons/play.webp" @click="playIntroVideo" />
                 </v-btn>
               </v-img>
             </v-card>
