@@ -2,9 +2,6 @@
   <v-app style="width:100%; background-color: #ffffff;" class="app-container">
     <!-- main container -->
     <v-container class="main-container">
-      <!-- main navigation bar -->
-      <home-navbar :windowWidth="windowWidth"></home-navbar>
-      <!-- main navigation bar -->
       <!-- 1st inner container -->
 
       <!-- 1st inner container -->
@@ -58,7 +55,6 @@
                     </v-card-subtitle>
                   </v-card>
                 </v-col>
-
                 <v-col md="11" sm="12" cols="12">
                   <v-card flat color="transparent" tile style="z-index:3;">
                     <agile :options="agileOptions">
@@ -148,11 +144,9 @@
 
 <script>
 import HomeFooter from "../auth/partials/HomeFooter";
-import HomeNavbar from "../auth/partials/HomeNavbar";
 export default {
   components: {
     "home-footer": HomeFooter,
-    "home-navbar": HomeNavbar,
   },
   data() {
     return {
