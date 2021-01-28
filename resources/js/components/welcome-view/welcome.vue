@@ -30,7 +30,7 @@
                   <div style="z-index:3;">
                     <img
                             src="/images/welcome_landing_page/imgs/edit-cv.webp"
-                            style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1); width: 100%; max-width: 1230px;"
+                            style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1); width: 95%; max-width: 1230px;"
                     />
                   </div>
                 </div>
@@ -44,7 +44,7 @@
           <div :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
 
-            <div>
+            <div class="build-resume-text">
               <div class="build-resume-title">
                 Build a resume that you
                 <br />can be proud of

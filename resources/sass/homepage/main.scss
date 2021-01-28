@@ -40,7 +40,8 @@
     position: relative;
     margin-bottom: 50px;
     max-width: 812px;
-    width: 100%;
+    width: 75%;
+    margin-left: -60px;
     padding: 0 20px;
 
     input {
@@ -72,7 +73,7 @@
     a {
       text-decoration: none;
       position: absolute;
-      right: 65px;
+      right: 35px;
       color: rgb(0, 70, 254);
       font-weight: 500;
       top: 16px;
@@ -84,7 +85,7 @@
 
     img {
       position: absolute;
-      right: 35px;
+      right: 0;
       top: 18px;
     }
   }
@@ -276,8 +277,8 @@
       line-height: 22px;
     }
     @media screen and (min-width: 960px) and (max-width: 1263px) {
-      font-size: 12px !important;
-      line-height: 18px;
+      font-size: 16px !important;
+      line-height: 22px;
     }
     @media screen and (max-width: 959px) {
       font-size: 18px !important;
@@ -325,19 +326,20 @@
     color: #313131 !important;;
     @media screen and (max-width: 1903px) {
       font-size: 18px !important;
-      margin-bottom: -10px;
-      margin-top: -25px;
     }
     @media screen and (min-width: 960px) and (max-width: 1263px) {
-      font-size: 14px !important;
+      margin-top: 50px;
+      font-size: 20px !important;
     }
     @media screen and (max-width: 959px) {
       font-size: 24px !important;
     }
     @media screen and (min-width: 600px) and (max-width: 714px) {
+      margin-top: 30px;
       font-size: 18px !important;
     }
     @media screen and (max-width: 599px) {
+      margin-top: 30px;
       font-size: 16px !important;
       line-height: 36px;
     }
@@ -519,22 +521,12 @@
     }
   }
 
-  .v-text-field input {
-    color: #aeaeae !important;
-  }
-
-  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
-    border: 2px solid #c4c9f5;
-  }
-
-  .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
-    border: 2px solid #c4c9f5;
+  .build-resume-text{
+    @media screen and (max-width: 960px) {
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-top: 30px;
+    }
   }
 
   .build-resume-title {
@@ -585,8 +577,8 @@
       line-height: 20px;
     }
     @media screen and (min-width: 960px) and (max-width: 1263px) {
-      font-size: 12px !important;
-      line-height: 16px;
+      font-size: 16px !important;
+      line-height: 22px;
     }
     @media screen and (max-width: 959px) {
       font-size: 1.125rem !important;
@@ -608,6 +600,9 @@
     position: relative;
 
     a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: absolute;
       margin: auto;
       background: white;
@@ -620,16 +615,18 @@
       width: 100px;
       height: 100px;
       box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
+      @media screen and (max-width: 599px) {
+        width: 50px;
+        height: 50px;
+      }
+      img{
+        width: 70%;
+      }
     }
 
     img {
       width: 100%;
       border-radius: 15px;
-    }
-
-    @media screen and (max-width: 599px) {
-
-
     }
   }
 
@@ -658,6 +655,7 @@
     color: #ffffff !important;
     display: flex;
     align-items: center;
+    white-space: pre;
 
     span {
       font-family: "Open Sans", sans-serif !important;
@@ -679,19 +677,18 @@
         font-size: 12px;
       }
       span {
-        font-size: 10px;
+        font-size: 12px;
       }
     }
     @media screen and (max-width: 599px) {
       font-size: 12px;
-      margin-bottom: -47px;
-      margin-top: 0px;
+      margin-top: 10px;
     }
     @media screen and (max-width: 380px) {
-      font-size: 10px;
+      font-size: 12px;
     }
     @media screen and (max-width: 329px) {
-      font-size: 8px;
+      font-size: 10px;
     }
   }
 
@@ -721,19 +718,35 @@
       width: 20px;
     }
 
+    @media screen and (max-width: 599px) {
+      width: 30px;
+      height: 30px;
+      img {
+        width: 15px;
+      }
+    }
   }
 
   .custom-footer {
     height: 150px;
-    padding: 0 50px;
+    padding: 20px 50px;
     background-color: rgb(15, 76, 238);
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 50px;
+    flex-wrap: wrap;
 
     @media screen and (max-width: 599px) {
-      height: 125px;
+      padding: 20px 20px;
+      height: 160px;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 960px) {
+      height: 160px;
+      justify-content: center;
     }
   }
 
@@ -754,7 +767,11 @@
   box-shadow: 0 10px 15px -3px rgb(0 72 254 / 5%);
   @media screen and (max-width: 1600px) {
     height: 80px;
-    padding: 0 25px;
+    .logo{
+      margin-left: 25px;
+    }
+    .btn-appbar-login{
+      margin-right: 25px;    }
   }
 
   .logo {
