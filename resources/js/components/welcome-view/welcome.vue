@@ -44,15 +44,10 @@
                 </v-col>
                 <v-col md="11" sm="12" cols="12">
                   <v-card flat color="transparent" tile style="z-index:3;">
-                    <agile :options="agileOptions">
-                      <div class="slide" v-for="i in 4" :key="i">
-                        <img
-                                src="/images/welcome_landing_page/imgs/edit-cv.webp"
-                                alt
-                                style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
-                        />
-                      </div>
-                    </agile>
+                    <img
+                            src="/images/welcome_landing_page/imgs/edit-cv.webp"
+                            style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1); width: 100%;"
+                    />
                   </v-card>
                 </v-col>
               </v-row>
@@ -82,7 +77,7 @@
             <!-- 1st card -->
             <!-- 2nd card -->
             <v-card
-              class="card-video pa-md-8 pa-sm-0 pa-0 mt-md-0 mt-sm-5"
+              class="card-video pa-md-8 pa-sm-0 mt-md-0 mt-sm-5"
               color="transparent"
               flat
               tile
@@ -138,14 +133,6 @@ export default {
       windowWidth: window.innerWidth,
       username: "",
       valid: false,
-      //agile options
-      agileOptions: {
-        dots: false,
-        fade: true,
-        autoplay: true,
-        navButtons: false,
-        pauseOnHover: true,
-      },
       validUserName: "",
       is_username_valid: null,
     };
