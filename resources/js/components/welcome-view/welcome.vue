@@ -28,10 +28,8 @@
                 </div>
                 <div >
                   <div style="z-index:3;">
-                    <img
-                            src="/images/welcome_landing_page/imgs/edit-cv.webp"
-                            style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1); width: 95%; max-width: 1230px;"
-                    />
+                    <img v-if="windowWidth > 600" src="/images/welcome_landing_page/imgs/edit-cv.webp" style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1); width: 95%; max-width: 1230px;" />
+                    <img v-else src="/images/welcome_landing_page/imgs/edit-cv-mobile.webp" style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1); width: 95%; max-width: 1230px;" />
                   </div>
                 </div>
               </div>
@@ -64,7 +62,8 @@
               </video>
 
               <div v-show="!videoOn" class="video-image-holder">
-                <img  src="/images/welcome_landing_page/icons/poster-video.webp" class="align-center"/>
+                <img v-if="windowWidth > 600"  src="/images/welcome_landing_page/icons/poster-video.webp" class="align-center"/>
+                <img v-else src="/images/welcome_landing_page/icons/poster-video-mobile.webp" class="align-center"/>
 
                 <a href="javascript:void(0)">
                   <img src="/images/welcome_landing_page/icons/play.webp" @click="playIntroVideo" />
