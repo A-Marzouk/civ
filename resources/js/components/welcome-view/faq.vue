@@ -132,7 +132,7 @@ export default {
 
   //..................Upper Left Block.................
   //appbar login btn
-  .btn-appbar-login {
+  .btn-appbar-register {
     font-family: "Montserrat" !important;
     padding: 0.76rem 2.6rem;
     border-radius: 7px;

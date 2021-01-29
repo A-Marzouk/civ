@@ -2,7 +2,7 @@
   <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
     <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-011.svg" alt="logo" />
     <v-spacer></v-spacer>
-    <a class="btn-appbar-login" href="/login">Login</a>
+    <a class="btn-appbar-register" href="/login">Login</a>
   </v-app-bar>
 </template>
 <script>
@@ -29,7 +29,7 @@ export default {
       height: 53px;
     }
   }
-  .btn-appbar-login {
+  .btn-appbar-register {
     font-family: "Montserrat" !important;
     padding: 0.76rem 2.6rem;
     border-radius: 7px;
