@@ -1,5 +1,9 @@
 window.Vue = require('vue');
 
+// cookies:
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies);
+
 // axios:
 window.axios = require('axios');
 

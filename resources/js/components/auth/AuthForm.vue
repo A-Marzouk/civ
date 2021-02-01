@@ -1,7 +1,7 @@
 <template>
     <div class="auth-main-wrapper">
 
-        <div class="auth-form">
+        <div class="auth-form register" :class="{'hide':activeTab === 'signin'}">
 
             <div class="auth-form-tabs">
                 <div class="tabs-wrapper">
@@ -13,36 +13,40 @@
                     </div>
                 </div>
             </div>
+
             <div class="sign-up-with-text">
                 Sign up with
             </div>
+
             <div class="auth-form-social-icons">
-                <div v-for="icon in socialIcons" :key="icon.id" class="icon-wrapper">
+                <a :href="icon.link" v-for="icon in socialIcons" :key="icon.id" class="icon-wrapper">
                     <img :src="`/images/welcome_landing_page/icons/social_icons/${icon.title}.png`" :alt="icon.title"/>
-                </div>
+                </a>
             </div>
+
             <div class="sign-up-with-text">
                 Or
             </div>
+
             <div class="auth-form-inputs">
                 <div class="auth-input-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" v-model="registerFormData.name">
                     <span class="error" v-if="errors.name">{{errors.name[0]}}</span>
                 </div>
                 <div class="auth-input-group">
                     <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email">
+                    <input type="email" name="email" id="email" v-model="registerFormData.email">
                     <span class="error" v-if="errors.email">{{errors.email[0]}}</span>
                 </div>
                 <div class="auth-input-group">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" v-model="registerFormData.password">
                     <span class="error" v-if="errors.password">{{errors.password[0]}}</span>
                 </div>
                 <div class="auth-input-group">
                     <label for="password_confirmation">Confirm Password</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation">
+                    <input type="password" name="password_confirmation" id="password_confirmation" v-model="registerFormData.password_confirmation">
                 </div>
             </div>
             
@@ -57,6 +61,57 @@
                     <span v-if="isLoading" class="loader"></span>
                     <span v-else>
                         SIGN UP
+                    </span>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="auth-form login" :class="{'hide':activeTab === 'signup'}">
+
+            <div class="auth-form-tabs">
+                <div class="tabs-wrapper">
+                    <div class="tab first" :class="{'active': activeTab === 'signup'}" @click="changeTab('signup')">
+                        SIGN UP
+                    </div>
+                    <div class="tab second" :class="{'active': activeTab === 'signin'}" @click="changeTab('signin')">
+                        SIGN IN
+                    </div>
+                </div>
+            </div>
+
+            <div class="sign-up-with-text">
+                Sign in with
+            </div>
+
+            <div class="auth-form-social-icons">
+                <a :href="icon.link" v-for="icon in socialIcons" :key="icon.id" class="icon-wrapper">
+                    <img :src="`/images/welcome_landing_page/icons/social_icons/${icon.title}.png`" :alt="icon.title"/>
+                </a>
+            </div>
+
+            <div class="sign-up-with-text">
+                Or
+            </div>
+
+            <div class="auth-form-inputs">
+                <div class="auth-input-group">
+                    <label for="email_login">Email Address</label>
+                    <input type="email" name="email" id="email_login" v-model="loginFormData.email">
+                    <span class="error" v-if="errors.email">{{errors.email[0]}}</span>
+                </div>
+                <div class="auth-input-group">
+                    <label for="password_login">Password</label>
+                    <input type="password" name="password" id="password_login" v-model="loginFormData.password">
+                    <span class="error" v-if="errors.password">{{errors.password[0]}}</span>
+                </div>
+            </div>
+
+            <div class="auth-form-btn sign-in">
+                <a href="javascript:void(0)" @click="login">
+                    <span v-if="isLoading" class="loader"></span>
+                    <span v-else>
+                        SIGN IN
                     </span>
                 </a>
             </div>
@@ -166,12 +221,20 @@
         },
         methods:{
             changeTab(tab) {
-               this.activeTab = tab;
+                this.errors = {};
+                this.activeTab = tab;
             },
             login() {
+                if(this.isLoading){
+                    return;
+                }
+
+                this.isLoading = true ;
                 this.errors = {};
-                axios.post('/login', this.formData)
+
+                axios.post('/login', this.loginFormData)
                     .then(response => {
+                        console.log(response.data);
                         // save the access token then redirect:
                         Vue.$cookies.set('access_token', response.data.access_token, "3y");
 
@@ -187,16 +250,13 @@
 
                     })
                     .catch(error => {
-                        this.canSubmit = true;
+                        this.isLoading = false ;
+
                         if (typeof error.response.data === 'object') {
                             this.errors = error.response.data.errors;
                         } else {
                             this.errors = ['Something went wrong. Please try again.'];
                         }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
                     });
             },
             register() {
@@ -217,8 +277,9 @@
                 this.sendRegisterRequest();
             },
             sendRegisterRequest(){
-                axios.post('/simple-register', this.formData)
+                axios.post('/simple-register', this.registerFormData)
                     .then(response => {
+                        console.log(response.data);
                         // save the access token then redirect:
                         Vue.$cookies.set('access_token', response.data.access_token, "3y");
                         if(response.data.role === 'admin'){
@@ -263,6 +324,14 @@
             box-shadow: 0 4.42136px 22.1068px rgba(0, 0, 0, 0.1);
             border-radius: 16.5px;
             font-family: Montserrat, sans-serif;
+            position: absolute;
+            visibility: visible;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out ;
+
+            &.hide{
+                opacity: 0;
+                visibility: hidden;
+            }
 
             .auth-form-tabs{
                 padding: 0 60px;
@@ -418,6 +487,10 @@
                     color: #FFFFFF;
 
                     text-decoration: none;
+                }
+
+                &.sign-in{
+                    margin-top: 35px;
                 }
 
             }
