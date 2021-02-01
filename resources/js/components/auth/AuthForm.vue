@@ -1,7 +1,7 @@
 <template>
     <div class="auth-main-wrapper">
 
-        <div class="auth-form register" :class="{'hide':activeTab === 'signin'}">
+        <div class="auth-form register" :class="{'show':activeTab === 'signup'}">
 
             <div class="auth-form-tabs">
                 <div class="tabs-wrapper">
@@ -67,7 +67,7 @@
 
         </div>
 
-        <div class="auth-form login" :class="{'hide':activeTab === 'signup'}">
+        <div class="auth-form login" :class="{'show':activeTab === 'signin'}">
 
             <div class="auth-form-tabs">
                 <div class="tabs-wrapper">
@@ -304,6 +304,22 @@
                     this.fieldType = 'password'
                 },10000);
             }
+        },
+        created() {
+            let uri = window.location.href.split('?');
+            if (uri.length === 2) {
+                let vars = uri[1].split('&');
+                let params = {};
+                let tmp = '';
+                vars.forEach(function (v) {
+                    tmp = v.split('=');
+                    if (tmp.length === 2)
+                        params[tmp[0]] = tmp[1];
+                });
+                if(params.tab && ( params.tab === 'signup' || params.tab === 'signin') ){
+                    this.activeTab = params.tab;
+                }
+            }
         }
     }
 </script>
@@ -324,13 +340,14 @@
             box-shadow: 0 4.42136px 22.1068px rgba(0, 0, 0, 0.1);
             border-radius: 16.5px;
             font-family: Montserrat, sans-serif;
+            opacity: 0;
             position: absolute;
-            visibility: visible;
+            visibility: hidden;
             transition: opacity 0.5s ease-out, visibility 0.5s ease-out ;
 
-            &.hide{
-                opacity: 0;
-                visibility: hidden;
+            &.show{
+                opacity: 1;
+                visibility: visible;
             }
 
             .auth-form-tabs{
