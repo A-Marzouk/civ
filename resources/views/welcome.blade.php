@@ -5,7 +5,7 @@
     <div class="homepage-navbar">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-011.svg" alt="logo"/>
         <div class="nav-btns">
-            <a class="login-btn" href="/login">Log in</a>
+            <a class="login-btn" href="/login?tab=signin">Log in</a>
             <a class="btn-appbar-register" href="/register">Sign up</a>
         </div>
     </div>
