@@ -50,8 +50,8 @@
                 </div>
             </div>
             
-            <div class="accept-text">
-                <input type="checkbox" v-model="acceptTerms">
+            <div class="accept-text" @click="acceptTerms = !acceptTerms">
+                <input type="checkbox" v-model="acceptTerms" >
                 <div>I accept your <a href="/">Terms of use</a> & <a href="/">Privacy Policy</a></div>
                 <span class="error" v-if="errors.acceptTerms">{{errors.acceptTerms}}</span>
             </div>
@@ -96,7 +96,10 @@
 
             <div class="auth-form-inputs">
                 <div class="auth-input-group">
-                    <label for="email_login">Email Address</label>
+                    <label for="email_login">
+                        Email Address
+                        <a href="/password/reset">Forgot?</a>
+                    </label>
                     <input type="email" name="email" id="email_login" v-model="loginFormData.email">
                     <span class="error" v-if="errors.email">{{errors.email[0]}}</span>
                 </div>
@@ -107,7 +110,12 @@
                 </div>
             </div>
 
-            <div class="auth-form-btn sign-in">
+            <div class="accept-text" @click="loginFormData.remember = !loginFormData.remember">
+                <input type="checkbox" v-model="loginFormData.remember">
+                <div>Remember me</div>
+            </div>
+
+            <div class="auth-form-btn">
                 <a href="javascript:void(0)" @click="login">
                     <span v-if="isLoading" class="loader"></span>
                     <span v-else>
@@ -430,6 +438,13 @@
                         font-size: 14px;
                         line-height: 25px;
                         color: #616161;
+
+                        a{
+                            text-decoration: none;
+                            margin-left: 6px;
+                            color: #0046FE;
+                            font-size: 13px;
+                        }
                     }
 
                     input{
@@ -466,7 +481,7 @@
                 position: relative;
 
                 div{
-                    margin-left: 7px;
+                    margin-left: 6px;
                 }
                 a{
                     text-decoration: none;
