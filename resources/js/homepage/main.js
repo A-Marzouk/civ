@@ -14,3 +14,15 @@ if ($("#welcomeView").length !== 0) {
         }
     });
 }
+
+// auth form ( in homepage and standalone page )
+import AuthForm from '../components/auth/AuthForm';
+
+if ($("#AuthForm").length !== 0) {
+    new Vue({
+        el: '#AuthForm',
+        components: {
+            'auth-form': AuthForm
+        }
+    });
+}

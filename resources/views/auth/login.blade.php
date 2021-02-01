@@ -1,9 +1,9 @@
-@extends('layouts.theme-vuetify')
+@extends('layouts.homepage.main')
 
 @section('content')
     <div>
-        <div id="loginForm">
-            <login-form></login-form>
+        <div id="AuthForm">
+            <auth-form></auth-form>
         </div>
     </div>
 @endsection
