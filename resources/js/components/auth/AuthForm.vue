@@ -1,131 +1,133 @@
 <template>
-    <div class="auth-main-wrapper">
+    <div>
+        <div class="auth-main-wrapper" :style="`min-height:${formHeight+100}px;`">
 
-        <div class="auth-form register" :class="{'show':activeTab === 'signup'}">
+            <div class="auth-form register" :class="{'show':activeTab === 'signup'}">
 
-            <div class="auth-form-tabs">
-                <div class="tabs-wrapper">
-                    <div class="tab first" :class="{'active': activeTab === 'signup'}" @click="changeTab('signup')">
-                        SIGN UP
+                <div class="auth-form-tabs">
+                    <div class="tabs-wrapper">
+                        <div class="tab first" :class="{'active': activeTab === 'signup'}" @click="changeTab('signup')">
+                            SIGN UP
+                        </div>
+                        <div class="tab second" :class="{'active': activeTab === 'signin'}" @click="changeTab('signin')">
+                            SIGN IN
+                        </div>
                     </div>
-                    <div class="tab second" :class="{'active': activeTab === 'signin'}" @click="changeTab('signin')">
-                        SIGN IN
+                </div>
+
+                <div class="sign-up-with-text">
+                    Sign up with
+                </div>
+
+                <div class="auth-form-social-icons">
+                    <a :href="icon.link" v-for="icon in socialIcons" :key="icon.id" class="icon-wrapper">
+                        <img :src="`/images/welcome_landing_page/icons/social_icons/${icon.title}.png`" :alt="icon.title"/>
+                    </a>
+                </div>
+
+                <div class="sign-up-with-text">
+                    Or
+                </div>
+
+                <div class="auth-form-inputs">
+                    <div class="auth-input-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" v-model="registerFormData.name">
+                        <span class="error" v-if="errors.name">{{errors.name[0]}}</span>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" name="email" id="email" v-model="registerFormData.email">
+                        <span class="error" v-if="errors.email">{{errors.email[0]}}</span>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" v-model="registerFormData.password">
+                        <span class="error" v-if="errors.password">{{errors.password[0]}}</span>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="password_confirmation">Confirm Password</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" v-model="registerFormData.password_confirmation">
                     </div>
                 </div>
-            </div>
 
-            <div class="sign-up-with-text">
-                Sign up with
-            </div>
-
-            <div class="auth-form-social-icons">
-                <a :href="icon.link" v-for="icon in socialIcons" :key="icon.id" class="icon-wrapper">
-                    <img :src="`/images/welcome_landing_page/icons/social_icons/${icon.title}.png`" :alt="icon.title"/>
-                </a>
-            </div>
-
-            <div class="sign-up-with-text">
-                Or
-            </div>
-
-            <div class="auth-form-inputs">
-                <div class="auth-input-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" v-model="registerFormData.name">
-                    <span class="error" v-if="errors.name">{{errors.name[0]}}</span>
+                <div class="accept-text" @click="acceptTerms = !acceptTerms">
+                    <input type="checkbox" v-model="acceptTerms" >
+                    <div>I accept your <a href="/">Terms of use</a> & <a href="/">Privacy Policy</a></div>
+                    <span class="error" v-if="errors.acceptTerms">{{errors.acceptTerms}}</span>
                 </div>
-                <div class="auth-input-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email" v-model="registerFormData.email">
-                    <span class="error" v-if="errors.email">{{errors.email[0]}}</span>
-                </div>
-                <div class="auth-input-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" v-model="registerFormData.password">
-                    <span class="error" v-if="errors.password">{{errors.password[0]}}</span>
-                </div>
-                <div class="auth-input-group">
-                    <label for="password_confirmation">Confirm Password</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" v-model="registerFormData.password_confirmation">
-                </div>
-            </div>
-            
-            <div class="accept-text" @click="acceptTerms = !acceptTerms">
-                <input type="checkbox" v-model="acceptTerms" >
-                <div>I accept your <a href="/">Terms of use</a> & <a href="/">Privacy Policy</a></div>
-                <span class="error" v-if="errors.acceptTerms">{{errors.acceptTerms}}</span>
-            </div>
 
-            <div class="auth-form-btn">
-                <a href="javascript:void(0)" @click="register">
-                    <span v-if="isLoading" class="loader"></span>
-                    <span v-else>
+                <div class="auth-form-btn">
+                    <a href="javascript:void(0)" @click="register">
+                        <span v-if="isLoading" class="loader"></span>
+                        <span v-else>
                         SIGN UP
                     </span>
-                </a>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="auth-form login" :class="{'show':activeTab === 'signin'}">
+
+                <div class="auth-form-tabs">
+                    <div class="tabs-wrapper">
+                        <div class="tab first" :class="{'active': activeTab === 'signup'}" @click="changeTab('signup')">
+                            SIGN UP
+                        </div>
+                        <div class="tab second" :class="{'active': activeTab === 'signin'}" @click="changeTab('signin')">
+                            SIGN IN
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sign-up-with-text">
+                    Sign in with
+                </div>
+
+                <div class="auth-form-social-icons">
+                    <a :href="icon.link" v-for="icon in socialIcons" :key="icon.id" class="icon-wrapper">
+                        <img :src="`/images/welcome_landing_page/icons/social_icons/${icon.title}.png`" :alt="icon.title"/>
+                    </a>
+                </div>
+
+                <div class="sign-up-with-text">
+                    Or
+                </div>
+
+                <div class="auth-form-inputs">
+                    <div class="auth-input-group">
+                        <label for="email_login">
+                            Email Address
+                            <a href="/password/reset">Forgot?</a>
+                        </label>
+                        <input type="email" name="email" id="email_login" v-model="loginFormData.email">
+                        <span class="error" v-if="errors.email">{{errors.email[0]}}</span>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="password_login">Password</label>
+                        <input type="password" name="password" id="password_login" v-model="loginFormData.password">
+                        <span class="error" v-if="errors.password">{{errors.password[0]}}</span>
+                    </div>
+                </div>
+
+                <div class="accept-text" @click="loginFormData.remember = !loginFormData.remember">
+                    <input type="checkbox" v-model="loginFormData.remember">
+                    <div>Remember me</div>
+                </div>
+
+                <div class="auth-form-btn">
+                    <a href="javascript:void(0)" @click="login">
+                        <span v-if="isLoading" class="loader"></span>
+                        <span v-else>
+                        SIGN IN
+                    </span>
+                    </a>
+                </div>
+
             </div>
 
         </div>
-
-        <div class="auth-form login" :class="{'show':activeTab === 'signin'}">
-
-            <div class="auth-form-tabs">
-                <div class="tabs-wrapper">
-                    <div class="tab first" :class="{'active': activeTab === 'signup'}" @click="changeTab('signup')">
-                        SIGN UP
-                    </div>
-                    <div class="tab second" :class="{'active': activeTab === 'signin'}" @click="changeTab('signin')">
-                        SIGN IN
-                    </div>
-                </div>
-            </div>
-
-            <div class="sign-up-with-text">
-                Sign in with
-            </div>
-
-            <div class="auth-form-social-icons">
-                <a :href="icon.link" v-for="icon in socialIcons" :key="icon.id" class="icon-wrapper">
-                    <img :src="`/images/welcome_landing_page/icons/social_icons/${icon.title}.png`" :alt="icon.title"/>
-                </a>
-            </div>
-
-            <div class="sign-up-with-text">
-                Or
-            </div>
-
-            <div class="auth-form-inputs">
-                <div class="auth-input-group">
-                    <label for="email_login">
-                        Email Address
-                        <a href="/password/reset">Forgot?</a>
-                    </label>
-                    <input type="email" name="email" id="email_login" v-model="loginFormData.email">
-                    <span class="error" v-if="errors.email">{{errors.email[0]}}</span>
-                </div>
-                <div class="auth-input-group">
-                    <label for="password_login">Password</label>
-                    <input type="password" name="password" id="password_login" v-model="loginFormData.password">
-                    <span class="error" v-if="errors.password">{{errors.password[0]}}</span>
-                </div>
-            </div>
-
-            <div class="accept-text" @click="loginFormData.remember = !loginFormData.remember">
-                <input type="checkbox" v-model="loginFormData.remember">
-                <div>Remember me</div>
-            </div>
-
-            <div class="auth-form-btn">
-                <a href="javascript:void(0)" @click="login">
-                    <span v-if="isLoading" class="loader"></span>
-                    <span v-else>
-                        SIGN IN
-                    </span>
-                </a>
-            </div>
-
-        </div>
-
     </div>
 </template>
 
@@ -224,7 +226,8 @@
                 },
 
                 errors: {},
-                isLoading: false
+                isLoading: false,
+                formHeight: 0
             }
         },
         methods:{
@@ -311,6 +314,9 @@
                 setTimeout(()=> {
                     this.fieldType = 'password'
                 },10000);
+            },
+            setFormHeight(){
+                this.formHeight = $('.auth-form.register').innerHeight();
             }
         },
         created() {
@@ -328,7 +334,13 @@
                     this.activeTab = params.tab;
                 }
             }
-        }
+        },
+        mounted() {
+            this.setFormHeight();
+            window.onresize = () => {
+                this.setFormHeight();
+            };
+        },
     }
 </script>
 
@@ -339,6 +351,7 @@
         justify-content: center;
         align-items: center;
         min-height: 100vh;
+
 
         .auth-form{
             width: 550px;
