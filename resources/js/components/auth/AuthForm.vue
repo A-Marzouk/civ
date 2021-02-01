@@ -353,6 +353,11 @@
             visibility: hidden;
             transition: opacity 0.5s ease-out, visibility 0.5s ease-out ;
 
+            @media screen and (max-width: 660px) {
+                width: 85%;
+                padding: 30px 15px;
+            }
+
             &.show{
                 opacity: 1;
                 visibility: visible;
@@ -360,6 +365,10 @@
 
             .auth-form-tabs{
                 padding: 0 60px;
+
+                @media screen and (max-width: 660px) {
+                    padding: 0 30px;
+                }
 
                 .tabs-wrapper{
                     display: flex;
@@ -380,6 +389,11 @@
                         color: #0046FE;
                         background: white;
                         width: 100%;
+
+                        @media screen and (max-width: 660px) {
+                            font-size: 14px;
+                            height: 50px;
+                        }
 
                         &.first{
                             border-radius: 7px 0 0 7px;
@@ -424,6 +438,14 @@
                     box-sizing: border-box;
                     border-radius: 10px;
                     margin-left: 40px;
+                }
+
+                @media screen and (max-width: 660px) {
+                    .icon-wrapper{
+                        width: 40px;
+                        height: 40px;
+                        margin-left: 20px;
+                    }
                 }
             }
 
@@ -519,10 +541,12 @@
                     color: #FFFFFF;
 
                     text-decoration: none;
-                }
 
-                &.sign-in{
-                    margin-top: 35px;
+                    @media screen and (max-width: 660px) {
+                        font-size: 14px;
+                        width: 140px;
+                        height: 50px;
+                    }
                 }
 
             }

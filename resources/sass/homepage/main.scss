@@ -822,6 +822,9 @@
 .homepage-navbar.transparent-bar{
   background: none;
   box-shadow: none;
+  @media screen and (max-width: 1440px) {
+    display: none;
+  }
 }
 
 // Auth form styles:
