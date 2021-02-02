@@ -52,8 +52,8 @@
                 <div class="section-four-second-text">
                     <div class="second-text-container">
                         <div class="text-one">
-                            <span>civ.ie</span> civ.ie will help you to stand out , get noticed and make a great first
-                            impression  
+                            <span>civ.ie</span> will help you to stand out , get noticed and make a great first
+                            impression
                         </div>
                         <div class="text-two">
                             Sending a civ.ie with your job application will increase your chances of being interviewed or
