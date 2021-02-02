@@ -276,14 +276,14 @@
                     return;
                 }
 
+                this.errors = {};
+
                 if (!this.acceptTerms) {
-                    this.errors.acceptTerms =
-                        "You have to accept our Terms of Use & Privacy Police*";
+                    this.errors.acceptTerms = "You have to accept our Terms of Use & Privacy Police*";
                     return;
                 }
 
                 this.isLoading = true ;
-                this.errors = {};
 
                 this.sendRegisterRequest();
             },
