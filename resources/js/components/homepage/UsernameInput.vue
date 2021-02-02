@@ -3,7 +3,8 @@
         <div class="username-input-group">
             <div class="username-input-field">
                 <span class="fixed-text">civ.ie <span>/</span></span>
-                <input type="text" v-model="username" placeholder="yournamehere" @keyup="validateUsername">
+                <input type="text" v-model="username" @blur="selfWritingText" @focus="removePlaceHolder" @keyup="validateUsername">
+                <span class="placeholderText">{{placeholderCurrentText}} <span class="blinking-curser"></span> </span>
                 <img src="/images/homepage/correct_icon.png" alt="feedback icon" v-show="is_username_valid">
                 <img src="/images/homepage/wrong_icon.png" alt="feedback icon"   v-show="!is_username_valid && is_username_valid !== null && username !== ''">
                 <div class="input-hint-text">
@@ -29,21 +30,47 @@
                 username: '',
                 validUserName: "",
                 is_username_valid: null,
+                placeholderOriginalText: 'yournamehere',
+                placeholderCurrentText: '',
+                timer: null
             }
         },
         methods:{
             validateUsername() {
                 axios
                     .post("/validate-username", { username: this.username })
-                    .then((response) => {
+                    .then(() => {
                         this.validUserName = this.username;
                         this.is_username_valid = true;
                     })
-                    .catch((response) => {
+                    .catch(() => {
                         this.validUserName = "";
                         this.is_username_valid = false;
                     });
+            },
+            async selfWritingText() {
+                this.placeholderCurrentText = '';
+
+                if(this.username.length > 0){
+                    return;
+                }
+                $('.placeholderText').css('opacity',1);
+
+                let textAsArray = this.placeholderOriginalText.split("");
+
+                for (let i = 0; i < textAsArray.length; i++) {
+                    this.placeholderCurrentText += textAsArray[i];
+                    await this.timer(100);
+                }
+            },
+            removePlaceHolder(){
+                this.placeholderCurrentText = '';
+                $('.placeholderText').css('opacity',0);
             }
+        },
+        mounted() {
+            this.timer = ms => new Promise(res => setTimeout(res, ms));
+            this.selfWritingText();
         }
     }
 </script>
@@ -80,6 +107,43 @@
                     }
                 }
 
+                span.placeholderText{
+                    position: absolute;
+                    font-family: NexaBold, sans-serif;
+                    font-weight: bold;
+                    font-size: 34.8px;
+                    color: rgb(196,196,196, 0.8);
+                    top: 30px;
+                    left: 0;
+                    span.blinking-curser{
+                        width: 1px;
+                        height: 43px;
+                        background: #14D627;
+                        position: absolute;
+                        margin-left: 2px;
+                        opacity: 1;
+                        animation: 1s linear 0s infinite normal none running blink;
+                    }
+
+                    @keyframes blink {
+                        0%{
+                            opacity: 1;
+                        }
+                        49%{
+                            opacity: 1;
+                        }
+                        50%{
+                            opacity: 0;
+                        }
+                        99%{
+                            opacity: 0;
+                        }
+                        100%{
+                            opacity: 1;
+                        }
+                    }
+                }
+
                 input{
                     height: 100px;
                     width: 100%;
@@ -95,17 +159,11 @@
 
                     &:focus{
                         outline: none;
-                    }
-
-                    &::-webkit-input-placeholder{
-                        color: rgb(196,196,196, 0.8);
-                    }
-
-                    &:focus::-webkit-input-placeholder {
-                        opacity: 0;
-                        transform: translate(70%);
-                        -webkit-transition: all 0.35s ease-in-out;
-                        transition: all 0.35s ease-in-out;
+                        span.placeholderText{
+                            span.blinking-curser{
+                                display: none;
+                            }
+                        }
                     }
                 }
 
