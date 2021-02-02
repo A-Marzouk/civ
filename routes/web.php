@@ -35,7 +35,8 @@ Route::get('/hire-me/updated/no-payment','ResumeController@hireModalTestNoPaymen
 // Test theme preview
 Route::get('/preview-theme-pdf-by-code/{themeCode}/{username}/{version?}', 'ResumeController@downloadPDFResume');
 
-Route::middleware('page-cache')->get('/', 'HomeController@welcome')->name('home');
+//Route::middleware('page-cache')->get('/', 'HomeController@welcome')->name('home');
+Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
 Route::get('/faq','HomeController@faq')->name('faq');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
