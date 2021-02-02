@@ -5,13 +5,16 @@
     <div id="ah-homepage">
 
         <div class="ah-navbar">
-            <div class="ah-logo">
-                <img src="/images/homepage/civ_logo.png" alt="Logo">
+            <div class="navbar-elements-wrapper">
+                <div class="ah-logo">
+                    <img src="/images/homepage/civ_logo.png" alt="Logo">
+                </div>
+                <div class="ah-btns">
+                    <a href="/login?tab=signin" class="login-btn">Log In</a>
+                    <a href="/register" class="register-btn">Sign Up</a>
+                </div>
             </div>
-            <div class="ah-btns">
-                <a href="/login?tab=signin" class="login-btn">Log In</a>
-                <a href="/register" class="register-btn">Sign Up</a>
-            </div>
+
         </div>
 
         <div class="ah-main-container">
