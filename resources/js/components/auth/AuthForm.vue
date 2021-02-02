@@ -349,8 +349,7 @@
     .auth-main-wrapper{
         display: flex;
         justify-content: center;
-        align-items: center;
-        min-height: 100vh;
+        margin-top:100px;
 
 
         .auth-form{
@@ -451,6 +450,9 @@
                     box-sizing: border-box;
                     border-radius: 10px;
                     margin-left: 40px;
+                    img{
+                        width: 20px;
+                    }
                 }
 
                 @media screen and (max-width: 660px) {
