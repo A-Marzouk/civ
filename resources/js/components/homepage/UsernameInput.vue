@@ -3,7 +3,7 @@
         <div class="username-input-group">
             <div class="username-input-field">
                 <span class="fixed-text">civ.ie <span>/</span></span>
-                <input type="text" v-model="username" @keyup="validateUsername">
+                <input type="text" v-model="username" placeholder="yournamehere" @keyup="validateUsername">
                 <img src="/images/homepage/correct_icon.png" alt="feedback icon" v-show="is_username_valid">
                 <img src="/images/homepage/wrong_icon.png" alt="feedback icon"   v-show="!is_username_valid && is_username_valid !== null && username !== ''">
                 <div class="input-hint-text">
@@ -95,6 +95,17 @@
 
                     &:focus{
                         outline: none;
+                    }
+
+                    &::-webkit-input-placeholder{
+                        color: rgb(196,196,196, 0.8);
+                    }
+
+                    &:focus::-webkit-input-placeholder {
+                        opacity: 0;
+                        transform: translate(70%);
+                        -webkit-transition: all 0.35s ease-in-out;
+                        transition: all 0.35s ease-in-out;
                     }
                 }
 
