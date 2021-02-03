@@ -232,28 +232,61 @@
       }
 
       .section-six-companies {
-        .promo-text {
+        margin-top: 60px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
 
+        .promo-text {
+          font-family: NexaBold, sans-serif;
+          font-weight: bold;
+          font-size: 48px;
+          line-height: 60px;
+          letter-spacing: -0.03em;
+          color: #0A1E56;
+          margin-bottom: 40px;
+          span{
+            color: #0F4CEE;
+          }
         }
 
         .companies-logos {
           display: flex;
 
           img {
-
+            width: 70px;
+            height: auto;
+            margin-right: 35px;
+            margin-left: 35px;
           }
         }
       }
 
       .section-seven-reviews {
+        margin-top: 150px;
+        margin-bottom: 150px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
 
         .single-review {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
           .stars {
-
+            margin-bottom: 20px;
           }
 
           .review-text {
-
+            font-family: NexaBold;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 24px;
+            text-align: center;
+            color: #575757;
           }
         }
 
@@ -264,16 +297,32 @@
   }
 
   .get-started-bar {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2);
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     .get-started-text {
+      display: flex;
+      align-items: center;
+      font-family: NexaBold, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 0.2em;
+      text-transform: capitalize;
+      color: #0046FE;
 
-    }
+      span {
+        font-size: 14px;
+        margin-left: 9px;
+      }
 
-    span {
-
-    }
-
-    img {
-
+      img {
+        margin-left: 5px;
+        margin-top: 7px;
+      }
     }
   }
 
