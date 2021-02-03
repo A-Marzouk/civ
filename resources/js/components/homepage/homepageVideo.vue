@@ -7,11 +7,8 @@
             </video>
 
             <div v-show="!videoOn" class="video-image-holder">
-                <img src="/images/homepage/video_preview.png" class="video image holder"/>
-
-                <a href="javascript:void(0)">
-                    <img src="/images/homepage/video_play_btn.png" @click="playIntroVideo" />
-                </a>
+                <img class="preview" src="/images/homepage/video_preview.png"/>
+                <img class="play-btn" src="/images/homepage/video_play_btn.png" @click="playIntroVideo" />
             </div>
         </div>
     </div>
@@ -38,16 +35,31 @@
     .homepage-video-wrapper{
         .video-preview{
             video{
-
+                width: 100%;
             }
 
             .video-image-holder{
-                img{
+                position: relative;
+                display: flex;
+                justify-content: center;
 
+                img.preview{
+                    border-radius: 20px;
+                    max-height: 900px;
                 }
-                a{
-                    img{
 
+                img.play-btn{
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: auto;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    &:hover{
+                        cursor: pointer;
                     }
                 }
             }
