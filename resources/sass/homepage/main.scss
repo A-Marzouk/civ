@@ -254,12 +254,13 @@
 
         .companies-logos {
           display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
 
           img {
-            width: 70px;
-            height: auto;
-            margin-right: 35px;
-            margin-left: 35px;
+            width: auto;
+            height: 100%;
           }
         }
       }
