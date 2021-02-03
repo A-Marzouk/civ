@@ -79,20 +79,48 @@
 
     .username-input-wrapper{
         width: 100%;
+        display: flex;
+        justify-content: center;
 
         .username-input-group{
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: center;
             margin-left: 135px;
             width: 100%;
-
+            // mobile:
+            @media screen and (max-width: 599px) {
+                margin-left: 0;
+                width: 95%;
+            }
 
             .username-input-field{
                 position: relative;
                 width: 100%;
                 max-width: 685px;
+                font-size: 34.8px;
+                
+                // mobile:
+                @media screen and (max-width: 599px) {
+                    font-size: 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
 
+                // tablet:
+                @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+                }
+
+                // laptop:
+                @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+                }
                 span.fixed-text{
                     position: absolute;
                     font-family: NexaBold, sans-serif;
@@ -104,6 +132,26 @@
 
                     span{
                         color: #000;
+                    }
+
+                    // mobile:
+                    @media screen and (max-width: 599px) {
+                        top: 21px;
+                        left: 15px;
+                        font-size: 18px;
+                    }
+
+                    // tablet:
+                    @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+                    }
+
+                    // laptop:
+                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
                     }
                 }
 
@@ -123,6 +171,31 @@
                         margin-left: 2px;
                         opacity: 1;
                         animation: 1s linear 0s infinite normal none running blink;
+                        // mobile:
+                        @media screen and (max-width: 599px) {
+                            height: 25px;
+                        }
+
+                    }
+
+                    // mobile:
+                    @media screen and (max-width: 599px) {
+                        top: 20px;
+                        left: 75px;
+                        font-size: 18px;
+                    }
+
+                    // tablet:
+                    @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+                    }
+
+                    // laptop:
+                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
                     }
 
                     @keyframes blink {
@@ -154,8 +227,27 @@
                     margin-left: -135px;
                     font-family: NexaBold, sans-serif;
                     font-weight: bold;
-                    font-size: 34.8px;
+                    font-size: inherit;
                     color: #14D627;
+                    // mobile:
+                    @media screen and (max-width: 599px) {
+                        height: 60px;
+                        padding-left: 75px;
+                        margin-left: 0;
+                    }
+
+                    // tablet:
+                    @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+                    }
+
+                    // laptop:
+                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+                    }
 
                     &:focus{
                         outline: none;
@@ -171,23 +263,65 @@
                     position: absolute;
                     top: 38px;
                     right: 25px;
+                    // mobile:
+                    @media screen and (max-width: 599px) {
+                        top: 22px;
+                        right: 34px;
+                        width: 20px;
+                    }
+
+                    // tablet:
+                    @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+                    }
+
+                    // laptop:
+                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+                    }
                 }
 
                 .input-hint-text{
                     position: absolute;
                     font-family: NexaLight, sans-serif;
                     font-weight: 300;
-                    font-size: 18px;
+                    font-size: 1.125rem;
                     line-height: 50px;
                     color: #0A1E56;
                     left: -110px;
-                }
+                    // mobile:
+                    @media screen and (max-width: 599px) {
+                        font-size: 10px;
+                        line-height: 50px;
+                        left: 20px;
+                        top: 50px;
+                    }
 
+                    // tablet:
+                    @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+                    }
+
+                    // laptop:
+                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+                    }
+                }
             }
 
             .username-input-btn{
                 margin-left: 25px;
-
+                // mobile:
+                @media screen and (max-width: 599px) {
+                    margin-left: 0;
+                    margin-top: 45px;
+                }
                 a{
                     width: 320px;
                     height: 100px;
@@ -202,12 +336,36 @@
 
                     font-family: NexaBold, sans-serif;
                     font-weight: bold;
-                    font-size: 26px;
+                    font-size: 1.625rem;
                     color: #FFFFFF;
                     text-decoration: none;
 
                     img{
                         margin-left: 14px;
+                    }
+
+                    // mobile:
+                    @media screen and (max-width: 599px) {
+                        width: 130px;
+                        height: 40px;
+                        font-size: 14px;
+                        img{
+                            margin-left: 6px;
+                            width: 19px;
+                        }
+                    }
+
+                    // tablet:
+                    @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+                    }
+
+                    // laptop:
+                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
                     }
                 }
             }

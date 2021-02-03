@@ -1,6 +1,4 @@
 // fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
-
 @font-face {
   font-family: NexaBold;
   src: url("/fonts/nexa/Nexa Bold.otf");
@@ -16,7 +14,7 @@
   src: url("/fonts/averta/averta-bold.woff") format('woff');
 }
 
-//navbar
+//navbar for auth page:
 .homepage-navbar {
   height: 100px;
   position: fixed;
@@ -73,7 +71,25 @@
       align-items: center;
 
       .ah-logo {
+        // mobile:
+        @media screen and (max-width: 599px) {
+         img{
+           width: 130px;
+         }
+        }
 
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+        }
       }
 
       .ah-btns {
@@ -81,11 +97,28 @@
         align-items: center;
         font-family: NexaBold, sans-serif;
         font-weight: bold;
-        font-size: 24px;
+        font-size: 1.5rem;
 
         .login-btn {
           color: #0046FE;
           text-decoration: none;
+          // mobile:
+          @media screen and (max-width: 599px) {
+            font-size: 14px;
+          }
+
+          // tablet:
+          @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+          }
+
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+          }
         }
 
         .register-btn {
@@ -100,6 +133,29 @@
           text-decoration: none;
           margin-left: 50px;
           color: #FFFFFF;
+
+          // responsive media quires:
+          // mobile:
+          @media screen and (max-width: 599px) {
+            width: 130px;
+            height: 40px;
+            font-size: 14px;
+            margin-left: 12px;
+          }
+
+          // tablet:
+          @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+          }
+
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+          }
+
         }
 
       }
@@ -116,38 +172,92 @@
 
       .section-one-main {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
+        font-size: 96px;
         margin-top: 40px;
         
         .main-text-container {
           font-family: Averta-Bold, sans-serif;
+          max-width: 1050px;
+          // mobile:
+          @media screen and (max-width: 599px) {
+            font-size: 36px;
+            line-height: 46px;
+          }
+
+          // tablet:
+          @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+          }
+
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+          }
 
           .civ-text {
-            font-size: 96px;
-            line-height: 110px;
+            font-size: inherit;
             letter-spacing: -0.05em;
             color: #0046FE;
           }
 
           .banner-text {
-            font-size: 96px;
-            line-height: 110px;
+            font-size: inherit;
             letter-spacing: -0.05em;
             color: #0A1E56;
           }
 
           .banner-sub-text {
-            font-size: 36px;
+            font-size: 2.3rem;
             line-height: 60px;
             color: #0046FE;
             margin-top: 30px;
+            // mobile:
+            @media screen and (max-width: 599px) {
+              font-size: 24px;
+              line-height: 30px;
+            }
+
+            // tablet:
+            @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+            }
+
+            // laptop:
+            @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+            }
           }
         }
 
         .bobby-image {
           img {
+            width: 100%;
+            // mobile:
+            @media screen and (max-width: 599px) {
+              width: 68%;
+            }
 
+            // tablet:
+            @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+            }
+
+            // laptop:
+            @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+            }
           }
         }
       }
@@ -155,6 +265,7 @@
       .section-two-input {
         margin-top: 60px;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         #homepage_username_input{
           width: 100%;
@@ -165,7 +276,9 @@
         margin-top: 68px;
 
         .ah-homepage-banner {
-
+          img{
+            width: 100%;
+          }
         }
 
       }
@@ -174,11 +287,13 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-top: 60px;
+        margin-bottom: 70px;
 
         .second-text-container {
           font-family: NexaBold, sans-serif;
           font-weight: bold;
-          font-size: 48px;
+          font-size: 3rem;
           line-height: 60px;
           letter-spacing: -0.03em;
           color: #0A1E56;
@@ -209,7 +324,7 @@
 
               font-family: NexaBold, sans-serif;
               font-weight: bold;
-              font-size: 26px;
+              font-size: 1.625rem;
               color: #FFFFFF;
               text-decoration: none;
               letter-spacing: 0em;
@@ -222,8 +337,9 @@
         }
 
         .standing-bobby-image {
-
-
+          img{
+            width: 100%;
+          }
         }
       }
 
@@ -242,8 +358,8 @@
         .promo-text {
           font-family: NexaBold, sans-serif;
           font-weight: bold;
-          font-size: 48px;
-          line-height: 60px;
+          font-size: 3rem;
+          line-height: 3.75rem;
           letter-spacing: -0.03em;
           color: #0A1E56;
           margin-bottom: 50px;
@@ -256,6 +372,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          overflow-x: auto;
           width: 100%;
 
           img {
@@ -271,6 +388,8 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        overflow-x: auto;
+        align-items: baseline;
 
         .single-review {
           display: flex;
@@ -284,7 +403,7 @@
           .review-text {
             font-family: NexaBold;
             font-weight: bold;
-            font-size: 24px;
+            font-size: 1.5rem;;
             line-height: 24px;
             text-align: center;
             color: #575757;
@@ -310,13 +429,13 @@
       align-items: center;
       font-family: NexaBold, sans-serif;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 1.125rem;
       letter-spacing: 0.2em;
       text-transform: capitalize;
       color: #0046FE;
 
       span {
-        font-size: 14px;
+        font-size: 0.875rem;
         margin-left: 9px;
       }
 
@@ -326,7 +445,6 @@
       }
     }
   }
-
 
   .custom-footer {
 
@@ -365,19 +483,19 @@
       .follow-us-text {
         font-family: "Montserrat", sans-serif !important;
         font-weight: bold;
-        font-size: 32px;
+        font-size: 2rem;
         color: #ffffff !important;
         display: flex;
         align-items: center;
         white-space: pre;
 
         span {
-          font-family: "Open Sans", sans-serif !important;
-          font-size: 18px;
+          font-family: NexaBold, sans-serif !important;
+          font-size: 1.125rem;
         }
 
         @media screen and (max-width: 1903px) {
-          font-size: 24px;
+          font-size: 1.5rem;;
           span {
             font-size: 12px;
           }
@@ -444,6 +562,7 @@
     }
 
   }
+
 }
 
 

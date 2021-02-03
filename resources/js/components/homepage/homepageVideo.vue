@@ -46,6 +46,7 @@
                 img.preview{
                     border-radius: 20px;
                     max-height: 900px;
+                    width: 100%;
                 }
 
                 img.play-btn{
