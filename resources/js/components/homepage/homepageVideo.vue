@@ -59,6 +59,10 @@
                     right: 0;
                     top: 0;
                     bottom: 0;
+                    // mobile
+                    @media screen and (max-width: 599px) {
+                        width: 57px;
+                    }
                     &:hover{
                         cursor: pointer;
                     }

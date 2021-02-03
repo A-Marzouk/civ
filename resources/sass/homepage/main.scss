@@ -73,6 +73,7 @@
       .ah-logo {
         // mobile:
         @media screen and (max-width: 599px) {
+          padding-left: 13px;
          img{
            width: 130px;
          }
@@ -98,6 +99,10 @@
         font-family: NexaBold, sans-serif;
         font-weight: bold;
         font-size: 1.5rem;
+        // mobile:
+        @media screen and (max-width: 599px) {
+          padding-right: 13px;
+        }
 
         .login-btn {
           color: #0046FE;
@@ -140,7 +145,7 @@
             width: 130px;
             height: 40px;
             font-size: 14px;
-            margin-left: 12px;
+            margin-left: 18px;
           }
 
           // tablet:
@@ -177,7 +182,10 @@
         justify-content: space-between;
         font-size: 96px;
         margin-top: 40px;
-        
+        @media screen and (max-width: 599px) {
+          padding-left: 13px;
+          padding-right: 13px;
+        }
         .main-text-container {
           font-family: Averta-Bold, sans-serif;
           max-width: 1050px;
@@ -239,6 +247,11 @@
         }
 
         .bobby-image {
+          @media screen and (max-width: 599px) {
+            display: flex;
+            justify-content: center;
+          }
+
           img {
             width: 100%;
             // mobile:
@@ -274,7 +287,10 @@
 
       .section-three-image {
         margin-top: 68px;
-
+        @media screen and (max-width: 599px) {
+          padding-left: 13px;
+          padding-right: 13px;
+        }
         .ah-homepage-banner {
           img{
             width: 100%;
@@ -289,7 +305,12 @@
         justify-content: space-between;
         margin-top: 60px;
         margin-bottom: 70px;
-
+        @media screen and (max-width: 599px) {
+          padding-left: 13px;
+          padding-right: 13px;
+          margin-top: 40px;
+          position: relative;
+        }
         .second-text-container {
           font-family: NexaBold, sans-serif;
           font-weight: bold;
@@ -297,6 +318,13 @@
           line-height: 60px;
           letter-spacing: -0.03em;
           color: #0A1E56;
+
+          // mobile
+          // mobile:
+          @media screen and (max-width: 599px) {
+            font-size: 25px;
+            line-height: 32px;
+          }
 
           .text-one {
             span{
@@ -329,6 +357,30 @@
               text-decoration: none;
               letter-spacing: 0em;
 
+              // mobile:
+              @media screen and (max-width: 599px) {
+                width: 130px;
+                height: 40px;
+                font-size: 14px;
+                img{
+                  margin-left: 6px !important;
+                  width: 19px;
+                }
+              }
+
+              // tablet:
+              @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+              }
+
+              // laptop:
+              @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+              }
+
               img{
                 margin-left: 14px;
               }
@@ -340,11 +392,23 @@
           img{
             width: 100%;
           }
+
+          // mobile
+          @media screen and (max-width: 599px) {
+            position: absolute;
+            width: 41%;
+            bottom: -65px;
+            right: 22px;
+          }
+
         }
       }
 
       .section-five-video {
-
+        @media screen and (max-width: 599px) {
+          padding-left: 13px;
+          padding-right: 13px;
+        }
       }
 
       .section-six-companies {
@@ -354,7 +418,13 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
+        @media screen and (max-width: 599px) {
+          margin-top: 40px;
+          padding-left: 13px;
+          padding-right: 13px;
+          width: auto;
+          max-width: 100%;
+        }
         .promo-text {
           font-family: NexaBold, sans-serif;
           font-weight: bold;
@@ -365,6 +435,11 @@
           margin-bottom: 50px;
           span{
             color: #0F4CEE;
+          }
+          @media screen and (max-width: 599px) {
+            font-size: 24px;
+            line-height: 32px;
+            text-align: center;
           }
         }
 
@@ -378,6 +453,13 @@
           img {
             width: auto;
             height: 100%;
+            opacity: 0.5;
+
+            // mobile
+            @media screen and (max-width: 599px) {
+              width: 95px;
+              margin-right: 40px;
+            }
           }
         }
       }
@@ -391,22 +473,44 @@
         overflow-x: auto;
         align-items: baseline;
 
+        @media screen and (max-width: 599px) {
+          margin-top: 60px;
+          margin-bottom: 60px;
+        }
+
         .single-review {
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: column;
+
+          @media screen and (max-width: 599px) {
+            margin-right: 40px;
+            min-width: 130px;
+          }
+
           .stars {
             margin-bottom: 20px;
+            @media screen and (max-width: 599px) {
+              margin-bottom: 10px;
+            }
+            img{
+              @media screen and (max-width: 599px) {
+                height: 13px;
+              }
+            }
           }
 
           .review-text {
-            font-family: NexaBold;
+            font-family: NexaBold, sans-serif;
             font-weight: bold;
             font-size: 1.5rem;;
             line-height: 24px;
             text-align: center;
             color: #575757;
+            @media screen and (max-width: 599px) {
+              font-size: 14px;
+            }
           }
         }
 
