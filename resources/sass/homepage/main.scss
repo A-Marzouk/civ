@@ -81,9 +81,7 @@
 
         // tablet:
         @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+          padding-left: 35px;
         }
 
         // laptop:
@@ -102,6 +100,16 @@
         // mobile:
         @media screen and (max-width: 599px) {
           padding-right: 13px;
+        }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+          padding-right: 35px;
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
         }
 
         .login-btn {
@@ -194,6 +202,17 @@
           padding-right: 13px;
           margin-top: 15px;
         }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+          padding-left: 35px;
+          padding-right: 35px;
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+        }
         .main-text-container {
           font-family: Averta-Bold, sans-serif;
           max-width: 1050px;
@@ -205,9 +224,8 @@
 
           // tablet:
           @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+            font-size: 64px;
+            line-height: 70px;
           }
 
           // laptop:
@@ -242,9 +260,9 @@
 
             // tablet:
             @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+              font-size: 36px;
+              line-height: 42px;
+              margin-top: 25px;
             }
 
             // laptop:
@@ -258,7 +276,8 @@
       }
 
       .bobby-image {
-        @media screen and (max-width: 599px) {
+        // mobile and tablet same
+        @media screen and (max-width: 960px) {
           display: flex;
           justify-content: center;
           &.desktop{
@@ -266,26 +285,31 @@
           }
         }
 
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+        }
+
         &.mobile{
           display: none !important;
-          @media screen and (max-width: 599px) {
+          @media screen and (max-width: 960px) {
             display: flex !important;
             margin-top: 15px;
+          }
+
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
           }
         }
 
         img {
           width: 100%;
-          // mobile:
-          @media screen and (max-width: 599px) {
+          // mobile and tablet same:
+          @media screen and (max-width: 960px) {
             width: 68%;
-          }
-
-          // tablet:
-          @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
           }
 
           // laptop:
@@ -305,6 +329,18 @@
         @media screen and (max-width: 599px) {
           margin-top: 35px;
         }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+        }
         #homepage_username_input{
           width: 100%;
         }
@@ -316,6 +352,17 @@
           padding-left: 13px;
           padding-right: 13px;
           margin-top: 15px;
+        }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+          padding-left: 35px;
+          padding-right: 35px;
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
         }
         .ah-homepage-banner {
           img{
@@ -337,6 +384,17 @@
           margin-top: 40px;
           position: relative;
         }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+          padding-left: 35px;
+          padding-right: 35px;
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+        }
         .second-text-container {
           font-family: NexaBold, sans-serif;
           font-weight: bold;
@@ -351,6 +409,18 @@
             font-size: 25px;
             line-height: 32px;
           }
+          // tablet:
+          @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+          }
+
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+          }
 
           .text-one {
             span{
@@ -363,12 +433,36 @@
             @media screen and (max-width: 599px) {
               margin-top: 25px;
             }
+            // tablet:
+            @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+            }
+
+            // laptop:
+            @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+            }
           }
 
           .action-btn {
             margin-top: 60px;
             @media screen and (max-width: 599px) {
               margin-top: 40px;
+            }
+            // tablet:
+            @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+            }
+
+            // laptop:
+            @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
             }
             a{
               width: 320px;
@@ -432,6 +526,18 @@
             bottom: -75px;
             right: 10px;
           }
+          // tablet:
+          @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+          }
+
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+          }
 
         }
       }
@@ -440,6 +546,17 @@
         @media screen and (max-width: 599px) {
           padding-left: 13px;
           padding-right: 13px;
+        }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+          padding-left: 35px;
+          padding-right: 35px;
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
         }
       }
 
@@ -457,6 +574,17 @@
           width: auto;
           max-width: 100%;
         }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+          padding-left: 35px;
+          padding-right: 35px;
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+        }
         .promo-text {
           font-family: NexaBold, sans-serif;
           font-weight: bold;
@@ -473,6 +601,18 @@
             line-height: 32px;
             text-align: center;
             margin-bottom: 41px;
+          }
+          // tablet:
+          @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+          }
+
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
           }
         }
 
@@ -493,6 +633,18 @@
               width: 95px;
               margin-right: 40px;
             }
+            // tablet:
+            @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+            }
+
+            // laptop:
+            @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+            }
           }
         }
       }
@@ -510,6 +662,18 @@
           margin-top: 41px;
           margin-bottom: 41px;
         }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+        }
 
         .single-review {
           display: flex;
@@ -521,15 +685,51 @@
             margin-right: 40px;
             min-width: 130px;
           }
+          // tablet:
+          @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+          }
+
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+          }
 
           .stars {
             margin-bottom: 20px;
             @media screen and (max-width: 599px) {
               margin-bottom: 10px;
             }
+            // tablet:
+            @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+            }
+
+            // laptop:
+            @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+            }
             img{
               @media screen and (max-width: 599px) {
                 height: 13px;
+              }
+              // tablet:
+              @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+              }
+
+              // laptop:
+              @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
               }
             }
           }
@@ -542,6 +742,18 @@
             color: #575757;
             @media screen and (max-width: 599px) {
               font-size: 14px;
+            }
+            // tablet:
+            @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+            }
+
+            // laptop:
+            @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
             }
           }
         }
@@ -562,6 +774,18 @@
     @media screen and (max-width: 599px) {
       height: 70px;
     }
+    // tablet:
+    @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+    }
+
+    // laptop:
+    @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+    }
     .get-started-text {
       display: flex;
       align-items: center;
@@ -574,12 +798,36 @@
       @media screen and (max-width: 599px) {
         font-size: 14px;
       }
+      // tablet:
+      @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+      }
+
+      // laptop:
+      @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+      }
 
       span {
         font-size: 0.875rem;
         margin-left: 9px;
         @media screen and (max-width: 599px) {
           font-size: 12px;
+        }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
         }
       }
 
@@ -589,6 +837,18 @@
         @media screen and (max-width: 599px) {
           margin-left: 4px;
           margin-top: 4px;
+        }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
         }
       }
     }
@@ -604,6 +864,18 @@
     @media screen and (max-width: 599px) {
       padding: 20px 20px;
       height: 70px;
+    }
+    // tablet:
+    @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+    }
+
+    // laptop:
+    @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
     }
 
     .footer-wrapper {
@@ -636,6 +908,18 @@
             display: none;
           }
         }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+        }
       }
 
       .follow-us-text {
@@ -649,6 +933,18 @@
         label, span{
           @media screen and (max-width: 599px) {
             display: none;
+          }
+          // tablet:
+          @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+          }
+
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
           }
         }
         span {
@@ -696,6 +992,18 @@
           width: 123px;
           margin-top: -18px;
         }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+        }
       }
 
       a.footer-social-icon {
@@ -726,6 +1034,18 @@
           img {
             width: 18px;
           }
+        }
+        // tablet:
+        @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+        }
+
+        // laptop:
+        @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
         }
       }
     }
