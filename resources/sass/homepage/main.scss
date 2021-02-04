@@ -331,9 +331,7 @@
         }
         // tablet:
         @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+          padding: 0 35px;
         }
 
         // laptop:
@@ -357,6 +355,7 @@
         @media screen and (max-width: 960px) and (min-width: 600px) {
           padding-left: 35px;
           padding-right: 35px;
+          margin-top: 40px;
         }
 
         // laptop:
@@ -388,6 +387,8 @@
         @media screen and (max-width: 960px) and (min-width: 600px) {
           padding-left: 35px;
           padding-right: 35px;
+          margin-bottom: 90px;
+          position: relative;
         }
 
         // laptop:
@@ -403,7 +404,6 @@
           letter-spacing: -0.03em;
           color: #0A1E56;
 
-          // mobile
           // mobile:
           @media screen and (max-width: 599px) {
             font-size: 25px;
@@ -411,9 +411,8 @@
           }
           // tablet:
           @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+            font-size: 36px;
+            line-height: 42px;
           }
 
           // laptop:
@@ -496,9 +495,14 @@
 
               // tablet:
               @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+                width: 285px;
+                height: 84px;
+                font-size: 24px;
+                box-shadow: 0px 4px 15px rgb(20 214 39 / 20%);
+                img{
+                  margin-left: 12px;
+                  width: 30px;
+                }
               }
 
               // laptop:
@@ -528,9 +532,10 @@
           }
           // tablet:
           @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+            position: absolute;
+            width: 34%;
+            bottom: -69px;
+            right: 32px;
           }
 
           // laptop:
@@ -576,8 +581,11 @@
         }
         // tablet:
         @media screen and (max-width: 960px) and (min-width: 600px) {
+          margin-top: 70px;
           padding-left: 35px;
           padding-right: 35px;
+          width: auto;
+          max-width: 100%;
         }
 
         // laptop:
@@ -604,9 +612,9 @@
           }
           // tablet:
           @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+            font-size: 36px;
+            line-height: 36px;
+            text-align: center;
           }
 
           // laptop:
@@ -635,9 +643,8 @@
             }
             // tablet:
             @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+              width: 130px;
+              margin-right: 40px;
             }
 
             // laptop:
@@ -650,23 +657,14 @@
       }
 
       .section-seven-reviews {
-        margin-top: 150px;
-        margin-bottom: 150px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        overflow-x: auto;
-        align-items: baseline;
-
         @media screen and (max-width: 599px) {
-          margin-top: 41px;
-          margin-bottom: 41px;
+          padding-left: 13px;
+          padding-right: 13px;
         }
         // tablet:
         @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+          padding-left: 35px;
+          padding-right: 35px;
         }
 
         // laptop:
@@ -675,21 +673,25 @@
 
         }
 
-        .single-review {
+
+        .reviews-wrapper{
+
+          margin-top: 150px;
+          margin-bottom: 150px;
+          width: 100%;
           display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
+          justify-content: space-between;
+          overflow-x: auto;
+          align-items: baseline;
 
           @media screen and (max-width: 599px) {
-            margin-right: 40px;
-            min-width: 130px;
+            margin-top: 41px;
+            margin-bottom: 41px;
           }
           // tablet:
           @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+            margin-top: 60px;
+            margin-bottom: 60px;
           }
 
           // laptop:
@@ -698,16 +700,20 @@
 
           }
 
-          .stars {
-            margin-bottom: 20px;
+          .single-review {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
             @media screen and (max-width: 599px) {
-              margin-bottom: 10px;
+              margin-right: 40px;
+              min-width: 130px;
             }
             // tablet:
             @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+              margin-right: 40px;
+              min-width: 200px;
             }
 
             // laptop:
@@ -715,9 +721,11 @@
 
 
             }
-            img{
+
+            .stars {
+              margin-bottom: 20px;
               @media screen and (max-width: 599px) {
-                height: 13px;
+                margin-bottom: 10px;
               }
               // tablet:
               @media screen and (max-width: 960px) and (min-width: 600px) {
@@ -731,32 +739,51 @@
 
 
               }
+              img{
+                @media screen and (max-width: 599px) {
+                  height: 13px;
+                }
+                // tablet:
+                @media screen and (max-width: 960px) and (min-width: 600px) {
+
+
+
+                }
+
+                // laptop:
+                @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+                }
+              }
             }
-          }
 
-          .review-text {
-            font-family: NexaBold, sans-serif;
-            font-weight: bold;
-            font-size: 1.5rem;
-            text-align: center;
-            color: #575757;
-            @media screen and (max-width: 599px) {
-              font-size: 14px;
-            }
-            // tablet:
-            @media screen and (max-width: 960px) and (min-width: 600px) {
-
+            .review-text {
+              font-family: NexaBold, sans-serif;
+              font-weight: bold;
+              font-size: 1.5rem;
+              text-align: center;
+              color: #575757;
+              @media screen and (max-width: 599px) {
+                font-size: 14px;
+              }
+              // tablet:
+              @media screen and (max-width: 960px) and (min-width: 600px) {
 
 
-            }
+              }
 
-            // laptop:
-            @media screen and (max-width: 1700px) and (min-width: 961px) {
+              // laptop:
+              @media screen and (max-width: 1700px) and (min-width: 961px) {
 
 
+              }
             }
           }
         }
+
+
+
 
       }
 
@@ -777,15 +804,13 @@
     // tablet:
     @media screen and (max-width: 960px) and (min-width: 600px) {
 
-
-
     }
 
     // laptop:
     @media screen and (max-width: 1700px) and (min-width: 961px) {
 
-
     }
+
     .get-started-text {
       display: flex;
       align-items: center;
@@ -800,8 +825,6 @@
       }
       // tablet:
       @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
 
       }
 
@@ -910,8 +933,17 @@
         }
         // tablet:
         @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
+          background-image: url("/images/homepage/civie_logo_white.png");
+          background-size: 190px;
+          background-repeat: no-repeat;
+          width: 70px;
+          height: 70px;
+          margin-top: -5px;
+          left: 40px;
+          position: absolute;
+          img{
+            display: none;
+          }
 
         }
 
@@ -936,9 +968,7 @@
           }
           // tablet:
           @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+            display: none;
           }
 
           // laptop:
@@ -1037,9 +1067,11 @@
         }
         // tablet:
         @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+          width: 50px;
+          height: 50px;
+          img {
+            width: 24px;
+          }
         }
 
         // laptop:

@@ -65,9 +65,7 @@
                     }
                     // tablet:
                     @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+                        width: 98px;
                     }
 
                     // laptop:

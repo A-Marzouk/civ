@@ -323,6 +323,17 @@
                     margin-left: 0;
                     margin-top: 45px;
                 }
+                // tablet:
+                @media screen and (max-width: 960px) and (min-width: 600px) {
+                    margin-left: -135px;
+                    margin-top: 70px;
+                }
+
+                // laptop:
+                @media screen and (max-width: 1700px) and (min-width: 961px) {
+
+
+                }
                 a{
                     width: 320px;
                     height: 100px;
@@ -359,9 +370,14 @@
 
                     // tablet:
                     @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+                        width: 285px;
+                        height: 84px;
+                        font-size: 24px;
+                        box-shadow: 0px 4px 15px rgb(20 214 39 / 20%);
+                        img{
+                            margin-left: 12px;
+                            width: 30px;
+                        }
                     }
 
                     // laptop:

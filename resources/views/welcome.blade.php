@@ -97,36 +97,38 @@
                 </div>
 
                 <div class="section-seven-reviews">
-                    <div class="single-review">
-                        <div class="stars">
-                            <img src="/images/homepage/stars.png" alt="stars image">
+                    <div class="reviews-wrapper">
+                        <div class="single-review">
+                            <div class="stars">
+                                <img src="/images/homepage/stars.png" alt="stars image">
+                            </div>
+                            <div class="review-text">
+                                "Perfect solution for remote terms"
+                            </div>
                         </div>
-                        <div class="review-text">
-                            "Perfect solution for remote terms"
+                        <div class="single-review">
+                            <div class="stars">
+                                <img src="/images/homepage/stars.png" alt="stars image">
+                            </div>
+                            <div class="review-text">
+                                "Really good!!!"
+                            </div>
                         </div>
-                    </div>
-                    <div class="single-review">
-                        <div class="stars">
-                            <img src="/images/homepage/stars.png" alt="stars image">
+                        <div class="single-review">
+                            <div class="stars">
+                                <img src="/images/homepage/stars.png" alt="stars image">
+                            </div>
+                            <div class="review-text">
+                                "Amazing concept, thanks"
+                            </div>
                         </div>
-                        <div class="review-text">
-                            "Really good!!!"
-                        </div>
-                    </div>
-                    <div class="single-review">
-                        <div class="stars">
-                            <img src="/images/homepage/stars.png" alt="stars image">
-                        </div>
-                        <div class="review-text">
-                            "Amazing concept, thanks"
-                        </div>
-                    </div>
-                    <div class="single-review">
-                        <div class="stars">
-                            <img src="/images/homepage/stars.png" alt="stars image">
-                        </div>
-                        <div class="review-text">
-                            "Really great platform"
+                        <div class="single-review">
+                            <div class="stars">
+                                <img src="/images/homepage/stars.png" alt="stars image">
+                            </div>
+                            <div class="review-text">
+                                "Really great platform"
+                            </div>
                         </div>
                     </div>
                 </div>
