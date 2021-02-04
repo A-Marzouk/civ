@@ -64,12 +64,12 @@
                         width: 57px;
                     }
                     // tablet:
-                    @media screen and (max-width: 960px) and (min-width: 600px) {
+                    @media screen and (max-width: 1439px) and (min-width: 600px) {
                         width: 98px;
                     }
 
                     // laptop:
-                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+                    @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                     }

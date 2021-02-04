@@ -80,14 +80,13 @@
         }
 
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           padding-left: 35px;
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
+          padding-left: 43px;
         }
       }
 
@@ -102,14 +101,13 @@
           padding-right: 13px;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           padding-right: 35px;
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
+          padding-right: 43px;
         }
 
         .login-btn {
@@ -121,14 +119,14 @@
           }
 
           // tablet:
-          @media screen and (max-width: 960px) and (min-width: 600px) {
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
           }
@@ -164,14 +162,14 @@
           }
 
           // tablet:
-          @media screen and (max-width: 960px) and (min-width: 600px) {
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
           }
@@ -203,15 +201,15 @@
           margin-top: 15px;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           padding-left: 35px;
           padding-right: 35px;
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
+          padding-left: 43px;
+          padding-right: 43px;
         }
         .main-text-container {
           font-family: Averta-Bold, sans-serif;
@@ -223,15 +221,15 @@
           }
 
           // tablet:
-          @media screen and (max-width: 960px) and (min-width: 600px) {
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
             font-size: 64px;
             line-height: 70px;
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
+            font-size: 86px;
+            line-height: 93px;
           }
 
           .civ-text {
@@ -259,16 +257,17 @@
             }
 
             // tablet:
-            @media screen and (max-width: 960px) and (min-width: 600px) {
+            @media screen and (max-width: 1439px) and (min-width: 600px) {
               font-size: 36px;
               line-height: 42px;
-              margin-top: 25px;
+              margin-top: 40px;
             }
 
             // laptop:
-            @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+            @media screen and (max-width: 1700px) and (min-width: 1440px) {
+              font-size: 36px;
+              line-height: 42px;
+              margin-top: 40px;
             }
           }
         }
@@ -277,7 +276,7 @@
 
       .bobby-image {
         // mobile and tablet same
-        @media screen and (max-width: 960px) {
+        @media screen and (max-width: 1439px) {
           display: flex;
           justify-content: center;
           &.desktop{
@@ -286,20 +285,21 @@
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
+          position: absolute;
+          right: 0;
+          z-index: -1;
         }
 
         &.mobile{
           display: none !important;
-          @media screen and (max-width: 960px) {
+          @media screen and (max-width: 1439px) {
             display: flex !important;
             margin-top: 15px;
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
           }
@@ -308,12 +308,13 @@
         img {
           width: 100%;
           // mobile and tablet same:
-          @media screen and (max-width: 960px) {
+          @media screen and (max-width: 1439px) {
             width: 68%;
+            max-width: 500px;
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
           }
@@ -330,12 +331,12 @@
           margin-top: 35px;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           padding: 0 35px;
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
         }
@@ -352,16 +353,16 @@
           margin-top: 15px;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           padding-left: 35px;
           padding-right: 35px;
           margin-top: 40px;
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
+          padding-left: 43px;
+          padding-right: 43px;
         }
         .ah-homepage-banner {
           img{
@@ -384,7 +385,7 @@
           position: relative;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           padding-left: 35px;
           padding-right: 35px;
           margin-bottom: 90px;
@@ -392,9 +393,11 @@
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
+          padding-left: 43px;
+          padding-right: 43px;
+          margin-bottom: 140px;
+          position: relative;
         }
         .second-text-container {
           font-family: NexaBold, sans-serif;
@@ -403,6 +406,7 @@
           line-height: 60px;
           letter-spacing: -0.03em;
           color: #0A1E56;
+          z-index: 10;
 
           // mobile:
           @media screen and (max-width: 599px) {
@@ -410,13 +414,13 @@
             line-height: 32px;
           }
           // tablet:
-          @media screen and (max-width: 960px) and (min-width: 600px) {
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
             font-size: 36px;
             line-height: 42px;
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
           }
@@ -424,6 +428,10 @@
           .text-one {
             span{
               color: #0046FE;
+            }
+            // laptop:
+            @media screen and (max-width: 1700px) and (min-width: 1440px) {
+              max-width: 1000px;
             }
           }
 
@@ -433,16 +441,13 @@
               margin-top: 25px;
             }
             // tablet:
-            @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
-
+            @media screen and (max-width: 1439px) and (min-width: 600px) {
+              max-width: 650px;
             }
 
             // laptop:
-            @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+            @media screen and (max-width: 1700px) and (min-width: 1440px) {
+              max-width: 850px;
             }
           }
 
@@ -452,14 +457,14 @@
               margin-top: 40px;
             }
             // tablet:
-            @media screen and (max-width: 960px) and (min-width: 600px) {
+            @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
             }
 
             // laptop:
-            @media screen and (max-width: 1700px) and (min-width: 961px) {
+            @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
             }
@@ -494,7 +499,7 @@
               }
 
               // tablet:
-              @media screen and (max-width: 960px) and (min-width: 600px) {
+              @media screen and (max-width: 1439px) and (min-width: 600px) {
                 width: 285px;
                 height: 84px;
                 font-size: 24px;
@@ -506,7 +511,7 @@
               }
 
               // laptop:
-              @media screen and (max-width: 1700px) and (min-width: 961px) {
+              @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
               }
@@ -519,6 +524,7 @@
         }
 
         .standing-bobby-image {
+          z-index: -1;
           img{
             width: 100%;
           }
@@ -531,17 +537,21 @@
             right: 10px;
           }
           // tablet:
-          @media screen and (max-width: 960px) and (min-width: 600px) {
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
             position: absolute;
             width: 34%;
+            max-width: 375px;
             bottom: -69px;
             right: 32px;
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
+            width: 75%;
+            max-width: 575px;
+            position: absolute;
+            right: 18px;
+            bottom: -75px;
           }
 
         }
@@ -553,14 +563,15 @@
           padding-right: 13px;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           padding-left: 35px;
           padding-right: 35px;
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
-
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
+          padding-left: 43px;
+          padding-right: 43px;
 
         }
       }
@@ -580,7 +591,7 @@
           max-width: 100%;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           margin-top: 70px;
           padding-left: 35px;
           padding-right: 35px;
@@ -589,9 +600,11 @@
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
+          padding-left: 43px;
+          padding-right: 43px;
+          width: auto;
+          max-width: 100%;
         }
         .promo-text {
           font-family: NexaBold, sans-serif;
@@ -611,16 +624,17 @@
             margin-bottom: 41px;
           }
           // tablet:
-          @media screen and (max-width: 960px) and (min-width: 600px) {
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
             font-size: 36px;
             line-height: 36px;
             text-align: center;
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
+            font-size: 42px;
+            line-height: 60px;
+            text-align: center;
           }
         }
 
@@ -642,13 +656,13 @@
               margin-right: 40px;
             }
             // tablet:
-            @media screen and (max-width: 960px) and (min-width: 600px) {
+            @media screen and (max-width: 1439px) and (min-width: 600px) {
               width: 130px;
               margin-right: 40px;
             }
 
             // laptop:
-            @media screen and (max-width: 1700px) and (min-width: 961px) {
+            @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
             }
@@ -662,15 +676,15 @@
           padding-right: 13px;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           padding-left: 35px;
           padding-right: 35px;
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
+          padding-left: 43px;
+          padding-right: 43px;
         }
 
 
@@ -689,15 +703,15 @@
             margin-bottom: 41px;
           }
           // tablet:
-          @media screen and (max-width: 960px) and (min-width: 600px) {
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
             margin-top: 60px;
             margin-bottom: 60px;
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
+            margin-top: 100px;
+            margin-bottom: 100px;
           }
 
           .single-review {
@@ -711,13 +725,13 @@
               min-width: 130px;
             }
             // tablet:
-            @media screen and (max-width: 960px) and (min-width: 600px) {
+            @media screen and (max-width: 1439px) and (min-width: 600px) {
               margin-right: 40px;
               min-width: 200px;
             }
 
             // laptop:
-            @media screen and (max-width: 1700px) and (min-width: 961px) {
+            @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
             }
@@ -728,14 +742,14 @@
                 margin-bottom: 10px;
               }
               // tablet:
-              @media screen and (max-width: 960px) and (min-width: 600px) {
+              @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
               }
 
               // laptop:
-              @media screen and (max-width: 1700px) and (min-width: 961px) {
+              @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
               }
@@ -744,14 +758,14 @@
                   height: 13px;
                 }
                 // tablet:
-                @media screen and (max-width: 960px) and (min-width: 600px) {
+                @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
                 }
 
                 // laptop:
-                @media screen and (max-width: 1700px) and (min-width: 961px) {
+                @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                 }
@@ -768,13 +782,13 @@
                 font-size: 14px;
               }
               // tablet:
-              @media screen and (max-width: 960px) and (min-width: 600px) {
+              @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
               }
 
               // laptop:
-              @media screen and (max-width: 1700px) and (min-width: 961px) {
+              @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
               }
@@ -802,12 +816,12 @@
       height: 70px;
     }
     // tablet:
-    @media screen and (max-width: 960px) and (min-width: 600px) {
+    @media screen and (max-width: 1439px) and (min-width: 600px) {
 
     }
 
     // laptop:
-    @media screen and (max-width: 1700px) and (min-width: 961px) {
+    @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
     }
 
@@ -824,12 +838,12 @@
         font-size: 14px;
       }
       // tablet:
-      @media screen and (max-width: 960px) and (min-width: 600px) {
+      @media screen and (max-width: 1439px) and (min-width: 600px) {
 
       }
 
       // laptop:
-      @media screen and (max-width: 1700px) and (min-width: 961px) {
+      @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
       }
@@ -841,14 +855,14 @@
           font-size: 12px;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
         }
@@ -862,14 +876,14 @@
           margin-top: 4px;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
         }
@@ -889,16 +903,13 @@
       height: 70px;
     }
     // tablet:
-    @media screen and (max-width: 960px) and (min-width: 600px) {
-
-
+    @media screen and (max-width: 1439px) and (min-width: 600px) {
 
     }
 
     // laptop:
-    @media screen and (max-width: 1700px) and (min-width: 961px) {
-
-
+    @media screen and (max-width: 1700px) and (min-width: 1440px) {
+      padding: 0 35px;
     }
 
     .footer-wrapper {
@@ -915,7 +926,7 @@
         justify-content: center;
       }
 
-      @media screen and (max-width: 960px) {
+      @media screen and (max-width: 1439px) {
         justify-content: center;
       }
 
@@ -932,7 +943,7 @@
           }
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           background-image: url("/images/homepage/civie_logo_white.png");
           background-size: 190px;
           background-repeat: no-repeat;
@@ -948,7 +959,7 @@
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
         }
@@ -967,12 +978,12 @@
             display: none;
           }
           // tablet:
-          @media screen and (max-width: 960px) and (min-width: 600px) {
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
             display: none;
           }
 
           // laptop:
-          @media screen and (max-width: 1700px) and (min-width: 961px) {
+          @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
           }
@@ -1023,14 +1034,14 @@
           margin-top: -18px;
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
         }
@@ -1066,7 +1077,7 @@
           }
         }
         // tablet:
-        @media screen and (max-width: 960px) and (min-width: 600px) {
+        @media screen and (max-width: 1439px) and (min-width: 600px) {
           width: 50px;
           height: 50px;
           img {
@@ -1075,7 +1086,7 @@
         }
 
         // laptop:
-        @media screen and (max-width: 1700px) and (min-width: 961px) {
+        @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
         }

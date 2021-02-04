@@ -94,6 +94,16 @@
                 margin-left: 0;
                 width: 95%;
             }
+            // tablet:
+            @media screen and (max-width: 1439px) and (min-width: 600px) {
+                flex-direction: column;
+            }
+
+            // laptop:
+            @media screen and (max-width: 1700px) and (min-width: 1440px) {
+
+
+            }
 
             .username-input-field{
                 position: relative;
@@ -110,14 +120,14 @@
                 }
 
                 // tablet:
-                @media screen and (max-width: 960px) and (min-width: 600px) {
+                @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
                 }
 
                 // laptop:
-                @media screen and (max-width: 1700px) and (min-width: 961px) {
+                @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                 }
@@ -142,14 +152,14 @@
                     }
 
                     // tablet:
-                    @media screen and (max-width: 960px) and (min-width: 600px) {
+                    @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
                     }
 
                     // laptop:
-                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+                    @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                     }
@@ -186,14 +196,14 @@
                     }
 
                     // tablet:
-                    @media screen and (max-width: 960px) and (min-width: 600px) {
+                    @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
                     }
 
                     // laptop:
-                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+                    @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                     }
@@ -238,14 +248,14 @@
                     }
 
                     // tablet:
-                    @media screen and (max-width: 960px) and (min-width: 600px) {
+                    @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
                     }
 
                     // laptop:
-                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+                    @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                     }
@@ -272,14 +282,14 @@
                     }
 
                     // tablet:
-                    @media screen and (max-width: 960px) and (min-width: 600px) {
+                    @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
                     }
 
                     // laptop:
-                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+                    @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                     }
@@ -302,14 +312,14 @@
                     }
 
                     // tablet:
-                    @media screen and (max-width: 960px) and (min-width: 600px) {
+                    @media screen and (max-width: 1439px) and (min-width: 600px) {
 
 
 
                     }
 
                     // laptop:
-                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+                    @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                     }
@@ -324,13 +334,13 @@
                     margin-top: 45px;
                 }
                 // tablet:
-                @media screen and (max-width: 960px) and (min-width: 600px) {
+                @media screen and (max-width: 1439px) and (min-width: 600px) {
                     margin-left: -135px;
                     margin-top: 70px;
                 }
 
                 // laptop:
-                @media screen and (max-width: 1700px) and (min-width: 961px) {
+                @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                 }
@@ -369,7 +379,7 @@
                     }
 
                     // tablet:
-                    @media screen and (max-width: 960px) and (min-width: 600px) {
+                    @media screen and (max-width: 1439px) and (min-width: 600px) {
                         width: 285px;
                         height: 84px;
                         font-size: 24px;
@@ -381,7 +391,7 @@
                     }
 
                     // laptop:
-                    @media screen and (max-width: 1700px) and (min-width: 961px) {
+                    @media screen and (max-width: 1700px) and (min-width: 1440px) {
 
 
                     }
