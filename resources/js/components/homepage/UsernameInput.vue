@@ -11,8 +11,8 @@
                     Choose your resume page address... its free and easy to start
                 </div>
             </div>
-            <div class="username-input-btn">
-                <a href="#">
+            <div class="username-input-btn" >
+                <a href="#" :class="{'correct-username' : is_username_valid}">
                     Start My Page
                     <img src="/images/homepage/white_right_arrow.png" alt="right arrow">
                 </a>
@@ -352,15 +352,28 @@
                     align-items: center;
                     justify-content: center;
 
-                    background: #14D627;
-                    box-shadow: 0px 4px 40px rgba(20, 214, 39, 0.2);
-                    border-radius: 10px;
+                    background: #0046FE;
+                    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2);
 
+                    &.correct-username{
+                        background: #14D627;
+                        box-shadow: 0px 4px 40px rgba(20, 214, 39, 0.2);
+                        // mobile:
+                        @media screen and (max-width: 599px) {
+                            box-shadow: 0px 4px 15px rgba(20, 214, 39, 0.2) !important;
+                        }
+                        // tablet:
+                        @media screen and (max-width: 1439px) and (min-width: 600px) {
+                            box-shadow: 0px 4px 15px rgba(20, 214, 39, 0.2) !important;
+                        }
+                    }
+                    border-radius: 10px;
                     font-family: NexaBold, sans-serif;
                     font-weight: bold;
                     font-size: 1.625rem;
                     color: #FFFFFF;
                     text-decoration: none;
+                    transition: all 1s;
 
                     img{
                         margin-left: 14px;
@@ -371,7 +384,7 @@
                         width: 135px;
                         height: 42px;
                         font-size: 14px;
-                        box-shadow: 0px 4px 15px rgb(20 214 39 / 20%);
+                        box-shadow: 0px 4px 15px rgba(0, 70, 254, 0.2);
                         img{
                             margin-left: 6px;
                             width: 18px;
