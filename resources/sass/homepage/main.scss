@@ -140,8 +140,15 @@
           color: #FFFFFF;
 
           // responsive media quires:
+          // xs
+          @media screen and (max-width: 325px){
+            width: 100px;
+            height: 35px;
+            font-size: 13px;
+            margin-left: 16px;
+          }
           // mobile:
-          @media screen and (max-width: 599px) {
+          @media screen  and (max-width: 599px) and (min-width: 326px) {
             width: 130px;
             height: 40px;
             font-size: 14px;
@@ -185,6 +192,7 @@
         @media screen and (max-width: 599px) {
           padding-left: 13px;
           padding-right: 13px;
+          margin-top: 15px;
         }
         .main-text-container {
           font-family: Averta-Bold, sans-serif;
@@ -229,6 +237,7 @@
             @media screen and (max-width: 599px) {
               font-size: 24px;
               line-height: 30px;
+              margin-top: 20px;
             }
 
             // tablet:
@@ -246,40 +255,56 @@
           }
         }
 
-        .bobby-image {
+      }
+
+      .bobby-image {
+        @media screen and (max-width: 599px) {
+          display: flex;
+          justify-content: center;
+          &.desktop{
+            display: none !important;
+          }
+        }
+
+        &.mobile{
+          display: none !important;
           @media screen and (max-width: 599px) {
-            display: flex;
-            justify-content: center;
+            display: flex !important;
+            margin-top: 15px;
+          }
+        }
+
+        img {
+          width: 100%;
+          // mobile:
+          @media screen and (max-width: 599px) {
+            width: 68%;
           }
 
-          img {
-            width: 100%;
-            // mobile:
-            @media screen and (max-width: 599px) {
-              width: 68%;
-            }
-
-            // tablet:
-            @media screen and (max-width: 960px) and (min-width: 600px) {
+          // tablet:
+          @media screen and (max-width: 960px) and (min-width: 600px) {
 
 
 
-            }
+          }
 
-            // laptop:
-            @media screen and (max-width: 1700px) and (min-width: 961px) {
+          // laptop:
+          @media screen and (max-width: 1700px) and (min-width: 961px) {
 
 
-            }
           }
         }
       }
+
 
       .section-two-input {
         margin-top: 60px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        @media screen and (max-width: 599px) {
+          margin-top: 35px;
+        }
         #homepage_username_input{
           width: 100%;
         }
@@ -290,6 +315,7 @@
         @media screen and (max-width: 599px) {
           padding-left: 13px;
           padding-right: 13px;
+          margin-top: 15px;
         }
         .ah-homepage-banner {
           img{
@@ -334,10 +360,16 @@
 
           .text-two {
             margin-top: 50px;
+            @media screen and (max-width: 599px) {
+              margin-top: 25px;
+            }
           }
 
           .action-btn {
             margin-top: 60px;
+            @media screen and (max-width: 599px) {
+              margin-top: 40px;
+            }
             a{
               width: 320px;
               height: 100px;
@@ -359,12 +391,12 @@
 
               // mobile:
               @media screen and (max-width: 599px) {
-                width: 130px;
-                height: 40px;
+                width: 135px;
+                height: 42px;
                 font-size: 14px;
                 img{
                   margin-left: 6px !important;
-                  width: 19px;
+                  width: 18px;
                 }
               }
 
@@ -396,9 +428,9 @@
           // mobile
           @media screen and (max-width: 599px) {
             position: absolute;
-            width: 41%;
-            bottom: -65px;
-            right: 22px;
+            width: 44%;
+            bottom: -75px;
+            right: 10px;
           }
 
         }
@@ -440,6 +472,7 @@
             font-size: 24px;
             line-height: 32px;
             text-align: center;
+            margin-bottom: 41px;
           }
         }
 
@@ -474,8 +507,8 @@
         align-items: baseline;
 
         @media screen and (max-width: 599px) {
-          margin-top: 60px;
-          margin-bottom: 60px;
+          margin-top: 41px;
+          margin-bottom: 41px;
         }
 
         .single-review {
@@ -504,8 +537,7 @@
           .review-text {
             font-family: NexaBold, sans-serif;
             font-weight: bold;
-            font-size: 1.5rem;;
-            line-height: 24px;
+            font-size: 1.5rem;
             text-align: center;
             color: #575757;
             @media screen and (max-width: 599px) {
@@ -527,7 +559,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    @media screen and (max-width: 599px) {
+      height: 70px;
+    }
     .get-started-text {
       display: flex;
       align-items: center;
@@ -537,15 +571,25 @@
       letter-spacing: 0.2em;
       text-transform: capitalize;
       color: #0046FE;
+      @media screen and (max-width: 599px) {
+        font-size: 14px;
+      }
 
       span {
         font-size: 0.875rem;
         margin-left: 9px;
+        @media screen and (max-width: 599px) {
+          font-size: 12px;
+        }
       }
 
       img {
         margin-left: 5px;
         margin-top: 7px;
+        @media screen and (max-width: 599px) {
+          margin-left: 4px;
+          margin-top: 4px;
+        }
       }
     }
   }
@@ -559,11 +603,7 @@
 
     @media screen and (max-width: 599px) {
       padding: 20px 20px;
-      height: 160px;
-    }
-
-    @media screen and (max-width: 960px) {
-      height: 160px;
+      height: 70px;
     }
 
     .footer-wrapper {
@@ -576,12 +616,26 @@
       flex-wrap: wrap;
 
       @media screen and (max-width: 599px) {
-        flex-direction: column;
+        flex-wrap: nowrap;
         justify-content: center;
       }
 
       @media screen and (max-width: 960px) {
         justify-content: center;
+      }
+
+      .footer-logo-wrapper{
+        @media screen and (max-width: 599px) {
+          background-image: url("/images/homepage/civie_logo_white.png");
+          background-size: 135px;
+          background-repeat: no-repeat;
+          width: 50px;
+          height: 50px;
+          margin-top: 5px;
+          img{
+            display: none;
+          }
+        }
       }
 
       .follow-us-text {
@@ -592,19 +646,22 @@
         display: flex;
         align-items: center;
         white-space: pre;
-
+        label, span{
+          @media screen and (max-width: 599px) {
+            display: none;
+          }
+        }
         span {
           font-family: NexaBold, sans-serif !important;
           font-size: 1.125rem;
         }
 
         @media screen and (max-width: 1903px) {
-          font-size: 1.5rem;;
+          font-size: 1.5rem;
           span {
             font-size: 12px;
           }
         }
-
         @media screen and (max-width: 959px) {
           font-size: 1.125rem;
         }
@@ -655,11 +712,19 @@
           width: 20px;
         }
 
-        @media screen and (max-width: 599px) {
-          width: 30px;
-          height: 30px;
+        @media screen and (max-width: 325px){
+          width: 30px !important;
+          height: 30px !important;
           img {
-            width: 15px;
+            width: 16px;
+          }
+        }
+
+        @media screen and (max-width: 599px) {
+          width: 38px;
+          height: 38px;
+          img {
+            width: 18px;
           }
         }
       }

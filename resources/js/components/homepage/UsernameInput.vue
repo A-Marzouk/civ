@@ -234,6 +234,7 @@
                         height: 60px;
                         padding-left: 75px;
                         margin-left: 0;
+                        border-radius: 10px;
                     }
 
                     // tablet:
@@ -266,7 +267,7 @@
                     // mobile:
                     @media screen and (max-width: 599px) {
                         top: 22px;
-                        right: 34px;
+                        right: 15px;
                         width: 20px;
                     }
 
@@ -296,7 +297,7 @@
                     @media screen and (max-width: 599px) {
                         font-size: 10px;
                         line-height: 50px;
-                        left: 20px;
+                        left: 8px;
                         top: 50px;
                     }
 
@@ -346,12 +347,13 @@
 
                     // mobile:
                     @media screen and (max-width: 599px) {
-                        width: 130px;
-                        height: 40px;
+                        width: 135px;
+                        height: 42px;
                         font-size: 14px;
+                        box-shadow: 0px 4px 15px rgb(20 214 39 / 20%);
                         img{
                             margin-left: 6px;
-                            width: 19px;
+                            width: 18px;
                         }
                     }
 

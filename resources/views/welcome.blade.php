@@ -32,7 +32,7 @@
                             Express yourself & build a resume that you can be proud of
                         </div>
                     </div>
-                    <div class="bobby-image">
+                    <div class="bobby-image desktop">
                         <img src="/images/homepage/bobby_image.png" alt="bobby image">
                     </div>
                 </div>
@@ -41,6 +41,10 @@
                     <div id="homepage_username_input">
                         <username-input></username-input>
                     </div>
+                </div>
+
+                <div class="bobby-image mobile">
+                    <img src="/images/homepage/bobby_image.png" alt="bobby image">
                 </div>
 
                 <div class="section-three-image">
@@ -138,10 +142,10 @@
         
         <div class="custom-footer">
             <div class="footer-wrapper">
-                <img
-                        class="logo-footer"
-                        src="/images/welcome_landing_page/logo/civie_logo-01.webp"
-                />
+                <div class="footer-logo-wrapper">
+                    <img class="logo-footer" src="/images/homepage/civie_logo_white.png"/>
+                </div>
+
                 <div class="follow-us-text">
                     <label>Follow Us:</label>
                     <a
