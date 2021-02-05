@@ -3,10 +3,11 @@
         <div class="username-input-group">
             <div class="username-input-field">
                 <span class="fixed-text">civ.ie <span>/</span></span>
-                <input type="text" v-model="username" @blur="selfWritingText" @focus="removePlaceHolder" @keyup="validateUsername">
+                <input type="text" v-model="username" @blur="selfWritingText" @focus="removePlaceHolder" @keyup="validateUsername" @keydown="validateUsername">
                 <span class="placeholderText">{{placeholderCurrentText}} <span class="blinking-curser"></span> </span>
-                <img src="/images/homepage/correct_icon.png" alt="feedback icon" v-show="is_username_valid">
-                <img src="/images/homepage/wrong_icon.png" alt="feedback icon"   v-show="!is_username_valid && is_username_valid !== null && username !== ''">
+                <img src="/images/homepage/correct_icon.png" alt="feedback icon" v-show="is_username_valid && !isLoading">
+                <img src="/images/homepage/wrong_icon.png" alt="feedback icon"   v-show="!is_username_valid && is_username_valid !== null && username !== '' && !isLoading">
+                <div class="loader small" v-if="isLoading"></div>
                 <div class="input-hint-text">
                     Choose your resume page address... its free and easy to start
                 </div>
@@ -32,20 +33,24 @@
                 is_username_valid: null,
                 placeholderOriginalText: 'yournamehere',
                 placeholderCurrentText: '',
-                timer: null
+                timer: null,
+                isLoading: true
             }
         },
         methods:{
             validateUsername() {
+                this.isLoading = true ;
                 axios
                     .post("/validate-username", { username: this.username })
                     .then(() => {
                         this.validUserName = this.username;
                         this.is_username_valid = true;
+                        this.isLoading = false ;
                     })
                     .catch(() => {
                         this.validUserName = "";
                         this.is_username_valid = false;
+                        this.isLoading = false ;
                     });
             },
             async selfWritingText() {
@@ -173,6 +178,7 @@
                     color: rgb(196,196,196, 0.8);
                     top: 30px;
                     left: 0;
+                    display: inline;
                     span.blinking-curser{
                         width: 1px;
                         height: 43px;
@@ -181,6 +187,7 @@
                         margin-left: 2px;
                         opacity: 1;
                         animation: 1s linear 0s infinite normal none running blink;
+                        display: inline;
                         // mobile:
                         @media screen and (max-width: 599px) {
                             height: 25px;
@@ -411,5 +418,34 @@
                 }
             }
         }
+    }
+
+    .loader.small{
+        position: absolute;
+        top: 35px;
+        right: 22px;
+        border: 6px solid lightgrey;
+        border-radius: 50%;
+        border-top: 6px solid #0046FE;
+        width: 25px;
+        height: 25px;
+        -webkit-animation: spin 1s linear infinite; /* Safari */
+        animation: spin 1.5s linear infinite;
+        @media screen and (max-width: 599px) {
+            top: 19px;
+            right: 12px;
+            width: 15px;
+            height: 15px;
+        }
+    }
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 </style>

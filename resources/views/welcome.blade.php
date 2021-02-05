@@ -103,7 +103,7 @@
                                 <img src="/images/homepage/stars.png" alt="stars image">
                             </div>
                             <div class="review-text">
-                                "Perfect solution for remote terms"
+                                "Perfect solution for freelancers"
                             </div>
                         </div>
                         <div class="single-review">
@@ -137,9 +137,9 @@
         </div>
         
         <div class="get-started-bar">
-            <div class="get-started-text">
+            <a class="get-started-text" href="/register">
                 Get Started - <span>It's Free</span> <img src="/images/homepage/blue_right_arrow.png" alt="Right arrow">
-            </div>
+            </a>
         </div>
         
         <div class="custom-footer">

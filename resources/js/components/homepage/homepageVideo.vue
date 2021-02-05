@@ -2,7 +2,7 @@
     <div class="homepage-video-wrapper">
         <div class="video-preview">
             <video id="introVideo" controls v-show="videoOn">
-                <source src="/videos/civ_intro_video.mp4" type="video/mp4"/>
+                <source src="/videos/homepage/homepage_promo_video.mp4" type="video/mp4"/>
                 Your browser does not support the video tag.
             </video>
 
