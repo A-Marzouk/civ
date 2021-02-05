@@ -36,6 +36,7 @@
         .video-preview{
             video{
                 width: 100%;
+                max-height: 800px;
             }
 
             .video-image-holder{
