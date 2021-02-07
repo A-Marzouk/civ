@@ -34,7 +34,7 @@
                 placeholderOriginalText: 'yournamehere',
                 placeholderCurrentText: '',
                 timer: null,
-                isLoading: true
+                isLoading: false
             }
         },
         methods:{
