@@ -3,7 +3,7 @@
         <div class="username-input-group">
             <div class="username-input-field">
                 <span class="fixed-text">civ.ie <span>/</span></span>
-                <input type="text" v-model="username" @blur="selfWritingText" @focus="removePlaceHolder" @keyup="validateUsername" @keydown="validateUsername">
+                <input type="text" ref="homepageInput" v-model="username" @blur="selfWritingText" @focus="removePlaceHolder" @keyup="inputKeyUp" @keydown="inputKeyDown">
                 <span class="placeholderText">{{placeholderCurrentText}} <span class="blinking-curser"></span> </span>
                 <img src="/images/homepage/correct_icon.png" alt="feedback icon" v-show="is_username_valid && !isLoading">
                 <img src="/images/homepage/wrong_icon.png" alt="feedback icon"   v-show="!is_username_valid && is_username_valid !== null && username !== '' && !isLoading">
@@ -34,25 +34,44 @@
                 placeholderOriginalText: 'yournamehere',
                 placeholderCurrentText: '',
                 timer: null,
-                isLoading: false
+                isLoading: false,
+                typingTimer: '',
+                doneTypingInterval: 500,
+                isDisabled: false,
             }
         },
         methods:{
             validateUsername() {
+                if(this.isLoading){
+                    return;
+                }
+
                 this.isLoading = true ;
+
+                console.log('request sent');
                 axios
                     .post("/validate-username", { username: this.username })
                     .then(() => {
                         this.validUserName = this.username;
                         this.is_username_valid = true;
                         this.isLoading = false ;
+                        console.log('Success');
                     })
                     .catch(() => {
                         this.validUserName = "";
                         this.is_username_valid = false;
                         this.isLoading = false ;
+                        console.log('Error');
                     });
             },
+            inputKeyUp(){
+                clearTimeout(this.typingTimer);
+                this.typingTimer = setTimeout(this.validateUsername, this.doneTypingInterval);
+            },
+            inputKeyDown(){
+                clearTimeout(this.typingTimer);
+            },
+
             async selfWritingText() {
                 this.placeholderCurrentText = '';
 
@@ -179,6 +198,7 @@
                     top: 30px;
                     left: 0;
                     display: inline;
+                    z-index: -1;
                     span.blinking-curser{
                         width: 1px;
                         height: 43px;
@@ -360,18 +380,17 @@
                     justify-content: center;
 
                     background: #0046FE;
-                    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2);
 
                     &.correct-username{
                         background: #14D627;
-                        box-shadow: 0px 4px 40px rgba(20, 214, 39, 0.2);
+
                         // mobile:
                         @media screen and (max-width: 599px) {
-                            box-shadow: 0px 4px 15px rgba(20, 214, 39, 0.2) !important;
+
                         }
                         // tablet:
                         @media screen and (max-width: 1439px) and (min-width: 600px) {
-                            box-shadow: 0px 4px 15px rgba(20, 214, 39, 0.2) !important;
+
                         }
                     }
                     border-radius: 10px;
