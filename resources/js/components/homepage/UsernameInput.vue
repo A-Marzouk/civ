@@ -5,8 +5,8 @@
                 <span class="fixed-text">civ.ie <span>/</span></span>
                 <input type="text" id="homepageInput" v-model="username" @blur="selfWritingText" @focus="removePlaceHolder">
                 <span class="placeholderText">{{placeholderCurrentText}} <span class="blinking-curser"></span> </span>
-                <img src="/images/homepage/correct_icon.png" alt="feedback icon" v-show="is_username_valid && !isLoading">
-                <img src="/images/homepage/wrong_icon.png" alt="feedback icon"   v-show="!is_username_valid && is_username_valid !== null && username !== '' && !isLoading">
+                <img src="/images/homepage/correct_icon.png" alt="feedback icon" v-if="is_username_valid  && !isLoading">
+                <img src="/images/homepage/wrong_icon.png" alt="feedback icon"   v-if="!is_username_valid && username !== '' && !isLoading">
                 <div class="loader small" v-if="isLoading"></div>
                 <div class="input-hint-text">
                     Choose your resume page address... its free and easy to start
