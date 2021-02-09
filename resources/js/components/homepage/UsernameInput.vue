@@ -3,7 +3,7 @@
         <div class="username-input-group">
             <div class="username-input-field">
                 <span class="fixed-text">civ.ie <span>/</span></span>
-                <input type="text" id="homepageInput" v-model="username" @blur="selfWritingText" @focus="removePlaceHolder">
+                <input type="text" id="homepageInput"  @blur="selfWritingText" @focus="removePlaceHolder">
                 <span class="placeholderText">{{placeholderCurrentText}} <span class="blinking-curser"></span> </span>
                 <img src="/images/homepage/correct_icon.png" alt="feedback icon" v-if="is_username_valid  && !isLoading">
                 <img src="/images/homepage/wrong_icon.png" alt="feedback icon"   v-if="!is_username_valid && username !== '' && !isLoading">
@@ -49,6 +49,8 @@
                 this.isLoading = true ;
 
                 console.log('request sent');
+                console.log(this.username);
+
                 axios
                     .post("/validate-username", { username: this.username })
                     .then(() => {
@@ -95,8 +97,9 @@
 
             let usernameInput = $('#homepageInput');
 
-            usernameInput.on('input', () => {
-               this.inputKeyUp();
+            usernameInput.on('input', (event) => {
+                this.username = event.target.value;
+                this.inputKeyUp();
             });
 
         }
@@ -138,7 +141,7 @@
                 width: 100%;
                 max-width: 685px;
                 font-size: 34.8px;
-                
+
                 // mobile:
                 @media screen and (max-width: 599px) {
                     font-size: 18px;
