@@ -3,7 +3,7 @@
         <div class="username-input-group">
             <div class="username-input-field">
                 <span class="fixed-text">civ.ie <span>/</span></span>
-                <input type="text" ref="homepageInput" v-model="username" @blur="selfWritingText" @focus="removePlaceHolder" @keyup="inputKeyUp" @keydown="inputKeyDown">
+                <input type="text" id="homepageInput" v-model="username" @blur="selfWritingText" @focus="removePlaceHolder">
                 <span class="placeholderText">{{placeholderCurrentText}} <span class="blinking-curser"></span> </span>
                 <img src="/images/homepage/correct_icon.png" alt="feedback icon" v-show="is_username_valid && !isLoading">
                 <img src="/images/homepage/wrong_icon.png" alt="feedback icon"   v-show="!is_username_valid && is_username_valid !== null && username !== '' && !isLoading">
@@ -36,7 +36,7 @@
                 timer: null,
                 isLoading: false,
                 typingTimer: '',
-                doneTypingInterval: 500,
+                doneTypingInterval: 800,
                 isDisabled: false,
             }
         },
@@ -68,9 +68,6 @@
                 clearTimeout(this.typingTimer);
                 this.typingTimer = setTimeout(this.validateUsername, this.doneTypingInterval);
             },
-            inputKeyDown(){
-                clearTimeout(this.typingTimer);
-            },
 
             async selfWritingText() {
                 this.placeholderCurrentText = '';
@@ -95,6 +92,13 @@
         mounted() {
             this.timer = ms => new Promise(res => setTimeout(res, ms));
             this.selfWritingText();
+
+            let usernameInput = $('#homepageInput');
+
+            usernameInput.on('input', () => {
+               this.inputKeyUp();
+            });
+
         }
     }
 </script>
