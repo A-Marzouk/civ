@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/css/app-vuetify.css": "/css/app-vuetify.css",
     "/css/homepage/main.css": "/css/homepage/main.css",
-    "/js/homepage/main.js": "/js/homepage/main.js"
+    "/js/homepage/main.js": "/js/homepage/main.js",
+    "/js/themes/theme1001.js": "/js/themes/theme1001.js"
 }

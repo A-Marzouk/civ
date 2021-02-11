@@ -22,6 +22,7 @@ mix.webpackConfig({
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/homepage/main.js', 'public/js/homepage')
+    .js('resources/js/themes/*.js', 'public/js/themes')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/app-vuetify.scss', 'public/css')
     .sass('resources/sass/homepage/main.scss', 'public/css/homepage')

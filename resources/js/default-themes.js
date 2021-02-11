@@ -567,19 +567,6 @@ if ($("#resumeTheme1000").length !== 0) {
     });
 }
 
-import resumeTheme1001 from "./components/resume_themes/theme1001/index";
-if ($("#resumeTheme1001").length !== 0) {
-    new Vue({
-        el: "#resumeTheme1001",
-        store,
-        router,
-        vuetify,
-        components: {
-            "resume-theme-1001": resumeTheme1001
-        }
-    });
-}
-
 import resumeTheme1002 from "./components/resume_themes/theme1002";
 if ($("#resumeTheme1002").length !== 0) {
     new Vue({
