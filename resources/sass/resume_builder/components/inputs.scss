@@ -296,6 +296,10 @@
             border-radius: 0;
         }
 
+        input, textarea{
+            color: $mainColor !important;
+        }
+
         .v-label {
             color: $mainColor !important;
         }
