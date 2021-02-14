@@ -44,15 +44,7 @@ class ResumeController extends Controller
 
     public function themePreviewByCode($themeCode, Request $request)
     {
-        $authUser = Auth::user();
-        $is_preview = $request->real === 'true' ? 'false' : 'true';
-        if ($is_preview === 'false' && $authUser) {
-            $user = User::withAllRelations($authUser->username);
-            if ($user) {
-                return view('defaultThemes.' . $themeCode, compact('user', 'is_preview'));
-            }
-        }
-        return view('defaultThemes.' . $themeCode, compact('is_preview'));
+        return view('defaultThemes.new.' . $themeCode);
     }
 
 
