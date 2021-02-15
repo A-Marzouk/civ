@@ -32,10 +32,6 @@
                         <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
                         <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
                         <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/behance.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
                     </div>
                 </div>
             </div>
