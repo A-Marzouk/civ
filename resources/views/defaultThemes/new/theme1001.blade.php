@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="menu">
+            <div id="menu" class="menu">
                 <div id="menu-open" class="menu-icon">
                     <img src="/images/themes/theme1001/menu.png" alt="">
                 </div>

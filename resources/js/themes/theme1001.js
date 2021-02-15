@@ -9,10 +9,13 @@ $('document').ready(function(){
 
 function openMenu() {
     $('#menu-body').css('right', 0);
+    $('#menu').addClass('opened');
 }
 
 function closeMenu() {
     $('#menu-body').css('right', '-650px');
+    $('#menu').removeClass('opened');
+
 }
 
 function changeTab(event) {
