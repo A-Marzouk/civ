@@ -5,6 +5,8 @@ $('document').ready(function(){
     $('.menu-tab').on('click', changeTab);
     $('.single-category').on('click', changeCategory);
 
+    setDefaultActiveTab('about');
+
 });
 
 function openMenu() {
@@ -20,6 +22,24 @@ function closeMenu() {
 
 function changeTab(event) {
     let tabName     = event.currentTarget.dataset.name;
+    updateTab(tabName);
+}
+
+function changeCategory(event) {
+    let categoryName     = event.currentTarget.dataset.category;
+    let categories        = $('.single-category');
+
+    for (let i = 0; i < categories.length ; i++) {
+        if($(categories[i]).hasClass('active')){
+            $(categories[i]).removeClass('active')
+        }
+        if(categories[i].dataset.category === categoryName){
+            $(categories[i]).addClass('active');
+        }
+    }
+}
+
+function updateTab(tabName) {
     let tabs        = $('.menu-tab');
     let tabsContent = $('.single-tab-content');
 
@@ -38,16 +58,6 @@ function changeTab(event) {
     }
 }
 
-function changeCategory(event) {
-    let categoryName     = event.currentTarget.dataset.category;
-    let categories        = $('.single-category');
-
-    for (let i = 0; i < categories.length ; i++) {
-        if($(categories[i]).hasClass('active')){
-            $(categories[i]).removeClass('active')
-        }
-        if(categories[i].dataset.category === categoryName){
-            $(categories[i]).addClass('active');
-        }
-    }
+function setDefaultActiveTab(tabName) {
+    updateTab(tabName);
 }

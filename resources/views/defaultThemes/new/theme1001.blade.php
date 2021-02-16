@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="menu-tabs-wrapper">
-                        <div class="menu-tab active" data-name="portfolio">
+                        <div class="menu-tab " data-name="portfolio">
                             <img src="/images/themes/theme1001/menu-icons/image-gallery.svg" alt="tab icon">
                             <div class="tab-name">
                                 Portfolio
@@ -100,7 +100,7 @@
         <div class="header-line-footer"></div>
         <div class="tabs-contents">
             <div class="tabs-contents-wrapper">
-                <div class="single-tab-content active portfolio" data-name="portfolio">
+                <div class="single-tab-content portfolio" data-name="portfolio">
                     <div class="portfolio-header">
                         <div class="categories">
                             <div class="single-category active" data-category="all">
@@ -222,7 +222,240 @@
                     Work
                 </div>
                 <div class="single-tab-content skills" data-name="skills">
-                    skills
+                    <div class="single-tab-title">
+                        <div class="main-title">
+                            Skills & Languages
+                        </div>
+                        <div class="sub-title">
+                            What I Bring To The Table
+                        </div>
+                    </div>
+                    <div class="categories">
+                        <div class="single-category active" data-category="all">
+                            All
+                        </div>
+                        <div class="single-category" data-category="language">
+                            Language
+                        </div>
+                        <div class="single-category" data-category="personal">
+                            Personal
+                        </div>
+                        <div class="single-category" data-category="professional">
+                            Professional
+                        </div>
+                        <div class="single-category" data-category="management">
+                            Management
+                        </div>
+                        <div class="single-category" data-category="leadership">
+                            Leadership
+                        </div>
+                    </div>
+
+                    <div class="skills-wrapper">
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/skills/adobe_sketch.png" alt="skill icon">
+                                </div>
+                                <div class="title">
+                                    <div class="main">
+                                        Adobe Sketch
+                                    </div>
+                                    <div class="sub">
+                                        Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
+                                    </div>
+                                </div>
+                                <div class="percentage">
+                                    75%
+                                </div>
+                            </div>
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/skills/photoshop.png" alt="skill icon">
+                                </div>
+                                <div class="title">
+                                    <div class="main">
+                                        Adobe Photoshop
+                                    </div>
+                                    <div class="sub">
+                                        Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
+                                    </div>
+                                </div>
+                                <div class="percentage">
+                                    90%
+                                </div>
+                            </div>
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/skills/adobe_after_effects.png" alt="skill icon">
+                                </div>
+                                <div class="title">
+                                    <div class="main">
+                                        Adobe After Effect
+                                    </div>
+                                    <div class="sub">
+                                        Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
+                                    </div>
+                                </div>
+                                <div class="percentage">
+                                    55%
+                                </div>
+                            </div>
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 55%"></div>
+                            </div>
+                        </div>
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/skills/figma.png" alt="skill icon">
+                                </div>
+                                <div class="title">
+                                    <div class="main">
+                                        Figma
+                                    </div>
+                                    <div class="sub">
+                                        Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
+                                    </div>
+                                </div>
+                                <div class="percentage">
+                                    75%
+                                </div>
+                            </div>
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/skills/adobe_xd.png" alt="skill icon">
+                                </div>
+                                <div class="title">
+                                    <div class="main">
+                                        Adobe XD
+                                    </div>
+                                    <div class="sub">
+                                        Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
+                                    </div>
+                                </div>
+                                <div class="percentage">
+                                    25%
+                                </div>
+                            </div>
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/skills/adobe_illustrator.png" alt="skill icon">
+                                </div>
+                                <div class="title">
+                                    <div class="main">
+                                        Adobe Illustrator
+                                    </div>
+                                    <div class="sub">
+                                        Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
+                                    </div>
+                                </div>
+                                <div class="percentage">
+                                    75%
+                                </div>
+                            </div>
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/skills/adobe_indesign.png" alt="skill icon">
+                                </div>
+                                <div class="title">
+                                    <div class="main">
+                                        Adobe InDesign
+                                    </div>
+                                    <div class="sub">
+                                        Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
+                                    </div>
+                                </div>
+                                <div class="percentage">
+                                    85%
+                                </div>
+                            </div>
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-divider"></div>
+
+                    <div class="skills-wrapper languages">
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/languages/english.png" alt="skill icon">
+                                </div>
+                                <div class="title">
+                                    <div class="main">
+                                        English
+                                    </div>
+                                    <div class="sub">
+                                        Perfect Language knowledge, real time translations.
+                                    </div>
+                                </div>
+                                <div class="percentage">
+                                    90%
+                                </div>
+                            </div>
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/languages/french.png" alt="skill icon">
+                                </div>
+                                <div class="title">
+                                    <div class="main">
+                                       French
+                                    </div>
+                                    <div class="sub">
+                                        Perfect Language knowledge, real time translations.
+                                    </div>
+                                </div>
+                                <div class="percentage">
+                                    90%
+                                </div>
+                            </div>
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="single-tab-content about" data-name="about">
                     about

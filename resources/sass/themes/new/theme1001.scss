@@ -73,7 +73,7 @@ body{
         background-color: rgb(0,0,0);
         background-color: rgba(0,0,0,0.7);
       }
-      transition: all 1s;
+      transition: all 0.5s;
 
       .menu-icon{
         position: absolute;
@@ -92,7 +92,7 @@ body{
         position: absolute;
         right: -650px;
         top: 50px;
-        transition: all 1s;
+        transition: all 0.5s;
 
         .close-icon{
           margin-bottom: 50px;
@@ -155,6 +155,8 @@ body{
     .tabs-contents-wrapper{
       .single-tab-content{
         display: none;
+        padding: 0 70px 70px 70px;
+
         &.active{
           display: block;
         }
@@ -166,34 +168,12 @@ body{
             align-items: center;
             margin-top: 40px;
 
-            .categories{
-              display: flex;
-              margin-left:70px;
-
-              .single-category{
-                font-family: Roboto, sans-serif;
-                font-size: 20px;
-                line-height: 23px;
-                margin-right:50px;
-                padding: 10px;
-                color: #B4AFC4;
-                &.active{
-                  color: #3D5ED4;
-                  background: #D4DDFF;
-                  border-radius: 8px;
-                }
-                &:hover{
-                  cursor: pointer;
-                }
-              }
-            }
             .display-options{
               display: flex;
-              margin-right: 55px;
 
               .option{
                 img{
-                  margin-right: 15px;
+                  margin-left: 15px;
                   &:hover{
                     cursor: pointer;
                   }
@@ -202,7 +182,6 @@ body{
             }
           }
           .portfolio-content{
-            padding: 0 70px 70px 70px;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
@@ -243,6 +222,116 @@ body{
                 }
               }
             }
+          }
+        }
+
+        &.skills{
+          .skills-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 70px;
+            max-width: 1530px;
+
+            .single-skill{
+              max-width: 565px;
+              margin-bottom: 50px;
+              flex: 1 0 40%;
+
+              .skill-info{
+                display: flex;
+                justify-content: space-between;
+                font-family: Roboto, sans-serif;
+                margin-bottom: 20px;
+
+                .skill-icon{
+                  margin-right: 12px;
+                  img{
+                    margin-top: 3px;
+                  }
+                }
+                .title{
+                  flex-grow: 1;
+                  .main{
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 28px;
+                    color: #172C7A;
+                    margin-bottom: 13px;
+                  }
+                  .sub{
+                    font-size: 14px;
+                    color: #838BA4;
+                  }
+                }
+                .percentage{
+                  font-weight: bold;
+                  font-size: 18px;
+                  line-height: 21px;
+                  color: #F8AB08;
+                }
+
+              }
+              .skill-percentage-bar{
+                .default-bar{
+                  height: 6px;
+                  width: 100%;
+                  background: #D3D6E4;
+                  border-radius: 6px;
+                }
+                .bar-percentage-achieved{
+                  height: 6px;
+                  background: #3D5ED4;
+                  border-radius: 6px;
+                  margin-top: -6px;
+                }
+              }
+            }
+          }
+          .skills-divider{
+            height: 1px;
+            width: 70%;
+            margin: 50px auto auto auto;
+            background: #D3D6E4;
+          }
+        }
+
+        .categories{
+          display: flex;
+
+          .single-category{
+            font-family: Roboto, sans-serif;
+            font-size: 20px;
+            line-height: 23px;
+            margin-right:50px;
+            padding: 10px;
+            color: #B4AFC4;
+            &.active{
+              color: #3D5ED4;
+              background: #D4DDFF;
+              border-radius: 8px;
+            }
+            &:hover{
+              cursor: pointer;
+            }
+          }
+        }
+
+        .single-tab-title{
+          margin: 60px 0;
+          font-family: Roboto, sans-serif;
+          .main-title{
+            font-weight: bold;
+            font-size: 40px;
+            color: #172C7A;
+            margin-bottom: 20px;
+          }
+          .sub-title{
+            font-style: italic;
+            font-weight: normal;
+            font-size: 24px;
+            line-height: 28px;
+            color: #BEC2D4;
           }
         }
 
