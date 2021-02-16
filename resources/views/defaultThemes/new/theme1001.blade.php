@@ -458,13 +458,115 @@
                     </div>
                 </div>
                 <div class="single-tab-content about" data-name="about">
-                    about
+                    <div class="about-info-wrapper">
+                        <div class="personal-info">
+                            <div class="single-data">
+                                <img src="/images/themes/theme1001/about/birthday-cake.png" alt="Date icon">
+                                <div class="title">
+                                    Date of Birth
+                                </div>
+                                <div class="sub-title">
+                                    01/14/1990
+                                </div>
+                            </div>
+                            <div class="single-data">
+                                <img src="/images/themes/theme1001/about/flags.png" alt="Nationality icon">
+                                <div class="title">
+                                    Nationality
+                                </div>
+                                <div class="sub-title">
+                                    Indian
+                                </div>
+                            </div>
+                            <div class="single-data">
+                                <img src="/images/themes/theme1001/about/home.png" alt="Hometown icon">
+                                <div class="title">
+                                    Hometown
+                                </div>
+                                <div class="sub-title">
+                                    Kiev
+                                </div>
+                            </div>
+                            <div class="single-data">
+                                <img src="/images/themes/theme1001/about/translate.png" alt="languages icon">
+                                <div class="title">
+                                    Languages
+                                </div>
+                                <div class="sub-title">
+                                    English<br/>
+                                    Arabic<br/>
+                                    French
+                                </div>
+                            </div>
+                        </div>
+                        <div class="professional-info">
+                            <div class="main-info-wrapper">
+                                <div class="single-main-info">
+                                    <div class="title">
+                                        Overview
+                                    </div>
+                                    <div class="sub-title">
+                                        A lot of things to be said here in the overview section, speak about yourself and what you want to achieve in the future.
+                                    </div>
+                                </div>
+                                <div class="single-main-info">
+                                    <div class="title">
+                                        About me
+                                    </div>
+                                    <div class="sub-title">
+                                        A lot of things to be said here in the overview section, speak about yourself and what you want to achieve in the future.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-info-wrapper">
+                                <div class="single-sub-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/about/left-quotes-sign.png" alt="icon">
+                                    </div>
+                                    <div class="details">
+                                        <div class="title">
+                                            Quote
+                                        </div>
+                                        <div class="sub-title">
+                                            A lot of things to be said here in the Quote section.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-sub-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/about/pin.png" alt="icon">
+                                    </div>
+                                    <div class="details">
+                                        <div class="title">
+                                            Location
+                                        </div>
+                                        <div class="sub-title">
+                                            Ireland, Dublin
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="single-tab-content media" data-name="media">
                     media
                 </div>
                 <div class="single-tab-content hobbies" data-name="hobbies">
-                    hobbies
+                    <div class="single-tab-title">
+                        <div class="main-title">
+                            Hobbies
+                        </div>
+                        <div class="sub-title">
+                            What I Love To Do
+                        </div>
+                    </div>
+                    <div class="hobbies-wrapper">
+                        <div class="single-hobby">
+
+                        </div>
+                    </div>
+
                 </div>
                 <div class="single-tab-content references" data-name="references">
                     references

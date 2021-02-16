@@ -5,7 +5,7 @@ $('document').ready(function(){
     $('.menu-tab').on('click', changeTab);
     $('.single-category').on('click', changeCategory);
 
-    setDefaultActiveTab('about');
+    setDefaultActiveTab('hobbies');
 
 });
 

@@ -296,6 +296,95 @@ body{
           }
         }
 
+        &.about{
+          .about-info-wrapper{
+            display: flex;
+            margin-top: 70px;
+
+            .personal-info{
+              padding-right: 120px;
+              border-right: 1px solid rgba(61, 94, 212, 0.28);
+
+              .single-data{
+                font-family: Roboto, sans-serif;
+                margin-bottom: 40px;
+
+                img{
+                  margin-bottom: 8px;
+                }
+                .title{
+                  font-weight: bold;
+                  font-size: 30px;
+                  color: #172C7A;
+                  white-space: nowrap;
+                  margin-bottom: 10px;
+                }
+                .sub-title{
+                  font-size: 32px;
+                  color: #CFD2DF;
+                }
+              }
+            }
+            .professional-info{
+              margin-left: 90px;
+
+              .main-info-wrapper{
+                .single-main-info{
+                  font-family: Roboto, sans-serif;
+                  margin-bottom: 55px;
+
+                  .title{
+                    font-weight: bold;
+                    font-size: 42px;
+                    margin-bottom: 20px;
+                    color: #172C7A;
+                  }
+                  .sub-title{
+                    font-size: 30px;
+                    color: #CFD2DF;
+                  }
+                }
+              }
+
+              .sub-info-wrapper{
+                margin-top: 150px;
+
+                .single-sub-info{
+                  display: flex;
+                  margin-bottom: 40px;
+
+                  .icon{
+                    margin-right: 12px;
+                    width: 45px;
+
+                    img{
+
+                    }
+                  }
+                  .details{
+                    font-family: Roboto, sans-serif;
+                    .title{
+                      font-weight: bold;
+                      font-size: 30px;
+                      color: #172C7A;
+                      margin-bottom: 12px;
+                    }
+                    .sub-title{
+                      font-size: 20px;
+                      color: #CFD2DF;
+                    }
+                  }
+                }
+              }
+
+            }
+          }
+        }
+
+        &.hobbies{
+
+        }
+
         .categories{
           display: flex;
 
