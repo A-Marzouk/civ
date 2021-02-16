@@ -423,7 +423,48 @@ body{
               }
             }
           }
+        }
 
+        &.achievements{
+          .achievements-wrapper{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .single-achievement{
+              display: flex;
+              justify-content: space-between;
+              padding: 30px;
+              max-width: 740px;
+              background: #F1F4FF;
+              border-radius: 15px;
+              margin-bottom: 40px;
+
+              .certificate{
+                img{
+                  margin-right: 35px;
+                }
+              }
+              .details{
+                font-family: Roboto, sans-serif;
+                .title{
+                  font-weight: bold;
+                  font-size: 29px;
+                  color: #172C7A;
+                  margin-bottom: 12px;
+                }
+                .url{
+                  font-weight: bold;
+                  font-size: 17px;
+                  color: #172C7A;
+                  margin-bottom: 24px;
+                }
+                .description{
+                  font-size: 17px;
+                  color: #172C7A;
+                }
+              }
+            }
+          }
         }
 
         .categories{

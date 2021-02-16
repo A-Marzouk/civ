@@ -647,7 +647,81 @@
                     references
                 </div>
                 <div class="single-tab-content achievements" data-name="achievements">
-                    achievements
+                    <div class="single-tab-title">
+                        <div class="main-title">
+                            Achievements
+                        </div>
+                    </div>
+                    <div class="achievements-wrapper">
+                        <div class="single-achievement">
+                            <div class="certificate">
+                                <img src="/images/themes/theme1001/achievements/certificate-sample.png" alt="certificate">
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    National Award, 2015
+                                </div>
+                                <div class="url">
+                                    URL: https://awwwards.com
+                                </div>
+                                <div class="description">
+                                    Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum
+                                    dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-achievement">
+                            <div class="certificate">
+                                <img src="/images/themes/theme1001/achievements/certificate-sample.png" alt="certificate">
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    National Award, 2015
+                                </div>
+                                <div class="url">
+                                    URL: https://awwwards.com
+                                </div>
+                                <div class="description">
+                                    Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum
+                                    dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-achievement">
+                            <div class="certificate">
+                                <img src="/images/themes/theme1001/achievements/certificate-sample.png" alt="certificate">
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    National Award, 2015
+                                </div>
+                                <div class="url">
+                                    URL: https://awwwards.com
+                                </div>
+                                <div class="description">
+                                    Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum
+                                    dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-achievement">
+                            <div class="certificate">
+                                <img src="/images/themes/theme1001/achievements/certificate-sample.png" alt="certificate">
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    National Award, 2015
+                                </div>
+                                <div class="url">
+                                    URL: https://awwwards.com
+                                </div>
+                                <div class="description">
+                                    Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum
+                                    dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
