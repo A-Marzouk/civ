@@ -1,24 +1,63 @@
-import vuetify from "../vuetify";
+$('document').ready(function(){
 
-import { store } from "../store/store";
+    $('#menu-open').on('click', openMenu );
+    $('#menu-close').on('click', closeMenu);
+    $('.menu-tab').on('click', changeTab);
+    $('.single-category').on('click', changeCategory);
 
-import VueRouter from "vue-router";
-Vue.use(VueRouter);
+    setDefaultActiveTab('hobbies');
 
-const router = new VueRouter({
-    mode: "history"
 });
 
-import resumeTheme1001 from "../components/resume_themes/theme1001/index";
+function openMenu() {
+    $('#menu-body').css('right', 0);
+    $('#menu').addClass('opened');
+}
 
-if ($("#resumeTheme1001").length !== 0) {
-    new Vue({
-        el: "#resumeTheme1001",
-        store,
-        router,
-        vuetify,
-        components: {
-            "resume-theme-1001": resumeTheme1001
+function closeMenu() {
+    $('#menu-body').css('right', '-650px');
+    $('#menu').removeClass('opened');
+
+}
+
+function changeTab(event) {
+    let tabName     = event.currentTarget.dataset.name;
+    updateTab(tabName);
+}
+
+function changeCategory(event) {
+    let categoryName     = event.currentTarget.dataset.category;
+    let categories        = $('.single-category');
+
+    for (let i = 0; i < categories.length ; i++) {
+        if($(categories[i]).hasClass('active')){
+            $(categories[i]).removeClass('active')
         }
-    });
+        if(categories[i].dataset.category === categoryName){
+            $(categories[i]).addClass('active');
+        }
+    }
+}
+
+function updateTab(tabName) {
+    let tabs        = $('.menu-tab');
+    let tabsContent = $('.single-tab-content');
+
+    for (let i = 0; i < tabs.length ; i++) {
+        if($(tabs[i]).hasClass('active')){
+            $(tabs[i]).removeClass('active')
+        }
+        if($(tabsContent[i]).hasClass('active')){
+            $(tabsContent[i]).removeClass('active')
+        }
+
+        if(tabs[i].dataset.name === tabName){
+            $(tabs[i]).addClass('active');
+            $(tabsContent[i]).addClass('active');
+        }
+    }
+}
+
+function setDefaultActiveTab(tabName) {
+    updateTab(tabName);
 }
