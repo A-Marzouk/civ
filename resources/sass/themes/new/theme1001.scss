@@ -675,6 +675,63 @@ body{
           }
         }
 
+        &.work{
+          .exp-work-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            font-family: Roboto, sans-serif;
+            .education,.experience{
+              max-width: 720px;
+            }
+            .single-info{
+              display: flex;
+              align-items: flex-start;
+              max-width: 700px;
+              margin-bottom: 60px;
+              .icon{
+                img{
+
+                }
+              }
+              .divider{
+                height: 1px;
+                width: 48px;
+                background: #BEC2D4;
+                margin-top: 17px;
+                margin-right: 10px;
+                margin-left: 10px;
+              }
+              .info{
+                .work-header{
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  margin-bottom: 15px;
+                  .title{
+                    font-weight: bold;
+                    font-size: 24px;
+                    color: #172C7A;
+                  }
+                  .date{
+                    font-size: 18px;
+                    color: #838BA4;
+                  }
+                }
+                .work-sub-header{
+                  font-size: 20px;
+                  color: #172C7A;
+                  margin-bottom: 10px;
+                }
+                .work-description{
+                  font-size: 18px;
+                  color: #838BA4;
+                }
+              }
+            }
+          }
+        }
+
         .categories{
           display: flex;
 

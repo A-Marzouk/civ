@@ -219,7 +219,164 @@
                     </div>
                 </div>
                 <div class="single-tab-content work" data-name="work">
-                    Work
+                    <div class="exp-work-wrapper">
+                        <div class="experience">
+                            <div class="single-tab-title">
+                                <div class="main-title">
+                                    Experience
+                                </div>
+                                <div class="sub-title">
+                                    What I've Worked
+                                </div>
+                            </div>
+                            <div class="exp-work-wrapper">
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                       <div class="work-header">
+                                           <div class="title">
+                                               Google
+                                           </div>
+                                           <div class="date">
+                                               September 2017 - Present
+                                           </div>
+                                       </div>
+                                        <div class="work-sub-header">
+                                            Senior UX UI Designer
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                       <div class="work-header">
+                                           <div class="title">
+                                               Google
+                                           </div>
+                                           <div class="date">
+                                               September 2017 - Present
+                                           </div>
+                                       </div>
+                                        <div class="work-sub-header">
+                                            Senior UX UI Designer
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                       <div class="work-header">
+                                           <div class="title">
+                                               Google
+                                           </div>
+                                           <div class="date">
+                                               September 2017 - Present
+                                           </div>
+                                       </div>
+                                        <div class="work-sub-header">
+                                            Senior UX UI Designer
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="education">
+                            <div class="single-tab-title">
+                                <div class="main-title">
+                                    Education
+                                </div>
+                                <div class="sub-title">
+                                    What I've Learned
+                                </div>
+                            </div>
+                            <div class="exp-work-wrapper">
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/edu-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                        <div class="work-header">
+                                            <div class="title">
+                                                Technical University
+                                            </div>
+                                            <div class="date">
+                                                2017 - Present
+                                            </div>
+                                        </div>
+                                        <div class="work-sub-header">
+                                            Computer Science Engineering
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/edu-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                        <div class="work-header">
+                                            <div class="title">
+                                                Technical University
+                                            </div>
+                                            <div class="date">
+                                                2017 - Present
+                                            </div>
+                                        </div>
+                                        <div class="work-sub-header">
+                                            Computer Science Engineering
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/edu-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                        <div class="work-header">
+                                            <div class="title">
+                                                Technical University
+                                            </div>
+                                            <div class="date">
+                                                2017 - Present
+                                            </div>
+                                        </div>
+                                        <div class="work-sub-header">
+                                            Computer Science Engineering
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="single-tab-content skills" data-name="skills">
                     <div class="single-tab-title">

@@ -7,7 +7,7 @@ $('document').ready(function(){
     $('.menu-tab').on('click', changeTab);
     $('.single-category').on('click', changeCategory);
 
-    setDefaultActiveTab('media');
+    setDefaultActiveTab('work');
 
 });
 
