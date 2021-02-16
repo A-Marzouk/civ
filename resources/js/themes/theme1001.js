@@ -1,3 +1,5 @@
+window.Vue = require('vue');
+
 $('document').ready(function(){
 
     $('#menu-open').on('click', openMenu );
@@ -5,7 +7,7 @@ $('document').ready(function(){
     $('.menu-tab').on('click', changeTab);
     $('.single-category').on('click', changeCategory);
 
-    setDefaultActiveTab('achievements');
+    setDefaultActiveTab('media');
 
 });
 
@@ -23,6 +25,7 @@ function closeMenu() {
 function changeTab(event) {
     let tabName     = event.currentTarget.dataset.name;
     updateTab(tabName);
+    closeMenu();
 }
 
 function changeCategory(event) {
@@ -61,3 +64,13 @@ function updateTab(tabName) {
 function setDefaultActiveTab(tabName) {
     updateTab(tabName);
 }
+
+// needed vue components:
+import MediaTab from './components/theme1001/Media'
+
+new Vue({
+    el: "#mediaTab",
+    components: {
+        "media-tab": MediaTab
+    }
+});

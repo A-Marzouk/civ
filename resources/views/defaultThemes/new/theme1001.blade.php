@@ -641,10 +641,132 @@
                     </div>
                 </div>
                 <div class="single-tab-content media" data-name="media">
-                    media
+                    <div id="mediaTab">
+                        <media-tab></media-tab>
+                    </div>
                 </div>
                 <div class="single-tab-content references" data-name="references">
-                    references
+                    <div class="single-tab-title">
+                        <div class="main-title">
+                            References
+                        </div>
+                    </div>
+                    <div class="references-wrapper">
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="single-tab-content achievements" data-name="achievements">
                     <div class="single-tab-title">

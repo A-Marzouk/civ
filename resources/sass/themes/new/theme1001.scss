@@ -428,7 +428,7 @@ body{
         &.achievements{
           .achievements-wrapper{
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             flex-wrap: wrap;
             .single-achievement{
               display: flex;
@@ -464,6 +464,141 @@ body{
                 }
               }
             }
+          }
+        }
+
+        &.references{
+          .references-wrapper{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            .single-reference{
+              font-family: Roboto, sans-serif;
+              padding: 30px;
+              max-width: 640px;
+              margin-bottom: 40px;
+              background: #F1F4FF;
+              border-radius: 15px;
+
+              .reference-header{
+                font-weight: bold;
+                font-size: 29px;
+                color: #172C7A;
+                margin-bottom: 35px;
+              }
+              .details{
+                display: flex;
+                justify-content: space-between;
+                font-size: 17px;
+                line-height: 20px;
+                color: #172C7A;
+                margin-bottom: 40px;
+                .contact{
+                  margin-right: 30px;
+                }
+              }
+              .description{
+                font-size: 17px;
+                line-height: 20px;
+                color: #172C7A;
+              }
+            }
+          }
+        }
+
+        &.media{
+          .media-component-wrapper{
+            margin-top: 40px;
+
+            .media-wrapper{
+              display: flex;
+              justify-content: space-between;
+              flex-wrap: wrap;
+              align-items: baseline;
+              max-width: 1600px;
+              margin: 70px auto auto auto;
+
+              .single-media{
+                background: #FFFFFF;
+                max-width: 420px;
+                width: 100%;
+                border-radius: 15px;
+                padding: 20px;
+                filter: drop-shadow(0px 3px 30px rgba(23, 44, 122, 0.102));
+                margin-bottom: 40px;
+
+                &.audio{
+                  font-family: Roboto, sans-serif;
+
+                  .single-media-header{
+                    display: flex;
+                    justify-content: space-between;
+                    .preview{
+                      img{
+                        margin-right: 8px;
+                      }
+                    }
+                    .details{
+                      flex-grow: 1;
+                      .title{
+                        font-size: 24px;
+                        margin-bottom: 8px;
+                        color: #172C7A;
+                      }
+                      .name{
+                        font-weight: bold;
+                        font-size: 16px;
+                        margin-bottom: 6px;
+                        color: #F8AB08;
+                      }
+                      .time{
+                        font-size: 20px;
+                        line-height: 23px;
+                        color: #BEC2D4;
+                      }
+                    }
+                    .play-icon{
+                      img{
+                        &:hover{
+                          cursor: pointer;
+                        }
+                      }
+                    }
+                  }
+                  .description{
+                    margin-top: 35px;
+                    font-size: 20px;
+                    color: #B4AFC4;
+
+                  }
+                }
+
+                &.video{
+                  background: none;
+                  max-width: 460px;
+                  padding: 0;
+                  position: relative;
+
+                  img.preview{
+                    width: 100%;
+                    border-radius: 15px;
+                  }
+
+                  img.play-icon{
+                    position: absolute;
+                    margin: auto;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    &:hover{
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+            }
+
           }
         }
 
