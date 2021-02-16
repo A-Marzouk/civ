@@ -549,9 +549,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="single-tab-content media" data-name="media">
-                    media
-                </div>
                 <div class="single-tab-content hobbies" data-name="hobbies">
                     <div class="single-tab-title">
                         <div class="main-title">
@@ -563,10 +560,88 @@
                     </div>
                     <div class="hobbies-wrapper">
                         <div class="single-hobby">
-
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
+                                <div class="title">
+                                    Cycling
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
                         </div>
-                    </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/book.png" alt="">
+                                <div class="title">
+                                    Reading
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/suitcase.png" alt="">
+                                <div class="title">
+                                    Travelling
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/writing.png" alt="">
+                                <div class="title">
+                                    Writing
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
+                                <div class="title">
+                                    Cycling
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
+                                <div class="title">
+                                    Cycling
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+                <div class="single-tab-content media" data-name="media">
+                    media
                 </div>
                 <div class="single-tab-content references" data-name="references">
                     references
