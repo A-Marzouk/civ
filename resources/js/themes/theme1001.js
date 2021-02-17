@@ -7,7 +7,7 @@ $('document').ready(function(){
     $('.menu-tab').on('click', changeTab);
     $('.single-category').on('click', changeCategory);
 
-    setDefaultActiveTab('portfolio');
+    setDefaultActiveTab();
 
 });
 
@@ -61,7 +61,16 @@ function updateTab(tabName) {
     }
 }
 
-function setDefaultActiveTab(tabName) {
+function setDefaultActiveTab() {
+
+    let tabName = 'portfolio';
+    let queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString);
+
+    if(urlParams.has('tab')){
+         tabName = urlParams.get('tab');
+    }
+
     updateTab(tabName);
 }
 

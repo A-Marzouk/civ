@@ -240,60 +240,61 @@
               display: flex;
               flex-wrap: wrap;
               justify-content: space-between;
-              margin-top: 70px;
+              margin-top: 44px;
               max-width: 1530px;
 
               .single-skill{
                 max-width: 565px;
-                margin-bottom: 50px;
-                flex: 1 0 40%;
+                margin-bottom: 35px;
+                flex: auto;
 
                 .skill-info{
                   display: flex;
                   justify-content: space-between;
                   font-family: Roboto, sans-serif;
-                  margin-bottom: 20px;
+                  margin-bottom: 8px;
 
                   .skill-icon{
-                    margin-right: 12px;
+                    margin-right: 6px;
                     img{
                       margin-top: 3px;
+                      width: 15px;
                     }
                   }
                   .title{
                     flex-grow: 1;
                     .main{
                       font-weight: bold;
-                      font-size: 24px;
-                      line-height: 28px;
+                      font-size: 18px;
+                      line-height: 20px;
                       color: #172C7A;
-                      margin-bottom: 13px;
+                      margin-bottom: 5px;
                     }
                     .sub{
-                      font-size: 14px;
+                      font-size: 10px;
                       color: #838BA4;
                     }
                   }
                   .percentage{
                     font-weight: bold;
-                    font-size: 18px;
-                    line-height: 21px;
+                    font-size: 14px;
+                    line-height: 16px;
                     color: #F8AB08;
                   }
 
                 }
                 .skill-percentage-bar{
                   .default-bar{
-                    height: 6px;
+                    height: 4px;
                     width: 100%;
                     background: #D3D6E4;
-                    border-radius: 6px;
+                    border-radius: 4px;
                   }
                   .bar-percentage-achieved{
-                    height: 6px;
+                    height: 4px;
                     background: #3D5ED4;
-                    border-radius: 6px;
-                    margin-top: -6px;
+                    border-radius: 4px;
+                    margin-top: -4px;
                   }
                 }
               }
@@ -301,7 +302,7 @@
             .skills-divider{
               height: 1px;
               width: 70%;
-              margin: 50px auto auto auto;
+              margin: 20px auto auto auto;
               background: #D3D6E4;
             }
           }
