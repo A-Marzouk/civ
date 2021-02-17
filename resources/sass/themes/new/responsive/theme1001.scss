@@ -1054,10 +1054,10 @@
           &.about{
             .about-info-wrapper{
               display: flex;
-              margin-top: 70px;
+              margin-top: 40px;
 
               .personal-info{
-                padding-right: 120px;
+                padding-right: 50px;
                 border-right: 1px solid rgba(61, 94, 212, 0.28);
 
                 .single-data{
@@ -1066,66 +1066,68 @@
 
                   img{
                     margin-bottom: 8px;
+                    width: 22px;
                   }
                   .title{
                     font-weight: bold;
-                    font-size: 30px;
+                    font-size: 18px;
                     color: #172C7A;
                     white-space: nowrap;
-                    margin-bottom: 10px;
+                    margin-bottom: 6px;
                   }
                   .sub-title{
-                    font-size: 32px;
+                    font-size: 18px;
                     color: #CFD2DF;
                   }
                 }
               }
               .professional-info{
-                margin-left: 90px;
+                margin-left: 50px;
 
                 .main-info-wrapper{
                   .single-main-info{
                     font-family: Roboto, sans-serif;
-                    margin-bottom: 55px;
+                    margin-bottom: 35px;
 
                     .title{
-                      font-weight: bold;
-                      font-size: 42px;
-                      margin-bottom: 20px;
+                      font-weight: 500;
+                      font-size: 26px;
+                      margin-bottom: 8px;
                       color: #172C7A;
                     }
                     .sub-title{
-                      font-size: 30px;
+                      font-size: 16px;
                       color: #CFD2DF;
                     }
                   }
                 }
 
                 .sub-info-wrapper{
-                  margin-top: 150px;
+                  margin-top: 40px;
 
                   .single-sub-info{
                     display: flex;
-                    margin-bottom: 40px;
+                    margin-bottom: 30px;
 
                     .icon{
-                      margin-right: 12px;
-                      width: 45px;
+                      margin-right: 6px;
+                      margin-top: 6px;
+                      width: 24px;
 
                       img{
-
+                        width: 20px
                       }
                     }
                     .details{
                       font-family: Roboto, sans-serif;
                       .title{
                         font-weight: bold;
-                        font-size: 30px;
+                        font-size: 26px;
                         color: #172C7A;
-                        margin-bottom: 12px;
+                        margin-bottom: 8px;
                       }
                       .sub-title{
-                        font-size: 20px;
+                        font-size: 16px;
                         color: #CFD2DF;
                       }
                     }
