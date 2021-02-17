@@ -1,3 +1,5 @@
+window.Vue = require('vue');
+
 $('document').ready(function(){
 
     $('#menu-open').on('click', openMenu );
@@ -5,7 +7,7 @@ $('document').ready(function(){
     $('.menu-tab').on('click', changeTab);
     $('.single-category').on('click', changeCategory);
 
-    setDefaultActiveTab('hobbies');
+    setDefaultActiveTab();
 
 });
 
@@ -23,6 +25,7 @@ function closeMenu() {
 function changeTab(event) {
     let tabName     = event.currentTarget.dataset.name;
     updateTab(tabName);
+    closeMenu();
 }
 
 function changeCategory(event) {
@@ -58,6 +61,29 @@ function updateTab(tabName) {
     }
 }
 
-function setDefaultActiveTab(tabName) {
+function setDefaultActiveTab() {
+
+    let tabName = 'portfolio';
+    let queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString);
+    let defaultTabs = ['portfolio', 'work', 'skills', 'hobbies','about', 'media', 'references', 'achievements'];
+
+    if(urlParams.has('tab')){
+         let tabParam = urlParams.get('tab');
+         if(defaultTabs.includes(tabParam)){
+             tabName = tabParam;
+         }
+    }
+
     updateTab(tabName);
 }
+
+// needed vue components:
+import MediaTab from './components/theme1001/Media'
+
+new Vue({
+    el: "#mediaTab",
+    components: {
+        "media-tab": MediaTab
+    }
+});

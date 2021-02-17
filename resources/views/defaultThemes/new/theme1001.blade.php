@@ -32,6 +32,10 @@
                         <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
                         <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
                         <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
+                        <img src="/images/themes/theme1001/social/behance.png" alt="social icon">
+                        <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
+                        <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
+                        <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
                     </div>
                 </div>
             </div>
@@ -219,7 +223,164 @@
                     </div>
                 </div>
                 <div class="single-tab-content work" data-name="work">
-                    Work
+                    <div class="exp-work-wrapper">
+                        <div class="experience">
+                            <div class="single-tab-title">
+                                <div class="main-title">
+                                    Experience
+                                </div>
+                                <div class="sub-title">
+                                    What I've Worked
+                                </div>
+                            </div>
+                            <div class="exp-work-wrapper">
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                       <div class="work-header">
+                                           <div class="title">
+                                               Google
+                                           </div>
+                                           <div class="date">
+                                               September 2017 - Present
+                                           </div>
+                                       </div>
+                                        <div class="work-sub-header">
+                                            Senior UX UI Designer
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                       <div class="work-header">
+                                           <div class="title">
+                                               Google
+                                           </div>
+                                           <div class="date">
+                                               September 2017 - Present
+                                           </div>
+                                       </div>
+                                        <div class="work-sub-header">
+                                            Senior UX UI Designer
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                       <div class="work-header">
+                                           <div class="title">
+                                               Google
+                                           </div>
+                                           <div class="date">
+                                               September 2017 - Present
+                                           </div>
+                                       </div>
+                                        <div class="work-sub-header">
+                                            Senior UX UI Designer
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="education">
+                            <div class="single-tab-title">
+                                <div class="main-title">
+                                    Education
+                                </div>
+                                <div class="sub-title">
+                                    What I've Learned
+                                </div>
+                            </div>
+                            <div class="exp-work-wrapper">
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/edu-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                        <div class="work-header">
+                                            <div class="title">
+                                                Technical University
+                                            </div>
+                                            <div class="date">
+                                                2017 - Present
+                                            </div>
+                                        </div>
+                                        <div class="work-sub-header">
+                                            Computer Science Engineering
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/edu-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                        <div class="work-header">
+                                            <div class="title">
+                                                Technical University
+                                            </div>
+                                            <div class="date">
+                                                2017 - Present
+                                            </div>
+                                        </div>
+                                        <div class="work-sub-header">
+                                            Computer Science Engineering
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/work/edu-icon.png" alt="work icon">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="info">
+                                        <div class="work-header">
+                                            <div class="title">
+                                                Technical University
+                                            </div>
+                                            <div class="date">
+                                                2017 - Present
+                                            </div>
+                                        </div>
+                                        <div class="work-sub-header">
+                                            Computer Science Engineering
+                                        </div>
+                                        <div class="work-description">
+                                            Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="single-tab-content skills" data-name="skills">
                     <div class="single-tab-title">
@@ -549,9 +710,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="single-tab-content media" data-name="media">
-                    media
-                </div>
                 <div class="single-tab-content hobbies" data-name="hobbies">
                     <div class="single-tab-title">
                         <div class="main-title">
@@ -563,16 +721,290 @@
                     </div>
                     <div class="hobbies-wrapper">
                         <div class="single-hobby">
-
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
+                                <div class="title">
+                                    Cycling
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
                         </div>
-                    </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/book.png" alt="">
+                                <div class="title">
+                                    Reading
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/suitcase.png" alt="">
+                                <div class="title">
+                                    Travelling
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/writing.png" alt="">
+                                <div class="title">
+                                    Writing
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
+                                <div class="title">
+                                    Cycling
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
+                        <div class="single-hobby">
+                            <div class="hobby-header">
+                                <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
+                                <div class="title">
+                                    Cycling
+                                </div>
+                            </div>
+                            <div class="hobby-description">
+                                Cycling, also called bicycling or biking,
+                                is the use of bicycles for transport, recreation,exercise or sport.
+                                People engaged in cycling are referred HPVs.
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+                <div class="single-tab-content media" data-name="media">
+                    <div id="mediaTab">
+                        <media-tab></media-tab>
+                    </div>
                 </div>
                 <div class="single-tab-content references" data-name="references">
-                    references
+                    <div class="single-tab-title">
+                        <div class="main-title">
+                            References
+                        </div>
+                    </div>
+                    <div class="references-wrapper">
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                        <div class="single-reference">
+                            <div class="reference-header">
+                                John Doe - Ui Designer
+                            </div>
+                            <div class="details">
+                                <div class="location">
+                                    <div>CEO, IT Software Park</div>
+                                    <div>Texas, USA</div>
+                                </div>
+                                <div class="contact">
+                                    <div>johndoe@gmail.com</div>
+                                    <div>+960525252525</div>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer
+                                to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="single-tab-content achievements" data-name="achievements">
-                    achievements
+                    <div class="single-tab-title">
+                        <div class="main-title">
+                            Achievements
+                        </div>
+                    </div>
+                    <div class="achievements-wrapper">
+                        <div class="single-achievement">
+                            <div class="certificate">
+                                <img src="/images/themes/theme1001/achievements/certificate-sample.png" alt="certificate">
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    National Award, 2015
+                                </div>
+                                <div class="url">
+                                    URL: https://awwwards.com
+                                </div>
+                                <div class="description">
+                                    Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum
+                                    dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-achievement">
+                            <div class="certificate">
+                                <img src="/images/themes/theme1001/achievements/certificate-sample.png" alt="certificate">
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    National Award, 2015
+                                </div>
+                                <div class="url">
+                                    URL: https://awwwards.com
+                                </div>
+                                <div class="description">
+                                    Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum
+                                    dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-achievement">
+                            <div class="certificate">
+                                <img src="/images/themes/theme1001/achievements/certificate-sample.png" alt="certificate">
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    National Award, 2015
+                                </div>
+                                <div class="url">
+                                    URL: https://awwwards.com
+                                </div>
+                                <div class="description">
+                                    Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum
+                                    dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-achievement">
+                            <div class="certificate">
+                                <img src="/images/themes/theme1001/achievements/certificate-sample.png" alt="certificate">
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    National Award, 2015
+                                </div>
+                                <div class="url">
+                                    URL: https://awwwards.com
+                                </div>
+                                <div class="description">
+                                    Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum
+                                    dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
