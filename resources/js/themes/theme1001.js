@@ -2,9 +2,11 @@ window.Vue = require('vue');
 
 $('document').ready(function(){
 
-    $('#menu-open').on('click', openMenu );
+    $('#menu-open').on('click mouseover', openMenu );
+    $('#menu-body').on('mouseleave', closeMenu );
     $('#menu-close').on('click', closeMenu);
-    $('.menu-tab').on('click', changeTab);
+    $('.menu-tab').on('mouseover', changeTab);
+    $('.menu-tab').on('click', closeMenu);
     $('.single-category').on('click', changeCategory);
 
     setDefaultActiveTab();
@@ -14,18 +16,18 @@ $('document').ready(function(){
 function openMenu() {
     $('#menu-body').css('right', 0);
     $('#menu').addClass('opened');
+    stopBodyScrolling()
 }
 
 function closeMenu() {
     $('#menu-body').css('right', '-650px');
     $('#menu').removeClass('opened');
-
+    startBodyScrolling();
 }
 
 function changeTab(event) {
     let tabName     = event.currentTarget.dataset.name;
     updateTab(tabName);
-    closeMenu();
 }
 
 function changeCategory(event) {
@@ -76,6 +78,17 @@ function setDefaultActiveTab() {
     }
 
     updateTab(tabName);
+}
+
+
+function stopBodyScrolling(){
+    $('body').addClass('stop-scrolling')
+    $('body').bind('touchmove', function(e){e.preventDefault()})
+}
+
+function startBodyScrolling(){
+    $('body').removeClass('stop-scrolling')
+    $('body').unbind('touchmove')
 }
 
 // needed vue components:
