@@ -66,9 +66,13 @@ function setDefaultActiveTab() {
     let tabName = 'portfolio';
     let queryString = window.location.search;
     let urlParams = new URLSearchParams(queryString);
+    let defaultTabs = ['portfolio', 'work', 'skills', 'hobbies','about', 'media', 'references', 'achievements'];
 
     if(urlParams.has('tab')){
-         tabName = urlParams.get('tab');
+         let tabParam = urlParams.get('tab');
+         if(defaultTabs.includes(tabParam)){
+             tabName = tabParam;
+         }
     }
 
     updateTab(tabName);

@@ -412,11 +412,11 @@
                 font-family: Roboto, sans-serif;
                 background: #F1F4FF;
                 max-width: 365px;
-                padding: 30px;
+                padding: 25px;
                 border-radius: 15px;
-                margin-bottom: 55px;
+                margin-bottom: 25px;
                 &:last-child{
-                  margin-left: 22px;
+                  margin-left: 0;
                 }
 
                 .hobby-header{
@@ -427,15 +427,17 @@
                   img{
 
                   }
+
                   div.title{
-                    font-size: 29px;
+                    font-size: 23px;
+                    margin-right: 35px;
                     color: #172C7A;
                   }
                 }
                 .hobby-description{
-                  margin-top: 35px;
-                  font-size: 18px;
-                  line-height: 21px;
+                  margin-top: 22px;
+                  font-size: 16px;
+                  line-height: 18px;
                   color: #172C7A;
                 }
               }
