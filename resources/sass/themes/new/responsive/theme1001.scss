@@ -761,16 +761,16 @@
       align-items: center;
       background-color: #4870FF;
       background-image: url("/images/themes/theme1001/background-lines.png");
-      height: 315px;
-      padding-left: 85px;
-      padding-right: 70px;
+      height: 260px;
+      padding-left: 45px;
+      padding-right: 35px;
 
       .personal-info{
         display: flex;
         .profile-picture{
           position: relative;
           .main-photo{
-
+            width: 190px
           }
           .message-icon{
             position: absolute;
@@ -785,26 +785,30 @@
         }
         .details{
           font-family: Roboto, sans-serif;
-          margin-left: 40px;
+          margin-left: 20px;
 
           .name{
             font-style: normal;
             font-weight: bold;
-            font-size: 42px;
+            font-size: 33px;
             color: #FFFFFF;
             margin-top: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 13px;
           }
           .job-title{
             font-style: normal;
             font-weight: normal;
-            font-size: 30px;
+            font-size: 23px;
             color: #D3D6E4;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
           }
           .social-icons{
+            overflow-x: auto;
+            display: flex;
+            max-width: 480px;
             img{
               margin-right: 18.5px;
+              width: 45px;
             }
           }
         }
@@ -826,7 +830,7 @@
 
         .menu-icon{
           position: absolute;
-          right: 70px;
+          right: 30px;
           top: 50px;
 
           &:hover{
@@ -835,8 +839,8 @@
         }
         .menu-body{
           background: white;
-          padding-left: 70px;
-          width: 580px;
+          padding-left: 20px;
+          width: 380px;
           border-radius: 25px 0 0 25px;
           position: absolute;
           right: -650px;
@@ -844,12 +848,14 @@
           transition: all 0.5s;
 
           .close-icon{
-            margin-bottom: 50px;
-            margin-top: 40px;
+            margin-bottom: 30px;
+            margin-top: 20px;
             display: flex;
             justify-content: flex-end;
             img{
               margin-right: 40px;
+              width: 18px;
+
               &:hover{
                 cursor: pointer;
               }
@@ -859,18 +865,18 @@
             .menu-tab{
               display: flex;
               align-items: center;
-              margin-bottom: 45px;
+              margin-bottom: 35px;
 
               &:hover{
                 cursor: pointer;
               }
 
               img{
-                margin-right: 40px;
+                margin-right: 15px;
               }
               .tab-name{
                 font-family: Roboto, sans-serif;
-                font-size: 32px;
+                font-size: 22px;
                 color: #3D5ED4;
                 opacity: 0.56;
               }
@@ -915,7 +921,7 @@
               display: flex;
               justify-content: space-between;
               align-items: center;
-              margin-top: 40px;
+              margin-top: 25px;
 
               .display-options{
                 display: flex;
@@ -936,20 +942,20 @@
               flex-wrap: wrap;
 
               .single-portfolio{
-                margin-top: 70px;
+                margin-top: 30px;
                 img{
-
+                  width: 285px;
                 }
                 .details{
                   display: flex;
-                  margin-top: 30px;
-                  max-width: 500px;
+                  margin-top: 15px;
+                  max-width: 280px;
 
                   img{
                     height: 1.5px;
-                    width: 42px;
-                    margin-top: 6px;
-                    margin-right: 25px;
+                    width: 22px;
+                    margin-top: 10px;
+                    margin-right: 15px;
                   }
                   .text{
                     .project-name{
@@ -1491,6 +1497,7 @@
               margin-right:50px;
               padding: 10px;
               color: #B4AFC4;
+              white-space: nowrap;
               &.active{
                 color: #3D5ED4;
                 background: #D4DDFF;
