@@ -1176,33 +1176,35 @@
               .single-achievement{
                 display: flex;
                 justify-content: space-between;
-                padding: 30px;
-                max-width: 740px;
+                padding: 22px;
+                max-width: 425px;
                 background: #F1F4FF;
                 border-radius: 15px;
                 margin-bottom: 40px;
 
                 .certificate{
                   img{
-                    margin-right: 35px;
+                    margin-right: 20px;
+                    width: 203px;
                   }
                 }
+
                 .details{
                   font-family: Roboto, sans-serif;
                   .title{
                     font-weight: bold;
-                    font-size: 29px;
+                    font-size: 18px;
                     color: #172C7A;
-                    margin-bottom: 12px;
+                    margin-bottom: 8px;
                   }
                   .url{
                     font-weight: bold;
-                    font-size: 17px;
+                    font-size: 12px;
                     color: #172C7A;
-                    margin-bottom: 24px;
+                    margin-bottom: 15px;
                   }
                   .description{
-                    font-size: 17px;
+                    font-size: 14px;
                     color: #172C7A;
                   }
                 }
