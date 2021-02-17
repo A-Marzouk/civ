@@ -451,31 +451,36 @@
               flex-wrap: wrap;
               .single-achievement{
                 display: flex;
-                justify-content: space-between;
-                padding: 30px;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                padding: 25px 15px 35px 15px;
                 max-width: 740px;
                 background: #F1F4FF;
                 border-radius: 15px;
-                margin-bottom: 40px;
+                margin-bottom: 25px;
 
                 .certificate{
                   img{
-                    margin-right: 35px;
+                    margin-right: 0;
+                    width: 280px;
                   }
                 }
                 .details{
                   font-family: Roboto, sans-serif;
+                  text-align: center;
                   .title{
                     font-weight: bold;
-                    font-size: 29px;
+                    font-size: 25px;
                     color: #172C7A;
+                    margin-top: 20px;
                     margin-bottom: 12px;
                   }
                   .url{
                     font-weight: bold;
                     font-size: 17px;
                     color: #172C7A;
-                    margin-bottom: 24px;
+                    margin-bottom: 30px;
                   }
                   .description{
                     font-size: 17px;
