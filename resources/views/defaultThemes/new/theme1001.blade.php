@@ -17,7 +17,7 @@
             <div class="personal-info">
                 <div class="profile-picture">
                     <img class="main-photo" src="/images/themes/theme1001/profile-photo.png" alt="">
-                    <img class="message-icon" src="/images/themes/theme1001/message.png" alt="">
+                    <div id="messageModal"><message-modal></message-modal></div>
                     <img class="video-icon" src="/images/themes/theme1001/video.png" alt="">
                 </div>
                 <div class="details">

@@ -1,4 +1,5 @@
 window.Vue = require('vue');
+const body = $('body');
 
 $('document').ready(function(){
 
@@ -12,6 +13,7 @@ $('document').ready(function(){
     setDefaultActiveTab();
 
 });
+
 
 function openMenu() {
     $('#menu-body').css('right', 0);
@@ -82,21 +84,31 @@ function setDefaultActiveTab() {
 
 
 function stopBodyScrolling(){
-    $('body').addClass('stop-scrolling')
-    $('body').bind('touchmove', function(e){e.preventDefault()})
+    body.addClass('stop-scrolling')
+    body.bind('touchmove', function(e){e.preventDefault()})
 }
 
 function startBodyScrolling(){
-    $('body').removeClass('stop-scrolling')
-    $('body').unbind('touchmove')
+    body.removeClass('stop-scrolling')
+    body.unbind('touchmove')
 }
 
 // needed vue components:
 import MediaTab from './components/theme1001/Media'
+import messageModal from './components/theme1001/MessageModal'
+
 
 new Vue({
     el: "#mediaTab",
     components: {
         "media-tab": MediaTab
+    }
+});
+
+
+new Vue({
+    el: "#messageModal",
+    components: {
+        "message-modal": messageModal
     }
 });
