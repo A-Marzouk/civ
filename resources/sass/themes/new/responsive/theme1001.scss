@@ -310,78 +310,84 @@
           &.about{
             .about-info-wrapper{
               display: flex;
-              margin-top: 70px;
+              flex-wrap: wrap;
+              margin-top: 40px;
 
               .personal-info{
-                padding-right: 120px;
-                border-right: 1px solid rgba(61, 94, 212, 0.28);
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                margin-bottom: 30px;
+                padding-right: 0;
+                border-right: 0;
 
                 .single-data{
                   font-family: Roboto, sans-serif;
-                  margin-bottom: 40px;
-
+                  margin-bottom: 20px;
+                  min-width: 50%;
                   img{
-                    margin-bottom: 8px;
+                    display: none;
                   }
                   .title{
                     font-weight: bold;
-                    font-size: 30px;
+                    font-size: 20px;
                     color: #172C7A;
                     white-space: nowrap;
-                    margin-bottom: 10px;
+                    margin-bottom: 5px;
                   }
                   .sub-title{
-                    font-size: 32px;
+                    font-size: 18px;
+                    line-height: 24px;
                     color: #CFD2DF;
                   }
                 }
               }
               .professional-info{
-                margin-left: 90px;
+                margin-left: 0;
 
                 .main-info-wrapper{
                   .single-main-info{
                     font-family: Roboto, sans-serif;
-                    margin-bottom: 55px;
+                    margin-bottom: 30px;
 
                     .title{
                       font-weight: bold;
-                      font-size: 42px;
-                      margin-bottom: 20px;
+                      font-size: 20px;
+                      margin-bottom: 8px;
                       color: #172C7A;
                     }
                     .sub-title{
-                      font-size: 30px;
+                      font-size: 18px;
                       color: #CFD2DF;
                     }
                   }
                 }
 
                 .sub-info-wrapper{
-                  margin-top: 150px;
+                  margin-top: 50px;
 
                   .single-sub-info{
                     display: flex;
-                    margin-bottom: 40px;
+                    margin-bottom: 20px;
 
                     .icon{
-                      margin-right: 12px;
-                      width: 45px;
-
+                      margin-right: 6px;
+                      width: 18px;
                       img{
-
+                        width: 16px;
+                        margin-top: 5px;
                       }
                     }
                     .details{
                       font-family: Roboto, sans-serif;
                       .title{
                         font-weight: bold;
-                        font-size: 30px;
+                        font-size: 20px;
                         color: #172C7A;
                         margin-bottom: 12px;
                       }
                       .sub-title{
-                        font-size: 20px;
+                        font-size: 18px;
                         color: #CFD2DF;
                       }
                     }
