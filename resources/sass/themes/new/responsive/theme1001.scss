@@ -1252,15 +1252,15 @@
           &.media{
             .media-component-wrapper{
               margin-top: 40px;
-              margin-bottom: 150px;
+              margin-bottom: 50px;
 
               .media-wrapper{
                 display: flex;
-                justify-content: space-between;
+                justify-content: space-around;
                 flex-wrap: wrap;
-                align-items: baseline;
+                align-items: center;
                 max-width: 1600px;
-                margin: 70px auto auto auto;
+                margin: 40px auto auto auto;
 
                 .single-media{
                   background: #FFFFFF;
@@ -1344,76 +1344,7 @@
               }
 
               .media-player-footer{
-                height: 150px;
-                margin-left: -70px;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-                background: white;
-                filter: drop-shadow(0px -20px 30px rgba(0, 26, 117, 0.078));
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                font-family: Roboto, sans-serif;
-
-                .media-info{
-                  display: flex;
-                  align-items: center;
-                  margin-left: 80px;
-
-                  .preview{
-                    img{
-                      margin-right: 8px;
-                    }
-                  }
-                  .details{
-                    .title{
-                      font-size: 24px;
-                      margin-bottom: 8px;
-                      color: #172C7A;
-                    }
-                    .name{
-                      font-weight: bold;
-                      font-size: 16px;
-                      margin-bottom: 6px;
-                      color: #F8AB08;
-                    }
-                    .time{
-                      font-size: 20px;
-                      line-height: 23px;
-                      color: #BEC2D4;
-                    }
-                  }
-                }
-
-                .buttons{
-                  display: flex;
-                  align-items: center;
-                  .prev{
-                    margin-left: 50px;
-                    margin-right: 10px;
-                  }
-                  .next{
-                    margin-right: 50px;
-                    margin-left: 10px;
-                  }
-                  img{
-                    &:hover{
-                      cursor: pointer;
-                    }
-                  }
-                }
-
-                .playing{
-                  display: flex;
-                  align-items: center;
-                  margin-right: 70px;
-                  .time{
-                    font-size: 20px;
-                    color: #BEC2D4;
-                    margin: 0 22px;
-                  }
-                }
+                display: none;
               }
             }
           }
