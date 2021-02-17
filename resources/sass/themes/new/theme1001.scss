@@ -94,7 +94,8 @@ body{
         right: -650px;
         top: 50px;
         transition: all 0.5s;
-
+        max-height: 100vh;
+        overflow-y: auto;
         .close-icon{
           margin-bottom: 50px;
           margin-top: 40px;
@@ -771,6 +772,11 @@ body{
   }
 
 
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
 
 @import "responsive/theme1001";
