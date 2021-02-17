@@ -412,10 +412,6 @@
               display: flex;
               justify-content: space-between;
               flex-wrap: wrap;
-              &::after {
-                content: "";
-                flex: auto;
-              }
 
               .single-hobby{
                 font-family: Roboto, sans-serif;
@@ -424,9 +420,6 @@
                 padding: 25px;
                 border-radius: 15px;
                 margin-bottom: 25px;
-                &:last-child{
-                  margin-left: 0;
-                }
 
                 .hobby-header{
                   display: flex;
@@ -1143,21 +1136,14 @@
               display: flex;
               justify-content: space-between;
               flex-wrap: wrap;
-              &::after {
-                content: "";
-                flex: auto;
-              }
 
               .single-hobby{
                 font-family: Roboto, sans-serif;
                 background: #F1F4FF;
-                max-width: 365px;
-                padding: 30px;
+                max-width: 275px;
+                padding: 20px;
                 border-radius: 15px;
-                margin-bottom: 55px;
-                &:last-child{
-                  margin-left: 22px;
-                }
+                margin-bottom: 25px;
 
                 .hobby-header{
                   display: flex;
@@ -1168,14 +1154,14 @@
 
                   }
                   div.title{
-                    font-size: 29px;
+                    font-size: 21px;
                     color: #172C7A;
                   }
                 }
                 .hobby-description{
-                  margin-top: 35px;
-                  font-size: 18px;
-                  line-height: 21px;
+                  margin-top: 25px;
+                  font-size: 14px;
+                  line-height: 18px;
                   color: #172C7A;
                 }
               }

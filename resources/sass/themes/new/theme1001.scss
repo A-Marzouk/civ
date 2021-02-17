@@ -387,10 +387,6 @@ body{
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            &::after {
-              content: "";
-              flex: auto;
-            }
 
             .single-hobby{
               font-family: Roboto, sans-serif;
@@ -399,9 +395,6 @@ body{
               padding: 30px;
               border-radius: 15px;
               margin-bottom: 55px;
-              &:last-child{
-                margin-left: 22px;
-              }
 
               .hobby-header{
                 display: flex;
