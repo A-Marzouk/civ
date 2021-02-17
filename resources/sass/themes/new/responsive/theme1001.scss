@@ -493,32 +493,33 @@
               flex-wrap: wrap;
               .single-reference{
                 font-family: Roboto, sans-serif;
-                padding: 30px;
+                padding: 40px 10px;
                 max-width: 640px;
-                margin-bottom: 40px;
+                margin-bottom: 25px;
                 background: #F1F4FF;
                 border-radius: 15px;
 
                 .reference-header{
                   font-weight: bold;
-                  font-size: 29px;
+                  font-size: 22px;
                   color: #172C7A;
-                  margin-bottom: 35px;
+                  margin-bottom: 20px;
                 }
+
                 .details{
                   display: flex;
                   justify-content: space-between;
-                  font-size: 17px;
+                  font-size: 13px;
                   line-height: 20px;
                   color: #172C7A;
-                  margin-bottom: 40px;
+                  margin-bottom: 25px;
                   .contact{
-                    margin-right: 30px;
+                    margin-right: 10px;
                   }
                 }
                 .description{
-                  font-size: 17px;
-                  line-height: 20px;
+                  font-size: 16px;
+                  line-height: 19px;
                   color: #172C7A;
                 }
               }
