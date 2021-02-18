@@ -155,16 +155,12 @@
             },
             stopBodyScrolling() {
                 let body = $('body');
-                body.addClass('stop-scrolling')
-                body.bind('touchmove', function (e) {
-                    e.preventDefault()
-                })
+                body.addClass('stop-scrolling');
             },
 
             startBodyScrolling() {
                 let body = $('body');
                 body.removeClass('stop-scrolling')
-                body.unbind('touchmove')
             }
         }
     };

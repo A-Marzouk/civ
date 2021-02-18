@@ -1,13 +1,21 @@
 window.Vue = require('vue');
 const body = $('body');
+let currentTouchPosition = 0 ;
 
 $('document').ready(function(){
 
+    let menuTab  = $('.menu-tab');
+    let menuBody = $('#menu-body');
     $('#menu-open').on('click mouseover', openMenu );
-    $('#menu-body').on('mouseleave', closeMenu );
     $('#menu-close').on('click', closeMenu);
-    $('.menu-tab').on('mouseover', changeTab);
-    $('.menu-tab').on('click', closeMenu);
+
+    menuBody.on('mouseleave', closeMenu );
+    menuTab.on('mouseover', changeTab);
+    menuTab.on('click', closeMenu);
+
+    menuBody.on('touchstart', touchStart);
+    menuBody.on('touchmove', touchMove);
+
     $('.single-category').on('click', changeCategory);
 
     setDefaultActiveTab();
@@ -82,16 +90,28 @@ function setDefaultActiveTab() {
     updateTab(tabName);
 }
 
-
 function stopBodyScrolling(){
     body.addClass('stop-scrolling')
-    body.bind('touchmove', function(e){e.preventDefault()})
+    document.addEventListener("touchmove", body.bind(this), { passive: false });
 }
 
 function startBodyScrolling(){
     body.removeClass('stop-scrolling')
     body.unbind('touchmove')
 }
+
+// touch events:
+function touchStart(e){
+    currentTouchPosition = e.changedTouches[0].clientX;
+}
+
+function touchMove(e){
+    if(e.changedTouches[0].clientX - currentTouchPosition > 30){
+        closeMenu();
+    }
+}
+
+
 
 // needed vue components:
 import MediaTab from './components/theme1001/Media'
@@ -104,7 +124,6 @@ new Vue({
         "media-tab": MediaTab
     }
 });
-
 
 new Vue({
     el: "#messageModal",
