@@ -264,7 +264,7 @@
                 this.applyEdit("auto");
             },
             updateVisibility(field_name) {
-                this.personalInfo['is_' + field_name + '_active'] = !this.personalInfo['is_' + field_name + '_active'];
+                this.personalInfo['is_' + field_name + '_active'] = this.personalInfo['is_' + field_name + '_active'] ? 0 : 1;
                 this.applyEdit("auto");
             },
 
@@ -290,10 +290,8 @@
                 formData.append("user_id", this.user.id);
 
                 $.each(this.personalInfo, field => {
-                    if (this.personalInfo[field] !== null) {
-                        if (field !== "email" && field !== "profile_pic" && this.personalInfo[field].length) {
-                            formData.append(field, this.personalInfo[field]);
-                        }
+                    if (field !== "email" && field !== "profile_pic") {
+                        formData.append(field, this.personalInfo[field]);
                     }
                 });
 

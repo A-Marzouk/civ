@@ -10,6 +10,7 @@ use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -70,12 +71,19 @@ class PersonalInfoController extends Controller
             'email' => ['email','max:255','unique:users'],
             'designation' => ['sometimes', 'string','max:255','min:2'],
             'profile_pic' => ['sometimes'],
-            'phone' => ['sometimes', 'numeric','min:7'],
+            'phone' => ['sometimes'],
             'location' => ['sometimes', 'string', 'max:255','min:3'],
             'hometown' => ['sometimes', 'string', 'max:255','min:3'],
             'nationality' => ['sometimes', 'string', 'max:255','min:3'],
             'about' => ['sometimes','string','max:1000'],
             'overview' => ['sometimes','string','max:1000'],
+            'is_overview_active' => ['string'],
+            'is_about_active' => ['string'],
+            'is_nationality_active' => ['string'],
+            'is_date_of_birth_active' => ['string'],
+            'is_quote_active' => ['string'],
+            'is_location_active' => ['string'],
+            'is_phone_active' => ['string'],
             'quote' => ['sometimes','string','max:1000'],
         ]);
     }

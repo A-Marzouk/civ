@@ -17,7 +17,9 @@
         <div class="personal-info">
             <div class="profile-picture">
                 <img class="main-photo" src="/images/themes/theme1001/profile-photo.png" alt="">
-                <div id="messageModal"><message-modal></message-modal></div>
+                <div id="messageModal">
+                    <message-modal></message-modal>
+                </div>
                 <img class="video-icon" src="/images/themes/theme1001/video.png" alt="">
             </div>
             <div class="details">
@@ -28,14 +30,15 @@
                     {{$user->personalInfo->designation}}
                 </div>
                 <div class="social-icons">
-                    <img src="/images/themes/theme1001/social/behance.png" alt="social icon">
-                    <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
-                    <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
-                    <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
-                    <img src="/images/themes/theme1001/social/behance.png" alt="social icon">
-                    <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
-                    <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
-                    <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
+                    @foreach( $user->links as $link)
+                        @if($link->is_public)
+                            <div class="single-icon">
+                                <a href="{{$link->link}}">
+                                    <img src="/images/themes/theme1001/social/{{strtolower($link->link_title)}}.svg" alt="{{$link->link_title}} icon">
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -45,12 +48,12 @@
             </div>
             <div class="menu-body" id="menu-body">
                 <div class="close-icon">
-                    <img  src="/images/themes/theme1001/menu-icons/small-x.png" alt="close" id="menu-close">
+                    <img src="/images/themes/theme1001/menu-icons/small-x.png" alt="close" id="menu-close">
                 </div>
 
                 <div class="menu-tabs-wrapper">
                     @foreach( $user->tabs as $tab)
-                        @if($tab->is_public)
+                        @if($tab->is_public && in_array($tab->title, ['portfolio', 'work_experience', 'about_me', 'skills', 'media', 'hobbies', 'references', 'achievements']))
                             <div class="menu-tab" data-name="{{$tab->title}}">
                                 <img src="/images/themes/theme1001/menu-icons/{{$tab->title}}.svg" alt="tab icon">
                                 <div class="tab-name">
@@ -99,90 +102,26 @@
                     </div>
                 </div>
                 <div class="portfolio-content">
-                    <div class="single-portfolio">
-                        <img src="/images/themes/theme1001/portfolio/portfolio-sample-1.png" alt="portfolio image">
-                        <div class="details">
-                            <img src="/images/themes/theme1001/portfolio/small-line.png" alt="line">
-                            <div class="text">
-                                <div class="project-name">
-                                    Product Design
+                    @foreach($user->projects as $project)
+                        @if($project->is_public)
+                            <div class="single-portfolio">
+                                <div class="project-image">
+                                    <img src="{{$project->images[0]->src}}" alt="portfolio image">
                                 </div>
-                                <div class="project-description">
-                                    BeatsByDre.com - Leading a digitaltransformation & ecomm redesign
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-portfolio">
-                        <img src="/images/themes/theme1001/portfolio/portfolio-sample-2.png" alt="portfolio image">
-                        <div class="details">
-                            <img src="/images/themes/theme1001/portfolio/small-line.png" alt="line">
-                            <div class="text">
-                                <div class="project-name">
-                                    BEATS BY DRY MOBILE APP
-                                </div>
-                                <div class="project-description">
-                                    BeatsByDre.com - Leading a digitaltransformation
+                                <div class="details">
+                                    <img src="/images/themes/theme1001/portfolio/small-line.png" alt="line">
+                                    <div class="text">
+                                        <div class="project-name">
+                                            {{$project->name}}
+                                        </div>
+                                        <div class="project-description">
+                                            {{$project->description}}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="single-portfolio">
-                        <img src="/images/themes/theme1001/portfolio/portfolio-sample-3.png" alt="portfolio image">
-                        <div class="details">
-                            <img src="/images/themes/theme1001/portfolio/small-line.png" alt="line">
-                            <div class="text">
-                                <div class="project-name">
-                                    Product Design
-                                </div>
-                                <div class="project-description">
-                                    BeatsByDre.com - ecomm redesign
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-portfolio">
-                        <img src="/images/themes/theme1001/portfolio/portfolio-sample-4.png" alt="portfolio image">
-                        <div class="details">
-                            <img src="/images/themes/theme1001/portfolio/small-line.png" alt="line">
-                            <div class="text">
-                                <div class="project-name">
-                                    BEATS BY DRY MOBILE APP
-                                </div>
-                                <div class="project-description">
-                                    BeatsByDre.com - Leading a digitaltransformation & ecomm redesign
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-portfolio">
-                        <img src="/images/themes/theme1001/portfolio/portfolio-sample-5.png" alt="portfolio image">
-                        <div class="details">
-                            <img src="/images/themes/theme1001/portfolio/small-line.png" alt="line">
-                            <div class="text">
-                                <div class="project-name">
-                                    Product Design
-                                </div>
-                                <div class="project-description">
-                                    BeatsByDre.com - Leading a digitaltransformation & ecomm redesign
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-portfolio">
-                        <img src="/images/themes/theme1001/portfolio/portfolio-sample-6.png" alt="portfolio image">
-                        <div class="details">
-                            <img src="/images/themes/theme1001/portfolio/small-line.png" alt="line">
-                            <div class="text">
-                                <div class="project-name">
-                                    Product Design
-                                </div>
-                                <div class="project-description">
-                                    BeatsByDre.com - Leading a digitaltransformation & ecomm redesign
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <div class="single-tab-content work" data-name="work_experience">
@@ -197,72 +136,34 @@
                             </div>
                         </div>
                         <div class="exp-work-wrapper">
-                            <div class="single-info">
-                                <div class="icon">
-                                    <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
-                                </div>
-                                <div class="divider"></div>
-                                <div class="info">
-                                    <div class="work-header">
-                                        <div class="title">
-                                            Google
+                            @foreach($user->workExperience as $work)
+                                @if($work->is_public)
+                                    <div class="single-info">
+                                        <div class="icon">
+                                            <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
                                         </div>
-                                        <div class="date">
-                                            September 2017 - Present
-                                        </div>
-                                    </div>
-                                    <div class="work-sub-header">
-                                        Senior UX UI Designer
-                                    </div>
-                                    <div class="work-description">
-                                        Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-info">
-                                <div class="icon">
-                                    <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
-                                </div>
-                                <div class="divider"></div>
-                                <div class="info">
-                                    <div class="work-header">
-                                        <div class="title">
-                                            Google
-                                        </div>
-                                        <div class="date">
-                                            September 2017 - Present
+                                        <div class="divider"></div>
+                                        <div class="info">
+                                            <div class="work-header">
+                                                <div class="title">
+                                                    {{$work->company_name}}
+                                                </div>
+                                                <div class="date">
+                                                    {{$work->date_from}}
+                                                    -
+                                                    {{$work->present ? 'Present' : $work->date_to}}
+                                                </div>
+                                            </div>
+                                            <div class="work-sub-header">
+                                                {{$work->job_title}}
+                                            </div>
+                                            <div class="work-description">
+                                                {{$work->description}}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="work-sub-header">
-                                        Senior UX UI Designer
-                                    </div>
-                                    <div class="work-description">
-                                        Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-info">
-                                <div class="icon">
-                                    <img src="/images/themes/theme1001/work/work-icon.png" alt="work icon">
-                                </div>
-                                <div class="divider"></div>
-                                <div class="info">
-                                    <div class="work-header">
-                                        <div class="title">
-                                            Google
-                                        </div>
-                                        <div class="date">
-                                            September 2017 - Present
-                                        </div>
-                                    </div>
-                                    <div class="work-sub-header">
-                                        Senior UX UI Designer
-                                    </div>
-                                    <div class="work-description">
-                                        Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="education">
@@ -275,7 +176,9 @@
                             </div>
                         </div>
                         <div class="exp-work-wrapper">
-                            <div class="single-info">
+                            @foreach($user->education as $education)
+                                @if($education->is_public)
+                                    <div class="single-info">
                                 <div class="icon">
                                     <img src="/images/themes/theme1001/work/edu-icon.png" alt="work icon">
                                 </div>
@@ -283,64 +186,22 @@
                                 <div class="info">
                                     <div class="work-header">
                                         <div class="title">
-                                            Technical University
+                                            {{$education->university_name}}
                                         </div>
                                         <div class="date">
                                             2017 - Present
                                         </div>
                                     </div>
                                     <div class="work-sub-header">
-                                        Computer Science Engineering
+                                        {{$education->degree_title}}, {{$education->institution_type}}
                                     </div>
                                     <div class="work-description">
-                                        Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
+                                        {{$education->description}}
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-info">
-                                <div class="icon">
-                                    <img src="/images/themes/theme1001/work/edu-icon.png" alt="work icon">
-                                </div>
-                                <div class="divider"></div>
-                                <div class="info">
-                                    <div class="work-header">
-                                        <div class="title">
-                                            Technical University
-                                        </div>
-                                        <div class="date">
-                                            2017 - Present
-                                        </div>
-                                    </div>
-                                    <div class="work-sub-header">
-                                        Computer Science Engineering
-                                    </div>
-                                    <div class="work-description">
-                                        Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-info">
-                                <div class="icon">
-                                    <img src="/images/themes/theme1001/work/edu-icon.png" alt="work icon">
-                                </div>
-                                <div class="divider"></div>
-                                <div class="info">
-                                    <div class="work-header">
-                                        <div class="title">
-                                            Technical University
-                                        </div>
-                                        <div class="date">
-                                            2017 - Present
-                                        </div>
-                                    </div>
-                                    <div class="work-sub-header">
-                                        Computer Science Engineering
-                                    </div>
-                                    <div class="work-description">
-                                        Get, keoo and grow more customers with customer engagement Automation by kissmetrics.
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -376,299 +237,166 @@
                 </div>
 
                 <div class="skills-wrapper">
-                    <div class="single-skill">
+                    @foreach( $user->skills as $skill)
+                        @if($skill->is_public)
+                            <div class="single-skill">
                         <div class="skill-info">
                             <div class="skill-icon">
-                                <img src="/images/themes/theme1001/skills/adobe_sketch.png" alt="skill icon">
+                                <img src="/images/themes/theme1001/skills/skill-general.png" alt="skill icon">
                             </div>
                             <div class="title">
                                 <div class="main">
-                                    Adobe Sketch
+                                    {{$skill->title}}
                                 </div>
                                 <div class="sub">
-                                    Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
+                                    {{$skill->title}},   {{$skill->category}}
                                 </div>
                             </div>
                             <div class="percentage">
-                                75%
+                                {{$skill->percentage}}%
                             </div>
                         </div>
                         <div class="skill-percentage-bar">
                             <div class="default-bar"></div>
-                            <div class="bar-percentage-achieved" style="width: 75%"></div>
+                            <div class="bar-percentage-achieved" style="width: {{$skill->percentage}}%"></div>
                         </div>
                     </div>
-                    <div class="single-skill">
-                        <div class="skill-info">
-                            <div class="skill-icon">
-                                <img src="/images/themes/theme1001/skills/photoshop.png" alt="skill icon">
-                            </div>
-                            <div class="title">
-                                <div class="main">
-                                    Adobe Photoshop
-                                </div>
-                                <div class="sub">
-                                    Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
-                                </div>
-                            </div>
-                            <div class="percentage">
-                                90%
-                            </div>
-                        </div>
-                        <div class="skill-percentage-bar">
-                            <div class="default-bar"></div>
-                            <div class="bar-percentage-achieved" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="single-skill">
-                        <div class="skill-info">
-                            <div class="skill-icon">
-                                <img src="/images/themes/theme1001/skills/adobe_after_effects.png" alt="skill icon">
-                            </div>
-                            <div class="title">
-                                <div class="main">
-                                    Adobe After Effect
-                                </div>
-                                <div class="sub">
-                                    Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
-                                </div>
-                            </div>
-                            <div class="percentage">
-                                55%
-                            </div>
-                        </div>
-                        <div class="skill-percentage-bar">
-                            <div class="default-bar"></div>
-                            <div class="bar-percentage-achieved" style="width: 55%"></div>
-                        </div>
-                    </div>
-                    <div class="single-skill">
-                        <div class="skill-info">
-                            <div class="skill-icon">
-                                <img src="/images/themes/theme1001/skills/figma.png" alt="skill icon">
-                            </div>
-                            <div class="title">
-                                <div class="main">
-                                    Figma
-                                </div>
-                                <div class="sub">
-                                    Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
-                                </div>
-                            </div>
-                            <div class="percentage">
-                                75%
-                            </div>
-                        </div>
-                        <div class="skill-percentage-bar">
-                            <div class="default-bar"></div>
-                            <div class="bar-percentage-achieved" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    <div class="single-skill">
-                        <div class="skill-info">
-                            <div class="skill-icon">
-                                <img src="/images/themes/theme1001/skills/adobe_xd.png" alt="skill icon">
-                            </div>
-                            <div class="title">
-                                <div class="main">
-                                    Adobe XD
-                                </div>
-                                <div class="sub">
-                                    Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
-                                </div>
-                            </div>
-                            <div class="percentage">
-                                25%
-                            </div>
-                        </div>
-                        <div class="skill-percentage-bar">
-                            <div class="default-bar"></div>
-                            <div class="bar-percentage-achieved" style="width: 25%"></div>
-                        </div>
-                    </div>
-                    <div class="single-skill">
-                        <div class="skill-info">
-                            <div class="skill-icon">
-                                <img src="/images/themes/theme1001/skills/adobe_illustrator.png" alt="skill icon">
-                            </div>
-                            <div class="title">
-                                <div class="main">
-                                    Adobe Illustrator
-                                </div>
-                                <div class="sub">
-                                    Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
-                                </div>
-                            </div>
-                            <div class="percentage">
-                                75%
-                            </div>
-                        </div>
-                        <div class="skill-percentage-bar">
-                            <div class="default-bar"></div>
-                            <div class="bar-percentage-achieved" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    <div class="single-skill">
-                        <div class="skill-info">
-                            <div class="skill-icon">
-                                <img src="/images/themes/theme1001/skills/adobe_indesign.png" alt="skill icon">
-                            </div>
-                            <div class="title">
-                                <div class="main">
-                                    Adobe InDesign
-                                </div>
-                                <div class="sub">
-                                    Xd, Design, App, Site, Prototype, Mobile, Responsive, Ui, Ux
-                                </div>
-                            </div>
-                            <div class="percentage">
-                                85%
-                            </div>
-                        </div>
-                        <div class="skill-percentage-bar">
-                            <div class="default-bar"></div>
-                            <div class="bar-percentage-achieved" style="width: 85%"></div>
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
                 </div>
 
                 <div class="skills-divider"></div>
 
                 <div class="skills-wrapper languages">
-                    <div class="single-skill">
-                        <div class="skill-info">
-                            <div class="skill-icon">
-                                <img src="/images/themes/theme1001/languages/english.png" alt="skill icon">
-                            </div>
-                            <div class="title">
-                                <div class="main">
-                                    English
+                    @foreach($user->languages as $language)
+                        <div class="single-skill">
+                            <div class="skill-info">
+                                <div class="skill-icon">
+                                    <img src="/images/themes/theme1001/languages/language-general.png" alt="language icon">
                                 </div>
-                                <div class="sub">
-                                    Perfect Language knowledge, real time translations.
+                                <div class="title">
+                                    <div class="main">
+                                        {{$language->label}}
+                                    </div>
+                                    <div class="sub">
+                                        Perfect Language knowledge.
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="percentage">
-                                90%
-                            </div>
-                        </div>
-                        <div class="skill-percentage-bar">
-                            <div class="default-bar"></div>
-                            <div class="bar-percentage-achieved" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="single-skill">
-                        <div class="skill-info">
-                            <div class="skill-icon">
-                                <img src="/images/themes/theme1001/languages/french.png" alt="skill icon">
-                            </div>
-                            <div class="title">
-                                <div class="main">
-                                    French
-                                </div>
-                                <div class="sub">
-                                    Perfect Language knowledge, real time translations.
+                                <div class="percentage">
+                                    90%
                                 </div>
                             </div>
-                            <div class="percentage">
-                                90%
+                            <div class="skill-percentage-bar">
+                                <div class="default-bar"></div>
+                                <div class="bar-percentage-achieved" style="width: 90%"></div>
                             </div>
                         </div>
-                        <div class="skill-percentage-bar">
-                            <div class="default-bar"></div>
-                            <div class="bar-percentage-achieved" style="width: 90%"></div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="single-tab-content about" data-name="about_me">
                 <div class="about-info-wrapper">
                     <div class="personal-info">
-                        <div class="single-data">
-                            <img src="/images/themes/theme1001/about/birthday-cake.png" alt="Date icon">
-                            <div class="title">
-                                Date of Birth
+                        @if($user->personalInfo->is_date_of_birth_active)
+                            <div class="single-data">
+                                <img src="/images/themes/theme1001/about/birthday-cake.png" alt="Date icon">
+                                <div class="title">
+                                    Date of Birth
+                                </div>
+                                <div class="sub-title">
+                                    {{$user->personalInfo->date_of_birth}}
+                                </div>
                             </div>
-                            <div class="sub-title">
-                                01/14/1990
-                            </div>
-                        </div>
-                        <div class="single-data">
+                        @endif
+                        @if($user->personalInfo->is_nationality_active)
+                            <div class="single-data">
                             <img src="/images/themes/theme1001/about/flags.png" alt="Nationality icon">
                             <div class="title">
                                 Nationality
                             </div>
                             <div class="sub-title">
-                                Indian
+                                {{$user->personalInfo->nationality}}
                             </div>
                         </div>
-                        <div class="single-data">
-                            <img src="/images/themes/theme1001/about/home.png" alt="Hometown icon">
-                            <div class="title">
-                                Hometown
-                            </div>
-                            <div class="sub-title">
-                                Kiev
-                            </div>
-                        </div>
+                        @endif
+                        @if($user->personalInfo->is_hometown_active)
+                            <div class="single-data">
+                                    <img src="/images/themes/theme1001/about/home.png" alt="Hometown icon">
+                                    <div class="title">
+                                        Hometown
+                                    </div>
+                                    <div class="sub-title">
+                                        {{$user->personalInfo->hometown}}
+                                    </div>
+                    </div>
+                        @endif
                         <div class="single-data">
                             <img src="/images/themes/theme1001/about/translate.png" alt="languages icon">
                             <div class="title">
                                 Languages
                             </div>
                             <div class="sub-title">
-                                English<br/>
-                                Arabic<br/>
-                                French
+                                @foreach( $user->languages as $language)
+                                    {{$language->label}} <br/>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                     <div class="professional-info">
                         <div class="main-info-wrapper">
-                            <div class="single-main-info">
-                                <div class="title">
-                                    Overview
+                            @if($user->personalInfo->is_overview_active)
+                                <div class="single-main-info">
+                                    <div class="title">
+                                        Overview
+                                    </div>
+                                    <div class="sub-title">
+                                        {{$user->personalInfo->overview}}
+                                    </div>
                                 </div>
-                                <div class="sub-title">
-                                    A lot of things to be said here in the overview section, speak about yourself and what you want to achieve in the future.
+                            @endif
+                            @if($user->personalInfo->is_about_active)
+                                <div class="single-main-info">
+                                    <div class="title">
+                                        About me
+                                    </div>
+                                    <div class="sub-title">
+                                        {{$user->personalInfo->about}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="single-main-info">
-                                <div class="title">
-                                    About me
-                                </div>
-                                <div class="sub-title">
-                                    A lot of things to be said here in the overview section, speak about yourself and what you want to achieve in the future.
-                                </div>
-                            </div>
+                            @endif
                         </div>
                         <div class="sub-info-wrapper">
-                            <div class="single-sub-info">
-                                <div class="icon">
-                                    <img src="/images/themes/theme1001/about/left-quotes-sign.png" alt="icon">
-                                </div>
-                                <div class="details">
-                                    <div class="title">
-                                        Quote
+                            @if($user->personalInfo->quote)
+                                <div class="single-sub-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/about/left-quotes-sign.png" alt="icon">
                                     </div>
-                                    <div class="sub-title">
-                                        A lot of things to be said here in the Quote section.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-sub-info">
-                                <div class="icon">
-                                    <img src="/images/themes/theme1001/about/pin.png" alt="icon">
-                                </div>
-                                <div class="details">
-                                    <div class="title">
-                                        Location
-                                    </div>
-                                    <div class="sub-title">
-                                        Ireland, Dublin
+                                    <div class="details">
+                                        <div class="title">
+                                            Quote
+                                        </div>
+                                        <div class="sub-title">
+                                            {{$user->personalInfo->quote}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+
+                            @endif
+                            @if($user->personalInfo->location)
+                                <div class="single-sub-info">
+                                    <div class="icon">
+                                        <img src="/images/themes/theme1001/about/pin.png" alt="icon">
+                                    </div>
+                                    <div class="details">
+                                        <div class="title">
+                                            Location
+                                        </div>
+                                        <div class="sub-title">
+                                            {{$user->personalInfo->location}}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -683,84 +411,21 @@
                     </div>
                 </div>
                 <div class="hobbies-wrapper">
-                    <div class="single-hobby">
-                        <div class="hobby-header">
-                            <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
-                            <div class="title">
-                                Cycling
+                    @foreach( $user->hobbies as $hobby)
+                        @if($hobby->is_public)
+                            <div class="single-hobby">
+                                <div class="hobby-header">
+                                    <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
+                                    <div class="title">
+                                        {{$hobby->title}}
+                                    </div>
+                                </div>
+                                <div class="hobby-description">
+                                    {{$hobby->title}}, {{$hobby->category}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="hobby-description">
-                            Cycling, also called bicycling or biking,
-                            is the use of bicycles for transport, recreation,exercise or sport.
-                            People engaged in cycling are referred HPVs.
-                        </div>
-                    </div>
-                    <div class="single-hobby">
-                        <div class="hobby-header">
-                            <img src="/images/themes/theme1001/hobbies/book.png" alt="">
-                            <div class="title">
-                                Reading
-                            </div>
-                        </div>
-                        <div class="hobby-description">
-                            Cycling, also called bicycling or biking,
-                            is the use of bicycles for transport, recreation,exercise or sport.
-                            People engaged in cycling are referred HPVs.
-                        </div>
-                    </div>
-                    <div class="single-hobby">
-                        <div class="hobby-header">
-                            <img src="/images/themes/theme1001/hobbies/suitcase.png" alt="">
-                            <div class="title">
-                                Travelling
-                            </div>
-                        </div>
-                        <div class="hobby-description">
-                            Cycling, also called bicycling or biking,
-                            is the use of bicycles for transport, recreation,exercise or sport.
-                            People engaged in cycling are referred HPVs.
-                        </div>
-                    </div>
-                    <div class="single-hobby">
-                        <div class="hobby-header">
-                            <img src="/images/themes/theme1001/hobbies/writing.png" alt="">
-                            <div class="title">
-                                Writing
-                            </div>
-                        </div>
-                        <div class="hobby-description">
-                            Cycling, also called bicycling or biking,
-                            is the use of bicycles for transport, recreation,exercise or sport.
-                            People engaged in cycling are referred HPVs.
-                        </div>
-                    </div>
-                    <div class="single-hobby">
-                        <div class="hobby-header">
-                            <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
-                            <div class="title">
-                                Cycling
-                            </div>
-                        </div>
-                        <div class="hobby-description">
-                            Cycling, also called bicycling or biking,
-                            is the use of bicycles for transport, recreation,exercise or sport.
-                            People engaged in cycling are referred HPVs.
-                        </div>
-                    </div>
-                    <div class="single-hobby">
-                        <div class="hobby-header">
-                            <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
-                            <div class="title">
-                                Cycling
-                            </div>
-                        </div>
-                        <div class="hobby-description">
-                            Cycling, also called bicycling or biking,
-                            is the use of bicycles for transport, recreation,exercise or sport.
-                            People engaged in cycling are referred HPVs.
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
 
                 </div>
             </div>
@@ -779,23 +444,23 @@
                     @foreach( $user->references as $reference)
                         @if($reference->is_public)
                             <div class="single-reference">
-                        <div class="reference-header">
-                            {{$reference->title}} - {{$reference->name}}
-                        </div>
-                        <div class="details">
-                            <div class="location">
-                                <div>{{$reference->name}}</div>
-                                <div> {{$reference->address}}</div>
+                                <div class="reference-header">
+                                    {{$reference->title}} - {{$reference->name}}
+                                </div>
+                                <div class="details">
+                                    <div class="location">
+                                        <div>{{$reference->name}}</div>
+                                        <div> {{$reference->address}}</div>
+                                    </div>
+                                    <div class="contact">
+                                        <div>{{$reference->email}}</div>
+                                        <div>{{$reference->phone}}</div>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    {{$reference->reference_text}}
+                                </div>
                             </div>
-                            <div class="contact">
-                                <div>{{$reference->email}}</div>
-                                <div>{{$reference->phone}}</div>
-                            </div>
-                        </div>
-                        <div class="description">
-                            {{$reference->reference_text}}
-                        </div>
-                    </div>
                         @endif
                     @endforeach
                 </div>

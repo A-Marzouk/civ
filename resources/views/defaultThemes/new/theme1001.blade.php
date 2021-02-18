@@ -28,14 +28,26 @@
                         UX UI Designer
                     </div>
                     <div class="social-icons">
-                        <img src="/images/themes/theme1001/social/behance.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/behance.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
+                        <div class="single-icon">
+                            <a href="#">
+                                <img src="/images/themes/theme1001/social/behance.svg" alt="social icon">
+                            </a>
+                        </div>
+                        <div class="single-icon">
+                            <a href="#">
+                                <img src="/images/themes/theme1001/social/dribbble.svg" alt="social icon">
+                            </a>
+                        </div>
+                        <div class="single-icon">
+                            <a href="#">
+                                <img src="/images/themes/theme1001/social/facebook.svg" alt="social icon">
+                            </a>
+                        </div>
+                        <div class="single-icon">
+                            <a href="#">
+                                <img src="/images/themes/theme1001/social/linkedin.svg" alt="social icon">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
