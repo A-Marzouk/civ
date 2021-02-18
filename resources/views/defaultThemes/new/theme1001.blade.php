@@ -48,15 +48,15 @@
                         <img  src="/images/themes/theme1001/menu-icons/small-x.png" alt="close" id="menu-close">
                     </div>
 
-                    <div class="menu-tabs-wrapper">
+                    <div class="menu-tabs-wrapper" id="menu-tabs-elements">
                         <div class="menu-tab " data-name="portfolio">
-                            <img src="/images/themes/theme1001/menu-icons/image-gallery.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/portfolio.svg" alt="tab icon">
                             <div class="tab-name">
                                 Portfolio
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="work">
-                            <img src="/images/themes/theme1001/menu-icons/work.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/work_experience.svg" alt="tab icon">
                             <div class="tab-name">
                                 Work Experience & Education
                             </div>
@@ -68,31 +68,31 @@
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="about">
-                            <img src="/images/themes/theme1001/menu-icons/user.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/about_me.svg" alt="tab icon">
                             <div class="tab-name">
                                 About me
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="hobbies">
-                            <img src="/images/themes/theme1001/menu-icons/puzzle.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/hobbies.svg" alt="tab icon">
                             <div class="tab-name">
                                 Hobbies
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="media">
-                            <img src="/images/themes/theme1001/menu-icons/sound.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/media.svg" alt="tab icon">
                             <div class="tab-name">
                                 Media
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="references">
-                            <img src="/images/themes/theme1001/menu-icons/refer.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/references.svg" alt="tab icon">
                             <div class="tab-name">
                                 References
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="achievements">
-                            <img src="/images/themes/theme1001/menu-icons/trophy.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/achievements.svg" alt="tab icon">
                             <div class="tab-name">
                                 Achievements
                             </div>

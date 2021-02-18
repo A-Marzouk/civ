@@ -438,8 +438,15 @@ body{
               margin-bottom: 40px;
 
               .certificate{
+                max-width: 300px;
+                max-height: 300px;
+                display: flex;
+                margin-right: 35px;
+                overflow: hidden;
+                align-items: center;
+                justify-content: center;
                 img{
-                  margin-right: 35px;
+
                 }
               }
               .details{

@@ -66,19 +66,22 @@ function updateTab(tabName) {
             $(tabsContent[i]).removeClass('active')
         }
 
+        if(tabsContent[i].dataset.name === tabName){
+            $(tabsContent[i]).addClass('active');
+        }
+
         if(tabs[i].dataset.name === tabName){
             $(tabs[i]).addClass('active');
-            $(tabsContent[i]).addClass('active');
         }
     }
 }
 
 function setDefaultActiveTab() {
 
-    let tabName = 'portfolio';
+    let tabName = $('.menu-tab').first().data().name;
     let queryString = window.location.search;
     let urlParams = new URLSearchParams(queryString);
-    let defaultTabs = ['portfolio', 'work', 'skills', 'hobbies','about', 'media', 'references', 'achievements'];
+    let defaultTabs = ['portfolio', 'work_experience', 'skills', 'hobbies','about_me', 'media', 'references', 'achievements'];
 
     if(urlParams.has('tab')){
          let tabParam = urlParams.get('tab');
