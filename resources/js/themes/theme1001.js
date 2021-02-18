@@ -1,17 +1,27 @@
 window.Vue = require('vue');
+const body = $('body');
+let currentTouchPosition = 0 ;
 
 $('document').ready(function(){
 
+    let menuTab  = $('.menu-tab');
+    let menuBody = $('#menu-body');
     $('#menu-open').on('click mouseover', openMenu );
-    $('#menu-body').on('mouseleave', closeMenu );
     $('#menu-close').on('click', closeMenu);
-    $('.menu-tab').on('mouseover', changeTab);
-    $('.menu-tab').on('click', closeMenu);
+
+    menuBody.on('mouseleave', closeMenu );
+    menuTab.on('mouseover', changeTab);
+    menuTab.on('click', closeMenu);
+
+    menuBody.on('touchstart', touchStart);
+    menuBody.on('touchmove', touchMove);
+
     $('.single-category').on('click', changeCategory);
 
     setDefaultActiveTab();
 
 });
+
 
 function openMenu() {
     $('#menu-body').css('right', 0);
@@ -56,19 +66,22 @@ function updateTab(tabName) {
             $(tabsContent[i]).removeClass('active')
         }
 
+        if(tabsContent[i].dataset.name === tabName){
+            $(tabsContent[i]).addClass('active');
+        }
+
         if(tabs[i].dataset.name === tabName){
             $(tabs[i]).addClass('active');
-            $(tabsContent[i]).addClass('active');
         }
     }
 }
 
 function setDefaultActiveTab() {
 
-    let tabName = 'portfolio';
+    let tabName = $('.menu-tab').first().data().name;
     let queryString = window.location.search;
     let urlParams = new URLSearchParams(queryString);
-    let defaultTabs = ['portfolio', 'work', 'skills', 'hobbies','about', 'media', 'references', 'achievements'];
+    let defaultTabs = ['portfolio', 'work_experience', 'skills', 'hobbies','about_me', 'media', 'references', 'achievements'];
 
     if(urlParams.has('tab')){
          let tabParam = urlParams.get('tab');
@@ -80,23 +93,44 @@ function setDefaultActiveTab() {
     updateTab(tabName);
 }
 
-
 function stopBodyScrolling(){
-    $('body').addClass('stop-scrolling')
-    $('body').bind('touchmove', function(e){e.preventDefault()})
+    body.addClass('stop-scrolling')
+    document.addEventListener("touchmove", body.bind(this), { passive: false });
 }
 
 function startBodyScrolling(){
-    $('body').removeClass('stop-scrolling')
-    $('body').unbind('touchmove')
+    body.removeClass('stop-scrolling')
+    body.unbind('touchmove')
 }
+
+// touch events:
+function touchStart(e){
+    currentTouchPosition = e.changedTouches[0].clientX;
+}
+
+function touchMove(e){
+    if(e.changedTouches[0].clientX - currentTouchPosition > 30){
+        closeMenu();
+    }
+}
+
+
 
 // needed vue components:
 import MediaTab from './components/theme1001/Media'
+import messageModal from './components/theme1001/MessageModal'
+
 
 new Vue({
     el: "#mediaTab",
     components: {
         "media-tab": MediaTab
+    }
+});
+
+new Vue({
+    el: "#messageModal",
+    components: {
+        "message-modal": messageModal
     }
 });

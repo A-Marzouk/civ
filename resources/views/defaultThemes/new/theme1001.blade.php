@@ -17,7 +17,7 @@
             <div class="personal-info">
                 <div class="profile-picture">
                     <img class="main-photo" src="/images/themes/theme1001/profile-photo.png" alt="">
-                    <img class="message-icon" src="/images/themes/theme1001/message.png" alt="">
+                    <div id="messageModal"><message-modal></message-modal></div>
                     <img class="video-icon" src="/images/themes/theme1001/video.png" alt="">
                 </div>
                 <div class="details">
@@ -28,14 +28,26 @@
                         UX UI Designer
                     </div>
                     <div class="social-icons">
-                        <img src="/images/themes/theme1001/social/behance.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/behance.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/dribbble.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/facebook.png" alt="social icon">
-                        <img src="/images/themes/theme1001/social/linkedin.png" alt="social icon">
+                        <div class="single-icon">
+                            <a href="#">
+                                <img src="/images/themes/theme1001/social/behance.svg" alt="social icon">
+                            </a>
+                        </div>
+                        <div class="single-icon">
+                            <a href="#">
+                                <img src="/images/themes/theme1001/social/dribbble.svg" alt="social icon">
+                            </a>
+                        </div>
+                        <div class="single-icon">
+                            <a href="#">
+                                <img src="/images/themes/theme1001/social/facebook.svg" alt="social icon">
+                            </a>
+                        </div>
+                        <div class="single-icon">
+                            <a href="#">
+                                <img src="/images/themes/theme1001/social/linkedin.svg" alt="social icon">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,15 +60,15 @@
                         <img  src="/images/themes/theme1001/menu-icons/small-x.png" alt="close" id="menu-close">
                     </div>
 
-                    <div class="menu-tabs-wrapper">
+                    <div class="menu-tabs-wrapper" id="menu-tabs-elements">
                         <div class="menu-tab " data-name="portfolio">
-                            <img src="/images/themes/theme1001/menu-icons/image-gallery.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/portfolio.svg" alt="tab icon">
                             <div class="tab-name">
                                 Portfolio
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="work">
-                            <img src="/images/themes/theme1001/menu-icons/work.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/work_experience.svg" alt="tab icon">
                             <div class="tab-name">
                                 Work Experience & Education
                             </div>
@@ -68,31 +80,31 @@
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="about">
-                            <img src="/images/themes/theme1001/menu-icons/user.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/about_me.svg" alt="tab icon">
                             <div class="tab-name">
                                 About me
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="hobbies">
-                            <img src="/images/themes/theme1001/menu-icons/puzzle.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/hobbies.svg" alt="tab icon">
                             <div class="tab-name">
                                 Hobbies
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="media">
-                            <img src="/images/themes/theme1001/menu-icons/sound.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/media.svg" alt="tab icon">
                             <div class="tab-name">
                                 Media
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="references">
-                            <img src="/images/themes/theme1001/menu-icons/refer.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/references.svg" alt="tab icon">
                             <div class="tab-name">
                                 References
                             </div>
                         </div>
                         <div class="menu-tab"  data-name="achievements">
-                            <img src="/images/themes/theme1001/menu-icons/trophy.svg" alt="tab icon">
+                            <img src="/images/themes/theme1001/menu-icons/achievements.svg" alt="tab icon">
                             <div class="tab-name">
                                 Achievements
                             </div>
