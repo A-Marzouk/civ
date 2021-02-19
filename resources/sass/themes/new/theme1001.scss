@@ -423,7 +423,7 @@ body{
         &.hobbies{
           .hobbies-wrapper{
             display: flex;
-            justify-content: start;
+            justify-content:  flex-start;
             flex-wrap: wrap;
 
             .single-hobby{
