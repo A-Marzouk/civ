@@ -62,16 +62,19 @@ function updateTab(tabName) {
         if($(tabs[i]).hasClass('active')){
             $(tabs[i]).removeClass('active')
         }
+        if(tabs[i].dataset.name === tabName){
+            $(tabs[i]).addClass('active');
+        }
+    }
+
+    for (let i = 0; i < tabsContent.length ; i++) {
         if($(tabsContent[i]).hasClass('active')){
             $(tabsContent[i]).removeClass('active')
         }
 
         if(tabsContent[i].dataset.name === tabName){
+            console.log(tabName);
             $(tabsContent[i]).addClass('active');
-        }
-
-        if(tabs[i].dataset.name === tabName){
-            $(tabs[i]).addClass('active');
         }
     }
 }
