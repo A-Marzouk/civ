@@ -180,7 +180,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .music-effect{
         width: 706px;
         height: 98px;
@@ -190,7 +190,7 @@
         background-position-x: 0;
         animation-name: changewidth;
         animation-direction: normal;
-        animation-duration: 10s;
+        animation-duration: 100s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
     }

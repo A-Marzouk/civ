@@ -111,7 +111,7 @@ function touchStart(e){
 }
 
 function touchMove(e){
-    if(e.changedTouches[0].clientX - currentTouchPosition > 30){
+    if(e.changedTouches[0].clientX - currentTouchPosition > 60){
         closeMenu();
     }
 }
