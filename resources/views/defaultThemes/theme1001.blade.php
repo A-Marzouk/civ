@@ -16,7 +16,7 @@
     <div class="header">
         <div class="personal-info">
             <div class="profile-picture">
-                <img class="main-photo" src="/images/themes/theme1001/profile-photo.png" alt="">
+                <img class="main-photo" src="{{$user->personalInfo->profile_pic}}" alt="">
                 <div id="messageModal">
                     <message-modal></message-modal>
                 </div>

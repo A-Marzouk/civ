@@ -22,7 +22,7 @@ body{
       .profile-picture{
         position: relative;
         .main-photo{
-
+          border-radius: 50%;
         }
         .message-icon{
           &:hover{
@@ -72,6 +72,9 @@ body{
             a{
               width: 30px;
               height: 30px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
               img{
                 width: 30px;
               }
