@@ -73,7 +73,6 @@ function updateTab(tabName) {
         }
 
         if(tabsContent[i].dataset.name === tabName){
-            console.log(tabName);
             $(tabsContent[i]).addClass('active');
         }
     }

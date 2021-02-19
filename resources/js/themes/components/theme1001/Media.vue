@@ -11,78 +11,53 @@
                 Audio
             </div>
         </div>
-        <div class="media-wrapper">
-            <div class="single-media audio">
-                <div class="single-media-header">
-                    <div class="preview">
-                        <img src="/images/themes/theme1001/media/audio-preview.png" alt="preview">
-                    </div>
-                    <div class="details">
-                        <div class="title">
-                            AUD17/04/2020
+        <div class="media-wrapper" v-if="medias">
+            <template v-for="media in medias">
+                <div v-if="media.type === 'audio' " class="single-media audio">
+                    <div class="single-media-header">
+                        <div class="preview">
+                            <img src="/images/themes/theme1001/media/audio-preview.png" alt="preview">
                         </div>
-                        <div class="name">
-                            Hean Prinsloo
+                        <div class="details">
+                            <div class="title">
+                                {{media.title}}
+                            </div>
+                            <div class="name">
+                                {{getFormattedDate(media.created_at)}}
+                            </div>
+                            <div class="time">
+                                00:00:00
+                            </div>
                         </div>
-                        <div class="time">
-                            00:00:00
+                        <div class="play-icon">
+                            <img v-if="playingMedia.id !== media.id"  @click="playMedia(media)" src="/images/themes/theme1001/media/audio-play-btn.png" alt="play btn">
+                            <img v-else  @click="pauseMedia(media)" src="/images/themes/theme1001/media/audio-pause-btn.png" alt="pause btn">
                         </div>
                     </div>
-                    <div class="play-icon">
-                        <img src="/images/themes/theme1001/media/audio-play-btn.png" alt="play btn">
+                    <div class="description">
+                        {{media.transcript}}
                     </div>
+
+                    <audio controls :id="'media_element' + media.id" preload="auto" class="mediaElement audio" style="display: none;">
+                        <source :src="media.url"/>
+                        <source :src="media.url" type="audio/webm">
+                    </audio>
+
                 </div>
-                <div class="description">
-                    Video is an electronic medium for therecording, copying,
-                    playback, broadcasting,and display of moving visual media.
+                <div v-else class="single-media video">
+                    <template v-if="playingMedia.id !== media.id" >
+                        <img class="preview" :src="media.media_preview" alt="preview" >
+                        <img class="play-icon" @click="playMedia(media)" src="/images/themes/theme1001/media/audio-play-btn.png" alt="play btn">
+                    </template>
+
+                    <video width="auto" height="auto" @ended="mediaEnded" controls :id=" 'media_element' + media.id" v-show="playingMedia.id === media.id" class="mediaElement video">
+                        <source
+                                :src="media.url"
+                                type="video/mp4"
+                        />
+                    </video>
                 </div>
-            </div>
-            <div class="single-media audio">
-                <div class="single-media-header">
-                    <div class="preview">
-                        <img src="/images/themes/theme1001/media/audio-preview.png" alt="preview">
-                    </div>
-                    <div class="details">
-                        <div class="title">
-                            AUD17/01/2021
-                        </div>
-                        <div class="name">
-                            Hean Prinsloo
-                        </div>
-                        <div class="time">
-                            00:00:00
-                        </div>
-                    </div>
-                    <div class="play-icon">
-                        <img src="/images/themes/theme1001/media/audio-play-btn.png" alt="play btn">
-                    </div>
-                </div>
-            </div>
-            <div class="single-media audio">
-                <div class="single-media-header">
-                    <div class="preview">
-                        <img src="/images/themes/theme1001/media/audio-preview.png" alt="preview">
-                    </div>
-                    <div class="details">
-                        <div class="title">
-                            AUD17/01/2021
-                        </div>
-                        <div class="name">
-                            Hean Prinsloo
-                        </div>
-                        <div class="time">
-                            00:00:00
-                        </div>
-                    </div>
-                    <div class="play-icon">
-                        <img src="/images/themes/theme1001/media/audio-play-btn.png" alt="play btn">
-                    </div>
-                </div>
-            </div>
-            <div class="single-media video">
-                <img class="preview" src="/images/themes/theme1001/media/video-preview.png" alt="preview">
-                <img class="play-icon" src="/images/themes/theme1001/media/audio-play-btn.png" alt="play btn">
-            </div>
+            </template>
         </div>
 
         <div class="media-player-footer">
@@ -122,15 +97,59 @@
 <script>
     export default {
         name: "Media",
+        props:['user'],
         data() {
             return {
-                activeCategory: 'all'
+                activeCategory: 'all',
+                playingMedia: {}
+            }
+        },
+        computed:{
+            medias(){
+                return this.user.media;
             }
         },
         methods:{
             changeCategory(category){
                 this.activeCategory = category;
-            }
+            },
+            getFormattedDate(date) {
+                let d = new Date(date);
+                return d.getDate() + '.' + (d.getMonth()+1) + '.' + d.getFullYear() ;
+            },
+            playMedia(media){
+                this.playingMedia  = media;
+
+                $('.mediaElement').each(function() {
+                    $(this).get(0).pause();
+                });
+
+                let currentAudioID = "media_element" + media.id;
+
+                let currentAudioElement = document.getElementById(currentAudioID) ;
+
+                currentAudioElement.play();
+            },
+            pauseMedia(media){
+                this.playingMedia = {};
+
+                let currentAudioID = "media_element" + media.id;
+
+                let currentAudioElement = document.getElementById(currentAudioID) ;
+
+                currentAudioElement.pause();
+            },
+            stopMedia(){
+
+            },
+            mediaEnded(){
+                setTimeout( () => {
+                    this.playingMedia = {} ;
+                },1000);
+            },
+        },
+        mounted() {
+
         }
     }
 </script>

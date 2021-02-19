@@ -431,7 +431,7 @@
             </div>
             <div class="single-tab-content media" data-name="media">
                 <div id="mediaTab">
-                    <media-tab></media-tab>
+                    <media-tab :user="{{$user}}"></media-tab>
                 </div>
             </div>
             <div class="single-tab-content references" data-name="references">
