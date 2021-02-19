@@ -73,7 +73,6 @@ function updateTab(tabName) {
         }
 
         if(tabsContent[i].dataset.name === tabName){
-            console.log(tabName);
             $(tabsContent[i]).addClass('active');
         }
     }
@@ -112,7 +111,7 @@ function touchStart(e){
 }
 
 function touchMove(e){
-    if(e.changedTouches[0].clientX - currentTouchPosition > 30){
+    if(e.changedTouches[0].clientX - currentTouchPosition > 60){
         closeMenu();
     }
 }

@@ -552,9 +552,9 @@ body{
 
             .media-wrapper{
               display: flex;
-              justify-content: space-between;
+              justify-content: space-around;
               flex-wrap: wrap;
-              align-items: baseline;
+              align-items: center;
               max-width: 1600px;
               margin: 70px auto auto auto;
 
@@ -635,6 +635,12 @@ body{
                       cursor: pointer;
                     }
                   }
+
+                  .mediaElement.video{
+                    width: 100%;
+                    border-radius: 15px;
+                  }
+
                 }
               }
             }
