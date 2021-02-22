@@ -135,7 +135,7 @@ body{
           .menu-tab{
             display: flex;
             align-items: center;
-            margin-bottom: 45px;
+            margin-bottom: 70px;
 
             &:hover{
               cursor: pointer;
@@ -197,6 +197,10 @@ body{
               display: flex;
 
               .option{
+                opacity: 0.4;
+                &.active{
+                  opacity: 1;
+                }
                 img{
                   margin-left: 15px;
                   &:hover{
@@ -213,6 +217,9 @@ body{
             margin-left: -90px;
 
             .single-portfolio{
+              &.hide{
+                display: none !important;
+              }
               margin-top: 70px;
               margin-left: 90px;
 
@@ -245,16 +252,16 @@ body{
                     font-family: Poppins, sans-serif;
                     font-style: normal;
                     font-weight: 500;
-                    font-size: 15px;
-                    line-height: 22px;
+                    font-size: 19px;
+                    line-height: 26px;
                     color: #172C7A;
                   }
                   .project-description{
                     font-family: Roboto, sans-serif;
                     font-style: normal;
                     font-weight: normal;
-                    font-size: 17px;
-                    line-height: 20px;
+                    font-size: 18px;
+                    line-height: 24px;
                     color: #656870;
                   }
                 }
@@ -272,6 +279,9 @@ body{
             max-width: 1530px;
 
             .single-skill{
+              &.hide{
+                display: none;
+              }
               max-width: 565px;
               min-width: 280px;
               margin-bottom: 50px;
@@ -306,6 +316,7 @@ body{
                 .percentage{
                   font-weight: bold;
                   font-size: 18px;
+                  margin-top: 10px;
                   line-height: 21px;
                   color: #F8AB08;
                 }
@@ -350,6 +361,7 @@ body{
 
                 img{
                   margin-bottom: 8px;
+                  width: 24px;
                 }
                 .title{
                   font-weight: bold;
@@ -393,11 +405,12 @@ body{
                   margin-bottom: 40px;
 
                   .icon{
-                    margin-right: 12px;
-                    width: 45px;
+                    margin-right: 8px;
+                    width: 24px;
 
                     img{
-
+                      width: 22px;
+                      margin-top: 8px;
                     }
                   }
                   .details{
@@ -423,15 +436,16 @@ body{
         &.hobbies{
           .hobbies-wrapper{
             display: flex;
-            justify-content:  flex-start;
+            justify-content: flex-start;
             flex-wrap: wrap;
+            margin-left: -30px;
 
             .single-hobby{
               font-family: Roboto, sans-serif;
               background: #F1F4FF;
-              max-width: 365px;
+              width: 355px;
               padding: 30px;
-              margin-right: 30px;
+              margin-left: 30px;
               border-radius: 15px;
               margin-bottom: 55px;
 
@@ -442,9 +456,15 @@ body{
                 img{
                   margin-right: 15px;
                 }
+                div.divider{
+                  height: 2px;
+                  width: 100%;
+                  background: #D3D6E4;
+                }
                 div.title{
                   font-size: 29px;
                   color: #172C7A;
+                  margin-left: 20px;
                 }
               }
               .hobby-description{
@@ -514,7 +534,7 @@ body{
             .single-reference{
               font-family: Roboto, sans-serif;
               padding: 30px;
-              max-width: 640px;
+              max-width: 740px;
               margin-bottom: 40px;
               background: #F1F4FF;
               border-radius: 15px;

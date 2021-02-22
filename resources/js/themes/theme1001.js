@@ -16,7 +16,11 @@ $('document').ready(function(){
     menuBody.on('touchstart', touchStart);
     menuBody.on('touchmove', touchMove);
 
-    $('.single-category').on('click', changeCategory);
+    $('.single-category.portfolio').on('click', changePortfolioCategory);
+    $('.single-category.skill').on('click', changeSkillCategory);
+
+    $('.option').on('click', changePortfoliosViewOption);
+
 
     setDefaultActiveTab();
 
@@ -40,17 +44,92 @@ function changeTab(event) {
     updateTab(tabName);
 }
 
-function changeCategory(event) {
+function changePortfolioCategory(event) {
     let categoryName     = event.currentTarget.dataset.category;
-    let categories        = $('.single-category');
+    let portfolioCategories        = $('.single-category.portfolio');
 
-    for (let i = 0; i < categories.length ; i++) {
-        if($(categories[i]).hasClass('active')){
-            $(categories[i]).removeClass('active')
+    for (let i = 0; i < portfolioCategories.length ; i++) {
+        if($(portfolioCategories[i]).hasClass('active')){
+            $(portfolioCategories[i]).removeClass('active')
         }
-        if(categories[i].dataset.category === categoryName){
-            $(categories[i]).addClass('active');
+        if(portfolioCategories[i].dataset.category === categoryName){
+            $(portfolioCategories[i]).addClass('active');
         }
+    }
+
+    hideOtherPortfolioCategories(categoryName);
+
+}
+
+function hideOtherPortfolioCategories(categoryName){
+    let portfolioElements = $('.single-portfolio');
+
+    for (let i = 0; i < portfolioElements.length ; i++) {
+        if($(portfolioElements[i]).hasClass('hide')){
+            $(portfolioElements[i]).removeClass('hide')
+        }
+
+        if(portfolioElements[i].dataset.category.toLowerCase() !== categoryName.toLowerCase() && categoryName.toLowerCase() !== 'all'){
+            $(portfolioElements[i]).addClass('hide');
+        }
+    }
+
+}
+
+
+
+function changeSkillCategory(event) {
+    let categoryName     = event.currentTarget.dataset.category;
+    let skillCategories        = $('.single-category.skill');
+
+
+    for (let i = 0; i < skillCategories.length ; i++) {
+        if($(skillCategories[i]).hasClass('active')){
+            $(skillCategories[i]).removeClass('active')
+        }
+        if(skillCategories[i].dataset.category === categoryName){
+            $(skillCategories[i]).addClass('active');
+        }
+    }
+
+    hideOtherSkillCategories(categoryName);
+}
+
+function hideOtherSkillCategories(categoryName){
+    let skillsElements = $('.single-skill');
+
+    for (let i = 0; i < skillsElements.length ; i++) {
+        if($(skillsElements[i]).hasClass('hide')){
+            $(skillsElements[i]).removeClass('hide')
+        }
+
+        if(skillsElements[i].dataset.category.toLowerCase() !== categoryName.toLowerCase() && categoryName.toLowerCase() !== 'all'){
+            $(skillsElements[i]).addClass('hide');
+        }
+    }
+
+}
+
+function changePortfoliosViewOption(event) {
+    let option     = event.currentTarget.dataset.option;
+    let options = $('.option');
+    for (let i = 0; i < options.length ; i++) {
+        if($(options[i]).hasClass('active')){
+            $(options[i]).removeClass('active')
+        }
+        if(options[i].dataset.option.toLowerCase() === option.toLowerCase()){
+            $(options[i]).addClass('active');
+        }
+    }
+
+    togglePortfolioNames(option);
+}
+
+function togglePortfolioNames(option) {
+    if(option === 'hideName'){
+        $('.portfolio-content > .single-portfolio > .details').css('display', 'none');
+    }else{
+        $('.portfolio-content > .single-portfolio > .details').css('display', 'flex');
     }
 }
 

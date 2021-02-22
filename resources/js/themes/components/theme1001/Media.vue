@@ -1,13 +1,13 @@
 <template>
     <div class="media-component-wrapper">
         <div class="categories">
-            <div class="single-category active" data-category="all" @click.prevent="changeCategory('all')">
+            <div class="single-category" :class="{'active' : activeCategory === 'all'}" @click="changeCategory('all')">
                 View All
             </div>
-            <div class="single-category" data-category="video" @click.prevent="changeCategory('video')">
+            <div class="single-category" :class="{'active' : activeCategory === 'video'}" @click="changeCategory('video')">
                 Video
             </div>
-            <div class="single-category" data-category="audio" @click.prevent="changeCategory('audio')">
+            <div class="single-category" :class="{'active' : activeCategory === 'audio'}" @click="changeCategory('audio')">
                 Audio
             </div>
         </div>
@@ -37,19 +37,16 @@
                     <div class="description">
                         {{media.transcript}}
                     </div>
-
                     <audio  @ended="mediaEnded"  @timeupdate="updateTime($event, media)" controls :id="'media_element' + media.id" preload="auto" class="mediaElement audio" style="display: none;">
                         <source :src="media.url"/>
                         <source :src="media.url" type="audio/webm">
                     </audio>
-
                 </div>
                 <div v-else class="single-media video">
                     <template v-if="playingMedia.id !== media.id" >
                         <img class="preview" :src="media.media_preview" alt="preview" >
                         <img class="play-icon" @click="playMedia(media)" src="/images/themes/theme1001/media/audio-play-btn.png" alt="play btn">
                     </template>
-
                     <video width="auto" height="auto" @ended="mediaEnded" @timeupdate="updateTime($event, media)" controls :id=" 'media_element' + media.id" v-show="playingMedia.id === media.id" class="mediaElement video">
                         <source
                                 :src="media.url"
@@ -80,10 +77,10 @@
 
             <div class="buttons">
                 <img src="/images/themes/theme1001/media/shuffle-button.png" alt="shuffle">
-                <img class="prev" src="/images/themes/theme1001/media/buttun-prev.png" alt="prev">
+                <img class="prev" src="/images/themes/theme1001/media/buttun-prev.png" alt="prev" @click="playPrevMedia">
                 <img v-if="playingMedia.id" src="/images/themes/theme1001/media/media-pause-icon.png" alt="pause" @click="pauseMedia(playingMedia)">
                 <img v-else src="/images/themes/theme1001/media/button-play.png" alt="play" @click="playMedia(playingMedia.id ? playingMedia : medias[0])">
-                <img class="next"  src="/images/themes/theme1001/media/button-next.png" alt="next">
+                <img class="next"  src="/images/themes/theme1001/media/button-next.png" alt="next" @click="playNextMedia">
                 <img src="/images/themes/theme1001/media/repeat-button.png" alt="repeat">
             </div>
             <div class="playing">
@@ -115,7 +112,16 @@
         },
         computed:{
             medias(){
-                return this.user.media;
+                return this.user.media.filter( (media) => {
+                    if(this.activeCategory.toLowerCase() === media.type.toLowerCase() || this.activeCategory.toLowerCase() === 'all'){
+                        return true;
+                    }
+                });
+            }
+        },
+        filters: {
+            categorizedMedia: function () {
+
             }
         },
         methods:{
@@ -153,6 +159,28 @@
             },
             stopMedia(){
 
+            },
+            playNextMedia(){
+                let nextPlaying = null ;
+
+                this.medias.forEach( (media, index) => {
+                    if(this.playingMedia.id === media.id && this.medias[index + 1]){
+                        nextPlaying = this.medias[index + 1];
+                    }
+                });
+
+                if(nextPlaying !== null){
+                    this.playMedia(nextPlaying);
+                }
+            },
+            playPrevMedia(){
+                this.medias.forEach( (media, index) => {
+                    if(this.playingMedia.id === media.id){
+                        if(this.medias[index-1]){
+                            this.playMedia(this.medias[index - 1]);
+                        }
+                    }
+                });
             },
             mediaEnded(){
                 setTimeout( () => {

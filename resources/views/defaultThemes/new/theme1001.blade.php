@@ -735,6 +735,7 @@
                         <div class="single-hobby">
                             <div class="hobby-header">
                                 <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
+                                <div class="divider"></div>
                                 <div class="title">
                                     Cycling
                                 </div>

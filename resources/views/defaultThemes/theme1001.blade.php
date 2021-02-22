@@ -73,30 +73,30 @@
             <div class="single-tab-content portfolio" data-name="portfolio">
                 <div class="portfolio-header">
                     <div class="categories">
-                        <div class="single-category active" data-category="all">
+                        <div class="single-category portfolio active" data-category="all">
                             All
                         </div>
-                        <div class="single-category" data-category="development">
+                        <div class="single-category portfolio" data-category="development">
                             Development
                         </div>
-                        <div class="single-category" data-category="design">
+                        <div class="single-category portfolio" data-category="UX/UI Design">
                             UX/UI Design
                         </div>
-                        <div class="single-category" data-category="branding">
+                        <div class="single-category portfolio" data-category="branding">
                             Branding
                         </div>
-                        <div class="single-category" data-category="productDesign">
+                        <div class="single-category portfolio" data-category="Product Design">
                             Product Design
                         </div>
-                        <div class="single-category" data-category="experimental">
+                        <div class="single-category portfolio" data-category="experimental">
                             Experimental
                         </div>
                     </div>
                     <div class="display-options">
-                        <div class="option">
+                        <div class="option active" data-option="viewName">
                             <img src="/images/themes/theme1001/option-title.png" alt="option title">
                         </div>
-                        <div class="option">
+                        <div class="option" data-option="hideName">
                             <img src="/images/themes/theme1001/option-no-title.png" alt="option no title">
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                 <div class="portfolio-content">
                     @foreach($user->projects as $project)
                         @if($project->is_public)
-                            <div class="single-portfolio">
+                            <div class="single-portfolio" data-category="{{$project->category}}">
                                 <div class="project-image">
                                     <img src="{{$project->images[0]->src}}" alt="portfolio image">
                                 </div>
@@ -112,7 +112,7 @@
                                     <img src="/images/themes/theme1001/portfolio/small-line.png" alt="line">
                                     <div class="text">
                                         <div class="project-name">
-                                            {{$project->name}}
+                                            {{$project->name}} | {{$project->category}}
                                         </div>
                                         <div class="project-description">
                                             {{$project->description}}
@@ -216,22 +216,22 @@
                     </div>
                 </div>
                 <div class="categories">
-                    <div class="single-category active" data-category="all">
+                    <div class="single-category skill active" data-category="all">
                         All
                     </div>
-                    <div class="single-category" data-category="language">
-                        Language
+                    <div class="single-category skill" data-category="main skills">
+                        Main
                     </div>
-                    <div class="single-category" data-category="personal">
-                        Personal
+                    <div class="single-category skill" data-category="development">
+                        Development
                     </div>
-                    <div class="single-category" data-category="professional">
+                    <div class="single-category skill" data-category="design">
+                        Design
+                    </div>
+                    <div class="single-category skill" data-category="Professionalism">
                         Professional
                     </div>
-                    <div class="single-category" data-category="management">
-                        Management
-                    </div>
-                    <div class="single-category" data-category="leadership">
+                    <div class="single-category skill" data-category="Leadership">
                         Leadership
                     </div>
                 </div>
@@ -239,7 +239,7 @@
                 <div class="skills-wrapper">
                     @foreach( $user->skills as $skill)
                         @if($skill->is_public)
-                            <div class="single-skill">
+                            <div class="single-skill" data-category="{{$skill->category}}">
                         <div class="skill-info">
                             <div class="skill-icon">
                                 <img src="/images/themes/theme1001/skills/skill-general.png" alt="skill icon">
@@ -416,6 +416,7 @@
                             <div class="single-hobby">
                                 <div class="hobby-header">
                                     <img src="/images/themes/theme1001/hobbies/bicycle.png" alt="">
+                                    <div class="divider"></div>
                                     <div class="title">
                                         {{$hobby->title}}
                                     </div>
