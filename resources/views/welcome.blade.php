@@ -22,14 +22,13 @@
             <div class="sections-wrapper">
                 <div class="section-one-main">
                     <div class="main-text-container">
-                        <div class="civ-text">
-                            civ.ie:
-                        </div>
                         <div class="banner-text">
-                            the new and better way to make, manage and share your resume
+                            the new and better way to
+                            create, update & share
+                            your online resume
                         </div>
                         <div class="banner-sub-text">
-                            Express yourself & build a resume that you can be proud of
+                            Build your resume website
                         </div>
                     </div>
                     <div class="bobby-image desktop">
@@ -56,13 +55,9 @@
                 <div class="section-four-second-text">
                     <div class="second-text-container">
                         <div class="text-one">
-                            <span>civ.ie</span> will help you to stand out , get noticed and make a great first
-                            impression
+                            Get responses , get noticed and get hired Grab the attention of employers and recruiters.
                         </div>
-                        <div class="text-two">
-                            Sending a civ.ie with your job application will increase your chances of being interviewed or
-                            hired by 350 %
-                        </div>
+
                         <div class="action-btn">
                             <a href="#">
                                 Start My Page <img src="/images/homepage/white_right_arrow.png" alt="right arrow">
@@ -70,7 +65,7 @@
                         </div>
                     </div>
                     <div class="standing-bobby-image">
-                        <img src="/images/homepage/standing_bobby_image.png" alt="standing bobby image">
+                        <img src="/images/homepage/standing_bobby_image_2.png" alt="standing bobby image">
                     </div>
                 </div>
 
