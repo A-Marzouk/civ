@@ -19,6 +19,9 @@ $('document').ready(function(){
     $('.single-category.portfolio').on('click', changePortfolioCategory);
     $('.single-category.skill').on('click', changeSkillCategory);
 
+    $('.option').on('click', changePortfoliosViewOption);
+
+
     setDefaultActiveTab();
 
 });
@@ -86,6 +89,29 @@ function changeSkillCategory(event) {
         if(skillCategories[i].dataset.category === categoryName){
             $(skillCategories[i]).addClass('active');
         }
+    }
+}
+
+function changePortfoliosViewOption(event) {
+    let option     = event.currentTarget.dataset.option;
+    let options = $('.option');
+    for (let i = 0; i < options.length ; i++) {
+        if($(options[i]).hasClass('active')){
+            $(options[i]).removeClass('active')
+        }
+        if(options[i].dataset.option.toLowerCase() === option.toLowerCase()){
+            $(options[i]).addClass('active');
+        }
+    }
+
+    togglePortfolioNames(option);
+}
+
+function togglePortfolioNames(option) {
+    if(option === 'hideName'){
+        $('.portfolio-content > .single-portfolio > .details').css('display', 'none');
+    }else{
+        $('.portfolio-content > .single-portfolio > .details').css('display', 'flex');
     }
 }
 

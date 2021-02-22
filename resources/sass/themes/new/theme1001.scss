@@ -135,7 +135,7 @@ body{
           .menu-tab{
             display: flex;
             align-items: center;
-            margin-bottom: 45px;
+            margin-bottom: 70px;
 
             &:hover{
               cursor: pointer;
@@ -197,6 +197,10 @@ body{
               display: flex;
 
               .option{
+                opacity: 0.4;
+                &.active{
+                  opacity: 1;
+                }
                 img{
                   margin-left: 15px;
                   &:hover{

@@ -93,10 +93,10 @@
                         </div>
                     </div>
                     <div class="display-options">
-                        <div class="option">
+                        <div class="option active" data-option="viewName">
                             <img src="/images/themes/theme1001/option-title.png" alt="option title">
                         </div>
-                        <div class="option">
+                        <div class="option" data-option="hideName">
                             <img src="/images/themes/theme1001/option-no-title.png" alt="option no title">
                         </div>
                     </div>
