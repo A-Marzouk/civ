@@ -73,22 +73,22 @@
             <div class="single-tab-content portfolio" data-name="portfolio">
                 <div class="portfolio-header">
                     <div class="categories">
-                        <div class="single-category active" data-category="all">
+                        <div class="single-category portfolio active" data-category="all">
                             All
                         </div>
-                        <div class="single-category" data-category="development">
+                        <div class="single-category portfolio" data-category="development">
                             Development
                         </div>
-                        <div class="single-category" data-category="design">
+                        <div class="single-category portfolio" data-category="UX/UI Design">
                             UX/UI Design
                         </div>
-                        <div class="single-category" data-category="branding">
+                        <div class="single-category portfolio" data-category="branding">
                             Branding
                         </div>
-                        <div class="single-category" data-category="productDesign">
+                        <div class="single-category portfolio" data-category="Product Design">
                             Product Design
                         </div>
-                        <div class="single-category" data-category="experimental">
+                        <div class="single-category portfolio" data-category="experimental">
                             Experimental
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                 <div class="portfolio-content">
                     @foreach($user->projects as $project)
                         @if($project->is_public)
-                            <div class="single-portfolio">
+                            <div class="single-portfolio" data-category="{{$project->category}}">
                                 <div class="project-image">
                                     <img src="{{$project->images[0]->src}}" alt="portfolio image">
                                 </div>
@@ -216,22 +216,22 @@
                     </div>
                 </div>
                 <div class="categories">
-                    <div class="single-category active" data-category="all">
+                    <div class="single-category skill active" data-category="all">
                         All
                     </div>
-                    <div class="single-category" data-category="language">
+                    <div class="single-category skill" data-category="language">
                         Language
                     </div>
-                    <div class="single-category" data-category="personal">
+                    <div class="single-category skill" data-category="personal">
                         Personal
                     </div>
-                    <div class="single-category" data-category="professional">
+                    <div class="single-category skill" data-category="professional">
                         Professional
                     </div>
-                    <div class="single-category" data-category="management">
+                    <div class="single-category skill" data-category="management">
                         Management
                     </div>
-                    <div class="single-category" data-category="leadership">
+                    <div class="single-category skill" data-category="leadership">
                         Leadership
                     </div>
                 </div>

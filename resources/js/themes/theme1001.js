@@ -16,7 +16,8 @@ $('document').ready(function(){
     menuBody.on('touchstart', touchStart);
     menuBody.on('touchmove', touchMove);
 
-    $('.single-category').on('click', changeCategory);
+    $('.single-category.portfolio').on('click', changePortfolioCategory);
+    $('.single-category.skill').on('click', changeSkillCategory);
 
     setDefaultActiveTab();
 
@@ -40,16 +41,50 @@ function changeTab(event) {
     updateTab(tabName);
 }
 
-function changeCategory(event) {
+function changePortfolioCategory(event) {
     let categoryName     = event.currentTarget.dataset.category;
-    let categories        = $('.single-category');
+    let portfolioCategories        = $('.single-category.portfolio');
 
-    for (let i = 0; i < categories.length ; i++) {
-        if($(categories[i]).hasClass('active')){
-            $(categories[i]).removeClass('active')
+    for (let i = 0; i < portfolioCategories.length ; i++) {
+        if($(portfolioCategories[i]).hasClass('active')){
+            $(portfolioCategories[i]).removeClass('active')
         }
-        if(categories[i].dataset.category === categoryName){
-            $(categories[i]).addClass('active');
+        if(portfolioCategories[i].dataset.category === categoryName){
+            $(portfolioCategories[i]).addClass('active');
+        }
+    }
+
+    hideOtherPortfolioCategories(categoryName);
+
+}
+
+function hideOtherPortfolioCategories(categoryName){
+    let portfolioElements = $('.single-portfolio');
+
+    for (let i = 0; i < portfolioElements.length ; i++) {
+        if($(portfolioElements[i]).hasClass('hide')){
+            $(portfolioElements[i]).removeClass('hide')
+        }
+
+        if(portfolioElements[i].dataset.category.toLowerCase() !== categoryName.toLowerCase() && categoryName.toLowerCase() !== 'all'){
+            $(portfolioElements[i]).addClass('hide');
+        }
+    }
+
+}
+
+
+function changeSkillCategory(event) {
+    let categoryName     = event.currentTarget.dataset.category;
+    let skillCategories        = $('.single-category.skill');
+
+
+    for (let i = 0; i < skillCategories.length ; i++) {
+        if($(skillCategories[i]).hasClass('active')){
+            $(skillCategories[i]).removeClass('active')
+        }
+        if(skillCategories[i].dataset.category === categoryName){
+            $(skillCategories[i]).addClass('active');
         }
     }
 }
