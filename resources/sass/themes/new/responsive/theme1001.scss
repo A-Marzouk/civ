@@ -54,18 +54,6 @@
             margin-bottom: 10px;
           }
           .social-icons{
-            display: flex;
-            overflow-x: auto ;
-            width: 90%;
-            bottom: 10px;
-            left: 15px;
-            position: absolute;
-            img{
-              width: 33px;
-              margin-right: 14px;
-            }
-          }
-          .social-icons{
             -webkit-filter: grayscale(1) invert(1);
             filter: grayscale(1) invert(1);
             display: flex;
@@ -309,6 +297,7 @@
                   .percentage{
                     font-weight: bold;
                     font-size: 14px;
+                    margin-top: 3px;
                     line-height: 16px;
                     color: #F8AB08;
                   }

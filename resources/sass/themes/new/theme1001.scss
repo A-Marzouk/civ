@@ -279,6 +279,9 @@ body{
             max-width: 1530px;
 
             .single-skill{
+              &.hide{
+                display: none;
+              }
               max-width: 565px;
               min-width: 280px;
               margin-bottom: 50px;
@@ -313,6 +316,7 @@ body{
                 .percentage{
                   font-weight: bold;
                   font-size: 18px;
+                  margin-top: 10px;
                   line-height: 21px;
                   color: #F8AB08;
                 }

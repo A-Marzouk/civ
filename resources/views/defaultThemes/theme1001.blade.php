@@ -219,19 +219,19 @@
                     <div class="single-category skill active" data-category="all">
                         All
                     </div>
-                    <div class="single-category skill" data-category="language">
-                        Language
+                    <div class="single-category skill" data-category="main skills">
+                        Main
                     </div>
-                    <div class="single-category skill" data-category="personal">
-                        Personal
+                    <div class="single-category skill" data-category="development">
+                        Development
                     </div>
-                    <div class="single-category skill" data-category="professional">
+                    <div class="single-category skill" data-category="design">
+                        Design
+                    </div>
+                    <div class="single-category skill" data-category="Professionalism">
                         Professional
                     </div>
-                    <div class="single-category skill" data-category="management">
-                        Management
-                    </div>
-                    <div class="single-category skill" data-category="leadership">
+                    <div class="single-category skill" data-category="Leadership">
                         Leadership
                     </div>
                 </div>
@@ -239,7 +239,7 @@
                 <div class="skills-wrapper">
                     @foreach( $user->skills as $skill)
                         @if($skill->is_public)
-                            <div class="single-skill">
+                            <div class="single-skill" data-category="{{$skill->category}}">
                         <div class="skill-info">
                             <div class="skill-icon">
                                 <img src="/images/themes/theme1001/skills/skill-general.png" alt="skill icon">

@@ -77,6 +77,7 @@ function hideOtherPortfolioCategories(categoryName){
 }
 
 
+
 function changeSkillCategory(event) {
     let categoryName     = event.currentTarget.dataset.category;
     let skillCategories        = $('.single-category.skill');
@@ -90,6 +91,23 @@ function changeSkillCategory(event) {
             $(skillCategories[i]).addClass('active');
         }
     }
+
+    hideOtherSkillCategories(categoryName);
+}
+
+function hideOtherSkillCategories(categoryName){
+    let skillsElements = $('.single-skill');
+
+    for (let i = 0; i < skillsElements.length ; i++) {
+        if($(skillsElements[i]).hasClass('hide')){
+            $(skillsElements[i]).removeClass('hide')
+        }
+
+        if(skillsElements[i].dataset.category.toLowerCase() !== categoryName.toLowerCase() && categoryName.toLowerCase() !== 'all'){
+            $(skillsElements[i]).addClass('hide');
+        }
+    }
+
 }
 
 function changePortfoliosViewOption(event) {
