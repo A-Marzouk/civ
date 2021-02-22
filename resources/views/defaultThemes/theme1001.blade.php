@@ -112,7 +112,7 @@
                                     <img src="/images/themes/theme1001/portfolio/small-line.png" alt="line">
                                     <div class="text">
                                         <div class="project-name">
-                                            {{$project->name}}
+                                            {{$project->name}} | {{$project->category}}
                                         </div>
                                         <div class="project-description">
                                             {{$project->description}}
