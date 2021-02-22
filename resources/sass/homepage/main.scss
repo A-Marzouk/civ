@@ -245,9 +245,10 @@
           }
 
           .banner-sub-text {
-            font-size: 2.3rem;
-            line-height: 60px;
-            color: #0046FE;
+            font-family: Poppins, sans-serif;
+            font-size: 41px;
+            line-height: 55px;
+            color: #0A1E56;
             margin-top: 30px;
             // mobile:
             @media screen and (max-width: 599px) {
@@ -375,7 +376,7 @@
       .section-four-second-text {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         margin-top: 60px;
         margin-bottom: 70px;
         @media screen and (max-width: 599px) {
@@ -400,10 +401,11 @@
           position: relative;
         }
         .second-text-container {
+          max-width: 950px;
           font-family: NexaBold, sans-serif;
           font-weight: bold;
-          font-size: 3rem;
-          line-height: 60px;
+          font-size: 70px;
+          line-height: 85px;
           letter-spacing: -0.03em;
           color: #0A1E56;
           z-index: 10;
@@ -417,6 +419,7 @@
           @media screen and (max-width: 1439px) and (min-width: 600px) {
             font-size: 36px;
             line-height: 42px;
+            max-width: 660px;
           }
 
           // laptop:
@@ -525,16 +528,23 @@
 
         .standing-bobby-image {
           z-index: -1;
+          margin-left: auto;
+          margin-right: 100px;
+          margin-bottom: auto;
           img{
-            width: 100%;
+            width: 458px;
           }
 
           // mobile
           @media screen and (max-width: 599px) {
             position: absolute;
             width: 44%;
-            bottom: -75px;
+            bottom: -70px;
             right: 10px;
+            margin-right: 0;
+            img{
+              width: 100%;
+            }
           }
           // tablet:
           @media screen and (max-width: 1439px) and (min-width: 600px) {
@@ -543,15 +553,23 @@
             max-width: 375px;
             bottom: -69px;
             right: 32px;
+            margin-right: 0;
+            img{
+              width: 100%;
+            }
           }
 
           // laptop:
           @media screen and (max-width: 1700px) and (min-width: 1440px) {
             width: 75%;
-            max-width: 575px;
+            max-width: 475px;
             position: absolute;
             right: 18px;
             bottom: -75px;
+            margin-right: 0;
+            img{
+              width: 100%;
+            }
           }
 
         }
