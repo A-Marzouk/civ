@@ -361,6 +361,7 @@ body{
 
                 img{
                   margin-bottom: 8px;
+                  width: 24px;
                 }
                 .title{
                   font-weight: bold;
@@ -404,11 +405,12 @@ body{
                   margin-bottom: 40px;
 
                   .icon{
-                    margin-right: 12px;
-                    width: 45px;
+                    margin-right: 8px;
+                    width: 24px;
 
                     img{
-
+                      width: 22px;
+                      margin-top: 8px;
                     }
                   }
                   .details{
@@ -434,15 +436,16 @@ body{
         &.hobbies{
           .hobbies-wrapper{
             display: flex;
-            justify-content:  flex-start;
+            justify-content: flex-start;
             flex-wrap: wrap;
+            margin-left: -30px;
 
             .single-hobby{
               font-family: Roboto, sans-serif;
               background: #F1F4FF;
-              max-width: 365px;
+              width: 355px;
               padding: 30px;
-              margin-right: 30px;
+              margin-left: 30px;
               border-radius: 15px;
               margin-bottom: 55px;
 
@@ -453,9 +456,15 @@ body{
                 img{
                   margin-right: 15px;
                 }
+                div.divider{
+                  height: 2px;
+                  width: 100%;
+                  background: #D3D6E4;
+                }
                 div.title{
                   font-size: 29px;
                   color: #172C7A;
+                  margin-left: 20px;
                 }
               }
               .hobby-description{
