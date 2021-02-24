@@ -7,12 +7,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{--<link href="/css/themes/theme1001.css" rel="stylesheet">--}}
     <title>civ.ie</title>
-    <link href="/css/themes/theme1001.css" rel="stylesheet">
+    <link href="/css/themes/theme2001.css" rel="stylesheet">
     <link rel="icon" href="/images/welcome_landing_page/logo/civie_logo_res-01.png" type="image/x-icon">
 </head>
 <body>
 
-<div class="theme1001-container">
+<div class="theme2001-container">
 
     @include('defaultThemes.Default.themeBase')
 

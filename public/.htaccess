@@ -15,9 +15,9 @@
     RewriteRule ^ %1 [L,R=301]
 
    # Redirect to https:
-    RewriteCond %{HTTP_HOST} !^local.civ.mine
-    RewriteCond %{HTTPS} off
-    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#    RewriteCond %{HTTP_HOST} !^local.civ.mine
+#    RewriteCond %{HTTPS} off
+#    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # Serve Cached Page If Available...
     RewriteCond %{REQUEST_URI} ^/?$
