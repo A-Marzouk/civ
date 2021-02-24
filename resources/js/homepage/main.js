@@ -18,7 +18,7 @@ let nextArrow   = $('#next-arrow');
 let tabsWidth   = tabsWrapper.innerWidth();
 let windowWidth = $(window).innerWidth();
 let showNext = true;
-let showPrev = false;
+let showPrev = true;
 
 
 function initiateValues() {
@@ -42,6 +42,8 @@ function changeTab(event) {
 }
 
 function showNextTab() {
+    prevArrow.css('display', 'block');
+
     let currentLeftValue = parseInt(tabsWrapper.css('left'));
     let currentRightValue = parseInt(tabsWrapper.css('right'));
 
@@ -49,6 +51,8 @@ function showNextTab() {
         showNext = false;
         tabsWrapper.css('left', 'auto');
         tabsWrapper.css('right', 0);
+        // disable next:
+        nextArrow.css('display', 'none');
     } else {
         showNext = true;
     }
@@ -61,6 +65,8 @@ function showNextTab() {
 }
 
 function showPrevTab() {
+    nextArrow.css('display', 'block');
+
     let currentLeftValue = parseInt(tabsWrapper.css('left'));
     let newValue = currentLeftValue + 150;
 
@@ -68,6 +74,8 @@ function showPrevTab() {
         showPrev = false;
         tabsWrapper.css('right', 'auto');
         tabsWrapper.css('left', 0);
+        // disable prev:
+        prevArrow.css('display', 'none');
     } else {
         showPrev = true;
     }
@@ -77,10 +85,6 @@ function showPrevTab() {
     }
 
     tabsWrapper.css('left', newValue + 'px');
-}
-
-function toggleArrows() {
-
 }
 
 

@@ -442,6 +442,7 @@
           }
 
           .prev-arrow{
+            display: none;
             margin-right: 10px;
             margin-bottom: 17px;
             &:hover{
@@ -449,7 +450,7 @@
             }
             // mobile:
             @media screen and (max-width: 768px) {
-              display: none;
+              display: none !important;
             }
           }
         }
