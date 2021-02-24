@@ -49,10 +49,10 @@
                 <div class="section-three-image">
 
                     <div class="ah-tabs">
-                        <div class="prev-arrow hide" id="prev-arrow">
+                        <div class="prev-arrow" id="prev-arrow">
                             <img src="/images/homepage/prev-arrow.png" alt="next arrow">
                         </div>
-                        <div class="tabs-outer-container">
+                        <div class="tabs-outer-container" id="tabs-outer-container">
                             <div class="tabs-wrapper" id="tabs-wrapper">
                                 <div class="single-tab active" data-tab="portfolio">
                                     Portfolio
