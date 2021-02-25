@@ -7,8 +7,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #4870FF;
-      background-image: url("/images/themes/theme1001/background-lines.png");
       height: 225px;
       padding-left: 15px;
       padding-right: 15px;
@@ -42,7 +40,7 @@
             font-style: normal;
             font-weight: bold;
             font-size: 24px;
-            color: #FFFFFF;
+            
             margin-top: 10px;
             margin-bottom: 8px;
           }
@@ -50,12 +48,10 @@
             font-style: normal;
             font-weight: normal;
             font-size: 20px;
-            color: #D3D6E4;
+            
             margin-bottom: 10px;
           }
           .social-icons{
-            -webkit-filter: grayscale(1) invert(1);
-            filter: grayscale(1) invert(1);
             display: flex;
             overflow-x: auto ;
             width: 90%;
@@ -151,16 +147,11 @@
               .tab-name{
                 font-family: Roboto, sans-serif;
                 font-size: 22px;
-                color: #3D5ED4;
+                
                 opacity: 0.56;
               }
 
               &.active{
-                img{
-                  filter: invert(60%) sepia(43%) saturate(3868%) hue-rotate(
-                                  205deg
-                  ) brightness(101%) contrast(95%);
-                }
                 .tab-name{
                   opacity: 1;
                 }
@@ -176,7 +167,6 @@
     .header-line-footer{
       width: 100%;
       height: 9px;
-      background: #3D5ED4;
     }
 
     .tabs-contents{
@@ -199,15 +189,6 @@
 
               .display-options{
                 display: none;
-
-                .option{
-                  img{
-                    margin-left: 15px;
-                    &:hover{
-                      cursor: pointer;
-                    }
-                  }
-                }
               }
             }
             .portfolio-content{
@@ -238,7 +219,7 @@
                       font-weight: 500;
                       font-size: 15px;
                       line-height: 22px;
-                      color: #172C7A;
+                      
                     }
                     .project-description{
                       font-family: Roboto, sans-serif;
@@ -246,7 +227,7 @@
                       font-weight: normal;
                       font-size: 17px;
                       line-height: 20px;
-                      color: #656870;
+                      
                     }
                   }
                 }
@@ -286,12 +267,12 @@
                       font-weight: bold;
                       font-size: 18px;
                       line-height: 20px;
-                      color: #172C7A;
+                      
                       margin-bottom: 5px;
                     }
                     .sub{
                       font-size: 10px;
-                      color: #838BA4;
+                      
                     }
                   }
                   .percentage{
@@ -299,7 +280,7 @@
                     font-size: 14px;
                     margin-top: 3px;
                     line-height: 16px;
-                    color: #F8AB08;
+                    
                   }
 
                 }
@@ -307,12 +288,11 @@
                   .default-bar{
                     height: 4px;
                     width: 100%;
-                    background: #D3D6E4;
+                    
                     border-radius: 4px;
                   }
                   .bar-percentage-achieved{
                     height: 4px;
-                    background: #3D5ED4;
                     border-radius: 4px;
                     margin-top: -4px;
                   }
@@ -323,7 +303,7 @@
               height: 1px;
               width: 70%;
               margin: 20px auto auto auto;
-              background: #D3D6E4;
+              
             }
           }
 
@@ -351,14 +331,13 @@
                   .title{
                     font-weight: bold;
                     font-size: 20px;
-                    color: #172C7A;
+                    
                     white-space: nowrap;
                     margin-bottom: 5px;
                   }
                   .sub-title{
                     font-size: 18px;
                     line-height: 24px;
-                    color: #CFD2DF;
                   }
                 }
               }
@@ -374,11 +353,10 @@
                       font-weight: bold;
                       font-size: 20px;
                       margin-bottom: 8px;
-                      color: #172C7A;
+                      
                     }
                     .sub-title{
                       font-size: 18px;
-                      color: #CFD2DF;
                     }
                   }
                 }
@@ -391,24 +369,18 @@
                     margin-bottom: 20px;
 
                     .icon{
-                      margin-right: 6px;
-                      width: 18px;
-                      img{
-                        width: 16px;
-                        margin-top: 5px;
-                      }
+                      display: none;
                     }
                     .details{
                       font-family: Roboto, sans-serif;
                       .title{
                         font-weight: bold;
                         font-size: 20px;
-                        color: #172C7A;
+                        
                         margin-bottom: 12px;
                       }
                       .sub-title{
                         font-size: 18px;
-                        color: #CFD2DF;
                       }
                     }
                   }
@@ -426,7 +398,7 @@
 
               .single-hobby{
                 font-family: Roboto, sans-serif;
-                background: #F1F4FF;
+                
                 max-width: 365px;
                 padding: 25px;
                 border-radius: 15px;
@@ -443,19 +415,19 @@
                   div.divider{
                     height: 2px;
                     width: 100%;
-                    background: #D3D6E4;
+                    
                   }
 
                   div.title{
                     font-size: 23px;
-                    color: #172C7A;
+                    
                   }
                 }
                 .hobby-description{
                   margin-top: 22px;
                   font-size: 16px;
                   line-height: 18px;
-                  color: #172C7A;
+                  
                 }
               }
             }
@@ -473,7 +445,7 @@
                 align-items: center;
                 padding: 25px 15px 35px 15px;
                 max-width: 740px;
-                background: #F1F4FF;
+                
                 border-radius: 15px;
                 margin-bottom: 25px;
 
@@ -490,19 +462,19 @@
                   .title{
                     font-weight: bold;
                     font-size: 25px;
-                    color: #172C7A;
+                    
                     margin-top: 20px;
                     margin-bottom: 12px;
                   }
                   .url{
                     font-weight: bold;
                     font-size: 17px;
-                    color: #172C7A;
+                    
                     margin-bottom: 30px;
                   }
                   .description{
                     font-size: 17px;
-                    color: #172C7A;
+                    
                   }
                 }
               }
@@ -519,13 +491,13 @@
                 padding: 40px 10px;
                 max-width: 640px;
                 margin-bottom: 25px;
-                background: #F1F4FF;
+                
                 border-radius: 15px;
 
                 .reference-header{
                   font-weight: bold;
                   font-size: 22px;
-                  color: #172C7A;
+                  
                   margin-bottom: 20px;
                 }
 
@@ -534,7 +506,7 @@
                   justify-content: space-between;
                   font-size: 13px;
                   line-height: 20px;
-                  color: #172C7A;
+                  
                   margin-bottom: 25px;
                   .contact{
                     margin-right: 10px;
@@ -543,7 +515,7 @@
                 .description{
                   font-size: 16px;
                   line-height: 19px;
-                  color: #172C7A;
+                  
                 }
               }
             }
@@ -563,7 +535,6 @@
                 margin: 40px auto auto auto;
 
                 .single-media{
-                  background: #FFFFFF;
                   max-width: 420px;
                   width: 100%;
                   border-radius: 15px;
@@ -578,28 +549,25 @@
                       display: flex;
                       justify-content: space-between;
                       .preview{
-                        img{
-                          margin-right: 8px;
-                          width: 66px;
-                        }
+                        display: none;
                       }
                       .details{
                         flex-grow: 1;
                         .title{
                           font-size: 17px;
                           margin-bottom: 5px;
-                          color: #172C7A;
+                          
                         }
                         .name{
                           font-weight: bold;
                           font-size: 11px;
                           margin-bottom: 5px;
-                          color: #F8AB08;
+                          
                         }
                         .time{
                           font-size: 14px;
                           line-height: 18px;
-                          color: #BEC2D4;
+                          
                         }
                       }
                       .play-icon{
@@ -614,7 +582,6 @@
                     .description{
                       margin-top: 25px;
                       font-size: 14px;
-                      color: #B4AFC4;
                     }
                   }
 
@@ -658,12 +625,11 @@
               justify-content: space-between;
               font-family: Roboto, sans-serif;
               .education,.experience{
-                max-width: 720px;
               }
               .single-info{
                 display: flex;
                 align-items: flex-start;
-                max-width: 700px;
+                max-width: 720px;
                 min-width: 300px;
                 margin-bottom: 54px;
                 .icon{
@@ -672,12 +638,7 @@
                   }
                 }
                 .divider{
-                  height: 1px;
-                  width: 30px;
-                  background: #BEC2D4;
-                  margin-top: 13px;
-                  margin-right: 5px;
-                  margin-left: 5px;
+                  display: none;
                 }
                 .info{
                   .work-header{
@@ -688,21 +649,21 @@
                     .title{
                       font-weight: bold;
                       font-size: 18px;
-                      color: #172C7A;
+                      
                     }
                     .date{
                       font-size: 14px;
-                      color: #838BA4;
+                      
                     }
                   }
                   .work-sub-header{
                     font-size: 15px;
-                    color: #172C7A;
+                    
                     margin-bottom: 5px;
                   }
                   .work-description{
                     font-size: 14px;
-                    color: #838BA4;
+                    
                   }
                 }
               }
@@ -711,20 +672,24 @@
 
           .categories{
             display: flex;
-            overflow-x: auto ;
+            position: absolute;
+            top: 10px;
+            margin-left: -25px;
 
             .single-category{
-              font-family: Roboto, sans-serif;
+              font-family: SFMono-Regular, sans-serif;
+              font-weight: 500;
               font-size: 20px;
               line-height: 23px;
-              margin-right:15px;
-              padding: 10px;
-              color: #B4AFC4;
-              white-space: nowrap;
+              padding-left:25px;
+              padding-right:25px;
+              border-right: 1px solid #C4C4C4;
+              &:last-child{
+                border-right: 0;
+              }
+              color: #C2C2C2;
               &.active{
-                color: #3D5ED4;
-                background: #D4DDFF;
-                border-radius: 8px;
+                color: #333333;
               }
               &:hover{
                 cursor: pointer;
@@ -738,15 +703,11 @@
             .main-title{
               font-weight: bold;
               font-size: 24px;
-              color: #172C7A;
+              
               margin-bottom: 8px;
             }
             .sub-title{
-              font-style: italic;
-              font-weight: normal;
-              font-size: 14px;
-              line-height: 14px;
-              color: #BEC2D4;
+             display: none;
             }
           }
 
@@ -769,8 +730,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #4870FF;
-      background-image: url("/images/themes/theme1001/background-lines.png");
       height: 260px;
       padding-left: 45px;
       padding-right: 35px;
@@ -801,7 +760,7 @@
             font-style: normal;
             font-weight: bold;
             font-size: 33px;
-            color: #FFFFFF;
+            
             margin-top: 20px;
             margin-bottom: 13px;
           }
@@ -809,13 +768,11 @@
             font-style: normal;
             font-weight: normal;
             font-size: 23px;
-            color: #D3D6E4;
+            
             margin-bottom: 15px;
           }
 
           .social-icons{
-            -webkit-filter: grayscale(1) invert(1);
-            filter: grayscale(1) invert(1);
             display: flex;
             overflow-x: auto;
             max-width: 480px;
@@ -906,16 +863,11 @@
               .tab-name{
                 font-family: Roboto, sans-serif;
                 font-size: 22px;
-                color: #3D5ED4;
+                
                 opacity: 0.56;
               }
 
               &.active{
-                img{
-                  filter: invert(60%) sepia(43%) saturate(3868%) hue-rotate(
-                                  205deg
-                  ) brightness(101%) contrast(95%);
-                }
                 .tab-name{
                   opacity: 1;
                 }
@@ -931,7 +883,6 @@
     .header-line-footer{
       width: 100%;
       height: 22px;
-      background: #3D5ED4;
     }
 
     .tabs-contents{
@@ -953,16 +904,7 @@
               margin-top: 25px;
 
               .display-options{
-                display: flex;
-
-                .option{
-                  img{
-                    margin-left: 15px;
-                    &:hover{
-                      cursor: pointer;
-                    }
-                  }
-                }
+                display: none;
               }
             }
             .portfolio-content{
@@ -992,10 +934,7 @@
                   max-width: 280px;
 
                   img{
-                    height: 1.5px;
-                    width: 22px;
-                    margin-top: 10px;
-                    margin-right: 15px;
+                    display: none;
                   }
                   .text{
                     .project-name{
@@ -1004,7 +943,7 @@
                       font-weight: 500;
                       font-size: 15px;
                       line-height: 22px;
-                      color: #172C7A;
+                      
                     }
                     .project-description{
                       font-family: Roboto, sans-serif;
@@ -1012,7 +951,7 @@
                       font-weight: normal;
                       font-size: 17px;
                       line-height: 20px;
-                      color: #656870;
+                      
                     }
                   }
                 }
@@ -1054,19 +993,19 @@
                       font-weight: bold;
                       font-size: 24px;
                       line-height: 28px;
-                      color: #172C7A;
+                      
                       margin-bottom: 10px;
                     }
                     .sub{
                       font-size: 14px;
-                      color: #838BA4;
+                      
                     }
                   }
                   .percentage{
                     font-weight: bold;
                     font-size: 18px;
                     line-height: 21px;
-                    color: #F8AB08;
+                    
                   }
 
                 }
@@ -1074,12 +1013,11 @@
                   .default-bar{
                     height: 6px;
                     width: 100%;
-                    background: #D3D6E4;
+                    
                     border-radius: 6px;
                   }
                   .bar-percentage-achieved{
                     height: 6px;
-                    background: #3D5ED4;
                     border-radius: 6px;
                     margin-top: -6px;
                   }
@@ -1090,7 +1028,7 @@
               height: 1px;
               width: 70%;
               margin: 25px auto auto auto;
-              background: #D3D6E4;
+              
             }
           }
 
@@ -1108,19 +1046,17 @@
                   margin-bottom: 40px;
 
                   img{
-                    margin-bottom: 8px;
-                    width: 22px;
+                    display: none;
                   }
                   .title{
                     font-weight: bold;
                     font-size: 18px;
-                    color: #172C7A;
+                    
                     white-space: nowrap;
                     margin-bottom: 6px;
                   }
                   .sub-title{
                     font-size: 18px;
-                    color: #CFD2DF;
                   }
                 }
               }
@@ -1136,11 +1072,10 @@
                       font-weight: 500;
                       font-size: 26px;
                       margin-bottom: 8px;
-                      color: #172C7A;
+                      
                     }
                     .sub-title{
                       font-size: 16px;
-                      color: #CFD2DF;
                     }
                   }
                 }
@@ -1153,25 +1088,18 @@
                     margin-bottom: 30px;
 
                     .icon{
-                      margin-right: 6px;
-                      margin-top: 6px;
-                      width: 24px;
-
-                      img{
-                        width: 20px
-                      }
+                      display: none;
                     }
                     .details{
                       font-family: Roboto, sans-serif;
                       .title{
                         font-weight: bold;
                         font-size: 26px;
-                        color: #172C7A;
+                        
                         margin-bottom: 8px;
                       }
                       .sub-title{
                         font-size: 16px;
-                        color: #CFD2DF;
                       }
                     }
                   }
@@ -1190,7 +1118,7 @@
 
               .single-hobby{
                 font-family: Roboto, sans-serif;
-                background: #F1F4FF;
+                
                 max-width: 265px;
                 padding: 20px;
                 margin-left: 20px;
@@ -1208,19 +1136,19 @@
                   div.divider{
                     height: 2px;
                     width: 100%;
-                    background: #D3D6E4;
+                    
                   }
 
                   div.title{
                     font-size: 21px;
-                    color: #172C7A;
+                    
                   }
                 }
                 .hobby-description{
                   margin-top: 25px;
                   font-size: 14px;
                   line-height: 18px;
-                  color: #172C7A;
+                  
                 }
               }
             }
@@ -1237,7 +1165,7 @@
                 padding: 22px;
                 max-width: 7678px;
                 width: 100%;
-                background: #F1F4FF;
+                
                 border-radius: 15px;
                 margin-bottom: 40px;
 
@@ -1253,18 +1181,18 @@
                   .title{
                     font-weight: bold;
                     font-size: 18px;
-                    color: #172C7A;
+                    
                     margin-bottom: 8px;
                   }
                   .url{
                     font-weight: bold;
                     font-size: 12px;
-                    color: #172C7A;
+                    
                     margin-bottom: 15px;
                   }
                   .description{
                     font-size: 14px;
-                    color: #172C7A;
+                    
                   }
                 }
               }
@@ -1282,13 +1210,13 @@
                 max-width: 768px;
                 width: 100%;
                 margin-bottom: 30px;
-                background: #F1F4FF;
+                
                 border-radius: 15px;
 
                 .reference-header{
                   font-weight: bold;
                   font-size: 24px;
-                  color: #172C7A;
+                  
                   margin-bottom: 30px;
                 }
                 .details{
@@ -1296,7 +1224,7 @@
                   justify-content: space-between;
                   font-size: 17px;
                   line-height: 20px;
-                  color: #172C7A;
+                  
                   margin-bottom: 40px;
                   .contact{
                     margin-right: 30px;
@@ -1305,7 +1233,7 @@
                 .description{
                   font-size: 17px;
                   line-height: 20px;
-                  color: #172C7A;
+                  
                 }
               }
             }
@@ -1325,7 +1253,6 @@
                 margin: 40px auto auto auto;
 
                 .single-media{
-                  background: #FFFFFF;
                   max-width: 768px;
                   width: 100%;
                   border-radius: 15px;
@@ -1341,27 +1268,25 @@
                       display: flex;
                       justify-content: space-between;
                       .preview{
-                        img{
-                          margin-right: 8px;
-                        }
+                        display: none;
                       }
                       .details{
                         flex-grow: 1;
                         .title{
                           font-size: 24px;
                           margin-bottom: 8px;
-                          color: #172C7A;
+                          
                         }
                         .name{
                           font-weight: bold;
                           font-size: 16px;
                           margin-bottom: 6px;
-                          color: #F8AB08;
+                          
                         }
                         .time{
                           font-size: 20px;
                           line-height: 23px;
-                          color: #BEC2D4;
+                          
                         }
                       }
                       .play-icon{
@@ -1375,7 +1300,6 @@
                     .description{
                       margin-top: 35px;
                       font-size: 20px;
-                      color: #B4AFC4;
 
                     }
                   }
@@ -1420,12 +1344,11 @@
               justify-content: space-between;
               font-family: Roboto, sans-serif;
               .education,.experience{
-                max-width: 720px;
               }
               .single-info{
                 display: flex;
                 align-items: flex-start;
-                max-width: 700px;
+                max-width: 720px;
                 min-width: 600px;
                 margin-bottom: 60px;
                 .icon{
@@ -1434,12 +1357,7 @@
                   }
                 }
                 .divider{
-                  height: 1px;
-                  width: 48px;
-                  background: #BEC2D4;
-                  margin-top: 17px;
-                  margin-right: 10px;
-                  margin-left: 10px;
+                  display: none;
                 }
                 .info{
                   .work-header{
@@ -1450,21 +1368,21 @@
                     .title{
                       font-weight: bold;
                       font-size: 24px;
-                      color: #172C7A;
+                      
                     }
                     .date{
                       font-size: 18px;
-                      color: #838BA4;
+                      
                     }
                   }
                   .work-sub-header{
                     font-size: 20px;
-                    color: #172C7A;
+                    
                     margin-bottom: 10px;
                   }
                   .work-description{
                     font-size: 18px;
-                    color: #838BA4;
+                    
                   }
                 }
               }
@@ -1473,19 +1391,24 @@
 
           .categories{
             display: flex;
+            position: absolute;
+            top: 10px;
+            margin-left: -25px;
 
             .single-category{
-              font-family: Roboto, sans-serif;
+              font-family: SFMono-Regular, sans-serif;
+              font-weight: 500;
               font-size: 20px;
               line-height: 23px;
-              margin-right:50px;
-              padding: 10px;
-              color: #B4AFC4;
-              white-space: nowrap;
+              padding-left:25px;
+              padding-right:25px;
+              border-right: 1px solid #C4C4C4;
+              &:last-child{
+                border-right: 0;
+              }
+              color: #C2C2C2;
               &.active{
-                color: #3D5ED4;
-                background: #D4DDFF;
-                border-radius: 8px;
+                color: #333333;
               }
               &:hover{
                 cursor: pointer;
@@ -1499,15 +1422,11 @@
             .main-title{
               font-weight: bold;
               font-size: 40px;
-              color: #172C7A;
+              
               margin-bottom: 15px;
             }
             .sub-title{
-              font-style: italic;
-              font-weight: normal;
-              font-size: 24px;
-              line-height: 28px;
-              color: #BEC2D4;
+              display: none;
             }
           }
 
@@ -1539,7 +1458,7 @@
           &.portfolio{
             .portfolio-content{
               display: flex;
-              justify-content: space-between;
+              justify-content: flex-start;
               flex-wrap: wrap;
               margin-left: -90px;
 
@@ -1569,10 +1488,7 @@
 
 
                   img{
-                    height: 1.5px;
-                    width: 42px;
-                    margin-top: 12px;
-                    margin-right: 25px;
+                    display: none;
                   }
                   .text{
                     .project-name{
@@ -1581,7 +1497,7 @@
                       font-weight: 500;
                       font-size: 19px;
                       line-height: 26px;
-                      color: #172C7A;
+                      
                     }
                     .project-description{
                       font-family: Roboto, sans-serif;
@@ -1589,7 +1505,7 @@
                       font-weight: normal;
                       font-size: 18px;
                       line-height: 24px;
-                      color: #656870;
+                      
                     }
                   }
                 }
@@ -1632,12 +1548,12 @@
                       font-weight: bold;
                       font-size: 24px;
                       line-height: 28px;
-                      color: #172C7A;
+                      
                       margin-bottom: 13px;
                     }
                     .sub{
                       font-size: 14px;
-                      color: #838BA4;
+                      
                     }
                   }
                   .percentage{
@@ -1645,7 +1561,7 @@
                     font-size: 18px;
                     margin-top: 10px;
                     line-height: 21px;
-                    color: #F8AB08;
+                    
                   }
 
                 }
@@ -1653,12 +1569,10 @@
                   .default-bar{
                     height: 6px;
                     width: 100%;
-                    background: #D3D6E4;
                     border-radius: 6px;
                   }
                   .bar-percentage-achieved{
                     height: 6px;
-                    background: #3D5ED4;
                     border-radius: 6px;
                     margin-top: -6px;
                   }
@@ -1669,7 +1583,6 @@
               height: 1px;
               width: 70%;
               margin: 50px auto auto auto;
-              background: #D3D6E4;
             }
           }
 
@@ -1687,19 +1600,17 @@
                   margin-bottom: 40px;
 
                   img{
-                    margin-bottom: 8px;
-                    width: 24px;
+                    display: none;
                   }
                   .title{
                     font-weight: bold;
                     font-size: 30px;
-                    color: #172C7A;
+                    
                     white-space: nowrap;
                     margin-bottom: 10px;
                   }
                   .sub-title{
                     font-size: 32px;
-                    color: #CFD2DF;
                   }
                 }
               }
@@ -1715,11 +1626,10 @@
                       font-weight: bold;
                       font-size: 42px;
                       margin-bottom: 20px;
-                      color: #172C7A;
+                      
                     }
                     .sub-title{
                       font-size: 30px;
-                      color: #CFD2DF;
                     }
                   }
                 }
@@ -1732,25 +1642,19 @@
                     margin-bottom: 40px;
 
                     .icon{
-                      margin-right: 8px;
-                      width: 24px;
+                      display: none;
 
-                      img{
-                        width: 22px;
-                        margin-top: 8px;
-                      }
                     }
                     .details{
                       font-family: Roboto, sans-serif;
                       .title{
                         font-weight: bold;
                         font-size: 30px;
-                        color: #172C7A;
+                        
                         margin-bottom: 12px;
                       }
                       .sub-title{
                         font-size: 20px;
-                        color: #CFD2DF;
                       }
                     }
                   }
@@ -1769,7 +1673,7 @@
 
               .single-hobby{
                 font-family: Roboto, sans-serif;
-                background: #F1F4FF;
+                
                 width: 355px;
                 padding: 30px;
                 margin-left: 30px;
@@ -1786,11 +1690,11 @@
                   div.divider{
                     height: 2px;
                     width: 100%;
-                    background: #D3D6E4;
+                    
                   }
                   div.title{
                     font-size: 29px;
-                    color: #172C7A;
+                    
                     margin-left: 20px;
                   }
                 }
@@ -1798,7 +1702,7 @@
                   margin-top: 35px;
                   font-size: 18px;
                   line-height: 21px;
-                  color: #172C7A;
+                  
                 }
               }
             }
@@ -1814,7 +1718,7 @@
                 justify-content: space-between;
                 padding: 30px;
                 max-width: 640px;
-                background: #F1F4FF;
+                
                 border-radius: 15px;
                 margin-bottom: 40px;
 
@@ -1835,18 +1739,18 @@
                   .title{
                     font-weight: bold;
                     font-size: 29px;
-                    color: #172C7A;
+                    
                     margin-bottom: 12px;
                   }
                   .url{
                     font-weight: bold;
                     font-size: 17px;
-                    color: #172C7A;
+                    
                     margin-bottom: 24px;
                   }
                   .description{
                     font-size: 17px;
-                    color: #172C7A;
+                    
                   }
                 }
               }
@@ -1863,13 +1767,13 @@
                 padding: 30px;
                 max-width: 740px;
                 margin-bottom: 40px;
-                background: #F1F4FF;
+                
                 border-radius: 15px;
 
                 .reference-header{
                   font-weight: bold;
                   font-size: 29px;
-                  color: #172C7A;
+                  
                   margin-bottom: 35px;
                 }
                 .details{
@@ -1877,7 +1781,7 @@
                   justify-content: space-between;
                   font-size: 17px;
                   line-height: 20px;
-                  color: #172C7A;
+                  
                   margin-bottom: 40px;
                   .contact{
                     margin-right: 30px;
@@ -1886,7 +1790,7 @@
                 .description{
                   font-size: 17px;
                   line-height: 20px;
-                  color: #172C7A;
+                  
                 }
               }
             }
@@ -1906,7 +1810,6 @@
                 margin: 70px auto auto auto;
 
                 .single-media{
-                  background: #FFFFFF;
                   max-width: 420px;
                   width: 100%;
                   border-radius: 15px;
@@ -1921,27 +1824,25 @@
                       display: flex;
                       justify-content: space-between;
                       .preview{
-                        img{
-                          margin-right: 8px;
-                        }
+                        display: none;
                       }
                       .details{
                         flex-grow: 1;
                         .title{
                           font-size: 24px;
                           margin-bottom: 8px;
-                          color: #172C7A;
+                          
                         }
                         .name{
                           font-weight: bold;
                           font-size: 16px;
                           margin-bottom: 6px;
-                          color: #F8AB08;
+                          
                         }
                         .time{
                           font-size: 20px;
                           line-height: 23px;
-                          color: #BEC2D4;
+                          
                         }
                       }
                       .play-icon{
@@ -1955,8 +1856,6 @@
                     .description{
                       margin-top: 35px;
                       font-size: 20px;
-                      color: #B4AFC4;
-
                     }
                   }
 
@@ -1993,76 +1892,7 @@
               }
 
               .media-player-footer{
-                height: 150px;
-                margin-left: -70px;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-                background: white;
-                filter: drop-shadow(0px -20px 30px rgba(0, 26, 117, 0.078));
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                font-family: Roboto, sans-serif;
-
-                .media-info{
-                  display: flex;
-                  align-items: center;
-                  margin-left: 80px;
-
-                  .preview{
-                    img{
-                      margin-right: 8px;
-                    }
-                  }
-                  .details{
-                    .title{
-                      font-size: 24px;
-                      margin-bottom: 8px;
-                      color: #172C7A;
-                    }
-                    .name{
-                      font-weight: bold;
-                      font-size: 16px;
-                      margin-bottom: 6px;
-                      color: #F8AB08;
-                    }
-                    .time{
-                      font-size: 20px;
-                      line-height: 23px;
-                      color: #BEC2D4;
-                    }
-                  }
-                }
-
-                .buttons{
-                  display: flex;
-                  align-items: center;
-                  .prev{
-                    margin-left: 50px;
-                    margin-right: 10px;
-                  }
-                  .next{
-                    margin-right: 50px;
-                    margin-left: 10px;
-                  }
-                  img{
-                    &:hover{
-                      cursor: pointer;
-                    }
-                  }
-                }
-
-                .playing{
-                  display: flex;
-                  align-items: center;
-                  margin-right: 70px;
-                  .time{
-                    font-size: 20px;
-                    color: #BEC2D4;
-                    margin: 0 22px;
-                  }
-                }
+                display: none;
               }
             }
           }
@@ -2074,12 +1904,11 @@
               justify-content: space-between;
               font-family: Roboto, sans-serif;
               .education,.experience{
-                max-width: 720px;
               }
               .single-info{
                 display: flex;
                 align-items: flex-start;
-                max-width: 700px;
+                max-width: 720px;
                 min-width: 650px;
                 margin-bottom: 60px;
                 .icon{
@@ -2088,12 +1917,7 @@
                   }
                 }
                 .divider{
-                  height: 1px;
-                  width: 48px;
-                  background: #BEC2D4;
-                  margin-top: 17px;
-                  margin-right: 10px;
-                  margin-left: 10px;
+                 display: none;
                 }
                 .info{
                   width: 100%;
@@ -2105,21 +1929,21 @@
                     .title{
                       font-weight: bold;
                       font-size: 24px;
-                      color: #172C7A;
+                      
                     }
                     .date{
                       font-size: 18px;
-                      color: #838BA4;
+                      
                     }
                   }
                   .work-sub-header{
                     font-size: 20px;
-                    color: #172C7A;
+                    
                     margin-bottom: 10px;
                   }
                   .work-description{
                     font-size: 18px;
-                    color: #838BA4;
+                    
                   }
                 }
               }
@@ -2128,18 +1952,24 @@
 
           .categories{
             display: flex;
+            position: absolute;
+            top: 10px;
+            margin-left: -25px;
 
             .single-category{
-              font-family: Roboto, sans-serif;
+              font-family: SFMono-Regular, sans-serif;
+              font-weight: 500;
               font-size: 20px;
               line-height: 23px;
-              margin-right:50px;
-              padding: 10px;
-              color: #B4AFC4;
+              padding-left:25px;
+              padding-right:25px;
+              border-right: 1px solid #C4C4C4;
+              &:last-child{
+                border-right: 0;
+              }
+              color: #C2C2C2;
               &.active{
-                color: #3D5ED4;
-                background: #D4DDFF;
-                border-radius: 8px;
+                color: #333333;
               }
               &:hover{
                 cursor: pointer;
@@ -2148,20 +1978,16 @@
           }
 
           .single-tab-title{
-            margin: 60px 0;
+            margin: 0 0 60px 0;
             font-family: Roboto, sans-serif;
             .main-title{
               font-weight: bold;
               font-size: 40px;
-              color: #172C7A;
+              
               margin-bottom: 20px;
             }
             .sub-title{
-              font-style: italic;
-              font-weight: normal;
-              font-size: 24px;
-              line-height: 28px;
-              color: #BEC2D4;
+              display: none;
             }
           }
 
