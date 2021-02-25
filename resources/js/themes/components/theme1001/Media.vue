@@ -30,11 +30,11 @@
                             </div>
                         </div>
                         <div class="play-icon">
-                            <img v-if="playingMedia.id !== media.id"  @click="playMedia(media)" src="/images/themes/theme1001/media/audio-play-btn.png" alt="play btn">
-                            <img v-else  @click="pauseMedia(media)" src="/images/themes/theme1001/media/audio-pause-btn.png" alt="pause btn">
+                            <img v-if="playingMedia.id !== media.id"  @click="playMedia(media)" :src="`/images/themes/theme${themeCodeNumber}/media/audio-play-btn.png`"  alt="play btn">
+                            <img v-else  @click="pauseMedia(media)" :src="`/images/themes/theme${themeCodeNumber}/media/audio-pause-btn.png`"  alt="pause btn">
                         </div>
                     </div>
-                    <div class="description">
+                    <div class="description" v-if="media.transcript">
                         {{media.transcript}}
                     </div>
                     <audio  @ended="mediaEnded"  @timeupdate="updateTime($event, media)" controls :id="'media_element' + media.id" preload="auto" class="mediaElement audio" style="display: none;">
@@ -45,7 +45,7 @@
                 <div v-else class="single-media video">
                     <template v-if="playingMedia.id !== media.id" >
                         <img class="preview" :src="media.media_preview" alt="preview" >
-                        <img class="play-icon" @click="playMedia(media)" src="/images/themes/theme1001/media/audio-play-btn.png" alt="play btn">
+                        <img class="play-icon" @click="playMedia(media)" :src="`/images/themes/theme${themeCodeNumber}/media/video-play-btn.png`" alt="play btn">
                     </template>
                     <video width="auto" height="auto" @ended="mediaEnded" @timeupdate="updateTime($event, media)" controls :id=" 'media_element' + media.id" v-show="playingMedia.id === media.id" class="mediaElement video">
                         <source
@@ -99,7 +99,7 @@
 <script>
     export default {
         name: "Media",
-        props:['user'],
+        props:['user', 'theme_code'],
         data() {
             return {
                 activeCategory: 'all',
@@ -117,6 +117,9 @@
                         return true;
                     }
                 });
+            },
+            themeCodeNumber(){
+                return this.theme_code ;
             }
         },
         filters: {

@@ -38,7 +38,7 @@
 
             <div class="menu-tabs-wrapper">
                 @foreach( $user->tabs as $tab)
-                    @if($tab->is_public && in_array($tab->title, ['portfolio', 'work_experience', 'about_me', 'skills', 'media', 'hobbies', 'references', 'achievements']))
+                    @if($tab->is_public && in_array($tab->title, ['portfolio', 'work_experience', 'education', 'about_me', 'skills', 'media', 'hobbies', 'references', 'achievements']))
                         <div class="menu-tab" data-name="{{$tab->title}}">
                             <img src="/images/themes/theme{{$themeCode}}/menu-icons/{{$tab->title}}.svg" alt="tab icon">
                             <div class="tab-name">
@@ -91,7 +91,9 @@
                     @if($project->is_public)
                         <div class="single-portfolio" data-category="{{$project->category}}">
                             <div class="project-image">
-                                <img src="{{$project->images[0]->src}}" alt="portfolio image">
+                                @if(count($project->images) > 0)
+                                    <img src="{{$project->images[0]->src}}" alt="portfolio image">
+                                @endif
                             </div>
                             <div class="details">
                                 <img src="/images/themes/theme{{$themeCode}}/portfolio/small-line.png" alt="line">
@@ -151,6 +153,10 @@
                         @endforeach
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="single-tab-content work" data-name="education">
+            <div class="exp-work-wrapper">
                 <div class="education">
                     <div class="single-tab-title">
                         <div class="main-title">
@@ -400,7 +406,7 @@
                     @if($hobby->is_public)
                         <div class="single-hobby">
                             <div class="hobby-header">
-                                <img src="/images/themes/theme{{$themeCode}}/hobbies/bicycle.png" alt="">
+                                <img src="/images/themes/theme{{$themeCode}}/hobbies/general-hobby.png" alt="">
                                 <div class="divider"></div>
                                 <div class="title">
                                     {{$hobby->title}}
@@ -417,7 +423,7 @@
         </div>
         <div class="single-tab-content media" data-name="media">
             <div id="mediaTab">
-                <media-tab :user="{{$user}}"></media-tab>
+                <media-tab theme_code="{{$themeCode}}" :user="{{$user}}"></media-tab>
             </div>
         </div>
         <div class="single-tab-content references" data-name="references">
@@ -431,7 +437,7 @@
                     @if($reference->is_public)
                         <div class="single-reference">
                             <div class="reference-header">
-                                {{$reference->title}} - {{$reference->name}}
+                                <span>{{$reference->name}}</span> <span class="small-divider">-</span> <span>{{$reference->title}}</span>
                             </div>
                             <div class="details">
                                 <div class="location">
