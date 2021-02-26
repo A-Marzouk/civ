@@ -1,7 +1,97 @@
 window.Vue = require('vue');
 
+
+$('document').ready(function () {
+
+    let tabs = $('.single-tab');
+    tabs.on('click', changeTab);
+    $('.next-arrow').on('click', showNextTab);
+    $('.prev-arrow').on('click', showPrevTab);
+    $(window).on('resize', initiateValues);
+
+});
+
+let step = 155;
+let tabsWrapper = $('#tabs-wrapper');
+let prevArrow   = $('#prev-arrow');
+let nextArrow   = $('#next-arrow');
+let tabsWidth   = tabsWrapper.innerWidth();
+let windowWidth = $(window).innerWidth();
+let showNext = true;
+let showPrev = true;
+
+
+function initiateValues() {
+    tabsWrapper = $('#tabs-wrapper');
+    tabsWidth = tabsWrapper.innerWidth();
+    windowWidth = $(window).innerWidth();
+}
+
+function changeTab(event) {
+    let tabName = event.currentTarget.dataset.tab;
+    let tabs = $('.single-tab');
+
+    for (let i = 0; i < tabs.length; i++) {
+        if ($(tabs[i]).hasClass('active')) {
+            $(tabs[i]).removeClass('active')
+        }
+        if (tabs[i].dataset.tab.toLowerCase() === tabName.toLowerCase()) {
+            $(tabs[i]).addClass('active');
+        }
+    }
+}
+
+function showNextTab() {
+    prevArrow.css('display', 'block');
+
+    let currentLeftValue = parseInt(tabsWrapper.css('left'));
+    let currentRightValue = parseInt(tabsWrapper.css('right'));
+
+    if(currentRightValue > -step && currentRightValue < step) {
+        showNext = false;
+        tabsWrapper.css('left', 'auto');
+        tabsWrapper.css('right', 0);
+        // disable next:
+        nextArrow.css('display', 'none');
+    } else {
+        showNext = true;
+    }
+
+    if (!showNext) {
+        return;
+    }
+
+    tabsWrapper.css('left', currentLeftValue - step + 'px');
+}
+
+function showPrevTab() {
+    nextArrow.css('display', 'block');
+
+    let currentLeftValue = parseInt(tabsWrapper.css('left'));
+    let newValue = currentLeftValue + 150;
+
+    if (currentLeftValue + step >= 0) {
+        showPrev = false;
+        tabsWrapper.css('right', 'auto');
+        tabsWrapper.css('left', 0);
+        // disable prev:
+        prevArrow.css('display', 'none');
+    } else {
+        showPrev = true;
+    }
+
+    if (!showPrev) {
+        return;
+    }
+
+    tabsWrapper.css('left', newValue + 'px');
+}
+
+
+
 // cookies:  ( for login page )
 import VueCookies from 'vue-cookies'
+
 Vue.use(VueCookies);
 
 // axios:

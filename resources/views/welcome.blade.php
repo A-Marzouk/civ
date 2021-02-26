@@ -47,6 +47,65 @@
                 </div>
 
                 <div class="section-three-image">
+
+                    <div class="ah-tabs">
+                        <div class="prev-arrow" id="prev-arrow">
+                            <img src="/images/homepage/prev-arrow.png" alt="next arrow">
+                        </div>
+                        <div class="tabs-outer-container" id="tabs-outer-container">
+                            <div class="tabs-wrapper" id="tabs-wrapper">
+                                <div class="single-tab active" data-tab="portfolio">
+                                    Portfolio
+                                </div>
+                                <div class="single-tab" data-tab="links">
+                                    Links
+                                </div>
+                                <div class="single-tab" data-tab="skills">
+                                    Skills
+                                </div>
+                                <div class="single-tab" data-tab="media">
+                                    Audio/Video
+                                </div>
+                                <div class="single-tab" data-tab="achievements">
+                                    Achievements
+                                </div>
+                                <div class="single-tab" data-tab="works">
+                                    Work Experience
+                                </div>
+                                <div class="single-tab" data-tab="education">
+                                    Education
+                                </div>
+                                <div class="single-tab" data-tab="About">
+                                    About
+                                </div>
+                                <div class="single-tab" data-tab="Hobbies">
+                                    Hobbies
+                                </div>
+                                <div class="single-tab" data-tab="References">
+                                    References
+                                </div>
+                                <div class="single-tab" data-tab="Pay">
+                                    Pay Availability
+                                </div>
+                                <div class="single-tab" data-tab="Themes">
+                                    Themes
+                                </div>
+                                <div class="single-tab" data-tab="Manager">
+                                    Manager
+                                </div>
+                                <div class="single-tab" data-tab="Structure">
+                                    Structure
+                                </div>
+                                <div class="single-tab" data-tab="Imports">
+                                    Imports
+                                </div>
+                            </div>
+                        </div>
+                        <div class="next-arrow" id="next-arrow">
+                            <img src="/images/homepage/next-arrow.png" alt="next arrow">
+                        </div>
+                    </div>
+                    
                     <div class="ah-homepage-banner">
                         <img src="/images/homepage/homepage_banner_1.png" alt="">
                     </div>

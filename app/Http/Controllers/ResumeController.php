@@ -44,7 +44,8 @@ class ResumeController extends Controller
 
     public function themePreviewByCode($themeCode, Request $request)
     {
-        return view('defaultThemes.new.' . $themeCode);
+        $user = User::where('username', 'agent')->first();
+        return view('defaultThemes.new.' . $themeCode, compact('user'));
     }
 
 
@@ -86,7 +87,7 @@ class ResumeController extends Controller
             $user = User::withAllRelations($username, $versionID);
             $theme = Theme::find($this->getVersionThemeID($version, $user->id));
             $themeCode = $theme ? $theme->code : '1001';
-            return view('defaultThemes.theme' . $themeCode, compact('user', 'is_preview'));
+            return view('defaultThemes.theme' . $themeCode, compact('user', 'is_preview', 'themeCode'));
         } else {
             return abort(404);
         }

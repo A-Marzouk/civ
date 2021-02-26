@@ -27,6 +27,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app-vuetify.scss', 'public/css')
     .sass('resources/sass/homepage/main.scss', 'public/css/homepage')
     .sass('resources/sass/themes/new/theme1001.scss', 'public/css/themes')
+    .sass('resources/sass/themes/new/theme2001.scss', 'public/css/themes')
     .svgVue({
         svgPath: 'public/icons',
         extract: false,
