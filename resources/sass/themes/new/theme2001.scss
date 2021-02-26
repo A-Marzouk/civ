@@ -5,6 +5,7 @@ body{
 
 .theme2001-container{
   overflow-x: hidden;
+  word-break: break-word;
   background: #F5F5F5;
   min-height: 100vh;
 
@@ -201,7 +202,6 @@ body{
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
-            margin-top: 45px;
             margin-left: -1%;
 
             .single-portfolio{
@@ -218,6 +218,7 @@ body{
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                height: 320px;
                 border-radius: 10px;
                 img{
                   width: 100%;
