@@ -117,52 +117,49 @@
             </div>
         </div>
         <div class="single-tab-content work" data-name="work_experience">
-            <div class="exp-work-wrapper">
-                <div class="experience">
-                    <div class="single-tab-title">
-                        <div class="main-title">
-                            Experience
-                        </div>
-                        <div class="sub-title">
-                            What I've Worked
-                        </div>
+            <div class="experience">
+                <div class="single-tab-title">
+                    <div class="main-title">
+                        Experience
                     </div>
-                    <div class="exp-work-wrapper">
-                        @foreach($user->workExperience as $work)
-                            @if($work->is_public)
-                                <div class="single-info">
-                                    <div class="icon">
-                                        <img src="/images/themes/theme{{$themeCode}}/work/work-icon.png" alt="work icon">
+                    <div class="sub-title">
+                        What I've Worked
+                    </div>
+                </div>
+                <div class="exp-work-wrapper">
+                    @foreach($user->workExperience as $work)
+                        @if($work->is_public)
+                            <div class="single-info">
+                                <div class="icon">
+                                    <img src="/images/themes/theme{{$themeCode}}/work/work-icon.png" alt="work icon">
+                                </div>
+                                <div class="divider"></div>
+                                <div class="info">
+                                    <div class="work-header">
+                                        <div class="title">
+                                            {{$work->company_name}}
+                                        </div>
+                                        <div class="date">
+                                            {{$work->date_from}}
+                                            -
+                                            {{$work->present ? 'Present' : $work->date_to}}
+                                        </div>
                                     </div>
-                                    <div class="divider"></div>
-                                    <div class="info">
-                                        <div class="work-header">
-                                            <div class="title">
-                                                {{$work->company_name}}
-                                            </div>
-                                            <div class="date">
-                                                {{$work->date_from}}
-                                                -
-                                                {{$work->present ? 'Present' : $work->date_to}}
-                                            </div>
-                                        </div>
-                                        <div class="work-sub-header">
-                                            {{$work->job_title}}
-                                        </div>
-                                        <div class="work-description">
-                                            {{$work->description}}
-                                        </div>
+                                    <div class="work-sub-header">
+                                        {{$work->job_title}}
+                                    </div>
+                                    <div class="work-description">
+                                        {{$work->description}}
                                     </div>
                                 </div>
-                            @endif
-                        @endforeach
-                    </div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
         <div class="single-tab-content work" data-name="education">
-            <div class="exp-work-wrapper">
-                <div class="education">
+            <div class="education">
                     <div class="single-tab-title">
                         <div class="main-title">
                             Education
@@ -200,7 +197,6 @@
                         @endforeach
                     </div>
                 </div>
-            </div>
         </div>
         <div class="single-tab-content skills" data-name="skills">
             <div class="single-tab-title">

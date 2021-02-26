@@ -732,6 +732,8 @@ body{
           position: absolute;
           top: 10px;
           margin-left: -25px;
+          overflow: auto;
+          max-width: 100%;
 
           .single-category{
             font-family: SFMono-Regular, sans-serif;

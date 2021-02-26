@@ -739,7 +739,7 @@
         .profile-picture{
           position: relative;
           .main-photo{
-            width: 190px
+            width: 132px
           }
           .message-icon{
             position: absolute;
@@ -759,15 +759,15 @@
           .name{
             font-style: normal;
             font-weight: bold;
-            font-size: 33px;
+            font-size: 38px;
             
             margin-top: 20px;
-            margin-bottom: 13px;
+            margin-bottom: 6px;
           }
           .job-title{
             font-style: normal;
             font-weight: normal;
-            font-size: 23px;
+            font-size: 20px;
             
             margin-bottom: 15px;
           }
@@ -777,106 +777,36 @@
             overflow-x: auto;
             max-width: 480px;
 
-            .single-icon{
-              border: 1px solid;
-              border-radius: 50%;
-              margin-right: 18px;
-              padding: 10px;
-              width: 30px;
-              height: 30px;
+            .social-icons{
+              display: flex;
 
-              a{
-                width: 30px;
-                height: 30px;
-                img{
-                  width: 30px;
+              .single-icon{
+                margin-right: 18px;
+                a{
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  img{
+                    width: 30px;
+                  }
                 }
               }
+
             }
 
           }
         }
       }
       .menu{
-
-        &.opened{
-          position: fixed;
-          z-index: 1;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          background-color: rgb(0,0,0);
-          background-color: rgba(0,0,0,0.7);
-        }
-        transition: all 0.5s;
-
         .menu-icon{
           position: absolute;
           right: 30px;
-          top: 50px;
+          top: 61px;
 
           &:hover{
             cursor: pointer;
           }
         }
-        .menu-body{
-          background: white;
-          padding-left: 20px;
-          width: 380px;
-          border-radius: 25px 0 0 25px;
-          position: absolute;
-          right: -650px;
-          top: 50px;
-          max-height: 100vh;
-          overflow-y: auto;
-          transition: all 0.5s;
-
-          .close-icon{
-            margin-bottom: 30px;
-            margin-top: 20px;
-            display: flex;
-            justify-content: flex-end;
-            img{
-              margin-right: 40px;
-              width: 18px;
-
-              &:hover{
-                cursor: pointer;
-              }
-            }
-          }
-          .menu-tabs-wrapper{
-            .menu-tab{
-              display: flex;
-              align-items: center;
-              margin-bottom: 35px;
-
-              &:hover{
-                cursor: pointer;
-              }
-
-              img{
-                margin-right: 15px;
-              }
-              .tab-name{
-                font-family: Roboto, sans-serif;
-                font-size: 22px;
-                
-                opacity: 0.56;
-              }
-
-              &.active{
-                .tab-name{
-                  opacity: 1;
-                }
-              }
-            }
-
-          }
-        }
-
       }
     }
 
@@ -901,24 +831,23 @@
               display: flex;
               justify-content: space-between;
               align-items: center;
-              margin-top: 25px;
-
               .display-options{
                 display: none;
               }
             }
             .portfolio-content{
               display: flex;
-              justify-content: center;
+              justify-content: flex-start;
               flex-wrap: wrap;
-              margin-left: -50px;
+              margin-left: -4%;
+              margin-top: 70px;
 
               .single-portfolio{
+                width: 100%;
+                max-width: 46%;
                 margin-top: 30px;
-                margin-left: 50px;
+                margin-left: 4%;
                 .project-image{
-                  max-width: 285px;
-                  height: 250px;
                   overflow: hidden;
                   display: flex;
                   justify-content: center;
@@ -964,7 +893,8 @@
               display: flex;
               flex-wrap: wrap;
               justify-content: space-between;
-              margin-top: 40px;
+              margin-top: 0;
+              padding-top: 90px;
               max-width: 1530px;
 
               .single-skill{
@@ -1034,78 +964,7 @@
 
           &.about{
             .about-info-wrapper{
-              display: flex;
-              margin-top: 40px;
-
-              .personal-info{
-                padding-right: 50px;
-                border-right: 1px solid rgba(61, 94, 212, 0.28);
-
-                .single-data{
-                  font-family: Roboto, sans-serif;
-                  margin-bottom: 40px;
-
-                  img{
-                    display: none;
-                  }
-                  .title{
-                    font-weight: bold;
-                    font-size: 18px;
-                    
-                    white-space: nowrap;
-                    margin-bottom: 6px;
-                  }
-                  .sub-title{
-                    font-size: 18px;
-                  }
-                }
-              }
-              .professional-info{
-                margin-left: 50px;
-
-                .main-info-wrapper{
-                  .single-main-info{
-                    font-family: Roboto, sans-serif;
-                    margin-bottom: 35px;
-
-                    .title{
-                      font-weight: 500;
-                      font-size: 26px;
-                      margin-bottom: 8px;
-                      
-                    }
-                    .sub-title{
-                      font-size: 16px;
-                    }
-                  }
-                }
-
-                .sub-info-wrapper{
-                  margin-top: 40px;
-
-                  .single-sub-info{
-                    display: flex;
-                    margin-bottom: 30px;
-
-                    .icon{
-                      display: none;
-                    }
-                    .details{
-                      font-family: Roboto, sans-serif;
-                      .title{
-                        font-weight: bold;
-                        font-size: 26px;
-                        
-                        margin-bottom: 8px;
-                      }
-                      .sub-title{
-                        font-size: 16px;
-                      }
-                    }
-                  }
-                }
-
-              }
+              margin-top: 30px;
             }
           }
 
@@ -1159,15 +1018,17 @@
               display: flex;
               justify-content: space-around;
               flex-wrap: wrap;
+              margin-top: 30px;
+
               .single-achievement{
                 display: flex;
                 justify-content: space-between;
                 padding: 22px;
-                max-width: 7678px;
                 width: 100%;
+                max-width: 100%;
                 
-                border-radius: 15px;
-                margin-bottom: 40px;
+                border-radius: 20px;
+                margin-bottom: 25px;
 
                 .certificate{
                   margin-right: 20px;
@@ -1180,19 +1041,18 @@
                   font-family: Roboto, sans-serif;
                   .title{
                     font-weight: bold;
-                    font-size: 18px;
-                    
-                    margin-bottom: 8px;
+                    font-size: 28px;
+                    margin-bottom: 5px;
                   }
                   .url{
                     font-weight: bold;
-                    font-size: 12px;
-                    
+                    font-size: 18px;
                     margin-bottom: 15px;
                   }
                   .description{
-                    font-size: 14px;
-                    
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 23px;
                   }
                 }
               }
@@ -1204,6 +1064,8 @@
               display: flex;
               justify-content: space-around;
               flex-wrap: wrap;
+              margin-top: 30px;
+
               .single-reference{
                 font-family: Roboto, sans-serif;
                 padding: 20px;
@@ -1241,7 +1103,8 @@
 
           &.media{
             .media-component-wrapper{
-              margin-top: 40px;
+              margin-top: 0;
+              padding-top: 40px;
               margin-bottom: 50px;
 
               .media-wrapper{
@@ -1343,14 +1206,13 @@
               flex-wrap: wrap;
               justify-content: space-between;
               font-family: Roboto, sans-serif;
-              .education,.experience{
-              }
+              margin-top: 30px;
+
               .single-info{
                 display: flex;
                 align-items: flex-start;
-                max-width: 720px;
-                min-width: 600px;
-                margin-bottom: 60px;
+                max-width: 100%;
+                margin-bottom: 27px;
                 .icon{
                   img{
 
@@ -1364,20 +1226,17 @@
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    margin-bottom: 15px;
+                    margin-bottom: 6px;
                     .title{
                       font-weight: bold;
                       font-size: 24px;
-                      
                     }
                     .date{
                       font-size: 18px;
-                      
                     }
                   }
                   .work-sub-header{
                     font-size: 20px;
-                    
                     margin-bottom: 10px;
                   }
                   .work-description{
@@ -1417,6 +1276,7 @@
           }
 
           .single-tab-title{
+            display: none;
             margin: 30px 0;
             font-family: Roboto, sans-serif;
             .main-title{
@@ -1434,7 +1294,6 @@
       }
 
     }
-
 
   }
 }
