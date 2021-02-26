@@ -23,7 +23,24 @@
                 </transition>
             </main>
         </div>
+
+        <span @click="updateIframe" id="updateIframe"></span>
+
+
         <div class="preview-rows-wrapper">
+
+            <div v-if="activeTab !== 'imports'" class="v-application preview-action-row v-application--is-ltr theme--light">
+                <div class="switch">
+                    <div class="text">
+                        Preview Auto Update
+                    </div>
+                    <v-switch v-model="cvAutoUpdate"></v-switch>
+                </div>
+                <div class="refresh" @click="updateIframe('true')">
+                    Refresh Your Data <img src="/icons/refresh.svg" alt="">
+                </div>
+            </div>
+
             <div class="cv-content-preview-wrapper" v-if="activeTab !== 'imports'">
                 <div class="cv-content-preview">
                     <div class="cv-preview-link">
@@ -34,8 +51,13 @@
                     </div>
                     <div class="cv-preview-theme-wrapper">
                         <div class="cv-preview-theme">
-                            <component :is="userTheme" :builderCurrentTabTitle="activeTab" v-if="user.personal_info" :user="user"
-                                       :is_preview="false"></component>
+                            <div class="theme-preview-loader" v-if="!isFrameLoaded">
+                                <v-skeleton-loader
+                                        class="mx-auto loader"
+                                        type="list-item-avatar-three-line, image, article, actions"
+                                ></v-skeleton-loader>
+                            </div>
+                            <vue-friendly-iframe class="theme-frame" :src="`${baseUrl}/${user.username}/${user.default_resume_link.url}`" @iframe-load="onLoad"></vue-friendly-iframe>
                         </div>
                     </div>
                 </div>
@@ -61,6 +83,7 @@
             cvAutoUpdate: true,
             isFrameLoaded: false,
             availableThemes: [],
+            themeUrl: ''
         }),
 
         computed: {
@@ -377,6 +400,14 @@
 
 <style lang="scss">
     @import "../../../../sass/media-queries";
+
+    /* I frame styling */
+    .vue-friendly-iframe.theme-frame{
+        iframe{
+            width:100%;
+            min-height:905px;
+        }
+    }
 
     .v-application--wrap {
         min-height: 450px !important;

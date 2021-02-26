@@ -56,6 +56,11 @@
 <div class="tabs-contents">
     <div class="tabs-contents-wrapper">
         <div class="single-tab-content portfolio" data-name="portfolio">
+            <div class="single-tab-title">
+                <div class="main-title">
+                    Portfolio
+                </div>
+            </div>
             <div class="portfolio-header">
                 <div class="categories">
                     <div class="single-category portfolio active" data-category="all">
@@ -286,6 +291,11 @@
             </div>
         </div>
         <div class="single-tab-content about" data-name="about_me">
+            <div class="single-tab-title">
+                <div class="main-title">
+                    About Me
+                </div>
+            </div>
             <div class="about-info-wrapper">
                 <div class="personal-info">
                     @if($user->personalInfo->is_date_of_birth_active)
@@ -422,6 +432,11 @@
             </div>
         </div>
         <div class="single-tab-content media" data-name="media">
+            <div class="single-tab-title">
+                <div class="main-title">
+                    Media
+                </div>
+            </div>
             <div id="mediaTab">
                 <media-tab theme_code="{{$themeCode}}" :user="{{$user}}"></media-tab>
             </div>
