@@ -67,10 +67,10 @@ body{
 
           .single-icon{
             margin-right: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             a{
-              display: flex;
-              align-items: center;
-              justify-content: center;
               img{
                 width: 45px;
               }
@@ -221,7 +221,8 @@ body{
                 height: 320px;
                 border-radius: 10px;
                 img{
-                  width: 100%;
+                  width: auto;
+                  height: 320px;
                   border-radius: 10px;
                 }
               }
