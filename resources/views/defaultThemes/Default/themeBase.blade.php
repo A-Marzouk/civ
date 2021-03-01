@@ -13,8 +13,10 @@
                 {{$user->personalInfo->designation}}
             </div>
             <div class="social-icons">
-                <message-modal theme_code="{{$themeCode}}" class="hide-1001"></message-modal>
-                <img class="video-icon hide-1001" src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+                <message-modal theme_code="{{$themeCode}}" class="hide-1001 single-icon"></message-modal>
+                <div class="single-icon border-right-icon hide-1001">
+                    <img src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+                </div>
 
                 @foreach( $user->links as $link)
                     @if($link->is_public)

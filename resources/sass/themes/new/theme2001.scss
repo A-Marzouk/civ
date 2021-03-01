@@ -27,19 +27,6 @@ body{
         .main-photo{
           border-radius: 50%;
         }
-        .message-icon{
-          &:hover{
-            cursor: pointer;
-          }
-          position: absolute;
-          top: 0;
-          right: 0;
-        }
-        .video-icon{
-          position: absolute;
-          bottom: 0;
-          left: 0;
-        }
       }
       .details{
         font-family: SFMono-Regular , sans-serif;
@@ -68,6 +55,15 @@ body{
             display: flex;
             align-items: center;
             justify-content: center;
+            &:hover{
+              cursor: pointer;
+            }
+
+            &.border-right-icon{
+              padding-right: 18px;
+              border-right: 1px solid #C4C4C4;
+            }
+
             a{
               img{
                 width: 45px;
