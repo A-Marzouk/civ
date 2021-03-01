@@ -865,5 +865,9 @@ body{
   overflow: hidden;
 }
 
+.hide-1001{
+  display: none !important;
+}
+
 @import "responsive/theme1001";
 @import "includes/theme1001/chat";

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img class="message-icon" src="/images/themes/theme1001/message.png" alt="message icon"
+        <img class="message-icon" :src="`/images/themes/theme${themeCodeNumber}/message.png`"  alt="message icon"
              @click="openMessageModal">
 
         <div class="chatModal" id="chatModal" :class="{'opened' : messageModal}">
@@ -72,7 +72,7 @@
 </template>
 <script>
     export default {
-        props: ['user'],
+        props: ['user','theme_code'],
         data() {
             return {
                 messageModal: false,
@@ -162,6 +162,11 @@
                 let body = $('body');
                 body.removeClass('stop-scrolling')
             }
-        }
+        },
+        computed:{
+            themeCodeNumber(){
+                return this.theme_code ;
+            }
+        },
     };
 </script>

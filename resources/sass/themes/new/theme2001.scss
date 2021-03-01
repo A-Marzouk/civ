@@ -787,5 +787,9 @@ body{
   overflow: hidden;
 }
 
+.hide-2001{
+  display: none !important;
+}
+
 @import "responsive/theme2001";
 @import "includes/theme2001/chat";

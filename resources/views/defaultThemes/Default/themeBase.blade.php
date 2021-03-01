@@ -1,11 +1,9 @@
 <div class="header">
-    <div class="personal-info">
+    <div class="personal-info" id="messageModal">
         <div class="profile-picture">
             <img class="main-photo" src="{{$user->personalInfo->profile_pic}}" alt="">
-            <div id="messageModal">
-                <message-modal></message-modal>
-            </div>
-            <img class="video-icon" src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+            <message-modal theme_code="{{$themeCode}}" class="hide-2001"></message-modal>
+            <img class="video-icon hide-2001" src="/images/themes/theme{{$themeCode}}/video.png" alt="">
         </div>
         <div class="details">
             <div class="name">
@@ -15,6 +13,9 @@
                 {{$user->personalInfo->designation}}
             </div>
             <div class="social-icons">
+                <message-modal theme_code="{{$themeCode}}" class="hide-1001"></message-modal>
+                <img class="video-icon hide-1001" src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+
                 @foreach( $user->links as $link)
                     @if($link->is_public)
                         <div class="single-icon">
