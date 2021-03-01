@@ -6,15 +6,17 @@
       position: relative;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       background-color: #4870FF;
       background-image: url("/images/themes/theme1001/background-lines.png");
-      height: 225px;
+      height: 205px;
       padding-left: 15px;
       padding-right: 15px;
 
       .personal-info{
         display: flex;
+        margin-top: 30px;
+
         .profile-picture{
           position: relative;
           .main-photo{
@@ -147,6 +149,7 @@
 
               img{
                 margin-right: 20px;
+                width: 40px;
               }
               .tab-name{
                 font-family: Roboto, sans-serif;
@@ -212,14 +215,33 @@
             }
             .portfolio-content{
               display: flex;
-              justify-content: space-between;
+              justify-content: center;
               flex-wrap: wrap;
+              margin-left: 0;
 
               .single-portfolio{
-                margin-top: 30px;
-                img{
-                  width: 100%;
+                &.hide{
+                  display: none !important;
                 }
+                margin-top: 50px;
+                margin-left: 0;
+                width: 100%;
+                max-width: 100%;
+
+                .project-image{
+                  overflow: hidden;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  height: 260px;
+                  border-radius: 10px;
+                  img{
+                    height: 260px;
+                    border-radius: 10px;
+                    width: auto;
+                  }
+                }
+
                 .details{
                   display: flex;
                   margin-top: 30px;
@@ -711,7 +733,8 @@
 
           .categories{
             display: flex;
-            overflow-x: auto ;
+            max-width: 300px;
+            overflow-x: auto;
 
             .single-category{
               font-family: Roboto, sans-serif;
@@ -953,7 +976,7 @@
               margin-top: 25px;
 
               .display-options{
-                display: flex;
+                display: none;
 
                 .option{
                   img{
@@ -967,22 +990,30 @@
             }
             .portfolio-content{
               display: flex;
-              justify-content: center;
+              justify-content: flex-start;
               flex-wrap: wrap;
-              margin-left: -50px;
+              margin-left: -3%;
 
               .single-portfolio{
-                margin-top: 30px;
-                margin-left: 50px;
+                &.hide{
+                  display: none !important;
+                }
+                margin-top: 50px;
+                margin-left: 3%;
+                width: 100%;
+                max-width: 47%;
+
                 .project-image{
-                  max-width: 285px;
-                  height: 250px;
                   overflow: hidden;
                   display: flex;
                   justify-content: center;
                   align-items: center;
+                  height: 260px;
+                  border-radius: 10px;
                   img{
-                    width: 100%;
+                    height: 260px;
+                    border-radius: 10px;
+                    width: auto;
                   }
                 }
 
@@ -1473,6 +1504,8 @@
 
           .categories{
             display: flex;
+            max-width: 666px;
+            overflow-x: auto;
 
             .single-category{
               font-family: Roboto, sans-serif;
@@ -1539,33 +1572,37 @@
           &.portfolio{
             .portfolio-content{
               display: flex;
-              justify-content: space-between;
+              justify-content: flex-start;
               flex-wrap: wrap;
-              margin-left: -90px;
+              margin-left: -5.3%;
 
               .single-portfolio{
                 &.hide{
                   display: none !important;
                 }
-                margin-top: 70px;
-                margin-left: 90px;
+                margin-top: 50px;
+                margin-left: 5.3%;
+                width: 100%;
+                max-width: 28%;
 
                 .project-image{
-                  max-width: 370px;
-                  height: 330px;
                   overflow: hidden;
                   display: flex;
                   justify-content: center;
                   align-items: center;
+                  height: 320px;
+                  border-radius: 10px;
                   img{
-                    width: 100%;
+                    height: 320px;
+                    border-radius: 10px;
+                    width: auto;
                   }
                 }
 
                 .details{
                   display: flex;
                   margin-top: 30px;
-                  max-width: 500px;
+                  max-width: 100%;
 
 
                   img{
@@ -1594,6 +1631,7 @@
                   }
                 }
               }
+
             }
           }
 

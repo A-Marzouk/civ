@@ -118,7 +118,7 @@
         </div>
         <div class="single-tab-content work" data-name="work_experience">
             <div class="experience">
-                <div class="single-tab-title">
+                <div class="single-tab-title show">
                     <div class="main-title">
                         Experience
                     </div>
@@ -160,7 +160,7 @@
         </div>
         <div class="single-tab-content work" data-name="education">
             <div class="education">
-                    <div class="single-tab-title">
+                    <div class="single-tab-title show">
                         <div class="main-title">
                             Education
                         </div>
@@ -199,7 +199,7 @@
                 </div>
         </div>
         <div class="single-tab-content skills" data-name="skills">
-            <div class="single-tab-title">
+            <div class="single-tab-title show">
                 <div class="main-title">
                     Skills & Languages
                 </div>

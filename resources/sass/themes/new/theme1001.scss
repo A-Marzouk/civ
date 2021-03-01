@@ -4,7 +4,6 @@ body{
 }
 
 .theme1001-container{
-  overflow-x: hidden;
 
   .header{
     position: relative;
@@ -212,25 +211,30 @@ body{
           }
           .portfolio-content{
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             flex-wrap: wrap;
-            margin-left: -90px;
+            margin-left: -5.3%;
+            margin-top: 15px;
 
             .single-portfolio{
               &.hide{
                 display: none !important;
               }
-              margin-top: 70px;
-              margin-left: 90px;
+              margin-top: 50px;
+              margin-left: 5.3%;
+              width: 100%;
+              max-width: 28%;
 
               .project-image{
-                max-width: 525px;
-                max-height: 330px;
                 overflow: hidden;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                height: 336px;
+                border-radius: 10px;
                 img{
+                  height: 336px;
+                  border-radius: 10px;
                   width: 100%;
                 }
               }
@@ -238,7 +242,7 @@ body{
               .details{
                 display: flex;
                 margin-top: 30px;
-                max-width: 500px;
+                max-width: 100%;
 
 
                 img{
@@ -439,6 +443,7 @@ body{
             justify-content: flex-start;
             flex-wrap: wrap;
             margin-left: -30px;
+            margin-top: 70px;
 
             .single-hobby{
               font-family: Roboto, sans-serif;
@@ -482,6 +487,8 @@ body{
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
+            margin-top: 70px;
+
             .single-achievement{
               display: flex;
               justify-content: space-between;
@@ -532,6 +539,8 @@ body{
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
+            margin-top: 70px;
+
             .single-reference{
               font-family: Roboto, sans-serif;
               padding: 30px;
@@ -747,9 +756,9 @@ body{
             flex-wrap: wrap;
             justify-content: space-between;
             font-family: Roboto, sans-serif;
-            .education,.experience{
-              max-width: 720px;
-            }
+            margin-top: 70px;
+            max-width: 1561px;
+
             .single-info{
               display: flex;
               align-items: flex-start;
@@ -822,6 +831,10 @@ body{
         }
 
         .single-tab-title{
+          display: none;
+          &.show{
+            display: block !important;
+          }
           margin: 60px 0;
           font-family: Roboto, sans-serif;
           .main-title{
