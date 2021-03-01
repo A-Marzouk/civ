@@ -28,7 +28,6 @@ body{
           border-radius: 50%;
         }
         .message-icon{
-          display: none; // hide on this theme
           &:hover{
             cursor: pointer;
           }
@@ -37,7 +36,6 @@ body{
           right: 0;
         }
         .video-icon{
-          display: none; // hide on this theme
           position: absolute;
           bottom: 0;
           left: 0;
@@ -790,3 +788,4 @@ body{
 }
 
 @import "responsive/theme2001";
+@import "includes/theme2001/chat";
