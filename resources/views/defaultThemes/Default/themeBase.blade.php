@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <div class="portfolio-content">
+            <div class="portfolio-content" id="projectSlider">
                 @foreach($user->projects as $project)
                     @if($project->is_public)
                         <div class="single-portfolio" data-category="{{$project->category}}">
@@ -115,6 +115,9 @@
                                 </div>
                             </div>
                         </div>
+
+                        <project-slider :images="{{$project->images}}" ></project-slider>
+
                     @endif
                 @endforeach
             </div>
