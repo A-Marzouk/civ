@@ -1,11 +1,9 @@
 <div class="header">
-    <div class="personal-info">
+    <div class="personal-info" id="messageModal">
         <div class="profile-picture">
             <img class="main-photo" src="{{$user->personalInfo->profile_pic}}" alt="">
-            <div id="messageModal">
-                <message-modal></message-modal>
-            </div>
-            <img class="video-icon" src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+            <message-modal theme_code="{{$themeCode}}" class="hide-2001"></message-modal>
+            <img class="video-icon hide-2001" src="/images/themes/theme{{$themeCode}}/video.png" alt="">
         </div>
         <div class="details">
             <div class="name">
@@ -15,6 +13,11 @@
                 {{$user->personalInfo->designation}}
             </div>
             <div class="social-icons">
+                <message-modal theme_code="{{$themeCode}}" class="hide-1001"></message-modal>
+                <div class="single-icon clickable border-right-icon hide-1001">
+                    <img src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+                </div>
+
                 @foreach( $user->links as $link)
                     @if($link->is_public)
                         <div class="single-icon">
@@ -91,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <div class="portfolio-content">
+            <div class="portfolio-content" id="projectSlider">
                 @foreach($user->projects as $project)
                     @if($project->is_public)
                         <div class="single-portfolio" data-category="{{$project->category}}">
@@ -112,13 +115,16 @@
                                 </div>
                             </div>
                         </div>
+
+                        <project-slider :images="{{$project->images}}" ></project-slider>
+
                     @endif
                 @endforeach
             </div>
         </div>
         <div class="single-tab-content work" data-name="work_experience">
             <div class="experience">
-                <div class="single-tab-title">
+                <div class="single-tab-title show">
                     <div class="main-title">
                         Experience
                     </div>
@@ -160,7 +166,7 @@
         </div>
         <div class="single-tab-content work" data-name="education">
             <div class="education">
-                    <div class="single-tab-title">
+                    <div class="single-tab-title show">
                         <div class="main-title">
                             Education
                         </div>
@@ -199,7 +205,7 @@
                 </div>
         </div>
         <div class="single-tab-content skills" data-name="skills">
-            <div class="single-tab-title">
+            <div class="single-tab-title show">
                 <div class="main-title">
                     Skills & Languages
                 </div>

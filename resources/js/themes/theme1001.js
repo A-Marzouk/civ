@@ -200,6 +200,7 @@ function touchMove(e){
 // needed vue components:
 import MediaTab from './components/theme1001/Media'
 import messageModal from './components/theme1001/MessageModal'
+import projectSlider from './components/theme1001/projectSlider'
 
 
 new Vue({
@@ -213,5 +214,12 @@ new Vue({
     el: "#messageModal",
     components: {
         "message-modal": messageModal
+    }
+});
+
+new Vue({
+    el: "#projectSlider",
+    components: {
+        "project-slider": projectSlider
     }
 });

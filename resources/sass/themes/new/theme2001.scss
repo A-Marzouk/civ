@@ -27,21 +27,6 @@ body{
         .main-photo{
           border-radius: 50%;
         }
-        .message-icon{
-          display: none; // hide on this theme
-          &:hover{
-            cursor: pointer;
-          }
-          position: absolute;
-          top: 0;
-          right: 0;
-        }
-        .video-icon{
-          display: none; // hide on this theme
-          position: absolute;
-          bottom: 0;
-          left: 0;
-        }
       }
       .details{
         font-family: SFMono-Regular , sans-serif;
@@ -64,12 +49,24 @@ body{
         }
         .social-icons{
           display: flex;
+          align-items: center;
 
           .single-icon{
             margin-right: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
+            &.clickable{
+              &:hover{
+                cursor: pointer;
+              }
+            }
+
+            &.border-right-icon{
+              padding-right: 18px;
+              border-right: 1px solid #C4C4C4;
+            }
+
             a{
               img{
                 width: 45px;
@@ -789,4 +786,9 @@ body{
   overflow: hidden;
 }
 
+.hide-2001{
+  display: none !important;
+}
+
 @import "responsive/theme2001";
+@import "includes/theme2001/chat";

@@ -1,0 +1,288 @@
+.chatModal {
+  &.opened {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.7);
+
+    .chat-body {
+      left: calc(50% - 650px / 2);
+    }
+  }
+
+  transition: all 1s;
+
+  .chat-body {
+    font-family: SFMono-Regular, sans-serif;
+    z-index: 999999;
+    background: white;
+    width: 650px;
+    border-radius: 20px;
+    position: absolute;
+    left: -1650px;
+    top: 150px;
+    transition: all 1s;
+    max-height: 100vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .content-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 450px;
+
+      .title {
+        font-weight: bold;
+        margin-top: 48px;
+        margin-bottom: 25px;
+        font-size: 36px;
+        line-height: 43px;
+        color: #333333;
+      }
+
+      .input {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+
+        input, textarea {
+          border: 1px solid #D7D9DA;
+          width: 100%;
+          resize: none;
+          max-width: 440px;
+          height: 48px;
+          border-radius: 50px;
+          font-size: 18px;
+          padding-left: 30px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        textarea {
+          height: 130px;
+          padding-top: 15px;
+        }
+      }
+
+      .button-section {
+        display: flex;
+        align-items: center;
+        padding-bottom: 35px;
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+
+        .left {
+          margin-right: 30px;
+
+          a {
+            color: white;
+            background: #333333;
+            border-radius: 52px;
+            height: 48px;
+            width: 175px;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+          }
+        }
+
+        .right {
+          a {
+            color: #333333;
+            background: white;
+            border: 1.5px solid #333333;
+            border-radius: 52px;
+            height: 48px;
+            width: 175px;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .client-input-error{
+        color: red;
+        font-size: 14px;
+        margin-top: 3px;
+        margin-left: 3px;
+        text-align: left;
+        width: 100%;
+        max-width: 480px;
+      }
+
+    }
+  }
+
+}
+
+@media screen and (max-width: 400px){
+  .chatModal {
+    &.opened {
+      .chat-body {
+        left: calc(50% - 300px / 2) !important;
+      }
+    }
+    .chat-body {
+      width: 300px !important;
+
+      .content-wrapper{
+        align-items: center;
+      }
+
+      .button-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding-bottom: 30px;
+        .left {
+          margin-bottom: 30px;
+          margin-right: 0 !important;
+          a {
+            border-radius: 30px;
+            height: 40px;
+            width: 150px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+          }
+        }
+        .right {
+          a {
+            border-radius: 30px;
+            height: 40px;
+            width: 150px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .chatModal {
+    &.opened {
+      .chat-body {
+        left: calc(50% - 400px / 2);
+      }
+    }
+    transition: all 1s;
+
+    .chat-body {
+      width: 400px;
+      border-radius: 15px;
+      position: absolute;
+      left: -1650px;
+      top: 50px;
+      transition: all 1s;
+      max-height: 100vh;
+      .content-wrapper {
+        align-items: center;
+
+        .title {
+          font-size: 20px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+        .input {
+          width: 80%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 25px;
+          input, textarea {
+            width: 100%;
+            height: 45px;
+            border-radius: 8px;
+            font-size: 16px;
+            padding-left: 15px;
+          }
+          textarea {
+            height: 120px;
+            padding-top: 10px;
+          }
+        }
+
+        .button-section {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          padding-bottom: 30px;
+
+          .left {
+            margin-right: 10px;
+
+            a {
+              border-radius: 30px;
+              height: 40px;
+              width: 140px;
+              font-size: 14px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-decoration: none;
+            }
+          }
+
+          .right {
+            a {
+              border-radius: 30px;
+              height: 40px;
+              width: 140px;
+              font-size: 14px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-decoration: none;
+            }
+          }
+        }
+
+        .client-input-error{
+          color: red;
+          font-size: 12px;
+          margin-top: 3px;
+          margin-left: 3px;
+          text-align: left;
+          width: 100%;
+          max-width: 480px;
+        }
+
+      }
+    }
+
+  }
+}
