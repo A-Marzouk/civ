@@ -55,8 +55,10 @@ body{
             display: flex;
             align-items: center;
             justify-content: center;
-            &:hover{
-              cursor: pointer;
+            &.clickable{
+              &:hover{
+                cursor: pointer;
+              }
             }
 
             &.border-right-icon{

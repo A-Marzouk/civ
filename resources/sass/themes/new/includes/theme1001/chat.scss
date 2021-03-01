@@ -1,4 +1,5 @@
 .chatModal {
+  z-index: 999999;
   &.opened {
     position: fixed;
     z-index: 1;

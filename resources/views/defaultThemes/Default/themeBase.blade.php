@@ -13,8 +13,8 @@
                 {{$user->personalInfo->designation}}
             </div>
             <div class="social-icons">
-                <message-modal theme_code="{{$themeCode}}" class="hide-1001 single-icon"></message-modal>
-                <div class="single-icon border-right-icon hide-1001">
+                <message-modal theme_code="{{$themeCode}}" class="hide-1001"></message-modal>
+                <div class="single-icon clickable border-right-icon hide-1001">
                     <img src="/images/themes/theme{{$themeCode}}/video.png" alt="">
                 </div>
 

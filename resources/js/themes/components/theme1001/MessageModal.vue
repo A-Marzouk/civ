@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img class="message-icon" :src="`/images/themes/theme${themeCodeNumber}/message.png`"  alt="message icon"
+        <img class="message-icon single-icon clickable" :src="`/images/themes/theme${themeCodeNumber}/message.png`"  alt="message icon"
              @click="openMessageModal">
 
         <div class="chatModal" id="chatModal" :class="{'opened' : messageModal}">
@@ -29,7 +29,7 @@
                         <div class="button-section">
                             <div class="left">
                                 <a href="javascript:void(0)" @click="sendMessage" class="send-button">
-                                    <svg
+                                    <svg class="hide-2001"
                                             xmlns="http://www.w3.org/2000/svg"
                                             focusable="false"
                                             width=".9em"
@@ -49,7 +49,7 @@
                                         />
                                     </svg>
 
-                                    Send message
+                                    Send <span class="hide-2001">message</span>
                                 </a>
                             </div>
                             <div class="right">
