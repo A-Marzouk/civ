@@ -211,6 +211,9 @@ body{
               max-width: 24%;
 
               .project-image{
+                &:hover{
+                  cursor: pointer;
+                }
                 overflow: hidden;
                 display: flex;
                 justify-content: center;
