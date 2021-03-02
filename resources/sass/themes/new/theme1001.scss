@@ -871,5 +871,12 @@ body{
   display: none !important;
 }
 
+.clickable{
+  &:hover{
+    cursor: pointer;
+  }
+}
+
 @import "responsive/theme1001";
 @import "includes/theme1001/chat";
+@import "includes/theme1001/video";

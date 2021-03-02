@@ -3,7 +3,7 @@
         <div class="profile-picture">
             <img class="main-photo" src="{{$user->personalInfo->profile_pic}}" alt="">
             <message-modal theme_code="{{$themeCode}}" class="hide-2001"></message-modal>
-            <img class="video-icon hide-2001" src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+            <img class="video-icon clickable hide-2001" src="/images/themes/theme{{$themeCode}}/video.png" alt="video" id="video-open-1001">
         </div>
         <div class="details">
             <div class="name">
@@ -12,11 +12,25 @@
             <div class="job-title">
                 {{$user->personalInfo->designation}}
             </div>
+
+            @if($user->media->where('type','video')->first())
+                <div class="video-modal" id="video">
+                    <div class="video-body">
+                        <div class="exit-btn" id="video-close">
+                            <a href="javascript:void(0)">x</a>
+                        </div>
+                        <video id="main-video" width="100%"  ref="videoElem" controls src="{{$user->media->where('type','video')->first()->url}}"></video>
+                    </div>
+                </div>
+            @endif
+
             <div class="social-icons">
                 <message-modal theme_code="{{$themeCode}}" class="hide-1001"></message-modal>
-                <div class="single-icon clickable border-right-icon hide-1001">
-                    <img src="/images/themes/theme{{$themeCode}}/video.png" alt="">
-                </div>
+                @if($user->media->where('type','video')->first())
+                    <div class="single-icon clickable border-right-icon hide-1001" id="video-open">
+                        <img src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+                    </div>
+                @endif
 
                 @foreach( $user->links as $link)
                     @if($link->is_public)

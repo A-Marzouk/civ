@@ -22,18 +22,17 @@
     import VueSlickCarousel from 'vue-slick-carousel'
     import 'vue-slick-carousel/dist/vue-slick-carousel.css'
     import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-
     export default {
         name: "ProjectSlider",
         props:['project'],
         components: { VueSlickCarousel },
         data(){
             return{
+                modalOpened: false,
                 activeSlide: {},
                 currentImageIndex: 1,
-                currentTouchPosition: '',
-                modalOpened: false
-            }
+                currentTouchPosition: ''
+            };
         },
         methods:{
             changeActiveSlide(n){

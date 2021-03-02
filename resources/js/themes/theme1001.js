@@ -9,6 +9,9 @@ $('document').ready(function(){
     $('#menu-open').on('click mouseover', openMenu );
     $('#menu-close').on('click', closeMenu);
 
+    $('#video-open, #video-open-1001').on('click', openVideo );
+    $('#video-close').on('click', closeVideo);
+
     menuBody.on('mouseleave', closeMenu );
     menuTab.on('mouseover', changeTab);
     menuTab.on('click', closeMenu);
@@ -36,6 +39,17 @@ function openMenu() {
 function closeMenu() {
     $('#menu-body').css('right', '-650px');
     $('#menu').removeClass('opened');
+    startBodyScrolling();
+}
+
+function openVideo() {
+    $('#video').addClass('opened');
+    stopBodyScrolling()
+}
+
+function closeVideo() {
+    $('#video').removeClass('opened');
+    document.getElementById('main-video').pause();
     startBodyScrolling();
 }
 
