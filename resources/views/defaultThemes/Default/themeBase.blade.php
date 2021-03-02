@@ -21,9 +21,28 @@
                 @foreach( $user->links as $link)
                     @if($link->is_public)
                         <div class="single-icon">
-                            <a href="{{$link->link}}">
-                                <img src="/images/themes/theme{{$themeCode}}/social/{{strtolower($link->link_title)}}.svg" alt="{{$link->link_title}} icon">
-                            </a>
+                            @if($link->link_title === 'Email')
+                                <a href="mailto:{{$link->link}}" target="_blank">
+                                    <img src="/images/themes/theme{{$themeCode}}/social/{{strtolower($link->link_title)}}.svg" alt="{{$link->link_title}} icon">
+                                </a>
+                            @elseif($link->link_title === 'Phone')
+                                <a href="tel:{{$link->link}}" target="_blank">
+                                    <img src="/images/themes/theme{{$themeCode}}/social/{{strtolower($link->link_title)}}.svg" alt="{{$link->link_title}} icon">
+                                </a>
+                            @elseif($link->link_title === 'Skype')
+                                <a href="skype:{{$link->link}}" target="_blank">
+                                    <img src="/images/themes/theme{{$themeCode}}/social/{{strtolower($link->link_title)}}.svg" alt="{{$link->link_title}} icon">
+                                </a>
+                            @elseif($link->link_title === 'Whatsapp')
+                                <a href="https://wa.me/:{{$link->link}}" target="_blank">
+                                    <img src="/images/themes/theme{{$themeCode}}/social/{{strtolower($link->link_title)}}.svg" alt="{{$link->link_title}} icon">
+                                </a>
+                            @else
+                                <a href="{{ str_contains ($link->link , 'http') ? $link->link : 'http://' . $link->link}}" target="_blank">
+                                    <img src="/images/themes/theme{{$themeCode}}/social/{{strtolower($link->link_title)}}.svg" alt="{{$link->link_title}} icon">
+                                </a>
+                            @endif
+
                         </div>
                     @endif
                 @endforeach
