@@ -1,59 +1,38 @@
 <template>
-    <div class="slider-container">
-        <div class="slides">
-            <div class="main-slide" @touchstart="touchStart" @touchend="touchEnd">
-                <div class="slides-numbers">
-                    {{currentImageIndex}} / {{images.length}}
+    <div>
+        <img :src="images[0].src" alt="portfolio image" @click="modalOpened = true" class="project-main-image">
+
+        <div class="slider-container-modal" :class="{'opened' : modalOpened}">
+            <div class="slides-body">
+                <VueSlickCarousel :arrows="true" :dots="false">
+                    <div v-for="(image,index) in images" :key="index" class="image-container">
+                        <img class="slider-image" :src="image.src" alt="image">
+                    </div>
+                </VueSlickCarousel>
+                <div class="exit-btn">
+                    <a href="javascript:void(0)" @click="modalOpened = false">x</a>
                 </div>
-                <img :src="activeSlideSrc" alt="main slide">
-                <div class="arrow-slide right" @click="changeActiveSlide(1)">❯</div>
-                <div class="arrow-slide left"  @click="changeActiveSlide(-1)">❮</div>
             </div>
         </div>
-        <div class="title-bar">
-            <div class="title">
-                Project title goes here
-            </div>
-        </div>
-        <div class="previews">
-            <div class="single-preview" @click="changeSlide(image,index)" :class="{ 'active' : activeSlide.id === image.id }" v-for="(image, index) in images" :key="image.id">
-                <img :src="image.src" alt="preview">
-            </div>
-        </div>
+
     </div>
 </template>
 
 <script>
+    import VueSlickCarousel from 'vue-slick-carousel'
+    import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+    import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+
     export default {
         name: "ProjectSlider",
-        props:[''],
+        props:['project'],
+        components: { VueSlickCarousel },
         data(){
             return{
-                images:[
-                    {
-                        id:1,
-                        src: '/images/portfolio1.png'
-                    },
-                    {
-                        id:2,
-                        src: '/images/portfolio2.png'
-                    },
-                    {
-                        id:3,
-                        src: '/images/portfolio3.png'
-                    },
-                    {
-                        id:4,
-                        src: '/images/portfolio4.png'
-                    },
-                    {
-                        id:5,
-                        src: '/images/portfolio5.png'
-                    },
-                ],
                 activeSlide: {},
                 currentImageIndex: 1,
-                currentTouchPosition: ''
+                currentTouchPosition: '',
+                modalOpened: false
             }
         },
         methods:{
@@ -86,6 +65,9 @@
             }
         },
         computed:{
+            images(){
+                return this.project.images
+            },
             activeSlideSrc:{
                 get() {
                     return this.activeSlide.src;
@@ -102,100 +84,84 @@
     }
 </script>
 
-<style lang="scss" scoped>
-    
-    .slider-container{
-        width: 100%;
-        max-width: 1020px;
-        border: 1px solid;
-        border-radius: 15px;
-        overflow: hidden;
-        .slides{
-            .main-slide{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-                max-height: 500px;
-                overflow: hidden;
-                position: relative;
+<style lang="scss">
 
-                img{
-                    width: 100%;
-                }
+    .slider-container-modal {
+        &.opened {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.7);
 
-                .slides-numbers{
-                    position: absolute;
-                    color: white;
-                    font-weight: bold;
-                    font-size: 20px;
-                    top: 16px;
-                    left: 16px;
-                    background-color: rgba(0, 0, 0, 0.7);
-                    border-radius: 9px;
-                    padding: 10px;
-                }
-
-                .arrow-slide{
-                    cursor: pointer;
-                    position: absolute;
-                    width: auto;
-                    padding: 16px;
-                    color: white;
-                    font-weight: bold;
-                    font-size: 20px;
-                    border-radius: 0 9px 9px 0;
-                    &:hover{
-                        background-color: rgba(0, 0, 0, 0.7);
-                    }
-                    &.right{
-                        right: 0;
-                        border-radius: 9px 0 0 9px;
-                    }
-                    &.left{
-                        left: 0;
-                    }
-                }
-
+            .slides-body {
+                left: calc(50% - 70% / 2);
             }
         }
 
-        .title-bar{
-            background: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 60px;
-            .title{
+        transition: all 1s;
+
+        .slides-body {
+            font-family: SFMono-Regular, sans-serif;
+            z-index: 999999;
+            width: 70%;
+            border-radius: 20px;
+            position: fixed;
+            left: -1650px;
+            top: 150px;
+            transition: all 1s;
+            max-height: 600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+            .image-container{
+                max-height: 75vh;
+                border-radius: 25px;
+                overflow: hidden;
+                .slider-image{
+                    padding: 5px;
+                    width: 100% !important;
+                    height: auto !important;
+                }
+            }
+        }
+
+        .exit-btn{
+            position: absolute;
+            top: -43px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            right: 0;
+
+            a{
+                text-decoration: none;
                 color: white;
-                font-size: 20px;
-                font-weight: 500;
+                font-size: 18px;
+                font-weight: 600;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
 
+    }
 
-        .previews{
-            border-top: 1px solid;
-            display: flex;
-            .single-preview{
-                border: 1px solid lightgray;
-                height: 175px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
-                opacity: 0.4;
-                &:hover{
-                    cursor: pointer;
-                    opacity: 1;
+    @media screen and (max-width: 800px){
+        .slider-container-modal {
+            &.opened {
+                position: fixed;
+                .slides-body {
+                    left: calc(50% - 95% / 2);
                 }
-                &.active{
-                    opacity: 1;
-                }
-                img{
-                    
-                }
+            }
+
+            .slides-body {
+                width: 95%;
             }
         }
     }

@@ -224,7 +224,9 @@ body{
               margin-left: 5.3%;
               width: 100%;
               max-width: 28%;
-
+              &:hover{
+                cursor: pointer;
+              }
               .project-image{
                 overflow: hidden;
                 display: flex;
@@ -232,10 +234,10 @@ body{
                 align-items: center;
                 height: 336px;
                 border-radius: 10px;
-                img{
+                .project-main-image{
                   height: 336px;
                   border-radius: 10px;
-                  width: 100%;
+                  width: auto !important;
                 }
               }
 

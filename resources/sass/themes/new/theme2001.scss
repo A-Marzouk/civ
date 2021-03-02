@@ -220,8 +220,8 @@ body{
                 align-items: center;
                 height: 320px;
                 border-radius: 10px;
-                img{
-                  width: auto;
+                .project-main-image{
+                  width: auto !important;
                   height: 320px;
                   border-radius: 10px;
                 }
