@@ -95,15 +95,18 @@
                 </div>
             </div>
 
-            <div class="portfolio-content" id="projectSlider">
+            <div id="projectSlider">
+                <project-slider></project-slider>
+            </div>
+
+
+            <div class="portfolio-content">
                 @foreach($user->projects as $project)
                     @if($project->is_public)
                         <div class="single-portfolio" data-category="{{$project->category}}">
                             <div class="project-image">
                                 @if(count($project->images) > 0)
-                                    <div>
-                                        <project-slider :project="{{$project}}"></project-slider>
-                                    </div>
+                                    <img src="{{$project->images[0]->src}}" alt="portfolio image">
                                 @endif
                             </div>
                             <div class="details">

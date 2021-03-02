@@ -1,26 +1,23 @@
 <template>
-    <div>
-        <img :src="activeSlideSrc" alt="portfolio image" @click="openSlider">
-        <div class="slider-container" :class="{'opened': project.id === openedProjectID}">
-            <div class="slides">
-                <div class="main-slide" @touchstart="touchStart" @touchend="touchEnd">
-                    <div class="slides-numbers">
-                        {{currentImageIndex}} / {{images.length}}
-                    </div>
-                    <img :src="activeSlideSrc" alt="main slide">
-                    <div class="arrow-slide right" @click="changeActiveSlide(1)">❯</div>
-                    <div class="arrow-slide left"  @click="changeActiveSlide(-1)">❮</div>
+    <div class="slider-container">
+        <div class="slides">
+            <div class="main-slide" @touchstart="touchStart" @touchend="touchEnd">
+                <div class="slides-numbers">
+                    {{currentImageIndex}} / {{images.length}}
                 </div>
+                <img :src="activeSlideSrc" alt="main slide">
+                <div class="arrow-slide right" @click="changeActiveSlide(1)">❯</div>
+                <div class="arrow-slide left"  @click="changeActiveSlide(-1)">❮</div>
             </div>
-            <div class="title-bar">
-                <div class="title">
-                    {{projectTitle}}
-                </div>
+        </div>
+        <div class="title-bar">
+            <div class="title">
+                Project title goes here
             </div>
-            <div class="previews">
-                <div class="single-preview" @click="changeSlide(image,index)" :class="{ 'active' : activeSlide.id === image.id }" v-for="(image, index) in images" :key="image.id">
-                    <img :src="image.src" alt="preview">
-                </div>
+        </div>
+        <div class="previews">
+            <div class="single-preview" @click="changeSlide(image,index)" :class="{ 'active' : activeSlide.id === image.id }" v-for="(image, index) in images" :key="image.id">
+                <img :src="image.src" alt="preview">
             </div>
         </div>
     </div>
@@ -29,13 +26,34 @@
 <script>
     export default {
         name: "ProjectSlider",
-        props:['project'],
+        props:[''],
         data(){
             return{
+                images:[
+                    {
+                        id:1,
+                        src: '/images/portfolio1.png'
+                    },
+                    {
+                        id:2,
+                        src: '/images/portfolio2.png'
+                    },
+                    {
+                        id:3,
+                        src: '/images/portfolio3.png'
+                    },
+                    {
+                        id:4,
+                        src: '/images/portfolio4.png'
+                    },
+                    {
+                        id:5,
+                        src: '/images/portfolio5.png'
+                    },
+                ],
                 activeSlide: {},
                 currentImageIndex: 1,
-                currentTouchPosition: '',
-                openedProjectID: 0
+                currentTouchPosition: ''
             }
         },
         methods:{
@@ -65,18 +83,9 @@
                 if(e.changedTouches[0].clientX - this.currentTouchPosition > 60){
                     this.changeActiveSlide(-1);
                 }
-            },
-            openSlider(){
-                this.openedProjectID = this.project.id;
             }
         },
         computed:{
-            images(){
-              return this.project.images
-            },
-            projectTitle(){
-              return this.project.title;
-            },
             activeSlideSrc:{
                 get() {
                     return this.activeSlide.src;
@@ -96,14 +105,9 @@
 <style lang="scss" scoped>
     
     .slider-container{
-        display: none;
-
-        &.opened{
-            display: block;
-        }
-
         width: 100%;
         max-width: 1020px;
+        border: 1px solid;
         border-radius: 15px;
         overflow: hidden;
         .slides{
