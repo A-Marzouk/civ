@@ -211,14 +211,17 @@ body{
               max-width: 24%;
 
               .project-image{
+                &:hover{
+                  cursor: pointer;
+                }
                 overflow: hidden;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 320px;
                 border-radius: 10px;
-                img{
-                  width: auto;
+                .project-main-image{
+                  width: auto !important;
                   height: 320px;
                   border-radius: 10px;
                 }

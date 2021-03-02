@@ -51,12 +51,7 @@
                     </div>
                     <div class="cv-preview-theme-wrapper">
                         <div class="cv-preview-theme">
-                            <div class="theme-preview-loader" v-if="!isFrameLoaded">
-                                <v-skeleton-loader
-                                        class="mx-auto loader"
-                                        type="list-item-avatar-three-line, image, article, actions"
-                                ></v-skeleton-loader>
-                            </div>
+                            <div class="theme-preview-loader" v-if="!isFrameLoaded"><span>Please wait...</span></div>
                             <vue-friendly-iframe class="theme-frame" :src="`${baseUrl}${user.username}/${user.default_resume_link.url}`" @iframe-load="onLoad"></vue-friendly-iframe>
                         </div>
                     </div>
@@ -81,7 +76,7 @@
             activeTab: "profile",
             baseUrl: '',
             cvAutoUpdate: true,
-            isFrameLoaded: false,
+            isFrameLoaded: true,
             availableThemes: [],
             themeUrl: ''
         }),
@@ -148,8 +143,9 @@
                 this.baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
             },
             onLoad() {
-                // remove the spinner loader.
-                this.isFrameLoaded = true;
+                setTimeout( () => {
+                    this.isFrameLoaded = true;
+                },500)
             },
             updateIframe(force = 'false') {
                 if (this.cvAutoUpdate || force === 'true') {
@@ -500,40 +496,23 @@
     }
 
     .theme-preview-loader {
+        background: url("/images/themes/theme2001/spinner.gif") no-repeat scroll center center #FFF;
+        position: absolute;
+        height: 100%;
         width: 100%;
-        min-height: 1300px;
+        z-index: 10;
+        min-height: 905px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        .loader {
-            max-width: 95%;
-            margin-top: 25px;
-
-            .v-skeleton-loader__list-item-avatar-three-line.v-skeleton-loader__bone {
-                margin-top: 25px;
-                margin-bottom: 20px;
-
-                .v-skeleton-loader__avatar.v-skeleton-loader__bone {
-                    margin-right: 12px;
-                }
-            }
-
-            .v-skeleton-loader__image.v-skeleton-loader__bone {
-                margin-top: 25px;
-                margin-bottom: 20px;
-            }
-
-            .v-skeleton-loader__article.v-skeleton-loader__bone {
-                margin-top: 25px;
-                margin-bottom: 20px;
-            }
-
-            .v-skeleton-loader__actions.v-skeleton-loader__bone {
-                margin-top: 20px;
-
-                .v-skeleton-loader__button.v-skeleton-loader__bone {
-                    margin-right: 30px;
-                }
-            }
-        }
+       span{
+           margin-bottom: 135px;
+           font-weight: 500;
+           font-size: 30px;
+           line-height: 22px;
+           color: #888DB1;
+       }
     }
 
 
