@@ -6,13 +6,13 @@ $('document').ready(function(){
 
     let menuTab  = $('.menu-tab');
     let menuBody = $('#menu-body');
-    $('#menu-open').on('click mouseover', openMenu );
+    $('#menu-open').on('click mouseover', openMenu);
     $('#menu-close').on('click', closeMenu);
 
-    $('#video-open, #video-open-1001').on('click', openVideo );
+    $('#video-open, #video-open-1001').on('click', openVideo);
     $('#video-close').on('click', closeVideo);
 
-    menuBody.on('mouseleave', closeMenu );
+    menuBody.on('mouseleave', closeMenu);
     menuTab.on('mouseover', changeTab);
     menuTab.on('click', closeMenu);
 
@@ -31,13 +31,11 @@ $('document').ready(function(){
 
 
 function openMenu() {
-    $('#menu-body').css('right', 0);
     $('#menu').addClass('opened');
     stopBodyScrolling()
 }
 
 function closeMenu() {
-    $('#menu-body').css('right', '-650px');
     $('#menu').removeClass('opened');
     startBodyScrolling();
 }
