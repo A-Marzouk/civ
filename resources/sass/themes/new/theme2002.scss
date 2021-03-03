@@ -269,7 +269,7 @@ body{
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
-            margin-top: 70px;
+            margin-top: 155px;
             margin-left: -4%;
             padding: 0 3%;
 
@@ -349,28 +349,34 @@ body{
           }
 
           .categories{
-            display: none;
+            display: flex;
             position: absolute;
-            top: 10px;
+            top: 80px;
             margin-left: -25px;
             overflow: auto;
             max-width: 100%;
 
             .single-category{
-              font-family: SFMono-Regular, sans-serif;
+              font-family: Poppins, sans-serif;
               font-weight: 500;
-              font-size: 20px;
-              line-height: 23px;
+              font-size: 24px;
+              border: 2px solid white;
+              color: #333333;
               white-space: nowrap;
-              padding-left:25px;
-              padding-right:25px;
-              border-right: 1px solid #C4C4C4;
+              margin-right: 50px;
+              padding: 6px 12px;
+              border-right: 0;
+
               &:last-child{
-                border-right: 0;
+                margin-right:0;
               }
-              color: #C2C2C2;
+
               &.active{
-                color: #333333;
+                color: #5843BE;
+                border: 2px solid #EEEEEE;
+                background: #EEEEEE;
+                box-shadow: inset -1px -1px 1px rgba(255, 255, 255, 0.7), inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2);
+                border-radius: 5px;
               }
               &:hover{
                 cursor: pointer;
@@ -796,32 +802,6 @@ body{
 
         .categories{
           display: none;
-          position: absolute;
-          top: 10px;
-          margin-left: -25px;
-          overflow: auto;
-          max-width: 100%;
-
-          .single-category{
-            font-family: SFMono-Regular, sans-serif;
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 23px;
-            white-space: nowrap;
-            padding-left:25px;
-            padding-right:25px;
-            border-right: 1px solid #C4C4C4;
-            &:last-child{
-              border-right: 0;
-            }
-            color: #C2C2C2;
-            &.active{
-              color: #333333;
-            }
-            &:hover{
-              cursor: pointer;
-            }
-          }
         }
 
         .single-tab-title{
