@@ -137,7 +137,7 @@ body{
           display: flex;
           justify-content: flex-end;
           img{
-            margin-right: 30px;
+            margin-right: 0;
             &:hover{
               cursor: pointer;
             }
@@ -149,9 +149,7 @@ body{
             align-items: center;
             padding-bottom: 10px;
             padding-top: 30px;
-            border-bottom: 1px solid #E6E6E6;
             &:last-child{
-              border-bottom: 0;
               padding-bottom: 40px;
             }
 
