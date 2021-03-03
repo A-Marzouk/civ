@@ -224,7 +224,9 @@
                                                 {{$education->university_name}}
                                             </div>
                                             <div class="date">
-                                                2017 - Present
+                                                {{$education->date_from}}
+                                                -
+                                                {{$education->present ? 'Present' : $education->date_to}}
                                             </div>
                                         </div>
                                         <div class="work-sub-header">

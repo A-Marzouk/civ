@@ -174,7 +174,7 @@ function setDefaultActiveTab() {
     let tabName = $('.menu-tab').first().data().name;
     let queryString = window.location.search;
     let urlParams = new URLSearchParams(queryString);
-    let defaultTabs = ['portfolio', 'work_experience', 'skills', 'hobbies','about_me', 'media', 'references', 'achievements'];
+    let defaultTabs = ['portfolio', 'work_experience', 'skills', 'education', 'hobbies','about_me', 'media', 'references', 'achievements'];
 
     if(urlParams.has('tab')){
          let tabParam = urlParams.get('tab');
