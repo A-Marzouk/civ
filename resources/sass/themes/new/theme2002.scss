@@ -6,7 +6,7 @@ body{
 .theme2002-container{
   overflow-x: hidden;
   word-break: break-word;
-  background: #F5F5F5;
+  background: white;
   min-height: 100vh;
 
   .header{
@@ -15,8 +15,8 @@ body{
     justify-content: space-between;
     align-items: center;
     height: 300px;
-    padding-left: 166px;
-    padding-right: 163px;
+    padding-left: 160px;
+    padding-right: 160px;
     background: #FAFAFA;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15);
     border-radius: 0px;
@@ -122,7 +122,7 @@ body{
         padding-left: 80px;
         padding-right: 80px;
         width: 440px;
-        background: linear-gradient(0deg, #FAFAFA, #FAFAFA), url(image.png);
+        background: linear-gradient(0deg, #FAFAFA, #FAFAFA);
         box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
         border-radius: 30px;
         position: absolute;
@@ -186,13 +186,13 @@ body{
   }
 
   .tabs-contents{
-    background: #F5F5F5;
+    background: white;
     padding-top: 39px;
     .tabs-contents-wrapper{
       .single-tab-content{
         position: relative;
         display: none;
-        padding: 0 130px 70px 130px;
+        padding: 0 160px 70px 160px;
 
         &.active{
           display: block;
@@ -213,7 +213,8 @@ body{
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
-            margin-left: -1%;
+            margin-left: -5%;
+            margin-right: -3%;
 
             .single-portfolio{
               &.hide{
@@ -233,7 +234,7 @@ body{
                 justify-content: center;
                 align-items: center;
                 height: 320px;
-                border-radius: 10px;
+                border-radius: 30px;
                 .project-main-image{
                   width: auto !important;
                   height: 320px;
@@ -342,15 +343,17 @@ body{
         &.about{
           .about-info-wrapper{
             display: flex;
-            margin-top: 90px;
+            margin-top: 60px;
+            background: linear-gradient(0deg, #FAFAFA, #FAFAFA);
+            box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            padding: 35px 60px 35px 125px;
 
             .personal-info{
               padding-right: 45px;
-              border-right: 1px solid rgba(61, 94, 212, 0.28);
-
               .single-data{
-                font-family: SFMono-Regular, sans-serif;
-                margin-bottom: 30px;
+                font-family: "Open Sans", sans-serif;
+                margin-bottom: 20px;
 
                 img{
                   display: none;
@@ -359,31 +362,31 @@ body{
                   white-space: nowrap;
                   margin-bottom: 10px;
                   font-style: normal;
-                  font-weight: bold;
-                  font-size: 18px;
-                  color: #B9B9B9;
+                  font-weight: normal;
+                  font-size: 16px;
+                  color: #5843BE;
                 }
                 .sub-title{
                   font-weight: bold;
-                  font-size: 24px;
+                  font-size: 22px;
                   color: #333333;
                   white-space: nowrap;
                 }
               }
             }
             .professional-info{
-              margin-left: 50px;
+              margin-left: 10px;
 
               .main-info-wrapper{
                 .single-main-info{
-                  font-family: SFMono-Regular, sans-serif;
-                  margin-bottom: 49px;
+                  font-family: "Open Sans", sans-serif;
+                  margin-bottom: 30px;
 
                   .title{
-                    font-weight: bold;
-                    font-size: 18px;
+                    font-weight: normal;
+                    font-size: 16px;
                     margin-bottom: 10px;
-                    color: #B9B9B9;
+                    color: #5843BE;
                   }
                   .sub-title{
                     font-weight: bold;
@@ -403,11 +406,11 @@ body{
                    display: none;
                   }
                   .details{
-                    font-family: SFMono-Regular, sans-serif;
+                    font-family:  "Open Sans", sans-serif;
                     .title{
-                      font-weight: bold;
-                      font-size: 18px;
-                      color: #B9B9B9;
+                      font-weight: normal;
+                      font-size: 16px;
+                      color: #5843BE;
                       margin-bottom: 8px;
                     }
                     .sub-title{
@@ -745,7 +748,7 @@ body{
         }
 
         .categories{
-          display: flex;
+          display: none;
           position: absolute;
           top: 10px;
           margin-left: -25px;
@@ -777,11 +780,11 @@ body{
         .single-tab-title{
           font-family: SFMono-Regular, sans-serif;
           display: flex;
-          margin: 0 0 60px 0;
-          justify-content: flex-end;
+          margin: 20px 0 10px 0;
+          justify-content: flex-start;
           .main-title{
             font-weight: bold;
-            font-size: 36px;
+            font-size: 30px;
             color: #6C5AC6;
             margin-bottom: 0px;
           }
