@@ -2,8 +2,8 @@
     <div class="personal-info" id="messageModal">
         <div class="profile-picture">
             <img class="main-photo" src="{{$user->personalInfo->profile_pic}}" alt="">
-            <message-modal theme_code="{{$themeCode}}" class="hide-2001"></message-modal>
-            <img class="video-icon clickable hide-2001" src="/images/themes/theme{{$themeCode}}/video.png" alt="video" id="video-open-1001">
+            <message-modal theme_code="{{$themeCode}}" class="hide-2001 hide-2002"></message-modal>
+            <img class="video-icon clickable hide-2001 hide-2002" src="/images/themes/theme{{$themeCode}}/video.png" alt="video" id="video-open-1001">
         </div>
         <div class="details">
             <div class="name">
@@ -28,7 +28,9 @@
                 <message-modal theme_code="{{$themeCode}}" class="hide-1001"></message-modal>
                 @if($user->media->where('type','video')->first())
                     <div class="single-icon clickable border-right-icon hide-1001" id="video-open">
-                        <img src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+                        <a href="javascript:void(0)">
+                            <img src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+                        </a>
                     </div>
                 @endif
 
