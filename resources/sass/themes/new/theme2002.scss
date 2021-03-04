@@ -55,14 +55,14 @@ body{
         .social-icons{
           display: flex;
           align-items: center;
+          max-width: 1200px;
+          overflow-x: auto;
 
           .single-icon{
             margin-right: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            max-width: 1200px;
-            overflow-x: auto;
 
             &.border-right-icon{
               padding-right: 18px;
