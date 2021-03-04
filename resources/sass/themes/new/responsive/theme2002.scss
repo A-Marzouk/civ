@@ -722,7 +722,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      height: 260px;
+      height: 235px;
       padding-top: 40px;
       padding-left: 25px;
       padding-right: 30px;
@@ -771,7 +771,7 @@
 
           .social-icons{
             position: absolute;
-            bottom: 35px;
+            bottom: 30px;
             left: 25px;
             display: flex;
             max-width: 655px;
@@ -792,15 +792,37 @@
         }
       }
       .menu{
+        &.opened{
+          .menu-body{
+            right: 23px !important;
+          }
+        }
+
+        transition: all 0.5s;
+
         .menu-icon{
           position: absolute;
-          right: 30px;
+          right: 35px;
           top: 50px;
 
           &:hover{
             cursor: pointer;
           }
         }
+        .menu-body{
+          padding-left: 60px;
+          padding-right: 25px;
+          width: 450px;
+          top: 40px;
+          .menu-tabs-wrapper{
+            .menu-tab{
+              padding-bottom: 12px;
+              padding-top: 20px;
+            }
+
+          }
+        }
+
       }
     }
 
