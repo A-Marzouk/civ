@@ -668,7 +668,6 @@
                   }
                   .work-description{
                     font-size: 14px;
-                    color: #333333;
                   }
                 }
               }
@@ -692,9 +691,7 @@
               &:last-child{
                 border-right: 0;
               }
-              color: #C2C2C2;
               &.active{
-                color: #333333;
               }
               &:hover{
                 cursor: pointer;
@@ -1250,15 +1247,11 @@
               font-weight: 500;
               font-size: 20px;
               line-height: 23px;
-              padding-left:25px;
-              padding-right:25px;
-              border-right: 1px solid #C4C4C4;
               &:last-child{
                 border-right: 0;
               }
-              color: #C2C2C2;
               &.active{
-                color: #333333;
+
               }
               &:hover{
                 cursor: pointer;

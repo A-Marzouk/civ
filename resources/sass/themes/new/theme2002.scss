@@ -476,18 +476,23 @@ body{
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
+            padding: 0 4%;
+            margin-top: 50px;
             margin-left: -2%;
 
             .single-hobby{
               font-family: SFMono-Regular, sans-serif;
               width: 100%;
-              max-width: 27.33333%;
+              max-width: 18.5%;
               padding: 30px 2%;
               margin-left: 2%;
               margin-bottom: 25px;
-              background: #FFFFFF;
-              box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+              background: linear-gradient(0deg, #FAFAFA, #FAFAFA);
+              box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
               border-radius: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
 
               .hobby-header{
                 display: flex;
@@ -507,11 +512,7 @@ body{
                 }
               }
               .hobby-description{
-                margin-top: 35px;
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 30px;
-                color: #333333;
+                 display: none;
               }
             }
           }
@@ -522,6 +523,7 @@ body{
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
+            margin-top: 50px;
             margin-left: -2%;
 
             .single-achievement{
@@ -532,43 +534,53 @@ body{
               max-width: 44%;
               margin-left: 2%;
               margin-bottom: 40px;
-              background: #FFFFFF;
-              box-shadow: 0px 4px 10px rgb(0 0 0 / 10%);
-              border-radius: 20px;
+              background: linear-gradient(0deg, #FAFAFA, #FAFAFA);
+              box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+              border-radius: 30px;
 
               .certificate{
-                max-width: 250px;
-                min-width: 200px;
-                max-height: 180px;
+                min-width: 320px;
+                height: 250px;
                 display: flex;
-                margin-right: 25px;
+                margin-right: 35px;
                 overflow: hidden;
                 align-items: center;
                 justify-content: center;
-                border-radius: 10px;
+                border-radius: 20px;
+                border: 3px solid #5843BE;
                 img{
-                  border-radius: 10px;
+                  width: 100%;
+                  border-radius: 20px;
                 }
               }
               .details{
-                font-family: SFMono-Regular, sans-serif;
+                font-family: "Open Sans", sans-serif;
                 .title{
                   font-weight: bold;
                   font-size: 30px;
                   color: #4C4C4C;
                   margin-bottom: 12px;
+                  display: flex;
+                  flex-direction: column-reverse;
+                  span.year{
+                    font-size: 18px;
+                    line-height: 30px;
+                    color: #4C4C4C;
+                  }
                 }
                 .url{
-                  font-weight: bold;
+                  font-weight: normal;
                   font-size: 18px;
-                  color: #C2C2C2;
+                  line-height: 25px;
+                  color: #5843BE;
                   margin-bottom: 24px;
                 }
                 .description{
-                  font-weight: bold;
+                  font-style: normal;
+                  font-weight: normal;
                   font-size: 18px;
-                  line-height: 30px;
-                  color: #333333;
+                  line-height: 25px;
+                  color: #4C4C4C;
                 }
               }
             }
@@ -580,6 +592,7 @@ body{
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
+            margin-top: 50px;
             margin-left: -2%;
 
             .single-reference{
@@ -589,9 +602,9 @@ body{
               max-width: 43%;
               margin-left: 2%;
               margin-bottom: 28px;
-              background: #FFFFFF;
-              box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-              border-radius: 20px;
+              background: linear-gradient(0deg, #FAFAFA, #FAFAFA);
+              box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+              border-radius: 30px;
 
               .reference-header{
                 font-weight: bold;
@@ -603,16 +616,18 @@ body{
                   display: none;
                 }
                 span:last-child{
-                  color: #C2C2C2;
-                  font-size: 20px;
+                  font-size: 18px;
+                  margin-top: 10px;
+                  line-height: 25px;
+                  color: #333333;
                 }
               }
               .details{
                 display: flex;
                 justify-content: space-between;
                 font-size: 15px;
-                line-height: 18px;
-                color: #B9B9B9;
+                line-height: 20px;
+                color: #5843BE;
                 margin-bottom: 40px;
                 .contact{
                   margin-right: 30px;
@@ -636,14 +651,15 @@ body{
               display: flex;
               justify-content: flex-start;
               flex-wrap: wrap;
-              align-items: center;
+              align-items: flex-start;
+              margin-top: 50px;
               margin-left: -2%;
 
               .single-media{
-                background: #FFFFFF;
                 max-width: 27.333%;
                 width: 100%;
-                border-radius: 15px;
+                background: #F0F0F3;
+                border-radius: 9px;
                 padding: 2%;
                 margin-left: 2%;
                 filter: drop-shadow(0px 3px 30px rgba(23, 44, 122, 0.102));
@@ -696,7 +712,7 @@ body{
                 &.video{
                   background: none;
                   position: relative;
-
+                  margin: -2% -2% -2% 2%;
                   img.preview{
                     width: 100%;
                     border-radius: 15px;

@@ -527,10 +527,10 @@
                             </div>
                             <div class="details">
                                 <div class="title">
-                                    {{$achievement->title}}, {{$achievement->year}}
+                                    <span>{{$achievement->title}}</span> <span class="year">{{$achievement->year}}</span>
                                 </div>
                                 <div class="url">
-                                    URL: {{$achievement->url}}
+                                    URL: <a href="{{$achievement->url}}">{{$achievement->url}}</a>
                                 </div>
                                 <div class="description">
                                     {{$achievement->description}}
