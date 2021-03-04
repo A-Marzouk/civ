@@ -52,7 +52,7 @@
                                         />
                                     </svg>
 
-                                    Send <span class="hide-2001">message</span>
+                                    Send <span class="hide-2001"> message</span>
                                 </a>
                             </div>
                             <div class="right">

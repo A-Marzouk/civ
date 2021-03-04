@@ -11,7 +11,7 @@
     background-color: rgba(0, 0, 0, 0.7);
 
     .chat-body {
-      left: calc(50% - 650px / 2);
+      left: calc(50% - 625px / 2);
     }
   }
 
@@ -20,16 +20,16 @@
   .chat-body {
     font-family: SFMono-Regular, sans-serif;
     z-index: 999999;
-    background: white;
-    width: 650px;
-    border-radius: 20px;
+    width: 625px;
+    background: linear-gradient(0deg, #FAFAFA, #FAFAFA);
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
     position: absolute;
     left: -1650px;
     top: 150px;
     transition: all 1s;
     max-height: 100vh;
     overflow-y: auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
     display: flex;
     flex-direction: column;
@@ -46,9 +46,10 @@
         font-weight: bold;
         margin-top: 48px;
         margin-bottom: 25px;
-        font-size: 36px;
-        line-height: 43px;
+        font-size: 24px;
+        line-height: 30px;
         color: #333333;
+        margin-left: -2.5%;
       }
 
       .input {
@@ -59,14 +60,17 @@
         margin-bottom: 20px;
 
         input, textarea {
-          border: 1px solid #D7D9DA;
+          background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+          box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
           width: 100%;
           resize: none;
           max-width: 440px;
+          color: #5843BE;
           height: 48px;
-          border-radius: 50px;
           font-size: 18px;
           padding-left: 30px;
+          border: none;
 
           &:focus {
             outline: none;
@@ -91,29 +95,42 @@
           margin-right: 30px;
 
           a {
-            color: white;
-            background: #333333;
-            border-radius: 52px;
-            height: 48px;
-            width: 175px;
-            font-size: 18px;
+            background: #F0F0F3;
+            box-shadow: -1px -1px 3px #FFFFFF, 1.5px 1.5px 3px rgba(174, 174, 192, 0.4);
+            border-radius: 5px;
+            color: #5843BE;
+            height: 60px;
+            width: 165px;
+            font-size: 20px;
             font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
+
+            svg{
+              margin-right: 14px;
+              height: 30px;
+              path{
+                fill: #5843BE;
+              }
+            }
+
+            span{
+              display: none;
+            }
           }
         }
 
         .right {
           a {
-            color: #333333;
-            background: white;
-            border: 1.5px solid #333333;
-            border-radius: 52px;
-            height: 48px;
-            width: 175px;
-            font-size: 18px;
+            background: #5843BE;
+            box-shadow: -1px -1px 3px #FFFFFF, 1.5px 1.5px 3px rgba(174, 174, 192, 0.4);
+            border-radius: 5px;
+            color: #F0F0F3;
+            height: 60px;
+            width: 165px;
+            font-size: 20px;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -246,7 +263,6 @@
             margin-right: 10px;
 
             a {
-              border-radius: 30px;
               height: 40px;
               width: 140px;
               font-size: 14px;
@@ -259,7 +275,6 @@
 
           .right {
             a {
-              border-radius: 30px;
               height: 40px;
               width: 140px;
               font-size: 14px;
