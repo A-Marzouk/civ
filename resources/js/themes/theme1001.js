@@ -6,10 +6,13 @@ $('document').ready(function(){
 
     let menuTab  = $('.menu-tab');
     let menuBody = $('#menu-body');
-    $('#menu-open').on('click mouseover', openMenu );
+    $('#menu-open').on('click mouseover', openMenu);
     $('#menu-close').on('click', closeMenu);
 
-    menuBody.on('mouseleave', closeMenu );
+    $('#video-open, #video-open-1001').on('click', openVideo);
+    $('#video-close').on('click', closeVideo);
+
+    menuBody.on('mouseleave', closeMenu);
     menuTab.on('mouseover', changeTab);
     menuTab.on('click', closeMenu);
 
@@ -28,14 +31,23 @@ $('document').ready(function(){
 
 
 function openMenu() {
-    $('#menu-body').css('right', 0);
     $('#menu').addClass('opened');
     stopBodyScrolling()
 }
 
 function closeMenu() {
-    $('#menu-body').css('right', '-650px');
     $('#menu').removeClass('opened');
+    startBodyScrolling();
+}
+
+function openVideo() {
+    $('#video').addClass('opened');
+    stopBodyScrolling()
+}
+
+function closeVideo() {
+    $('#video').removeClass('opened');
+    document.getElementById('main-video').pause();
     startBodyScrolling();
 }
 
@@ -162,7 +174,7 @@ function setDefaultActiveTab() {
     let tabName = $('.menu-tab').first().data().name;
     let queryString = window.location.search;
     let urlParams = new URLSearchParams(queryString);
-    let defaultTabs = ['portfolio', 'work_experience', 'skills', 'hobbies','about_me', 'media', 'references', 'achievements'];
+    let defaultTabs = ['portfolio', 'work_experience', 'skills', 'education', 'hobbies','about_me', 'media', 'references', 'achievements'];
 
     if(urlParams.has('tab')){
          let tabParam = urlParams.get('tab');

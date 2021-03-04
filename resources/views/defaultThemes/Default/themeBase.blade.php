@@ -2,8 +2,8 @@
     <div class="personal-info" id="messageModal">
         <div class="profile-picture">
             <img class="main-photo" src="{{$user->personalInfo->profile_pic}}" alt="">
-            <message-modal theme_code="{{$themeCode}}" class="hide-2001"></message-modal>
-            <img class="video-icon hide-2001" src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+            <message-modal theme_code="{{$themeCode}}" class="hide-2001 hide-2002"></message-modal>
+            <img class="video-icon clickable hide-2001 hide-2002" src="/images/themes/theme{{$themeCode}}/video.png" alt="video" id="video-open-1001">
         </div>
         <div class="details">
             <div class="name">
@@ -12,11 +12,27 @@
             <div class="job-title">
                 {{$user->personalInfo->designation}}
             </div>
+
+            @if($user->media->where('type','video')->first())
+                <div class="video-modal" id="video">
+                    <div class="video-body">
+                        <div class="exit-btn" id="video-close">
+                            <a href="javascript:void(0)">x</a>
+                        </div>
+                        <video id="main-video" width="100%"  ref="videoElem" controls src="{{$user->media->where('type','video')->first()->url}}"></video>
+                    </div>
+                </div>
+            @endif
+
             <div class="social-icons">
                 <message-modal theme_code="{{$themeCode}}" class="hide-1001"></message-modal>
-                <div class="single-icon clickable border-right-icon hide-1001">
-                    <img src="/images/themes/theme{{$themeCode}}/video.png" alt="">
-                </div>
+                @if($user->media->where('type','video')->first())
+                    <div class="single-icon clickable border-right-icon hide-1001" id="video-open">
+                        <a href="javascript:void(0)">
+                            <img src="/images/themes/theme{{$themeCode}}/video.png" alt="">
+                        </a>
+                    </div>
+                @endif
 
                 @foreach( $user->links as $link)
                     @if($link->is_public)
@@ -208,7 +224,9 @@
                                                 {{$education->university_name}}
                                             </div>
                                             <div class="date">
-                                                2017 - Present
+                                                {{$education->date_from}}
+                                                -
+                                                {{$education->present ? 'Present' : $education->date_to}}
                                             </div>
                                         </div>
                                         <div class="work-sub-header">
@@ -509,10 +527,10 @@
                             </div>
                             <div class="details">
                                 <div class="title">
-                                    {{$achievement->title}}, {{$achievement->year}}
+                                    <span>{{$achievement->title}}</span> <span class="year">{{$achievement->year}}</span>
                                 </div>
                                 <div class="url">
-                                    URL: {{$achievement->url}}
+                                    URL: <a href="{{$achievement->url}}">{{$achievement->url}}</a>
                                 </div>
                                 <div class="description">
                                     {{$achievement->description}}

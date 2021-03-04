@@ -1,7 +1,10 @@
 <template>
     <div>
-        <img class="message-icon single-icon clickable" :src="`/images/themes/theme${themeCodeNumber}/message.png`"  alt="message icon"
-             @click="openMessageModal">
+        <div class="single-icon">
+            <a href="javascript:void(0)" @click="openMessageModal">
+                <img class="message-icon  clickable" :src="`/images/themes/theme${themeCodeNumber}/message.png`"  alt="message icon">
+            </a>
+        </div>
 
         <div class="chatModal" id="chatModal" :class="{'opened' : messageModal}">
             <div class="chat-body">
@@ -49,7 +52,7 @@
                                         />
                                     </svg>
 
-                                    Send <span class="hide-2001">message</span>
+                                    Send <span class="hide-2001"> message</span>
                                 </a>
                             </div>
                             <div class="right">
