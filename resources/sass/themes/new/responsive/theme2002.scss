@@ -240,6 +240,7 @@
               .single-skill{
                 max-width: 565px;
                 margin-bottom: 35px;
+                padding: 20px 5%;
                 flex: auto;
 
                 .skill-info{
@@ -279,15 +280,12 @@
                 }
                 .skill-percentage-bar{
                   .default-bar{
-                    height: 4px;
-                    width: 100%;
-                    
-                    border-radius: 4px;
+
+
                   }
                   .bar-percentage-achieved{
-                    height: 4px;
-                    border-radius: 4px;
-                    margin-top: -4px;
+
+
                   }
                 }
               }
@@ -297,6 +295,42 @@
               width: 70%;
               margin: 20px auto auto auto;
               
+            }
+            .categories{
+              display: flex;
+              position: absolute;
+              top: 0;
+              margin-left: 0;
+              overflow: auto;
+              max-width: 90%;
+
+              .single-category{
+                font-family: Poppins, sans-serif;
+                font-weight: normal;
+                font-size: 18px;
+                border: 2px solid white;
+                color: #333333;
+                white-space: nowrap;
+                margin-right: 20px;
+                padding: 6px 12px;
+                border-right: 0;
+
+                &:last-child{
+                  margin-right:0;
+                }
+
+                &.active{
+                  color: #5843BE;
+                  font-weight: 600;
+                  border: 2px solid #EEEEEE;
+                  background: #EEEEEE;
+                  box-shadow: inset -1px -1px 1px rgba(255, 255, 255, 0.7), inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2);
+                  border-radius: 5px;
+                }
+                &:hover{
+                  cursor: pointer;
+                }
+              }
             }
           }
 
@@ -396,9 +430,9 @@
 
               .single-hobby{
                 font-family: Roboto, sans-serif;
-                
-                max-width: 365px;
-                padding: 25px;
+                max-width: 40%;
+                width: 100%;
+                padding: 25px 10px;
                 border-radius: 15px;
                 margin-bottom: 25px;
 
@@ -408,7 +442,8 @@
                   align-items: center;
 
                   img{
-                    width: 43px;
+                    width: 30px;
+                    margin-right: 10px;
                   }
                   div.divider{
                     height: 2px;
@@ -417,8 +452,8 @@
                   }
 
                   div.title{
-                    font-size: 23px;
-                    
+                    font-size: 16px;
+                    font-weight: normal;
                   }
                 }
                 .hobby-description{
@@ -639,7 +674,8 @@
                 align-items: flex-start;
                 max-width: 100%;
                 margin-bottom: 20px;
-                padding: 30px 20px;
+                padding: 30px 20px 60px 20px;
+
                 .icon{
                   position: absolute;
                   img{
@@ -651,7 +687,6 @@
                 }
                 .info{
                   .work-header{
-                    margin-left: 40px;
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
@@ -664,7 +699,6 @@
                     }
                     .date{
                       font-size: 14px;
-                      
                     }
                   }
                   .work-sub-header{
