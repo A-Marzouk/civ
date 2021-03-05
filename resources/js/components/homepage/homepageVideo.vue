@@ -36,7 +36,6 @@
         .video-preview{
             video{
                 width: 100%;
-                max-height: 800px;
             }
 
             .video-image-holder{
@@ -60,6 +59,10 @@
                     right: 0;
                     top: 0;
                     bottom: 0;
+                    opacity: 0.7;
+                    &:hover{
+                        opacity: 1;
+                    }
                     // mobile
                     @media screen and (max-width: 599px) {
                         width: 57px;

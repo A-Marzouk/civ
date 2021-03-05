@@ -107,7 +107,11 @@
                     </div>
                     
                     <div class="ah-homepage-banner">
-                        <img src="/images/homepage/homepage_banner_1.png" alt="">
+                        <div class="video-banner">
+                            <div class="video-inside-wrapper">
+                                <video autoplay="" muted="" playsinline="" loop="" src="/videos/homepage/features/portfolio.mp4"></video>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

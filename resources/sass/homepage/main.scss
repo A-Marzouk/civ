@@ -474,9 +474,22 @@
           padding-right: 43px;
         }
         .ah-homepage-banner {
-          img{
-            width: 100%;
+          margin-top: -50px;
+          .video-banner{
+            display: flex;
+            justify-content: center;
+            .video-inside-wrapper{
+              max-width: 750px;
+              overflow-x: hidden;
+              width: 100%;
+              video{
+                max-width: 752px;
+                width: 101%;
+              }
+            }
+
           }
+
         }
 
       }
