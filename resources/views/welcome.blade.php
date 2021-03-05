@@ -54,50 +54,38 @@
                         </div>
                         <div class="tabs-outer-container" id="tabs-outer-container">
                             <div class="tabs-wrapper" id="tabs-wrapper">
-                                <div class="single-tab active" data-tab="portfolio">
+                                <div class="single-tab active" data-tab="get_found">
+                                    Get Found
+                                </div>
+                                <div class="single-tab" data-tab="portfolio">
                                     Portfolio
+                                </div>
+                                <div class="single-tab" data-tab="webpage">
+                                    Webpage
+                                </div>
+                                <div class="single-tab" data-tab="responsive">
+                                    Responsive
+                                </div>
+                                <div class="single-tab" data-tab="themes">
+                                    Themes
+                                </div>
+                                <div class="single-tab" data-tab="pdf">
+                                    PDF
                                 </div>
                                 <div class="single-tab" data-tab="links">
                                     Links
                                 </div>
-                                <div class="single-tab" data-tab="skills">
-                                    Skills
+                                <div class="single-tab" data-tab="messages">
+                                    Messages
                                 </div>
-                                <div class="single-tab" data-tab="media">
-                                    Audio/Video
+                                <div class="single-tab" data-tab="storage">
+                                    Storage
                                 </div>
-                                <div class="single-tab" data-tab="achievements">
-                                    Achievements
+                                <div class="single-tab" data-tab="import">
+                                    Import
                                 </div>
-                                <div class="single-tab" data-tab="works">
-                                    Work Experience
-                                </div>
-                                <div class="single-tab" data-tab="education">
-                                    Education
-                                </div>
-                                <div class="single-tab" data-tab="About">
-                                    About
-                                </div>
-                                <div class="single-tab" data-tab="Hobbies">
-                                    Hobbies
-                                </div>
-                                <div class="single-tab" data-tab="References">
-                                    References
-                                </div>
-                                <div class="single-tab" data-tab="Pay">
-                                    Pay Availability
-                                </div>
-                                <div class="single-tab" data-tab="Themes">
-                                    Themes
-                                </div>
-                                <div class="single-tab" data-tab="Manager">
-                                    Manager
-                                </div>
-                                <div class="single-tab" data-tab="Structure">
-                                    Structure
-                                </div>
-                                <div class="single-tab" data-tab="Imports">
-                                    Imports
+                                <div class="single-tab" data-tab="interactive">
+                                    Interactive
                                 </div>
                             </div>
                         </div>
@@ -107,14 +95,28 @@
                     </div>
                     
                     <div class="ah-homepage-banner">
-                        <img src="/images/homepage/homepage_banner_1.png" alt="">
+                        <div class="video-banner">
+                            <div class="video-wrapper">
+                                <div class="video-inside-wrapper">
+                                    <video id="tabVideo" autoplay="" muted="" playsinline="" loop="" src="/videos/homepage/features/get_found.mp4"></video>
+                                </div>
+                                <div class="flying-text blue">
+                                    Highlight your resume among the rest.
+                                    <div class="highlighted-text">
+                                        Be cooler! <img src="/videos/homepage/smile-icon.png" alt="smile icon">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="section-four-second-text">
                     <div class="second-text-container">
                         <div class="text-one">
-                            Get responses , get noticed and get hired Grab the attention of employers and recruiters.
+                            Get responses , get noticed and get hired. <br/>
+                            <span>Make your resume stand out.</span>
                         </div>
 
                         <div class="action-btn">

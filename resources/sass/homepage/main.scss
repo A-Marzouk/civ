@@ -460,6 +460,7 @@
           padding-left: 13px;
           padding-right: 13px;
           margin-top: 15px;
+
         }
         // tablet:
         @media screen and (max-width: 1439px) and (min-width: 600px) {
@@ -474,10 +475,102 @@
           padding-right: 43px;
         }
         .ah-homepage-banner {
-          img{
-            width: 100%;
+          margin-top: -50px;
+          .video-banner{
+            display: flex;
+            justify-content: center;
+            .video-wrapper{
+              max-width: 750px;
+              position: relative;
+
+              .video-inside-wrapper{
+                max-width: 750px;
+                overflow-x: hidden;
+                width: auto;
+                height: 600px;
+                video{
+                  max-width: 752px;
+                  width: 101%;
+                }
+              }
+              .flying-text{
+                display: none;
+                //display: flex;
+
+                position: absolute;
+                border-radius: 12px;
+                align-items: center;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                width: 260px;
+                height: 85px;
+                padding: 10px 30px;
+
+                font-family: Poppins, 'sans-serif';
+                font-style: normal;
+                font-weight: normal;
+                font-size: 18px;
+                letter-spacing: -0.025em;
+                color: #FFFFFF;
+
+                &.blue{
+                  background: #187BD7;
+                }
+
+                .highlighted-text{
+                  font-weight: bold;
+                  display: flex;
+                  align-items: center;
+                  img{
+                    width: 26px;
+                    margin-left: 12px;
+                  }
+                }
+              }
+            }
+
+
+
           }
-        }
+
+
+          @media screen and (max-width: 599px) {
+            margin-top: -50px;
+            .video-banner{
+              .video-wrapper{
+                .video-inside-wrapper{
+                  height: 320px;
+                }
+              }
+
+
+            }
+
+          }
+
+          @media screen and (max-width: 400px) {
+            margin-top: -20px;
+            .video-banner{
+              .video-wrapper{
+                .video-inside-wrapper{
+                  height: 300px;
+                }
+              }
+            }
+          }
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
+            margin-top: -50px;
+            .video-banner{
+              .video-wrapper{
+                .video-inside-wrapper{
+                  height: 550px;
+                }
+              }
+            }
+          }
+
+
+          }
 
       }
 
