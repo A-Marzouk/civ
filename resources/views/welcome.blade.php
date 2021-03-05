@@ -96,9 +96,18 @@
                     
                     <div class="ah-homepage-banner">
                         <div class="video-banner">
-                            <div class="video-inside-wrapper">
-                                <video id="tabVideo" autoplay="" muted="" playsinline="" loop="" src="/videos/homepage/features/get_found.mp4"></video>
+                            <div class="video-wrapper">
+                                <div class="video-inside-wrapper">
+                                    <video id="tabVideo" autoplay="" muted="" playsinline="" loop="" src="/videos/homepage/features/get_found.mp4"></video>
+                                </div>
+                                <div class="flying-text blue">
+                                    Highlight your resume among the rest.
+                                    <div class="highlighted-text">
+                                        Be cooler! <img src="/videos/homepage/smile-icon.png" alt="smile icon">
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
