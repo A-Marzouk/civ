@@ -460,6 +460,7 @@
           padding-left: 13px;
           padding-right: 13px;
           margin-top: 15px;
+
         }
         // tablet:
         @media screen and (max-width: 1439px) and (min-width: 600px) {
@@ -474,14 +475,15 @@
           padding-right: 43px;
         }
         .ah-homepage-banner {
-          margin-top: -50px;
+          margin-top: -70px;
           .video-banner{
             display: flex;
             justify-content: center;
             .video-inside-wrapper{
               max-width: 750px;
               overflow-x: hidden;
-              width: 100%;
+              width: auto;
+              height: 600px;
               video{
                 max-width: 752px;
                 width: 101%;
@@ -490,7 +492,37 @@
 
           }
 
-        }
+
+          @media screen and (max-width: 599px) {
+            margin-top: -50px;
+            .video-banner{
+              .video-inside-wrapper{
+                height: 320px;
+              }
+
+            }
+
+          }
+
+          @media screen and (max-width: 400px) {
+            margin-top: -20px;
+            .video-banner{
+              .video-inside-wrapper{
+                height: 300px;
+              }
+            }
+          }
+          @media screen and (max-width: 1439px) and (min-width: 600px) {
+            margin-top: -50px;
+            .video-banner{
+              .video-inside-wrapper{
+                height: 550px;
+              }
+            }
+          }
+
+
+          }
 
       }
 

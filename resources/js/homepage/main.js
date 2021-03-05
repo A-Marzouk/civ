@@ -39,6 +39,11 @@ function changeTab(event) {
             $(tabs[i]).addClass('active');
         }
     }
+
+    // change video source:
+    let videoSrcBase = '/videos/homepage/features/';
+    let videoElement = $('#tabVideo');
+    videoElement.attr('src', videoSrcBase + tabName + '.mp4');
 }
 
 function showNextTab() {
