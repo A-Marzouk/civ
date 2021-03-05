@@ -107,7 +107,7 @@
                     <div class="second-text-container">
                         <div class="text-one">
                             Get responses , get noticed and get hired. <br/>
-                            <span>Make your resume stand our.</span>
+                            <span>Make your resume stand out.</span>
                         </div>
 
                         <div class="action-btn">
