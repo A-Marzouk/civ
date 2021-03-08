@@ -1,20 +1,7 @@
 window.Vue = require('vue');
 
-
-$('document').ready(function () {
-
-    let tabs = $('.single-tab');
-    tabs.on('click', changeTab);
-    $('.next-arrow').on('click', showNextTab);
-    $('.prev-arrow').on('click', showPrevTab);
-    $(window).on('resize', initiateValues);
-    let videoElement = $('#tabVideo');
-    videoElement.on('ended', goToNextTab);
-    videoElement.on('loadeddata', videoLoaded);
-
-
-});
-
+let tabs = $('.single-tab');
+let videoElement = $('#tabVideo');
 let step = 155;
 let tabsWrapper = $('#tabs-wrapper');
 let prevArrow   = $('#prev-arrow');
@@ -25,6 +12,14 @@ let showNext = true;
 let showPrev = true;
 let currentActiveTab = 'get_found';
 
+$('document').ready(function () {
+    tabs.on('click', changeTab);
+    $('.next-arrow').on('click', showNextTab);
+    $('.prev-arrow').on('click', showPrevTab);
+    $(window).on('resize', initiateValues);
+    videoElement.on('ended', goToNextTab);
+    videoElement.on('loadeddata', videoLoaded);
+});
 
 function initiateValues() {
     tabsWrapper = $('#tabs-wrapper');
@@ -35,7 +30,6 @@ function initiateValues() {
 function changeTab(event) {
     hideFlyingText();
     currentActiveTab = event.currentTarget.dataset.tab;
-    let tabs = $('.single-tab');
 
     for (let i = 0; i < tabs.length; i++) {
         if ($(tabs[i]).hasClass('active')) {
@@ -52,8 +46,6 @@ function changeTab(event) {
 function goToNextTab() {
     let newIndex = 0 ;
     hideFlyingText();
-    let tabs = $('.single-tab');
-
     for (let i = 0; i < tabs.length; i++) {
         if ($(tabs[i]).hasClass('active')) {
             $(tabs[i]).removeClass('active');
@@ -72,7 +64,6 @@ function goToNextTab() {
 
 function changeVideo() {
     let videoSrcBase = '/videos/homepage/features/';
-    let videoElement = $('#tabVideo');
     videoElement.attr('src', videoSrcBase + currentActiveTab + '.mp4');
 }
 
@@ -147,15 +138,10 @@ function hideFlyingText() {
 
 // cookies:  ( for login page )
 import VueCookies from 'vue-cookies'
-
 Vue.use(VueCookies);
-
-// axios:
 window.axios = require('axios');
-
 // auth form ( in homepage and standalone page )
 import AuthForm from '../components/auth/AuthForm';
-
 if ($("#AuthForm").length !== 0) {
     new Vue({
         el: '#AuthForm',
@@ -164,11 +150,9 @@ if ($("#AuthForm").length !== 0) {
         }
     });
 }
-
 // Home page components:
 import homepageUsernameInput from '../components/homepage/UsernameInput';
 import homepageVideo from '../components/homepage/homepageVideo';
-
 if ($("#ah-homepage").length !== 0) {
     // username input
     new Vue({
