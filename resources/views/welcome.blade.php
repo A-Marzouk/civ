@@ -98,14 +98,125 @@
                         <div class="video-banner">
                             <div class="video-wrapper">
                                 <div class="video-inside-wrapper">
-                                    <video id="tabVideo" autoplay="" muted="" playsinline="" loop="" src="/videos/homepage/features/get_found.mp4"></video>
+                                    <video id="tabVideo" autoplay="" muted="" playsinline="" src="/videos/homepage/features/get_found.mp4"></video>
                                 </div>
-                                <div class="flying-text blue">
-                                    Highlight your resume among the rest.
-                                    <div class="highlighted-text">
-                                        Be cooler! <img src="/videos/homepage/smile-icon.png" alt="smile icon">
+                                {{-- get found --}}
+                                    <div class="flying-text blue" data-flying="get_found">
+                                        Get your civ.ie page on google
                                     </div>
+                                    <div class="flying-text purple" data-flying="get_found">
+                                        optimize SEO
+                                    </div>
+                                    <div class="flying-text orange" data-flying="get_found">
+                                        get discovered
+                                    </div>
+                                {{-- end of get found--}}
+                                {{-- Portfolio --}}
+                                    <div class="flying-text blue" data-flying="portfolio">
+                                        Add a beautiful designed portfolio with ease!
+                                    </div>
+                                    <div class="flying-text purple" data-flying="portfolio">
+                                        Build a stylish online portfolio to get you noticed
+                                    </div>
+                                {{-- end of Portfolio --}}
+
+                                {{-- webpage --}}
+                                    <div class="flying-text blue" data-flying="webpage">
+                                        Get your own unique webpage!
+                                    </div>
+                                    <div class="flying-text purple" data-flying="webpage">
+                                        Personalise and share your link with employers easily!
+                                    </div>
+                                    <div class="flying-text orange" data-flying="webpage">
+                                        stand out with your own personalised website address which is easy to remember and share!
+                                    </div>
+                                {{-- end of webpage --}}
+
+                                {{-- responsive --}}
+                                    <div class="flying-text blue" data-flying="responsive">
+                                        present your resume information in a beautiful way
+                                    </div>
+                                    <div class="flying-text purple" data-flying="responsive">
+                                        With responsive design employers can read your data in a beautiful way on every device!
+                                    </div>
+                                    <div class="flying-text orange" data-flying="responsive">
+                                        Elegant design to allow your application to stand out!
+                                    </div>
+                                {{-- end of responsive --}}
+
+                                {{-- themes --}}
+                                    <div class="flying-text blue" data-flying="themes">
+                                        Personalise the look of your resume with  beautifully designed themes!
+                                    </div>
+                                    <div class="flying-text purple" data-flying="themes">
+                                        It's easy to change themes!
+                                    </div>
+                                {{-- end of themes  --}}
+
+                                {{-- pdf --}}
+                                    <div class="flying-text blue" data-flying="pdf">
+                                        Easy to export your resume to a pdf version!
+                                    </div>
+                                    <div class="flying-text purple" data-flying="pdf">
+                                        Ensure ATS systems can read your cv data with ease!
+                                    </div>
+                                    <div class="flying-text orange" data-flying="pdf">
+                                        Employers can download a pdf version from your webpage!
+                                    </div>
+                                {{-- end of pdf--}}
+
+                                {{-- Links --}}
+                                    <div class="flying-text blue" data-flying="links">
+                                        Integrated Links
+                                    </div>
+                                    <div class="flying-text purple" data-flying="links">
+                                        Add all your links and integrate them to ensure employers can contact you!
+                                    </div>
+                                    <div class="flying-text orange" data-flying="links">
+                                        Add all your relevant professional , social and contact info in one place!
+                                    </div>
+                                {{--End of links--}}
+
+                                {{-- Messages --}}
+                                <div class="flying-text blue" data-flying="messages">
+                                    Allow anyone to message you easily on your civ.ie
                                 </div>
+                                <div class="flying-text purple" data-flying="messages">
+                                    Ensure employers can contact you!
+                                </div>
+                                {{-- End of Messages --}}
+
+                                {{-- Storage --}}
+                                    <div class="flying-text blue" data-flying="storage">
+                                        Stored online you can access your CV and make updates and changes instantly from anywhere, employers can always see updated version keep just one link
+                                    </div>
+                                    <div class="flying-text purple" data-flying="storage">
+                                        Update your CV anytime!
+                                    </div>
+                                    <div class="flying-text orange" data-flying="storage">
+                                        Easy to update
+                                    </div>
+                                {{-- End of Storage --}}
+
+                                {{-- Import --}}
+                                    <div class="flying-text blue" data-flying="import">
+                                        Easy to build your data fast!
+                                    </div>
+                                    <div class="flying-text purple" data-flying="import">
+                                        Import from pdf / linkedin / behance / dribbble integrations
+                                    </div>
+                                {{-- end of Import --}}
+
+                                {{-- interactive --}}
+                                    <div class="flying-text blue" data-flying="interactive">
+                                        Upload audio or video recordings to showcase your skills and experience!
+                                    </div>
+                                    <div class="flying-text purple" data-flying="interactive">
+                                        Create a truly interactive experience to impress employers!
+                                    </div>
+                                {{-- end of interactive --}}
+
+
                             </div>
 
                         </div>
