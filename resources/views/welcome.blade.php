@@ -199,7 +199,7 @@
                                 {{-- End of Storage --}}
 
                                 {{-- Import --}}
-                                    <div class="flying-text purple" data-flying="import">
+                                    <div class="flying-text blue" data-flying="import">
                                         Easy to build your data fast!
                                     </div>
                                     <div class="flying-text purple" data-flying="import">
@@ -211,7 +211,7 @@
                                     <div class="flying-text blue" data-flying="interactive">
                                         Upload audio or video recordings to showcase your skills and experience!
                                     </div>
-                                    <div class="flying-text blue" data-flying="interactive">
+                                    <div class="flying-text purple" data-flying="interactive">
                                         Create a truly interactive experience to impress employers!
                                     </div>
                                 {{-- end of interactive --}}
