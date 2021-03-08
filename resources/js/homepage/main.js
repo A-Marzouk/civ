@@ -10,6 +10,7 @@ $('document').ready(function () {
     $(window).on('resize', initiateValues);
     let videoElement = $('#tabVideo');
     videoElement.on('ended', goToNextTab);
+    videoElement.on('loadeddata', videoLoaded);
 
 
 });
@@ -22,6 +23,7 @@ let tabsWidth   = tabsWrapper.innerWidth();
 let windowWidth = $(window).innerWidth();
 let showNext = true;
 let showPrev = true;
+let currentActiveTab = 'get_found';
 
 
 function initiateValues() {
@@ -31,24 +33,25 @@ function initiateValues() {
 }
 
 function changeTab(event) {
-    let tabName = event.currentTarget.dataset.tab;
+    hideFlyingText();
+    currentActiveTab = event.currentTarget.dataset.tab;
     let tabs = $('.single-tab');
 
     for (let i = 0; i < tabs.length; i++) {
         if ($(tabs[i]).hasClass('active')) {
             $(tabs[i]).removeClass('active')
         }
-        if (tabs[i].dataset.tab.toLowerCase() === tabName.toLowerCase()) {
+        if (tabs[i].dataset.tab.toLowerCase() === currentActiveTab.toLowerCase()) {
             $(tabs[i]).addClass('active');
         }
     }
-
     // change video source:
-   changeVideo(tabName);
+   changeVideo();
 }
 
 function goToNextTab() {
     let newIndex = 0 ;
+    hideFlyingText();
     let tabs = $('.single-tab');
 
     for (let i = 0; i < tabs.length; i++) {
@@ -61,16 +64,16 @@ function goToNextTab() {
         }
     }
 
-    let tabName = tabs[newIndex].dataset.tab.toLowerCase();
+    currentActiveTab = tabs[newIndex].dataset.tab.toLowerCase();
     $(tabs[newIndex]).addClass('active');
-    changeVideo(tabName);
+    changeVideo();
 
 }
 
-function changeVideo(tabName) {
+function changeVideo() {
     let videoSrcBase = '/videos/homepage/features/';
     let videoElement = $('#tabVideo');
-    videoElement.attr('src', videoSrcBase + tabName + '.mp4');
+    videoElement.attr('src', videoSrcBase + currentActiveTab + '.mp4');
 }
 
 function showNextTab() {
@@ -119,7 +122,28 @@ function showPrevTab() {
     tabsWrapper.css('left', newValue + 'px');
 }
 
+function videoLoaded(){
+    let flyingTexts = $('.flying-text');
 
+    for (let i = 0; i < flyingTexts.length; i++) {
+        if ($(flyingTexts[i]).hasClass('active')) {
+            $(flyingTexts[i]).removeClass('active')
+        }
+        if (flyingTexts[i].dataset.flying.toLowerCase() === currentActiveTab.toLowerCase()) {
+            $(flyingTexts[i]).addClass('active');
+        }
+    }
+}
+
+function hideFlyingText() {
+    let flyingTexts = $('.flying-text');
+
+    for (let i = 0; i < flyingTexts.length; i++) {
+        if ($(flyingTexts[i]).hasClass('active')) {
+            $(flyingTexts[i]).removeClass('active')
+        }
+    }
+}
 
 // cookies:  ( for login page )
 import VueCookies from 'vue-cookies'

@@ -100,11 +100,51 @@
                                 <div class="video-inside-wrapper">
                                     <video id="tabVideo" autoplay="" muted="" playsinline="" src="/videos/homepage/features/get_found.mp4"></video>
                                 </div>
-                                <div class="flying-text blue">
-                                    Highlight your resume among the rest.
+                                <div class="flying-text blue" data-flying="get_found">
+                                    Get your civ.ie page on google
                                     <div class="highlighted-text">
-                                        Be cooler! <img src="/videos/homepage/smile-icon.png" alt="smile icon">
+                                        get discovered! <img src="/videos/homepage/smile-icon.png" alt="smile icon">
                                     </div>
+                                </div>
+                                <div class="flying-text purple" data-flying="portfolio">
+                                    Add a beautiful designed portfolio with ease!
+                                    <div class="highlighted-text"></div>
+                                </div>
+                                <div class="flying-text orange" data-flying="webpage">
+                                    Personalise and share your link with employers easily!
+                                    <div class="highlighted-text"></div>
+                                </div>
+                                <div class="flying-text purple" data-flying="responsive">
+                                    With responsive design employers can read your data in a beautiful way on every device!
+                                    <div class="highlighted-text"></div>
+                                </div>
+                                <div class="flying-text blue" data-flying="themes">
+                                    Personalise the look of your resume with  beautifully designed themes!
+                                    <div class="highlighted-text"></div>
+                                </div>
+                                <div class="flying-text orange" data-flying="pdf">
+                                    Easy to export your resume to a pdf version!
+                                    <div class="highlighted-text"></div>
+                                </div>
+                                <div class="flying-text blue" data-flying="links">
+                                    Add all your links and integrate them to ensure employers can contact you!
+                                    <div class="highlighted-text"></div>
+                                </div>
+                                <div class="flying-text purple" data-flying="messages">
+                                    Ensure employers can contact you!
+                                    <div class="highlighted-text"></div>
+                                </div>
+                                <div class="flying-text orange" data-flying="storage">
+                                    Update your CV anytime!
+                                    <div class="highlighted-text"></div>
+                                </div>
+                                <div class="flying-text purple" data-flying="import">
+                                    Easy to build your data fast!
+                                    <div class="highlighted-text"></div>
+                                </div>
+                                <div class="flying-text blue" data-flying="interactive">
+                                    Upload audio or video recordings to showcase your skills and experience!
+                                    <div class="highlighted-text"></div>
                                 </div>
                             </div>
 

@@ -13,9 +13,9 @@
 
 
 // sub domain routes:
-Route::domain('{username}.civ.ie')->group(function () {
-    Route::get('/', 'ResumeController@userResume');
-});
+//Route::domain('{username}.civ.ie')->group(function () {
+//    Route::get('/', 'ResumeController@userResume');
+//});
 
 Auth::routes(['verify' => true]);
 
