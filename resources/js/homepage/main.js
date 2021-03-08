@@ -8,6 +8,9 @@ $('document').ready(function () {
     $('.next-arrow').on('click', showNextTab);
     $('.prev-arrow').on('click', showPrevTab);
     $(window).on('resize', initiateValues);
+    let videoElement = $('#tabVideo');
+    videoElement.on('ended', goToNextTab);
+
 
 });
 
@@ -41,6 +44,30 @@ function changeTab(event) {
     }
 
     // change video source:
+   changeVideo(tabName);
+}
+
+function goToNextTab() {
+    let newIndex = 0 ;
+    let tabs = $('.single-tab');
+
+    for (let i = 0; i < tabs.length; i++) {
+        if ($(tabs[i]).hasClass('active')) {
+            $(tabs[i]).removeClass('active');
+            newIndex = i+1 ;
+            if(newIndex >= tabs.length){
+                newIndex = 0 ;
+            }
+        }
+    }
+
+    let tabName = tabs[newIndex].dataset.tab.toLowerCase();
+    $(tabs[newIndex]).addClass('active');
+    changeVideo(tabName);
+
+}
+
+function changeVideo(tabName) {
     let videoSrcBase = '/videos/homepage/features/';
     let videoElement = $('#tabVideo');
     videoElement.attr('src', videoSrcBase + tabName + '.mp4');

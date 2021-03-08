@@ -98,7 +98,7 @@
                         <div class="video-banner">
                             <div class="video-wrapper">
                                 <div class="video-inside-wrapper">
-                                    <video id="tabVideo" autoplay="" muted="" playsinline="" loop="" src="/videos/homepage/features/get_found.mp4"></video>
+                                    <video id="tabVideo" autoplay="" muted="" playsinline="" src="/videos/homepage/features/get_found.mp4"></video>
                                 </div>
                                 <div class="flying-text blue">
                                     Highlight your resume among the rest.
