@@ -503,13 +503,14 @@
                 &.active{
                   display: flex;
                 }
-                opacity: 0.8;
+                opacity: 0;
                 position: absolute;
                 border-radius: 12px;
                 align-items: center;
                 justify-content: flex-start;
                 flex-wrap: wrap;
-                width: 260px;
+                max-width: 260px;
+                width: auto;
                 padding: 15px 30px;
 
                 font-family: Poppins, 'sans-serif';
@@ -519,38 +520,55 @@
                 letter-spacing: -0.025em;
                 color: #FFFFFF;
 
-                // animation:
-                animation-name: slight-movement;
-                animation-duration: 1s;
-                animation-iteration-count: infinite;
-                animation-timing-function: ease;
-
                 &.blue{
                   background: #187BD7;
                   top: 70px;
                   right: -120px;
+
+                  // animation:
+                  animation-name: slight-movement;
+                  animation-duration: 1s;
+                  animation-iteration-count: 1;
+                  animation-timing-function: ease;
                 }
 
                 &.purple{
                   background: #E048B6;
                   top: 70px;
                   left: -90px;
+
+                  // animation:
+                  animation-name: slight-movement;
+                  animation-duration: 1s;
+                  animation-delay: 0.7s;
+                  animation-iteration-count: 1;
+                  animation-timing-function: ease;
                 }
 
                 &.orange{
                   background: #FFBA35;
                   bottom: 70px;
                   right: -120px;
+
+                  // animation:
+                  animation-name: slight-movement;
+                  animation-duration: 1s;
+                  animation-delay: 1.2s;
+                  animation-iteration-count: 1;
+                  animation-timing-function: ease;
                 }
 
                 @keyframes slight-movement {
                   0% {
+                    opacity: 0;
                     transform: translateX(0%) rotate(0deg);
                   }
                   50% {
-                    transform: translateX(6%) rotate(.05deg);
+                    opacity: 1;
+                    transform: translateX(10%) rotate(.05deg);
                   }
                   100% {
+                    opacity: 0;
                     transform: translateX(0%) rotate(0deg);
                   }
                 }
