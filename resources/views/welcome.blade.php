@@ -102,9 +102,6 @@
                                 </div>
                                 <div class="flying-text blue" data-flying="get_found">
                                     Get your civ.ie page on google
-                                    <div class="highlighted-text">
-                                        get discovered! <img src="/videos/homepage/smile-icon.png" alt="smile icon">
-                                    </div>
                                 </div>
                                 <div class="flying-text purple" data-flying="portfolio">
                                     Add a beautiful designed portfolio with ease!
