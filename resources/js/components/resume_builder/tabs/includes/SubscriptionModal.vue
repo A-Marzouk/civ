@@ -33,9 +33,15 @@
                         </div>
                         <div class="promo-input-wrapper">
                             <div class="promo-input">
-                                <input type="text">
+                                <input type="text" v-model="promocode" placeholder="Promo Code">
+                                <span class="error" v-if="!!errors.promocode">{{errors.promocode}}</span>
                                 <div class="apply-btn">
-                                    <a href="javascript:void(0)">Apply</a>
+                                    <a href="javascript:void(0)" @click="applyPromoCode">
+                                        <span v-if="isCodeLoading" class="loader"></span>
+                                        <span v-else>
+                                            Apply
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -60,6 +66,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="payment-icons-wrapper">
+                            <div class="payment-icons">
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/master.png" alt="payment icon master">
+                                </div>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/visa.png" alt="payment icon visa">
+                                </div>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/stripe.png" alt="payment icon stripe">
+                                </div>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/paypal.png" alt="payment icon PayPal">
+                                </div>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/visa-verfied.png" alt="payment icon visa">
+                                </div>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/american-express.png" alt="payment icon ae">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </v-dialog>
@@ -74,6 +102,7 @@
         data() {
             return {
                 priceModal: true,
+                isCodeLoading: false,
                 features: [
                     "Portfolio Page",
                     "Digital interactive Cv",
@@ -97,9 +126,17 @@
                 $('#subscribe_form').submit();
             },
             applyPromoCode(){
+                if(this.isCodeLoading){
+                    return;
+                }
+
                 this.errors = { promocode: ''};
+                this.isCodeLoading = true;
+
                 axios.post('/api/user/apply-promo-code', {promocode : this.promocode})
                     .then( (response) => {
+                        this.isCodeLoading = false;
+
                         if(response.data.error){
                             this.errors = { promocode: response.data.error} ;
                         }
@@ -107,6 +144,11 @@
                         if(response.data.data.id){
                             window.location = '/resume-builder' ;
                         }
+                    })
+                    .catch( (error) => {
+                        console.log(error.response);
+                        this.isCodeLoading = false;
+                        this.errors = { promocode: 'Something went wrong!'} ;
                     });
             },
             changeTab(tabName){
@@ -213,7 +255,7 @@
 
                 .features{
                     margin-left: 12px;
-                    max-height: 300px;
+                    max-height: 240px;
                     overflow-y: auto;
                     border-right: 1.5px solid rgba(0, 11, 90, 0.1);
 
@@ -250,6 +292,7 @@
                 .promo-input{
                     display: flex;
                     align-items: center;
+                    position: relative;
 
                     input{
                         height: 50px;
@@ -281,11 +324,19 @@
                             text-decoration: none;
                         }
                     }
+                    span.error{
+                        position: absolute;
+                        bottom: -25px;
+                        left: 5px;
+                        color: red;
+                        font-size: 13px;
+                        background-color: inherit !important;
+                    }
                 }
             }
 
             .payment-row-wrapper{
-                margin-top: 190px;
+                margin-top: 200px;
 
                 .payment-row-content{
                     display: flex;
@@ -352,6 +403,7 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
+                            text-decoration: none;
 
                             img{
                                 margin-left: 12px;
@@ -361,7 +413,47 @@
                 }
             }
 
+            .payment-icons-wrapper{
+                margin-top: 60px;
+                .payment-icons{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .single-payment-icon{
+                        opacity: 0.4;
+                        margin-right: 20px;
+                        &:last-child{
+                            margin-right: 0;
+                        }
+                        img{
+
+                        }
+                    }
+                }
+            }
+
         }
+    }
+
+    .loader {
+        border: 4px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 4px solid #001CE2;
+        width: 30px;
+        height: 30px;
+        -webkit-animation: spin 1.5s linear infinite; /* Safari */
+        animation: spin 1.5s linear infinite;
+    }
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 </style>
 
