@@ -52,10 +52,18 @@
                                     <div class="period">/month</div>
                                 </div>
                                 <div class="selection-input">
-                                    <div class="select-box">
-                                        <div class="option">Stripe</div>
-                                        <img src="/images/new_resume_builder/arrow-down.png" alt="arrow" class="arrow-img">
+                                    <div class="select-box" @click="toggleSelection">
+                                        <div class="option">{{currentPaymentMethod}}</div>
+                                        <img src="/images/new_resume_builder/arrow-down.png" alt="arrow" class="arrow-img" :class="{'up' : isSelectionOpened}">
                                         <img src="/images/new_resume_builder/green-check.png" alt="arrow" class="right-check">
+                                        <div class="selection-items" v-if="isSelectionOpened">
+                                            <div class="item" @click="changePaymentMethod('Stripe')">
+                                                Stripe
+                                            </div>
+                                            <div class="item" @click="changePaymentMethod('PayPal')">
+                                                PayPal
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="payment-btn">
@@ -103,6 +111,7 @@
             return {
                 priceModal: true,
                 isCodeLoading: false,
+                isSelectionOpened: false,
                 features: [
                     "Portfolio Page",
                     "Digital interactive Cv",
@@ -118,6 +127,7 @@
                 activeTab: 'month',
                 promocode: "",
                 promoCodeValid: false,
+                currentPaymentMethod: 'Stripe',
                 errors:{ promocode: ''},
             }
         },
@@ -148,11 +158,19 @@
                     .catch( (error) => {
                         console.log(error.response);
                         this.isCodeLoading = false;
-                        this.errors = { promocode: 'Something went wrong!'} ;
+                        this.errors = { promocode: 'Please make sure you used a valid promocode!'} ;
                     });
             },
             changeTab(tabName){
                 this.activeTab = tabName;
+            },
+            
+            // select functions 
+            toggleSelection(){
+                this.isSelectionOpened = !this.isSelectionOpened;
+            },
+            changePaymentMethod(paymentMethod){
+                this.currentPaymentMethod = paymentMethod;
             }
         }
     }
@@ -255,7 +273,7 @@
 
                 .features{
                     margin-left: 12px;
-                    max-height: 240px;
+                    max-height: 250px;
                     overflow-y: auto;
                     border-right: 1.5px solid rgba(0, 11, 90, 0.1);
 
@@ -336,7 +354,7 @@
             }
 
             .payment-row-wrapper{
-                margin-top: 200px;
+                margin-top: 190px;
 
                 .payment-row-content{
                     display: flex;
@@ -371,19 +389,55 @@
                             align-items: center;
                             justify-content: space-between;
                             position: relative;
+                            &:hover{
+                                cursor: pointer;
+                            }
 
                             .option{
-
+                                font-size: 18px;
+                                font-weight: 600;
+                                color: #001CE2;
                             }
 
                             .arrow-img{
-                                width: 12px;
+                                width: 26px;
+                                padding: 6px;
+                                margin-top: 6px;
+                                margin-right: -6px;
+                                &.up{
+                                    transform: rotate(-180deg);
+                                }
                             }
                             .right-check{
                                 width: 18px;
                                 position: absolute;
                                 top: -6.5px;
                                 right: -4.5px;
+                            }
+
+                            .selection-items{
+                                position: absolute;
+                                background: white;
+                                width: 100%;
+                                /* padding: 17px; */
+                                left: 0;
+                                top: 45px;
+                                border-radius: 10px;
+                                z-index: 99;
+                                border: 1px solid #F2F2F2;
+                                .item{
+                                    padding: 10px 17px;
+                                    border-bottom: 1px solid #F2F2F2;
+                                    font-size: 16px;
+                                    color: #001CE2;
+                                    &:last-child{
+                                        border-bottom: 0;
+                                    }
+                                    &:hover{
+                                        cursor: pointer;
+                                        background: whitesmoke;
+                                    }
+                                }
                             }
                         }
                     }
