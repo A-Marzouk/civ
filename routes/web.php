@@ -115,7 +115,9 @@ Route::post('/paypal/webhooks', 'Billing\PayPalWebhooksController@handle')->name
 
 // paypal
 Route::get('/subscribe/create-paypal-plan/{plan_period}', 'Billing\PayPalForAgentsController@create_plan');
+Route::get('/subscribe/create-paypal-monthly-plan/{frequency}', 'Billing\PayPalForAgentsController@createMonthlyPlan');
 Route::get('/subscribe/paypal/monthly', 'Billing\PayPalForAgentsController@subscribePayPalMonthly')->name('paypal.redirect.monthly');
+Route::get('/subscribe/paypal/monthly-custom/{freq}', 'Billing\PayPalForAgentsController@subscribePayPalCustomMonthly')->name('paypal.redirect.custom.monthly');
 Route::get('/subscribe/paypal/yearly', 'Billing\PayPalForAgentsController@subscribePayPalYearly')->name('paypal.redirect.yearly');
 Route::get('/subscribe/paypal/return', 'Billing\PayPalForAgentsController@paypalReturn')->name('paypal.return');
 

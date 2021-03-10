@@ -7,16 +7,16 @@
                 <div class="sub-modal-content-wrapper">
                     <div class="sub-modal-content">
                         <div class="ad-text-wrapper">
-                            <div class="ad-text">
-                                most popular
+                            <div class="ad-text" :class="{'purple': activeTab === '3months' }">
+                                {{activeTab === '1month' ? 'most popular' : 'Best value: save 20%'}}
                             </div>
                         </div>
                         <div class="sub-options-wrapper">
                             <div class="sub-options">
-                                <div class="option" :class="{'active' : activeTab === 'month'}" @click="changeTab('month')">
+                                <div class="option" :class="{'active' : activeTab === '1month'}" @click="changeTab('1month')">
                                     1 month
                                 </div>
-                                <div class="option" :class="{'active' : activeTab === 'three_months'}" @click="changeTab('three_months')">
+                                <div class="option" :class="{'active' : activeTab === '3months'}" @click="changeTab('3months')">
                                     3 month
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                         <div class="payment-row-wrapper">
                             <div class="payment-row-content">
                                 <div class="price">
-                                    <div class="main">$19</div>
+                                    <div class="main">${{ activeTab === '1month' ? '19' : '49'}}</div>
                                     <div class="period">/month</div>
                                 </div>
                                 <div class="selection-input">
@@ -67,11 +67,19 @@
                                     </div>
                                 </div>
                                 <div class="payment-btn">
-                                    <a href="javascript:void(0)">
-                                        Pay Now
-                                        <img src="/images/new_resume_builder/arrow-white-right.png" alt="arrow">
+                                    <a href="javascript:void(0)" @click="subscribe">
+                                        <span v-if="isPayLoading" class="loader green-loader"></span>
+                                        <span class="d-flex align-items-center" v-else>
+                                            Pay Now
+                                            <img src="/images/new_resume_builder/arrow-white-right.png" alt="arrow">
+                                        </span>
                                     </a>
                                 </div>
+
+                                <form action="/subscribe" method="post" id="subscribe_form">
+                                    <input type="hidden" :value="csrf_token" name="_token">
+                                    <input type="hidden" :value="activeTab" name="plan">
+                                </form>
                             </div>
                         </div>
                         <div class="payment-icons-wrapper">
@@ -111,6 +119,7 @@
             return {
                 priceModal: true,
                 isCodeLoading: false,
+                isPayLoading: false,
                 isSelectionOpened: false,
                 features: [
                     "Portfolio Page",
@@ -124,7 +133,7 @@
                     "Quick Import - from PDF/Linkedin"
                 ],
                 csrf_token: $('meta[name="csrf-token"]').attr('content'),
-                activeTab: 'month',
+                activeTab: '1month',
                 promocode: "",
                 promoCodeValid: false,
                 currentPaymentMethod: 'Stripe',
@@ -133,7 +142,18 @@
         },
         methods: {
             subscribe() {
-                $('#subscribe_form').submit();
+                if(this.isPayLoading){
+                    return;
+                }
+
+                this.isPayLoading = true;
+
+                if(this.currentPaymentMethod === 'Stripe'){
+                    $('#subscribe_form').submit();
+                }else{
+                    let frequency = this.activeTab === '1month' ? '1' : '3' ;
+                    window.location = '/subscribe/paypal/monthly-custom/' + frequency ;
+                }
             },
             applyPromoCode(){
                 if(this.isCodeLoading){
@@ -208,7 +228,7 @@
                     text-align: center;
                     text-transform: uppercase;
                     color: #001CE2;
-                    background: #FBFF3F;
+                    background-color: #FBFF3F;
                     border-radius: 0px 0px 10px 10px;
                     width: 325px;
                     height: 65px;
@@ -216,6 +236,12 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    transition: background-color 0.3s, color 0.3s;
+
+                    &.purple{
+                        color: #ffffff;
+                        background-color: #EF35B0;
+                    }
                 }
             }
 
@@ -496,8 +522,12 @@
         border-top: 4px solid #001CE2;
         width: 30px;
         height: 30px;
-        -webkit-animation: spin 1.5s linear infinite; /* Safari */
+        -webkit-animation: spin 1.5s linear infinite;
         animation: spin 1.5s linear infinite;
+
+        &.green-loader{
+            border-top: 4px solid #14D627;
+        }
     }
     /* Safari */
     @-webkit-keyframes spin {
