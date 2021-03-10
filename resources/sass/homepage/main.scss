@@ -56,7 +56,10 @@
 }
 
 #ah-homepage {
-  margin-top: 110px;
+  margin-top: 160px;
+  @media screen and (max-width: 1600px) {
+    margin-top: 110px;
+  }
 
   .ah-navbar {
     position: fixed;
@@ -67,7 +70,11 @@
     display: flex;
     justify-content: center;
     height: 110px;
-
+    padding-top: 50px;
+    transition: all 0.5s;
+    @media screen and (max-width: 1600px) {
+      padding-top: 0 !important;
+    }
     .navbar-elements-wrapper {
       width: 100%;
       max-width: 1599px;
@@ -199,7 +206,7 @@
         align-items: center;
         justify-content: space-between;
         font-size: 96px;
-        margin-top: 40px;
+        margin-top: 80px;
         @media screen and (max-width: 599px) {
           padding-left: 13px;
           padding-right: 13px;
@@ -329,7 +336,7 @@
 
 
       .section-two-input {
-        margin-top: 60px;
+        margin-top: 75px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -460,12 +467,11 @@
           }
         }
 
-        margin-top: 68px;
+        margin-top: 115px;
         @media screen and (max-width: 599px) {
           padding-left: 13px;
           padding-right: 13px;
           margin-top: 15px;
-
         }
         // tablet:
         @media screen and (max-width: 1439px) and (min-width: 600px) {
@@ -480,7 +486,7 @@
           padding-right: 43px;
         }
         .ah-homepage-banner {
-          margin-top: -50px;
+          margin-top: 10px;
           .video-banner{
             display: flex;
             justify-content: center;
@@ -652,11 +658,12 @@
         align-items: center;
         justify-content: flex-start;
         margin-top: 100px;
-        margin-bottom: 160px;
+        margin-bottom: 170px;
         @media screen and (max-width: 599px) {
           padding-left: 13px;
           padding-right: 13px;
           margin-top: 40px;
+          margin-bottom: 130px;
           position: relative;
         }
         // tablet:
@@ -904,6 +911,8 @@
           font-family: NexaBold, sans-serif;
           font-weight: bold;
           font-size: 3rem;
+          max-width: 815px;
+          text-align: center;
           line-height: 3.75rem;
           letter-spacing: -0.03em;
           color: #0A1E56;
@@ -1232,7 +1241,7 @@
           background-repeat: no-repeat;
           width: 50px;
           height: 50px;
-          margin-top: 5px;
+          margin-top: 15px;
           img{
             display: none;
           }
@@ -1244,7 +1253,7 @@
           background-repeat: no-repeat;
           width: 70px;
           height: 70px;
-          margin-top: -5px;
+          margin-top: 8px;
           left: 40px;
           position: absolute;
           img{
@@ -1268,6 +1277,16 @@
         display: flex;
         align-items: center;
         white-space: pre;
+        label{
+          margin-right: 40px;
+        }
+        span{
+          margin-left: 5px;
+          margin-right: 20px;
+          &:last-child{
+            margin-right: 0;
+          }
+        }
         label, span{
           @media screen and (max-width: 599px) {
             display: none;
@@ -1318,7 +1337,7 @@
       }
 
       .logo-footer {
-        width: 201px;
+        width: 175px;
         height: auto;
 
         @media screen and (max-width: 959px) {

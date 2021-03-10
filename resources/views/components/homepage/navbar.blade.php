@@ -1,4 +1,4 @@
-<div class="ah-navbar">
+<div class="ah-navbar" id="ah-navbar">
     <div class="navbar-elements-wrapper">
         <div class="ah-logo">
             <img src="/images/homepage/civ_logo.png" alt="Logo">

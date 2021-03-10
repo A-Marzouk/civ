@@ -183,6 +183,7 @@
                         color: #001CE2;
                         text-transform: uppercase;
                         opacity: 0.3;
+                        transition: all 0.2s;
 
                         &.active{
                             opacity: 1;
