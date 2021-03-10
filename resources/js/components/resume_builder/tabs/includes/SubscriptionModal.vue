@@ -3,204 +3,110 @@
         <div class="main-subscription-container"></div>
 
         <!-- dialog -->
-        <v-dialog
-                v-model="priceModal"
-                max-width="550"
-                style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);border-radius: 10px; z-index:1000; overflow-y:hidden;"
-        >
-
-            <v-card>
-                <v-card-text class="pt-5">
-                    <v-tabs centered v-model="priceTab" hide-slider>
-                        <v-tab class="custom-tab1" active-class="custom-active">Monthly</v-tab>
-                        <v-tab class="custom-tab2" active-class="custom-active">Yearly</v-tab>
-                    </v-tabs>
-                </v-card-text>
-                <v-card-text>
-                    <v-tabs-items v-model="priceTab">
-                        <v-tab-item>
-                            <v-card-text align="center" class="padding-sm-1">
-                                <v-row align="center" justify="center">
-                                    <v-col cols="12">
-                                        <div class="now-only-text mt-sm-n5 mt-n7">Now Only</div>
-                                    </v-col>
-                                    <v-col cols="12" class="mt-sm-n5 mt-n7">
-                                        <div class="rate-text">
-                                            <span class="old-price mr-5">$10</span>
-                                            <span class="new-price">$5</span>
-                                            <sub>/month</sub>
-                                        </div>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <div class="save-text mt-n7">(Save 50%)</div>
-                                    </v-col>
-                                </v-row>
-
-                                <hr class="hr-line"/>
-                            </v-card-text>
-                            <v-card-text class="padding-sm-1">
-                                <v-row align="center" v-for="(item,index) in price_options" :key="index">
-                                    <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2  padding-sm-1">
-                                        <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img"/>
-                                    </v-col>
-                                    <v-col xl="6" lg="6" md="6" sm="6" cols="6"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2  padding-sm-1">
-                                        <span class="price-option">{{item}}</span>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
-
-                            <div class="promocode">
-                                <div class="promo-input">
-                                    <v-text-field
-                                            outlined
-                                            class="promo-input-field"
-                                            label="Promo Code"
-                                            height="45"
-                                            v-model="promocode"
-                                            :error="!!errors.promocode"
-                                            :error-messages="errors.promocode"
-                                    >
-                                    </v-text-field>
+            <v-dialog  v-model="priceModal" width="620" style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);border-radius: 10px; z-index:1000; overflow-y:hidden;">
+                <div class="sub-modal-content-wrapper">
+                    <div class="sub-modal-content">
+                        <div class="ad-text-wrapper">
+                            <div class="ad-text" :class="{'purple': activeTab === '3months' }">
+                                {{activeTab === '1month' ? 'most popular' : 'Best value: save 20%'}}
+                            </div>
+                        </div>
+                        <div class="sub-options-wrapper">
+                            <div class="sub-options">
+                                <div class="option" :class="{'active' : activeTab === '1month'}" @click="changeTab('1month')">
+                                    1 month
                                 </div>
+                                <div class="option" :class="{'active' : activeTab === '3months'}" @click="changeTab('3months')">
+                                    3 month
+                                </div>
+                            </div>
+                        </div>
+                        <div class="features-wrapper">
+                            <div class="features">
+                                <div class="single-feature" v-for="feature in features">
+                                    <img src="/images/new_resume_builder/green-tick.png" alt="">
+                                    <div class="title">
+                                        {{feature}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="promo-input-wrapper">
+                            <div class="promo-input">
+                                <input type="text" v-model="promocode" placeholder="Promo Code">
+                                <span class="error" v-if="!!errors.promocode">{{errors.promocode}}</span>
                                 <div class="apply-btn">
-                                    <v-btn class="resume-builder__btn civie-btn filled" filled @click="applyPromoCode">Apply</v-btn>
+                                    <a href="javascript:void(0)" @click="applyPromoCode">
+                                        <span v-if="isCodeLoading" class="loader"></span>
+                                        <span v-else>
+                                            Apply
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
-
-
-                            <div class="pay-with-row">
-                                <div class="line"></div>
-                                <div class="text">
-                                    Pay with
+                        </div>
+                        <div class="payment-row-wrapper">
+                            <div class="payment-row-content">
+                                <div class="price">
+                                    <div class="main">${{ activeTab === '1month' ? '19' : '49'}}</div>
+                                    <div class="period">/month</div>
                                 </div>
-                                <div class="line"></div>
-                            </div>
-
-                            <div class="payment-row">
-                                <div class="payment-link">
-                                    <form action="/subscribe" method="post" id="subscribe_form">
-                                        <input type="hidden" :value="csrf_token" name="_token">
-                                        <input type="hidden" :value=" priceTab === 0 ? 'monthly' : 'yearly' "
-                                               name="plan">
-                                    </form>
+                                <div class="selection-input">
+                                    <div class="select-box" @click="toggleSelection">
+                                        <div class="option">{{currentPaymentMethod}}</div>
+                                        <img src="/images/new_resume_builder/arrow-down.png" alt="arrow" class="arrow-img" :class="{'up' : isSelectionOpened}">
+                                        <img src="/images/new_resume_builder/green-check.png" alt="arrow" class="right-check">
+                                        <div class="selection-items" v-if="isSelectionOpened">
+                                            <div class="item" @click="changePaymentMethod('Stripe')">
+                                                Stripe
+                                            </div>
+                                            <div class="item" @click="changePaymentMethod('PayPal')">
+                                                PayPal
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="payment-btn">
                                     <a href="javascript:void(0)" @click="subscribe">
-                                        <img
-                                                :src="stripeIcon"
-                                                @mouseover="stripeHover = true"
-                                                @mouseleave="stripeHover = false"
-                                                alt="Stripe Logo"
-                                                class="payment-logo-stripe"
-                                        />
+                                        <span v-if="isPayLoading" class="loader green-loader"></span>
+                                        <span class="d-flex align-items-center" v-else>
+                                            Pay Now
+                                            <img src="/images/new_resume_builder/arrow-white-right.png" alt="arrow">
+                                        </span>
                                     </a>
                                 </div>
-                                <div class="mr-2 ml-2">
-                                    or
+
+                                <form action="/subscribe" method="post" id="subscribe_form">
+                                    <input type="hidden" :value="csrf_token" name="_token">
+                                    <input type="hidden" :value="activeTab" name="plan">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="payment-icons-wrapper">
+                            <div class="payment-icons">
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/master.png" alt="payment icon master">
                                 </div>
-                                <div class="payment-link">
-                                    <a href="/subscribe/paypal/monthly" >
-                                        <img
-                                                :src="paypalIcon"
-                                                alt="Paypal Logo"
-                                                class="payment-logo-paypal"
-                                        />
-                                    </a>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/visa.png" alt="payment icon visa">
+                                </div>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/stripe.png" alt="payment icon stripe">
+                                </div>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/paypal.png" alt="payment icon PayPal">
+                                </div>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/visa-verfied.png" alt="payment icon visa">
+                                </div>
+                                <div class="single-payment-icon">
+                                    <img src="/images/new_resume_builder/payment-icons/american-express.png" alt="payment icon ae">
                                 </div>
                             </div>
-
-
-
-                        </v-tab-item>
-                        <v-tab-item>
-                            <v-card-text align="center" class="padding-sm-1">
-                                <v-row align="center" justify="center">
-                                    <v-col cols="12">
-                                        <div class="now-only-text mt-sm-n5 mt-n7">Now Only</div>
-                                    </v-col>
-                                    <v-col cols="12" class="mt-sm-n5 mt-n7">
-                                        <div class="rate-text">
-                                            <span class="old-price mr-5">$100</span>
-                                            <span class="new-price">$50</span>
-                                            <sub>/year</sub>
-                                        </div>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <div class="save-text mt-n7">(Save 50%)</div>
-                                    </v-col>
-                                </v-row>
-
-                                <hr class="hr-line"/>
-                            </v-card-text>
-                            <v-card-text class="padding-sm-1">
-                                <v-row align="center" v-for="(item,index) in price_options" :key="index">
-                                    <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2 padding-sm-1">
-                                        <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img"/>
-                                    </v-col>
-                                    <v-col xl="6" lg="6" md="6" sm="6" cols="6"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2 padding-sm-1">
-                                        <span class="price-option">{{item}}</span>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
-
-
-                            <div class="promocode">
-                                <div class="promo-input">
-                                    <v-text-field
-                                            outlined
-                                            class="promo-input-field"
-                                            label="Promo Code"
-                                            v-model="promocode"
-                                            :error="!!errors.promocode"
-                                            :error-messages="errors.promocode"
-                                    >
-                                    </v-text-field>
-                                </div>
-                                <div class="apply-btn">
-                                    <v-btn class="resume-builder__btn civie-btn filled" filled @click="applyPromoCode">Apply</v-btn>
-                                </div>
-                            </div>
-
-                            <div class="pay-with-row">
-                                <div class="line"></div>
-                                <div class="text">
-                                    Pay with
-                                </div>
-                                <div class="line"></div>
-                            </div>
-
-                            <div class="payment-row">
-                                <div class="payment-link">
-                                    <a href="javascript:void(0)" @click="subscribe" >
-                                        <img
-                                                :src="stripeIcon"
-                                                @mouseover="stripeHover = true"
-                                                @mouseleave="stripeHover = false"
-                                                alt="Stripe Logo"
-                                                class="payment-logo-stripe"
-                                        />
-                                    </a>
-                                </div>
-                                <div class="mr-2 ml-2">
-                                    or
-                                </div>
-                                <div class="payment-link">
-                                    <a href="/subscribe/paypal/yearly" >
-                                        <img
-                                                :src="paypalIcon"
-                                                alt="Paypal Logo"
-                                                class="payment-logo-paypal"
-                                        />
-                                    </a>
-                                </div>
-                            </div>
-                        </v-tab-item>
-                    </v-tabs-items>
-                </v-card-text>
-            </v-card>
-        </v-dialog>
+                        </div>
+                    </div>
+                </div>
+            </v-dialog>
         <!-- dialog -->
 
     </v-app>
@@ -212,41 +118,55 @@
         data() {
             return {
                 priceModal: true,
-                priceTab: 0,
-                price_options: [
-                    "Online Resume",
-                    "20+ Theme",
-                    "Export PDF",
-                    "Visual Builder",
-                    "Free Domain URL"
-                ],
-                price_options_higher: [
-                    "Online Resume",
-                    "20+ Theme",
-                    "Export PDF",
-                    "Visual Builder",
-                    "Free Domain URL"
+                isCodeLoading: false,
+                isPayLoading: false,
+                isSelectionOpened: false,
+                features: [
+                    "Portfolio Page",
+                    "Digital interactive Cv",
+                    "Your own webpage URL",
+                    "Responsive  Design",
+                    "3 Different Themes",
+                    "Download to PDF",
+                    "Integrate your links",
+                    "Unlimited Storage",
+                    "Quick Import - from PDF/Linkedin"
                 ],
                 csrf_token: $('meta[name="csrf-token"]').attr('content'),
-                stripeIcon: "/images/pricing/icons/stripe-logo.svg",
-                paypalIcon: "/images/pricing/icons/paypal-logo.svg",
-                paypalHover: false,
-                stripeHover: false,
-                selectedPlan: "monthly",
-                selectedBtn: "monthly",
+                activeTab: '1month',
                 promocode: "",
                 promoCodeValid: false,
+                currentPaymentMethod: 'Stripe',
                 errors:{ promocode: ''},
             }
         },
         methods: {
             subscribe() {
-                $('#subscribe_form').submit();
+                if(this.isPayLoading){
+                    return;
+                }
+
+                this.isPayLoading = true;
+
+                if(this.currentPaymentMethod === 'Stripe'){
+                    $('#subscribe_form').submit();
+                }else{
+                    let frequency = this.activeTab === '1month' ? '1' : '3' ;
+                    window.location = '/subscribe/paypal/monthly-custom/' + frequency ;
+                }
             },
             applyPromoCode(){
+                if(this.isCodeLoading){
+                    return;
+                }
+
                 this.errors = { promocode: ''};
+                this.isCodeLoading = true;
+
                 axios.post('/api/user/apply-promo-code', {promocode : this.promocode})
                     .then( (response) => {
+                        this.isCodeLoading = false;
+
                         if(response.data.error){
                             this.errors = { promocode: response.data.error} ;
                         }
@@ -254,30 +174,29 @@
                         if(response.data.data.id){
                             window.location = '/resume-builder' ;
                         }
+                    })
+                    .catch( (error) => {
+                        console.log(error.response);
+                        this.isCodeLoading = false;
+                        this.errors = { promocode: 'Please make sure you used a valid promocode!'} ;
                     });
+            },
+            changeTab(tabName){
+                this.activeTab = tabName;
+            },
+            
+            // select functions 
+            toggleSelection(){
+                this.isSelectionOpened = !this.isSelectionOpened;
+            },
+            changePaymentMethod(paymentMethod){
+                this.currentPaymentMethod = paymentMethod;
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../../../sass/media-queries";
-
-    $text-color: #4374de;
-    $primary: #1f5de4;
-    $bg-color: white;
-    $input-bg: #f1f8fc;
-    $placeholder-color: #9ba1ad;
-
-    .subscription-modal {
-        .v-dialog {
-            max-width: 550px;
-            @include lt-md {
-                max-width: 500px;
-            }
-        }
-    }
-
     .main-subscription-container {
         background-image: url("/images/new_resume_builder/my_account_preview.png");
         background-size: cover;
@@ -286,627 +205,364 @@
         -webkit-filter: blur(6px);
     }
 
-    .pay-with-row{
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        margin-top: 10px;
-        margin-bottom: 40px;
-
-        .line{
-            height: 2px;
-            width:100%;
-            background: #888DB1;
-        }
-
-        .text{
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 18px;
-            color: #001CE2;
-            min-width: 100px;
-            text-align: center;
-        }
-    }
-
-    .payment-row{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-        padding-bottom: 20px;
-
-        .payment-link{
-            background: rgba(196, 196, 196, 0.2);
-            width: 210px;
-            height: 90px;
-            border-radius: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 500;
-            @include lt-sm{
-                width: 130px;
-                height: 60px;
-            }
-            a{
-                img{
-                    @include lt-sm{
-                        width: 80px;
-                    }
-                }
-            }
-        }
-    }
-
-    .plans {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-
-        & > .dot-bg {
-            position: absolute;
-            bottom: -6rem;
-            left: -18rem;
-            z-index: 1;
-            height: 160px;
-        }
-    }
-
-
-    .toggle-panel.smaller {
-        width: 110px;
-
-        .aux-fill {
-            width: 183%;
-            position: absolute;
-            background: #001CE2;
-            border-radius: 20px;
-            height: 38px;
-            top: 0;
-            z-index: 1;
-        }
-    }
-
-    .toggle-panel {
-        border: solid 1.3px #001CE2;
-        border-radius: 50px;
-        position: relative;
-        overflow: hidden;
-        padding: 5px 10px;
-        height: 40px;
-        width: 200px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .aux-fill {
-            width: 100%;
-            position: absolute;
-            background: $primary;
-            border-radius: 20px;
-            height: 40px;
-            top: 0;
-            z-index: 1;
-
-            &.left {
-                animation-name: swipeToLeft;
-                animation-duration: 0.3s;
-                animation-timing-function: ease;
-                animation-fill-mode: forwards;
-
-                & ~ .buttons .monthly {
-                    color: $bg-color;
-                    transition: color 0.5s ease;
-                }
-            }
-
-            &.right {
-                animation-name: swipeToRight;
-                animation-duration: 0.3s;
-                animation-timing-function: ease;
-                animation-fill-mode: forwards;
-
-                & ~ .buttons .yearly {
-                    color: $bg-color;
-                    transition: color 0.5s ease;
-                }
-            }
-        }
-
-        .buttons {
-            position: absolute;
-            right: 0;
-            height: 40px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px;
-            z-index: 2;
-
-            button {
-                background: transparent;
-                border: none;
-                color: $primary;
-                font-weight: 700;
-                width: 100px;
-                outline: none;
-                transition: color 0.5s ease;
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-        }
-    }
-
-
-    .promocode{
-        display: flex;
-        justify-content: space-around;
-        align-items: baseline;
-
-        .promo-input{
-            width: 293px;
-        }
-
-        .apply-btn{
-
-        }
-    }
-
-    .rate-text {
-        font-family: "Noto Sans" !important;
-
-        .old-price {
-            font-weight: bold;
-            font-size: 50px;
-            line-height: 60px;
-            color: #001ce2;
-            opacity: 0.3;
-            text-decoration: line-through;
-            @media screen and (min-width: 1264px) and (max-width: 1903px) {
-                font-size: 36px !important;
-            }
-            @media screen and(max-width: 599px) {
-                font-size: 24px !important;
-            }
-        }
-
-        .new-price {
-            font-weight: bold;
-            font-size: 70px;
-            line-height: 50px;
-            color: #001ce2 !important;
-            @media screen and (min-width: 1264px) and (max-width: 1903px) {
-                font-size: 50px !important;
-            }
-            @media screen and (max-width: 599px) {
-                font-size: 36px !important;
-            }
-        }
-
-        sub {
-            font-weight: bold;
-            font-size: 20px;
-            line-height: 50px;
-            color: #001ce2;
-            margin-left: -5px;
-            @media screen and (min-width: 1264px) and (max-width: 1903px) {
-                font-size: 18px !important;
-            }
-            @media screen and (max-width: 599px) {
-                font-size: 14px !important;
-            }
-        }
-    }
-
-    .price-option {
-        font-family: "Noto Sans" !important;
-        font-size: 20px !important;
-        line-height: 32px;
-        color: #888db1 !important;
-        @media screen and (min-width: 1264px) and (max-width: 1903px) {
-            margin-top: -10px;
-            font-size: 18px !important;
-            line-height: 0px;
-        }
-        @media screen and (max-width: 599px) {
-            font-size: 14px !important;
-            line-height: 0;
-        }
-    }
-
-    @keyframes swipeToRight {
-        from {
-            transform: translateX(-95px);
-        }
-        to {
-            transform: translateX(95px);
-        }
-    }
-
-    @keyframes swipeToLeft {
-        from {
-            transform: translateX(95px);
-        }
-        to {
-            transform: translateX(-95px);
-        }
-    }
-
-    //dialog css
-    .now-only-text {
-        font-family: "Noto Sans" !important;
-        font-size: 20px;
-        line-height: 30px;
-        color: #888db1 !important;
-    }
-
-    //dialog css
-
-    // Transitions effects
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity 0.5s ease;
-    }
-
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
-    {
-        opacity: 0;
-    }
-
-    .slide-fade-enter-active {
-        transition: all 0.3s ease;
-    }
-
-    .slide-fade-leave-active {
-        transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-    }
-
-    .slide-fade-enter, .slide-fade-leave-to
-        /* .slide-fade-leave-active below version 2.1.8 */
-    {
-        transform: translateX(10px);
-        opacity: 0;
-    }
-
-    .plan-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        color: $text-color;
-        margin-top: 15px;
-        box-shadow: none !important;
-
-        .dot-bg {
-            position: absolute;
-            top: -18px;
-            right: -78px;
-            display: none;
-        }
-
-        .circle-bg {
-            position: absolute;
-            bottom: -60px;
-            right: -40px;
-            display: none;
-        }
-    }
-
-    .plan-details {
+    .sub-modal-content-wrapper{
         background: white;
-        padding: 0 !important;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border-radius: 17px;
+        height: 870px;
+        border: 2.5px solid #F0F1F8;
+        padding: 0 32px;
+        border-radius: 25px;
         position: relative;
-        z-index: 1;
 
-        .plan-original-price {
-            position: relative;
-            margin-top: 15px;
-            font-size: 50px !important;
+        .sub-modal-content{
+            font-family: Noto Sans, sans-serif;
+            width: 100%;
 
-            img {
-                position: absolute;
-                right: 0;
-                top: 0;
-                height: 100%;
-            }
-
-            @media (max-width: 1480px) {
-                right: 0;
-            }
-        }
-
-        .plan-offer {
-            color: $primary;
-            font-size: 65px;
-            position: relative;
-
-            small,
-            sup {
-                font-size: 22px;
-            }
-
-            small {
-                font-weight: 700;
-
-                &:first-child {
-                    margin-right: 10px;
-                }
-
-                &.not-bold {
-                    font-weight: normal;
-                }
-            }
-
-            sup {
-                position: absolute;
-                top: 25px;
-                left: 92px;
-            }
-
-            @media (max-width: 1480px) {
-                font-size: 42px;
-
-                small,
-                sup {
-                    font-size: 20px;
-                }
-
-                sup {
-                    top: 15px;
-                    left: 90px;
-                }
-            }
-
-            @media (max-width: 576px) {
-                font-size: 36px;
-
-                small,
-                sup {
-                    font-size: 16px;
-                }
-
-                sup {
-                    left: 75px;
-                }
-            }
-        }
-
-        .btn {
-            height: 60px;
-            line-height: 1rem;
-
-            small {
-                display: block;
-                font-size: 10px;
-            }
-
-            @media (max-width: 480px) {
+            .ad-text-wrapper{
                 width: 100%;
-            }
-        }
+                display: flex;
+                justify-content: center;
+                .ad-text{
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 18px;
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: #001CE2;
+                    background-color: #FBFF3F;
+                    border-radius: 0px 0px 10px 10px;
+                    width: 325px;
+                    height: 65px;
+                    margin-top: -2.5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: background-color 0.3s, color 0.3s;
 
-        @media (max-width: 960px) {
-            padding: 50px;
-        }
-    }
-
-    .help-text {
-        font-size: 22px;
-
-        @media (max-width: 1480px) {
-            font-size: 14px;
-        }
-    }
-
-    .plan-info {
-        width: 100%;
-        padding: 3rem 5rem;
-
-        img {
-            height: 14px;
-            margin-right: 5px;
-        }
-
-        @media (max-width: 576px) {
-            padding: 2rem;
-        }
-    }
-
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity 0.8s ease;
-        opacity: 1 !important;
-
-        .form-title,
-        label,
-        .section-title,
-        .aside-bar {
-            opacity: 1 !important;
-            transition: all 0.8s ease;
-        }
-    }
-
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
-    {
-        opacity: 1 !important;
-        transition: opacity 0.8s ease;
-
-        .form-title,
-        label,
-        .section-title,
-        .aside-bar {
-            opacity: 0 !important;
-            transition: all 0.8s ease;
-        }
-    }
-
-    // Main component transitions
-    @for $j from 1 through 6 {
-        @keyframes moveInput#{$j} {
-            from {
-                transform: translate(0);
-            }
-            to {
-                transform: translate(
-                                calc((-1) * (50vw - 50% - 380px - 3rem - 1.17%)),
-                                375px
-                );
-            }
-        }
-    }
-
-    .fade-leave-active {
-        #myAccountTab {
-            overflow: visible;
-
-            @for $i from 1 through 6 {
-                .input-field {
-                    &:nth-child(#{ $i }) {
-                        animation-name: moveInput#{$i};
-                        animation-duration: 0.6s;
-                        animation-fill-mode: forwards;
-                        animation-timing-function: cubic-bezier(0.8, 0.6, 0.45, 0.4);
+                    &.purple{
+                        color: #ffffff;
+                        background-color: #EF35B0;
                     }
                 }
             }
+
+            .sub-options-wrapper{
+                margin-top: 30px;
+
+                .sub-options{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    position: relative;
+
+                    &::before {
+                        content: "";
+                        width: 100%;
+                        bottom: -25px;
+                        position: absolute;
+                        height: 1px;
+                        background: rgba(0, 11, 90, 0.1);
+                    }
+
+                    .option{
+                        font-weight: bold;
+                        font-size: 40px;
+                        color: #001CE2;
+                        text-transform: uppercase;
+                        opacity: 0.3;
+                        transition: all 0.2s;
+
+                        &.active{
+                            opacity: 1;
+                            position: relative;
+
+                            &::before {
+                                content: "";
+                                width: 60%;
+                                left: 20%;
+                                bottom: -25px;
+                                position: absolute;
+                                height: 5px;
+                                background: #000B5A;
+                                border-radius: 20px;
+                            }
+                        }
+
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            .features-wrapper{
+                margin-top: 70px;
+
+                .features{
+                    margin-left: 12px;
+                    max-height: 250px;
+                    overflow-y: auto;
+                    border-right: 1.5px solid rgba(0, 11, 90, 0.1);
+
+                    .single-feature{
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 25px;
+
+                        img{
+                            width: 35px;
+                            height: 35px;
+                            margin-right: 14px;
+                        }
+                        .title{
+                            font-weight: 500;
+                            font-size: 24px;
+                            color: #888DB1;
+                        }
+                    }
+                }
+            }
+
+            .promo-input-wrapper{
+                margin-top: 30px;
+                background: #F7F7F7;
+                width: 100%;
+                height: 115px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+
+                .promo-input{
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+
+                    input{
+                        height: 50px;
+                        border-radius: 10px;
+                        border: none;
+                        background: white;
+                        padding-left: 20px;
+                        font-size: 18px;
+                        color:  rgba(136, 141, 177, 0.9);
+                        &:focus{
+                            outline: none;
+                        }
+                    }
+                    .apply-btn{
+                        margin-left: 14px;
+
+                        a{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            height: 50px;
+                            width: 120px;
+                            color: white;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 18px;
+                            background: #001CE2;
+                            border-radius: 10px;
+                            text-decoration: none;
+                        }
+                    }
+                    span.error{
+                        position: absolute;
+                        bottom: -25px;
+                        left: 5px;
+                        color: red;
+                        font-size: 13px;
+                        background-color: inherit !important;
+                    }
+                }
+            }
+
+            .payment-row-wrapper{
+                margin-top: 190px;
+
+                .payment-row-content{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+
+                    .price{
+                        font-style: normal;
+                        display: flex;
+                        align-items: baseline;
+                        text-align: center;
+                        line-height: 30px;
+                        color: #001CE2;
+                        .main{
+                            font-size: 60px;
+                            font-weight: bold;
+                        }
+                        .period{
+                            font-size: 20px;
+                            font-weight: 500;
+                        }
+                    }
+
+                    .selection-input{
+                        .select-box{
+                            height: 56px;
+                            width: 175px;
+                            padding: 0 17px;
+                            background: #F2F2F2;
+                            border-radius: 13px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            position: relative;
+                            &:hover{
+                                cursor: pointer;
+                            }
+
+                            .option{
+                                font-size: 18px;
+                                font-weight: 600;
+                                color: #001CE2;
+                            }
+
+                            .arrow-img{
+                                width: 26px;
+                                padding: 6px;
+                                margin-top: 6px;
+                                margin-right: -6px;
+                                &.up{
+                                    transform: rotate(-180deg);
+                                }
+                            }
+                            .right-check{
+                                width: 18px;
+                                position: absolute;
+                                top: -6.5px;
+                                right: -4.5px;
+                            }
+
+                            .selection-items{
+                                position: absolute;
+                                background: white;
+                                width: 100%;
+                                /* padding: 17px; */
+                                left: 0;
+                                top: 45px;
+                                border-radius: 10px;
+                                z-index: 99;
+                                border: 1px solid #F2F2F2;
+                                .item{
+                                    padding: 10px 17px;
+                                    border-bottom: 1px solid #F2F2F2;
+                                    font-size: 16px;
+                                    color: #001CE2;
+                                    &:last-child{
+                                        border-bottom: 0;
+                                    }
+                                    &:hover{
+                                        cursor: pointer;
+                                        background: whitesmoke;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .payment-btn{
+                        a{
+                            height: 56px;
+                            width: 175px;
+                            background: #14D627;
+                            box-shadow: 0px 4px 40px rgba(20, 214, 39, 0.2);
+                            border-radius: 10px;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 18px;
+                            text-transform: capitalize;
+                            color: #FFFFFF;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-decoration: none;
+
+                            img{
+                                margin-left: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .payment-icons-wrapper{
+                margin-top: 60px;
+                .payment-icons{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .single-payment-icon{
+                        opacity: 0.4;
+                        margin-right: 20px;
+                        &:last-child{
+                            margin-right: 0;
+                        }
+                        img{
+
+                        }
+                    }
+                }
+            }
+
         }
     }
 
-    /* new input styles */
-    .inner-text {
-        padding-top: 4px;
-        white-space: nowrap;
-        color: #aeaeae;
-    }
+    .loader {
+        border: 4px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 4px solid #001CE2;
+        width: 30px;
+        height: 30px;
+        -webkit-animation: spin 1.5s linear infinite;
+        animation: spin 1.5s linear infinite;
 
-
-    .padding-sm-1 {
-        @include lt-sm {
-            padding: 5px !important;
-        }
-        @include lt-md {
-            padding: 5px !important;
+        &.green-loader{
+            border-top: 4px solid #14D627;
         }
     }
-
-    .error {
-        color: red !important;
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
     }
 
-    .custom-tab1 {
-        border-top: 2px solid #001ce2 !important;
-        border-bottom: 2px solid #001ce2 !important;
-        border-left: 2px solid #001ce2 !important;
-        font-family: "Noto Sans" !important;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 18px;
-        color: #001ce2 !important;
-        text-transform: capitalize !important;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<style lang="scss">
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 5px;
     }
 
-    .custom-tab2 {
-        border-top: 2px solid #001ce2 !important;
-        border-bottom: 2px solid #001ce2 !important;
-        border-right: 2px solid #001ce2 !important;
-        font-family: "Noto Sans" !important;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 18px;
-        color: #001ce2 !important;
-        text-transform: capitalize !important;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: none;
     }
 
-    .custom-active {
-        background: #001ce2 !important;
-        color: #ffffff !important;
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        border-radius: 25px;
+        background: rgba(0, 11, 90, 0.75);
     }
 
-    .now-only-text {
-        font-family: "Noto Sans" !important;
-        font-size: 20px !important;
-        line-height: 30px;
-        color: #888db1 !important;
-        @media screen and (min-width: 1264px) and (max-width: 1903px) {
-            font-size: 18px !important;
-        }
-        @media screen and (max-width: 599px) {
-            font-size: 14px !important;
-        }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 11, 90, 1);
     }
 
 
-    .hr-line {
-        width: 80%;
-        border: 2px solid #e6e8fc;
-    }
-
-    .save-text {
-        font-family: "Noto Sans" !important;
-        font-size: 20px !important;
-        line-height: 30px;
-        color: #888db1 !important;
-        margin-left: -8px;
-        @media screen and (max-width: 599px) {
-            font-size: 14px !important;
-        }
-    }
-
-    .btn-modal-subscribe {
-        width: 220px !important;
-        height: 60px !important;
-        border-radius: 5px !important;
-        text-transform: capitalize !important;
-        font-family: "Noto Sans", sans-serif !important;
-        font-size: 18px !important;
-        font-weight: 500;
-        line-height: 18px;
-    }
-
-    .check-img {
-        @media screen and (max-width: 599px) {
-            width: 16px;
-        }
-    }
-
-    .payment-link {
-        .payment-logo-stripe {
-        }
-
-        .payment-logo-paypal {
-        }
-    }
-
-    .payment-link:hover {
-        cursor: pointer;
-    }
-
-    .v-dialog:not(.v-dialog--fullscreen) {
-        max-height: 100% !important;
-    }
-
-    .centered-input input {
-        margin-top: 6px !important;
-    }
-
-    .input-margin-3 input {
-        margin-top: 0px !important;
-    }
 </style>

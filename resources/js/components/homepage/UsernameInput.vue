@@ -139,7 +139,7 @@
             .username-input-field{
                 position: relative;
                 width: 100%;
-                max-width: 685px;
+                max-width: 550px;
                 font-size: 34.8px;
 
                 // mobile:
@@ -336,7 +336,8 @@
                     font-size: 1.125rem;
                     line-height: 50px;
                     color: #0A1E56;
-                    left: -110px;
+                    left: -130px;
+                    top: 115px;
                     // mobile:
                     @media screen and (max-width: 599px) {
                         font-size: 10px;

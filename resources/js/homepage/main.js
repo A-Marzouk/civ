@@ -19,6 +19,7 @@ $('document').ready(function () {
     $(window).on('resize', initiateValues);
     videoElement.on('ended', goToNextTab);
     videoElement.on('loadeddata', videoLoaded);
+    document.addEventListener('scroll', removeBarPadding );
 });
 
 function initiateValues() {
@@ -133,6 +134,16 @@ function hideFlyingText() {
         if ($(flyingTexts[i]).hasClass('active')) {
             $(flyingTexts[i]).removeClass('active')
         }
+    }
+}
+
+function removeBarPadding() {
+    let y = window.scrollY;
+    let navbar = $('#ah-navbar');
+    if(y >= 100){
+        navbar.css('padding-top', '0');
+    }else{
+        navbar.css('padding-top', '50px');
     }
 }
 
