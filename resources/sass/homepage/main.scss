@@ -14,6 +14,16 @@
   src: url("/fonts/averta/averta-bold.woff") format('woff');
 }
 
+@font-face {
+  font-family: 'Gilroy';
+  src: local('Gilroy Bold'), local('Gilroy-Bold'),
+  url('/fonts/Gilory/Gilroy-Bold.woff2') format('woff2'),
+  url('/fonts/Gilory/Gilroy-Bold.woff') format('woff'),
+  url('/fonts/Gilory/Gilroy-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 //navbar for auth page:
 .homepage-navbar {
   height: 100px;
@@ -251,6 +261,7 @@
           }
 
           .banner-text {
+            font-family: Gilroy, sans-serif !important;
             font-size: inherit;
             letter-spacing: -0.05em;
             color: #0A1E56;
@@ -910,8 +921,8 @@
         .promo-text {
           font-family: NexaBold, sans-serif;
           font-weight: bold;
-          font-size: 3rem;
-          max-width: 815px;
+          font-size: 70px;
+          max-width: 1200px;
           text-align: center;
           line-height: 3.75rem;
           letter-spacing: -0.03em;

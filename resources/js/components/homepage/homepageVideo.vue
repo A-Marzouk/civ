@@ -42,6 +42,9 @@
                 position: relative;
                 display: flex;
                 justify-content: center;
+                filter: drop-shadow(0px 4.69805px 46.9805px rgba(0, 28, 226, 0.12));
+                border: 8px solid #FFFFFF;
+                border-radius: 23.4902px;
 
                 img.preview{
                     border-radius: 20px;
@@ -59,10 +62,8 @@
                     right: 0;
                     top: 0;
                     bottom: 0;
-                    opacity: 0.7;
-                    &:hover{
-                        opacity: 1;
-                    }
+                    opacity: 1;
+
                     // mobile
                     @media screen and (max-width: 599px) {
                         width: 57px;
