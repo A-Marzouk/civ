@@ -339,6 +339,9 @@
                 if(params.tab && ( params.tab === 'signup' || params.tab === 'signin') ){
                     this.activeTab = params.tab;
                 }
+                if(params.username){
+                    this.registerFormData.username = params.username ;
+                }
             }
         },
         mounted() {

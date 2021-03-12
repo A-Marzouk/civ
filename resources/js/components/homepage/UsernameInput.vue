@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="username-input-btn" >
-                <a :href=" '/login?tab=signup?username=' + validUserName " :class="{'correct-username' : is_username_valid}">
+                <a :href=" '/login?tab=signup&username=' + validUserName " :class="{'correct-username' : is_username_valid}">
                     Start My Page
                     <img src="/images/homepage/white_right_arrow.png" alt="right arrow">
                 </a>
