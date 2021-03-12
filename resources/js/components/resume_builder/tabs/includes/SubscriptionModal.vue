@@ -25,7 +25,7 @@
                             <div class="features">
                                 <div class="single-feature" v-for="feature in features">
                                     <img src="/images/new_resume_builder/green-tick.png" alt="">
-                                    <div class="title">
+                                    <div class="feature-title">
                                         {{feature}}
                                     </div>
                                 </div>
@@ -307,13 +307,16 @@
                         display: flex;
                         align-items: center;
                         margin-bottom: 25px;
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
 
                         img{
                             width: 35px;
                             height: 35px;
                             margin-right: 14px;
                         }
-                        .title{
+                        .feature-title{
                             font-weight: 500;
                             font-size: 24px;
                             color: #888DB1;
@@ -541,28 +544,197 @@
     }
 </style>
 
+<!-- Responsive styles | Mobile -->
+
+<style lang="scss" scoped>
+
+    @media (max-width: 600px) {
+        .sub-modal-content-wrapper{
+            padding: 0 16px;
+            height: auto;
+
+            .sub-modal-content{
+
+                .ad-text-wrapper{
+                    .ad-text{
+                        font-size: 16px;
+                        line-height: 18px;
+                        width: 202px;
+                        height: 43px;
+                        &.purple{
+
+                        }
+                    }
+                }
+
+                .sub-options-wrapper{
+
+                    .sub-options{
+                        justify-content: space-between;
+
+                        &::before {
+
+                        }
+
+                        .option{
+                            font-size: 24px;
+                            line-height: 26px;
+
+                            &.active{
+                                font-size: 36px;
+                                &::before {
+
+                                }
+                            }
+
+                            &:hover{
+
+                            }
+                        }
+                    }
+                }
+
+                .features-wrapper{
+                    margin-top: 60px;
+                    .features{
+                        margin-left: 0px;
+                        .single-feature{
+                            margin-bottom: 12px;
+
+                            img{
+                                margin-right: 8px;
+                            }
+                            .feature-title{
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+
+                .promo-input-wrapper{
+                    height: 88px;
+                    .promo-input{
+
+                        input{
+                            height: 47px;
+                            max-width: 230px;
+                            padding-left: 12px;
+                            font-size: 16px;
+                        }
+                        .apply-btn{
+                            a{
+                                width: 112px;
+                                height: 47px;
+                                font-size: 16px;
+                            }
+                        }
+                        span.error{
+                            bottom: -17px;
+                            left: 3px;
+                            font-size: 11px;
+                        }
+                    }
+                }
+
+                .payment-row-wrapper{
+                    margin-top: 150px;
+
+                    .payment-row-content{
+                        flex-wrap: wrap;
+                        flex-direction: row-reverse;
+
+                        .price{
+                            .main{
+                                font-size: 40px;
+                            }
+                            .period{
+                                font-size: 18px;
+                            }
+                        }
+
+                        .selection-input{
+                            .select-box{
+                                height: 46px;
+
+                                .option{
+                                    font-size: 16px;
+                                }
+
+                                .arrow-img{
+                                    &.up{
+                                    }
+                                }
+                                .right-check{
+                                }
+
+                                .selection-items{
+                                    .item{
+                                        &:last-child{
+                                        }
+                                        &:hover{
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .payment-btn{
+                            margin-top: 30px;
+                            width: 100%;
+                            a{
+                                width: 100%;
+
+                                img{
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .payment-icons-wrapper{
+                    margin-top: 28px;
+                    padding-bottom: 27px;
+
+                    .payment-icons{
+
+                        .single-payment-icon{
+                            &:last-child{
+                            }
+                            img{
+
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+</style>
+
 <style lang="scss">
 
-    /* width */
-    ::-webkit-scrollbar {
-        width: 5px;
-    }
+    .sub-modal-content-wrapper{
+        /* width */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: none;
-    }
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: none;
+        }
 
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        border-radius: 25px;
-        background: rgba(0, 11, 90, 0.75);
-    }
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            border-radius: 25px;
+            background: rgba(0, 11, 90, 0.75);
+        }
 
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 11, 90, 1);
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 11, 90, 1);
+        }
     }
-
 
 </style>
