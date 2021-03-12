@@ -220,7 +220,7 @@
                         </div>
 
                         <div class="action-btn">
-                            <a href="#">
+                            <a href="/login?tab=signup">
                                 Start My Page <img src="/images/homepage/white_right_arrow.png" alt="right arrow">
                             </a>
                         </div>

@@ -36,6 +36,11 @@
                         <span class="error" v-if="errors.name">{{errors.name[0]}}</span>
                     </div>
                     <div class="auth-input-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" v-model="registerFormData.username">
+                        <span class="error" v-if="errors.username">{{errors.username[0]}}</span>
+                    </div>
+                    <div class="auth-input-group">
                         <label for="email">Email Address</label>
                         <input type="email" name="email" id="email" v-model="registerFormData.email">
                         <span class="error" v-if="errors.email">{{errors.email[0]}}</span>
@@ -215,6 +220,7 @@
                 ],
                 registerFormData: {
                     name: '',
+                    username: '',
                     email: '',
                     password: '',
                     password_confirmation: '',
