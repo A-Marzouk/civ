@@ -1,6 +1,8 @@
 <template>
     <v-app>
-        <div class="main-subscription-container"></div>
+        <div class="main-subscription-container">
+            <video id="subVideo" autoplay="" muted="" playsinline=""  @ended="nextVideo" :src="`/videos/homepage/features/${videos[currentVideoIndex]}.mp4`"></video>
+        </div>
 
         <!-- dialog -->
             <v-dialog  v-model="priceModal" width="620" style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);border-radius: 10px; z-index:1000; overflow-y:hidden;">
@@ -138,6 +140,8 @@
                 promoCodeValid: false,
                 currentPaymentMethod: 'Stripe',
                 errors:{ promocode: ''},
+                videos: ['portfolio', 'import', 'interactive', 'links', 'messages', 'pdf', 'portfolio', 'responsive', 'storage', 'themes', 'webpage', ],
+                currentVideoIndex: 0
             }
         },
         methods: {
@@ -191,6 +195,15 @@
             },
             changePaymentMethod(paymentMethod){
                 this.currentPaymentMethod = paymentMethod;
+            },
+
+            // video
+            nextVideo(){
+                if(this.currentVideoIndex >= this.videos.length){
+                    this.currentVideoIndex = 0 ;
+                }else{
+                    this.currentVideoIndex++ ;
+                }
             }
         }
     }
@@ -198,11 +211,12 @@
 
 <style lang="scss" scoped>
     .main-subscription-container {
-        background-image: url("/images/new_resume_builder/my_account_preview.png");
-        background-size: cover;
         height: 100vh;
-        filter: blur(6px);
-        -webkit-filter: blur(6px);
+        filter: blur(1px);
+        -webkit-filter: blur(1px);
+        video{
+            width: 100%;
+        }
     }
 
     .sub-modal-content-wrapper{
