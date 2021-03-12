@@ -706,8 +706,52 @@
                         }
                     }
                 }
-
             }
+        }
+    }
+
+        @media screen and (min-width: 351px) and (max-width: 400px) {
+            .promo-input-wrapper{
+            .promo-input{
+                .apply-btn{
+                    a{
+                        width: 90px !important;
+                    }
+                }
+            }
+        }
+
+        .payment-row-wrapper{
+            .payment-row-content{
+                .selection-input{
+                    .select-box{
+                        width: 150px !important;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 350px) {
+        .sub-options .option{
+            &.active{
+                font-size: 22px !important;
+            }
+            font-size: 20px !important;
+        }
+
+        .apply-btn{
+            a{
+                width: 65px !important;
+            }
+        }
+
+        .select-box{
+            width: 110px !important;
+        }
+
+        .payment-row-content .price .main{
+            font-size: 26px !important;
         }
     }
 </style>
